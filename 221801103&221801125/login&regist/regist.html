@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/loginRegist.css"/>
+    <link rel="stylesheet" href="../font&pic/iconfont.css">
+    <title>注册界面</title>
+</head>
+<style>
+    input:focus{
+        border-bottom: 2px solid #0F996B;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="logRegPanel">
+            <div class="panel_head">
+                <span>论文统计-注册</span>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-user"></span>
+                <input placeholder="请输入用户名" name="userName" id="regist_userName"/>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-mima"></span>
+                <input placeholder="请输入密码" name="password" id="regist_password"/>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-zaicishurumima"></span>
+                <input placeholder="请再次输入密码" id="regist_rePassword"/>
+            </div>
+            <div>
+                <button  class="btn" id="regist">注册</button>
+            </div>
+            <div class="panel_foot">
+                <span>注册好啦</span>
+                <a href="login.html">去登陆</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="inform">
+    </div>
+    <script src="../js/user.js"></script>
+    <script src="../js/loginRegist.js"></script>
+</body>
+</html>
