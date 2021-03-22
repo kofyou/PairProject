@@ -7,6 +7,17 @@ body{
     text-align: center;
     
 }
+a{
+    text-decoration: none;
+}
+
+a:link {color:#3CB371;}/* 未被访问的链接 */
+
+a:visited {color:#3CB371;}/* 已被访问的链接 */
+
+a:hover {color:#0F996B;}/* 鼠标指针移动到链接上 */
+
+a:active {color:#3CB371;}/* 正在被点击的链接 */
 
 .main{
     position: absolute;
@@ -17,10 +28,7 @@ body{
     height:500px;
 }
 
-@keyframes toolTip{
-    from {height: 0px;}
-    to {height: 100px;}
-}
+
 #inform{
     width:400px;
     height:0px;
@@ -29,6 +37,7 @@ body{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    transition: height 1s;
 }
 
 .logRegPanel{
@@ -45,7 +54,7 @@ body{
 .panel_head{
     position: relative;
     height:80px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 .panel_head span{
     position: absolute;
@@ -61,7 +70,7 @@ body{
     position: relative;
     width:100%;
     height:80px;
-    margin:10px 0 10px 0;
+    margin:10px 0 0px 0;
 }
 .panel_item input{
     position: absolute;
@@ -93,7 +102,7 @@ body{
 }
 
 .btn{
-    margin-top: 10px;
+    margin-top: 30px;
     border: 0;
     background-color: transparent;
     color: rgb(46,71,97);
@@ -112,4 +121,15 @@ body{
     right: 0;
     font-size: 15px;
     font-weight: 700;
+}
+
+.hint{
+    font-size: 10px;
+    font-weight: 700;
+    color: 	#B22222;
+}
+.hint span{
+    display: none;
+    position: absolute;
+    left:25%;
 }
