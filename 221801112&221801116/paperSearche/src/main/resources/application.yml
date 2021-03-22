@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/papersearch?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    username: root
+    password: 1750340569!xm
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    contentnegotiation:
+      favor-parameter: true  #开启请求参数内容协商模式
+#  mvc:
+#      hiddenmethod:
+#      filter:
+#      enabled: true   #开启页面表单的Rest功能
+
+#配置mybatis规则
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml #全局配置文件地址
+  mapper-locations: classpath:mybatis/mapper/*.xml  #sql映射文件位置
+  logging:
+    level:
+      com:
+        example:
+          demo:
+            mapper=debug:
