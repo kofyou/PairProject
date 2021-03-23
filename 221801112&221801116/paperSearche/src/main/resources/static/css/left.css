@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.content-left{
+    width: 100%;
+    height: 600px;
+    background: #667999;
+    position: relative;
+}
+.myclose{
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+}
+.left-title{
+    height: 50px;
+    width: 100%;
+}
+.left-title>a{
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+.nav-menu{
+    margin-top: 6px;
+}
+.nav-title>a,.nav-title2>a{
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: white;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+.nav-title2>a:hover,.nav-title>a:hover,.left-title>a:hover{
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: #5a6268;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+}
+.open{
+    width: 50px;
+    height: 50px;
+    background-color: #c3e6cb;
+    position: absolute;
+    cursor: pointer;
+    left: -50px;
+    line-height: 50px;
+    text-align: center;
+}
+li{
+      list-style: none;
+  }
+img{
+    border: 0;
+}
+a{
+    text-decoration: none;
+}
+.nav{
+    width: 100%;
+    height: 72px;
+    line-height: 72px;
+    background: #505050;
+}
+.nav li{
+    float: left;
+}
+.fl{
+    height: 72px;
+    float: left;
+}
+.fr{
+    height: 72px;
+    float: right;
+}
+.logo{
+    margin-left: 40px;
+    height: 72px;
+}
+.touxiang{
+    margin-right: 10px;
+    height: 72px;
+}
+.userName{
+    height: 46px;
+    margin-right: 70px;
+    color: #cccccc;
+}
+.eg img{
+    border-radius: 50%;
+}
+.content{
+    float: left;
+    width: 14%;
+    height: 100%;
+}
+.mytable{
+    float: left;
+}

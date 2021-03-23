@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>left</title>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/left.css">
+    <script type="text/javascript" src="js/left.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+    <!--    顶部导航栏-->
+    <div class="nav">
+        <ul class="fl">
+            <li><a href=""><img src="image/示例图片.png" alt="" class="logo"></a></li>
+        </ul>
+        <ul class="fr">
+            <li><a href=""><div class="eg"><img src="/image/touxiang2.jfif" alt="" class="touxiang"></div></a></li>
+            <li class="userName"><a href=""></a>用户名 </li>
+        </ul>
+    </div>
+
+    <!--侧边导航栏-->
+    <div class="content">
+        <div class="open" id="open">展开</div>
+        <div class="content-left" id="left">
+            <div class="myclose" id="myclose">收起</div>
+            <div class="left-title">
+                <a href="#">主页</a>
+            </div>
+            <div class="nav-left">
+                <div class="nav-menu">
+                    <div class="nav-title">
+                        <a href="#">待爬取论文</a>
+                    </div>
+                    <div class="nav-title2">
+                        <a href="#">已爬取论文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mytable">
+        <table id="demo" lay-filter="test"></table>
+    </div>
+    <script src="layui/layui.js"></script>
+    <script>
+
+        layui.use(['table', 'jquery', 'layer', 'form'], function () {
+            var table = layui.table;
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            var form = layui.form;
+
+            //表格数据
+            table.render({
+                elem: '#demo'
+                , height: 790
+                , width:1300
+                , url: "PaperTable" //数据接口
+                ,limit:17
+                , request: {
+                    pageName: 'current' //默认为page
+                    , limitName: 'size'  //默认为limit
+                }
+                , parseData: function (res) {
+                    ''
+                    console.log('返回的值', res);
+                    console.log('datalist', res.data.records);
+                    return {
+                        "code": res.code, //code为0表格才能读到数据
+                        "data": res.data.records, //解析数据列表
+                        "msg": res.message, //解析提示文本
+                        "count": res.data.total, //解析数据长度，一定要写这句，否则分页点不了
+                    };
+                }
+
+                , cols: [
+                    [ //表头
+                        {type: 'checkbox', fixed: 'left'}
+                        , {field: 'paperId', title: '编号', width: 80, sort: true, fixed: 'left', totalRowText: '合计：'}
+                        , {field: 'authors', title: '作者', width: 80}
+                        , {field: 'keywords', title: '关键词', width: 300}
+                        , {field: 'abstrac', title: '摘要', width: 350}
+                        , {field: 'publicationTitle', title: '标题', width: 150}
+                        , {field: 'persistentLink', title: '原文链接', width: 200}
+                    ]
+                ]
+                , page: true //开启分页
+                , toolbar: 'default'//工具图标
+            });
+        });
+    </script>
+
+</body>
+</html>
