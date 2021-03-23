@@ -22,6 +22,9 @@ return [
     'view_path'    => '',
     // 模板后缀
     'view_suffix'  => 'html',
+    'tpl_replace_string' => [ // 视图输出字符串内容替换
+        '__static__' => 'static/index', // CSS文件目录
+    ],
     // 模板文件名分隔符
     'view_depr'    => DIRECTORY_SEPARATOR,
     // 模板引擎普通标签开始标记
