@@ -99,8 +99,7 @@ setTitle(); // 在代码后面
 
 ### 其他规则
 #### 1 应用目录结构
->css/ 包含 CSS 文件
-images/ 包含图片文件
+>images/ 包含图片文件
 config/ 包含配置文件
 controllers/ 包含控制器的类文件
 views/ 包含控制器的视图和布局文件
