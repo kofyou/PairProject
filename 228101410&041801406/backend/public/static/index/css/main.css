@@ -7,10 +7,127 @@
     margin: 0;
 }
 
-.el-carousel__item:nth-child(2n) {
-    background-color: black;
+#app {
+    width: 100%;
+    height: 100%;
 }
 
-.el-carousel__item:nth-child(2n+1) {
-    background-color: red;
+body {
+    margin: 0px;
+}
+
+.el-carousel__item:nth-child(4n) {
+    background-image: url(../images/bg1.jpg);
+}
+
+.el-carousel__item:nth-child(4n+1) {
+    background-image: url(../images/bg2.jpg);
+}
+
+.el-carousel__item:nth-child(4n+2) {
+    background-image: url(../images/bg3.jpg);
+}
+
+.el-carousel__item:nth-child(4n+3) {
+    background-image: url(../images/bg4.jpg);
+}
+
+.el-carousel__arrow--right {
+    cursor: pointer;
+    position: fixed;
+    z-index: 99;
+    right: 80px;
+    bottom: 30px;
+}
+
+.el-carousel__arrow--left {
+    cursor: pointer;
+    position: fixed;
+    z-index: 99;
+    right: 160px;
+    bottom: 30px;
+    left: auto;
+}
+
+.el-carousel__arrow {
+    border-style: solid;
+    border-color: white;
+    height: 70px;
+    width: 70px;
+    top: auto;
+}
+
+.el-carousel__indicators {
+    display: none;
+}
+
+.el-icon-arrow-left {
+    zoom: 300%;
+}
+
+.el-icon-arrow-right {
+    zoom: 300%;
+}
+
+.el-input {
+    width: 20%;
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    zoom: 125%;
+}
+
+.el-autocomplete-suggestion.el-popper {
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    zoom: 125%;
+}
+
+.el-autocomplete-suggestion li {
+    font-size: 10px;
+}
+
+.el-row {
+    position: fixed;
+    top: 30.2%;
+    left: 32.3%;
+    zoom: 120%;
+}
+
+.el-button {
+    border-color: white;
+}
+
+.el-breadcrumb__inner a,
+.el-breadcrumb__inner.is-link {
+    color: white;
+    font-family: 'YaHei';
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 10;
+    -webkit-text-stroke: 0.05px #000000;
+}
+
+.el-breadcrumb__inner {
+    color: white;
+    font-family: 'YaHei';
+    font-style: normal;
+    font-size: 18px;
+    -webkit-text-stroke: 0.05px #000000;
+}
+
+.el-breadcrumb {
+    position: fixed;
+    left: 8%;
+    top: 1%;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+    font-weight: 10;
+    color: white;
+    -webkit-text-stroke: 0.05px #000000;
 }
