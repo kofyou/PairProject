@@ -32,7 +32,7 @@ func NewRouter() *gin.Engine {
 			authed.GET("user/list", api.ShowPaperList)
 			//authed.DELETE("user/logout", api.UserLogout)
 			authed.POST("user/subscribe", api.AddPaperList)
-
+			authed.DELETE("logout", api.UserLogout)
 		}
 	}
 
