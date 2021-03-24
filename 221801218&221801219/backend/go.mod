@@ -9,6 +9,6 @@ require (
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/joho/godotenv v1.3.0
 	github.com/mattn/go-sqlite3 v1.14.6
-	golang.org/x/crypto v0.0.0-20210317152858-513c2a44f670 // indirect
+	golang.org/x/crypto v0.0.0-20210317152858-513c2a44f670
 	xorm.io/xorm v1.0.7
 )

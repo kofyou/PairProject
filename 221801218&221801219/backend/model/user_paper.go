@@ -5,3 +5,9 @@ type UserPaper struct {
 	PaperId uint64 `xorm:"index notnull"`
 	UId     uint64 `xorm:"index notnull"`
 }
+
+func (user *User) AddUserPaper(ID interface{})  {
+	{
+
+	}
+}

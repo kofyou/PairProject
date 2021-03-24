@@ -17,6 +17,12 @@ func NewRouter() *gin.Engine {
 	v1 := r.Group("/api/v1")
 	{
 		v1.POST("ping", api.Ping)
+
+		// 用户注册
+		v1.POST("user/register", api.UserRegister)
+
+		// 用户登陆
+		v1.POST("user/login", api.UserLogin)
 	}
 
 	return r
