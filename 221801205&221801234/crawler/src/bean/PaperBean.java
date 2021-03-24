@@ -50,5 +50,7 @@ public class PaperBean {
 	}
 	public void setAccesstimes(int accesstimes) {
 		this.accesstimes = accesstimes;
+	
 	}
+
 }
