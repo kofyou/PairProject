@@ -23,5 +23,16 @@ export default {
   padding: 0px;
 }
 
+.root-div {
+  background-image: url("assets/background.jpg");
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 37em;
+  width: auto;
+  border: 0px;
+  padding: 0px;
+}
+
 </style>
 

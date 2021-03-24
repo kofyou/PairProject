@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <Base> </Base>
+  <div id = "index" class = "root-div">
+    <Base></Base>
+    <div class = "main">
+      
+    </div>
   </div>
 </template>
 
