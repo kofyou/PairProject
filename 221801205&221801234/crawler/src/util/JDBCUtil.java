@@ -25,7 +25,7 @@ public class JDBCUtil {
 			Class.forName(driver);
 			
 			for (int i = 0; i < initialConnectionCount; i ++) {
-				Connection con = DriverManager.getConnection(url);
+				Connection con = DriverManager.getConnection(url,loginName,password);
 				pool.add(con);
 			}
 		}catch (Exception e) {
@@ -40,7 +40,7 @@ public class JDBCUtil {
 		else {
 			Connection con = null;
 			try {
-				con = DriverManager.getConnection(url);
+				con = DriverManager.getConnection(url,loginName,password);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
