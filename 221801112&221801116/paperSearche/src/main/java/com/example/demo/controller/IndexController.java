@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.bean.PaperResponsBody;
 import com.example.demo.bean.User;
 import com.example.demo.service.serviceImpl.IndexServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,6 +48,18 @@ public class IndexController
             session.setAttribute("userName","未登录");
         }
         return "index";
+    }
+
+    @RequestMapping("/getAllPaper")
+    @ResponseBody
+    public PaperResponsBody getAllPaper()
+    {
+        PaperResponsBody paperResponsBody=new PaperResponsBody();
+        paperResponsBody.setCode("0");
+        paperResponsBody.setMsg("成功");
+        paperResponsBody.setCount(8);
+        paperResponsBody.setData(indexSerice.getAllPaper());
+        return paperResponsBody;
     }
 
 }

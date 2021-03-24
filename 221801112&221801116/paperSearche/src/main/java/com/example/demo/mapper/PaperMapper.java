@@ -9,4 +9,5 @@ import com.example.demo.bean.Paper;
  * @Date: Create in 13:14 2021/3/23
  */
 public interface PaperMapper extends BaseMapper<Paper> {
+
 }

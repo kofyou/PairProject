@@ -13,7 +13,11 @@ public class TestController {
 
     @GetMapping("/left")
     public String getLeft() {
-        return "left";
+        return "paperlist";
     }
 
+    @GetMapping("/test")
+    public String getTest() {
+        return "test";
+    }
 }

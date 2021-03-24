@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>left</title>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/left.css">
+    <script type="text/javascript" src="js/left.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+    <!--    顶部导航栏-->
+    <div class="nav">
+        <ul class="fl">
+            <li><a href=""><img src="image/示例图片.png" alt="" class="logo"></a></li>
+        </ul>
+        <ul class="fr">
+            <li><a href=""><div class="eg"><img src="/image/touxiang2.jfif" alt="" class="touxiang"></div></a></li>
+            <li class="userName"><a href=""></a>用户名 </li>
+        </ul>
+    </div>
+
+    <!--侧边导航栏-->
+    <div class="content">
+        <div class="open" id="open">展开</div>
+        <div class="content-left" id="left">
+            <div class="myclose" id="myclose">收起</div>
+            <div class="left-title">
+                <a href="#">主页</a>
+            </div>
+            <div class="nav-left">
+                <div class="nav-menu">
+                    <div class="nav-title">
+                        <a href="#">待爬取论文</a>
+                    </div>
+                    <div class="nav-title2">
+                        <a href="#">已爬取论文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mytable">
+        <table id="currentTableId"></table>
+    </div>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录
+        })
+        layui.use(['table', 'form', 'jquery', 'cardTable'], function () {
+            let table = layui.table;
+            let form = layui.form;
+            let $ = layui.jquery;
+            let cardTable = layui.cardTable;
+
+            cardTable.render({
+                elem: '#currentTableId',
+                url: 'getLimitPaper',
+            })
+            // 监听搜索操作
+
+        })
+    </script>
+
+</body>
+</html>

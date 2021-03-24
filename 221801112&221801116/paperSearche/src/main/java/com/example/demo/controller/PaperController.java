@@ -30,4 +30,6 @@ public class PaperController extends ApiController{
         return success(this.paperService.page(page, new QueryWrapper<>(paper)));
     }
 
+
+
 }
