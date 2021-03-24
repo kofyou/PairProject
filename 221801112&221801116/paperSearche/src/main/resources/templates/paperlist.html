@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <title>left</title>
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/left.css">
-    <script type="text/javascript" src="js/left.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css">
-</head>
-<body>
-    <!--    顶部导航栏-->
+    <script type="text/javascript" src="js/left.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/left.css">
+    <link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/demo.css" />
+
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" href="public/css/set.css" />
+
+    </head>
+    <body>
+        <!--    顶部导航栏-->
     <div class="nav">
         <ul class="fl">
             <li><a href=""><img src="image/示例图片.png" alt="" class="logo"></a></li>
@@ -41,7 +48,18 @@
         </div>
     </div>
 
+
+
     <div class="mytable">
+        <div id="myblock1">
+            <span class="input input--manami">
+			<input class="input__field input__field--manami" type="text" id="input-32" />
+			<label class="input__label input__label--manami" for="input-32">
+				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词搜索</span>
+			</label>
+		</span>
+            <button id="mybutton" class="layui-btn layui-btn-radius" onclick="search()" th:text="开始搜索"></button>
+        </div>
         <table id="currentTableId"></table>
     </div>
     <script src="layui/layui.js"></script>
@@ -59,9 +77,19 @@
                 elem: '#currentTableId',
                 url: 'getLimitPaper',
             })
-            // 监听搜索操作
-
         })
+        function search(){
+            var keyword = document.getElementById("input-32")
+            var keys = keyword.value
+            layui.use(['cardTable'], function () {
+                let cardTable = layui.cardTable;
+
+                cardTable.render({
+                    elem: '#currentTableId',
+                    url: '/searchByKeyWord?keywords='+keys,
+                })
+            })
+        }
     </script>
 
 </body>

@@ -50,16 +50,5 @@ public class IndexController
         return "index";
     }
 
-    @RequestMapping("/getAllPaper")
-    @ResponseBody
-    public PaperResponsBody getAllPaper()
-    {
-        PaperResponsBody paperResponsBody=new PaperResponsBody();
-        paperResponsBody.setCode("0");
-        paperResponsBody.setMsg("成功");
-        paperResponsBody.setCount(8);
-        paperResponsBody.setData(indexSerice.getAllPaper());
-        return paperResponsBody;
-    }
 
 }

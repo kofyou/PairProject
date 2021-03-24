@@ -26,8 +26,4 @@ public class IndexServiceImpl implements IndexSerice
         return tmp;
     }
 
-    public List<Paper> getAllPaper()
-    {
-        return userMapper.selAllPaper();
-    }
 }

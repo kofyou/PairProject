@@ -13,6 +13,4 @@ public interface UserMapper
     @Select("SELECT * FROM USER WHERE NAME='曹鑫'")
     public User selUserByName(String name);
 
-    @Select("SELECT * FROM paper")
-    public List<Paper> selAllPaper();
 }

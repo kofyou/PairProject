@@ -4,7 +4,7 @@
 }
 .content-left{
     width: 100%;
-    height: 600px;
+    height: 100%;
     background: #667999;
     position: relative;
 }
@@ -110,4 +110,21 @@ a{
 .mytable{
     float: left;
     width: 80%;
+}
+.layui-input-block{
+    margin-top: 15px;
+    width: 25%;
+}
+.layui-btn-radius{
+    display: inline;
+}
+#mybutton{
+    margin-top: 19px;
+}
+#currentTableId{
+    margin-top: 5px;
+}
+#myblock1{
+    margin-left: 21px;
+    margin-left: 21px;
 }

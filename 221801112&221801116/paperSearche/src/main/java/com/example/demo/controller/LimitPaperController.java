@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.bean.Paper;
 import com.example.demo.bean.PaperResponsBody;
 import com.example.demo.service.LimitPaperService;
 import com.example.demo.service.serviceImpl.LimitPaperImpl;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author: shuKai
@@ -33,6 +35,19 @@ public class LimitPaperController {
         paperResponsBody.setMsg("成功");
         paperResponsBody.setCount(limitPaperService.getCount()-3);
         paperResponsBody.setData(limitPaperService.getLimitPaper(Integer.parseInt(start),Integer.parseInt(limit)));
+        return paperResponsBody;
+    }
+
+    @RequestMapping("/searchByKeyWord")
+    @ResponseBody
+    public PaperResponsBody getLimitPaper(@RequestParam(defaultValue = "") String keywords,@RequestParam(defaultValue = "1") String start, @RequestParam(defaultValue = "8") String limit)
+    {
+        List<Paper> paperList = limitPaperService.searchByKeyWords(keywords,Integer.parseInt(start),Integer.parseInt(limit));
+        PaperResponsBody paperResponsBody=new PaperResponsBody();
+        paperResponsBody.setCode("0");
+        paperResponsBody.setMsg("成功");
+        paperResponsBody.setCount(limitPaperService.getCountS(keywords)-3);
+        paperResponsBody.setData(paperList);
         return paperResponsBody;
     }
 }

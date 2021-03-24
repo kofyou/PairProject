@@ -27,4 +27,12 @@ public class LimitPaperImpl implements LimitPaperService {
     public int getCount() {
         return limitPaperMapper.getCount();
     }
+
+    public List<Paper> searchByKeyWords(String keyword,int startPosition,int pageSize) {
+        return limitPaperMapper.searchByKeyWords(keyword,startPosition,pageSize);
+    }
+
+    public int getCountS(String keyword) {
+        return limitPaperMapper.getCuntS(keyword);
+    }
 }

@@ -17,6 +17,13 @@ public interface LimitPaperMapper {
 
     @Select("SELECT * FROM paper limit #{startPosition} ,#{pageSize}")
     public List<Paper> getLimitPaper(@Param("startPosition") int startPosition, @Param("pageSize") int pageSize);
+
     @Select("SELECT COUNT(*) FROM PAPER")
     public int getCount();
+
+    @Select("SELECT * FROM PAPER WHERE keywords like '%${value}%' limit #{startPosition} ,#{pageSize}")
+    public List<Paper> searchByKeyWords(@Param("value") String keyword,@Param("startPosition") int startPosition, @Param("pageSize") int pageSize);
+
+    @Select("SELECT COUNT(*) FROM PAPER WHERE keywords like '%${value}%'")
+    public int getCuntS(@Param("value") String keyword);
 }

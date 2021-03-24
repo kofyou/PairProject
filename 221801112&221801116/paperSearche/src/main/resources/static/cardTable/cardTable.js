@@ -69,8 +69,14 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		html = "";
 		if (url != null) {
 			if (!!option.page) {
-				 url = url + '?' + option.request.pageName + '=' + option.currentPage*3;
-				 url = url + '&' + option.request.limitName + '=' + option.limit;
+				if(url.indexOf('?')!=-1){
+					url = url + '&' + option.request.pageName + '=' + option.currentPage*3;
+					url = url + '&' + option.request.limitName + '=' + option.limit;
+				}else{
+					url = url + '?' + option.request.pageName + '=' + option.currentPage*3;
+					url = url + '&' + option.request.limitName + '=' + option.limit;
+				}
+
 			}
 			if (!!option.where) {
 				for (let key in option.where) {
@@ -101,7 +107,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			laypage.render({
 				elem: 'cardpage'
 				, count: option.count, limit: option.limit, limits:option.limits, curr: option.currentPage
-				, layout: option.layout
+				, layout: option.layout,theme: 'csk'
 				, jump: function (obj, first) {
 					option.limit = obj.limit;
 					option.currentPage = obj.curr;
@@ -141,8 +147,8 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			'<div id='+item.paperId+'onclick="cardTableCheckedCard('+elem+',this)"'+'class="layui-col-md'+line+'ew-datagrid-item"'+'data-index="'+no+'"data-number="1">'+
 				'<div class="project-list-item">'+
 					'<div class="project-list-item-body">'+
-							'<h4>' + item.publicationTitle + '</h4> '+
-							'<div class="project-list-item-text layui-text" style="color: #20c997">'+
+							'<h2 style="font-size: 22px">' + item.publicationTitle + '</h2> '+
+							'<div class="project-list-item-text layui-text" style="color: #20c997;font-size: medium">'+
 								item.keywords+
 							'</div> '+
 							'<div class="project-list-item-desc" >' +
