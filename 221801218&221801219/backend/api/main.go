@@ -1,8 +1,10 @@
 package api
 
 import (
+	"backend/model"
 	"backend/serializer"
 	"encoding/json"
+	"github.com/gin-gonic/gin"
 )
 
 func ErrorResponse(err error) serializer.Response {
@@ -17,4 +19,14 @@ func ErrorResponse(err error) serializer.Response {
 	}
 
 	return serializer.ParamErr("参数错误", err)
+}
+
+// CurrentUser 获取当前用户
+func CurrentUser(c *gin.Context) *model.User {
+	if user, _ := c.Get("user"); user != nil {
+		if u, ok := user.(*model.User); ok {
+			return u
+		}
+	}
+	return nil
 }

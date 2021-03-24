@@ -15,5 +15,6 @@ func BuildUser(user model.User) User {
 func BuildUserResponse(user model.User) Response {
 	return Response{
 		Data:  BuildUser(user),
+		Msg: "Success",
 	}
 }

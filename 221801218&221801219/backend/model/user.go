@@ -2,7 +2,6 @@ package model
 
 import (
 	"backend/util"
-	"fmt"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -15,8 +14,12 @@ type User struct {
 const (
 	// PasswordCost 密码加密难度
 	PasswordCost = 12
+
+	// UserPaperListPageMaxSize 论文列表单页条数
+	UserPaperListPageMaxSize = 15
 )
 
+// GetUser 由Id获取用户
 func GetUser(ID interface{}) (User, bool) {
 	user := new(User)
 	has, err := Engine.ID(ID).Get(user)
@@ -26,6 +29,7 @@ func GetUser(ID interface{}) (User, bool) {
 	return *user, has
 }
 
+// SetPassword 设置用户密码
 func (user *User) SetPassword(password string) error {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), PasswordCost)
 	if err != nil {
@@ -36,8 +40,8 @@ func (user *User) SetPassword(password string) error {
 	return nil
 }
 
+// CheckPassword 验证用户密码
 func (user *User) CheckPassword(password string) bool {
-	fmt.Println(password)
 	err := bcrypt.CompareHashAndPassword([]byte(user.PasswordDigest), []byte(password))
 	return err == nil
 }
@@ -57,4 +61,31 @@ func (user *User) Exist() bool {
 		util.Log().Error(err.Error())
 	}
 	return has
+}
+
+// GetPaperList 获取用户论文列表，返回第p页结果，以及总页数
+func (user *User) GetPaperList(p int64) ([]Paper, int64) {
+	paperIdList, total := user.GetPaperIdList(p)
+	if total == -1 {
+		return nil, -1
+	}
+
+	paperList := make([]Paper, 0)
+
+	for _, id := range paperIdList {
+		paper, has := GetPaper(id)
+		if !has {
+			util.Log().Error("Paper Missing.")
+		}
+		paperList = append(paperList, paper)
+	}
+
+	var pageCount int64
+	if total % UserPaperListPageMaxSize != 0 {
+		pageCount = total / UserPaperListPageMaxSize + 1
+	} else {
+		pageCount = total / UserPaperListPageMaxSize
+	}
+
+	return paperList, pageCount
 }
