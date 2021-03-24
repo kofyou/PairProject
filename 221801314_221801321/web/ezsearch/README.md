@@ -1,4 +1,4 @@
-# pairproject_web
+# ezsearch
 
 ## Project setup
 ```
