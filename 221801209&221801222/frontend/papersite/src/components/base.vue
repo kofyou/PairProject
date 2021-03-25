@@ -111,7 +111,11 @@ el-col {
 }
 
 .active{
-  background: brown;
+  background-color: #99a9bf;
+}
+
+.base{
+  background-color: black;
 }
 
 /*.inactive-item{*/

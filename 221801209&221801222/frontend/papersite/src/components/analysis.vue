@@ -1,7 +1,7 @@
 <template>
-  <div id = "analysis" class = "root-div">
-    <Base> </Base>
-    <div class = "main">
+  <div id="analysis" class="root-div">
+    <Base></Base>
+    <div className="main">
     </div>
   </div>
 </template>
@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 </style>
