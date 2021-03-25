@@ -1,10 +1,9 @@
 <template>
   <div class="block">
-    <h1 title="">EzSearch</h1>
+    <Header/>
     <el-row :gutter="20">
-      <el-col :span="12" :offset="2"><Carousel/></el-col>
+      <el-col :span="12" :offset="3"><Carousel/></el-col>
       <el-col :span="6" :offset="0"><Carousel/></el-col>
-      
     </el-row>
     
     <el-divider></el-divider>
@@ -35,12 +34,14 @@
 </template>
 <script>
 import {defineComponent, ref} from 'vue';
+import Header from '@/components/Header.vue';
 import Paper from '@/components/Paper.vue';
 import Carousel from '@/components/Carousel.vue';
 // import Sidebar from '@/components/Sidebar.vue';
 export default defineComponent ({
   name: "Search",
   components:{
+    Header,
     Paper,
     Carousel,
     // Sidebar,
