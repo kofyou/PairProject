@@ -1,4 +1,4 @@
-package edu.fzu.paperAnalysis;
+package edu.fzu.paperAnalysis.servlet;
 
 import java.io.*;
 import javax.servlet.http.*;
