@@ -20,4 +20,7 @@ public interface UserMapper
     @Select("SELECT * FROM paper")
     public List<Paper> selAllPaper();
 
+    @Select("SELECT keywords,publicationYear FROM paper WHERE conference=#{conference}")
+    public List<Paper> selPaperByConference(Paper paper);
+
 }
