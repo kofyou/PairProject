@@ -17,15 +17,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-//create table paper (
-//    title varchar(512) primary key ,
-//    paperAbstract varchar(2048),
-//    url varchar(1024),
-//    meeting varchar(16),
-//    year varchar(16),
-//    keyWord varchar(1024)
-//    )
-
 /**
  * 文件读取
  *
@@ -39,6 +30,11 @@ public class FileUtil {
     private static final String ICCV_ROOT = "221801334&221801230/PaperCV/src/main/java/com/pairproject/papercv/data" +
         "/paper/ICCV/";
 
+    /**
+     * 获取ECCV
+     *
+     * @return
+     */
     public static List<Paper> readECCV() {
         File root = new File(ECCV_ROOT);
         File[] files = root.listFiles();
@@ -62,6 +58,11 @@ public class FileUtil {
         return papers;
     }
 
+    /**
+     * 获取ICCV论文
+     *
+     * @return
+     */
     public static List<Paper> readICCV() {
         File root = new File(ICCV_ROOT);
         File[] files = root.listFiles();
@@ -86,6 +87,11 @@ public class FileUtil {
         return papers;
     }
 
+    /**
+     * 获取CVPR论文
+     *
+     * @return
+     */
     public static List<Paper> readCVPR() {
         File root = new File(CVPR_ROOT);
         File[] files = root.listFiles();
@@ -97,7 +103,7 @@ public class FileUtil {
             paper.setTitle(jsonObject.getString("title"));
             paper.setPaperAbstract(jsonObject.getString("abstract"));
             paper.setUrl(jsonObject.getString("doiLink"));
-            paper.setMeeting("ICCV");
+            paper.setMeeting("CVPR");
             paper.setYear(jsonObject.getString("publicationYear"));
             JSONArray keys = jsonObject.getJSONArray("keywords").getJSONObject(0).getJSONArray("kwd");
             StringBuilder sb = new StringBuilder();
