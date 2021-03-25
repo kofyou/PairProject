@@ -1,0 +1,17 @@
+@charset "UTF-8";
+#container {
+	background-color:#FFFFFF;
+}
+
+#header {
+    background-color:red;
+    text-align:center;
+    padding:15px;
+}
+#content {
+	margin:150px 300px;
+	background-color:blue;
+	text-align:center;
+	width:800px;
+	height:1000px;
+}
