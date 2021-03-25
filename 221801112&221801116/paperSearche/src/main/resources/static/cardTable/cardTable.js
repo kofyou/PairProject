@@ -144,7 +144,8 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 	function createCard(elem, linenum, item, no) {
 		var line = 12 / linenum;
 		var card =
-			'<div id='+item.paperId+'onclick="cardTableCheckedCard('+elem+',this)"'+'class="layui-col-md'+line+'ew-datagrid-item"'+'data-index="'+no+'"data-number="1">'+
+			// 加入模态面板
+			'<div id = "'+item.paperId+'" data-toggle="modal" data-target="#myModal" onclick="cardTableCheckedCard('+elem+',this)"'+'class="layui-col-md'+line+'ew-datagrid-item"'+'data-index="'+no+'"data-number="1">'+
 				'<div class="project-list-item">'+
 					'<div class="project-list-item-body">'+
 							'<h2 style="font-size: 22px">' + item.publicationTitle + '</h2> '+
@@ -154,6 +155,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 							'<div class="project-list-item-desc" >' +
 								'<span >' +item.abstrac + '</span>' +
 								'<span class="time">' +item.publicationYear + '</span>' +
+								//'<a href="'+item.persistentLink+'" style="float: right;text-underline: none" >原文链接</a>'+
 								' <div class="ew-head-list"></div>' +
 							'</div> '+
 					'</div >'+
@@ -176,6 +178,8 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			item.keywords = dataList[i][option.request.keywords];
 			item.publicationTitle = dataList[i][option.request.publicationTitle];
 			item.publicationYear = dataList[i][option.request.publicationYear];
+			item.persistentLink = dataList[i][option.request.persistentLink];
+			item.persistentLink = item.persistentLink.replace('"',"");
 			data.data.push(item);
 		}
 		return data;
@@ -195,13 +199,8 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 	//卡片点击事件
 	window.cardTableCheckedCard = function (elem,obj) {
 		$(obj).addClass('layui-table-click').siblings().removeClass('layui-table-click');
-		var item = {};
-		item.id = obj.id;
-		item.image = $(obj).find('.project-list-item-cover')[0].src;
-		item.title = $(obj).find('h2')[0].innerHTML;
-		item.remark = $(obj).find('.project-list-item-text')[0].innerHTML;
-		item.time = $(obj).find('.time')[0].innerHTML;
-		_instances[elem.id].option.checkedItem = item;
+		var paperIdInput = document.getElementById("paperId");
+
 	}
 	/** 对外提供的方法 */
 	var tt = {
@@ -215,15 +214,16 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		},
 		/* 获取选中参数 */
 		getChecked: function (id) {
-			var option = _instances[id].option;
-			var data = option.checkedItem;
-			var item = {};
-			item[option.request.idName] = data.id;
-			item[option.request.imageName] = data.image;
-			item[option.request.titleName] = data.title;
-			item[option.request.remarkName] = data.remark;
-			item[option.request.timeName] = data.time;
-			return item;
+			 // var option = _instances[id].option;
+			 // var data = option.checkedItem;
+			 // var item = {};
+			 // item[option.request.paperId] = data.paperId;
+			 // item[option.request.abstrac] = data.abstrac;
+			 // item[option.request.keywords] = data.keywords;
+			 // item[option.request.publicationTitle] = data.publicationTitle;
+			 // item[option.request.publicationYear] = data.publicationYear;
+			 // item[option.request.persistentLink] = data.persistentLink;
+			 // return item;
 		},
 	}
 	exports(MOD_NAME, tt);

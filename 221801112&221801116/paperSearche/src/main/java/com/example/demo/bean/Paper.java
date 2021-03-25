@@ -1,9 +1,7 @@
 package com.example.demo.bean;
 
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 
 import java.io.Serializable;
 
@@ -12,9 +10,9 @@ import java.io.Serializable;
  * @Description:
  * @Date: Create in 12:55 2021/3/23
  */
-public class Paper extends Model<Paper> {
+public class Paper {
 
-    @TableId(type = IdType.AUTO)
+
     private Integer paperId;
 
     private String authors;
@@ -85,8 +83,4 @@ public class Paper extends Model<Paper> {
         this.persistentLink = persistentLink;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.paperId;
-    }
 }

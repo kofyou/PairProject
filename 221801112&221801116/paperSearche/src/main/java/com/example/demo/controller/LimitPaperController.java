@@ -2,16 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.Paper;
 import com.example.demo.bean.PaperResponsBody;
-import com.example.demo.service.LimitPaperService;
 import com.example.demo.service.serviceImpl.LimitPaperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**

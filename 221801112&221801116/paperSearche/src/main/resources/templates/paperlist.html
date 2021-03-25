@@ -16,6 +16,11 @@
 
     </head>
     <body>
+
+<!--    回到顶部-->
+    <div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
+        <img src="image/fanhuidingbucopy.png" />
+    </div>
         <!--    顶部导航栏-->
     <div class="nav">
         <ul class="fl">
@@ -53,7 +58,7 @@
     <div class="mytable">
         <div id="myblock1">
             <span class="input input--manami">
-			<input class="input__field input__field--manami" type="text" id="input-32" />
+			<input class="input__field input__field--manami" type="text" id="input-32" autocomplete="off"/>
 			<label class="input__label input__label--manami" for="input-32">
 				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词搜索</span>
 			</label>
@@ -64,6 +69,7 @@
     </div>
     <script src="layui/layui.js"></script>
     <script>
+        $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
         layui.config({
             base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录
         })
