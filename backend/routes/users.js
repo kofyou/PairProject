@@ -24,10 +24,11 @@ router.use("/",function(req,res,next){
 /* GET users listing. */
 router.post('/login', function(req, res, next) {
   User.login(req.body.username,req.body.password)
-    .then(msg=>{
+    .then(data=>{
       req.session.auth = true
       req.session.username = req.body.username
-      res.json({code:0,msg})
+      req.session.uid = data.uid
+      res.json({code:0,msg:data["msg"]})
     })
     .catch(err=>res.json({code:1,err:err.message}))
 });
@@ -43,6 +44,13 @@ router.post('/register', function(req, res, next) {
   
 });
 
-
+router.get("/whoami",function(req,res,next){
+  if(req.session.auth){
+    res.json({code:0,username:req.session.username})
+  }else{
+    res.json({code:1,err:"请先登入"})
+  }
+  
+})
 
 module.exports = router;

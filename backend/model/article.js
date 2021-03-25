@@ -1,16 +1,28 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const { Sequelize, DataTypes, Model,Op } = require('sequelize');
 const config = require("../config")
 const sequelize = new Sequelize(config.sqlurl);
 class Article extends Model{
-  static search(title){
+  static search(title,keyword){
     if(typeof title !== "string" || title === ""){
-      return Promise.reject(new Error("title为空或类型错误"))
+      title = ""
+    }
+    if(typeof keyword !== "string" || keyword === ""){
+      keyword = ""
     }
     return Article.findAll({
       where:{
-        title:{
-          [Op.like]: '%'+title+"%",
-        }
+        [Op.and]:[
+          {
+            title:{
+              [Op.like]: '%'+title+"%",
+            }
+          },
+          {
+            keywords: {
+              [Op.like]:"%"+keyword+"%"
+            }
+          }
+        ]
       }
     }).then(articles=>{
       if(articles === null){
@@ -50,3 +62,4 @@ Article.init({
   tableName: 'article',
   timestamps: false
 })
+module.exports = Article

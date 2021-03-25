@@ -3,6 +3,8 @@ const path = require('path');
 const logger = require('morgan');
 const session = require('express-session')
 const usersRouter = require('./routes/users');
+const searchRouter = require('./routes/search');
+const starRouter = require("./routes/star")
 const config = require("./config")
 const app = express();
 const { Sequelize} = require('sequelize');
@@ -31,7 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', usersRouter);
-
+app.use('/search', searchRouter);
+app.use('/search', starRouter);
 // catch 404 and forward to error handler
 
 

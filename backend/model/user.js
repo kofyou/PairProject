@@ -13,7 +13,7 @@ class User extends Model {
       if(user===null){
         return Promise.reject(new Error("账号或密码错误"))
       }else{
-        return "登入成功"
+        return {uid:user.uid,msg:"登入成功"}
       }
     })
 
