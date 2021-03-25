@@ -39,4 +39,8 @@ public class LimitPaperImpl implements LimitPaperService {
     public Integer deletePaper(int paperId) {
        return limitPaperMapper.deletePaper(paperId);
     }
+
+    public Integer updatePaper(int id,String title,String key,String abstrac,String link,String year) {
+        return limitPaperMapper.updatePaper(id,key,abstrac,title,year,link);
+    }
 }

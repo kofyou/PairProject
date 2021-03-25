@@ -63,10 +63,11 @@
             <span class="input input--manami" style="margin-top: 20px">
 			<input class="input__field input__field--manami" type="text" id="input-32" autocomplete="off"/>
 			<label class="input__label input__label--manami" for="input-32">
-				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词搜索</span>
+				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词或标题搜索</span>
 			</label>
 		    </span>
             <button id="mybutton" class="layui-btn layui-btn-radius" onclick="search()" th:text="开始搜索"></button>
+            <button id="mybuttonadd" data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-radius layui-btn-danger" th:text="增加论文"></button>
         </div>
         <table id="currentTableId"></table>
     </div>
@@ -129,7 +130,7 @@
 
                         <button class="layui-btn layui-btn-radius layui-btn-normal" type="submit" th:text="确定修改" formaction="/update"></button>
                         <button class="layui-btn layui-btn-radius" type="submit" th:text="确定删除" formaction="/delete"></button>
-
+                        <button class="layui-btn layui-btn-radius layui-btn-warm" data-dismiss="modal" th:text="关闭窗口"></button>
                     </fieldset>
                 </form>
             </div>
@@ -167,7 +168,12 @@
             var keyword = document.getElementById("input-32");
             var keys = keyword.value;
             keyword.value = "";
-            document.getElementById("myinput1").innerText = keys;
+            if(keys==""){
+                document.getElementById("myinput1").innerText = "请输入关键词或标题搜索";
+            }else{
+                document.getElementById("myinput1").innerText = keys;
+            }
+
             layui.use(['cardTable'], function () {
                 let cardTable = layui.cardTable;
 

@@ -29,7 +29,7 @@ public class TestController {
         return "test";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/updateTest")
     public String postUpdate(HttpServletRequest request) {
         String title = request.getParameter("textarea-title");
         System.out.println(title);

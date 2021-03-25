@@ -28,12 +28,27 @@ public class LimitPaperController {
     @ResponseBody
     public PaperResponsBody getLimitPaper(@RequestParam(defaultValue = "1") String start, @RequestParam(defaultValue = "8") String limit)
     {
+        List<Paper> paperList = limitPaperService.getLimitPaper(Integer.parseInt(start),Integer.parseInt(limit));
+        for(Paper paper:paperList) {
+            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org/")){
+
+            }else {
+                paper.setPersistentLink("https://ieeexplore.ieee.org/"+paper.getPersistentLink());
+            }
+        }
 
         PaperResponsBody paperResponsBody=new PaperResponsBody();
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
-        paperResponsBody.setCount(limitPaperService.getCount()-3);
-        paperResponsBody.setData(limitPaperService.getLimitPaper(Integer.parseInt(start),Integer.parseInt(limit)));
+
+        Integer count = limitPaperService.getCount();
+
+        if(count<=3){
+            paperResponsBody.setCount(count);
+        } else{
+            paperResponsBody.setCount(count-3);
+        }
+        paperResponsBody.setData(paperList);
         return paperResponsBody;
     }
 
@@ -42,6 +57,13 @@ public class LimitPaperController {
     public PaperResponsBody getLimitPaper(@RequestParam(defaultValue = "") String keywords,@RequestParam(defaultValue = "1") String start, @RequestParam(defaultValue = "8") String limit)
     {
         List<Paper> paperList = limitPaperService.searchByKeyWords(keywords,Integer.parseInt(start),Integer.parseInt(limit));
+        for(Paper paper:paperList) {
+            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org/")){
+
+            }else {
+                paper.setPersistentLink("https://ieeexplore.ieee.org/"+paper.getPersistentLink());
+            }
+        }
         PaperResponsBody paperResponsBody=new PaperResponsBody();
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
@@ -67,6 +89,24 @@ public class LimitPaperController {
             System.out.println("删除失败");
         }
 
+        return "paperlist";
+    }
+
+    @PostMapping("/update")
+    public String postUpdate(HttpServletRequest request) {
+        String paperId = request.getParameter("paperId");
+        String title = request.getParameter("textarea-title");
+        String year = request.getParameter("textarea-year");
+        String link = request.getParameter("textarea-link");
+        String abstrac = request.getParameter("textarea-abstract");
+        String key = request.getParameter("textarea-key");
+
+        Integer result = limitPaperService.updatePaper(Integer.parseInt(paperId),title,key,abstrac,link,year);
+        if(result == 1){
+            System.out.println("删除成功");
+        }else{
+            System.out.println("删除失败");
+        }
         return "paperlist";
     }
 

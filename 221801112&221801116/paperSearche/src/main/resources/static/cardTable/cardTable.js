@@ -182,7 +182,6 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			item.publicationYear = dataList[i][option.request.publicationYear];
 			item.persistentLink = dataList[i][option.request.persistentLink];
 			item.persistentLink = item.persistentLink.replaceAll('"',"");
-			item.persistentLink = 'https://ieeexplore.ieee.org/'+item.persistentLink;
 			data.data.push(item);
 		}
 		return data;
