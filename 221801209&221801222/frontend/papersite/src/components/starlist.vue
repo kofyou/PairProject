@@ -7,10 +7,10 @@
       <div id = "search-div">
         <!--            搜索框和搜索按钮-->
         <el-row :gutter="20">
-          <el-col :span="10" :offset="6">
+          <el-col :span="4" :offset="15">
             <el-input v-model="searchWord" placeholder="输入检索条件"  clearable></el-input>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="2">
             <el-button type="primary" icon="el-icon-search" @click = "doSearch(searchWord)">检索论文</el-button>
           </el-col>
         </el-row>

@@ -28,10 +28,10 @@
         </el-col>
 
 
-        <el-col :span="3" :offset="11">
+        <el-col :span="3" :offset="10">
           <router-link to = "/index">
             <div class="grid-content bg-purple"  :class = "{active : isActive['user']}"  @click= 'changeState("user")'>
-              <i class="el-icon-user-solid">&nbsp;&nbsp;</i><span>{{ username }}</span>
+              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar><span>{{ username }}</span>
             </div>
           </router-link>
         </el-col>
@@ -115,7 +115,7 @@ el-col {
 }
 
 .base{
-  background-color: black;
+  background-color: cornsilk;
 }
 
 /*.inactive-item{*/

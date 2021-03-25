@@ -65,8 +65,8 @@
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button icon="el-icon-search" circle></el-button>
-                <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+                <el-button icon="el-icon-search" circle style="color: black !important; "></el-button>
+                <el-button type="warning" icon="el-icon-star-off" circle style="background-color: palegreen;"></el-button>
               </template>
             </el-table-column>
           </el-table>
