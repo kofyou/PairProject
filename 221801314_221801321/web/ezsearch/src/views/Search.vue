@@ -28,7 +28,7 @@
     <Paper/>
     <Paper/>
   </el-space>
-
+  <Footer/>
   
 
 </template>
@@ -38,6 +38,7 @@ import Header from '@/components/Header.vue';
 import Paper from '@/components/Paper.vue';
 import Carousel from '@/components/Carousel.vue';
 // import Sidebar from '@/components/Sidebar.vue';
+import Footer from '@/components/Footer.vue';
 export default defineComponent ({
   name: "Search",
   components:{
@@ -45,6 +46,7 @@ export default defineComponent ({
     Paper,
     Carousel,
     // Sidebar,
+    Footer,
   },
   setup() { 
     const path = require("@/assets/CVPR.jpg");
