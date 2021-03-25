@@ -42,6 +42,7 @@ public class PaperDao {
 				ps.setString(3, paper.getAbstractt());
 				ps.setString(4, paper.getUrl());
 				ps.setInt(5, paper.getAccesstimes());
+				ps.execute();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -50,7 +51,7 @@ public class PaperDao {
 		}
 	}
 	
-	public void insert(LinkedList<PaperBean> papers) {
+	public void insertAll(LinkedList<PaperBean> papers) {
 		for (PaperBean paper:papers) {
 			insertOne(paper);
 		}

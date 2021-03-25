@@ -1,7 +1,6 @@
 package bean;
 
 public class PaperBean {
-	private int id;
 	private String name;
 	private String year;
 	private String meeting;
@@ -9,12 +8,6 @@ public class PaperBean {
 	private String url;
 	private int accesstimes;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
