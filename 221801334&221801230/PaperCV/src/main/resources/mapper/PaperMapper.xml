@@ -8,6 +8,7 @@
             <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="meeting" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="keyWord" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="year" javaType="java.lang.String" jdbcType="VARCHAR" />
         </constructor>
     </resultMap>
 
@@ -20,9 +21,9 @@
     </select>
 
     <insert id="insert" parameterType="com.pairproject.papercv.model.Paper" keyProperty="title">
-    insert into paper (title, paperAbstract, url, meeting, keyWord)
+    insert into paper (title, paperAbstract, url, meeting, keyWord, year)
     values (#{title,jdbcType=VARCHAR}, #{paperAbstract,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
-    #{meeting,jdbcType=VARCHAR}, #{keyWord,jdbcType=VARCHAR})
+    #{meeting,jdbcType=VARCHAR}, #{keyWord,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR})
   </insert>
 
 </mapper>
