@@ -5,7 +5,7 @@
       <el-row :gutter="20">
         <el-col :span="3" >
           <router-link to = "/index">
-            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['index']}"  @click= 'changeState("index")' >
+            <div class="grid-content bg-purple" :class = "{active : isActive['index']}"  @click= 'changeState("index")' >
               <span>主页</span>
             </div>
           </router-link>
@@ -13,7 +13,7 @@
 
         <el-col :span="3">
           <router-link to = "/starlist">
-            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['starlist']}"  @click= 'changeState("starlist")'>
+            <div class="grid-content bg-purple"  :class = "{active : isActive['starlist']}"  @click= 'changeState("starlist")'>
               <span>我的收藏</span>
             </div>
           </router-link>
@@ -21,7 +21,7 @@
 
         <el-col :span="3">
           <router-link to = "/analysis">
-            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['analysis']}"  @click= 'changeState("analysis")' >
+            <div class="grid-content bg-purple" :class = "{active : isActive['analysis']}"  @click= 'changeState("analysis")' >
               <span>顶会数据</span>
             </div>
           </router-link>
@@ -30,7 +30,7 @@
 
         <el-col :span="3" :offset="11">
           <router-link to = "/index">
-            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['user']}"  @click= 'changeState("user")'>
+            <div class="grid-content bg-purple"  :class = "{active : isActive['user']}"  @click= 'changeState("user")'>
               <i class="el-icon-user-solid">&nbsp;&nbsp;</i><span>{{ username }}</span>
             </div>
           </router-link>
@@ -38,6 +38,7 @@
 
       </el-row>
     </div>
+    <el-divider content-position="left"></el-divider>
   </div>
 </template>
 

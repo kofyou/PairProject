@@ -28,7 +28,7 @@ export default {
   background-attachment: fixed;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 37em;
+  min-height: 37em;
   width: auto;
   border: 0px;
   padding: 0px;
