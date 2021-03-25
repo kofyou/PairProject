@@ -42,8 +42,36 @@ document.getElementById("regist").onclick=()=>{
         else{
             //向后端发送请求
             //检测账号是否已注册
-            var ele = document.getElementById("inform")
-            ele.style.height = "100px";
+            var userInfo = [inputs[0].value,inputs[1].value]
+            $.ajax({
+                url : "",
+                data : userInfo,
+                type : "POST",
+                success : data =>{
+                    $("#login_word").removeClass("to_none")
+                    $("#reg_wait").css("display","none")
+                    if(data == 1){
+                        alert("注册成功,即将跳转到登陆界面")
+                        USER_INFO.userID = inputs[0].value
+                        USER_INFO.password = inputs[1].value
+                        setTimeout(()=>{window.open("./login.html","_self")},2000)
+                    }
+                    else if(data == 0){
+                        hints[0].getElementsByTagName("span")[0].style.display = "inline";
+                    }
+                    else if(data == 2){
+                        alert("注册失败，也不知道为什么")
+                    }
+                },
+                error : ()=>{
+                    $("#reg_word").removeClass("to_none")
+                    $("#reg_wait").css("display","none")
+                    alert("啊哦，网络可能出了些错误，请稍后重试")
+                }
+            })
+            $("#reg_word").addClass("to_none")
+            $("#reg_wait").css("display","inline-block")
+            $("#reg_wait").css("display","disable")
         }
     }else{
         if(username_reg=="")

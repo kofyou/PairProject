@@ -4,5 +4,6 @@ var USER_INFO =
         "userID" : "",
         "head_icon" : "url",
         "sign" : "这个人很懒，什么都没有留下",
-        "company" : "福州大学"
+        "company" : "福州大学",
+        "password" : ""
     }
