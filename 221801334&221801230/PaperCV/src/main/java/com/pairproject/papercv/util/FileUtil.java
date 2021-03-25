@@ -17,6 +17,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+//create table paper (
+//    title varchar(512) primary key ,
+//    paperAbstract varchar(2048),
+//    url varchar(1024),
+//    meeting varchar(16),
+//    year varchar(16),
+//    keyWord varchar(1024)
+//    )
+
 /**
  * 文件读取
  *

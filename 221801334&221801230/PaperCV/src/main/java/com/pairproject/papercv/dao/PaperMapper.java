@@ -29,6 +29,14 @@ public interface PaperMapper {
     Paper selectByTitle(String title);
 
     /**
+     * 通过会议查询论文
+     *
+     * @param meeting
+     * @return
+     */
+    List<Paper> selectByMeeting(String meeting);
+
+    /**
      * 插入论文
      *
      * @param paper 论文
