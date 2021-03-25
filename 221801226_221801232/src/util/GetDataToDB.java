@@ -1,34 +1,27 @@
-package javar;
+package util;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.TreeSet;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alibaba.fastjson.JSONReader;
 
+import entity.items;
 
-public class LogFiles {
+public class GetDataToDB {
     TreeSet<File> files;
-    PaperDao dao = new PaperDao();
+    private int paperNum = 1;
     
     /**
      * 根据数据存储路径读到文件集合
      * @param path 数据存储路径
      * @throws FileNotFoundException 
      */
-    public LogFiles(String path) throws FileNotFoundException {
+    public GetDataToDB(String path){
         File logFile = new File(path);
         File[] temp = logFile.listFiles();
         files = new TreeSet<File>();
@@ -43,17 +36,22 @@ public class LogFiles {
      * @param sta
      * @throws FileNotFoundException 
      */
-    public void readFiles() throws FileNotFoundException {
+    public void readFiles(){
         String path;
         for (File f :files) {
             path = f.getAbsolutePath();
             System.out.println(path);
-            readECCVFileContent(path);
+            try {
+                readECCVFileContent(path);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
  
     /**
-             * 把json解析到自定义类中
+     * 把json解析到自定义类中
      * @param path
      * @param sta
      * @throws FileNotFoundException 
@@ -61,7 +59,7 @@ public class LogFiles {
     public void readECCVFileContent(String path) throws FileNotFoundException {
         
         String key = "";
-        Statistic sta = new Statistic();
+        items item = new items();
         
         JSONReader reader=new JSONReader(new FileReader(path));
         //开始解析最外层的对象
@@ -74,13 +72,13 @@ public class LogFiles {
             if(key.equals("摘要"))
             {
                 String abstracts = reader.readObject().toString();
-                sta.setAbstact(abstracts);
+                item.setAbstracts(abstracts);
 
             }
             else if(key.equals("会议和年份"))
             {
                 String conference = reader.readObject().toString();
-                sta.setConference(conference);
+                item.setConference(conference);
 
             }
             else if(key.equals("关键词"))
@@ -93,40 +91,80 @@ public class LogFiles {
                     longkeyword += ",";
                     
                 }
-                sta.setKeyword(longkeyword);
+                item.setKeyword(longkeyword);
                 reader.endArray();
             }
             else if(key.equals("发布时间"))
             {
                 String time = reader.readObject().toString();
-                sta.setTime(time);
+                item.setTime(time);
             }
             else if(key.equals("论文名称"))
             {
                 String title = reader.readObject().toString();
-                sta.setTitle(title);
+                System.out.println("论文：" + title);
+                item.setTitle(title);
 
             }
             else if(key.equals("原文链接"))
             {
                 String link = reader.readObject().toString();
-                //System.out.println("原文链接为：" + link);
-                sta.setLink(link);
+                
+                item.setLink(link);
             }
-            
-            
             
         }
         try {
-            Connection conn = dao.getConnection();
-            dao.saveDataToDb(conn,sta);
+            Connection conn = DBHelper.getConnection();
+            saveDataToDb(conn,item);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         reader.endObject();
         
+    }
+    
+    /**
+     * 把json数据存储到数据库
+     * @param coon
+     * @param sta
+     * @throws Exception
+     */
+    public void saveDataToDb(Connection coon,items item) throws Exception {
+        String abs = item.getAbstracts();
+        String conf = item.getConference();
+        String keyw = item.getKeyword();
+        String tim = item.getTime();
+        String titl = item.getTitle();
+        String link = item.getLink();
+        String str = "paperslistTest";
+        String papNum = Integer.toString(paperNum);
         
+        PreparedStatement pstmt = null;
         
+        try {
+            String sql = "INSERT INTO `" + str + "` (`id`,`abstracts`, `conference`, `keyword`, `time`, `title`, `link`) "
+                    + "VALUES ('" 
+                    + papNum + "', '" + abs + "', '" + conf + "', '" + keyw + "', '" + tim + "', '" + titl + "', '" + link + "')";
+            
+            pstmt = coon.prepareStatement(sql);
+            pstmt.executeUpdate(sql);  
+            paperNum++;
+        }catch (SQLException e) {  
+            // TODO Auto-generated catch block  
+            e.printStackTrace();  
+        }  
+        finally {  
+            // 释放语句对象
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                    pstmt = null;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+         }
+        }  
     }
 }

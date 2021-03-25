@@ -8,13 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Paper Search For U</title>
+<title>Paper Search For U -details</title>
 </head>
 <body>
-<%
-//从提供的数据地址读取数据导入数据库
-        GetDataToDB logfile = new GetDataToDB("D://ECCV");
- %>
 
 </body>
 </html>
