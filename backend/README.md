@@ -446,3 +446,54 @@ for i in range(len(data)):
 | total  | int    | 在min和max之间论文总数             |
 | top    | list   | 在min和max之间top10论文和数量      |
 
+
+
+### /article/:id
+
+**简要描述：**
+
+- 根据aid返回论文
+
+**请求方式：**
+
+- GET
+
+**参数：**
+
+将路径的:id换成id
+
+| 参数名 | 必选 | 类型 |
+| ------ | ---- | ---- |
+| id     | 否   | int  |
+
+**返回示例**
+
+
+
+```
+{
+    "code": 0,
+    "article": {
+        "aid": 1,
+        "title": "Proceedings IEEE Conference on Computer Vision and Pattern Recognition. CVPR 2000 (Cat. No.PR00662)",
+        "no": "855865",
+        "author": "[\"I. Stamos\", \"P.E. Allen\"]",
+        "type": "IEEE Conference",
+        "keywords": "[\"Bismuth\", \"virtual reality\", \"image segmentation\", \"image reconstruction\", \"3-D models\", \"virtual reality\", \"tele-presence\", \"digital cinematography\", \"urban planning\", \"dense depth estimates\", \"image sensing\", \"registration\", \"segmentation algorithms\", \"photorealistic models\"]",
+        "url": "https://doi.org/10.1109/CVPR.2000.855865",
+        "abstract": "This paper deals with the automated creation of geometric and photometric correct 3-D models of the world. Those models can be used for virtual reality, tele-presence, digital cinematography and urban planning applications. The combination of range (dense depth estimates) and image sensing (color information) provides data-sets which allow us to create geometrically correct, photorealistic models of high quality. The 3-D models are first built from range data using a volumetric set intersection method previously developed by us. Photometry can be napped onto these models by registering features from both the 3-D and 2-D data sets. Range data segmentation algorithms have been developed to identify planar regions, determine linear features from planar intersections that can serve as features for registration with 2-D imagery lines, and reduce the overall complexity of the models. Results are shown for building models of large buildings on our campus using real data acquired from multiple sensors."
+    }
+}
+```
+
+
+
+**返回参数说明**
+
+| 参数名  | 类型   | 说明                 |
+| ------- | ------ | -------------------- |
+| code    | int    | 1:错误,0:正常运行    |
+| err     | string | 错误信息             |
+| msg     | string | 正常运行下返回的信息 |
+| article | list   | 论文信息             |
+

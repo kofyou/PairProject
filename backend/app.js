@@ -6,6 +6,7 @@ const usersRouter = require('./routes/users');
 const searchRouter = require('./routes/search');
 const starRouter = require("./routes/star")
 const top10Router = require("./routes/top10")
+const articleRouter = require("./routes/article")
 const config = require("./config")
 const app = express();
 const { Sequelize} = require('sequelize');
@@ -37,6 +38,7 @@ app.use('/user', usersRouter);
 app.use('/search', searchRouter);
 app.use('/star', starRouter);
 app.use('/top10', top10Router);
+app.use("/article",articleRouter)
 // catch 404 and forward to error handler
 
 
