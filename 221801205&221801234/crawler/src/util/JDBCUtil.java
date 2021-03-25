@@ -2,6 +2,7 @@ package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,6 +50,26 @@ public class JDBCUtil {
 	}
 	
 	public static void release(Connection con, Statement st, ResultSet rs) {
+		if (con != null) {
+			pool.add(con);
+		}
+		if (st != null) {
+			try {
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void release(Connection con, PreparedStatement st, ResultSet rs) {
 		if (con != null) {
 			pool.add(con);
 		}
