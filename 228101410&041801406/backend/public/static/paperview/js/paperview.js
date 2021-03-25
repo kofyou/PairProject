@@ -1,14 +1,14 @@
 var tableData = [
-    { num: '1', title: "一叶扁舟", keyword: " 22", date: "2018-06-27" },
-    { num: '2', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '3', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '4', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '5', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '6', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '7', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '40', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '11', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
-    { num: '9', title: "一叶扁舟", keyword: " 232", date: "2018-06-27" },
+    { title: "一叶扁舟", keyword: " 22", date: "2018-06-05" },
+    { title: "一叶扁舟1", keyword: " 2321", date: "2018-06-04" },
+    { title: "一叶扁舟2", keyword: " 2322", date: "2018-06-17" },
+    { title: "一叶扁舟3", keyword: " 2323", date: "2018-06-16" },
+    { title: "一叶扁舟4", keyword: " 2324", date: "2018-06-15" },
+    { title: "一叶扁舟5", keyword: " 2325", date: "2018-06-24" },
+    { title: "一叶扁舟6", keyword: " 2326", date: "2018-06-14" },
+    { title: "一叶扁舟7", keyword: " 2327", date: "2018-06-03" },
+    { title: "一叶扁舟8", keyword: " 2328", date: "2018-06-01" },
+    { title: "一叶扁舟9", keyword: " 2329", date: "2018-06-02" },
 ];
 var Main = {
     data() {
@@ -17,12 +17,22 @@ var Main = {
         }
     },
     methods: {
-        formatter(row, column) {
-            return row.address;
-        },
         handleClick(row) {
-            tableData.splice(tableData.findIndex(e => e.num == row.num), 1);
+            tableData.splice(tableData.findIndex(e => e.title == row.title), 1);
         },
+        changeTableSort(column) {
+            //获取字段名称和排序类型
+            var fieldName = column.prop;
+            var sortingType = column.order;
+            //按照降序排序
+            if (sortingType == "descending") {
+                this.tableData = this.tableData.sort((a, b) => Date.parse(new Date(b[fieldName])) - Date.parse(new Date(a[fieldName])));
+            }
+            //按照升序排序
+            else {
+                this.tableData = this.tableData.sort((a, b) => Date.parse(new Date(a[fieldName])) - Date.parse(new Date(b[fieldName])));
+            }
+        }
     },
 }
 var Ctor = Vue.extend(Main)
