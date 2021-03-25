@@ -26,4 +26,12 @@ public interface PaperService {
      */
     Paper getPaper(String title);
 
+    /**
+     * 通过关键词查询论文
+     *
+     * @param keyWord 关键词
+     * @return
+     */
+    List<Paper> getPaperByKey(String keyWord);
+
 }

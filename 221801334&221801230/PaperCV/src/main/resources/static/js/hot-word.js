@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    var httpRoot = "http://localhost:8080";
+    // var httpRoot = "http://120.24.27.29:8080";
 
     var cvprValues;
     var cvprYears;
     var cvprCounts;
     $.ajax({
-        url:`http://localhost:8080/data/trend/cvpr`,
+        url:httpRoot + `/data/trend/cvpr`,
         type:"GET",
         dataType:"json",
         async:false,
@@ -19,7 +21,7 @@ $(document).ready(function () {
     var iccvYears;
     var iccvCounts;
     $.ajax({
-        url:`http://localhost:8080/data/trend/iccv`,
+        url:httpRoot + `/data/trend/iccv`,
         type:"GET",
         dataType:"json",
         async:false,
@@ -34,7 +36,7 @@ $(document).ready(function () {
     var eccvYears;
     var eccvCounts;
     $.ajax({
-        url:`http://localhost:8080/data/trend/eccv`,
+        url:httpRoot + `/data/trend/eccv`,
         type:"GET",
         dataType:"json",
         async:false,

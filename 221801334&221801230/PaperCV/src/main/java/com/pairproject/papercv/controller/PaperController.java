@@ -43,4 +43,8 @@ public class PaperController {
         return paperService.getPaper(title);
     }
 
+    @GetMapping("/keyWord/{key}")
+    public List<Paper> getPaperByKey(@PathVariable("key") String key) {
+        return paperService.getPaperByKey(key);
+    }
 }
