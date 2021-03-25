@@ -23,7 +23,7 @@ public class UserController {
      * @param user the user
      * @return the result
      */
-    @PostMapping
+    @PostMapping("/register")
     public Result register(@RequestBody User user) {
         User existedUser = userService.findUserByAccount(user.getAccount());
         Result result;
@@ -39,13 +39,14 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param account  the account
-     * @param password the password
+     * @param user  必须包含account和password
      * @return the result
      */
-    @GetMapping
-    public Result login(@RequestParam String account,@RequestParam String password) {
+    @PostMapping("/login")
+    public Result login(@RequestBody User user) {
         Result result;
+        String account = user.getAccount();
+        String password = user.getPassword();
         User loginUser = userService.findUserByAccount(account);
         if (loginUser == null) {
             result = Result.error("-1","账号未注册");
