@@ -372,11 +372,14 @@ for i in range(len(data)):
 
 **请求方式：**
 
-- GET
+- POST
 
 **参数：**
 
-无
+| 参数名 | 必选 | 类型   | 说明   |
+| ------ | ---- | ------ | ------ |
+| min    | 否   | int | 最小年份 |
+| max    | 否   | int | 最大年份 |
 
 **返回示例**
 
@@ -440,6 +443,6 @@ for i in range(len(data)):
 | code   | int    | 1:错误,0:正常运行    |
 | err    | string | 错误信息             |
 | msg    | string | 正常运行下返回的信息 |
-| total  | int    | 论文总数             |
-| top    | list   | top10论文和数量      |
+| total  | int    | 在min和max之间论文总数             |
+| top    | list   | 在min和max之间top10论文和数量      |
 

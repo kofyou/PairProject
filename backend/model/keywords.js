@@ -4,7 +4,7 @@ const User = require("./user")
 const Article = require("./article")
 const sequelize = new Sequelize(config.sqlurl);
 class Keyword extends Model{
-  static top10(){
+  static top10(min,max){
     let toplist
     return Keyword.findAll({
       attributes:[
@@ -15,10 +15,31 @@ class Keyword extends Model{
       order:[
         [sequelize.fn('COUNT', sequelize.col('keyword')), 'DESC']
       ],
+      where:{
+        [Op.and]:[
+          {
+            year:{[Op.gte]:min},
+          },
+          {
+            year:{[Op.lte]:max}
+          }
+        ]
+      },
       limit: 10
     }).then(top=>{
       toplist = top
-      return Keyword.count()
+      return Keyword.count({
+        where:{
+          [Op.and]:[
+            {
+              year:{[Op.gte]:min},
+            },
+            {
+              year:{[Op.lte]:max}
+            }
+          ]
+        }
+      })
     }).then(total=>{
       toplist.total = total
       return toplist
