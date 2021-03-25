@@ -14,4 +14,6 @@ public interface DataService {
     List<Map.Entry<String, Integer>> getTop500();
 
     List<Word> getTrendWord(String meeting, List<String> years);
+
+    int getPaperCount(String meeting);
 }

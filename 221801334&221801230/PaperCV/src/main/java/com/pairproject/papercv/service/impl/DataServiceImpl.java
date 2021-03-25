@@ -95,4 +95,9 @@ public class DataServiceImpl implements DataService {
         return res;
     }
 
+    @Override
+    public int getPaperCount(String meeting) {
+        return paperMapper.readCount(meeting);
+    }
+
 }

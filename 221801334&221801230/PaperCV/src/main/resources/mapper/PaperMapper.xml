@@ -24,6 +24,10 @@
         select * from paper where meeting = #{meeting}
     </select>
 
+    <select id="readCount" parameterType="String" resultType="java.lang.Integer">
+        select count(title) from paper where meeting = #{meeting}
+    </select>
+
     <insert id="insert" parameterType="com.pairproject.papercv.model.Paper" keyProperty="title">
     insert into paper (title, paperAbstract, url, meeting, keyWord, 'year')
     values (#{title,jdbcType=VARCHAR}, #{paperAbstract,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
