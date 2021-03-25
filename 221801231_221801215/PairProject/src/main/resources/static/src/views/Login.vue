@@ -1,0 +1,232 @@
+<template>
+  <el-container>
+   <myheader></myheader>
+    <el-main>
+      <el-image class="pageimage"></el-image>
+      <div class="loginblock">
+        <span class="logintitle">登录</span>
+        <el-form ref="form" :model="form" class="loginform" :rules="rules">
+          <el-form-item label="登录账号" prop="loginName">
+            <br />
+            <el-input
+              type="text"
+              placeholder="请输入账号"
+              v-model="form.loginName"
+              class="logininput"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="登录密码" prop="loginPassword">
+            <br />
+            <el-input
+              type="password"
+              placeholder="请输入密码"
+              v-model="form.loginPassword"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              type="primary"
+              @click="registerForm('form')"
+              style="
+                width: 500px;
+                background-color: #333333;
+                margin-top: 20px;
+                border: #333333;
+              "
+            >登录</el-button
+            >
+          </el-form-item>
+        </el-form>
+        <router-link
+          to="/Register"
+          style="
+            text-decoration: none;
+            color: #333333;
+            float: left;
+            position: relative;
+            top: 540px;
+            right: 65px;
+          "
+        >注册新账号-></router-link>
+
+      </div>
+    </el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
+</template>
+<script>
+import Myheader from "../components/myheader";
+export default {
+  name: "Login",
+  components: {Myheader},
+  data() {
+    return {
+      form: {
+        loginName: "",
+        loginPassword: "",
+      },
+      rules: {
+        loginName: [
+          {
+            required: true,
+            message: "请输入账号",
+            trigger: "blur",
+          },
+        ],
+        loginPassword: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "blur",
+          },
+        ],
+      },
+      circleUrl:
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      squareUrl:
+        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$message({
+        message: "登录成功",
+        type: "warning",
+      });
+    },
+    registerForm(formName)
+    {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+      alert(this.form.loginName);
+      alert(this.form.loginPassword);
+      // let _this=this;
+      // axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.name,account:_this.form.name,password:_this.form.password}).then(function (response) {
+      //   console.log(response);
+      //
+      // },function (error) {
+      //   console.log("error");
+      //
+      // })
+    }
+  },
+};
+</script>
+<style>
+.el-header,
+.el-footer {
+  background-color: #133382;
+  color: #d3dce6;
+  text-align: center;
+  line-height: 80px;
+  height: 80px !important;
+}
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+  height: 900px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body > .el-container {
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+.pageimage {
+  margin-top: 0px;
+  height: 900px;
+  width: 50%;
+  float: left;
+  position: relative;
+  left: 0px;
+}
+.title-text {
+  width: 300px;
+  float: left;
+  left: 100px;
+  top: 15px;
+  position: absolute;
+}
+
+.el-button {
+  width: 120px;
+}
+
+.loginbutton {
+  margin: auto;
+  margin-left: 200px;
+  margin-right: 50px;
+}
+.registerbutton {
+  background-color: #333333 !important;
+  border-color: #333333;
+  color: #d3dce6;
+  margin-right: 50px;
+}
+.title {
+  display: inline-block;
+  width: 500px;
+  height: 50px;
+  line-height: 50px;
+  margin: auto 300px auto 100px;
+  font-size: 32px;
+  position: relative;
+}
+.loginblock {
+  height: 900px;
+  width: 50%;
+  float: left;
+  position: relative;
+  right: 0px;
+  background-color: #eeeeee;
+}
+.logintitle {
+  width: 200px;
+  height: 100px;
+  float: left;
+  top: 200px;
+  left: 100px;
+  font-size: 40px;
+  line-height: 100px;
+  position: relative;
+  font-weight: bold;
+}
+.loginform {
+  width: 500px;
+  height: 500px;
+  float: left;
+  position: relative;
+  top: 300px;
+  left: 50%;
+  margin-left: -50%;
+}
+
+.logininput {
+  background:rgba(0,0,0,0.2) !important;
+  border: 1px solid rgba(0,0,0, 0.2) ! important;
+}
+</style>
