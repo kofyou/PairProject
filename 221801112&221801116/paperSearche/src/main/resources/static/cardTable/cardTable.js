@@ -15,7 +15,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		url: "cardTable/card.json",// 数据 url 连接
 		loading: true,//是否加载
 		limit: 3, //每页数量默认是每行数量的双倍
-		linenum: 2, //每行数量 2,3,4,6
+		linenum: 1, //每行数量 2,3,4,6
 		currentPage: 0,//当前页
 		limits:[],     //页码
 		page: true, //是否分页
@@ -70,10 +70,10 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		if (url != null) {
 			if (!!option.page) {
 				if(url.indexOf('?')!=-1){
-					url = url + '&' + option.request.pageName + '=' + option.currentPage*3;
+					url = url + '&' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*3;
 					url = url + '&' + option.request.limitName + '=' + option.limit;
 				}else{
-					url = url + '?' + option.request.pageName + '=' + option.currentPage*3;
+					url = url + '?' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*3;
 					url = url + '&' + option.request.limitName + '=' + option.limit;
 				}
 
@@ -150,11 +150,13 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 					'<div class="project-list-item-body">'+
 							'<h2 style="font-size: 22px">' + item.publicationTitle + '</h2> '+
 							'<div class="project-list-item-text layui-text" style="color: #20c997;font-size: medium">'+
-								item.keywords+
+								'<span >' +item.keywords + '</span>' +
+								//item.keywords+
 							'</div> '+
 							'<div class="project-list-item-desc" >' +
 								'<span >' +item.abstrac + '</span>' +
 								'<span class="time">' +item.publicationYear + '</span>' +
+								'<span style="display: none">' +item.persistentLink + '</span>' +
 								//'<a href="'+item.persistentLink+'" style="float: right;text-underline: none" >原文链接</a>'+
 								' <div class="ew-head-list"></div>' +
 							'</div> '+
@@ -179,7 +181,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			item.publicationTitle = dataList[i][option.request.publicationTitle];
 			item.publicationYear = dataList[i][option.request.publicationYear];
 			item.persistentLink = dataList[i][option.request.persistentLink];
-			item.persistentLink = item.persistentLink.replace('"',"");
+			item.persistentLink = item.persistentLink.replaceAll('"',"");
 			data.data.push(item);
 		}
 		return data;
@@ -199,8 +201,23 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 	//卡片点击事件
 	window.cardTableCheckedCard = function (elem,obj) {
 		$(obj).addClass('layui-table-click').siblings().removeClass('layui-table-click');
-		var paperIdInput = document.getElementById("paperId");
-
+		var item = {};
+		item.paperId = obj.id;
+		item.publicationTitle = $(obj).find('h2')[0].innerHTML;
+		item.keywords = $(obj).find('span')[0].innerHTML;
+		item.abstrac = $(obj).find('span')[1].innerHTML;
+		item.publicationYear = $(obj).find('span')[2].innerHTML;
+		item.persistentLink = $(obj).find('span')[3].innerHTML;
+		console.log(item.persistentLink);
+		//数据嵌入表单元素
+		document.getElementById("textarea-title").value = item.publicationTitle;
+		document.getElementById("textarea-link").value = item.persistentLink;
+		document.getElementById("textarea-linka").herf = item.persistentLink;
+		document.getElementById("textarea-abstract").value = item.abstrac;
+		document.getElementById("textarea-key").value = item.keywords;
+		document.getElementById("textarea-year").value = item.publicationYear;
+		document.getElementById("paper_id").innerText = item.paperId;
+		document.getElementById("paperId").value = item.paperId;
 	}
 	/** 对外提供的方法 */
 	var tt = {

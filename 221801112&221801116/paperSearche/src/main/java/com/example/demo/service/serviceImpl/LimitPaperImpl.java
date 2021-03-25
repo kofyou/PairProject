@@ -24,7 +24,7 @@ public class LimitPaperImpl implements LimitPaperService {
         return limitPaperMapper.getLimitPaper(startPosition,pageSize);
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return limitPaperMapper.getCount();
     }
 
@@ -32,7 +32,15 @@ public class LimitPaperImpl implements LimitPaperService {
         return limitPaperMapper.searchByKeyWords(keyword,startPosition,pageSize);
     }
 
-    public int getCountS(String keyword) {
+    public Integer getCountS(String keyword) {
         return limitPaperMapper.getCuntS(keyword);
+    }
+
+    public Integer deletePaper(int paperId) {
+       return limitPaperMapper.deletePaper(paperId);
+    }
+
+    public Integer updatePaper(int id,String title,String key,String abstrac,String link,String year) {
+        return limitPaperMapper.updatePaper(id,key,abstrac,title,year,link);
     }
 }
