@@ -37,6 +37,7 @@ Article.init({
   aid:{
     type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement:true
   },
   title: {
     type: DataTypes.STRING,
@@ -55,6 +56,9 @@ Article.init({
   },
   url:{
     type:DataTypes.STRING,
+  },
+  abstract:{
+    type: DataTypes.STRING,
   }
 }, {
   sequelize, 

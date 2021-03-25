@@ -1,5 +1,7 @@
-const { Sequelize, DataTypes, Model,Op } = require('sequelize');
+const { Sequelize, DataTypes, Model,Op,Deferrable } = require('sequelize');
 const config = require("../config")
+const User = require("./user")
+const Article = require("./article")
 const sequelize = new Sequelize(config.sqlurl);
 class Star extends Model{
   static add(uid,aid){
@@ -38,7 +40,7 @@ class Star extends Model{
   }
 
   static list(uid){
-    Star.findAll({
+    return Star.findAll({
       where:{
         uid
       }
@@ -61,9 +63,19 @@ Star.init({
   },
   aid: {
     type: DataTypes.INTEGER,
+    references: {
+      model: Article,
+      key: 'aid',
+      deferrable: Deferrable.INITIALLY_IMMEDIATE
+    }
   },
   uid: {
     type: DataTypes.INTEGER,
+    references: {
+      model: User,
+      key: 'uid',
+      deferrable: Deferrable.INITIALLY_IMMEDIATE
+    },
   }
 }, {
   sequelize, 
@@ -72,4 +84,7 @@ Star.init({
   timestamps: false
 })
 Star.sync()
+  .catch(e=>{
+    console.log(e)
+  })
 module.exports = Star

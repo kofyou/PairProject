@@ -3,7 +3,6 @@ var router = express.Router();
 const User = require('../model/user');
 const md5 = require('md5');
 router.use("/",function(req,res,next){
-  console.log("中间件")
   let username = req.body.username
   let password = req.body.password
   if (typeof username !== "string" || typeof password !== "string"){
