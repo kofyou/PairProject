@@ -3,28 +3,34 @@
     <div id = "head">
 
       <el-row :gutter="20">
-        <el-col :span="3">
+        <el-col :span="3" >
           <router-link to = "/index">
-            <div class="grid-content bg-purple"><span>主页</span></div>
+            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['index']}"  @click= 'changeState("index")' >
+              <span>主页</span>
+            </div>
           </router-link>
         </el-col>
 
         <el-col :span="3">
           <router-link to = "/starlist">
-            <div class="grid-content bg-purple"><span>我的收藏</span></div>
+            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['starlist']}"  @click= 'changeState("starlist")'>
+              <span>我的收藏</span>
+            </div>
           </router-link>
         </el-col>
 
         <el-col :span="3">
           <router-link to = "/analysis">
-            <div class="grid-content bg-purple"><span>顶会数据</span></div>
+            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['analysis']}"  @click= 'changeState("analysis")' >
+              <span>顶会数据</span>
+            </div>
           </router-link>
         </el-col>
 
 
         <el-col :span="3" :offset="11">
           <router-link to = "/index">
-            <div class="grid-content bg-purple">
+            <div class="grid-content bg-purple" :key="index" :class = "{active : isActive['user']}"  @click= 'changeState("user")'>
               <i class="el-icon-user-solid">&nbsp;&nbsp;</i><span>{{ username }}</span>
             </div>
           </router-link>
@@ -40,7 +46,13 @@ export default {
   name: "login",
   data(){
     return {
-      username: "DemoJi"
+      username: "DemoJi",
+      isActive:{
+        "index": false,
+        "starlist": false,
+        "analysis": false,
+        "user": false
+     },
     }
   },
   methods: {
@@ -49,8 +61,18 @@ export default {
     },
     goToRegister() {
 
+    },
+    changeState(click_type){   //传入参数为点击的类型，例如主页，数据分析等等
+      let key;
+      for(key in this.isActive){
+        this.$set(this.isActive,key,false);
+        // this.isActive[key] = false;
+      }
+      let type = click_type.toString();
+      this.$set(this.isActive,type,true);
+      // this.isActive[type] = true;
+      // this.$forceUpdate();
     }
-
   }
 }
 </script>
@@ -87,8 +109,13 @@ el-col {
   background-color: #f9fafc;
 }
 
+.active{
+  background: brown;
+}
 
-
+/*.inactive-item{*/
+/*  background: #d3dce6;*/
+/*}*/
 
 
 </style>
