@@ -24,11 +24,25 @@ func (paperKeyword *PaperKeyword) Add() (int64, error) {
 	return affected, nil
 }
 
-func (paper *Paper) GetPaperKeywordIdList() []int64 {
+func (paper *Paper) GetPaperKeywordStrings() []string {
+	kwdString := make([]string, 0)
+	keywords := paper.GetPaperKeywordList()
+	for _, kwd := range keywords{
+		kwdString = append(kwdString, kwd.Content)
+	}
+	return kwdString
+}
+
+func (paper *Paper) GetPaperKeywordList() []Keyword {
 	list := make([]int64, 0)
-	err := Engine.Where("paper_id = ?", paper.Id).Find(list)
+	err := Engine.Table("paper_keyword").Where("paper_id = ?", paper.Id).Cols("keyword_id").Find(&list)
 	if err != nil {
 		util.Log().Error(err.Error())
 	}
-	return list
+
+	kwds := make([]Keyword, 0)
+	for _, i := range list{
+		kwds = append(kwds, GetKeyword(i))
+	}
+	return kwds
 }

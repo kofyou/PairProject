@@ -9,6 +9,7 @@ type Paper struct {
 	Meeting			string		`json:"meeting"`
 	Year       		int			`json:"year"`
 	OriginLink 		string		`json:"origin_link"`
+	Keywords		[]string	`json:"keywords"`
 }
 
 // Page 当前页
@@ -30,6 +31,7 @@ func BuildPaperList(paper []model.Paper, pageCount int64, page int64) PaperList 
 			Meeting:    p.Meeting,
 			Year:       p.Year,
 			OriginLink: p.OriginLink,
+			Keywords: p.GetPaperKeywordStrings(),
 		})
 	}
 
@@ -44,5 +46,6 @@ func BuildPaperList(paper []model.Paper, pageCount int64, page int64) PaperList 
 func BuildPaperResponse(paper []model.Paper, pageCount int64, page int64) Response {
 	return Response{
 		Data:  BuildPaperList(paper, pageCount, page),
+		Msg: "Success",
 	}
 }

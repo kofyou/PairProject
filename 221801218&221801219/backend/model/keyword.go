@@ -18,3 +18,12 @@ func (keyword *Keyword) Insert() (int64, error) {
 	}
 	return affected, nil
 }
+
+func GetKeyword(ID int64) Keyword {
+	var kwd Keyword
+	_, err := Engine.ID(ID).Get(&kwd)
+	if err != nil {
+		util.Log().Error("model.GetKeyword:" + err.Error())
+	}
+	return kwd
+}
