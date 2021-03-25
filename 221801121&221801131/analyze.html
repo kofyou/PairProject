@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 
 <head>
     <meta charset="utf-8">
@@ -11,11 +11,101 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <!-- CSS样式 -->
+
     <title>热词分析</title>
 </head>
+<h1 style="font-family:verdana">热词分析</h1>
+<a href="index.html">
+    <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(this).button('loading').delay(1000).queue(function () {
+                    // $(this).button('reset');
+                    // $(this).dequeue(); 
+                });
+            });
+        });
+    </script>
+</a>
 
-<body>
-    
+<body style="height: 100%; margin: 0">
+
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+
+
+        var data = [];
+        for (let i = 0; i < 5; ++i) {
+            data.push(Math.round(Math.random() * 200));
+        }
+
+        option = {
+            xAxis: {
+                max: 'dataMax',
+            },
+            yAxis: {
+                type: 'category',
+                data: ['A', 'B', 'C', 'D', 'E'],
+                inverse: true,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
+                max: 2 // only the largest 3 bars will be displayed
+            },
+            series: [{
+                realtimeSort: true,
+                name: 'X',
+                type: 'bar',
+                data: data,
+                label: {
+                    show: true,
+                    position: 'right',
+                    valueAnimation: true
+                }
+            }],
+            legend: {
+                show: true
+            },
+            animationDuration: 0,
+            animationDurationUpdate: 3000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+
+        function run() {
+            var data = option.series[0].data;
+            for (var i = 0; i < data.length; ++i) {
+                if (Math.random() > 0.9) {
+                    data[i] += Math.round(Math.random() * 2000);
+                }
+                else {
+                    data[i] += Math.round(Math.random() * 200);
+                }
+            }
+            myChart.setOption(option);
+        }
+
+        setTimeout(function () {
+            run();
+        }, 0);
+        setInterval(function () {
+            run();
+        }, 3000);
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+    </script>
 </body>
 
 </html>

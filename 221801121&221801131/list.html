@@ -27,11 +27,23 @@
 </head>
 
 <body>
-    <h1 style="font-family:verdana">论文列表</h1>
-    <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-    </button>
     
+    <h1 style="font-family:verdana">论文列表</h1>
+    <a href="index.html">
+        <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+        <script>
+            $(function () {
+                $(".btn").click(function () {
+                    $(this).button('loading').delay(1000).queue(function () {
+                        // $(this).button('reset');
+                        // $(this).dequeue(); 
+                    });
+                });
+            });
+        </script>
+    </a>
     <footer>
         <ul class="pagination pagination-lg">
             <li><a href="#">&laquo;</a></li>
