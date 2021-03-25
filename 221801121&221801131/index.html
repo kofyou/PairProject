@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="./css/defalt.css">
-		<title>论文爬取系统</title>
-	</head>
-	<body OnLoad="swapPic()">
-		<div id="gundong">
-			<script language="javascript" type="text/javascript">
-			    var ranl = 0;
-			    var useRand = 0;
-			    images = new Array;
-				images[1] = new Image();
-				images[1].src = "./img/pic5.jpg";
-				images[2] = new Image();
-				images[2].src = "./img/pic4.jpg";
-				images[3] = new Image();
-				images[3].src = "./img/pic3.jpg";
-				images[4] = new Image();
-				images[4].src = "./img/pic2.jpg";
-				function swapPic(){
-				   var imgnum = images.length-1;
-			       do{
-				    var randnum = Math.random();
-					randl = Math.round((imgnum-1)*randnum)+1;
-				   }while(randl==useRand);
-			        useRand = randl;
-					var img = document.getElementById("randimg");
-			        img.src = images[useRand].src		
-					setTimeout('swapPic()',2000);
-				}
-				
-			  </script>
-			<p align="center"><img id="randimg" src="./img/pic2.jpg" width="50%" height="300"></p>  
-		</div>
-		
-		<div id="buttons">
-			<a href="list.html"><img src="./img/fa5-th-list.svg" width="20%"></a>
-			<a href="analyze.html"><img src="./img/md-trending_up.svg" width="20%"></a>
-			<br>
-			<h1>&nbsp;论文管理&nbsp;&nbsp;&nbsp;&nbsp;热词分析</h1>
-		</div>
-	</body>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="./css/defalt.css">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- CSS样式 -->
+    <title>论文爬取系统</title>
+</head>
+
+<body OnLoad="swapPic()">
+    <div id="gundong">
+        <script language="javascript" type="text/javascript">
+            var ranl = 0;
+            var useRand = 0;
+            images = new Array;
+            images[1] = new Image();
+            images[1].src = "./img/pic5.jpg";
+            images[2] = new Image();
+            images[2].src = "./img/pic4.jpg";
+            images[3] = new Image();
+            images[3].src = "./img/pic3.jpg";
+            images[4] = new Image();
+            images[4].src = "./img/pic2.jpg";
+            function swapPic() {
+                var imgnum = images.length - 1;
+                do {
+                    var randnum = Math.random();
+                    randl = Math.round((imgnum - 1) * randnum) + 1;
+                } while (randl == useRand);
+                useRand = randl;
+                var img = document.getElementById("randimg");
+                img.src = images[useRand].src
+                setTimeout('swapPic()', 2000);
+            }
+
+        </script>
+        <p align="center"><img id="randimg" src="./img/pic2.jpg" width="50%" height="300"></p>
+    </div>
+
+    <div id="buttons">
+        <a href="list.html"><img src="./img/fa5-th-list.svg" width="20%"></a>
+        <a href="analyze.html"><img src="./img/md-trending_up.svg" width="20%"></a>
+        <br>
+        <h1>&nbsp;论文管理&nbsp;&nbsp;&nbsp;&nbsp;热词分析</h1>
+    </div>
+</body>
+
 </html>
