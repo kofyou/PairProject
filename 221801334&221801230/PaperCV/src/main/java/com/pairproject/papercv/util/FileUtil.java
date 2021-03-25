@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class FileUtil {
     private static final Charset ENCODING = StandardCharsets.UTF_8;
-    private static final String CVPR_ROOT = "src/main/java/com/pairproject/papercv/data" +
+    private static final String CVPR_ROOT = "221801334&221801230/PaperCV/src/main/java/com/pairproject/papercv/data" +
         "/paper/CVPR/";
     private static final String ECCV_ROOT = "221801334&221801230/PaperCV/src/main/java/com/pairproject/papercv/data/paper/ECCV/";
     private static final String ICCV_ROOT = "221801334&221801230/PaperCV/src/main/java/com/pairproject/papercv/data" +
@@ -66,6 +66,30 @@ public class FileUtil {
         File root = new File(ICCV_ROOT);
         File[] files = root.listFiles();
         List<Paper> papers = new ArrayList<>(4096);
+        for (File file : files) {
+            String ori = readMMAP(file);
+            JSONObject jsonObject = JSON.parseObject(ori.substring(0, ori.length()-1));
+            Paper paper = new Paper();
+            paper.setTitle(jsonObject.getString("title"));
+            paper.setPaperAbstract(jsonObject.getString("abstract"));
+            paper.setUrl(jsonObject.getString("doiLink"));
+            paper.setMeeting("ICCV");
+            paper.setYear(jsonObject.getString("publicationYear"));
+            JSONArray keys = jsonObject.getJSONArray("keywords").getJSONObject(0).getJSONArray("kwd");
+            StringBuilder sb = new StringBuilder();
+            for (Object key : keys) {
+                sb.append(key).append(",");
+            }
+            paper.setKeyWord(sb.toString());
+            papers.add(paper);
+        }
+        return papers;
+    }
+
+    public static List<Paper> readCVPR() {
+        File root = new File(CVPR_ROOT);
+        File[] files = root.listFiles();
+        List<Paper> papers = new ArrayList<>(7000);
         for (File file : files) {
             String ori = readMMAP(file);
             JSONObject jsonObject = JSON.parseObject(ori.substring(0, ori.length()-1));

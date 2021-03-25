@@ -51,4 +51,16 @@ public class TestController {
         return "ok";
     }
 
+    @GetMapping("/cvpr")
+    public String addCVPR() {
+        List<Paper> papers = FileUtil.readCVPR();
+        for (Paper p : papers) {
+            Paper paper = paperMapper.selectByTitle(p.getTitle());
+            if (paper == null){
+                paperMapper.insert(p);
+            }
+        }
+        return "ok";
+    }
+
 }

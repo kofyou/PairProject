@@ -18,8 +18,8 @@ class FileUtilTest {
         FileUtil.readICCV();
     }
 
-//    @Test
-//    void ReadCVPR() {
-//        FileUtil.readCVPR();
-//    }
+    @Test
+    void ReadCVPR() {
+        FileUtil.readCVPR();
+    }
 }
