@@ -139,6 +139,12 @@ a:active {color:#3CB371;}/* 正在被点击的链接 */
     to{transform: rotate(360deg);}
 }
 #reg_wait{
-    display: inline-block;
+    display: none;
     animation: roll 2s infinite linear;
+}
+.to_block{
+    display: inline-block;
+}
+.to_none{
+    display: none;
 }
