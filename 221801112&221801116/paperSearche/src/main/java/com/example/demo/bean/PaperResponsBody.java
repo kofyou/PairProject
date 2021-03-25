@@ -3,12 +3,8 @@ package com.example.demo.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author: shuKai
- * @Description:
- * @Date: Create in 22:51 2021/3/23
- */
-public class PaperResponsBody {
+public class PaperResponsBody
+{
     String code;
     String msg;
     Integer count;
