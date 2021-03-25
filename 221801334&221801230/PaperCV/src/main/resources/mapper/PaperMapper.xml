@@ -7,8 +7,8 @@
             <arg column="paperAbstract" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="meeting" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="keyWord" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="year" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="keyWord" javaType="java.lang.String" jdbcType="VARCHAR" />
         </constructor>
     </resultMap>
 
@@ -20,8 +20,16 @@
         select * from paper where title = #{title}
     </select>
 
+    <select id="selectByMeeting" parameterType="String" resultMap="BaseResultMap">
+        select * from paper where meeting = #{meeting}
+    </select>
+
+    <select id="readCount" parameterType="String" resultType="java.lang.Integer">
+        select count(title) from paper where meeting = #{meeting}
+    </select>
+
     <insert id="insert" parameterType="com.pairproject.papercv.model.Paper" keyProperty="title">
-    insert into paper (title, paperAbstract, url, meeting, keyWord, year)
+    insert into paper (title, paperAbstract, url, meeting, keyWord, 'year')
     values (#{title,jdbcType=VARCHAR}, #{paperAbstract,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
     #{meeting,jdbcType=VARCHAR}, #{keyWord,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR})
   </insert>

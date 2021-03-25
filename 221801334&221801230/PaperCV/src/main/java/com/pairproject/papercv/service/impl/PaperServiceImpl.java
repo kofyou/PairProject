@@ -36,14 +36,7 @@ public class PaperServiceImpl implements PaperService {
      */
     @Override
     public Paper getPaper(String title) {
-        Paper paper = paperMapper.selectByTitle(title);
-
-        if (paper == null) {
-            //爬取论文
-            //存储论文
-        }
-
-        return paper;
+        return paperMapper.selectByTitle(title);
     }
 
 }

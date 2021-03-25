@@ -32,6 +32,12 @@ public class PaperController {
         return paperService.getAll();
     }
 
+    /**
+     * 根据论文题目获取论文
+     *
+     * @param title
+     * @return
+     */
     @GetMapping("/{title}")
     public Paper getPaper(@PathVariable("title") String title) {
         return paperService.getPaper(title);

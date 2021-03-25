@@ -29,6 +29,22 @@ public interface PaperMapper {
     Paper selectByTitle(String title);
 
     /**
+     * 通过会议查询论文
+     *
+     * @param meeting
+     * @return
+     */
+    List<Paper> selectByMeeting(String meeting);
+
+    /**
+     * 获取论文数量
+     *
+     * @param meeting 会议名称
+     * @return
+     */
+    Integer readCount(String meeting);
+
+    /**
      * 插入论文
      *
      * @param paper 论文
