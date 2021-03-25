@@ -62,7 +62,29 @@ public class FileUtil {
         return papers;
     }
 
-
+    public static List<Paper> readICCV() {
+        File root = new File(ICCV_ROOT);
+        File[] files = root.listFiles();
+        List<Paper> papers = new ArrayList<>(4096);
+        for (File file : files) {
+            String ori = readMMAP(file);
+            JSONObject jsonObject = JSON.parseObject(ori.substring(0, ori.length()-1));
+            Paper paper = new Paper();
+            paper.setTitle(jsonObject.getString("title"));
+            paper.setPaperAbstract(jsonObject.getString("abstract"));
+            paper.setUrl(jsonObject.getString("doiLink"));
+            paper.setMeeting("ICCV");
+            paper.setYear(jsonObject.getString("publicationYear"));
+            JSONArray keys = jsonObject.getJSONArray("keywords").getJSONObject(0).getJSONArray("kwd");
+            StringBuilder sb = new StringBuilder();
+            for (Object key : keys) {
+                sb.append(key).append(",");
+            }
+            paper.setKeyWord(sb.toString());
+            papers.add(paper);
+        }
+        return papers;
+    }
 
 
     /**

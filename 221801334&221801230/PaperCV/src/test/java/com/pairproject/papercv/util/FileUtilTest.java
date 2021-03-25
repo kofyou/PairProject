@@ -13,11 +13,11 @@ class FileUtilTest {
         FileUtil.readECCV();
     }
 
-//    @Test
-//    void readICCV() {
-//        FileUtil.readICCV();
-//    }
-//
+    @Test
+    void readICCV() {
+        FileUtil.readICCV();
+    }
+
 //    @Test
 //    void ReadCVPR() {
 //        FileUtil.readCVPR();

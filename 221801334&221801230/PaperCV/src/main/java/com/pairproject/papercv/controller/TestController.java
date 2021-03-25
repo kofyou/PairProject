@@ -39,4 +39,16 @@ public class TestController {
         return "ok";
     }
 
+    @GetMapping("/iccv")
+    public String addICCV() {
+        List<Paper> papers = FileUtil.readICCV();
+        for (Paper p : papers) {
+            Paper paper = paperMapper.selectByTitle(p.getTitle());
+            if (paper == null){
+                paperMapper.insert(p);
+            }
+        }
+        return "ok";
+    }
+
 }
