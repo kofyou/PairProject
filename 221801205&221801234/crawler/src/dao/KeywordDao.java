@@ -49,7 +49,8 @@ public class KeywordDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(0, keyword.getKeyword());
-			ps.setInt(0, 0);
+			ps.setInt(0, 1);
+			ps.execute();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

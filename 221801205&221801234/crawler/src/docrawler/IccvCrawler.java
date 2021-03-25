@@ -13,24 +13,24 @@ import bean.PaperBean;
 
 public class IccvCrawler {
 	
-	private static String url = "https://dblp.uni-trier.de/db/conf/iccv/index.html";
+	private static String iccvUrl = "https://dblp.uni-trier.de/db/conf/iccv/index.html";
 	private static String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.57";
 	private static String meetingName = "iccv";
 	
 	private LinkedList<PaperBean> paperBeans = new LinkedList<PaperBean>();
-	LinkedList<String> meetingUrls = new LinkedList<String>();
+	private LinkedList<String> meetingUrls = new LinkedList<String>();
+	private LinkedList<String> paperUrls = new LinkedList<String>();
 	
-	private Connection getConnection() {
+	private Connection getConnection(String url) {
 		Connection conn = Jsoup.connect(url);
 		conn.userAgent(userAgent);
-		conn.timeout(5000);
+		conn.timeout(50000);
 		conn.maxBodySize(0);
 		return conn;
 	}
 	
-	private void getMeetingUrls(){
-		
-		Connection conn = getConnection();
+	public void getMeetingUrls(){
+		Connection conn = getConnection(iccvUrl);
 		
 		try {
 			Document doc = conn.get();
@@ -43,12 +43,32 @@ public class IccvCrawler {
 		}
 	}
 	
-	
-	public void doCrawler() {
-		//将结果存入数据库
+	public void getPaperUrls() {
+		for (String meetingUrl:meetingUrls) {
+			Connection conn = getConnection(meetingUrl);
+			try {
+				Document doc = conn.get();
+				Elements elements = doc.select("div#main ul.publ-list nav.publ ul li:first-child div.head a");
+				for (Element element:elements) {
+					String paperUrl = element.attr("href");
+					if (paperUrl.contains("doi.org"))
+						paperUrls.add(paperUrl);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
-//	public static void main(String []args) {
-//		LinkedList<String> urls = getMeetingUrls();
-//		System.out.println(urls);
-//	}
+	
+	private String getName(Connection conn) {
+		String name = null;
+		try {
+			Document doc = conn.get();
+			Element e = doc.selectFirst("h1.document-title span");
+			name = e.text();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
 }
