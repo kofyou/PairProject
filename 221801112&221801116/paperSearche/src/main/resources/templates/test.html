@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -24,9 +24,6 @@
 <div class="container">
 
 
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        开始演示模态框
-    </button>
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -36,19 +33,67 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        模态框（Modal）标题
                     </h4>
-                    <h1 id="paperId"></h1>
+                    <form class="form-horizontal" method="post" action="/update">
+                        <fieldset>
+                            <!-- Form Name -->
+                            <legend id="paper_id">Form Name</legend>
+                            <!-- Textarea -->
+                            <input type="text" id="paperId" name="paperId" style="display: none">
+                            <div class="control-group">
+                                <label class="control-label" for="textarea-title">PUBLICATION TITLE</label>
+                                <div class="controls">
+                                    <textarea id="textarea-title" name="textarea-title" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="textarea-year">PUBLICATION YEAR</label>
+                                <div class="controls">
+                                    <textarea id="textarea-year" name="textarea-year" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <a class="control-label" for="textarea-link" id="textarea-linka" herf="#">PERSISTENT LINK</a>
+                                <div class="controls">
+                                    <textarea id="textarea-link" name="textarea-link" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Textarea -->
+                            <div class="control-group">
+                                <label class="control-label" for="textarea-key">KEYWORDS</label>
+                                <div class="controls">
+                                    <textarea id="textarea-key" name="textarea-key" style="height: 120px;width: 500px;border-radius: 2%"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Textarea -->
+                            <div class="control-group">
+                                <label class="control-label" for="textarea-abstract">ABSTRACT</label>
+                                <div class="controls">
+                                    <textarea id="textarea-abstract" name="textarea-abstract" style="height: 450px;width: 500px;border-radius: 2%"></textarea>
+                                </div>
+                            </div>
+
+
+                            <button class="layui-btn layui-btn-radius layui-btn-normal" type="submit" th:text="确定修改" formaction="/update"></button>
+                            <button class="layui-btn layui-btn-radius" type="submit" th:text="确定删除" formaction="/delete"></button>
+
+                        </fieldset>
+                    </form>
                 </div>
                 <div class="modal-body">
-                    <div>我是模态框</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        提交更改
-                    </button>
+<!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+<!--                    </button>-->
+<!--                    <button type="button" class="btn btn-primary">-->
+<!--                        提交更改-->
+<!--                    </button>-->
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->

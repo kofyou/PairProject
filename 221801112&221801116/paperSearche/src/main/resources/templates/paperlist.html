@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>left</title>
-    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="layui/css/layui.css">
     <script type="text/javascript" src="js/left.js"></script>
     <link rel="stylesheet" type="text/css" href="css/left.css">
     <link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="public/css/demo.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="public/css/set.css" />
@@ -54,19 +57,95 @@
     </div>
 
 
-
+        <!--论文卡片表格-->
     <div class="mytable">
         <div id="myblock1">
-            <span class="input input--manami">
+            <span class="input input--manami" style="margin-top: 20px">
 			<input class="input__field input__field--manami" type="text" id="input-32" autocomplete="off"/>
 			<label class="input__label input__label--manami" for="input-32">
 				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词搜索</span>
 			</label>
-		</span>
+		    </span>
             <button id="mybutton" class="layui-btn layui-btn-radius" onclick="search()" th:text="开始搜索"></button>
         </div>
         <table id="currentTableId"></table>
     </div>
+
+        <!-- 模态框（Modal） -->
+<div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="border: none">
+    <div class="modal-dialog" style="border: none">
+        <div class="modal-content" style="border: none">
+            <div class="modal-header" style="border: none">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="border: none">
+                </h4>
+                <form class="form-horizontal" method="post" action="/update" style="border: none">
+                    <fieldset style="border: none">
+                        <!-- Form Name -->
+                        <legend id="paper_id">Form Name</legend>
+                        <!-- Textarea -->
+                        <input type="text" id="paperId" name="paperId" style="display: none">
+                        <div class="control-group">
+                            <label class="control-label" for="textarea-title">PUBLICATION TITLE</label>
+                            <div class="controls">
+                                <textarea id="textarea-title" name="textarea-title" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="textarea-year">PUBLICATION YEAR</label>
+                            <div class="controls">
+                                <textarea id="textarea-year" name="textarea-year" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <a class="control-label" for="textarea-link" id="textarea-linka" herf="#">PERSISTENT LINK</a>
+                            <div class="controls">
+                                <textarea id="textarea-link" name="textarea-link" style="height: 40px;width: 500px;border-radius: 2%"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Textarea -->
+                        <div class="control-group">
+                            <label class="control-label" for="textarea-key">KEYWORDS</label>
+                            <div class="controls">
+                                <textarea id="textarea-key" name="textarea-key" style="height: 120px;width: 500px;border-radius: 2%"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="control-group">
+                            <label class="control-label" for="textarea-abstract">ABSTRACT</label>
+                            <div class="controls">
+                                <textarea id="textarea-abstract" name="textarea-abstract" style="height: 450px;width: 500px;border-radius: 2%"></textarea>
+                            </div>
+                        </div>
+
+
+                        <button class="layui-btn layui-btn-radius layui-btn-normal" type="submit" th:text="确定修改" formaction="/update"></button>
+                        <button class="layui-btn layui-btn-radius" type="submit" th:text="确定删除" formaction="/delete"></button>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-body" style="border: none">
+            </div>
+            <div class="modal-footer" style="border: none">
+                <!--                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+                <!--                    </button>-->
+                <!--                    <button type="button" class="btn btn-primary">-->
+                <!--                        提交更改-->
+                <!--                    </button>-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
     <script src="layui/layui.js"></script>
     <script>
         $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
@@ -85,8 +164,10 @@
             })
         })
         function search(){
-            var keyword = document.getElementById("input-32")
-            var keys = keyword.value
+            var keyword = document.getElementById("input-32");
+            var keys = keyword.value;
+            keyword.value = "";
+            document.getElementById("myinput1").innerText = keys;
             layui.use(['cardTable'], function () {
                 let cardTable = layui.cardTable;
 

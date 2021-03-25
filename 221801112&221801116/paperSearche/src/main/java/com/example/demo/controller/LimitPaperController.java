@@ -5,10 +5,12 @@ import com.example.demo.bean.PaperResponsBody;
 import com.example.demo.service.serviceImpl.LimitPaperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -43,8 +45,29 @@ public class LimitPaperController {
         PaperResponsBody paperResponsBody=new PaperResponsBody();
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
-        paperResponsBody.setCount(limitPaperService.getCountS(keywords)-3);
+        Integer count = limitPaperService.getCountS(keywords);
+        if(count<=3){
+            paperResponsBody.setCount(count);
+        } else{
+            paperResponsBody.setCount(count-3);
+        }
+
         paperResponsBody.setData(paperList);
         return paperResponsBody;
     }
+
+    @PostMapping("/delete")
+    public String postDelete(HttpServletRequest request) {
+        String paperId = request.getParameter("paperId");
+        Integer result = limitPaperService.deletePaper(Integer.parseInt(paperId));
+
+        if(result == 1){
+            System.out.println("删除成功");
+        }else{
+            System.out.println("删除失败");
+        }
+
+        return "paperlist";
+    }
+
 }
