@@ -1,9 +1,48 @@
 var express = require('express');
 var router = express.Router();
-
+const User = require('../model/user');
+const md5 = require('md5');
+router.use("/",function(req,res,next){
+  console.log("中间件")
+  let username = req.body.username
+  let password = req.body.password
+  if (typeof username !== "string" || typeof password !== "string"){
+    return res.json({code:1,err:"用户名和密码必须为字符串"})
+  }
+  username = username.trim()
+  if(username === ""){
+    return res.json({code:1,err:"用户名不能为空"})
+  }
+  if(password === ""){
+    return res.json({code:1,err:"密码不能为空"})
+  }
+  password = md5(password)
+  req.body.username = username
+  req.body.password = password
+  next()
+})
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/login', function(req, res, next) {
+  User.login(req.body.username,req.body.password)
+    .then(msg=>{
+      req.session.auth = true
+      req.session.username = req.body.username
+      res.json({code:0,msg})
+    })
+    .catch(err=>res.json({code:1,err:err.message}))
 });
+
+router.post('/register', function(req, res, next) {
+  User.register(req.body.username,req.body.password)
+    .then(()=>{
+      res.json({code:0})
+    })
+    .catch(err=>{
+      res.json({code:1,err:err.message})
+    })
+  
+});
+
+
 
 module.exports = router;
