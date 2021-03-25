@@ -3,4 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <welcome-file-list>
+        <welcome-file>paperList.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>PaperServlet</servlet-name>
+        <servlet-class>edu.fzu.paperAnalysis.servlet.PaperServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaperServlet</servlet-name>
+        <url-pattern>/PaperServlet</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>encodeFilter</filter-name>
+        <filter-class>edu.fzu.paperAnalysis.servlet.EncodeFilter</filter-class>
+        <init-param>
+            <param-name>encode</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -13,6 +13,15 @@ public class Paper {
     private String paperYear;
     private String paperKeywords;
     private String paperPublication;
+    private String paperAbstract;
+
+    public String getPaperAbstract() {
+        return paperAbstract;
+    }
+
+    public void setPaperAbstract(String paperAbstract) {
+        this.paperAbstract = paperAbstract;
+    }
 
     public String getPaperTitle() {
         return paperTitle;

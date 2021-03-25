@@ -30,5 +30,10 @@ public class MysqlDB {
         }
         return conn;
     }
+
+    public static void main(String[] args) throws SQLException {
+        MysqlDB mysqlDB=new MysqlDB();
+        System.out.println(mysqlDB.getConn());
+    }
 }
 
