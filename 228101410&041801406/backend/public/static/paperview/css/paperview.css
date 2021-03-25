@@ -81,41 +81,6 @@ body {
     zoom: 300%;
 }
 
-.el-input {
-    width: 310px;
-    position: fixed;
-    z-index: 98;
-    top: 225px;
-    left: 230px;
-    zoom: 125%;
-}
-
-.el-row {
-    z-index: 99;
-}
-
-.el-autocomplete-suggestion.el-popper {
-    position: fixed;
-    top: 225px;
-    left: 350px;
-    zoom: 125%;
-}
-
-.el-autocomplete-suggestion li {
-    font-size: 10px;
-}
-
-.el-row {
-    position: fixed;
-    top: 236px;
-    left: 520px;
-    zoom: 120%;
-}
-
-.el-button {
-    border-color: white;
-}
-
 .el-breadcrumb__inner a,
 .el-breadcrumb__inner.is-link {
     color: white;
@@ -148,4 +113,40 @@ body {
     cursor: pointer;
     font-weight: 10;
     color: white;
+}
+
+#myList {
+    background-color: white;
+    border-style: solid;
+    border-color: blue;
+    border-width: 1px;
+    opacity: 70%;
+    width: 1400px;
+    height: 600px;
+    border-radius: 18px;
+    position: fixed;
+    left: 260px;
+    top: 150px;
+}
+
+#title {
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.el-table {
+    background-color: white;
+    opacity: 100%;
+    position: fixed;
+    left: 460px;
+    top: 300px;
+    border-radius: 10px;
+}
+
+.has-gutter th,
+.has-gutter tr,
+.el-table__footer-wrapper,
+.el-table__header-wrapper {
+    background-color: rgb(58, 166, 238);
+    color: black;
 }
