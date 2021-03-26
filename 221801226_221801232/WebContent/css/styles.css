@@ -1,0 +1,18 @@
+@charset "UTF-8";
+hr{
+  border-color:FF7F00; 
+}
+div{
+    float:left;
+    margin: 10px;
+}
+div dd{
+    margin:0px;
+    font-size:10pt;
+}
+div dd.dd_name{
+    color:blue;
+}
+div dd.dd_city{
+    color:#000;
+}
