@@ -24,6 +24,7 @@ ul.template {
  a {
 	text-align: center;
 	display: block;
+	 text-decoration: none;
 	 height: 60px;
 	color:white;
 	padding:18px 16px;
@@ -35,14 +36,6 @@ ul.template {
 	height:120px;
 }
 
-
-div.input {
-	position: absolute;
- 	top: 380px;
- 	left: 500px;
- 	width: 500px;
- 	height: 100px;
-}
 
 input[type=text] {
  	width: 100%;
@@ -71,13 +64,7 @@ div.page2_input {
  	height: 100px;
 }
 
-div.add {
-	position: absolute;
- 	top: 650px;
- 	left: 500px;
- 	width: 700px;
- 	height: 100px;
-}
+
 
 input.button_add {
 	border-radius: 8px;
