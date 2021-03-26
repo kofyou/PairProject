@@ -22,16 +22,32 @@ public class PaperDAOImpl implements PaperDAO{
 
     }
 
-    public void delete(int id) {
-
+    public void delete(String title) {
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            conn = DBUtil.getConnection();
+            stmt = conn.createStatement();
+            String sql = "delete from paper where title=" + title;
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(null, stmt, conn);
+        }
     }
 
     public ArrayList<Paper> list(String str) {
         ArrayList<Paper> paperList = new ArrayList<>();
-        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtil.getConnection();
+            stmt = conn.createStatement();
             String sql = "select * from paper where title like '%" + str + "%' or summary like '%"
                     + str + "%' or keywords like '%" + str + "%'" ;
-            ResultSet rs = s.executeQuery(sql);
+            rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 String title = rs.getString("title");
                 String conference = rs.getString("conference");
@@ -51,6 +67,8 @@ public class PaperDAOImpl implements PaperDAO{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt, conn);
         }
         return paperList;
     }
@@ -63,7 +81,36 @@ public class PaperDAOImpl implements PaperDAO{
         return false;
     }
 
-    public Paper get(String title) {
-        return null;
+    public Paper get(String paperTitle) {
+        Paper paper = new Paper();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtil.getConnection();
+            stmt = conn.createStatement();
+            String sql = "select * from paper where title='" + paperTitle + "'";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String conference = rs.getString("conference");
+                int year = rs.getInt("year");
+                String summary = rs.getString("summary");
+                String link = rs.getString("link");
+                String keywords = rs.getString("keywords");
+
+                paper.setTitle(title);
+                paper.setConference(conference);
+                paper.setYear(year);
+                paper.setSummary(summary);
+                paper.setLink(link);
+                paper.setKeywords(keywords);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt, conn);
+        }
+        return paper;
     }
 }

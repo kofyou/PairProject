@@ -9,7 +9,7 @@ public interface PaperDAO {
     int getTotal();
     void add(Paper paper);
     void update(Paper paper);
-    void delete(int id);
+    void delete(String title);
     ArrayList<Paper> list(String str);
     List<Paper> list(int start, int count);
     boolean isExist(String str);
