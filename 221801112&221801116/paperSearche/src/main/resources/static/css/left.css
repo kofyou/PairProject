@@ -2,21 +2,37 @@
     padding: 0;
     margin: 0;
 }
+
+.nav{
+     width: 100%;
+     height: 72px;
+     line-height: 72px;
+     background: linear-gradient(to bottom right, #505050 , #040505);
+}
+
 .content-left-csk{
     width: 100%;
     height: 90%;
-    background: #667999;
+    background: linear-gradient(to bottom right, #505050 , #667999);
     position: relative;
 }
+
 .myclose-csk{
+    border-bottom: dotted;
     display: block;
     width: 100%;
     height: 50px;
     line-height: 50px;
     text-align: center;
+}
+.left-span-csk{
     color: white;
 }
+.nav-title2-csk,.nav-title-csk{
+    border-bottom: dotted;
+}
 .left-title-csk{
+    border-bottom: dotted;
     height: 50px;
     width: 100%;
 }
@@ -50,16 +66,16 @@
 }
 .nav-title-csk:hover,.left-title-csk:hover,.nav-title2-csk:hover,.myclose-csk:hover{
     cursor: pointer;
-    background: #5FB878;
+    background: linear-gradient(to bottom right, #5FB878 , #667999);
     opacity:0.5;
 }
 .open-csk{
-    width: 50px;
+    width: 100px;
     height: 50px;
-    background-color: #c3e6cb;
+    background: linear-gradient(to bottom right, #5FB878 , #667999);
     position: absolute;
     cursor: pointer;
-    left: -50px;
+    left: -100px;
     line-height: 50px;
     text-align: center;
 }
@@ -72,12 +88,7 @@ img{
 a{
     text-decoration: none;
 }
-.nav{
-    width: 100%;
-    height: 72px;
-    line-height: 72px;
-    background: #505050;
-}
+
 .nav li{
     float: left;
 }

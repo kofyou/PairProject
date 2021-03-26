@@ -6,7 +6,7 @@ $(function(){
         $("#open").delay(500).animate({left:'0'});
     });
     $("#open").click(function(){
-        $("#open").animate({left:'-50px'});
+        $("#open").animate({left:'-100px'});
         $("#left").delay(300).animate({left:'0'});
     });
 });
