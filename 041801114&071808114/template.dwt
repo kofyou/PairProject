@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>template</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link href="C:\Users\apple\Desktop\QuickFind.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="nav">
+		<ul class="template">
+			<li><a href="file:///C:/Users/apple/Desktop/QuickFind.html" id="navIcon">QuickFind</a></li>
+			<li><a href="file:///C:/Users/apple/Desktop/QuickFind.html">论文列表</a></li>
+			<li><a href="file:///C:/Users/apple/Desktop/QuickFind.html">趋势分析</a></li>
+			<li><a href="file:///C:/Users/apple/Desktop/QuickFind.html">关于我们</a></li>
+		</dl>
+	</div>
+	<!-- TemplateBeginEditable name="1" -->1<!-- TemplateEndEditable -->
+	
+</body>
+</html>
