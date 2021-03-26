@@ -6,6 +6,8 @@ import cn.edu.fzu.papermanage.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 用户控制器
@@ -13,7 +15,6 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
     @Resource
     private UserService userService;
 
@@ -43,7 +44,7 @@ public class UserController {
      * @return the result
      */
     @PostMapping("/login")
-    public Result login(@RequestBody User user) {
+    public Result login(@RequestBody User user, HttpServletRequest request) {
         Result result;
         String account = user.getAccount();
         String password = user.getPassword();
@@ -53,6 +54,8 @@ public class UserController {
         }else {
             if (password.equals(loginUser.getPassword())) {
                 result = Result.success();
+                HttpSession session = request.getSession();//使用session
+                session.setAttribute("id",loginUser.getId());
             }else {
                 result = Result.error("-1","密码错误");
             }
