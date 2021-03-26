@@ -2,7 +2,6 @@ package model
 
 import (
 	"backend/util"
-	"math"
 )
 
 type UserPaper struct {
@@ -33,12 +32,12 @@ func PaperUnsubscribe(userId, paperId int64) (int64, error) {
 // GetPaperIdList 页面超出返回nil, -1
 func (user *User) GetPaperIdList(p int64) ([]int64, int64) {
 	total, _ := Engine.Where("u_id = ?", user.Id).Count(&UserPaper{})
-	if int64(math.Ceil(float64(total) / float64(UserPaperListPageMaxSize))) < p {
+	if util.PageOverFlow(total, p) {
 		return nil, -1
 	}
 
 	list := make([]int64, 0)
-	err := Engine.Table("user_paper").Where("u_id = ?", user.Id).Cols("paper_id").Limit(UserPaperListPageMaxSize, int(UserPaperListPageMaxSize * (p - 1))).Find(&list)
+	err := Engine.Table("user_paper").Where("u_id = ?", user.Id).Cols("paper_id").Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (p - 1))).Find(&list)
 	if err != nil {
 		util.Log().Error(err.Error())
 	}

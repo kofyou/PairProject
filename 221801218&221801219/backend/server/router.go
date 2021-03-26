@@ -24,14 +24,17 @@ func NewRouter() *gin.Engine {
 		// 用户登陆
 		v1.POST("login", api.UserLogin)
 
+		v1.GET("paper/:id", api.ShowPaperDetail)
+
 		// 登陆保护
 		authed := v1.Group("/")
 		authed.Use(middleware.LoginRequired())
 		{
 			// User PaperList
 			authed.GET("user/list", api.ShowPaperList)
-			//authed.DELETE("user/logout", api.UserLogout)
+
 			authed.POST("user/subscribe", api.AddPaperList)
+
 			authed.DELETE("logout", api.UserLogout)
 		}
 	}

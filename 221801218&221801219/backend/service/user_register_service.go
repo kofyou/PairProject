@@ -4,7 +4,6 @@ import (
 	"backend/model"
 	"backend/serializer"
 	"backend/util"
-	"fmt"
 )
 
 type UserRegisterService struct {
@@ -44,7 +43,6 @@ func (service *UserRegisterService) Register() serializer.Response {
 		return *err
 	}
 
-	fmt.Println(service.Password)
 	if err := user.SetPassword(service.Password); err != nil {
 		util.Log().Error("用户注册，密码加密失败")
 		return serializer.Err(serializer.CodeEncryptError, "密码加密失败", err)

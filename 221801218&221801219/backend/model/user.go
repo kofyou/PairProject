@@ -14,9 +14,6 @@ type User struct {
 const (
 	// PasswordCost 密码加密难度
 	PasswordCost = 12
-
-	// UserPaperListPageMaxSize 论文列表单页条数
-	UserPaperListPageMaxSize = 15
 )
 
 // GetUser 由Id获取用户
@@ -80,12 +77,5 @@ func (user *User)  GetPaperList(p int64) ([]Paper, int64) {
 		paperList = append(paperList, paper)
 	}
 
-	var pageCount int64
-	if total % UserPaperListPageMaxSize != 0 {
-		pageCount = total / UserPaperListPageMaxSize + 1
-	} else {
-		pageCount = total / UserPaperListPageMaxSize
-	}
-
-	return paperList, pageCount
+	return paperList, util.TotalPages(total)
 }

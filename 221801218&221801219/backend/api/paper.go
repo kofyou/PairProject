@@ -6,6 +6,18 @@ import (
 	"strconv"
 )
 
+func ShowPaperDetail(c *gin.Context)  {
+	var service service.ShowPaperListService
+	idString := c.Param("id")
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		c.JSON(200, ErrorResponse(err))
+	} else {
+		res := service.ShowPaperDetail(int64(id))
+		c.JSON(200, res)
+	}
+}
+
 func ShowPaperList(c *gin.Context)  {
 	var service service.ShowPaperListService
 	p := c.DefaultQuery("page", "1")
