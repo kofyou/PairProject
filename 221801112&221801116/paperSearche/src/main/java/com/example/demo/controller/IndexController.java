@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.*;
 import com.example.demo.service.serviceImpl.IndexServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class IndexController
@@ -96,70 +95,14 @@ public class IndexController
     @ResponseBody
     public List<List<String>> getTopKeyWordsDataByConference(Paper paper)
     {
-        List<Map.Entry<String, Integer>> lists=indexSerice.alalysePaperToGetTopKeyWords(paper);
-        List<List<String>> listList=new ArrayList<>();
-        List<String> listStr=new ArrayList<>();
-
-        listStr.add("Income");
-        listStr.add("Life Expectancy");
-        listStr.add("Population");
-        listStr.add("Country");
-        listStr.add("Year");
-        listList.add(listStr);
-        System.out.println("获得的数据数量"+lists.size());
-        for (int i=0;i<lists.size();i++)
-        {
-            List<String> tmp=new ArrayList<>();
-            tmp.add(0,String.valueOf(lists.get(i).getValue()));
-            tmp.add(1,"");
-            tmp.add(2,"");
-            String[] values=lists.get(i).getKey().split("&&&&&");
-            tmp.add(3,values[0]);
-            tmp.add(4,values[1]);
-            listList.add(tmp);
-        }
-
-        return listList;
+        return indexSerice.alalysePaperToGetTopKeyWordsHelper2(paper);
     }
 
     @RequestMapping("/topKeyWords")
     @ResponseBody
     public List<StaticData> getTopKeyWordsByConference(Paper paper)
     {
-        List<Map.Entry<String, Integer>> lists=indexSerice.alalysePaperToGetTopKeyWords(paper);
-        List<StaticData> listStr=new ArrayList<>();
-        StaticData staticData=new StaticData();
-
-
-        for (int i=0;i<lists.size();i++)
-        {
-            staticData=new StaticData();
-            String[] values=lists.get(i).getKey().split("&&&&&");
-            staticData.setName(values[0]);
-            if (i%10==0)
-                staticData.setEmoji("\uD83C\uDF12");
-            else if (i%10==1)
-                staticData.setEmoji("\uD83C\uDF13");
-            else if (i%10==2)
-                staticData.setEmoji("\uD83C\uDF14");
-            else if (i%10==3)
-                staticData.setEmoji("\uD83C\uDF15");
-            else if (i%10==4)
-                staticData.setEmoji("\uD83C\uDF17");
-            else if (i%10==5)
-                staticData.setEmoji("\uD83C\uDF18");
-            else if (i%10==6)
-                staticData.setEmoji("\uD83C\uDF19");
-            else if (i%10==7)
-                staticData.setEmoji("\uD83C\uDF1B");
-            else if (i%10==8)
-                staticData.setEmoji("\uD83C\uDF1C");
-            else if (i%10==9)
-                staticData.setEmoji("☀️");
-            listStr.add(staticData);
-        }
-
-        return listStr;
+        return indexSerice.alalysePaperToGetTopKeyWordsHelper1(paper);
     }
 
     @RequestMapping("/getKeyWordCloud")
@@ -174,21 +117,12 @@ public class IndexController
     {
         Paper paper=new Paper();
         paper.setConference("CVPR");
-        List<Map.Entry<String, Integer>> lists=indexSerice.alalysePaperToGetTopKeyWords(paper);
-        List<WordsCloud> listStr=new ArrayList<>();
-        WordsCloud wordsCloud;
-
-
-        for (int i=lists.size()-1;i>lists.size()-20&&i>=0;i--)
-        {
-            wordsCloud=new WordsCloud();
-            String[] values=lists.get(i).getKey().split("&&&&&");
-            wordsCloud.setName(values[0]);
-            wordsCloud.setWeight(lists.get(i).getValue());
-            listStr.add(wordsCloud);
-        }
-
-        return listStr;
+        return indexSerice.alalysePaperToGetTopKeyWordsHelper3(paper);
     }
 
+    @RequestMapping("/savePaper")
+    public boolean savePaper() throws JsonProcessingException
+    {
+        return indexSerice.saveAlalysePaperToGetTopKey();
+    }
 }

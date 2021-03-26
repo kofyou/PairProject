@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.bean.Paper;
+import com.example.demo.bean.PaperAnslyse;
 import com.example.demo.bean.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,9 @@ public interface UserMapper
     @Select("SELECT keywords,publicationYear FROM paper WHERE conference=#{conference}")
     public List<Paper> selPaperByConference(Paper paper);
 
+    @Insert("INSERT INTO paperAnslyse VALUES(DEFAULT,#{dataStaticData},#{paperAnslyseData},#{dataWordsCloud},null,#{conference});")
+    public int insPaperAnslyse(PaperAnslyse paperAnslyse);
+
+    @Select("SELECT * FROM paperanslyse WHERE paId=#{paId}")
+    public PaperAnslyse selPaperAnslyseByPaId(PaperAnslyse paperAnslyse);
 }

@@ -1,20 +1,20 @@
 package com.example.demo.service.serviceImpl;
 
-import com.example.demo.bean.Keywords;
-import com.example.demo.bean.Paper;
-import com.example.demo.bean.PaperAuthors;
-import com.example.demo.bean.User;
+import com.example.demo.bean.*;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.IndexSerice;
 import com.example.demo.utils.FileUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vdurmont.emoji.EmojiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -40,6 +40,13 @@ public class IndexServiceImpl implements IndexSerice
     public List<Paper> getAllPaper()
     {
         return userMapper.selAllPaper();
+    }
+
+    public PaperAnslyse getPaperAnslyse()
+    {
+        PaperAnslyse paperAnslyse=new PaperAnslyse();
+        paperAnslyse.setPaId("19");
+        return userMapper.selPaperAnslyseByPaId(paperAnslyse);
     }
 
 
@@ -263,6 +270,140 @@ public class IndexServiceImpl implements IndexSerice
 
         return answer;
     }
+
+    /**
+    * @Description: 转化alalysePaperToGetTopKeyWords数据的格式。(柱状图)
+    * @Param: [paper]
+    * @return: java.util.List<com.example.demo.bean.StaticData>
+    * @Date: 2021/3/26
+    */
+    public List<StaticData> alalysePaperToGetTopKeyWordsHelper1(Paper paper)
+    {
+        List<Map.Entry<String, Integer>> lists=alalysePaperToGetTopKeyWords(paper);
+        List<StaticData> listStr=new ArrayList<>();
+        StaticData staticData;
+
+
+        for (int i=0;i<lists.size();i++)
+        {
+            staticData=new StaticData();
+            String[] values=lists.get(i).getKey().split("&&&&&");
+            staticData.setName(values[0]);
+            if (i%10==0)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF12"));
+            else if (i%10==1)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF13"));
+            else if (i%10==2)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF14"));
+            else if (i%10==3)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF15"));
+            else if (i%10==4)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF17"));
+            else if (i%10==5)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF18"));
+            else if (i%10==6)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF19"));
+            else if (i%10==7)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF1B"));
+            else if (i%10==8)
+                staticData.setEmoji(EmojiParser.parseToAliases("\uD83C\uDF1C"));
+            else if (i%10==9)
+                staticData.setEmoji(EmojiParser.parseToAliases("☀️"));
+            listStr.add(staticData);
+        }
+
+        return listStr;
+    }
+
+    /**
+     * @Description: 转化alalysePaperToGetTopKeyWords数据的格式。(柱状图)
+     * @Param: [paper]
+     * @return: java.util.List<com.example.demo.bean.StaticData>
+     * @Date: 2021/3/26
+     */
+    public List<List<String>> alalysePaperToGetTopKeyWordsHelper2(Paper paper)
+    {
+        List<Map.Entry<String, Integer>> lists=alalysePaperToGetTopKeyWords(paper);
+        List<List<String>> listList=new ArrayList<>();
+        List<String> listStr=new ArrayList<>();
+
+        listStr.add("Income");
+        listStr.add("Life Expectancy");
+        listStr.add("Population");
+        listStr.add("Country");
+        listStr.add("Year");
+        listList.add(listStr);
+        System.out.println("获得的数据数量"+lists.size());
+        for (int i=0;i<lists.size();i++)
+        {
+            List<String> tmp=new ArrayList<>();
+            tmp.add(0,String.valueOf(lists.get(i).getValue()));
+            tmp.add(1,"");
+            tmp.add(2,"");
+            String[] values=lists.get(i).getKey().split("&&&&&");
+            tmp.add(3,values[0]);
+            tmp.add(4,values[1]);
+            listList.add(tmp);
+        }
+
+        return listList;
+    }
+
+    /**
+     * @Description: 转化alalysePaperToGetTopKeyWords数据的格式。(词云)
+     * @Param: [paper]
+     * @return: java.util.List<com.example.demo.bean.StaticData>
+     * @Date: 2021/3/26
+     */
+    public List<WordsCloud> alalysePaperToGetTopKeyWordsHelper3(Paper paper)
+    {
+        List<Map.Entry<String, Integer>> lists=alalysePaperToGetTopKeyWords(paper);
+        List<WordsCloud> listStr=new ArrayList<>();
+        WordsCloud wordsCloud;
+
+        for (int i=lists.size()-1;i>lists.size()-20&&i>=0;i--)
+        {
+            wordsCloud=new WordsCloud();
+            String[] values=lists.get(i).getKey().split("&&&&&");
+            wordsCloud.setName(values[0]);
+            wordsCloud.setWeight(lists.get(i).getValue());
+            listStr.add(wordsCloud);
+        }
+        return listStr;
+    }
+
+    /**
+     * @Description: 将分析数据存入数据库
+     * @Param: [paper]
+     * @return: java.util.List<com.example.demo.bean.StaticData>
+     * @Date: 2021/3/26
+     */
+    public boolean saveAlalysePaperToGetTopKey() throws JsonProcessingException
+    {
+        List<Paper> paperList=new ArrayList<>();
+        Paper paper=new Paper();
+        paper.setConference("CVPR");
+        paperList.add(paper);
+        paper=new Paper();
+        paper.setConference("ICCV");
+        paperList.add(paper);
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        for (int i=0;i<paperList.size();i++)
+        {
+            PaperAnslyse paperAnslyse=new PaperAnslyse();
+            ObjectMapper objectMapper=new ObjectMapper();
+            paperAnslyse.setDataStaticData(objectMapper.writeValueAsString(alalysePaperToGetTopKeyWordsHelper1(paper)));
+            paperAnslyse.setPaperAnslyseData(objectMapper.writeValueAsString(alalysePaperToGetTopKeyWordsHelper2(paper)));
+            paperAnslyse.setDataWordsCloud(objectMapper.writeValueAsString(alalysePaperToGetTopKeyWordsHelper3(paper)));
+            paperAnslyse.setTime(formatter.format(date));
+            paperAnslyse.setConference(paperList.get(i).getConference());
+            userMapper.insPaperAnslyse(paperAnslyse);
+        }
+        return true;
+    }
+
 
     /**
     * @Description: 对HashMap按value排序
