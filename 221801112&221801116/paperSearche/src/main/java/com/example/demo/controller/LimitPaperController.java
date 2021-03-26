@@ -42,12 +42,7 @@ public class LimitPaperController {
         paperResponsBody.setMsg("成功");
 
         Integer count = limitPaperService.getCount();
-
-        if(count<=3){
-            paperResponsBody.setCount(count);
-        } else{
-            paperResponsBody.setCount(count-3);
-        }
+        paperResponsBody.setCount(count);
         paperResponsBody.setData(paperList);
         return paperResponsBody;
     }
@@ -68,12 +63,7 @@ public class LimitPaperController {
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
         Integer count = limitPaperService.getCountS(keywords);
-        if(count<=3){
-            paperResponsBody.setCount(count);
-        } else{
-            paperResponsBody.setCount(count-3);
-        }
-
+        paperResponsBody.setCount(count);
         paperResponsBody.setData(paperList);
         return paperResponsBody;
     }
@@ -103,9 +93,26 @@ public class LimitPaperController {
 
         Integer result = limitPaperService.updatePaper(Integer.parseInt(paperId),title,key,abstrac,link,year);
         if(result == 1){
-            System.out.println("删除成功");
+            System.out.println("更新成功");
         }else{
-            System.out.println("删除失败");
+            System.out.println("更新失败");
+        }
+        return "paperlist";
+    }
+
+    @PostMapping("/insert")
+    public String postInsert(HttpServletRequest request) {
+        String title = request.getParameter("textarea-title");
+        String year = request.getParameter("textarea-year");
+        String link = request.getParameter("textarea-link");
+        String abstrac = request.getParameter("textarea-abstract");
+        String key = request.getParameter("textarea-key");
+
+        Integer result = limitPaperService.insertPaper(title,key,abstrac,link,year);
+        if(result == 1){
+            System.out.println("插入成功");
+        }else{
+            System.out.println("插入失败");
         }
         return "paperlist";
     }

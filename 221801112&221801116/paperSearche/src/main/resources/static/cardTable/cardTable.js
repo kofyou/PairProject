@@ -188,6 +188,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
     }
 	/** 同 步 请 求 获 取 数 据 */
 	function getData(url) {
+
 		$.ajaxSettings.async = false;
 		var data = null;
 
