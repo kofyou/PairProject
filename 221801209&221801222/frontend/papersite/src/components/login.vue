@@ -69,19 +69,23 @@ export default {
         this.axios.post('user/login', {
           username: this.user.username,
           password: this.user.password
-        }).then(function (response) {
-          myResponse = response;
-          if(myResponse.data.code == '0') {
-            // alert("登录成功！");
-            Router.push({ path: 'index' });
-          }
-          else{
-            alert('用户名与密码不匹配！');
-          }
-          console.log(myResponse);
-        }).catch(function (error) {
-          console.log(error);
-        });
+        })
+          .then(
+            function (response) {
+              myResponse = response;
+              if(myResponse.data.code == '0') {
+                // alert("登录成功！");
+                Router.push({ path: 'index' });
+              }
+              else{
+                alert('用户名与密码不匹配！');
+                }
+              console.log(myResponse);
+            })
+          .catch(
+            function (error) {
+              console.log(error);
+            });
       }
     },
   }

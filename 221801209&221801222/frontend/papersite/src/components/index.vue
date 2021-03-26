@@ -27,7 +27,7 @@
           >
             <el-table-column
               fixed
-              prop="id"
+              prop="aid"
               label="论文编号"
               sortable
               width="150">
@@ -45,12 +45,12 @@
               width="120">
             </el-table-column>
             <el-table-column
-              prop="keyWord"
+              prop="keywords"
               label="关键字"
               width="120">
             </el-table-column>
             <el-table-column
-              prop="time"
+              prop="no"
               label="发表时间"
               sortable
               width="120">
@@ -106,55 +106,7 @@ export default {
       paperListHTML : '',
       page : 0,
       paperItemArr : [],
-      tableData: [{
-        id: '1',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ECCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }, {
-        id: '2',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ECCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }, {
-        id: '3',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ECCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }, {
-        id: '4',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ECCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }, {
-        id: '5',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ECCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }, {
-        id: '6',
-        title: 'A Convex Solution to Spatially-Regularized Correspondence Problems',
-        author: 'James ben',
-        keyWord: 'UAV tracking、UAV simulator、Aerial object tracking',
-        type: 'ICCV',
-        time: '17 September 2016"',
-        abstract: "We propose a convex formulation of the correspondence problem between two images with respect to an energy function measuring data consistency and spatial regularity. To this end, we formulate the general correspondence problem as the search for a minimal two-dimensional surface in \\(\\mathbb {R}^4\\). We then use tools from geometric measure theory and introduce 2-vector fields as a representation of two-dimensional surfaces in \\(\\mathbb {R}^4\\). We propose a discretization of this surface formulation that gives rise to a convex minimization problem and compute a globally optimal solution using an efficient primal-dual algorithm."
-      }],
+      tableData: [],
       displayedTableData: [],   /*正在展示的数据*/
       tableMes: {
         totalItem: 6,
@@ -168,7 +120,28 @@ export default {
     Base
   },
   methods :{
+    /*搜索响应函数*/
     doSearch(searchWord){
+      const that = this;
+      this.axios.get('/search?title=' + searchWord + '&keyword=' + searchWord)
+        .then(
+          function (response){
+            console.log("内容");
+            console.log(response);
+            that.tableData = response.data.article;
+            that.tableMes.totalItem = that.tableData.length;
+            for(let i = 0; i < that.tableMes.totalItem; i++) {
+              if (that.tableData[i]["author"] == "[]")
+                that.tableData[i]["author"] = "无";
+              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
+                that.tableData[i]["no"] = "无";
+            }
+          }
+        ).catch(
+          function (error){
+            console.log(error);
+          }
+      );
       this.handleSizeChange(this.tableMes.eachPageItem);
       console.log(searchWord);
     },
