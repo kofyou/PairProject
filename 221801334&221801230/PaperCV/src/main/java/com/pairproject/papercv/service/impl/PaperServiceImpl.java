@@ -30,13 +30,13 @@ public class PaperServiceImpl implements PaperService {
     }
 
     /**
-     * 通过题目查询论文，论文不存在则爬取数据再返回
+     * 通过论文标题查询论文（模糊查询）
      *
      * @param title 论文题目
-     * @return 论文
+     * @return 论文列表
      */
     @Override
-    public Paper getPaper(String title) {
+    public List<Paper> getPaper(String title) {
         return paperMapper.selectByTitle(title);
     }
 

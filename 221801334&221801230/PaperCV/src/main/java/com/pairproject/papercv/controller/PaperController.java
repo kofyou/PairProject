@@ -33,13 +33,13 @@ public class PaperController {
     }
 
     /**
-     * 根据论文题目获取论文
+     * 根据论文标题查询论文（模糊查询）
      *
-     * @param title
-     * @return
+     * @param title 论文标题
+     * @return 论文列表
      */
     @GetMapping("/{title}")
-    public Paper getPaper(@PathVariable("title") String title) {
+    public List<Paper> getPaper(@PathVariable("title") String title) {
         return paperService.getPaper(title);
     }
 
