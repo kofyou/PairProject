@@ -63,7 +63,7 @@ public class IndexController
     }
 
     //本次commit 不提交
-    @GetMapping("static")
+    @GetMapping("/static")
     public String sta(HttpSession session, Model model)
     {
         logger.debug("获取统计结果");
