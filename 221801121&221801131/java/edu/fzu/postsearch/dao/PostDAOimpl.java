@@ -71,6 +71,27 @@ public class PostDAOimpl implements PostDAO{
         return postList;
     }
 
+    public List<Post> listSearch(String search) {
+        List<Post> postList = new ArrayList<>();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "select * from post where title like \'%%" + search +"%%\'" + "or keywords like \'%%" + search +"%%\'";
+            ResultSet rs = s.executeQuery(sql);
+            while (rs.next()){
+                String title = rs.getString("title");
+                String keywords = rs.getString("keywords");
+                String abs = rs.getString("abstract");
+                String link = rs.getString("link");
+                String year = rs.getString("year");
+                String type = rs.getString("type");
+                List<String> kwds= Arrays.asList(keywords.split(","));
+                postList.add(new Post(title,kwds,abs,link,year,type));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return postList;
+    }
+
     @Override
     public List<Post> list(int start, int count) {
         return null;

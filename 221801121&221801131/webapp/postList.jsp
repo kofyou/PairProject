@@ -14,7 +14,7 @@
     <title>论文管理</title>
 </head>
 <body>
-<form action="/postList" method="post">
+
     <table align="center" border="0" width="85%">
         <thead>
         <tr bgcolor="#6699FF" width="30">
@@ -27,12 +27,16 @@
         </thead>
         <tbody>
         <%
+
+            String flag = request.getParameter("search");
+            if (flag != null){
             int pageNum = (int) request.getAttribute("pageNum");
             int maxPage = (int) request.getAttribute("maxPage");
             int end = (pageNum + 1) * 4 - 1;
             int begin = pageNum * 4;
             List<Post> posts = (List<Post>) request.getAttribute("posts");
-            for(int i = begin;i < end;i++)
+
+            for(int i = begin;i < end && i < posts.size();i++)
             {
                 Post post = (Post)posts.get(i);
         %>
@@ -58,34 +62,57 @@
         %>
         <tr bgcolor="#6699FF" width="30">
             <td colspan="4">
-                <a href="1">[首页]</a>
                 <%
-                    if (pageNum > 0){
+                    if (pageNum != 0){
                 %>
-                <a href="postList?pageNum=${pageNum-1}">[上一页]</a>
+                <a href="postList?search=<%=flag%>&pageNum=0">[首页]</a>
                 <%
                     }
-                    if (pageNum == 0){
+                    else
+                        {
+                %>
+                [首页]
+                <%
+                        }
+                    if (pageNum > 0 && maxPage != 0){
+                %>
+                <a href="postList?search=<%=flag%>&pageNum=${pageNum-1}">[上一页]</a>
+                <%
+                    }
+                    else
+                        {
                 %>
                     [上一页]
                 <%
-                    }
-                    if (pageNum < maxPage - 1){
+                        }
+                    if (pageNum < maxPage - 1 && maxPage != 0){
                 %>
-                <a href="postList?pageNum=${pageNum+1 }">[下一页]</a>
+                <a href="postList?search=<%=flag%>&pageNum=${pageNum+1 }">[下一页]</a>
                 <%
                     }
-                    if (pageNum == maxPage - 1){
+                    else
+                        {
                 %>
                     [下一页]
                 <%
+                        }
+                    if (pageNum < maxPage - 1 && maxPage != 0){
+                %>
+                <a href="postList?search=<%=flag%>&pageNum=${maxPage-1 }">[尾页]</a>
+                <%
+                    }
+                    else {
+                %>
+                [尾页]
+                <%
                     }
                 %>
-                <a href="postList?pageNum=${maxPage-1 }">[尾页]</a>
             </td>
         </tr>
         </tbody>
+        <%
+            }
+        %>
     </table>
-</form>
 </body>
 </html>

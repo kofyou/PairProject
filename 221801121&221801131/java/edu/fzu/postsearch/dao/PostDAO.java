@@ -10,6 +10,7 @@ public interface PostDAO {
     void delete(String title) ;
     Post get(String title);
     List<Post> list();
+    public List<Post> listSearch(String search);
     List<Post> list(int start, int count) ;
     boolean isExist(String name) ;
 }

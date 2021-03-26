@@ -15,14 +15,26 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/postList")
+
 public class PostServlet extends BaseBackServlet{
     private PostDAO postDAO;
+
     @Override
-    public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String method = req.getMethod();
+        if ("GET".equals(method)){
+            this.doGet(req, resp);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List posts = (List) req.getAttribute("posts");// 取得共享里面的数据
         if (posts == null){
             postDAO = new PostDAOimpl();
-            posts = postDAO.list();
+            String search = req.getParameter("search");
+            if (search != null)posts = postDAO.listSearch(search);
+            else posts = postDAO.list();
         }
         //List<Post> posts = postDAO.list();
         // 接收分页页面传递过来的页面数
@@ -30,14 +42,12 @@ public class PostServlet extends BaseBackServlet{
         int pageNum = 0;// 表示当前要显示的页面数
         int maxPage = 0;// 最大页
         int pageCount = posts.size();// 得到查询出来的所有数据的数目
-
         // 如果是第一次执行,就会接收不到数据
         if (strNum == null) {
             strNum = "0";
         } else {// 接收到了用户点击的第几(pageNum)页
             pageNum = Integer.parseInt(strNum);
         }
-
         // 计算出要分多少页
         if (pageCount % 4 == 0) {
             maxPage = pageCount / 4;
