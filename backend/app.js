@@ -1,46 +1,46 @@
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
+const express = require('express')
+const path = require('path')
+const logger = require('morgan')
 const session = require('express-session')
-const usersRouter = require('./routes/users');
-const searchRouter = require('./routes/search');
-const starRouter = require("./routes/star")
-const top10Router = require("./routes/top10")
-const articleRouter = require("./routes/article")
-const config = require("./config")
-const app = express();
-const { Sequelize} = require('sequelize');
-//test mysql
-let sequelize = new Sequelize(config.sqlurl)
+const usersRouter = require('./routes/users')
+const searchRouter = require('./routes/search')
+const starRouter = require('./routes/star')
+const top10Router = require('./routes/top10')
+const articleRouter = require('./routes/article')
+const config = require('./config')
+const app = express()
+const cors = require('cors')
+const { Sequelize } = require('sequelize')
+// test mysql
+const sequelize = new Sequelize(config.sqlurl)
 sequelize.authenticate()
-  .then(()=>{
-    console.log('Connection has been established successfully.');
+  .then(() => {
+    console.log('Connection has been established successfully.')
   })
-  .catch((e)=>{
-    console.error('Unable to connect to the database:', e);
+  .catch((e) => {
+    console.error('Unable to connect to the database:', e)
     process.exit(1)
   })
 // view engine setup
 
 app.use(session({
-  cookie:{
-    sameSite:true
+  cookie: {
+    sameSite: true
   },
   secret: config.sessionSecret
 }))
 app.use(logger('combined'))
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/user', usersRouter);
-app.use('/search', searchRouter);
-app.use('/star', starRouter);
-app.use('/top10', top10Router);
-app.use("/article",articleRouter)
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(cors())
+app.use('/user', usersRouter)
+app.use('/search', searchRouter)
+app.use('/star', starRouter)
+app.use('/top10', top10Router)
+app.use('/article', articleRouter)
 // catch 404 and forward to error handler
-
 
 // error handler
 // app.use(function(err, req, res, next) {
@@ -54,4 +54,4 @@ app.use("/article",articleRouter)
 //   res.send('error');
 // });
 
-module.exports = app;
+module.exports = app

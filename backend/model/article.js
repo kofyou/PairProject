@@ -1,67 +1,67 @@
-const { Sequelize, DataTypes, Model,Op } = require('sequelize');
-const config = require("../config")
-const sequelize = new Sequelize(config.sqlurl);
-class Article extends Model{
-  static search(title,keyword){
-    if(typeof title !== "string" || title === ""){
-      title = ""
+const { Sequelize, DataTypes, Model, Op } = require('sequelize')
+const config = require('../config')
+const sequelize = new Sequelize(config.sqlurl)
+class Article extends Model {
+  static search (title, keyword) {
+    if (typeof title !== 'string' || title === '') {
+      title = ''
     }
-    if(typeof keyword !== "string" || keyword === ""){
-      keyword = ""
+    if (typeof keyword !== 'string' || keyword === '') {
+      keyword = ''
     }
     return Article.findAll({
-      where:{
-        [Op.and]:[
+      where: {
+        [Op.and]: [
           {
-            title:{
-              [Op.like]: '%'+title+"%",
+            title: {
+              [Op.like]: '%' + title + '%'
             }
           },
           {
             keywords: {
-              [Op.like]:"%"+keyword+"%"
+              [Op.like]: '%' + keyword + '%'
             }
           }
         ]
       }
-    }).then(articles=>{
-      if(articles === null){
+    }).then(articles => {
+      if (articles === null) {
         return {}
-      }else{
+      } else {
         return articles
       }
     })
   }
 }
 Article.init({
-  aid:{
+  aid: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement:true
+    autoIncrement: true
   },
   title: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   no: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER
   },
-  author:{
-    type:DataTypes.STRING,
+  author: {
+    type: DataTypes.STRING
   },
-  type:{
-    type:DataTypes.STRING,
+  type: {
+    type: DataTypes.STRING
   },
-  keywords:{
-    type:DataTypes.STRING,
+  keywords: {
+    type: DataTypes.STRING
   },
-  url:{
-    type:DataTypes.STRING,
+  url: {
+    type: DataTypes.STRING
   },
-  abstract:{
-    type: DataTypes.STRING,
+  abstract: {
+    type: DataTypes.STRING
   }
 }, {
-  sequelize, 
+  sequelize,
   modelName: 'Article',
   tableName: 'article',
   timestamps: false
