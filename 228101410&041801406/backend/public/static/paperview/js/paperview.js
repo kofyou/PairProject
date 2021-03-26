@@ -1,3 +1,22 @@
+var tableData = [];
+window.onload = function(){
+    $.ajax({
+    url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/serchdata',
+    type: 'get',
+    data: {},
+    dataType: 'json'
+}).then(function (res) {
+    for (var i in res) {
+        tableData.push(res[i])
+     }
+　　　　　　　　　　//把从json获取的数据赋值给数组
+}).fail(function () {
+    console.log('失败');
+})
+}
+
+
+/*
 var tableData = [
     { title: "一叶扁舟", keyword: " 22", date: "2018-06-05" },
     { title: "一叶扁舟1", keyword: " 2321", date: "2018-06-04" },
@@ -10,6 +29,7 @@ var tableData = [
     { title: "一叶扁舟8", keyword: " 2328", date: "2018-06-01" },
     { title: "一叶扁舟9", keyword: " 2329", date: "2018-06-02" },
 ];
+*/
 var Main = {
     data() {
         return {
