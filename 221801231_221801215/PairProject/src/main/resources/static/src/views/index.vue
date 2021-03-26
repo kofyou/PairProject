@@ -12,7 +12,15 @@
         <input class="searchButton" type="button" value="添加" style="color: #eeeeee">
       </div>
        <div class="paperList">
-         1
+         <el-table
+           :data="tableData"
+           style="width: 100%">
+           <el-table-column
+             prop="date"
+             label="日期"
+             style="width: 100%">
+           </el-table-column>
+         </el-table>
        </div>
     </el-main>
   </div>
@@ -30,7 +38,24 @@ export default {
       searchForm:{
         searchWay:true,
         singleSearchText:""
-      }
+      },
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }]
     }
   },
   methods:{
@@ -109,6 +134,12 @@ export default {
 }
 .paperList
 {
-  width: 900px;
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  left:50%;
+  margin-left: -300px;
+  border: #133382 1px solid;
+  box-shadow: 5px 5px ;
 }
 </style>

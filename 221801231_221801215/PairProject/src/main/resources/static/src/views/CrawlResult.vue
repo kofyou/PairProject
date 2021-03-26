@@ -1,10 +1,12 @@
 <template>
-
+<myheader></myheader>
 </template>
 
 <script>
+import Myheader from "../components/myheader";
 export default {
-name: "CrawlResult"
+name: "CrawlResult",
+  components: {Myheader}
 }
 </script>
 
