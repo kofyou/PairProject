@@ -26,6 +26,6 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
      */
     @Query(value = "select papers.id,papers.title,papers.source,papers.url,papers.publishyear,papers.abstract " +
             "from papers,user_paper " +
-            "where user_paper.userid = ?1 and user_paper.paperId =papers.id;",nativeQuery = true)
+            "where user_paper.userid = ?1 and user_paper.paperId =papers.id",nativeQuery = true)
     List<Paper> findAllPapersByUserId(Integer userId);
 }

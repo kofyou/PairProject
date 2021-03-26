@@ -45,4 +45,14 @@ public class UserPaperService {
     public List<Paper> findAllPapersByUserId(Integer userId) {
         return paperDao.findAllPapersByUserId(userId);
     }
+
+    /**
+     * 根据用户id和论文id从用户关联的论文表中删除关联的记录
+     *
+     * @param userId  the user id 需要删除的用户id
+     * @param paperId the paper id 要删除的论文id
+     */
+    public void deleteUserPaperByUserIdAndPaperId(Integer userId,Integer paperId) {
+        userPaperDao.deleteUserPaperByUserIdAndPaperId(userId,paperId);
+    }
 }

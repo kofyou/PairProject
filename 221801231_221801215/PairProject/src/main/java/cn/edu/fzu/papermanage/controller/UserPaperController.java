@@ -57,4 +57,18 @@ public class UserPaperController {
     public Result<List<Paper>> findAllPapersByUserId(@SessionAttribute Integer id) {
         return Result.success(userPaperService.findAllPapersByUserId(id));
     }
+
+
+    /**
+     * 根据用户id（Session中获取）和论文id（request参数）删除用户论文关联记录
+     *
+     * @param id      the id 用户id（Session中获取）
+     * @param paperId the paper id 论文id（request参数）
+     * @return the result 执行结果
+     */
+    @GetMapping("/delete")
+    public Result deleteUserPaperByUserIdAndPaperId(@SessionAttribute Integer id,@RequestParam Integer paperId) {
+        userPaperService.deleteUserPaperByUserIdAndPaperId(id,paperId);
+        return Result.success();
+    }
 }
