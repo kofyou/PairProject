@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import Router from '../router/index'
+
 export default {
   name: "login",
   data(){
@@ -55,6 +57,7 @@ export default {
   },
   methods: {
     doLogin() {
+      let that = this;
       let myResponse = null;
       let username = this.user.username
       let psw = this.user.password;
@@ -65,11 +68,12 @@ export default {
       else {
         this.axios.post('user/login', {
           username: this.user.username,
-          password: this.user.password1
+          password: this.user.password
         }).then(function (response) {
           myResponse = response;
-          if(myResponse['code'] === '0') {
-            alert("登录成功！");
+          if(myResponse.data.code == '0') {
+            // alert("登录成功！");
+            Router.push({ path: 'index' });
           }
           else{
             alert('用户名与密码不匹配！');

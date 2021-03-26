@@ -78,7 +78,7 @@ export default {
           password: this.user.password1
         }).then(function (response) {
             myResponse = response;
-            if(myResponse['code'] === '0') {
+            if(myResponse.data.code == '0') {
               alert("注册成功，请返回登陆！");
             }
             else{
