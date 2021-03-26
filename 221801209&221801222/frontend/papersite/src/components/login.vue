@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <router-link to = "/register"><span id = "register-guide" @click="goToRegister">没有账号，点击注册</span></router-link>
+            <router-link to = "/register"><span id = "register-guide">没有账号，点击注册</span></router-link>
           </td>
         </tr>
       </table>
@@ -55,12 +55,31 @@ export default {
   },
   methods: {
     doLogin() {
-
+      let myResponse = null;
+      let username = this.user.username
+      let psw = this.user.password;
+      if(username == "")
+        alert("用户名不能为空！");
+      else if(psw == "")
+        alert("密码不能为空！");
+      else {
+        this.axios.post('user/login', {
+          username: this.user.username,
+          password: this.user.password1
+        }).then(function (response) {
+          myResponse = response;
+          if(myResponse['code'] === '0') {
+            alert("登录成功！");
+          }
+          else{
+            alert('用户名与密码不匹配！');
+          }
+          console.log(myResponse);
+        }).catch(function (error) {
+          console.log(error);
+        });
+      }
     },
-    goToRegister() {
-
-    }
-
   }
 }
 </script>

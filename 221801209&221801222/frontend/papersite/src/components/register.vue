@@ -19,14 +19,14 @@
         <tr>
           <td><i class="el-icon-key"></i> </td>
           <td>
-            <el-input type="password" v-model="user.password" placeholder="请输入密码" @keydown.enter.native="doLogin"></el-input>
+            <el-input type="password" v-model="user.password1" placeholder="请输入密码"></el-input>
             <!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
           </td>
         </tr>
         <tr>
           <td><i class="el-icon-key"></i> </td>
           <td>
-            <el-input type="password" v-model="user.password" placeholder="再次输入密码" @keydown.enter.native="doLogin"></el-input>
+            <el-input type="password" v-model="user.password2" placeholder="再次输入密码"></el-input>
             <!-- @keydown.enter.native="doLogin"当按下enter键的时候也会执行doLogin方法-->
           </td>
         </tr>
@@ -55,13 +55,40 @@ export default {
       user:{
         //<-- 调试先定死 -->
         username:'zhangsan',
-        password:'123',
+        password1:'123',
+        password2:'123'
       }
     }
   },
   methods: {
     doRegister(){
-
+      let myResponse = null;
+      let username = this.user.username
+      let psw1 = this.user.password1;
+      let psw2 = this.user.password2;
+      if(username == "")
+        alert("用户名不能为空！");
+      else if(psw1 == "" || psw2 == "")
+        alert("密码不能为空！");
+      else if( psw1 !== psw2)
+        alert("两次输入的密码不匹配！");
+      else {
+        this.axios.post('user/register', {
+          username: this.user.username,
+          password: this.user.password1
+        }).then(function (response) {
+            myResponse = response;
+            if(myResponse['code'] === '0') {
+              alert("注册成功，请返回登陆！");
+            }
+            else{
+              alert('用户名已存在！');
+            }
+            console.log(myResponse);
+          }).catch(function (error) {
+            console.log(error);
+          });
+      }
     }
   }
 }
