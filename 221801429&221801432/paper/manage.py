@@ -1,33 +1,53 @@
-"""
-  相关配置信息
-"""
-
-from flask import Flask
-from flask_sqlalchemy import  SQLAlchemy
+from flask import Flask,render_template, current_app
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
+from config import Config
 from redis import StrictRedis
-
-
-class Config(object):
-    SQLALCHEMY_DATABASE_URL = "mysql+pymysql://%s:%s@%s/%s" % ('root', 'HRYYCFLqswslhk1', '127.0.0.1', 'paper')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG = True
-    REDIS_HOST = "127.0.0.1"
-    REDIS_PORT = 6379
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
+CSRFProtect(app)
 db = SQLAlchemy(app)
+# redis_store = StrictRedis(host= Config.REDIS_HOST, port= Config.REDIS_PORT, decode_responses=True)
 
-redis_store = StrictRedis(host= Config.REDIS_HOST, port= Config.REDIS_PORT, decode_responses=True)
+
+# 模型类定义
+class Paper(db.Model):
+    __tablename__ = 'paper'
+
+    title = db.Column(db.String(255),primary_key=True)
+    abstract = db.Column(db.Text)
+    typeandyear = db.Column(db.String(255))
+    keywords = db.Column(db.Text)
+    releasetime = db.Column(db.String(255))
+    link = db.Column(db.String(255))
+
+    def __repr__(self):
+        return '<title:%s %s>' % (self.title, self.abstract)
+
+
+class TopWord(db.Model):
+    __tablename__ = "topword"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    frequency = db.Column(db.Integer)
+
 
 @app.route('/')
 def hello_world():
-    redis_store.set("name", "陈耀")
-    print(redis_store.get("name"))
-    print("1111")
-    return 'Hello World!'+ redis_store.set("name", "陈耀")
+    try:
+        count = TopWord.query.all()
+    except Exception as e:
+        print("err!!获取数量失败")
+    top_list = []
+    for i in count:
+        top_list.append(i.name)
+    data = {
+        "top": top_list
+    }
+    return render_template("index.html", data=data)
 
 
 if __name__ == '__main__':
