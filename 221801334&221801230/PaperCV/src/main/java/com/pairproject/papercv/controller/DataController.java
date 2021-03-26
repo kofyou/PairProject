@@ -4,10 +4,10 @@ import com.pairproject.papercv.model.Word;
 import com.pairproject.papercv.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,9 +37,13 @@ public class DataController {
         return dataService.getTrendWord("CVPR", Arrays.asList("2016", "2017", "2018", "2019", "2020"));
     }
 
-    @GetMapping("/count/{meeting}")
-    public int getPaperCount(@PathVariable("meeting") String meeting) {
-        return dataService.getPaperCount(meeting);
+    @GetMapping("/meeting/count")
+    public List<Integer> getPaperCount() {
+        List<Integer> counts = new ArrayList<>();
+        counts.add(dataService.getPaperCount("CVPR"));
+        counts.add(dataService.getPaperCount("ICCV"));
+        counts.add(dataService.getPaperCount("ECCV"));
+        return counts;
     }
 
 }
