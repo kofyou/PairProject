@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.Paper;
-import com.example.demo.bean.PaperResponsBody;
-import com.example.demo.bean.StaticData;
-import com.example.demo.bean.User;
+import com.example.demo.bean.*;
 import com.example.demo.service.serviceImpl.IndexServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +60,7 @@ public class IndexController
     }
 
     //本次commit 不提交
-    @GetMapping("/static")
+    @GetMapping("static")
     public String sta(HttpSession session, Model model)
     {
         logger.debug("获取统计结果");
@@ -164,4 +161,34 @@ public class IndexController
 
         return listStr;
     }
+
+    @RequestMapping("/getKeyWordCloud")
+    public String testWord()
+    {
+        return "testWordCloud";
+    }
+
+    @RequestMapping("/topKeyWordCloud")
+    @ResponseBody
+    public List<WordsCloud> getTopKeyWordCloud()
+    {
+        Paper paper=new Paper();
+        paper.setConference("CVPR");
+        List<Map.Entry<String, Integer>> lists=indexSerice.alalysePaperToGetTopKeyWords(paper);
+        List<WordsCloud> listStr=new ArrayList<>();
+        WordsCloud wordsCloud;
+
+
+        for (int i=lists.size()-1;i>lists.size()-20&&i>=0;i--)
+        {
+            wordsCloud=new WordsCloud();
+            String[] values=lists.get(i).getKey().split("&&&&&");
+            wordsCloud.setName(values[0]);
+            wordsCloud.setWeight(lists.get(i).getValue());
+            listStr.add(wordsCloud);
+        }
+
+        return listStr;
+    }
+
 }
