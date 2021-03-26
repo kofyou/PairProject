@@ -5,7 +5,7 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>paperList.jsp</welcome-file>
+        <welcome-file>framesetTest.jsp</welcome-file>
     </welcome-file-list>
     
     <servlet>

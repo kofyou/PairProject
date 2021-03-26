@@ -39,9 +39,9 @@ public class PaperDaoImpl implements PaperDao{
                 tempPaper.setPaperTitle(rs.getString("paperTitle"));
                 tempPaper.setPaperAbstract(rs.getString("paperAbstract"));
                 tempPaper.setPaperAuthor(rs.getString("paperAuthor"));
-                tempPaper.setPaperKeywords("paperKeywords");
-                tempPaper.setPaperYear("paperYear");
-                tempPaper.setPaperPublication("paperPublication");
+                tempPaper.setPaperKeywords(rs.getString("paperKeywords"));
+                tempPaper.setPaperYear(rs.getString("paperYear"));
+                tempPaper.setPaperPublication(rs.getString("paperPublication"));
                 list.add(tempPaper);
             }
         }
@@ -75,9 +75,9 @@ public class PaperDaoImpl implements PaperDao{
                 tempPaper.setPaperTitle(rs.getString("paperTitle"));
                 tempPaper.setPaperAbstract(rs.getString("paperAbstract"));
                 tempPaper.setPaperAuthor(rs.getString("paperAuthor"));
-                tempPaper.setPaperKeywords("paperKeywords");
-                tempPaper.setPaperYear("paperYear");
-                tempPaper.setPaperPublication("paperPublication");
+                tempPaper.setPaperKeywords(rs.getString("paperKeywords"));
+                tempPaper.setPaperYear(rs.getString("paperYear"));
+                tempPaper.setPaperPublication(rs.getString("paperPublication"));
                 list.add(tempPaper);
             }
         }

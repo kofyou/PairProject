@@ -35,3 +35,4 @@ fabric.properties
 /src/main/webapp/paperList.jsp
 /src/main/webapp/lib/jstl-1.2.jar
 /src/main/webapp/lib/mysql-connector-java-5.1.37.jar
+/src/main/webapp/framesetTest.jsp
