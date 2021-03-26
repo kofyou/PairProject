@@ -18,19 +18,17 @@ public class PaperListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String type = req.getParameter("type");
-        if (type == null )
-            type = "1";
-        switch (type) {
-            case "2":
-                deletePaper(req, resp);
-                break;
-            case "3":
-                showPaper(req, resp);
-                break;
-            case "1":
-                queryPaper(req, resp);
-                break;
+        String oper = "";
+        if(req.getParameter("operation") != null)
+            oper = req.getParameter("operation");
+        if (oper.equals("deletePaper")) {
+            deletePaper(req, resp);
+        }
+        else if(oper.equals("showPaper")) {
+            showPaper(req, resp);
+        }
+        else{
+            queryPaper(req, resp);
         }
     }
 
@@ -48,7 +46,8 @@ public class PaperListServlet extends HttpServlet {
 
     public void deletePaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("paperTitle");
-        req.getRequestDispatcher("/paper.jsp").forward(req,resp);
+        paperDAO.delete(title);
+        req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
     }
 
     public void showPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

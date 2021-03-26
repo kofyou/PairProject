@@ -28,7 +28,7 @@ public class PaperDAOImpl implements PaperDAO{
         try{
             conn = DBUtil.getConnection();
             stmt = conn.createStatement();
-            String sql = "delete from paper where title=" + title;
+            String sql = "delete from paper where title='" + title + "'";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

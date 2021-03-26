@@ -7,7 +7,6 @@ public class Paper {
     private String keywords;//关键词
     private String conference;//会议
     private int year;//发表年份
-    private String pubdate;//发表日期
     private String summary;//摘要
     private String link;//原文链接
 
@@ -41,14 +40,6 @@ public class Paper {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public String getPubdate() {
-        return pubdate;
-    }
-
-    public void setPubdate(String pubdate) {
-        this.pubdate = pubdate;
     }
 
     public String getSummary() {
