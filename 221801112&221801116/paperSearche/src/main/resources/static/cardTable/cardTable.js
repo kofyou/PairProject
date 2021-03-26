@@ -209,11 +209,9 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		item.abstrac = $(obj).find('span')[1].innerHTML;
 		item.publicationYear = $(obj).find('span')[2].innerHTML;
 		item.persistentLink = $(obj).find('span')[3].innerHTML;
-		console.log(item.persistentLink);
 		//数据嵌入表单元素
 		document.getElementById("textarea-title").value = item.publicationTitle;
 		document.getElementById("textarea-link").value = item.persistentLink;
-		document.getElementById("textarea-linka").herf = item.persistentLink;
 		document.getElementById("textarea-abstract").value = item.abstrac;
 		document.getElementById("textarea-key").value = item.keywords;
 		document.getElementById("textarea-year").value = item.publicationYear;

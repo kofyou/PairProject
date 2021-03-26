@@ -30,10 +30,10 @@ public class LimitPaperController {
     {
         List<Paper> paperList = limitPaperService.getLimitPaper(Integer.parseInt(start),Integer.parseInt(limit));
         for(Paper paper:paperList) {
-            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org/")){
+            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org")){
 
             }else {
-                paper.setPersistentLink("https://ieeexplore.ieee.org/"+paper.getPersistentLink());
+                paper.setPersistentLink("https://ieeexplore.ieee.org"+paper.getPersistentLink());
             }
         }
 
@@ -53,10 +53,10 @@ public class LimitPaperController {
     {
         List<Paper> paperList = limitPaperService.searchByKeyWords(keywords,Integer.parseInt(start),Integer.parseInt(limit));
         for(Paper paper:paperList) {
-            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org/")){
+            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org")){
 
             }else {
-                paper.setPersistentLink("https://ieeexplore.ieee.org/"+paper.getPersistentLink());
+                paper.setPersistentLink("https://ieeexplore.ieee.org"+paper.getPersistentLink());
             }
         }
         PaperResponsBody paperResponsBody=new PaperResponsBody();
