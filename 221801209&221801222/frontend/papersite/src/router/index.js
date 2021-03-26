@@ -6,6 +6,7 @@ import Base from '../components/base'
 import Index from '../components/index'
 import StarList from '../components/starlist'
 import Analysis from '../components/Analysis'
+import Echarts from "../components/echarts";
 
 
 Vue.use(Router)
@@ -18,6 +19,7 @@ export default new Router({
     {path: '/index', name: 'index', component: Index},
     {path: '/starlist', name: 'starlist', component: StarList},
     {path: '/analysis', name: 'analysis', component: Analysis},
-    {path: '/base', name: 'base', component: Base}
+    {path: '/base', name: 'base', component: Base},
+    {path: '/echarts', name: 'echarts', component: Echarts}
   ]
 })

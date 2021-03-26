@@ -24,6 +24,7 @@
             border
             style="width: 100%"
             :default-sort = "{prop: 'time', order: 'descending'}"
+            @row-click="getDetails"
           >
             <el-table-column
               fixed
@@ -65,8 +66,8 @@
               label="操作"
               width="100">
               <template slot-scope="scope">
-                <el-button icon="el-icon-search" circle style="color: black !important; "></el-button>
-                <el-button type="warning" icon="el-icon-star-off" circle style="background-color: palegreen;"></el-button>
+                <el-button icon="el-icon-search" @click="goToOriWeb" circle></el-button>
+                <el-button type="warning" icon="el-icon-star-off"  @click="doStar" circle style="background-color: palegreen;"></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -97,7 +98,7 @@
 
 import Base from '../components/base'
 import axios from "axios";
-
+import Router from '../router/index'
 export default {
   name: "index",
   data() {
@@ -108,6 +109,7 @@ export default {
       paperItemArr : [],
       tableData: [],
       displayedTableData: [],   /*正在展示的数据*/
+      selectedAId: 0, /*当前选中的行的aid*/
       tableMes: {
         totalItem: 6,
         eachPageItem: 10,
@@ -145,8 +147,57 @@ export default {
       this.handleSizeChange(this.tableMes.eachPageItem);
       console.log(searchWord);
     },
-    handleClick(row) {
-      console.log(row);
+    doStar(){
+      let t;
+      const that = this;
+      clearTimeout(t)
+      t = setTimeout(function (){
+        console.log(that.selectedAId);
+        that.axios.post('/star/add', {
+          aid: that.selectedAId
+        }, {withCredentials: true})
+          .then(
+            function (response) {
+              // if(response.data.code == '0') {
+              //   // alert("登录成功！");
+              //   Router.push({ path: 'index' });
+              // }
+              // else{
+              //   alert('用户名与密码不匹配！');
+              // }
+              console.log(response);
+            })
+          .catch(
+            function (error) {
+              console.log(error);
+            });
+        console.log('执行了');
+      }, 500);
+    },
+    goToOriWeb(){   /*跳转*/
+      let t;
+      let url;
+      const that = this;
+      clearTimeout(t)
+      t = setTimeout(function (){
+        console.log(that.selectedAId);
+        for(let i = 0; i < that.displayedTableData.length; i++) {
+          if(that.displayedTableData[i]['aid'] == that.selectedAId) {
+            url = that.displayedTableData[i]['url'];
+            break;
+          }
+        }
+        if(url != "" && url != null){
+          console.log(url)
+          window.open(url, '_blank');
+        }
+        console.log('执行了');
+      }, 500);
+
+    },
+    getDetails(row){
+      this.selectedAId = row['aid'];
+      // console.log(row['aid']);//此时就能拿到整行的信息
     },
     handleSizeChange(val) {
       /*console.log(`每页 ${val} 条`);*/

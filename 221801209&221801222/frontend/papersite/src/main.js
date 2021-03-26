@@ -8,10 +8,13 @@ import ElementUI from 'element-ui' //element-ui的全部组件
 import 'element-ui/lib/theme-chalk/index.css'//element-ui的css
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import * as echarts from 'echarts'
+
 
 
 Vue.use(ElementUI) //使用elementUI
 Vue.use(VueAxios,axios);
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false;
 axios.defaults.timeout = 5000;
