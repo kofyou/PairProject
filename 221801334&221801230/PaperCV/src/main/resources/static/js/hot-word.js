@@ -11,9 +11,9 @@ $(document).ready(function () {
         dataType:"json",
         async:false,
         success:function(result){
-            cvprValues = [result[0].value, result[1].value, result[2].value];
+            cvprValues = [result[0].value, result[1].value, result[2].value, result[3].value, result[4].value];
             cvprYears = result[0].years;
-            cvprCounts = [result[0].counts, result[1].counts, result[2].counts];
+            cvprCounts = [result[0].counts, result[1].counts, result[2].counts, result[3].counts, result[4].counts];
         },
     });
 
@@ -26,9 +26,9 @@ $(document).ready(function () {
         dataType:"json",
         async:false,
         success:function(result){
-            iccvValues = [result[0].value, result[1].value, result[2].value];
+            iccvValues = [result[0].value, result[1].value, result[2].value, result[3].value, result[4].value];
             iccvYears = result[0].years;
-            iccvCounts = [result[0].counts, result[1].counts, result[2].counts];
+            iccvCounts = [result[0].counts, result[1].counts, result[2].counts, result[3].counts, result[4].counts];
         },
     });
 
@@ -41,9 +41,9 @@ $(document).ready(function () {
         dataType:"json",
         async:false,
         success:function(result){
-            eccvValues = [result[0].value, result[1].value, result[2].value];
+            eccvValues = [result[0].value, result[1].value, result[2].value, result[3].value, result[4].value];
             eccvYears = result[0].years;
-            eccvCounts = [result[0].counts, result[1].counts, result[2].counts];
+            eccvCounts = [result[0].counts, result[1].counts, result[2].counts, result[3].counts, result[4].counts];
         },
     });
 
@@ -96,6 +96,18 @@ $(document).ready(function () {
                 type: 'line',
                 stack: 'num3',
                 data: cvprCounts[2]
+            },
+            {
+                name: cvprValues[3],
+                type: 'line',
+                stack: 'num4',
+                data: cvprCounts[3]
+            },
+            {
+                name: cvprValues[4],
+                type: 'line',
+                stack: 'num5',
+                data: cvprCounts[4]
             },
         ]
     };
@@ -151,6 +163,18 @@ $(document).ready(function () {
                 stack: 'num3',
                 data: iccvCounts[2]
             },
+            {
+                name: iccvValues[3],
+                type: 'line',
+                stack: 'num4',
+                data: iccvCounts[3]
+            },
+            {
+                name: iccvValues[4],
+                type: 'line',
+                stack: 'num5',
+                data: iccvCounts[4]
+            },
         ]
     };
     echartBar = echarts.init(document.getElementById("pills-profile"));
@@ -204,7 +228,19 @@ $(document).ready(function () {
                 type: 'line',
                 stack: 'num3',
                 data: eccvCounts[2]
-            }
+            },
+            {
+                name: eccvValues[3],
+                type: 'line',
+                stack: 'num4',
+                data: eccvCounts[3]
+            },
+            {
+                name: eccvValues[4],
+                type: 'line',
+                stack: 'num5',
+                data: eccvCounts[4]
+            },
         ]
     };
     echartBar = echarts.init(document.getElementById("pills-contact"));
