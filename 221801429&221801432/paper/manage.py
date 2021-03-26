@@ -1,4 +1,4 @@
-from flask import Flask,render_template, current_app
+from flask import Flask, render_template, current_app, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from config import Config
@@ -23,6 +23,21 @@ class Paper(db.Model):
     releasetime = db.Column(db.String(255))
     link = db.Column(db.String(255))
 
+    def to_short_dict(self):
+        if len(self.abstract) > 300:
+            abstract = self.abstract[0:300]+"..."
+        else:
+            abstract = self.abstract
+        paper = {
+            "title": self.title,
+            "abstract": abstract,
+            "typeandyear": self.typeandyear,
+            "keywords": self.keywords,
+            "releasetime":self.releasetime,
+            "link":self.link
+        }
+        return paper
+
     def __repr__(self):
         return '<title:%s %s>' % (self.title, self.abstract)
 
@@ -37,15 +52,37 @@ class TopWord(db.Model):
 
 @app.route('/')
 def hello_world():
+
+    # 分页展示论文列表
+    page = request.args.get("p", "1")
     try:
-        count = TopWord.query.all()
+        page = int(page)
     except Exception as e:
-        print("err!!获取数量失败")
+        page = 1
+    try:
+        paginate = Paper.query.order_by("title").paginate(page, 10, False)
+    except Exception as e:
+        print("err!")
+    totalPage = paginate.pages
+    currentPage = page
+    items = paginate.items
+    paper_list = []
+    for paper in items:
+        paper_list.append(paper.to_short_dict())
+
+    # 顶会热词获取
+    try:
+        topWord = TopWord.query.all()
+    except Exception as e:
+        print("err!!获取失败")
     top_list = []
-    for i in count:
+    for i in topWord:
         top_list.append(i.name)
     data = {
-        "top": top_list
+        "totalPage": totalPage,
+        "currentPage": currentPage,
+        "top": top_list,
+        "paper": paper_list
     }
     return render_template("index.html", data=data)
 
