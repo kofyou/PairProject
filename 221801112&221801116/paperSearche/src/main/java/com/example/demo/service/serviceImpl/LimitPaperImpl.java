@@ -43,4 +43,8 @@ public class LimitPaperImpl implements LimitPaperService {
     public Integer updatePaper(int id,String title,String key,String abstrac,String link,String year) {
         return limitPaperMapper.updatePaper(id,key,abstrac,title,year,link);
     }
+
+    public Integer insertPaper(String title,String key,String abstrac,String link,String year) {
+        return limitPaperMapper.insertPaper(key,abstrac,title,year,link);
+    }
 }

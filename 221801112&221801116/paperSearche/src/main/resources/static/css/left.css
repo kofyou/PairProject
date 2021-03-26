@@ -2,13 +2,13 @@
     padding: 0;
     margin: 0;
 }
-.content-left{
+.content-left-csk{
     width: 100%;
-    height: 100%;
+    height: 90%;
     background: #667999;
     position: relative;
 }
-.myclose{
+.myclose-csk{
     display: block;
     width: 100%;
     height: 50px;
@@ -16,23 +16,21 @@
     text-align: center;
     color: white;
 }
-.left-title{
+.left-title-csk{
     height: 50px;
     width: 100%;
 }
-.left-title>a{
-    display: block;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-}
-.nav-menu{
+
+.nav-menu-csk{
     margin-top: 6px;
 }
-.nav-title>a,.nav-title2>a{
+.left-title-icon-csk,.nav-title2-icon-csk{
+    margin-top: 12px;
+    height: 22px;
+    width: 25px;
+    float: left;
+}
+.nav-title-csk>a,.nav-title2-csk>a,.left-title-csk>a{
     display: block;
     height: 50px;
     width: 100%;
@@ -41,7 +39,7 @@
     text-align: center;
     text-decoration: none;
 }
-.nav-title2>a:hover,.nav-title>a:hover,.left-title>a:hover{
+.nav-title2-csk>a:hover,.nav-title-csk>a:hover,.left-title-csk>a:hover{
     display: block;
     height: 50px;
     width: 100%;
@@ -50,7 +48,12 @@
     text-align: center;
     line-height: 50px;
 }
-.open{
+.nav-title-csk:hover,.left-title-csk:hover,.nav-title2-csk:hover,.myclose-csk:hover{
+    cursor: pointer;
+    background: #5FB878;
+    opacity:0.5;
+}
+.open-csk{
     width: 50px;
     height: 50px;
     background-color: #c3e6cb;
@@ -88,11 +91,11 @@ a{
 }
 .logo{
     margin-left: 40px;
-    height: 72px;
+    height: 65px;
 }
 .touxiang{
     margin-right: 10px;
-    height: 72px;
+    height: 65px;
 }
 .userName{
     height: 46px;
@@ -102,10 +105,11 @@ a{
 .eg img{
     border-radius: 50%;
 }
-.content{
+.content-csk{
+    padding: 0;
     float: left;
     width: 14%;
-    height: 100%;
+    height: 1500px;
 }
 .mytable{
     float: left;

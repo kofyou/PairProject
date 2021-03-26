@@ -16,14 +16,15 @@
 
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="public/css/set.css" />
-
     </head>
     <body>
 
-<!--    回到顶部-->
+    <!--    回到顶部-->
     <div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
         <img src="image/fanhuidingbucopy.png" />
     </div>
+
+
         <!--    顶部导航栏-->
     <div class="nav">
         <ul class="fl">
@@ -36,25 +37,25 @@
     </div>
 
     <!--侧边导航栏-->
-    <div class="content">
-        <div class="open" id="open">展开</div>
-        <div class="content-left" id="left">
-            <div class="myclose" id="myclose">收起</div>
-            <div class="left-title">
-                <a href="#">主页</a>
+    <div class="content-csk">
+        <div class="open-csk" id="open">展开</div>
+        <div class="content-left-csk" id="left" style="height: 1500px">
+            <div class="myclose-csk" id="myclose">收起</div>
+            <div class="left-title-csk">
+                <img src="image/098zhome01.png" class="left-title-icon-csk">
+                <a href="/t">主页</a>
             </div>
-            <div class="nav-left">
-                <div class="nav-menu">
-                    <div class="nav-title">
-                        <a href="#">待爬取论文</a>
-                    </div>
-                    <div class="nav-title2">
-                        <a href="#">已爬取论文</a>
-                    </div>
-                </div>
+            <div class="nav-title-csk">
+                <a href="#">########</a>
+            </div>
+            <div class="nav-title2-csk">
+                <img src="image/041preview.png" class="nav-title2-icon-csk">
+                <a href="/left">已爬取论文列表</a>
             </div>
         </div>
     </div>
+
+
 
 
         <!--论文卡片表格-->
@@ -67,13 +68,13 @@
 			</label>
 		    </span>
             <button id="mybutton" class="layui-btn layui-btn-radius" onclick="search()" th:text="开始搜索"></button>
-            <button id="mybuttonadd" data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-radius layui-btn-danger" th:text="增加论文"></button>
+            <button id="mybuttonadd" onclick="cleartext()" data-toggle="modal" data-target="#myModal" class="layui-btn layui-btn-radius layui-btn-danger" th:text="增加论文"></button>
         </div>
         <table id="currentTableId"></table>
     </div>
 
         <!-- 模态框（Modal） -->
-<div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="border: none">
+    <div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="border: none">
     <div class="modal-dialog" style="border: none">
         <div class="modal-content" style="border: none">
             <div class="modal-header" style="border: none">
@@ -123,14 +124,18 @@
                         <div class="control-group">
                             <label class="control-label" for="textarea-abstract">ABSTRACT</label>
                             <div class="controls">
-                                <textarea id="textarea-abstract" name="textarea-abstract" style="height: 450px;width: 500px;border-radius: 2%"></textarea>
+                                <textarea id="textarea-abstract" name="textarea-abstract" style="height: 350px;width: 500px;border-radius: 2%"></textarea>
                             </div>
                         </div>
 
+                        <div style="margin-top: 25px">
+                            <button class="layui-btn layui-btn-radius layui-btn-normal" type="submit" th:text="确定修改" formaction="/update"></button>
+                            <button class="layui-btn layui-btn-radius" type="submit" th:text="确定删除" formaction="/delete"></button>
+                            <button class="layui-btn layui-btn-radius layui-btn-danger"  th:text="确定增加" formaction="/insert"></button>
+                            <button class="layui-btn layui-btn-radius layui-btn-warm" data-dismiss="modal" th:text="关闭窗口"></button>
+                        </div>
 
-                        <button class="layui-btn layui-btn-radius layui-btn-normal" type="submit" th:text="确定修改" formaction="/update"></button>
-                        <button class="layui-btn layui-btn-radius" type="submit" th:text="确定删除" formaction="/delete"></button>
-                        <button class="layui-btn layui-btn-radius layui-btn-warm" data-dismiss="modal" th:text="关闭窗口"></button>
+
                     </fieldset>
                 </form>
             </div>
@@ -147,8 +152,12 @@
     </div><!-- /.modal -->
 </div>
 
+
+
     <script src="layui/layui.js"></script>
+
     <script>
+
         $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
         layui.config({
             base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录
@@ -164,6 +173,20 @@
                 url: 'getLimitPaper',
             })
         })
+
+
+        function cleartext(){
+            document.getElementById("textarea-title").value = "";
+            document.getElementById("textarea-link").value = "";
+            document.getElementById("textarea-linka").herf = "#";
+            document.getElementById("textarea-abstract").value = "";
+            document.getElementById("textarea-key").value = "";
+            document.getElementById("textarea-year").value = "";
+            document.getElementById("paper_id").innerText = "Form Name";
+            document.getElementById("paperId").value = "";
+        }
+
+
         function search(){
             var keyword = document.getElementById("input-32");
             var keys = keyword.value;

@@ -35,4 +35,11 @@ public interface LimitPaperMapper {
                                @Param("abstrac") String abstrac,@Param("publicationTitle") String publicationTitle,
                                @Param("publicationYear") String publicationYear,@Param("persistentLink") String persistentLink);
 
+
+    @Insert("INSERT INTO paper (keywords,publicationTitle,abstrac,publicationYear,persistentLink) values (#{keywords},#{publicationTitle},#{abstrac},#{publicationYear},#{persistentLink})")
+    public Integer insertPaper(@Param("keywords") String keywords,@Param("abstrac") String abstrac,
+                               @Param("publicationTitle") String publicationTitle,
+                               @Param("publicationYear") String publicationYear,
+                               @Param("persistentLink") String persistentLink);
+
 }
