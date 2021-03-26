@@ -28,6 +28,10 @@ func (service *ShowPaperListService) ShowPaperDetail(paperId int64) serializer.R
 func (service *ShowPaperListService) ShowPaperList(user model.User, page int64) serializer.Response {
 	paper, pageCount := user.GetPaperList(page)
 
+	if pageCount == 0 {
+		return serializer.BuildPaperListResponse(nil, pageCount, page)
+	}
+
 	if pageCount == -1 {
 		return serializer.ParamErr("获取页面错误", nil)
 	}

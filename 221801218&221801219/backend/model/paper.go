@@ -34,25 +34,22 @@ func (paper *Paper) Add() (int64, error) {
 
 // SearchPaperByTitle 页面超出返回nil, -1
 func SearchPaperByTitle(title []string, page int64, meeting string) ([]Paper, int64) {
-	titleString := "title like %?%"
-
-	var titleSql string
-	for i := 0; i < len(title); i++ {
-		titleSql = titleSql + " or " + titleString
+	var sql string
+	for _, t := range title{
+		sql = sql + " or " + `title like "%` + t + `%"`
 	}
 
-	return SearchPaperByParam(titleSql, page, title, meeting)
+	return SearchPaperByParam("1 = 0" + sql, page, meeting)
 }
 
 func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
-	keywordString := "content like %?%"
-
-	var keywordSql string
-	for i := 0; i < len(keyword); i++ {
-		keywordSql = keywordSql + " or " + keywordString
+	var sql string
+	for _, k := range keyword{
+		sql = sql + " or " + "content like \"%" + k + "%\""
 	}
+
 	var keywordId, paperId []string
-	if err := Engine.Table("keyword").Select("id").Where(keywordSql, keyword).Find(&keywordId); err != nil {
+	if err := Engine.Table("keyword").Select("id").Where(sql).Find(&keywordId); err != nil {
 		util.Log().Error(err.Error())
 	}
 
@@ -78,7 +75,9 @@ func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
 	return paper, total
 }
 
-func SearchPaperByParam(param string, page int64, data interface{}, meeting string) ([]Paper, int64) {
+
+// SearchPaperByParam 搜索 没有结果时返回0
+func SearchPaperByParam(sql string, page int64, meeting string) ([]Paper, int64) {
 	b := meeting == ""
 	paper := make([]Paper, 0)
 
@@ -86,15 +85,18 @@ func SearchPaperByParam(param string, page int64, data interface{}, meeting stri
 	var err error
 
 	if b {
-		total, err = Engine.Where(param, data).Count(&Paper{})
+		total, err = Engine.Where(sql).Count(&Paper{})
 		if err != nil {
 			util.Log().Error(err.Error())
 		}
 	} else {
-		total, err = Engine.Where(param, data).And("meeting = ?", meeting).Count(&Paper{})
+		total, err = Engine.Where(sql).And("meeting = ?", meeting).Count(&Paper{})
 		if err != nil {
 			util.Log().Error(err.Error())
 		}
+	}
+	if total == 0 {
+		return nil, total
 	}
 
 	if util.PageOverFlow(total, page) {
@@ -102,12 +104,12 @@ func SearchPaperByParam(param string, page int64, data interface{}, meeting stri
 	}
 
 	if b {
-		err = Engine.Where(param, data).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
+		err = Engine.Where(sql).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
 		if err != nil {
 			util.Log().Error(err.Error())
 		}
 	} else {
-		err = Engine.Where(param, data).And("meeting = ?", meeting).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
+		err = Engine.Where(sql).And("meeting = ?", meeting).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
 		if err != nil {
 			util.Log().Error(err.Error())
 		}

@@ -32,6 +32,11 @@ func PaperUnsubscribe(userId, paperId int64) (int64, error) {
 // GetPaperIdList 页面超出返回nil, -1
 func (user *User) GetPaperIdList(p int64) ([]int64, int64) {
 	total, _ := Engine.Where("u_id = ?", user.Id).Count(&UserPaper{})
+
+	if total == 0 {
+		return nil, total
+	}
+
 	if util.PageOverFlow(total, p) {
 		return nil, -1
 	}

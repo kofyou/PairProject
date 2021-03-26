@@ -24,7 +24,7 @@ func NewRouter() *gin.Engine {
 		// 用户登陆
 		v1.POST("login", api.UserLogin)
 
-		v1.GET("paper/:id", api.ShowPaperDetail)
+		v1.GET("paper/view/:id", api.ShowPaperDetail)
 
 		v1.GET("paper", api.ShowPapersByKeyword)
 

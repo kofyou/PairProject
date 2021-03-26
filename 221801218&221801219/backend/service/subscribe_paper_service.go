@@ -5,11 +5,11 @@ import (
 	"backend/serializer"
 )
 
-type AddPaperListService struct {
+type SubscribePaperService struct {
 	PaperId			int64		`form:"paper_id" json:"paper_id"`
 }
 
-func (service *AddPaperListService) Add(user model.User) serializer.Response {
+func (service *SubscribePaperService) Subscribe(user model.User) serializer.Response {
 	if has, err := model.Engine.Where("paper_id = ? and u_id = ?", service.PaperId, user.Id).Exist(&model.UserPaper{}); err != nil {
 		return serializer.DBErr("论文订阅查询失败", err)
 	} else if has {

@@ -50,9 +50,9 @@ func ShowPaperList(c *gin.Context)  {
 }
 
 func AddPaperList(c *gin.Context)  {
-	var service service.AddPaperListService
+	var service service.SubscribePaperService
 	if err := c.ShouldBind(&service); err == nil {
-		res := service.Add(*CurrentUser(c))
+		res := service.Subscribe(*CurrentUser(c))
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))

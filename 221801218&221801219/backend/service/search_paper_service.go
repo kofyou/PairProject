@@ -14,6 +14,7 @@ type SearchPaperService struct {
 func (service *SearchPaperService) SearchByTitle(title string, page int64, meeting string) serializer.Response {
 	re := regexp.MustCompile(`"[+]"`)
 	t := re.Split(title, -1)
+
 	papers, pageCount := model.SearchPaperByTitle(t, page, meeting)
 	if pageCount == -1 {
 		return serializer.ParamErr("获取页面错误", nil)

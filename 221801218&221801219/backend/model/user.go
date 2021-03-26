@@ -67,6 +67,10 @@ func (user *User) GetPaperList(p int64) ([]Paper, int64) {
 		return nil, -1
 	}
 
+	if total == 0 {
+		return nil, total
+	}
+
 	paperList := make([]Paper, 0)
 
 	for _, id := range paperIdList {
