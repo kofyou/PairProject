@@ -21,11 +21,10 @@
     </script>
 </head>
 <body>
-
-    <form action="<%=path%>/PaperListServlet" method="get">
+    <form action="<%=path%>/PaperListServlet" method="get" id="queryForm">
         查询:<br>
-        <input type="text" name="query" >
-        <input type="submit" value="查询">
+        <input type="text" name="query" id="text">
+        <input type="submit" value="查询" >
     </form>
 
     <table id="papertable">

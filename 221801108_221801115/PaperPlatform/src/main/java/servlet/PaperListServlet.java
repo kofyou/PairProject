@@ -39,14 +39,28 @@ public class PaperListServlet extends HttpServlet {
 
     public void queryPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String str = req.getParameter("query");
+        Cookie c1 = new Cookie("queryInfo", str);
+        resp.addCookie(c1);
         ArrayList<Paper> paperList = paperDAO.list(str);
-        req.setAttribute("paperList",paperList);
+        req.setAttribute("paperList", paperList);
         req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
     }
 
     public void deletePaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("paperTitle");
         paperDAO.delete(title);
+        Cookie[] cookies = req.getCookies();
+        String str = null;
+        if(cookies != null) {
+            for(Cookie cookie:cookies) {
+                if(cookie.getName().equals("queryInfo")) {
+                    str = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        ArrayList<Paper> paperList = paperDAO.list(str);
+        req.setAttribute("paperList", paperList);
         req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
     }
 
