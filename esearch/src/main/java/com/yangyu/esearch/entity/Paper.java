@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author : 221801321_黄海翔
+ * @author : yangyu
  * @ClassName : com.yangyu.esearch.entity.test
  * @Description : 类描述
  * @date : 2021-03-23 21:09:07

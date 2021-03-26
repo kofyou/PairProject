@@ -5,7 +5,7 @@ import com.yangyu.esearch.entity.Paper;
 import java.util.List;
 
 /**
- * @author : 221801321_黄海翔
+ * @author : yangyu
  * @ClassName : com.yangyu.esearch.mapper.PaperMapper
  * @Description : PaperMapper的接口声明
  * @date : 2021-03-23 21:12:05
