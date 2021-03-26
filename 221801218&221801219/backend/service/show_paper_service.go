@@ -34,3 +34,14 @@ func (service *ShowPaperListService) ShowPaperList(user model.User, page int64) 
 
 	return serializer.BuildPaperListResponse(paper, pageCount, page)
 }
+
+// ShowPaperListByKeyword 获取关键词对应的论文列表
+func (service *ShowPaperListService) ShowPaperListByKeyword(keywordId int64, page int64) serializer.Response {
+	paper, pageCount := model.GetPapersByKeywordId(keywordId, page)
+
+	if pageCount == -1 {
+		return serializer.ParamErr("获取页面错误", nil)
+	}
+
+	return serializer.BuildPaperListResponse(paper, pageCount, page)
+}

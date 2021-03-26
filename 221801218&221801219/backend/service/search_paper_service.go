@@ -30,16 +30,3 @@ func (service *SearchPaperService) SearchByKeyword(keyword string, page int64) s
 	}
 	return serializer.BuildPaperListResponse(keywords, pageCount, page)
 }
-
-//func (service *SearchPaperService) SearchByParams(title string, keyword string, meeting string, page int64) serializer.Response {
-//	re := regexp.MustCompile(`"[+]"`)
-//	t := re.Split(title, -1)
-//	re = regexp.MustCompile(`"[+]"`)
-//	k := re.Split(keyword, -1)
-//	if meeting != "ECCV" && meeting != "ICCV" && meeting != "CVPR" {
-//		return serializer.ParamErr("参数错误", nil)
-//	}
-//
-//
-//
-//}

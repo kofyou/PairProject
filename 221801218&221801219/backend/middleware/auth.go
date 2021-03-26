@@ -14,7 +14,7 @@ func CurrentUser() gin.HandlerFunc {
 		uid := session.Get("user_id")
 		if uid != nil {
 			user, err := model.GetUser(uid)
-			if err == false {
+			if err != false {
 				c.Set("user", &user)
 			}
 		}
@@ -31,7 +31,6 @@ func LoginRequired() gin.HandlerFunc {
 				return
 			}
 		}
-
 		c.JSON(200, serializer.CheckLogin())
 		c.Abort()
 	}

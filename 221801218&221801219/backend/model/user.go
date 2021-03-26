@@ -61,7 +61,7 @@ func (user *User) Exist() bool {
 }
 
 // GetPaperList 获取用户论文列表，返回第p页结果，以及总页数
-func (user *User)  GetPaperList(p int64) ([]Paper, int64) {
+func (user *User) GetPaperList(p int64) ([]Paper, int64) {
 	paperIdList, total := user.GetPaperIdList(p)
 	if total == -1 {
 		return nil, -1

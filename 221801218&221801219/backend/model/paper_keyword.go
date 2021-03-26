@@ -24,13 +24,8 @@ func (paperKeyword *PaperKeyword) Add() (int64, error) {
 	return affected, nil
 }
 
-func (paper *Paper) GetPaperKeywordStrings() []string {
-	kwdString := make([]string, 0)
-	keywords := paper.GetPaperKeywordList()
-	for _, kwd := range keywords{
-		kwdString = append(kwdString, kwd.Content)
-	}
-	return kwdString
+func (paper *Paper) GetPaperKeywordStrings() []Keyword {
+	return paper.GetPaperKeywordList()
 }
 
 func (paper *Paper) GetPaperKeywordList() []Keyword {

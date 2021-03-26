@@ -19,12 +19,16 @@ func NewRouter() *gin.Engine {
 		v1.POST("ping", api.Ping)
 
 		// 用户注册
-		v1.POST("register", api.UserRegister)
+		v1.POST("signup", api.UserRegister)
 
 		// 用户登陆
 		v1.POST("login", api.UserLogin)
 
 		v1.GET("paper/:id", api.ShowPaperDetail)
+
+		v1.GET("paper", api.ShowPapersByKeyword)
+
+		v1.GET("search", api.PaperSearch)
 
 		// 登陆保护
 		authed := v1.Group("/")
@@ -33,7 +37,7 @@ func NewRouter() *gin.Engine {
 			// User PaperList
 			authed.GET("user/list", api.ShowPaperList)
 
-			authed.POST("user/subscribe", api.AddPaperList)
+			authed.POST("paper/subscribe", api.AddPaperList)
 
 			authed.DELETE("logout", api.UserLogout)
 		}

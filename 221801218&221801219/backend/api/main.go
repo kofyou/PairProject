@@ -3,17 +3,12 @@ package api
 import (
 	"backend/model"
 	"backend/serializer"
+	"backend/util"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 )
 
 func ErrorResponse(err error) serializer.Response {
-	//if ve, ok := err.(validator.ValidationErrors); ok {
-	//	for _, e := range ve {
-	//		field := config.
-	//	}
-	//}
-
 	if _, ok := err.(*json.UnmarshalTypeError); ok {
 		return serializer.ParamErr("JSON类型不匹配", err)
 	}
@@ -25,6 +20,7 @@ func ErrorResponse(err error) serializer.Response {
 func CurrentUser(c *gin.Context) *model.User {
 	if user, _ := c.Get("user"); user != nil {
 		if u, ok := user.(*model.User); ok {
+			util.Log().Debug(u.Uid)
 			return u
 		}
 	}

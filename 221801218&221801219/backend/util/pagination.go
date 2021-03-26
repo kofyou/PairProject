@@ -8,7 +8,7 @@ const (
 )
 
 func PageOverFlow(total int64, page int64) bool {
-	return int64(math.Ceil(float64(total) / float64(PaperPageMaxSize))) < page
+	return int64(math.Ceil(float64(total) / float64(PaperPageMaxSize))) < page || page <= 0
 }
 
 func TotalPages(total int64) int64 {

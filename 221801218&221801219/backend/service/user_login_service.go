@@ -16,7 +16,7 @@ type UserLoginService struct {
 func (service *UserLoginService) setSession(c *gin.Context, user model.User)  {
 	s := sessions.Default(c)
 	s.Clear()
-	s.Set("user_id", user.Uid)
+	s.Set("user_id", user.Id)
 	_ = s.Save()
 }
 

@@ -9,7 +9,12 @@ type Paper struct {
 	Meeting			string		`json:"meeting"`
 	Year       		int			`json:"year"`
 	OriginLink 		string		`json:"origin_link"`
-	Keywords		[]string	`json:"keywords"`
+	Keywords		[]Keyword	`json:"keywords"`
+}
+
+type Keyword struct {
+	Id				int64		`json:"id"`
+	Content 		string		`json:"content"`
 }
 
 // Page 当前页
@@ -20,8 +25,20 @@ type PaperList struct {
 	Papers    []Paper 	`json:"papers"`
 }
 
+func TransKeyword(keyword []model.Keyword) []Keyword {
+	keywords := make([]Keyword, 0)
+	for _, k := range keyword {
+		keywords = append(keywords, Keyword{
+			Id:      k.Id,
+			Content: k.Content,
+		})
+	}
+	return keywords
+}
+
 // BuildPaper 序列化论文
 func BuildPaper(paper model.Paper) Paper {
+	keyword := paper.GetPaperKeywordList()
 	return Paper{
 		Id:         paper.Id,
 		Title:      paper.Title,
@@ -29,7 +46,7 @@ func BuildPaper(paper model.Paper) Paper {
 		Meeting:    paper.Meeting,
 		Year:       paper.Year,
 		OriginLink: paper.Meeting,
-		Keywords:   paper.GetPaperKeywordStrings(),
+		Keywords:   TransKeyword(keyword),
 	}
 }
 
@@ -56,15 +73,7 @@ func BuildPaperList(paper []model.Paper, pageCount int64, page int64) PaperList 
 func BuildSearchResult(paper []model.Paper, pageCount int64, page int64) PaperList {
 	papers := make([]Paper, 0)
 	for _, p := range paper{
-		papers = append(papers, Paper{
-			Id:         p.Id,
-			Title:      p.Title,
-			Abstract:   p.Abstract,
-			Meeting:    p.Meeting,
-			Year:       p.Year,
-			OriginLink: p.OriginLink,
-			Keywords: p.GetPaperKeywordStrings(),
-		})
+		papers = append(papers, BuildPaper(p))
 	}
 
 	return PaperList{
