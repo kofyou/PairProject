@@ -83,3 +83,11 @@ var Main = {
 };
 var Ctor = Vue.extend(Main);
 new Ctor().$mount('#app');
+function search(){
+    var i=document.getElementById("title");
+    /*var paperview=document.getElementById("paperview");
+    var paperanalysis=document.getElementById("paperanalysis");
+    paperview.setAttribute("href","../index/Paperview");
+    paperanalysis.setAttribute("href","../index/Paperanalysis");*/
+    window.location="../public/index/Paperview?data="+i.value;
+}

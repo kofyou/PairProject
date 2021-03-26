@@ -48,7 +48,7 @@ body {
     cursor: pointer;
     position: fixed;
     z-index: 99;
-    right: 80px;
+    right: 100px;
     bottom: 30px;
 }
 
@@ -64,8 +64,8 @@ body {
 .el-carousel__arrow {
     border-style: solid;
     border-color: white;
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
     top: auto;
 }
 
@@ -74,11 +74,13 @@ body {
 }
 
 .el-icon-arrow-left {
-    zoom: 300%;
+    zoom: 200%;
+    transform: scale(200%);
 }
 
 .el-icon-arrow-right {
-    zoom: 300%;
+    zoom: 200%;
+    transform: scale(200%);
 }
 
 .el-breadcrumb__inner a,

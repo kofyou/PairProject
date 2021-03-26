@@ -131,24 +131,22 @@ body {
     top: 150px;
 }
 
-#title {
+#title1 {
     font-size: 14px;
-    padding-left: 20px;
+    margin-left: 20px;
 }
 
-.el-table {
-    background-color: white;
-    opacity: 100%;
-    position: fixed;
-    left: 460px;
-    top: 300px;
-    border-radius: 10px;
+#title{
+    font-size:30px;
+    font-weight: bold;
+    margin-left: 655px;
 }
-
-.has-gutter th,
-.has-gutter tr,
-.el-table__footer-wrapper,
-.el-table__header-wrapper {
-    background-color: rgb(58, 166, 238);
-    color: black;
+#abstract{
+    font-size:20px;
+    width: 900px;
+    margin-left: 250px;
+    margin-top: 20px;
+    height:400px;
+    overflow-y: auto;
+    text-indent:2em;
 }
