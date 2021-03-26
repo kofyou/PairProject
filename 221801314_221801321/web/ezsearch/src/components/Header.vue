@@ -25,10 +25,10 @@ import {defineComponent} from 'vue';
 </script>
 <style scoped>
     a {
-        color: #ffffff;
-        font-size: 30px;
-        line-height: 52px;
-        font-weight: bold;
+      color: #ffffff;
+      font-size: 30px;
+      line-height: 52px;
+      font-weight: bold;
     }
     .header-icon {
         width:42px;
@@ -51,9 +51,6 @@ import {defineComponent} from 'vue';
     }
   .el-row {
     margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
   .el-col {
     border-radius: 0px;

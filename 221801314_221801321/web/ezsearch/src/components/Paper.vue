@@ -1,21 +1,23 @@
 <template>
-    <el-card class="box-card">
-        <div class="paper-title">
+    <div class="box-card" align="left">
+        <div class="paper title">
             <h1>Visual Attention Consistency Under Image Transforms for Multi-Label Image Classification</h1>
+            <a>Author:</a>
+            <span class="blue">Hao Guo, Kang Zheng, Xiaochuan Fan, Hongkai Yu, Song Wang</span>
         </div>
-        <div class="paper-body">
-            <a class="table-cell">Author:</a>
-            <span class="table-cell blue">123</span>
-            <br/>
-            <div>
-                <h2 class="table-cell">Abstract</h2>
-                <p class="table-col">123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p>
-            </div>
+        <el-divider></el-divider>
+        <div class="paper body">
+            <h2>Abstract</h2>
+            <p> Human visual perception shows good consistency for many multi-label image classification tasks under certain spatial transforms, such as scaling, rotation, flipping and translation. This has motivated the data augmentation strategy widely used in CNN classifier training -- transformed images are included for training by assuming the same class labels as their original images....</p>
             <p>abcdefghijklmn</p>
             <p>abcdefghijklmn</p>
         </div>
-        <div>123</div>
-    </el-card>
+        <div class="right">
+            <el-button class="btns"></el-button>
+            <el-button class="btns"></el-button>
+            <el-button class="btns"></el-button>
+        </div>
+    </div>
         
 </template>
 <script>
@@ -26,26 +28,52 @@ export default defineComponent({
 </script>
 <style>
     .box-card {
-        width:1200px;
+        max-width:1200px;
+        width:100%;
         height:100%;
+        /* margin: 20px; */
         margin-bottom: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        float: left;
+        border-radius: 10px;
+        margin-right: 10px;
+        padding: 5px;
+        padding-top: 15px;
     }
-    .paper-title {
-        display:flex;
+    .paper {
+        /* width: 80%; */
+        height:100%;
+    }
+    .title {
+        background-color: #f0a091de;
+        /* filter: blur(2px); */
+        border-radius: 7px;
         padding-top: 10px;
+        padding-bottom: 10px;
         padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
         justify-content:flex-start;
     }
-    .paper-body {
-        padding: 30px;
-        /* justify-content:space-between; */
-        /* align-items:center; */
+    .body {
+        width: 80%;
+        float: left;
+        padding-left:40px;
+        padding-bottom: 20px;
     }
-    .table-cell {
-        display:inline-flexbox;
+    .right {
+        float: right;
+        padding-bottom: 10px;
     }
-    .table-col {
-        display: table-row;
+    .btns {
+        clear: both;
+        display: block;
+        margin-bottom:5px;
+        margin-left: 0px !important;
+        margin-right: 20px;
+        
     }
     .block {
         display: block;

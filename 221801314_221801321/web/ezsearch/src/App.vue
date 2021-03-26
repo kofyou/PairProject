@@ -1,13 +1,13 @@
 <template>
-  <Search/>
+  <Home/>
 </template>
 
 <script>
 import {defineComponent} from 'vue';
-import Search from '@/views/Search.vue';
+import Home from '@/views/Home.vue';
 export default defineComponent ({
   components: {
-    Search,
+    Home,
   }
 });
 </script>

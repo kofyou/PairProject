@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Search from '../views/Search.vue'
 
 const routes = [{
         path: '/',
@@ -16,11 +15,6 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "about" */ '../views/About.vue')
     },
-    {
-        path: '/search',
-        name: 'Search',
-        component: Search,
-    }
 ]
 
 const router = createRouter({
