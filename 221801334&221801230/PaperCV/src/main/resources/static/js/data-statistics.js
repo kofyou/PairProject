@@ -34,13 +34,18 @@ $(document).ready(function () {
     echartBar = echarts.init(document.getElementById("table2"));
     echartBar.setOption(option);
 
+    var hotWord = [];
     $.ajax({
-        url:httpRoot + `/data/meeting/count`,
+        url:httpRoot + `/data/hotWord`,
         type:"GET",
         dataType:"json",
         async:false,
         success:function(result){
-            meetingCount = result;
+            for (var i = 0;i < 10;i++) {
+                for (var item in result[i]) {
+                    hotWord.push([item, result[i][item]]);
+                }
+            }
         },
     });
     option = {
@@ -67,20 +72,82 @@ $(document).ready(function () {
                     borderRadius: 8
                 },
                 data: [
-                    {value: 40, name: '热词1'},
-                    {value: 38, name: '热词2'},
-                    {value: 32, name: '热词3'},
-                    {value: 30, name: '热词4'},
-                    {value: 28, name: '热词5'},
-                    {value: 26, name: '热词6'},
-                    {value: 22, name: '热词7'},
-                    {value: 18, name: '热词8'},
-                    {value: 18, name: '热词9'},
-                    {value: 18, name: '热词10'}
+                    {value: hotWord[0][1], name: hotWord[0][0]},
+                    {value: hotWord[1][1], name: hotWord[1][0]},
+                    {value: hotWord[2][1], name: hotWord[2][0]},
+                    {value: hotWord[3][1], name: hotWord[3][0]},
+                    {value: hotWord[4][1], name: hotWord[4][0]},
+                    {value: hotWord[5][1], name: hotWord[5][0]},
+                    {value: hotWord[6][1], name: hotWord[6][0]},
+                    {value: hotWord[7][1], name: hotWord[7][0]},
+                    {value: hotWord[8][1], name: hotWord[8][0]},
+                    {value: hotWord[9][1], name: hotWord[9][0]}
                 ]
             }
         ]
     };
     echartBar = echarts.init(document.getElementById("table3"));
     echartBar.setOption(option);
+
+    JosnList = [];
+    $.ajax({
+        url:httpRoot + `/data/hotWord`,
+        type:"GET",
+        dataType:"json",
+        async:false,
+        success:function(result){
+            for (var i = 0;i < 500;i++) {
+                for (var item in result[i]) {
+                    JosnList.push({name: item, value: result[i][item]});
+                }
+            }
+        },
+    });
+    // JosnList = [
+    //     {name: "龙头镇", value: "111"},
+    //     {name: "大埔镇", value: "222"},
+    //     {name: "太平镇", value: "458"},
+    //     {name: "沙埔镇", value: "445"},
+    //     {name: "东泉镇", value: "456"},
+    //     {name: "凤山镇", value: "647"},
+    //     {name: "六塘镇", value: "189"},
+    //     {name: "冲脉镇", value: "864"},
+    //     {name: "寨隆镇", value: "652"},
+    // ];
+    optionFour = {
+        tooltip: {
+            show: true
+        },
+        series: [{
+            name: '项目分析',
+            type: 'wordCloud',
+            sizeRange: [10, 50],//文字范围
+            //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
+            rotationRange: [-45, 90],
+            rotationStep: 45,
+            textRotation: [0, 45, 90, -45],
+            //形状
+            shape: 'circle',
+            textStyle: {
+                normal: {
+                    color: function() {//文字颜色的随机色
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 250),
+                            Math.round(Math.random() * 250),
+                            Math.round(Math.random() * 250)
+                        ].join(',') + ')';
+                    }
+                },
+                //悬停上去的字体的阴影设置
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: JosnList
+        }]
+    };
+    myChartFour = echarts.init(document.getElementById('table4'));
+    //使用制定的配置项和数据显示图表
+    myChartFour.setOption(optionFour);
 });

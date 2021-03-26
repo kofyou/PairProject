@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 数据统计控制器
@@ -44,6 +45,11 @@ public class DataController {
         counts.add(dataService.getPaperCount("ICCV"));
         counts.add(dataService.getPaperCount("ECCV"));
         return counts;
+    }
+
+    @GetMapping("/hotWord")
+    public List<Map.Entry<String, Integer>> getHotWord() {
+        return dataService.getTop500();
     }
 
 }
