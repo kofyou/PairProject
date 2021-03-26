@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Login from '../views/Login.vue'
 import index from '../views/index.vue'
 import Register from "../views/Register";
-
+import CrawlResult from "../views/CrawlResult";
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +25,12 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      //爬取结果页
+      path: '/crawlresult',
+      name: 'CrawlResult',
+      component:CrawlResult
     }
   ]
 })

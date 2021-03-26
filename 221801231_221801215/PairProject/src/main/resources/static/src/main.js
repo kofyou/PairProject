@@ -8,8 +8,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 import "./assets/icon/font-awesome-4.7.0/css/font-awesome.min.css";
 import axios from 'axios';
 import api from './api/global_variable';
+import md5 from 'js-md5';
+Vue.prototype.$md5 = md5;
 Vue.prototype.$api=api;
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 

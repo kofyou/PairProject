@@ -9,17 +9,16 @@
           style="
             margin-right: 60px;
             font-size: 36px;
-            float: left;
-            position: relative;
-            top: 22px;
-            left: 40px;
+            position: absolute;
+            top: 13px;
+            left: -100px;
           "
         ></i>
-        <span class="title-text">计算机论文查询平台</span>
+        <span>计算机论文查询平台</span>
       </div>
       <el-button class="loginbutton" @click="toLogin">登录</el-button>
       <el-button class="registerbutton" @click="toRegister">注册</el-button>
-      <el-avatar :size="50" :src="circleUrl" style="position: absolute;top:15px;right: 200px"></el-avatar>
+      <el-avatar :size="50" :src="circleUrl" style="position: absolute;top:15px;right: 250px"></el-avatar>
     </el-header>
   </div>
 </template>
@@ -59,14 +58,32 @@ export default {
 }
 
 .loginbutton {
-  margin: auto;
-  margin-left: 200px;
-  margin-right: 50px;
+  position: absolute;
+  top: 20px;
+  right: 500px;
 }
 .registerbutton {
   background-color: #333333 !important;
   border-color: #333333;
   color: #d3dce6;
-  margin-right: 100px;
+  position: absolute;
+  top: 20px;
+  right: 330px;
+}
+.title {
+  display: inline-block;
+  width: 500px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 32px;
+  position: absolute;
+  left: 400px;
+  top:10px;
+}
+.title span{
+  position: absolute;
+  top: 5px;
+  width: 300px;
+  left:-50px;
 }
 </style>

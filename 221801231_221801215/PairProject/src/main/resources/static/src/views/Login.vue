@@ -1,8 +1,8 @@
 <template>
   <el-container>
    <myheader></myheader>
-    <el-main>
-      <el-image class="pageimage"></el-image>
+    <mymain>
+      <el-image class="pageimage" :src="this.loginImageUrl"></el-image>
       <div class="loginblock">
         <span class="logintitle">登录</span>
         <el-form ref="form" :model="form" class="loginform" :rules="rules">
@@ -42,23 +42,23 @@
           style="
             text-decoration: none;
             color: #333333;
-            float: left;
-            position: relative;
-            top: 540px;
-            right: 65px;
+            position: absolute;
+            top: 600px;
+            right: 650px;
           "
         >注册新账号-></router-link>
 
       </div>
-    </el-main>
+    </mymain>
     <el-footer>Footer</el-footer>
   </el-container>
 </template>
 <script>
 import Myheader from "../components/myheader";
+import mymain from "../components/mymain";
 export default {
   name: "Login",
-  components: {Myheader},
+  components: {Myheader,mymain},
   data() {
     return {
       form: {
@@ -84,7 +84,8 @@ export default {
       circleUrl:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
-        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
+        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+      loginImageUrl:"https://desktopwalls.net/wp-content/uploads/2018/12/Mountain%20Range%20Forest%20Dusk%204K%20Desktop%20Wallpaper-900x506.jpg",
     };
   },
   methods: {
@@ -96,24 +97,15 @@ export default {
     },
     registerForm(formName)
     {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-      alert(this.form.loginName);
-      alert(this.form.loginPassword);
-      // let _this=this;
-      // axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.name,account:_this.form.name,password:_this.form.password}).then(function (response) {
-      //   console.log(response);
-      //
-      // },function (error) {
-      //   console.log("error");
-      //
-      // })
+      console.log(this.$md5(this.form.loginPassword));
+      let _this=this;
+      this.$axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.loginName,account:_this.form.loginName,password:_this.$md5(_this.form.loginPassword)}).then(function (response) {
+        console.log(response);
+
+      },function (error) {
+        console.log("error");
+
+      })
     }
   },
 };
