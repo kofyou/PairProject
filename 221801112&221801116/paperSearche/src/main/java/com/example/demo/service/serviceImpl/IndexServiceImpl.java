@@ -42,10 +42,8 @@ public class IndexServiceImpl implements IndexSerice
         return userMapper.selAllPaper();
     }
 
-    public PaperAnslyse getPaperAnslyse()
+    public PaperAnslyse getPaperAnslyse( PaperAnslyse paperAnslyse)
     {
-        PaperAnslyse paperAnslyse=new PaperAnslyse();
-        paperAnslyse.setPaId("19");
         return userMapper.selPaperAnslyseByPaId(paperAnslyse);
     }
 

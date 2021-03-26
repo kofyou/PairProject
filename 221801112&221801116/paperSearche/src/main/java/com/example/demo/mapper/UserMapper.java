@@ -27,6 +27,6 @@ public interface UserMapper
     @Insert("INSERT INTO paperAnslyse VALUES(DEFAULT,#{dataStaticData},#{paperAnslyseData},#{dataWordsCloud},null,#{conference});")
     public int insPaperAnslyse(PaperAnslyse paperAnslyse);
 
-    @Select("SELECT * FROM paperanslyse WHERE paId=#{paId}")
+    @Select("SELECT * FROM paperanslyse WHERE conference=#{conference}")
     public PaperAnslyse selPaperAnslyseByPaId(PaperAnslyse paperAnslyse);
 }

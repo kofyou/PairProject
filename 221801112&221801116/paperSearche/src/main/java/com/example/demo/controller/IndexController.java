@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.*;
+import com.example.demo.bean.Paper;
+import com.example.demo.bean.PaperAnslyse;
+import com.example.demo.bean.PaperResponsBody;
+import com.example.demo.bean.User;
 import com.example.demo.service.serviceImpl.IndexServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vdurmont.emoji.EmojiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,16 +97,16 @@ public class IndexController
 
     @RequestMapping("/topKeyWordsData")
     @ResponseBody
-    public List<List<String>> getTopKeyWordsDataByConference(Paper paper)
+    public String getTopKeyWordsDataByConference(PaperAnslyse paperAnslyse)
     {
-        return indexSerice.alalysePaperToGetTopKeyWordsHelper2(paper);
+        return indexSerice.getPaperAnslyse(paperAnslyse).getPaperAnslyseData();
     }
 
     @RequestMapping("/topKeyWords")
     @ResponseBody
-    public List<StaticData> getTopKeyWordsByConference(Paper paper)
+    public String  getTopKeyWordsByConference(PaperAnslyse paperAnslyse)
     {
-        return indexSerice.alalysePaperToGetTopKeyWordsHelper1(paper);
+        return EmojiParser.parseToUnicode(indexSerice.getPaperAnslyse(paperAnslyse).getDataStaticData());
     }
 
     @RequestMapping("/getKeyWordCloud")
@@ -113,11 +117,11 @@ public class IndexController
 
     @RequestMapping("/topKeyWordCloud")
     @ResponseBody
-    public List<WordsCloud> getTopKeyWordCloud()
+    public String getTopKeyWordCloud()
     {
-        Paper paper=new Paper();
-        paper.setConference("CVPR");
-        return indexSerice.alalysePaperToGetTopKeyWordsHelper3(paper);
+        PaperAnslyse paperAnslyse=new PaperAnslyse();
+        paperAnslyse.setConference("CVPR");
+        return indexSerice.getPaperAnslyse(paperAnslyse).getDataWordsCloud();
     }
 
     @RequestMapping("/savePaper")
