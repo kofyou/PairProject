@@ -38,10 +38,10 @@ public class PaperDaoImpl implements PaperDao{
                 Paper tempPaper = new Paper();
                 tempPaper.setPaperTitle(rs.getString("paperTitle"));
                 tempPaper.setPaperAbstract(rs.getString("paperAbstract"));
-                tempPaper.setPaperAuthor(rs.getString("paperAuthor"));
-                tempPaper.setPaperKeywords(rs.getString("paperKeywords"));
-                tempPaper.setPaperYear(rs.getString("paperYear"));
-                tempPaper.setPaperPublication(rs.getString("paperPublication"));
+                tempPaper.setPaperLink(rs.getString("paperLink"));
+                tempPaper.setPaperKeyword(rs.getString("paperKeyword"));
+                tempPaper.setPaperTypeYear(rs.getString("PaperTypeYear"));
+                tempPaper.setPaperReleasetime(rs.getString("PaperReleasetime"));
                 list.add(tempPaper);
             }
         }
@@ -61,6 +61,7 @@ public class PaperDaoImpl implements PaperDao{
     @Override
     public List<Paper> queryAll() throws SQLException {
         StringBuffer sql = new StringBuffer("select * from paperInfo");
+        sql.append(" limit 0,4");
         System.out.println(sql.toString());
         List<Paper> list = new ArrayList<>();
         MysqlDB mysqlDB = new MysqlDB();
@@ -74,10 +75,10 @@ public class PaperDaoImpl implements PaperDao{
                 Paper tempPaper = new Paper();
                 tempPaper.setPaperTitle(rs.getString("paperTitle"));
                 tempPaper.setPaperAbstract(rs.getString("paperAbstract"));
-                tempPaper.setPaperAuthor(rs.getString("paperAuthor"));
-                tempPaper.setPaperKeywords(rs.getString("paperKeywords"));
-                tempPaper.setPaperYear(rs.getString("paperYear"));
-                tempPaper.setPaperPublication(rs.getString("paperPublication"));
+                tempPaper.setPaperLink(rs.getString("paperLink"));
+                tempPaper.setPaperKeyword(rs.getString("paperKeyword"));
+                tempPaper.setPaperTypeYear(rs.getString("PaperTypeYear"));
+                tempPaper.setPaperReleasetime(rs.getString("PaperReleasetime"));
                 list.add(tempPaper);
             }
         }

@@ -9,19 +9,11 @@ package edu.fzu.paperAnalysis.vo;
  **/
 public class Paper {
     private String paperTitle;
-    private String paperAuthor;
-    private String paperYear;
-    private String paperKeywords;
-    private String paperPublication;
+    private String paperTypeYear;
+    private String paperKeyword;
+    private String paperReleasetime;
     private String paperAbstract;
-
-    public String getPaperAbstract() {
-        return paperAbstract;
-    }
-
-    public void setPaperAbstract(String paperAbstract) {
-        this.paperAbstract = paperAbstract;
-    }
+    private String paperLink;
 
     public String getPaperTitle() {
         return paperTitle;
@@ -31,35 +23,43 @@ public class Paper {
         this.paperTitle = paperTitle;
     }
 
-    public String getPaperAuthor() {
-        return paperAuthor;
+    public String getPaperTypeYear() {
+        return paperTypeYear;
     }
 
-    public void setPaperAuthor(String paperAuthor) {
-        this.paperAuthor = paperAuthor;
+    public void setPaperTypeYear(String paperTypeYear) {
+        this.paperTypeYear = paperTypeYear;
     }
 
-    public String getPaperYear() {
-        return paperYear;
+    public String getPaperKeyword() {
+        return paperKeyword;
     }
 
-    public void setPaperYear(String paperYear) {
-        this.paperYear = paperYear;
+    public void setPaperKeyword(String paperKeyword) {
+        this.paperKeyword = paperKeyword;
     }
 
-    public String getPaperKeywords() {
-        return paperKeywords;
+    public String getPaperReleasetime() {
+        return paperReleasetime;
     }
 
-    public void setPaperKeywords(String paperKeywords) {
-        this.paperKeywords = paperKeywords;
+    public void setPaperReleasetime(String paperReleasetime) {
+        this.paperReleasetime = paperReleasetime;
     }
 
-    public String getPaperPublication() {
-        return paperPublication;
+    public String getPaperAbstract() {
+        return paperAbstract;
     }
 
-    public void setPaperPublication(String paperPublication) {
-        this.paperPublication = paperPublication;
+    public void setPaperAbstract(String paperAbstract) {
+        this.paperAbstract = paperAbstract;
+    }
+
+    public String getPaperLink() {
+        return paperLink;
+    }
+
+    public void setPaperLink(String paperLink) {
+        this.paperLink = paperLink;
     }
 }
