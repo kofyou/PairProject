@@ -11,16 +11,22 @@
         <input class="searchInput" type="text" placeholder="添加单个论文题目"></input>
         <input class="searchButton" type="button" value="添加" style="color: #eeeeee">
       </div>
+      <router-link to="/crawlresult">
+      <div class="crawlButton" @mouseenter="showButtonText" @mouseleave="showButtonText">
+        <span v-show="buttonhover">爬取内容</span>
+        <i class="fa fa-arrow-right" aria-hidden="true" style="font-size: 30px;position: absolute;top:50%;right:13px;margin-top: -15px" ></i>
+      </div>
+      </router-link>
        <div class="paperList">
-         <el-table
-           :data="tableData"
-           style="width: 100%">
-           <el-table-column
-             prop="date"
-             label="日期"
-             style="width: 100%">
-           </el-table-column>
-         </el-table>
+        <ul v-for="(items,index) in tableData" >
+          <li class="paperItem">
+            <span style="margin-right: 300px">
+              {{ items.name}}
+              {{index}}
+            </span>
+            <i class="fa fa-trash" aria-hidden="true" style="margin-left: 100px" @click="deleteItem(index)"></i>
+          </li>
+        </ul>
        </div>
     </el-main>
   </div>
@@ -55,11 +61,18 @@ export default {
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      }],
+      buttonhover:false,
     }
   },
   methods:{
+     deleteItem:function ()
+     {
 
+     },
+     showButtonText:function () {
+       this.buttonhover=!this.buttonhover;
+     }
     }
 
 }
@@ -78,7 +91,7 @@ export default {
 .searchInput{
   display: inline-block;
   position: absolute;
-  width: 600px;
+  width: 500px;
   height: 50px;
   left:50%;
   margin-left: -250px;
@@ -126,7 +139,7 @@ export default {
   position: relative;
   height: 80px;
   width: 900px;
-  top: -50px;
+  top: -100px;
   left:50%;
   margin-left: -450px;
   line-height: 80px;
@@ -138,8 +151,35 @@ export default {
   width: 600px;
   height: 400px;
   left:50%;
+  top:500px;
   margin-left: -300px;
-  border: #133382 1px solid;
-  box-shadow: 5px 5px ;
+  border: #d3dce6 1px solid;
+  box-shadow: 2px 2px 5px #d3dce6;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+.paperItem{
+  display: block;
+  width: 100%;
+  height: 60px;
+  border: #d3dce6 1px solid;
+  line-height: 60px;
+}
+.crawlButton
+{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top:430px;
+ right:500px;
+  background-color: #133382;
+ line-height: 50px;
+  color: #ffffff;
+  border-radius:10em;
+}
+.crawlButton:hover
+{
+  width: 200px;
 }
 </style>
