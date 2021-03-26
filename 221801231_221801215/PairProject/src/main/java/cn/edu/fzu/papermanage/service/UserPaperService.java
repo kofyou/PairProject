@@ -17,6 +17,13 @@ public class UserPaperService {
     @Resource
     private PaperDao paperDao;
 
+    /**
+     * 通过标题模糊搜索论文，并关联到用户
+     *
+     * @param userId      the user id 用户id
+     * @param titleOrigin the title origin 传入的未经处理的标题
+     * @return the list 包含所有成功添加的论文信息的列表
+     */
     public List<Paper> fuzzyAddUserPaperByTitle(Integer userId,String titleOrigin) {
         String titleProcessed = SqlSentenceUtil.splitAndAddFuzzy(titleOrigin);
         List<Paper> papers = paperDao.findPapersByTitle(titleProcessed);
@@ -27,5 +34,15 @@ public class UserPaperService {
             userPaperDao.save(userPaper);
         }
         return papers;
+    }
+
+    /**
+     * 查找用户关联的所有论文信息（不包括关键词）
+     *
+     * @param userId the user id 用户id
+     * @return the list 包含所有用户关联的论文信息（不包括关键词）
+     */
+    public List<Paper> findAllPapersByUserId(Integer userId) {
+        return paperDao.findAllPapersByUserId(userId);
     }
 }

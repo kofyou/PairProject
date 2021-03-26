@@ -17,4 +17,15 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
      */
     @Query(value = "select DISTINCT * from papers where title like ?1",nativeQuery = true)
     List<Paper> findPapersByTitle(String titleProcessed);
+
+    /**
+     * 通过用户id查找其关联的所有论文（不包括关键词）
+     *
+     * @param userId the user id 用户id
+     * @return the list 用户关联的论文列表（不包括关键词）
+     */
+    @Query(value = "select papers.id,papers.title,papers.source,papers.url,papers.publishyear,papers.abstract " +
+            "from papers,user_paper " +
+            "where user_paper.userid = ?1 and user_paper.paperId =papers.id;",nativeQuery = true)
+    List<Paper> findAllPapersByUserId(Integer userId);
 }

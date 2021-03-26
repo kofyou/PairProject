@@ -46,4 +46,15 @@ public class UserPaperController {
         }
         return result;
     }
+
+    /**
+     * 根据用户id（从session获取），获取其关联的所有论文内容（不包括关键词）
+     *
+     * @param id the id 用户id（从session获取）
+     * @return the result 用户关联的所有论文信息列表用户id（不包括关键词）
+     */
+    @GetMapping("/all")
+    public Result<List<Paper>> findAllPapersByUserId(@SessionAttribute Integer id) {
+        return Result.success(userPaperService.findAllPapersByUserId(id));
+    }
 }
