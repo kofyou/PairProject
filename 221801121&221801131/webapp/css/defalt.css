@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(../img/雪人.jpg);
+	/*background-repeat: no-repeat; */
+	background-size: cover;
+	background-attachment: fixed;
+	text-align: center;
+}
+
+#gundong {
+	margin: 0 auto;
+}
+
+#buttons {
+	width: 50%;
+	position:absolute;left:25%; height:100px;
+	text-align:left;	
+}
+
+
+
+
