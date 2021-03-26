@@ -11,8 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaperDAOImpl implements PaperDAO{
-    public int getTotal() {
-        return 0;
+    public int getTotal(String str) {
+        int total = 0;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtil.getConnection();
+            stmt = conn.createStatement();
+            String sql = "select count(*) from paper where title like '%" + str + "%' or summary like '%"
+                    + str + "%' or keywords like '%" + str + "%'";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt, conn);
+        }
+        return total;
     }
 
     public void add(Paper paper) {
@@ -37,7 +55,8 @@ public class PaperDAOImpl implements PaperDAO{
         }
     }
 
-    public ArrayList<Paper> list(String str) {
+    public ArrayList<Paper> list(String str, int pageNum, int lineNum) {
+        int start = (pageNum - 1) * lineNum;
         ArrayList<Paper> paperList = new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
@@ -46,7 +65,8 @@ public class PaperDAOImpl implements PaperDAO{
             conn = DBUtil.getConnection();
             stmt = conn.createStatement();
             String sql = "select * from paper where title like '%" + str + "%' or summary like '%"
-                    + str + "%' or keywords like '%" + str + "%'" ;
+                    + str + "%' or keywords like '%" + str + "%'"
+                    + " limit " + start + "," + lineNum;
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 String title = rs.getString("title");
