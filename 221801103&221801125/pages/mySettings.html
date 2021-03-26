@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../font&pic/iconfont.css"/>
     <link rel="stylesheet" href="../css/nav.css"/>
+    <link rel="stylesheet" href="../css/mySettings.css"/>
     <title>论文页面首页</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
                 <span class="iconfont icon-lunwenjianceshenqing ri"></span>
             </a>
             <div class="right-part">
-                <span>用户姓名</span>
+                <div class="user-name">用户姓名</div>
                 <span class="iconfont"></span>
                 <ul class="slide-down">
                     <a href="./mySettings.html"><li>个人设置</li></a>
@@ -39,7 +40,39 @@
             </div>
         </div>
     </div>
+    <div class="main"></div>
+    <div class="container">
+        <div class="wrap">
+            <div class="item">
+                <span>用户名</span>
+                <input class="setting-userName" disabled/>
+            </div class="item">
+            <div class="item">
+                <span>昵称</span>
+                <input class="setting-name" placeholder="您还没有昵称哦"/>
+            </div>
+            <div class="item">
+                <span>公司</span>
+                <input class="setting-company" placeholder="让大家都知道你的公司吧"/>
+            </div>
+            <div class="item">
+                <span>地址</span>
+                <input class="setting-address" placeholder="知道你的地址，让大家去你家把你打的逼飞奶炸"/>
+            </div>
+            <div class="item">
+                <span>个人简介</span>
+                <br/>
+                <textarea  maxlength="300" class="setting-info" placeholder="最多显示300字"></textarea>
+            </div>
+            <div class="item save">
+                <button class="baocun">保存</button>
+            </div>
+            
+        </div>
+    </div>
+    <script src="../jquery/jquery-3.6.0.min.js"></script>
     <script src="../js/user.js"></script>
     <script src="../js/nav.js"></script>
+    <script src="../js/mySettings.js"></script>
 </body>
 </html>
