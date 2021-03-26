@@ -14,8 +14,7 @@ $.when(
                 point: {
                     events: {
                         click: function () {
-                            location.href = 'http://localhost:8080/' +
-                                this.name;
+                            toKeyWord(this.name)
                         }
                     }
                 }
