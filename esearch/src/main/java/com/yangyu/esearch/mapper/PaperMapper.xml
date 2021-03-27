@@ -31,5 +31,8 @@
     <select id="selectYears" resultMap="Paper" parameterType="java.lang.String">
         select * from papers where years = #{years}
     </select>
+    <select id="selectKeyword" resultMap="Paper" parameterType="java.lang.String">
+        select * from papers where keyword like CONCAT('%', #{keyword}, '%')
+    </select>
 
 </mapper>
