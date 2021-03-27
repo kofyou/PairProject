@@ -15,8 +15,8 @@
     </resultMap>
 
     <insert id="createPaper" keyProperty="id" useGeneratedKeys="true" parameterType="com.yangyu.esearch.entity.Paper">
-        insert into papers(id,title,link,abstracts,years,keyword,source)
-        values (#{id,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},#{link,jdbcType=VARCHAR},#{abstracts,jdbcType=VARCHAR},
+        insert into papers(title,link,abstracts,years,keyword,source)
+        values (#{title,jdbcType=VARCHAR},#{link,jdbcType=VARCHAR},#{abstracts,jdbcType=VARCHAR},
         #{years,jdbcType=VARCHAR},#{keyword,jdbcType=VARCHAR},#{source,jdbcType=VARCHAR})
     </insert>
     <select id="queryAll" resultMap="Paper">
