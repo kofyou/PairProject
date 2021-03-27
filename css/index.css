@@ -2,7 +2,7 @@
 
 #container {
 	width:1920px;
-	height:1080px;
+	height:960px;
 }
 
 #header {
@@ -15,7 +15,7 @@
 	/*position: relative;
 	background-color:#FF0000;*/
 	margin:50px 150px 50px 150px;
-	height:700px;
+	height:600px;
 }
 
 #pic {
@@ -24,7 +24,7 @@
 }
 
 #btn {
-	position: absolute;
+	position: relative;
 	bottom: 0px;
 	margin-left:200px;
 }
