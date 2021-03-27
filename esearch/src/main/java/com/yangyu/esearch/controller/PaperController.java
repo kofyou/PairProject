@@ -57,7 +57,6 @@ public class PaperController {
     @GetMapping("read")
     public void read()
     {
-        Integer id = 1;
         ReadPaper readPaper = new ReadPaper();
         List<Paper> papers;
 
@@ -66,25 +65,19 @@ public class PaperController {
         papers = readPaper.readCVPR();
         for (Paper paper : papers)
         {
-            paper.setId(id);
             paperService.createPaper(paper);
-            id++;
         }
         papers.clear();
         papers = readPaper.readECCV();//读取本地ECCV论文
         for (Paper paper : papers)
         {
-            paper.setId(id);
             paperService.createPaper(paper);
-            id++;
         }
         papers.clear();
         papers = readPaper.readICCV();////读取本地ICCV论文
         for (Paper paper : papers)
         {
-            paper.setId(id);
             paperService.createPaper(paper);
-            id++;
         }
     }
 }
