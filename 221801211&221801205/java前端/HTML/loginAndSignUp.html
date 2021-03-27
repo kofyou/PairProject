@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-social=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="login_style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel">
+                <div class="content login">
+                    <div class="switch">
+                        <span id="login" class="active">Login</span><span>/</span><span id="signup">Sign Up</span>
+                        <form action="">
+                            <div id='email' class="input"   placeholder='邮箱'><input type="text"></div>
+                            <div class="input" placeholder='用户名'><input type="text"></div>
+                            <div class="input" placeholder='密码'><input type="text"></div>
+                            <div id='repeatPassword' class="input" placeholder='重复密码'><input type="text"></div>
+                            <span>forget？</span>
+                            <button>Login Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#login').click(function(){
+            $('.switch span').removeClass('active');
+            $(this).addClass('active');
+            $(this).parents('.cotent').removeClass('signup');
+            $(this).parents('.cotent').addClass('login');
+        })
+        $('#signup').click(function(){
+            $('.switch span').removeClass('active');
+            $(this).addClass('active');
+            $(this).parents('.cotent').removeClass('login');
+            $(this).parents('.cotent').addClass('signup');
+        })
+
+        $('.input input').on('focus',function(){
+            $(this).parent().addClass('focus');
+        })
+        $('.input input').on('bulr',function(){
+            $(this).parent().removeClass('focus');
+        })
+    </script>
+</html>
