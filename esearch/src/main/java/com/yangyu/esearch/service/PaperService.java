@@ -49,4 +49,10 @@ public class PaperService {
     {
         return paperMapper.selectYears(years);
     }
+
+    //根据关键词查询论文
+    public List<Paper> selectKeyword(String keyword)
+    {
+        return paperMapper.selectKeyword(keyword);
+    }
 }
