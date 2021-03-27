@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author : yangyu
  * @ClassName : com.yangyu.esearch.entity.test
- * @Description : 类描述
+ * @Description : 论文实体类
  * @date : 2021-03-23 21:09:07
  * Copyright  2021 user. All rights reserved.
  */
