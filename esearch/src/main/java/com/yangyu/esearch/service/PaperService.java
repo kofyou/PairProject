@@ -27,9 +27,9 @@ public class PaperService {
     }
 
     //查询所有论文
-    public List<Paper> queryAll(Paper paper)
+    public List<Paper> queryAll()
     {
-        return paperMapper.queryAll(paper);
+        return paperMapper.queryAll();
     }
 
     //根据标题模糊查询论文

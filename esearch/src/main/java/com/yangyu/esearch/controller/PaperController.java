@@ -25,9 +25,9 @@ public class PaperController {
     private PaperService paperService;
 
     @GetMapping("query")
-    public List<Paper> query(Paper paper)
+    public List<Paper> query()
     {
-        return paperService.queryAll(paper);
+        return paperService.queryAll();
     }
 
     @GetMapping("title")

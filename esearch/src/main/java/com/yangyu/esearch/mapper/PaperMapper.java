@@ -14,7 +14,7 @@ import java.util.List;
 public interface PaperMapper {
 
     int createPaper(Paper paper);
-    List<Paper> queryAll(Paper paper);
+    List<Paper> queryAll();
     List<Paper> selectTitle(String title);
     List<Paper> selectSource(String source);
     List<Paper> selectYears(String years);
