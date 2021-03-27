@@ -18,4 +18,5 @@ public interface PaperMapper {
     List<Paper> selectTitle(String title);
     List<Paper> selectSource(String source);
     List<Paper> selectYears(String years);
+    List<Paper> selectKeyword(String keyword);
 }
