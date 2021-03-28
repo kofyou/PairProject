@@ -44,7 +44,16 @@
         top: 40%;
         left: 2%;
     }
-
+    #top{
+        background: rgba(0,0,0,0);
+        border-width: 0;
+        color: white;
+        text-align:center;
+        font-size: 30px;
+        position: absolute;
+        top: 60%;
+        left: 2%;
+    }
 </style>
 
 <div id="container">
@@ -55,14 +64,19 @@
         <form method="post" id="form" action="<%=path%>/index.jsp" >
             <input type="submit" id="searchText" value="论文列表">
         </form>
-        <input type="button" id="analyse" value="分析论文">
+        <form method="post" id="form1" action="<%=path%>/iccv.jsp" >
+            <input type="submit" id="analyse" value="热度走势">
+        </form>
+        <form method="post" id="form5" action="<%=path%>/analyze" >
+            <input type="submit" id="top" value="TOP10">
+        </form>
     </div>
     <div id="body" >
         <form style="margin-left: 20%; margin-top: 5%">
             论文标题
             <input id="title" type="text" style="width: 50%; height: 5%;" value="${title}">
             <br/><br/>
-            论文内容
+            论文摘要
             <textarea id="content"  style="width: 50%; height: 200px; resize: none" >${content}</textarea>
             <br/><br/>
             论文链接
@@ -81,17 +95,14 @@
         <div>
             <table>
                 <tr>
-                    <form>
-                        <input id="store" type="button" value="保存修改" style="margin-left: 30%">
+                    <form method="post" id="form2" action="<%=path%>/delete">
+                        <input type="hidden" id="string1" name="string1" value="${string}" >
+                        <input id="delete" type="submit" value="删除论文" style="margin-left: 35%">
                     </form>
-                    
-                    <input type="hidden" id="string1" name="string1" value="${string}" >
-                    <input id="delete" type="submit" value="删除论文" style="margin-left: 5%">
-                    
-                 
-                    <input type="hidden" id="string" name="string" value="${string}" >
-                    <input id="return" type="submit" value="返回" style="margin-left: 5%">
-                   
+                    <form method="post" id="form3" action="<%=path%>/hello">
+                        <input type="hidden" id="string" name="string" value="${string}" >
+                        <input id="return" type="submit" value="返回" style="margin-left: 5%">
+                    </form>
                 </tr>
 
             </table>
