@@ -19,7 +19,7 @@ func ShowPaperDetail(c *gin.Context)  {
 	}
 }
 
-func ShowPapersByKeyword(c *gin.Context)  {
+func ShowPapersByKeywordID(c *gin.Context)  {
 	var service service.ShowPaperListService
 	p := c.DefaultQuery("page", "1")
 	k := c.DefaultQuery("keyword", "-1")

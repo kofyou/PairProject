@@ -26,7 +26,7 @@ func NewRouter() *gin.Engine {
 
 		v1.GET("paper/view/:id", api.ShowPaperDetail)
 
-		v1.GET("paper", api.ShowPapersByKeyword)
+		v1.GET("paper", api.ShowPapersByKeywordID)
 
 		v1.GET("search", api.PaperSearch)
 

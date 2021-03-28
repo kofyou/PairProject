@@ -14,13 +14,11 @@ func (service *ShowPaperListService) ShowPaperDetail(paperId int64) serializer.R
 	if !has {
 		return serializer.ParamErr("论文不存在", nil)
 	} else {
-		go func(paper model.Paper) {
-			paper.Click = paper.Click + 1
-			_, err := model.Engine.Update(paper)
-			if err != nil {
-				util.Log().Error(err.Error())
-			}
-		}(paper)
+		paper.Click = paper.Click + 1
+		_, err := model.Engine.ID(paperId).Update(paper)
+		if err != nil {
+			util.Log().Error(err.Error())
+		}
 		return serializer.BuildPaperResponse(paper)
 	}
 }
