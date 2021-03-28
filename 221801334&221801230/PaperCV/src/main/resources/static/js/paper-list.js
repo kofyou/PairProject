@@ -3,7 +3,20 @@ $(document).ready(function () {
     // var httpRoot = "http://120.24.27.29:8080";
     var MAX_COUNT = 50;
 
-    $("#read-list").click(function (){
+    $("#read-list").click(createList);
+
+    // $("#paperSearch").bind('keypress',function(event){
+    //     if(event.keyCode == "13") {
+    //         $("#read-list").click(createList);
+    //     }
+    // });
+
+    $(".delete-item").click(function () {
+        var id = $(this).attr("name")
+        $("#"+id).remove();
+    });
+
+    function createList(){
         $("#item-list").empty();
         var items = [];
         $.ajax({
@@ -24,7 +37,8 @@ $(document).ready(function () {
                         "                </p>\n" +
                         "                <p style=\"font-weight: bolder; margin: 10px 0;\">Abstract:</p>\n" +
                         "                <div class=\"text-content\">" + result[i].paperAbstract + "</div>\n" +
-                        "                <p><span style=\"font-weight: bolder;\">Keywords:</span>" + result[i].keyWord + "</p>\n" +
+                        "                <div style=\"float: right\"><a href=\"" + result[i].url + "\">查看更多</a></div>"+
+                        "                <div style=\"float: left\"><p><span style=\"font-weight: bolder;\">Keywords:</span>" + result[i].keyWord + "</p></div>\n" +
                         "            </div>\n" +
                         "        </div>\n" +
                         "        <div class=\"footer\">\n" +
@@ -45,12 +59,5 @@ $(document).ready(function () {
         for (var i = 0;i < items.length;i++) {
             $("#item-list").append(items[i]);
         }
-    });
-
-
-    $(".delete-item").click(function () {
-        var id = $(this).attr("name")
-        $("#"+id).remove();
-    });
-
+    }
 });

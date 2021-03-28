@@ -20,15 +20,21 @@ p{
 }
 .text{
     margin-left: 30px;
+    width: 625px;
 }
 .text-head{
     color: rgb(2,167,240);
     font-size: 26px;
+    word-wrap:break-word;
     font-weight: bolder;
+    width: 100%;
 }
 .text-content {
     height: 145px;
     width: 100%;
+    word-wrap:break-word;
+    text-overflow:ellipsis;
+    overflow:hidden;
 }
 .footer {
     display: flex;
