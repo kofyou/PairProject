@@ -6,6 +6,7 @@ import com.pairproject.papercv.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,14 +30,35 @@ public class PaperServiceImpl implements PaperService {
     }
 
     /**
-     * 通过题目查询论文，论文不存在则爬取数据再返回
+     * 通过论文标题查询论文（模糊查询）
      *
      * @param title 论文题目
-     * @return 论文
+     * @return 论文列表
      */
     @Override
-    public Paper getPaper(String title) {
+    public List<Paper> getPaper(String title) {
         return paperMapper.selectByTitle(title);
+    }
+
+    /**
+     * 通过关键词查询论文
+     *
+     * @param keyWord 关键词
+     * @return
+     */
+    @Override
+    public List<Paper> getPaperByKey(String keyWord) {
+        List<Paper> paperList = paperMapper.selectAll();
+        List<Paper> res = new ArrayList<>();
+        for (Paper paper : paperList) {
+            for (String key : paper.getKeyWord().split(",")) {
+                if (keyWord.equals(key)) {
+                    res.add(paper);
+                    break;
+                }
+            }
+        }
+        return res;
     }
 
 }
