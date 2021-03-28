@@ -23,6 +23,7 @@
             <th>关键词</th>
             <th>原文链接</th>
             <th>年份</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -56,6 +57,7 @@
             </td>
             <td><a href="<%=post.getLink()%>"><%=post.getLink() %></a></td>
             <td><%=post.getYear() %></td>
+            <td><input type="button" style="" value="删除数据" onclick="if(confirm('确认？')==false)return false;location.href='DeleteServlet?id=<%=post.getId()%>&search=<%=flag%>'" /></td>
         </tr>
         <%
             }
