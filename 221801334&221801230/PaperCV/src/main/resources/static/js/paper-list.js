@@ -1,34 +1,28 @@
 $(document).ready(function () {
     var httpRoot = "http://localhost:8080";
     // var httpRoot = "http://120.24.27.29:8080";
-    var MAX_COUNT = 50;
+    // var MAX_COUNT = 9999999999;
 
-    $("#read-list").click(createList);
-
-    // $("#paperSearch").bind('keypress',function(event){
-    //     if(event.keyCode == "13") {
-    //         $("#read-list").click(createList);
-    //     }
-    // });
-
-    $(".delete-item").click(function () {
-        var id = $(this).attr("name")
-        $("#"+id).remove();
+    var items = [];
+    $("#read-list").click(function (){
+        $("#item-list").empty();
+        selectPaper($("#paperSearch").val());
     });
 
-    function createList(){
-        $("#item-list").empty();
-        var items = [];
+    selectPaper("all");
+
+    function selectPaper(title) {
         $.ajax({
-            url:httpRoot + `/paper/` + $("#paperSearch").val(),
+            // url:httpRoot + `/paper/` + $("#paperSearch").val(),
+            url:httpRoot + `/paper/` + title,
             type:"GET",
             dataType:"json",
             async:false,
             success:function(result){
                 for (var i = 0;i < result.length;i++){
-                    if (i >= MAX_COUNT){
-                        break;
-                    }
+                    // if (i >= MAX_COUNT){
+                    //     break;
+                    // }
                     var new_item = "    <div class=\"item\" id=\"item" + i + "\">\n" +
                         "        <div class=\"content\">\n" +
                         "            <div class=\"img\"><img src=\"img/paper.png\" alt=\"paper\" width=\"270px\" height=\"340px\"></div>\n" +
@@ -55,9 +49,14 @@ $(document).ready(function () {
                 }
             },
         });
-
         for (var i = 0;i < items.length;i++) {
             $("#item-list").append(items[i]);
         }
+
+        $(".delete-item").click(function () {
+            var id = $(this).attr("name")
+            $("#"+id).remove();
+        });
     }
+
 });
