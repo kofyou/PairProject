@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 class Paper(db.Model):
     __tablename__ = 'paper'
 
-    title = db.Column(db.String(255),primary_key=True)
+    title = db.Column(db.String(255), primary_key=True)
     abstract = db.Column(db.Text)
     typeandyear = db.Column(db.String(255))
     keywords = db.Column(db.Text)
@@ -49,7 +49,6 @@ class TopWord(db.Model):
     name = db.Column(db.String(255))
     frequency = db.Column(db.Integer)
 
-
 @app.route('/')
 def hello_world():
 
@@ -62,6 +61,7 @@ def hello_world():
     try:
         paginate = Paper.query.order_by("title").paginate(page, 10, False)
     except Exception as e:
+        print(e)
         print("err!")
     totalPage = paginate.pages
     currentPage = page
@@ -69,7 +69,7 @@ def hello_world():
     paper_list = []
     for paper in items:
         paper_list.append(paper.to_short_dict())
-
+        
     # 顶会热词获取
     try:
         topWord = TopWord.query.all()
