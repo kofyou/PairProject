@@ -1,12 +1,15 @@
 package dao;
 
+import com.mysql.cj.jdbc.ClientPreparedStatement;
 import pojo.Paper;
 import sun.util.resources.cldr.so.CalendarData_so_ET;
 import utils.Jdbcutils;
 
+import javax.swing.text.html.HTMLDocument;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaperDaoimpl
@@ -53,14 +56,14 @@ public class PaperDaoimpl
             ResultSet resultSet= preparedStatement.executeQuery();
             while(resultSet.next())
             {
-                paper.setIsbn("isbn");
-                paper.setTitle("title");
-                paper.setAuthors("authors");
-                paper.setKeywords("keywords");
-                paper.setTheabstract("abstract");
-                paper.setPublishDate("publishdate");
-                paper.setConferrence("conference");
-                paper.setPaperlink("paperlink");
+                paper.setIsbn(resultSet.getString("isbn"));
+                paper.setTitle(resultSet.getString("title"));
+                paper.setAuthors(resultSet.getString("authors"));
+                paper.setKeywords(resultSet.getString("keywords"));
+                paper.setTheabstract(resultSet.getString("abstract"));
+                paper.setPublishDate(resultSet.getString("publishdate"));
+                paper.setConferrence(resultSet.getString("conference"));
+                paper.setPaperlink(resultSet.getString("paperlink"));
             }
 
             Jdbcutils.CloseConnection(resultSet,preparedStatement,connection);
@@ -71,6 +74,69 @@ public class PaperDaoimpl
         {
             e.printStackTrace();
         }
+
+        return null;
+    }
+
+    public List<Paper> GetPaticularPapers(String[] searchWords,int type)
+    {
+        List<Paper> papers=new ArrayList<>();
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+
+            if (type==0)
+            {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT * FROM papers WHERE title LIKE ''%'?'%'' OR keywords LIKE ''%'?'%''");
+
+                for(int i=0;i<searchWords.length;i++)
+                {
+                    preparedStatement.setString(1,searchWords[i]);
+                    preparedStatement.setString(2,searchWords[i]);
+                    ResultSet resultSet=preparedStatement.executeQuery();
+                    while(resultSet.next())
+                    {
+                        Paper paper=new Paper();
+                        paper.setIsbn(resultSet.getString("isbn"));
+                        paper.setTitle(resultSet.getString("title"));
+                        paper.setAuthors(resultSet.getString("authors"));
+                        paper.setKeywords(resultSet.getString("keywords"));
+                        paper.setTheabstract(resultSet.getString("abstract"));
+                        paper.setPublishDate(resultSet.getString("publishdate"));
+                        paper.setConferrence(resultSet.getString("conference"));
+                        paper.setPaperlink(resultSet.getString("paperlink"));
+                        papers.add(paper);
+                    }
+                }
+
+            }
+            else
+            {
+                PreparedStatement preparedStatement=connection.prepareStatement(
+                        "SELECT * FROM papers");
+                ResultSet resultSet =preparedStatement.executeQuery();
+                while(resultSet.next())
+                {
+                    Paper paper=new Paper();
+                    paper.setIsbn(resultSet.getString("isbn"));
+                    paper.setTitle(resultSet.getString("title"));
+                    paper.setAuthors(resultSet.getString("authors"));
+                    paper.setKeywords(resultSet.getString("keywords"));
+                    paper.setTheabstract(resultSet.getString("abstract"));
+                    paper.setPublishDate(resultSet.getString("publishdate"));
+                    paper.setConferrence(resultSet.getString("conference"));
+                    paper.setPaperlink(resultSet.getString("paperlink"));
+                    papers.add(paper);
+                }
+            }
+            return papers;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

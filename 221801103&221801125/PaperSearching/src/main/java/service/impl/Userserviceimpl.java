@@ -36,7 +36,7 @@ public class Userserviceimpl
     }
 
 
-    public void UpdateInfo(String[] infos)
+    public void UpdateInfo(User infos)
     {
         userDaoimpl.UpdateUserInfo(infos);
     }

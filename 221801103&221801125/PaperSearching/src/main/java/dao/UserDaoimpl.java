@@ -12,18 +12,18 @@ public class UserDaoimpl
 {
 
 
-    public void UpdateUserInfo(String[] infos)
+    public void UpdateUserInfo(User infos)
     {
         try
         {
             Connection connection= Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
                     "update user set username=?,company=?,address=?,info=?  where account=?");
-            preparedStatement.setString(1,infos[1]);
-            preparedStatement.setString(2,infos[2]);
-            preparedStatement.setString(3,infos[3]);
-            preparedStatement.setString(4,infos[4]);
-            preparedStatement.setString(5,infos[0]);
+            preparedStatement.setString(1,infos.getUsername());
+            preparedStatement.setString(2,infos.getCompany());
+            preparedStatement.setString(3,infos.getAddress());
+            preparedStatement.setString(4,infos.getInfo());
+            preparedStatement.setString(5,infos.getAccount());
             preparedStatement.execute();
 
             Jdbcutils.CloseConnection(preparedStatement,connection);

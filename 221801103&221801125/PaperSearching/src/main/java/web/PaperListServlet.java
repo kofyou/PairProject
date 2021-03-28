@@ -1,16 +1,14 @@
-package service.impl;
+package web;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "UpdataUserInfoServlet", value = "/UpdataUserInfoServlet")
-public class UpdataUserInfoServlet extends HttpServlet
-{
+@WebServlet(name = "PaperListServlet", value = "/PaperListServlet")
+public class PaperListServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
