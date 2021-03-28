@@ -1,4 +1,4 @@
-@import url("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
+@import url("https://unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css");
 .el-carousel__item h3 {
     color: #475669;
     font-size: 14px;

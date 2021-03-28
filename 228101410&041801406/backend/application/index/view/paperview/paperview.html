@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="../static/paperview/css/paperview.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/element-ui@2.15.1/lib/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
@@ -20,20 +20,33 @@
                             <el-breadcrumb-item><a href="../?jump=1">论文搜索</a></el-breadcrumb-item>
                             <el-breadcrumb-item><a href="../index/Paperview">论文管理</a></el-breadcrumb-item>
                             <el-breadcrumb-item><a href="/">论文查看</a></el-breadcrumb-item>
-                            <el-breadcrumb-item><a href="../index/Paperanalysis" id="paperanalysis">论文分析</a></el-breadcrumb-item>
+                            <el-breadcrumb-item><a href="../index/Paperanalysis" id="paperanalysis">论文分析</a>
+                            </el-breadcrumb-item>
                         </el-breadcrumb>
                         <div id="myList">
                             <p id="title">论文 | 论文列表</p>
                         </div>
-                        <el-table  :data="tableData" height="300" style="width: 1000px;" @sort-change="changeTableSort" >
+                        <el-input placeholder="请输入内容" v-model="devfilter" clearable id="textsearch">
+                        </el-input>
+                        <el-date-picker v-model="value2" type="daterange" align="right" unlink-panels
+                            range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+                        </el-date-picker>
+                        <el-radio-group v-model="radio1">
+                            <el-radio-button label="按时间搜索"></el-radio-button>
+                            <el-radio-button label="按关键词搜索"></el-radio-button>
+                            <el-radio-button label="按标题搜索"></el-radio-button>
+                        </el-radio-group>
+                        <el-table :data="tableData" height="300" style="width: 1000px;" @sort-change="changeTableSort"
+                            id="mytable">
                             <el-table-column prop="num" label="论文编号" width="220px">
                                 <template slot-scope="scope">{{scope.$index + 1}}</template>
                             </el-table-column>
                             <el-table-column prop="title" label="论文题目" width="220px">
                             </el-table-column>
-                            <el-table-column prop="keyword" label="关键词" width="220px" >
+                            <el-table-column prop="keyword" label="关键词" width="220px">
                             </el-table-column>
-                            <el-table-column prop="releasetime" label="发布时间" width="220px"  sortable="cunstom">
+                            <el-table-column prop="releasetime" label="发布时间" width="220px" sortable="cunstom">
                             </el-table-column>
                             <el-table-column label="操作" width="100px">
                                 <template slot-scope="scope">
