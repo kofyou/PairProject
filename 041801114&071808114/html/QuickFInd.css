@@ -156,10 +156,11 @@ a.aboutUs{
 }
 
 #hotWordContainer{
-	
+	width: 500px;
+	height: 300px;
 	position: absolute;
-	top: 100px;
-	left: 450px;
+	top: 50px;
+	left: 580px;
 }
 
 /*li.list_view_divider {
