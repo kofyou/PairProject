@@ -14,17 +14,42 @@
 <html>
 <head>
     <title>paperList测试</title>
+    <meta content="text/html" charset="UTF-8">
+    <title>HTML设置图片为页面背景</title>
+
+    <style>
+
+
+
+        #btnShuaXin{
+            position: absolute;
+            background-color: #ffffff;
+            left: 90%;
+            top:10%;
+            width: 100px;
+            height: 32px;
+            line-height: 6px;
+            border-radius: 10px;
+            color: #c12e2e;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            border: none;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body>
+
+<body >
 <form action="PaperServlet" method="post">
-    <button>刷新列表</button>
+    <button id="btnShuaXin">刷新列表</button>
 </form>
 <form method="post" id="queryForm" action="<%=path%>/SearchServlet">
     <input type="text" name="pTitle" value="${paper.paperTitle}" placeholder="论文标题"/>
     <input type="hidden" name="type" value="0" />
     <input type="hidden" name="pageNum" value="${pageNum}" />
     <input type="hidden" id="changeNum" name="changeNum" value="" />
-    <button onclick="changePage(0);">查 询</button>
+    <button  onclick="changePage(0);">查 询</button>
 </form>
 <table border="1">
     <tr>
@@ -47,7 +72,7 @@
             <td>${l.getPaperReleasetime()}</td>
             <td>${l.getPaperLink()}</td>
             <td>
-                <button type="button" onclick="">编 辑</button>
+                <button  type="button" onclick="">编 辑</button>
                 <button type="button" onclick="">删 除</button>
             </td>
         </tr>
