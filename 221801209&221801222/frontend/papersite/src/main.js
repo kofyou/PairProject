@@ -21,10 +21,10 @@ axios.defaults.timeout = 5000;
 // axios.defaults.headers.post['Content-Type'] = 'json;charset=UTF-8';
 axios.defaults.baseURL = 'http://ccreater.top:63000/';
 
-// 设置axios请求的token
-axios.defaults.headers.common['token'] = 'f4c902c9ae5a2a9d8f84868ad064e706'
-//设置请求头
-axios.defaults.headers.post["Content-type"] = "application/json"
+// // 设置axios请求的token
+// axios.defaults.headers.common['token'] = 'f4c902c9ae5a2a9d8f84868ad064e706'
+// //设置请求头
+// axios.defaults.headers.post["Content-type"] = "application/json"
 
 
 /* eslint-disable no-new */

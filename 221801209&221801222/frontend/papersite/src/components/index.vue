@@ -138,13 +138,13 @@ export default {
               if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
                 that.tableData[i]["no"] = "无";
             }
+            that.handleSizeChange(that.tableMes.eachPageItem);
           }
         ).catch(
           function (error){
             console.log(error);
           }
       );
-      this.handleSizeChange(this.tableMes.eachPageItem);
       console.log(searchWord);
     },
     doStar(){

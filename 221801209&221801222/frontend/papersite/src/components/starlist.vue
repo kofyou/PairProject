@@ -148,7 +148,7 @@ export default {
     /*搜索响应函数*/
     doSearch(searchWord){
       const that = this;
-      this.axios.get("/api/star/list", {withCredentials: true})
+      this.axios.get("/star/list", {withCredentials: true})
         .then(
           function (response){
             console.log("内容");

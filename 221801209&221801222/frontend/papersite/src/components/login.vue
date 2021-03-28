@@ -1,5 +1,5 @@
 <template>
-  <div class = "index-view">
+  <div class = "index-view root-div">
     <!--    回到主页按钮-->
     <!--    <i class="el-icon-back"></i>-->
     <div id = my-title-div>
@@ -43,6 +43,7 @@
 
 <script>
 import Router from '../router/index'
+import {stringify} from "querystring";
 
 export default {
   name: "login",
@@ -57,7 +58,7 @@ export default {
   },
   methods: {
     doLogin() {
-      let that = this;
+      const that = this;
       let myResponse = null;
       let username = this.user.username
       let psw = this.user.password;
@@ -66,12 +67,18 @@ export default {
       else if(psw == "")
         alert("密码不能为空！");
       else {
-        this.axios.post('user/login', {
-          username: this.user.username,
-          password: this.user.password
-        })
+        // let data=new FormData()
+        // data.append('username',this.user.username.toString());
+        // data.append('password',this.user.password.toString());
+        this.axios.post('user/login', stringify(
+          {
+            'username': that.user.username,
+            'password': that.user.password
+          }
+        ))
           .then(
             function (response) {
+              console.log(that.user.username.toString() + " " + that.user.password.toString());
               myResponse = response;
               if(myResponse.data.code == '0') {
                 // alert("登录成功！");
@@ -95,12 +102,7 @@ export default {
 //scoped只影响本组件
 <style scoped>
 .index-view {
-  background-image: url("../assets/background.jpg");
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   height: 37em;
-  width: auto;
   border: 0px;
   padding: 0px;
 }
@@ -114,7 +116,7 @@ export default {
 }
 
 .box-card {
-  width: 27%;
+  width:360px;
   position: relative;
   margin: auto;
   top: 30%;

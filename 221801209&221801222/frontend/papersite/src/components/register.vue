@@ -1,5 +1,5 @@
 <template>
-  <div class = "index-view">
+  <div class = "index-view root-div">
     <!--    回到主页按钮-->
     <!--    <i class="el-icon-back"></i>-->
     <div id = my-title-div>
@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     doRegister(){
+      const that = this;
       let myResponse = null;
       let username = this.user.username
       let psw1 = this.user.password1;
@@ -74,8 +75,8 @@ export default {
         alert("两次输入的密码不匹配！");
       else {
         this.axios.post('user/register', {
-          username: this.user.username,
-          password: this.user.password1
+          username: that.user.username,
+          password: that.user.password1
         }).then(function (response) {
             myResponse = response;
             if(myResponse.data.code == '0') {
@@ -97,10 +98,6 @@ export default {
 //scoped只影响本组件
 <style scoped>
 .index-view {
-  /*background-image: url("../assets/background.jpg");*/
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   height: 37em;
   border: 0px;
   padding: 0px;
@@ -115,7 +112,7 @@ export default {
 }
 
 .box-card {
-  width: 27%;
+  width: 360px;
   position: relative;
   margin: auto;
   top: 30%;
