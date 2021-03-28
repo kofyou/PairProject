@@ -1,0 +1,38 @@
+@charset "UTF-8";
+#body {
+	background-color: #1B6D85;
+}
+
+#container {
+	background-color:#F8F8F8;
+	width:1920px;
+	height:960px;
+}
+
+#header {
+    background-color:red;
+    text-align:center;
+    padding:15px;
+}
+#content {
+	margin:150px 350px;
+	background-color:#008AFF;
+	text-align:center;
+	width:60%;
+	height:80%;
+}
+
+#biaoti {
+	font-size: 26px;
+}
+
+.zhengwen{
+	background-color: #f3f3f3;
+}
+
+.btn1 {
+	background-color: #5BC0DE;
+	font-size: 2em;
+	height:150px;
+	width:240px;
+}
