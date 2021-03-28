@@ -1,16 +1,17 @@
 package dao;
 
+import pojo.Keyword;
 import pojo.Paper;
+import pojo.YearFrequency;
+import util.CountWordsUtil;
 import util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PaperDAOImpl implements PaperDAO{
+
+    //返回模糊查询到的论文总数
     public int getTotal(String str) {
         int total = 0;
         Connection conn = null;
@@ -33,13 +34,7 @@ public class PaperDAOImpl implements PaperDAO{
         return total;
     }
 
-    public void add(Paper paper) {
-    }
-
-    public void update(Paper paper) {
-
-    }
-
+    //根据论文题目删除对应论文
     public void delete(String title) {
         Connection conn = null;
         Statement stmt = null;
@@ -55,6 +50,7 @@ public class PaperDAOImpl implements PaperDAO{
         }
     }
 
+    //模糊查询分页用
     public ArrayList<Paper> list(String str, int pageNum, int lineNum) {
         int start = (pageNum - 1) * lineNum;
         ArrayList<Paper> paperList = new ArrayList<>();
@@ -93,14 +89,7 @@ public class PaperDAOImpl implements PaperDAO{
         return paperList;
     }
 
-    public List<Paper> list(int start, int count) {
-        return null;
-    }
-
-    public boolean isExist(String str) {
-        return false;
-    }
-
+    //根据论文题目返回对应论文
     public Paper get(String paperTitle) {
         Paper paper = new Paper();
         Connection conn = null;
@@ -133,4 +122,5 @@ public class PaperDAOImpl implements PaperDAO{
         }
         return paper;
     }
+
 }

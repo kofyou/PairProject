@@ -9,6 +9,11 @@
     </properties>
     <root id="archive" name="PaperPlatform-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="PaperPlatform:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="library" level="project" name="echarts" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
