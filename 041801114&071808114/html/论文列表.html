@@ -6,7 +6,7 @@
 <title>template</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
-<link href="QuickFInd.css" rel="stylesheet" type="text/css">
+<link href="QuickFind.css" rel="stylesheet" type="text/css">
 <!-- InstanceEndEditable -->
 </head>
 
@@ -20,41 +20,57 @@
 		</ul>
 	</div>
 	<!-- InstanceBeginEditable name="edit1" -->
-	<div class="page2_input"
-		<form>
-		<input type="text" class="search" name="search">
-		<input type="button" class="button" value="搜索">
-	</form>
-</div>
-
-<div class="main">
-	<form action="/example/html/form_action.asp" method="get">
-		<p class="list">
-			<input type="checkbox" class="text" name="text" value="" /> 论文标题1<img src="delete.png" /> <img src="edit.png" />
-	    </p>
-		<p class="list">
-			<input type="checkbox" class="text" name="text" value="" /> 论文标题2<img src="delete.png" /> <img src="edit.png" />
-	    </p>
-		<p class="list">
-			<input type="checkbox" class="text" name="text" value="" /> 论文标题3<img src="delete.png" /> <img src="edit.png" />
-	    </p>
+	<div class="main">
+		<div class="upper">
+			<form class="operate">
+				<input type="button" class="button" id="mutiselect" value="多选" >
+				<input type="text" class="search" id="searchtext" name="search">
+				<input type="button" class="button" id="searchbtn" value="搜索">
+			</form>
+		</div>
+		
+		
+		
+		<div class="middle">
+			<form action="" method="get">
+				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题1</p>
+				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题2</p>
+				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题3</p>
+			</form>
+		</div>
+		
+		<div class="down">
+			<div class="delete">
+			<form >
+				<input type="button" class="deletebtn" id="deletebtn" value="删除">
+			</form>
+			</div>
+			<div class="pagelist">
+				<a href="#">«</a>
+				<a href="#">1</a>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">6</a>
+		 		<a href="#">»</a>
 			
-		<div class="pagelist">
-			<a href="#">«</a>
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<a href="#">3</a>
-			<a href="#">4</a>
-			<a href="#">5</a>
-			<a href="#">6</a>
-		 	<a href="#">»</a>
-	    </div>
-			
- 		<input type="submit" class="submit" value="添加" />
-    </form>
+			</div>
+		</div>
 	
-</div>
-
+	</div>
+	<div class="page">
+		<div class="pagemessage">
+		<p>标题</p>
+				<form><input type="text" class="message" name="title"></form>
+		<p>摘要</p>
+				<form><input type="text" class="message" name="abstract"></form>
+		<p>关键词</p>
+				<form><input type="text" class="message" name="keyword"></form>
+		<p>原文链接</p>
+				<form><input type="text" class="message" name="pagelink"></form>
+	</div>
+	</div>
 
 	<!-- InstanceEndEditable -->
 	

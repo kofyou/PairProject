@@ -6,7 +6,7 @@
 <title>template</title>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
-<link href="QuickFInd.css" rel="stylesheet" type="text/css">
+<link href="QuickFind.css" rel="stylesheet" type="text/css">
 <!-- InstanceEndEditable -->
 </head>
 
@@ -20,7 +20,7 @@
 		</ul>
 	</div>
 	<!-- InstanceBeginEditable name="edit1" -->
-	
+<div class="main">
 	<div id="hotWordContainer"></div>
 	<script src="echarts.min.js"></script>
 	<script src="echarts-wordcloud.min.js"></script>
@@ -170,12 +170,28 @@
 			myChart.setOption(option);
 	
 	</script>
-	
-	<div class="main">
+	<div class="analyse">
 		<form>
- 			<input type="submit" class="submit" value="分析" />
+ 			<input type="button" class="analysebtn"  value="分析" />
     	</form>
 	</div>
+	
+</div>
+	
+	
+	
+<div class="page">
+	<div class="pagemessage">
+	<p>标题</p>
+				<form><input type="text" class="message" name="title"></form>
+		<p>摘要</p>
+				<form><input type="text" class="message" name="abstract"></form>
+		<p>关键词</p>
+				<form><input type="text" class="message" name="keyword"></form>
+		<p>原文链接</p>
+				<form><input type="text" class="message" name="pagelink"></form>
+	</div>
+</div>
 	<!-- InstanceEndEditable -->
 	
 	
