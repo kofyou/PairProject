@@ -100,19 +100,22 @@
 </div>
 
 <body>
-<<<<<<< Updated upstream
 <div id="box">
-    <input type="search" name="search">
-    <div id="search"><font size="4">搜索</font></div>
-    <select id="downList">
-        <option value ="volvo">篇名</option>
-        <option value ="saab">关键词</option>
-        <option value="opel">作者</option>
-        <option value="audi">主题</option>
-        <option value="audi">编号</option>
-    </select>
+    <form method="post" id="form" action="/ListServlet">
+        <input type="text" id="search" name="search" value="${search}" >
+        <div><button type="button" name="searchButton" onclick="search();" > 搜索 </button></div>
+        <select id="downList" name="option">
+            <option value="title">篇名</option>
+            <option value="keyword">关键词</option>
+            <option value="type">类别</option>
+        </select>
+    </form>
 </div>
 
+<%
+    List<Paper> list = new ArrayList<>();
+    list = (List<Paper>) request.getAttribute("list");
+%>
 <table border="1">
     <tr>
         <td>论文标题</td>
@@ -122,70 +125,28 @@
         <td>年份</td>
         <td>类别</td>
     </tr>
-
-</table>
-=======
-    <div id="box">
-        <form method="post" id="form" action="/ListServlet">
-            <input type="text" id="search" name="search" value="${search}" >
-            <div><button type="button" name="searchButton" onclick="search();" > 搜索 </button></div>
-            <select id="downList" name="option">
-                <option value="title">篇名</option>
-                <option value="keyword">关键词</option>
-                <option value="type">类别</option>
-            </select>
-        </form>
-    </div>
-
     <%
-        List<Paper> list = new ArrayList<>();
-        list = (List<Paper>) request.getAttribute("list");
+        for (Paper paper : list) {
     %>
-    <table border="1">
-        <tr>
-            <td>论文标题</td>
-            <td>摘要</td>
-            <td>原文链接</td>
-            <td>关键词</td>
-            <td>年份</td>
-            <td>类别</td>
-        </tr>
-        <%
-            for (Paper paper : list) {
-        %>
-        <tr>
-            <td><%=paper.getTitle() %></td>
-            <td><%=paper.getSummary() %></td>
-            <td><%=paper.getLink() %></td>
-            <td><%=paper.getKeyword() %></td>
-            <td><%=paper.getYear() %></td>
-            <td><%=paper.getType() %></td>
-            <td><button type="button" name="deleteButton" onclick="cut();" > 删除 </button></td>
-        </tr>
-        <%
-            }
-        %>
-    </table>
->>>>>>> Stashed changes
+    <tr>
+        <td><%=paper.getTitle() %></td>
+        <td><%=paper.getSummary() %></td>
+        <td><%=paper.getLink() %></td>
+        <td><%=paper.getKeyword() %></td>
+        <td><%=paper.getYear() %></td>
+        <td><%=paper.getType() %></td>
+        <td><button type="button" name="deleteButton" onclick="cut();" > 删除 </button></td>
+    </tr>
+    <%
+        }
+    %>
+</table>
 
 </body>
 </html>
 
 <script>
     function cut() {
-<<<<<<< Updated upstream
-        var username = document.getElementById("id").value;
-        var password = document.getElementById("password").value;
-        if (username == '') {
-            alert("用户名不能为空！请您输入");
-            return;
-        }
-        if (password == '') {
-            alert("密码不能为空！请您输入");
-            return;
-        }
-        document.getElementById("form1").submit();
-=======
 
     }
 </script>
@@ -199,7 +160,6 @@
             return;
         }
         document.getElementById("form").submit();
->>>>>>> Stashed changes
 
     }
 </script>
