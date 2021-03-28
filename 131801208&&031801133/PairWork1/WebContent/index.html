@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>论文爬取系统</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-table.min.css">
+
+	
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table-locale-all.min.js"></script>
+<script src="js/usermanger.js"></script>
+</head>
+
+<body>
+	<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            论文管理系统
+        </h3>
+    </div>
+	<div id="toolbar">
+		<button class ="btn btn-primary" data-toggle="modal" data-target="#myModal">
+			添加论文 
+		</button>
+		
+		 <button id="looking_picture" class="btn btn-danger" >
+    		<i class="fa fa-trash"></i> 删除论文
+  		</button>
+  		
+  		<button id="looking_picture" class="btn btn-primary" >
+    		<i class="looking"></i> 论文走势分析
+  		</button>
+	</div>
+	
+<!-- 	<table id="usertab" -->
+	<table id="papertab"
+  			data-show-refresh="true"
+  			data-show-toggle="true"
+  			data-show-columns="true"
+		   
+		   
+			  data-show-fullscreen="true"
+			  data-show-columns-toggle-all="true"
+			  data-detail-view="true"
+			  data-show-export="true"
+			  data-click-to-select="true"
+			  data-detail-formatter="detailFormatter"
+			  data-minimum-count-columns="2"
+			  data-show-pagination-switch="true"
+			  data-pagination="true">
+		
+	</table>
+	<script>
+		var $table = $('#table')
+  		var $remove = $('#remove')
+  		var selections = []
+			window.operateEvents = {
+			'click .like': function (e, value, row, index) {
+			  alert('You click like action, row: ' + JSON.stringify(row))
+			},
+			'click .remove': function (e, value, row, index) {
+			  $table.bootstrapTable('remove', {
+				field: 'id',
+				values: [row.id]
+			  })
+			}
+		  }
+	</script>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">论文添加</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<label for="name" class="col-sm-4 control-label">
+							标题
+						</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="name" placeholder="请输入论文标题">
+						</div>
+					</div>	
+					
+					<div class="row">
+						<label for="about" class="col-sm-4 control-label">
+							所属
+						</label>
+						<div class="col-sm-8">
+							<select id="about" class="form-control">
+								<option>CVPR</option>
+								<option>ICCV</option>
+								<option>ECCV</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<label for="id" class="col-sm-4 control-label">
+							论文id
+						</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="id" placeholder="请输入论文id">
+						</div>
+					</div>	
+					
+					<div class="row">
+						<label for="phone" class="col-sm-4 control-label">
+							网址
+						</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="phone" placeholder="请输入网址">
+						</div>
+					</div>	
+					
+					
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">提交添加</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>/.modal-content
+		</div>/.modal-dialog
+	</div>
+	<!-- /.modal -->
+    
+	
+</div>
+</body>
+</html>

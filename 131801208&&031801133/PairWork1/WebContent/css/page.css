@@ -1,0 +1,63 @@
+/* CSS Document */
+*{
+	font-size: 9pt;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	
+	font-family: "微软雅黑";
+}
+body{
+	background-image:url("../login_picture/light.png");
+	
+}
+.loginTop{
+
+	height:100px;
+	text-align: center;
+	
+}
+
+.loginMid{
+	background-image: url("../login_picture/logininfo3.png");
+	background-position: center ;
+	background-repeat:no-repeat;
+	height: 560px;
+	
+}
+.loginBottom{
+	height: 100px;
+}
+.loginForm{
+	padding-right: 30%;
+	padding-left: 44%;
+	padding-top: 220px;
+	width: 400px;
+	height: 250px;
+	
+}
+.loginForm ul li{
+	list-style: none;
+	padding-left: 20px;
+}
+.loginUsername{
+	background-repeat: no-repeat;
+	background-image: url("../login_picture/loginuser.png");
+	padding-left: 44px;
+	height: 40px;
+	width: 240px;
+	
+
+}
+.loginPws{
+	background-image: url("../login_picture/loginpassword.png");
+	background-repeat: no-repeat;
+	height: 40px;
+	padding-left: 44px;
+	width: 240px;
+}
+.loginButton{
+	background-image:url("../login_picture/buttonbg.png");
+	height: 40px;
+	width: 280px;
+}
