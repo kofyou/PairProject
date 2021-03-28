@@ -1,0 +1,14 @@
+#ICCV,#ECCV,#CVPR{
+    border-radius: 20px;
+    background-color: transparent;
+    width: 50px;
+    height: 25px;
+    border:1px solid gray;
+    outline: none;
+}
+#ICCV:hover,#ECCV:hover,#CVPR:hover{
+    background-color: lightgray;
+}
+#ICCV:active,#ECCV:active,#CVPR:active{
+    background-color: gray;
+}
