@@ -15,12 +15,8 @@
 <head>
     <title>paperList测试</title>
     <meta content="text/html" charset="UTF-8">
-    <title>HTML设置图片为页面背景</title>
 
     <style>
-
-
-
         #btnShuaXin{
             position: absolute;
             background-color: #ffffff;
@@ -41,6 +37,14 @@
 </head>
 
 <body >
+<%--/*上条栏使用 #c1cbd7*/--%>
+<%--/*上文字使用 #656565*/--%>
+<div style="color:#c1cbd7">
+    <h1 style="background-color:#656565">
+论文检索系统
+    </h1>
+</div>
+
 <form action="PaperServlet" method="post">
     <button id="btnShuaXin">刷新列表</button>
 </form>

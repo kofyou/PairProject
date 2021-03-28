@@ -13,6 +13,13 @@
     <title>XX论文详情页</title>
 </head>
 <body>
+    <%--/*上条栏使用 #c1cbd7*/--%>
+    <%--/*上文字使用 #656565*/--%>
+    <div style="color:#c1cbd7">
+        <h1 style="background-color:#656565">
+            论文检索系统
+        </h1>
+    </div>
 <%--<c:forEach items="${paperInfo}" var="l" varStatus="vs">--%>
 <h2>论文标题</h2>
 <textarea rows="10" cols="30" name="paperTitle" readonly="readonly">
