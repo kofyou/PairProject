@@ -1,17 +1,20 @@
 body,html{
     height: 100%;
     width: 100%;
-    margin-top: 0px;
-    padding-top: 0px;
     overflow: hidden;
     background-image: url("image/bg.png");
-    background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
+<<<<<<< HEAD
     background-position: left top;
+=======
+    padding: 0px;
+    margin: 0px;
+>>>>>>> 101ad10ca04401939290a3bbd3840dec1316e585
 }
 
 .content{
+    position: relative;
     height: 100%;
     width: 100%;
     margin-top: 0px;
@@ -31,7 +34,6 @@ body,html{
 .head{
     position: relative;
     width: 50%;
-    height: 11%;
     top: 8%;
     text-align: center;
     border-radius: 60px 60px 60px 60px;
@@ -48,7 +50,7 @@ body,html{
     padding-top: 0px;
     margin-top: 0px;
     width: 90%;
-    height: 8%;
+    height: 7%;
     left: 10.2%;
 }
 
@@ -64,7 +66,7 @@ body,html{
     top: 5%;
     line-height: 320%;
     color: #101010;
-    font-size: 10pt;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -104,7 +106,7 @@ body,html{
 }
 #this_icon{
     position: relative;
-    width: 50%;
+    width: 64%;
     height: 11%;
     left: 0;
     background-color: #3671CC;
@@ -123,6 +125,7 @@ body,html{
     margin-bottom: 1%;
     text-align: center;
     padding-bottom: 0px;
+    font-weight: bold;
 }
 
 .icon{
@@ -132,7 +135,7 @@ body,html{
 
 .icon img{
     position: relative;
-    width: 35%;
+    width: 50%;
     padding: 8px;
     background-color: #ffffff;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
@@ -143,16 +146,26 @@ body,html{
 
 .icon p{
     position: relative;
-    font-size: 11px;
+    font-size: 12px;
     vertical-align: middle;
     text-align: center;
     padding: 0px;
     margin-top: 2%;
-    margin-bottom: 45%;
+    margin-bottom: 85%;
     color: #403D3D;
 }
 
 #icon2 img{
     position: relative;
-    margin-top: 60%;
+    margin-top: 90%;
+}
+
+.search{
+    position: relative;
+    top: 10px;
+    width: 50%;
+    height: 5%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+
 }
