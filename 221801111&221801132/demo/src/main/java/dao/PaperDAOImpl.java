@@ -11,10 +11,10 @@ public class PaperDAOImpl implements PaperDAO {
 
     @Override
     public List<Paper> listGetByTitle(String str) {
-        String sql = "select * from post where title = '" + str + "'";
+        String sql = "select * from post where title " + "like" +"'%" + str + "%'";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery(sql);
-            List<Paper> list = new ArrayList<Paper>();
+            List<Paper> list = new ArrayList<>();
             while (rs.next()) {
                 Paper p = new Paper();
                 p.setTitle(rs.getString(1));
@@ -35,10 +35,10 @@ public class PaperDAOImpl implements PaperDAO {
 
     @Override
     public List<Paper> listGetByKeyword(String str) {
-        String sql = "select * from post where keyword = '"+ str +"'";
+        String sql = "select * from post where keyword "+ "like" +"'%" + str + "%'";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery(sql);
-            List<Paper> list = new ArrayList<Paper>();
+            List<Paper> list = new ArrayList<>();
             while (rs.next()) {
                 Paper p = new Paper();
                 p.setTitle(rs.getString(1));
@@ -59,10 +59,10 @@ public class PaperDAOImpl implements PaperDAO {
 
     @Override
     public List<Paper> listGetByType(String str) {
-        String sql = "select * from post where type = '"+ str +"'";
+        String sql = "select * from post where type "+ "like" +"'%" + str + "%'";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery(sql);
-            List<Paper> list = new ArrayList<Paper>();
+            List<Paper> list = new ArrayList<>();
             while (rs.next()) {
                 Paper p = new Paper();
                 p.setTitle(rs.getString(1));
