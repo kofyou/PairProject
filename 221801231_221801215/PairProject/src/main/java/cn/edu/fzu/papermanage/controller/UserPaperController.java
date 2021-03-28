@@ -86,4 +86,19 @@ public class UserPaperController {
             ,@RequestParam(defaultValue = "5") Integer pageSize) {
         return Result.success(userPaperService.findUserFullPapersByKeyword(pageNum,pageSize,id,keyword));
     }
+
+    /**
+     * 获取用户所有关联论文的列表（包括关键词，可分页）
+     *
+     * @param id       the id 用户id
+     * @param pageNum  the page num 页数
+     * @param pageSize the page size 单页论文数
+     * @return the all user paper by page 当前用户所有关联论文的列表（包括关键词，已分页）
+     */
+    @GetMapping("/contentsPage")
+    public Result<List<PaperWithKeywords>> getAllUserPaperByPage(@SessionAttribute Integer id
+            ,@RequestParam(defaultValue = "1") Integer pageNum
+            ,@RequestParam(defaultValue = "5") Integer pageSize) {
+        return Result.success(userPaperService.findAllUserFullPaperByPage(pageNum,pageSize,id));
+    }
 }

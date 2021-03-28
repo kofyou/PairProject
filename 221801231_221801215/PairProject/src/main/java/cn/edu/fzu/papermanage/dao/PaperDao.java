@@ -26,7 +26,7 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
      * @param userId the user id 用户id
      * @return the list 用户关联的论文列表（不包括关键词）
      */
-    @Query(value = "select papers.id,papers.title,papers.source,papers.url,papers.publishyear,papers.abstract " +
+    @Query(value = "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishyear,papers.abstract " +
             "from papers,user_paper " +
             "where user_paper.userid = ?1 and user_paper.paperId =papers.id",nativeQuery = true)
     List<Paper> findAllPapersByUserId(Integer userId);
@@ -39,11 +39,24 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
      * @param pageRequest the page request 分页信息
      * @return the page 分页后的论文内容列表页
      */
-    @Query(value = "select papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+    @Query(value = "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
             "from user_paper,papers,keywords " +
             "where user_paper.userId = ?1 " +
             "and user_paper.paperId = papers.id " +
             "and papers.id = keywords.paperId " +
             "and keywords.keyword like ?2",nativeQuery = true)
     Page<Paper> findUserPapersByKeyword(Integer userId,String keyword, Pageable pageRequest);
+
+    /**
+     * 根据用户id查询所有用户关联的论文（不包含关键词）
+     *
+     * @param userId      the user id 用户id
+     * @param pageRequest the page request 分页
+     * @return the page 用户关联的论文列表页（不包含关键词）
+     */
+    @Query(value = "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from user_paper " +
+            "inner join papers on user_paper.paperId = papers.id " +
+            "where user_paper.userId = ?1 ",nativeQuery = true)
+    Page<Paper> findAllUserPapersByPage(Integer userId,Pageable pageRequest);
 }
