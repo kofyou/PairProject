@@ -34,6 +34,10 @@ ul.template {
 
 #navIcon {
 	height:120px;
+	background-image: url("icon1.png");
+	background-size: contain;
+	background-position:center;
+	background-repeat: no-repeat;
 }
 
 
@@ -84,20 +88,65 @@ div.main {
  	width: 700px;
  	height: 400px;
 }
-
+img{
+	width: 45px;
+	height: 45px;
+	visibility: hidden;
+	float: right;
+}
+p.list:hover img{
+	visibility: visible;
+}
 p {
 	font-size: 25px;
+	margin: 20px;
 }
+
 
 input.submit {
 	position:absolute;
 	top:500px;
+	left: 0;
 	width: 90%;
 	border-radius: 8px;
 	background-color: #120B85;
 	color: white;
 	font-size: 20px;
 }
+
+a.aboutUs{
+	color: black;
+	text-align: left;
+	display: block;
+	padding:0;
+	font-size: 15px;	
+}
+
+.pagelist{
+	position: absolute;
+	top:450px;
+	left: 110px;
+	display:inline-block;
+}
+
+.pagelist a {
+	color: black;
+    float: left;
+    padding: 8px;
+	margin: 0 4px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    font-size: 20px;
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+}
+
+.pagelist a:hover {
+	background-color: #120B85;
+	color: white;
+}
+
 /*li.list_view_divider {
 	height: 50px;
 }*/
