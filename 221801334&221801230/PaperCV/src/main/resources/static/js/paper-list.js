@@ -15,7 +15,7 @@ $(document).ready(function () {
                 if (i >= MAX_COUNT){
                     break;
                 }
-                var new_item = "    <div class=\"item\">\n" +
+                var new_item = "    <div class=\"item\" id=\"item" + i + "\">\n" +
                     "        <div class=\"content\">\n" +
                     "            <div class=\"img\"><img src=\"img/paper.png\" alt=\"paper\" width=\"270px\" height=\"340px\"></div>\n" +
                     "            <div class=\"text\">\n" +
@@ -31,7 +31,8 @@ $(document).ready(function () {
                     "            <div>\n" +
                     "                <a type=\"submit\" class=\"btn btn-primary mb-2\">翻译</a>\n" +
                     "                <a type=\"submit\" class=\"btn btn-primary mb-2\">收藏</a>\n" +
-                    "                <a type=\"submit\" class=\"btn btn-primary mb-2\">删除</a>\n" +
+                    "                <a type=\"submit\" name=\"item" + i + "\" class=\"btn btn-primary mb-2" +
+                    " delete-item\">删除</a>\n" +
                     "            </div>\n" +
                     "        </div>\n" +
                     "    </div>"
@@ -44,5 +45,10 @@ $(document).ready(function () {
     for (var i = 0;i < items.length;i++) {
         $("#item-list").append(items[i]);
     }
+
+    $(".delete-item").click(function () {
+        var id = $(this).attr("name")
+        $("#"+id).remove();
+    });
 
 });
