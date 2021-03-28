@@ -1,4 +1,6 @@
-<%--
+<%@ page import="pojo.Paper" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: LQ
   Date: 2021/3/23
@@ -98,6 +100,7 @@
 </div>
 
 <body>
+<<<<<<< Updated upstream
 <div id="box">
     <input type="search" name="search">
     <div id="search"><font size="4">搜索</font></div>
@@ -121,12 +124,56 @@
     </tr>
 
 </table>
+=======
+    <div id="box">
+        <form method="post" id="form" action="/ListServlet">
+            <input type="text" id="search" name="search" value="${search}" >
+            <div><button type="button" name="searchButton" onclick="search();" > 搜索 </button></div>
+            <select id="downList" name="option">
+                <option value="title">篇名</option>
+                <option value="keyword">关键词</option>
+                <option value="type">类别</option>
+            </select>
+        </form>
+    </div>
+
+    <%
+        List<Paper> list = new ArrayList<>();
+        list = (List<Paper>) request.getAttribute("list");
+    %>
+    <table border="1">
+        <tr>
+            <td>论文标题</td>
+            <td>摘要</td>
+            <td>原文链接</td>
+            <td>关键词</td>
+            <td>年份</td>
+            <td>类别</td>
+        </tr>
+        <%
+            for (Paper paper : list) {
+        %>
+        <tr>
+            <td><%=paper.getTitle() %></td>
+            <td><%=paper.getSummary() %></td>
+            <td><%=paper.getLink() %></td>
+            <td><%=paper.getKeyword() %></td>
+            <td><%=paper.getYear() %></td>
+            <td><%=paper.getType() %></td>
+            <td><button type="button" name="deleteButton" onclick="cut();" > 删除 </button></td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
+>>>>>>> Stashed changes
 
 </body>
 </html>
 
 <script>
     function cut() {
+<<<<<<< Updated upstream
         var username = document.getElementById("id").value;
         var password = document.getElementById("password").value;
         if (username == '') {
@@ -138,6 +185,21 @@
             return;
         }
         document.getElementById("form1").submit();
+=======
+
+    }
+</script>
+
+<script>
+    function search() {
+        var search = document.getElementById("search").value;
+        var option = document.getElementById("downList").value;
+        if (search == '') {
+            alert("输入内容不能为空！");
+            return;
+        }
+        document.getElementById("form").submit();
+>>>>>>> Stashed changes
 
     }
 </script>

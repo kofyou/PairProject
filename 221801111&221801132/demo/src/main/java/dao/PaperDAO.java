@@ -2,9 +2,11 @@ package dao;
 
 import pojo.Paper;
 
+import java.util.List;
+
 public interface PaperDAO {
-    Paper getByTitle(String s);
-    Paper getByKeyword(String s);
-    Paper getByType(String s);
+    List<Paper> listGetByTitle(String s);
+    List<Paper> listGetByKeyword(String s);
+    List<Paper> listGetByType(String s);
 
 }

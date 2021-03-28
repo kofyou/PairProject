@@ -1,4 +1,6 @@
-<%--
+<%@ page import="pojo.Paper" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: LQ
   Date: 2021/3/23
@@ -35,6 +37,51 @@
         color: #333333;
     }
 
+    #box{
+        width: 1250px;
+        height:50px;
+        margin: 10px auto;
+        padding: 0 0 0 0;
+        border-radius: 12px 12px 12px 12px;
+        font-family: 'Microsoft YaHei';
+        font-size: 14px;
+
+    }
+
+    input{
+        width: 1000px;
+        border: 1px solid black;
+        height: 50px;
+        border-left:0px;
+        font-size: 25px;
+        padding:0 0 0 40px;
+
+    }
+
+    #downList
+    {
+        width: 150px;
+        height:50px;
+        float: left;
+        border: 1px solid black;
+        text-align: center;
+        border-right:0px;
+        border-radius: 12px 0px 0px 12px;
+        font-size: 20px;
+    }
+
+    #search{
+        width: 100px;
+        height: 50px;
+        float: right;
+        background: black;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 0px 12px 12px 0px;
+        cursor: pointer;
+    }
+
     div{
         margin:0 auto;
         width:1500px;
@@ -53,6 +100,66 @@
 </div>
 
 <body>
+    <div id="box">
+        <form method="post" id="form" action="/ListServlet">
+            <input type="text" id="search" name="search" value="${search}" >
+            <div><button type="button" name="searchButton" onclick="search();" > 搜索 </button></div>
+            <select id="downList" name="option">
+                <option value="title">篇名</option>
+                <option value="keyword">关键词</option>
+                <option value="type">类别</option>
+            </select>
+        </form>
+    </div>
+
+    <%
+        List<Paper> list = new ArrayList<>();
+        list = (List<Paper>) request.getAttribute("list");
+    %>
+    <table border="1">
+        <tr>
+            <td>论文标题</td>
+            <td>摘要</td>
+            <td>原文链接</td>
+            <td>关键词</td>
+            <td>年份</td>
+            <td>类别</td>
+        </tr>
+        <%
+            for (Paper paper : list) {
+        %>
+        <tr>
+            <td><%=paper.getTitle() %></td>
+            <td><%=paper.getSummary() %></td>
+            <td><%=paper.getLink() %></td>
+            <td><%=paper.getKeyword() %></td>
+            <td><%=paper.getYear() %></td>
+            <td><%=paper.getType() %></td>
+            <td><button type="button" name="deleteButton" onclick="cut();" > 删除 </button></td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
 
 </body>
 </html>
+
+<script>
+    function cut() {
+
+    }
+</script>
+
+<script>
+    function search() {
+        var search = document.getElementById("search").value;
+        var option = document.getElementById("downList").value;
+        if (search == '') {
+            alert("输入内容不能为空！");
+            return;
+        }
+        document.getElementById("form").submit();
+
+    }
+</script>
