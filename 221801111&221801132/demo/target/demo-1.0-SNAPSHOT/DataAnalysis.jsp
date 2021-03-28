@@ -5,7 +5,7 @@
   Time: 20:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <!DOCTYPE html>
 <html>
 <style type="text/css">
@@ -48,7 +48,7 @@
 
 <div class="topnav">
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
-    <a class="active" href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
+    <a class="active" href="DataAnalysis.jsp" target="leftFrame"> 数据分析</a>
 </div>
 
 <body>

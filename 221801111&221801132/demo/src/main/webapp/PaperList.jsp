@@ -142,24 +142,34 @@
             <td>关键词</td>
             <td>年份</td>
             <td>类别</td>
+            <td>操作</td>
         </tr>
 
         <%
             if(list != null) {
-            for (Paper paper : list) {
+                for (Paper paper : list) {
         %>
 
         <tr>
-            <td><%=paper.getTitle() %></td>
-            <td><%=paper.getSummary() %></td>
-            <td><a href=<%=paper.getLink() %>> <%=paper.getLink() %></a></td>
-            <td><%=paper.getKeyword() %></td>
-            <td><%=paper.getYear() %></td>
-            <td><%=paper.getType() %></td>
-            <td><button type="button" name="deleteButton" onclick="cut();" > 删除 </button></td>
+
+                <td><%=paper.getTitle() %></td>
+                <td><%=paper.getSummary() %></td>
+                <td><a href=<%=paper.getLink() %>> <%=paper.getLink() %></a></td>
+                <td><%=paper.getKeyword() %></td>
+                <td><%=paper.getYear() %></td>
+                <td><%=paper.getType() %></td>
+                <td>
+                    <form method="post" id="form1" action="<%=path%>/DeleteServlet">
+                    <input type="submit" name="deleteButton" value="删除">
+                    <input type="hidden" id="title" name="title" value="${paper.getTitle()}">
+                    </form>
+                </td>
+
+
         </tr>
         <%
-            } }
+                }
+            }
         %>
 
     </table>
@@ -167,3 +177,5 @@
 
 </body>
 </html>
+
+

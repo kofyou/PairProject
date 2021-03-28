@@ -81,4 +81,16 @@ public class PaperDAOImpl implements PaperDAO {
         return null;
     }
 
+    @Override
+    public void deletePaper(String a){
+        String sql = "delete from post where title = '" + a + "'";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+            ps.execute(sql);
+
+
+        } catch (SQLException e) {
+            // TODO 自动生成的 catch 块
+            e.printStackTrace();
+        }
+    }
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ListServlet", value = "/ListServlet")
+@WebServlet("/ListServlet")
 public class ListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,20 +21,11 @@ public class ListServlet extends HttpServlet {
         PaperDAO paperDAO = new PaperDAOImpl();
         String option = request.getParameter("option");
         String text = request.getParameter("search");
-        System.out.println(option + " " + text);
+    //    System.out.println(option + " " + text);
         List<Paper> list = new ArrayList<>();
 
         if ("title".equals(option)) {
-            System.out.println(option + " " + text);
             list = paperDAO.listGetByTitle(text);
-            for (Paper paper : list) {
-                System.out.println(paper.getTitle());
-                System.out.println(paper.getSummary());
-                System.out.println(paper.getLink());
-                System.out.println(paper.getKeyword());
-                System.out.println(paper.getYear());
-                System.out.println(paper.getType());
-            }
         }
 
         if ("keyword".equals(option)) {
@@ -46,8 +37,6 @@ public class ListServlet extends HttpServlet {
         }
 
         request.setAttribute("list", list);
-
-
         request.getRequestDispatcher("PaperList.jsp").forward(request, response);
     }
 
