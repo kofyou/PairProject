@@ -4,6 +4,17 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>paperSearchWeb</display-name>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>CollectionServlet</servlet-name>
+		<servlet-class>servlet.CollectionServlet</servlet-class>
+	  </servlet>
+	
+	  <servlet-mapping>
+		<servlet-name>CollectionServlet</servlet-name>
+		<url-pattern>/servlet/CollectionServlet</url-pattern>
+	  </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>main.jsp</welcome-file>
 	</welcome-file-list>

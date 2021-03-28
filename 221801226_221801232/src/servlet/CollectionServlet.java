@@ -61,7 +61,7 @@ public class CollectionServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+	    
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(request.getParameter("action")!=null)
@@ -80,6 +80,7 @@ public class CollectionServlet extends HttpServlet {
 			}
 			if(action.equals("show"))//如果是显示收藏夹
 			{
+			    
 				request.getRequestDispatcher("/collection.jsp").forward(request, response);
 			}
 			if(action.equals("delete")) //如果是执行删除收藏夹的论文
@@ -87,6 +88,7 @@ public class CollectionServlet extends HttpServlet {
 				if(deleteFromCollection(request,response))
 				{
 					request.getRequestDispatcher("/collection.jsp").forward(request, response);
+					
 				}
 				else
 				{
@@ -108,7 +110,7 @@ public class CollectionServlet extends HttpServlet {
 		if(request.getSession().getAttribute("collection")==null)
 		{
 			collection collection = new collection();
-			request.getSession().setAttribute("collectiont",collection);
+			request.getSession().setAttribute("collection",collection);
 		}
 		collection collection = (collection)request.getSession().getAttribute("collection");
 		if(collection.addPaperInCollection(item, Integer.parseInt(number)))
@@ -125,10 +127,11 @@ public class CollectionServlet extends HttpServlet {
 	//从收藏夹中删除论文
 	private boolean deleteFromCollection(HttpServletRequest request, HttpServletResponse response)
 	{
+	    
 		String id = request.getParameter("id");
-		collection cart = (collection)request.getSession().getAttribute("collectiont");
+		collection coll = (collection)request.getSession().getAttribute("collection");
 	    items item = idao.getItemsById(Integer.parseInt(id));
-	    if(cart.removePaperFromCollection(item))
+	    if(coll.removePaperFromCollection(item))
 	    {
 	    	return true;
 	    }
@@ -146,5 +149,5 @@ public class CollectionServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// Put your code here
 	}
-
+	    
 }

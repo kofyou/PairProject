@@ -69,7 +69,11 @@ public class items {
         this.link = link;
     }
     
-
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return this.getId().hashCode()+this.getTitle().hashCode();
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -81,7 +85,7 @@ public class items {
         if(obj instanceof items)
         {
             items i = (items)obj;
-            if(this.getId()==i.getId()&&this.getTitle().equals(i.getTitle()))
+            if(this.getId().equals(i.getId())&&this.getTitle().equals(i.getTitle()))
             {
                 return true;
             }

@@ -73,11 +73,12 @@ public class ItemsDao {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        String idStr = Integer.toString(id);
         try {
             conn = DBHelper.getConnection();
             String sql = "select * from paperslist where id=?;"; // SQL语句
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setString(1, idStr);
             rs = stmt.executeQuery();
             if (rs.next()) {
                 items item = new items();
