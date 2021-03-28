@@ -9,23 +9,25 @@
     <div>
       <el-row :gutter="0">
         <el-col :span="5" :offset="0"></el-col>
-        <el-col :span="12" >
-          <el-input
-            id="search-input"
-            placeholder="搜索论文"
-            prefix-icon="el-icon-search"
-            v-model="input"
+        <el-col :span="12">
+          <SearchBar/>
+        </el-col>
+        <el-col :span="1" :push="0">
+          <el-button
+            type="primary"
+            class="search-btn blue-background"
+            style="height: 60px; font-size:20px;"
+            >搜索</el-button
           >
-          </el-input>
         </el-col>
         <el-col :span="1" :push="0">
-          <el-button type="primary" class="search-btn blue-background" style="height: 60px">搜索</el-button>
-        </el-col>
-        <el-col :span="1" :push="0">
-          <el-button type="primary" class="el-icon-s-operation blue-background" style="margin-left:40px; height: 60px; font-size:32px;"></el-button>
+          <el-button
+            type="primary"
+            class="el-icon-s-operation blue-background"
+            style="margin-left: 40px; height: 60px; font-size: 32px"
+          ></el-button>
         </el-col>
         <el-col :span="5" :offset="0"></el-col>
-        
       </el-row>
     </div>
     <div class="divider"></div>
@@ -41,12 +43,12 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue";
-import Header from "@/components/Header.vue";
-import Paper from "@/components/Paper.vue";
-import Carousel from "@/components/Carousel.vue";
-import CarouselV from "@/components/CarouselVertical.vue";
-// import Sidebar from '@/components/Sidebar.vue';
-import Footer from "@/components/Footer.vue";
+import Header from "@/components/search/Header.vue";
+import Paper from "@/components/search/Paper.vue";
+import Carousel from "@/components/search/Carousel.vue";
+import CarouselV from "@/components/search/CarouselVertical.vue";
+import SearchBar from "@/components/search/Search.vue";
+import Footer from "@/components/search/Footer.vue";
 export default defineComponent({
   name: "Search",
   components: {
@@ -54,7 +56,7 @@ export default defineComponent({
     Paper,
     Carousel,
     CarouselV,
-    // Sidebar,
+    SearchBar,
     Footer,
   },
   setup() {
@@ -97,9 +99,8 @@ export default defineComponent({
 .divider {
   height: 80px;
 }
-#search-btn input {
-  height: 60px !important;
-  border: 1px solid rgb(47, 47, 47) !important;
+.el-autocomplete {
+  display: block;
 }
 input {
   height: 60px !important;
@@ -108,6 +109,5 @@ input {
 .search-btn {
   width: 100px;
   height: 60px;
-  
 }
 </style>
