@@ -9,15 +9,15 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 public class JDBCUtil {
-	private static String driver = "com.mysql.jdbc.Driver";
+	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String ip = "127.0.0.1";
 	private static int port = 3306;
 	private static String database = "paperdatabase";
 	private static String loginName = "root";
-	private static String password = "123456";
+	private static String password = "wgz668125..";
 	private static String encoding = "UTF-8";
-	private static int initialConnectionCount = 10;
-	private static String url = String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s", ip, port, database, encoding);
+	private static int initialConnectionCount = 100;
+	private static String url = String.format("jdbc:mysql://%s:%d/%s?encoding=%s&serverTimezone=UTC", ip, port, database,encoding);
 	
 	private static LinkedList<Connection> pool = new LinkedList<>();
 	

@@ -1,20 +1,19 @@
 package bean;
 
 public class PaperKeywordBean {
-	private PaperBean pb;
-	private KeywordBean kb;
-	
-	public PaperBean getPb() {
-		return pb;
+	private String name;
+	private String keyword;
+	public String getName() {
+		return name;
 	}
-	public void setPb(PaperBean pb) {
-		this.pb = pb;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public KeywordBean getKb() {
-		return kb;
+	public String getKeyword() {
+		return keyword;
 	}
-	public void setKb(KeywordBean kb) {
-		this.kb = kb;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 }

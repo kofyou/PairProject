@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -10,21 +11,21 @@ import util.JDBCUtil;
 
 public class PaperDao {
 	
-	
-	//查询是否存在于数据库中
-	private boolean isExistDatabase(PaperBean paper) {
+	public boolean isExistDatabase(PaperBean paper) {
 		Connection conn = JDBCUtil.getConnection();
 		PreparedStatement ps = null;
 		String sql = "select * from paper where name=?";
 		boolean isExist = false;
+		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(0, paper.getName());
-			isExist = ps.execute();
+			ps.setString(1, paper.getName());
+			rs = ps.executeQuery();
+			isExist = rs.next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCUtil.release(conn,ps,null);
+			JDBCUtil.release(conn,ps,rs);
 		}
 		return isExist;
 	}
@@ -36,12 +37,12 @@ public class PaperDao {
 		if (!isExistDatabase(paper)) {
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(0, paper.getName());
-				ps.setString(1, paper.getYear());
-				ps.setString(2, paper.getMeeting());
-				ps.setString(3, paper.getAbstractt());
-				ps.setString(4, paper.getUrl());
-				ps.setInt(5, paper.getAccesstimes());
+				ps.setString(1, paper.getName());
+				ps.setString(2, paper.getYear());
+				ps.setString(3, paper.getMeeting());
+				ps.setString(4, paper.getAbstractt());
+				ps.setString(5, paper.getUrl());
+				ps.setInt(6, paper.getAccesstimes());
 				ps.execute();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -55,5 +56,34 @@ public class PaperDao {
 		for (PaperBean paper:papers) {
 			insertOne(paper);
 		}
+	}
+	
+	//鏍规嵁鏍囬鏌ヨ璁烘枃鍒楄〃锛堟ā绯婃煡璇級
+	public LinkedList<PaperBean> searchPaperListByName(String name){
+		LinkedList<PaperBean> beans = new LinkedList<PaperBean>();
+		String sql = "select * from paper where name like '?'";
+		Connection conn = JDBCUtil.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				PaperBean bean = new PaperBean();
+				bean.setName(rs.getString("name"));
+				bean.setYear(rs.getString("year"));
+				bean.setMeeting(rs.getString("meeting"));
+				bean.setAbstractt(rs.getString("abstract"));
+				bean.setUrl(rs.getString("url"));
+				//accesstimes
+				beans.add(bean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.release(conn, ps, rs);
+		}
+		return beans;
 	}
 }
