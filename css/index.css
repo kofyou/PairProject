@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-#container {
-	width:1920px;
-	height:960px;
-}
-
 #header {
 	/*background-color:#FF0000;*/
 	margin:60px auto 0;
