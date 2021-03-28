@@ -15,65 +15,107 @@
         <script type="text/javascript" src="../JS/npm.js">
         </script><!--VUE开发环境版本-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <!--标签云-->
+        <title>jQCloud Example</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/cloud.css" />
+        <script type="text/javascript" src="../JS/Jquery.js"></script>
+        <script type="text/javascript">
+          /*!
+           * Create an array of word objects, each representing a word in the cloud
+           */
+          var word_array = [
+              {text: "关键词1", weight: 150, link: "#"},
+              {text: "关键词2", weight: 90, link: "#"},
+              {text: "关键词3", weight: 60, link:"index.html"},
+              {text: "关键词4", weight: 70, link: "#"},
+              {text: "关键词5", weight: 25, link: "#"},
+              {text: "关键词6", weight: 55, link: "#"},
+              {text: "关键词7", weight: 80, link: "#"},
+              // ...as many words as you want
+          ];
+     
+          $(function() {
+            // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+            $("#example").jQCloud(word_array);
+          });
+        </script>
         
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index.html">主页</a>
-            </div>
-            
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                         <a href="keywords.html">关键词图谱</a>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" />
-                    </div> <button type="submit" class="btn btn-default">搜索</button>
-                </form>
-        
-            </div>
-            
-        </nav>
-        
-        
-        <div>
-            <div class="row" id="hh">
-                <div class="container">
-                    <canvas id="canvas" width="600" height="500"></canvas>
-                    <script src="../JS/chart.js"></script>
-                    <script>
-                        var data = [
-                            {xAxis:'1',value:14}, //{xAxis:横轴名称,value:数值} 竖轴的数大小随各个的数值自动变化
-                            {xAxis:'2',value:1499},
-                            {xAxis:'3',value:3260},
-                            {xAxis:'4',value:1170},
-                            {xAxis:'2016',value:970},
-                            {xAxis:'2017',value:2350},
-                            {xAxis:'2016',value:970},
-                            {xAxis:'2017',value:2350},
-                            {xAxis:'2016',value:970},
-                            {xAxis:'2017',value:2350}
-                        ]
-                        var chart = new sBarChart('canvas',data,{
-                            title: '图书分类统计',
-                            bgColor: '#829dba',
-                            titleColor: '#ffffff',      // 标题颜色
-                            titlePosition: 'top',       // 标题位置
-                            fillColor: '#72f6ff',       // 柱状填充色
-                            axisColor: '#eeeeee',       // 坐标轴颜色
-                            contentColor: '#bbbbbb'     // 内容横线颜色
-                        });
-                    </script>
-                </div>
-                <div>
+        <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                    <div class="navbar-header">
+                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index.html">主页</a>
+                    </div>
                     
-                </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                 <a href="keywords.html">关键词图谱</a>
+                            </li>
+                           
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" />
+                            </div> <button type="submit" class="btn btn-default">搜索</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                        </ul>
+                    </div>
+                    
+                </nav>
             </div>
         </div>
+        
+        
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+            <div>
+                <div class="row" id="hh">
+                    <div class="container">
+                        <canvas id="canvas" width="600" height="500"></canvas>
+                        <script src="../JS/chart.js"></script>
+                        <script>
+                            var data = [
+                                {xAxis:'1',value:140}, //{xAxis:横轴名称,value:数值} 竖轴的数大小随各个的数值自动变化
+                                {xAxis:'2',value:1499},
+                                {xAxis:'3',value:3260},
+                                {xAxis:'4',value:1170},
+                                {xAxis:'2016',value:970},
+                                {xAxis:'2017',value:2350},
+                                {xAxis:'2016',value:970},
+                                {xAxis:'2017',value:2350},
+                                {xAxis:'2016',value:970},
+                                {xAxis:'2017',value:2350}
+                            ]
+                            var chart = new sBarChart('canvas',data,{
+                                title: '关键词统计',
+                                bgColor: '#829dba',
+                                titleColor: '#ffffff',      // 标题颜色
+                                titlePosition: 'top',       // 标题位置
+                                fillColor: '#72f6ff',       // 柱状填充色
+                                axisColor: '#eeeeee',       // 坐标轴颜色
+                                contentColor: '#bbbbbb'     // 内容横线颜色
+                            });
+                        </script>
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-md-6 column">
+            <div id="example" style="width: 550px; height: 350px;"></div>
+		</div>
+	</div>
+        
+       
+        
         
     </body>
 </html>
