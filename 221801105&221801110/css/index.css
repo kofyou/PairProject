@@ -21,7 +21,8 @@
 #btn {
 	position: relative;
 	bottom: 0px;
-	margin-left:200px;
+	text-align:center;
+	/*margin-left:200px;*/
 }
 
 #crawl,#search,#list,#analysis {
