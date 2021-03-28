@@ -11,6 +11,7 @@
             <mycard>
               {{item}}
             </mycard>
+            <i class="fa fa-eye" aria-hidden="true" style="position: absolute;bottom: 20px;right: 40px;cursor: pointer" @click="showDetails(index)"></i>
             <i class="fa fa-trash" style="position: absolute; bottom: 20px;right:20px;cursor:pointer" @click="deleteCard(index)"></i>
           </li>
         </ul>
@@ -23,6 +24,16 @@
           :total="100"
         style="position: relative;bottom: -50px">
         </el-pagination>
+        <el-dialog :visible.sync="dialogVisible">
+          <div style="height:700px">
+            <div class="paperdetailstitle">论文详情</div>
+            <div class="papertitle">论文题目:</div>
+            <div class="papertitle">论文题目:</div>
+            <div class="paperprecis">论文摘要:</div>
+            <div class="paperkeyword">论文关键词:</div>
+          </div>
+
+        </el-dialog>
       </el-tab-pane>
       <el-tab-pane label="关键词图谱">
         <el-card shadow="hover" class="keymap">
@@ -53,7 +64,7 @@
           :page-size="keywordsize"
           layout="prev, pager, next"
           :total="100"
-          style="">
+          style="text-align: center">
         </el-pagination>
       </el-tab-pane>
       <el-tab-pane label="热度走势">
@@ -65,24 +76,27 @@
           <el-radio-button label="ECCV"></el-radio-button>
         </el-radio-group>
       </div>
-        <div><span>年份</span>
-          <el-select v-model="value" placeholder="请选择" size="small">
+        <div class="rulebox"><span>年份:</span>
+          <el-select v-model="startYearOptions.value" placeholder="请选择" size="small">
             <el-option
-              v-for="item in options"
+              v-for="item in startYearOptions.options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
             </el-option>
           </el-select>
           --
-          <el-select v-model="value" placeholder="请选择" size="small">
+          <el-select v-model="endYearOptions.value" placeholder="请选择" size="small">
             <el-option
-              v-for="item in options"
+              v-for="item in endYearOptions.options"
               :key="item.value"
               :label="item.label"
               :value="item.value">
             </el-option>
-          </el-select></div>
+          </el-select>
+          <el-button type="primary" style="margin-left: 30px; width: 120px">确定</el-button>
+        </div>
+        <div id="myChart" :style="{width: '500px', height: '500px'}"></div>
       </el-tab-pane>
     </el-tabs>
 
@@ -93,12 +107,11 @@
 <script>
 import Myheader from "../components/myheader";
 import Sidebar from "../components/sidebar";
-import Mainheader from "../components/mainheader";
 import Mycard from '../components/mycard.vue';
 
 export default {
 name: "CrawlResult",
-  components: {Mainheader, Sidebar, Myheader,Mycard},
+  components: {Sidebar, Myheader,Mycard},
   data(){
   return{
     currentPage:1,
@@ -107,9 +120,70 @@ name: "CrawlResult",
     keywordsize:2,
     meetingValue:'全部顶会',
     paperDetailList:['paper1','paper2','paper3','paper4','paper5','paper6','paper7','paper8','paper9'],
+    dialogVisible:false,
+    startYearOptions:{
+      options: [{
+        value: '1',
+        label: '黄金糕'
+      }, {
+        value: '2',
+        label: '双皮奶'
+      }, {
+        value: '3',
+        label: '蚵仔煎'
+      }, {
+        value: '4',
+        label: '龙须面'
+      }, {
+        value: '5',
+        label: '北京烤鸭'
+      }],
+      value: ''
+    },
+    endYearOptions:{
+      options: [{
+        value: '1',
+        label: '黄金糕'
+      }, {
+        value: '2',
+        label: '双皮奶'
+      }, {
+        value: '3',
+        label: '蚵仔煎'
+      }, {
+        value: '4',
+        label: '龙须面'
+      }, {
+        value: '5',
+        label: '北京烤鸭'
+      }],
+      value: ''
+    }
   }
   },
+  mounted(){
+    this.drawLine();
+  },
   methods:{
+    drawLine(){
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = this.$echarts.init(document.getElementById('myChart'))
+      myChart.resize();
+      // 绘制图表
+      myChart.setOption({
+        title: { text: '近年热度走势对比' },
+        tooltip: {},
+        xAxis: {
+          data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      });
+    },
     deleteCard:function (value) {
 
 
@@ -122,8 +196,8 @@ name: "CrawlResult",
     handlekeywordChange:function (keywordpage) {
       this.keywordPage=keywordpage;
     },
-    showPapers:function (value){
-
+    showDetails:function (value){
+        this.dialogVisible=true;
     }
   }
 }
@@ -159,8 +233,8 @@ name: "CrawlResult",
   width: 800px;
   height: 800px;
   position: absolute;
-  left:700px;
-  top:100px;
+  left:600px;
+  top:50px;
 }
 .keymap{
   width: 700px;
@@ -181,9 +255,55 @@ name: "CrawlResult",
   width: 400px;
   height: 50px;
   line-height: 50px;
+  margin-left: 10px;
 }
 .selectyear
 {
   width: 200px;
+}
+.rulebox
+{
+  height: 100px;
+  line-height: 100px;
+  margin-left: -30px;
+  margin-top:   0px;
+}
+#myChart{
+  margin: 0 auto;
+}
+.paperdetailstitle{
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  top: 20px;
+  left:20px;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.papertitle{
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  top:60px;
+  left: 5px;
+  line-height: 40px;
+}
+.paperprecis{
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  top:100px;
+  left: 65px;
+  line-height: 40px;
+  text-align: left;
+}
+.paperkeyword{
+  position: absolute;
+  width: 700px;
+  height: 100px;
+  bottom: 100px;
+  left: 65px;
+  text-align: left;
 }
 </style>

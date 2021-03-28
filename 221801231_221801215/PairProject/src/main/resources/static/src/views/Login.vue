@@ -101,7 +101,16 @@ export default {
       let _this=this;
       this.$axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.loginName,account:_this.form.loginName,password:_this.$md5(_this.form.loginPassword)}).then(function (response) {
         console.log(response);
-
+        _this.$message({
+          message:'登录成功',
+          type:'success'
+        });
+        _this.$router.push({
+          path:'/index',
+          query: {
+            status:response.code,
+            username:response.data.username,
+          }});
       },function (error) {
         console.log("error");
 
