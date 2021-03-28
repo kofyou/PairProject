@@ -1,0 +1,63 @@
+.my-padded-tb-massive{
+    padding-top: 2em!important;
+    padding-bottom: 2em!important;
+}
+.my-padded-tb-huge{
+    padding-top: 3em!important;
+    padding-bottom: 3em!important;
+}
+.my-padded-tb-big{
+    padding-top: 4em!important;
+    padding-bottom: 4em!important;
+}
+.my-padded-tb-large{
+    padding-top: 5em!important;
+    padding-bottom: 5em!important;
+}
+.my-padded-tb-normal{
+    padding-top: 1em!important;
+    padding-bottom: 1em!important;
+}
+.my-padded-tb-small{
+    padding-top: 0.4em !important;
+    padding-bottom: 0.4em !important;
+}
+.my-padded-tb-tiny{
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+}
+.my-padded-tb-mini{
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+
+/*text*/
+.my-text{
+    front-weigth:300 !important;
+    letter-spacing:1px !important;
+    line-height: 1.8;
+}
+.my-text-thin{
+    front-weigth:300 !important;
+}
+.my-text-spaced{
+    letter-spacing:1px !important;
+}
+.my-text-lined{
+    line-height: 1.8;
+}
+.my-opacity-adjust{
+    opacity: 0.8 !important;
+}
+
+
+
+/*设置display显示的一些属性*/
+.my-inline-block{
+    display:inline-block;
+}
+.my-container{
+    max-width:75em!important;
+    margin:auto!important;
+}
