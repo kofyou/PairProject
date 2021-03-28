@@ -43,6 +43,12 @@ public class PaperController {
         return paperService.getPaper(title);
     }
 
+    /**
+     * 通过关键词获取论文
+     *
+     * @param key
+     * @return
+     */
     @GetMapping("/keyWord/{key}")
     public List<Paper> getPaperByKey(@PathVariable("key") String key) {
         return paperService.getPaperByKey(key);
