@@ -5,7 +5,7 @@ import com.pairproject.papercv.model.Paper;
 import java.util.List;
 
 /**
- * 论文service类
+ * 论文业务逻辑
  *
  * @date 2021/03/23
  */

@@ -3,7 +3,8 @@ package com.pairproject.papercv.model;
 import java.util.List;
 
 /**
- * @author 李星源
+ * 热词类
+ *
  * @date 2021/03/25
  */
 public class Word {
