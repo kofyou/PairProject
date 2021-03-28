@@ -31,7 +31,8 @@ $(document).ready(function () {
                         "                </p>\n" +
                         "                <p style=\"font-weight: bolder; margin: 10px 0;\">Abstract:</p>\n" +
                         "                <div class=\"text-content\">" + result[i].paperAbstract + "</div>\n" +
-                        "                <p><span style=\"font-weight: bolder;\">Keywords:</span>" + result[i].keyWord + "</p>\n" +
+                        "                <div style=\"float: right\"><a href=\"" + result[i].url + "\">查看更多</a></div>"+
+                        "                <div style=\"float: left\"><p><span style=\"font-weight: bolder;\">Keywords:</span>" + result[i].keyWord + "</p></div>\n" +
                         "            </div>\n" +
                         "        </div>\n" +
                         "        <div class=\"footer\">\n" +
@@ -48,7 +49,6 @@ $(document).ready(function () {
                 }
             },
         });
-
         for (var i = 0;i < items.length;i++) {
             $("#item-list").append(items[i]);
         }
