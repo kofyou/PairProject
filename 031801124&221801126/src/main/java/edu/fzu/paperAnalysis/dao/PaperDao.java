@@ -8,7 +8,8 @@ import java.util.List;
 public interface PaperDao {
     List<Paper> queryPaperByTitle(String title) throws SQLException;
     List<Paper> queryAll() throws SQLException;
-    int queryNumber() throws SQLException;
+    int queryNumber(Paper p) throws SQLException;
+    List<Paper> queryUsers(Paper paper, int pageNum, int lineNum) throws SQLException;
 
 
 }

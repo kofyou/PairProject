@@ -17,6 +17,15 @@
         <url-pattern>/PaperServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>edu.fzu.paperAnalysis.servlet.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>encodeFilter</filter-name>
         <filter-class>edu.fzu.paperAnalysis.servlet.EncodeFilter</filter-class>

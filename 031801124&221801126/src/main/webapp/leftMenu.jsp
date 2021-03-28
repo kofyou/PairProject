@@ -12,8 +12,8 @@
 <html>
 <body>
 
-<a href ="paperInfo.jsp" target ="rightframe">论文详情</a><br />
-<a href ="paperList.jsp" target ="rightframe">论文列表</a><br />
+<a href ="paperInfo.jsp" target ="rightframe">论文信息</a><br />
+<a href ="paperList.jsp" target ="rightframe">论文搜索</a><br />
 
 </body>
 </html>

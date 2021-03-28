@@ -8,5 +8,6 @@ import java.util.List;
 public interface PaperService {
     List<Paper> queryPaperByTitle(String title) throws SQLException;
     List<Paper> queryAll() throws SQLException;
-    int queryNumber() throws SQLException;
+    int queryNumber(Paper paper) throws SQLException;
+    List<Paper> queryPapers(Paper paper, int pageNum, int lineNum) throws SQLException;
 }

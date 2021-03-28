@@ -28,7 +28,16 @@ public class PaperServiceImpl implements PaperService{
     }
 
     @Override
-    public int queryNumber() throws SQLException {
-        return 0;
+    public List<Paper> queryPapers(Paper paper, int pageNum, int lineNum) throws SQLException {
+        PaperDao paperDao=new PaperDaoImpl();
+        return paperDao.queryUsers(paper, pageNum, lineNum);
+    }
+
+    @Override
+    public int queryNumber(Paper paper) throws SQLException {
+        PaperDao paperDao=new PaperDaoImpl();
+        return  paperDao.queryNumber(paper);
+
+
     }
 }
