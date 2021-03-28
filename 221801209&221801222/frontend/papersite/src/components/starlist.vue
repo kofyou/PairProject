@@ -123,32 +123,36 @@ export default {
     Base
   },
   methods :{
-    create(){
-      const that = this;
-      this.axios.get("/star/list")
-        .then(
-          function (response){
-            console.log("内容");
-            console.log(response);
-            that.tableData = response.data.article;
-            that.tableMes.totalItem = that.tableData.length;
-            for(let i = 0; i < that.tableMes.totalItem; i++) {
-              if (that.tableData[i]["author"] == "[]")
-                that.tableData[i]["author"] = "无";
-              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
-                that.tableData[i]["no"] = "无";
-            }
-          }
-        ).catch(
-        function (error){
-          console.log(error);
-        }
-      );
-    },
+    // create(){
+    //   const that = this;
+    //   this.axios.get("/star/list",{withCredentials: true})
+    //     .then(
+    //       function (response){
+    //         console.log("内容");
+    //         console.log(response);
+    //         that.tableData = response.data.article;
+    //         that.tableMes.totalItem = that.tableData.length;
+    //         for(let i = 0; i < that.tableMes.totalItem; i++) {
+    //           if (that.tableData[i]["author"] == "[]")
+    //             that.tableData[i]["author"] = "无";
+    //           if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
+    //             that.tableData[i]["no"] = "无";
+    //         }
+    //       }
+    //     ).catch(
+    //     function (error){
+    //       console.log(error);
+    //     }
+    //   );
+    // },
     /*搜索响应函数*/
     doSearch(searchWord){
       const that = this;
-      this.axios.get("/star/list", {withCredentials: true})
+      this.axios.get("/star/list", {withCredentials: true,
+        headers: {'Access-Control-Allow-Origin': 'http://localhost:8080',
+        },
+        credentials: 'include'
+      })
         .then(
           function (response){
             console.log("内容");

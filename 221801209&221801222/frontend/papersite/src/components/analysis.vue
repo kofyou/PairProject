@@ -12,6 +12,7 @@
 import Base from '../components/base'
 import Echarts from '../components/echarts'
 
+
 export default {
   name: "analysis",
   components: {
