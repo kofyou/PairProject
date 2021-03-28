@@ -5,7 +5,9 @@ $ (function($){
 	
 	table.bootstrapTable({
 		height:"600px",
-		data:[
+		url : "/PairWork1/paperListConTroller.do",
+		method : "GET",
+		/*data:[
 			{
 				"id":"1",
 				"title":"出师表",
@@ -13,7 +15,7 @@ $ (function($){
 				"about":"CCTV",
 				"phone":"110",
 			}
-		],
+		],*/
 		columns:[
 			{
 			field:'select',
@@ -37,8 +39,8 @@ $ (function($){
 			},
 			
 			{
-			field:'info',
-			title:"论文内容",
+			field:'paper',
+			title:"论文链接",
 			align:"center",
 			valign:"middle",
 			},
@@ -51,8 +53,8 @@ $ (function($){
 			},
 			
 			{
-			field:'phone',
-			title:"暂定",
+			field:'keyword',
+			title:"关键字",
 			align:"center",
 			valign:"middle",
 			},

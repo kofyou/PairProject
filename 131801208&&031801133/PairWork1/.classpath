@@ -14,12 +14,75 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="F:/谷歌浏览器/fastjson-1.2.7.jar"/>
-	<classpathentry kind="lib" path="F:/谷歌浏览器/json-lib-2.2.2-jdk13.jar"/>
-	<classpathentry kind="lib" path="F:/谷歌浏览器/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="F:/新建文件夹 (2)/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="F:/新建文件夹 (2)/commons-beanutils-1.9.4.jar"/>
-	<classpathentry kind="lib" path="F:/新建文件夹 (2)/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="F:/谷歌浏览器/commons-logging-1.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="F:/谷歌浏览器/fastjson-1.2.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/谷歌浏览器/json-lib-2.2.2-jdk13.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/谷歌浏览器/commons-lang3-3.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/commons-collections-3.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/ezmorph-1.0.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/谷歌浏览器/commons-logging-1.2/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-web-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-webmvc-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-core-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-context-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-beans-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-expression-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="F:/新建文件夹 (2)/spring-5.2.9.RELEASE-dist/spring-framework-5.2.9.RELEASE/libs/spring-aop-5.2.9.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

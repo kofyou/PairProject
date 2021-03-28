@@ -23,8 +23,12 @@ import com.mysql.jdbc.log.Log;
 import jdk.nashorn.internal.parser.Lexer;
 
 public class GetJson {
-
-	public static void readJsonFile(String filePath) {
+	private String id;
+	private String title;
+	private String url;
+	private String about;
+	private String keywords;
+	public  void readJsonFile(String filePath) {
 		BufferedReader reader = null;
 		String readJson = "";
 
@@ -46,23 +50,21 @@ public class GetJson {
 					//System.out.printf(key + " \n");
 					stringMap.put(key, jsonObject.getString(key));
 				}
-				String id = stringMap.get("articleId");
+				id = stringMap.get("articleId");
 				System.out.println("文章id："+id+"\n");
 				
-				String title = stringMap.get("title");
+				title = stringMap.get("title");
 				System.out.println("文章标题："+title+"\n");
 				
-				String about = stringMap.get("doi");
+				about = stringMap.get("doi");
 				System.out.println("文章论坛相关："+about+"\n");
+							
 				
-				String keyword = stringMap.get("keywords");
-				System.out.println("文章关键词："+keyword+"\n");
+				keywords = stringMap.get("keywords");
+				System.out.println("文章关键词："+keywords+"\n");
 				
-				String url = stringMap.get("doiLink");
-				System.out.println("文章链接："+url+"\n");
-				
-				
-
+				url = stringMap.get("doiLink");
+				System.out.println("文章链接："+url+"\n");							
 
 			}
 
@@ -88,5 +90,21 @@ public class GetJson {
 			e.printStackTrace();
 		}
 
+	}
+	public String getId() {
+		return this.id;
+	}
+	
+	public String getUrl() {
+		return this.url;
+	}
+	public String getTitle() {
+		return this.title;
+	}
+	public String getKeywords() {
+		return this.keywords;
+	}
+	public String getAbout() {
+		return this.about;
 	}
 }
