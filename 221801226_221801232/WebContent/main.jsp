@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <meta http-equiv="description" content="This is my page">
         <title>Paper Search For U</title>
         
-	    <link rel="stylesheet" type="text/css" href="css/mainStyles.css">
+	    <link rel="stylesheet" type="text/css" href="mainStyles.css">
 	    
     </head>
 <body>
@@ -30,43 +30,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         //GetDataToDB logfile = new GetDataToDB("D://ECCV");
 
  %>
-    <h1>论文库</h1>
-        <hr>
-    
-        <table width="750" height="60" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-            <td>
-            
-            <!-- 论文循环开始 -->
-            <% 
-                ItemsDao itemsDao = new ItemsDao(); 
-                ArrayList<items> list = itemsDao.getAllItems();
-                //ArrayList<items> list = itemsDao.getItemsByTitle("Deep");
-                if(list!=null&&list.size()>0)
-                {
-                    for(int i=0;i<list.size();i++)
-                    {
-                        items item = list.get(i);
-            %>   
-            <div>
-                <dl>
-                <dt>
-                    <a href="details.jsp?id=<%=item.getId()%>"><%=item.getTitle() %></a>
-                </dt>
+    <div id="nav">
+        <div class="divimg">
+            <img src="images/flower.jpg" />
+        </div>
+        <div id="menu">
+
+            <button id="papersearch">论文检索</button><br>
+        </div>
+        <div id="menu">
+            <button id="papersearch">论文列表</button><br>
+        </div>
+        <div id="menu">
+            <button id="papersearch">热门领域</button><br>
+        </div>
+        <div id="menu">
+            <button id="papersearch">研究热词</button><br>
+        </div>
+    </div>
+    <div id="section">
+        <form action="">
+
+            <input type="text" name="key" value="根据论文题目查找">
+            <a href="main.jsp?keyword=document.getElementById("key").value"><input type="submit" value="搜索"></a>
+        </form>
+        <table id="table" width="750" height="60" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
                 
-                <dd class="dd_abstract">abstract:&nbsp;&nbsp;&nbsp;&nbsp;<%=item.getAbstracts() %></dd> 
-                <dd class="dd_conference">conference: &nbsp;&nbsp;<%=item.getConference() %></dd> 
-                
-                </dl>
-            </div>
-            <!-- 论文循环结束 -->
-            
-            <%
+                <!-- 论文循环开始 -->
+                <% 
+                    ItemsDao itemsDao = new ItemsDao(); 
+                    ArrayList<items> list = new ArrayList<items>();
+                    if(request.getParameter("key")!=null){
+                        list = itemsDao.getItemsByTitle(request.getParameter("key"));
                     }
-                } 
-            %>
-            </td>
-        </tr>
-        </table>
+                    else{
+                        list = itemsDao.getAllItems();
+                    }
+               
+                    if(list!=null&&list.size()>0)
+                    {
+                        for(int i=0;i<list.size();i++)
+                        {
+                            items item = list.get(i);
+                %>   
+                <div>
+                    <dl>
+                    <dt clsaa="dt_title">
+                        <a href="details.jsp?id=<%=item.getId()%>"><%=item.getTitle() %></a>
+                    </dt>
+                    
+                    <dd class="dd_abstract">abstract:&nbsp;&nbsp;&nbsp;&nbsp;<%=item.getAbstracts() %></dd> 
+                    <dd class="dd_conference">conference: &nbsp;&nbsp;<%=item.getConference() %></dd> 
+                    
+                    </dl>
+                </div>
+                <!-- 论文循环结束 -->
+                
+                <%
+                        }
+                    } 
+                %>
+                </td>
+            </tr>
+            </table>
+    </div>
+
 </body>
 </html>
