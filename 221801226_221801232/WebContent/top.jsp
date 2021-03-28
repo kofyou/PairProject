@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="expires" content="0">    
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/echarts.js" ></script>
     <link rel="stylesheet" type="text/css" href="top.css">
     
 </head>
@@ -44,8 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="section">
         <div id="tablelist">
             <h1 id="h1">top10个热门领域</h1>
-            <p>echart</p>
-
+                    
         </div>
     </div>
 </body>

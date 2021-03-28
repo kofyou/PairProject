@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import util.DBHelper;
-
+import util.WordCountMethod;
 import entity.items;
 
 //论文的业务逻辑类
@@ -174,5 +179,110 @@ public class ItemsDao {
             }
 
         }
+    }
+    
+    /**
+     * 从数据库取出所有论文关键词
+     * @return
+     */
+    public String getKeywordsFromDB() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<items> list = new ArrayList<items>(); // 论文集合
+        try {
+            conn = DBHelper.getConnection();
+            String sql = "select keyword from paperslist;"; // SQL语句
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            String allKey = "";
+            while (rs.next()) {
+                allKey += rs.getString(1);
+            }
+            return allKey;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            // 释放数据集对象
+            if (rs != null) {
+                try {
+                    rs.close();
+                    rs = null;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            // 释放语句对象
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                    stmt = null;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        } 
+    }
+    
+    /**
+     * 
+     * 获取top10关键词Map
+     * @param allkw
+     * @return
+     */
+    public List<Map.Entry<String, Integer>> getHotkw (String str){
+        int num = 0;
+        TreeMap<String, Integer> map = new TreeMap<>();
+        String lowerStr = str.toLowerCase();
+        String[] word = lowerStr.split(",");
+        int len = word.length;
+        String tw = null;
+        for (int i = 0; i < len; i++) {
+            tw = word[i];
+               if (!map.containsKey(tw)) {
+                   map.put(tw, 1);
+               } 
+               else {
+                   num = map.get(tw);
+                   map.put(tw, num + 1);
+               }
+        }
+        List<Map.Entry<String, Integer>> hotWords = WordCountMethod.highFreqWord(map);
+        return hotWords;
+        
+    }
+    
+    /**
+     * 返回热词
+     * @param highFreqList
+     * @return
+     */
+    public String[] words(List<Map.Entry<String, Integer>> highFreqList) {
+        String[] kw = new String[10];
+        for (int i = 0; i < highFreqList.size(); i++) {
+            Map.Entry<String, Integer> temp = highFreqList.get(i);
+            kw[i] = temp.getKey();
+
+            System.out.println(kw[i]);
+        }
+        return kw;
+    }
+    
+    /**
+     * 返回热词数量
+     * @param highFreqList
+     * @return
+     */
+    public int[] num(List<Map.Entry<String, Integer>> highFreqList) {
+        int[] num = new int [10];
+        for (int i = 0; i < highFreqList.size(); i++) {
+            Map.Entry<String, Integer> temp = highFreqList.get(i);
+            num[i] = temp.getValue();
+
+            System.out.println(num[i]);
+        }
+        return num;
     }
 }
