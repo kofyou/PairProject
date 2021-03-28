@@ -163,7 +163,7 @@ $(document).ready(function () {
         url:httpRoot + `/data/trend/eccv`,
         type:"GET",
         dataType:"json",
-        async:false,
+        async:true,
         success:function(result){
             var eccvValues = [result[0].value, result[1].value, result[2].value, result[3].value, result[4].value];
             var eccvYears = result[0].years;
