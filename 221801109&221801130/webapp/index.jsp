@@ -5,168 +5,8 @@
 <head>
     <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <style>
-        #table01{
-            border-collapse: collapse;
-            padding: 0;
-            margin: 0;
-            table-layout:fixed;
-            position: absolute;
-            top: 30%;
-            left: 20%;
-        }
-        th{
-            font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-            color: #4f6b72;
-            border-right: 1px solid #C1DAD7;
-            border-bottom: 1px solid #C1DAD7;
-            border-top: 1px solid #C1DAD7;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: left;
-            padding: 6px 6px 6px 12px;
-            background: #CAE8EA  no-repeat;
-        }
-        td{
-            font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-            color: #4f6b72;
-            border-right: 1px solid #C1DAD7;
-            border-bottom: 1px solid #C1DAD7;
-            border-top: 1px solid #C1DAD7;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: left;
-            padding: 6px 6px 6px 12px;
-            background: white  no-repeat;
-            word-break:keep-all;     /* 不换行 */
-            white-space:nowrap;      /* 不换行 */
-            overflow:hidden;         /* 内容超出宽度时隐藏超出部分的内容 */
-            text-overflow:ellipsis;  /* 溢出时显示省略标记...；需与overflow:hidden;一起使用*/
-
-        }
-        #see{
-            background: #C7E1E2  no-repeat;
-            border:none;
-        }
-        #edit{
-            background: #C7E1E2  no-repeat;
-            border:none;
-        }
-        #delete{
-            background: #C7E1E2  no-repeat;
-            border:none;
-        }
-        #test02{
-            background: #94E7E2  no-repeat;
-        }
-        #string{
-            backgroundcolor: black;
-            height: 55px;
-            width: 550px;
-        }
-        #button1{
-            height: 50px;
-            width: 100px;
-            font-size: 20px;
-        }
-        div#input{
-            position: absolute;
-            top: 20%;
-            left: 34%;
-        }
-        div#bg{
-            width: 100%;
-            height: 100%;
-        }
-        #paging{
-            margin-top: 40%;
-
-        }
-        #previous{
-            border-radius: 20px;
-            background-color: transparent;
-            width: 80px;
-            height: 35px;
-            border:1px solid gray;
-            outline: none;
-        }
-        #previous:hover{
-            background-color: lightgray;
-        }
-        #previous:active{
-            background-color: gray;
-        }
-        #next{
-            border-radius: 20px;
-            background-color: transparent;
-            width: 80px;
-            height: 35px;
-            border:1px solid gray;
-            outline: none;
-        }
-        #next:hover{
-            background-color: lightgray;
-        }
-        #next:active{
-            background-color: gray;
-        }
-        div#heading{
-            background-color: dodgerblue;
-            width: 100%;
-            height: 12%;
-            text-align: center;
-        }
-        div#menu{
-            background-color: midnightblue;
-            width: 12%;
-            height: 88%;
-            float: left;
-        }
-        div#body{
-            background-color: aliceblue;
-            width: 88%;
-            height: 88%;
-            float: left;
-        }
-        #searchText{
-            background: rgba(0,0,0,0);
-            border-width: 0;
-            color: white;
-            text-align:center;
-            font-size: 30px;
-            position: absolute;
-            top: 20%;
-            left: 2%;
-            border-radius: 10px;
-        }
-        #analyse{
-            background: rgba(0,0,0,0);
-            border-width: 0;
-            color: white;
-            text-align:center;
-            font-size: 30px;
-            position: absolute;
-            top: 40%;
-            left: 2%;
-            border-radius: 10px;
-        }
-        #contentBody{
-            width: 88%;
-            height: 88%;
-            float: left;
-            background-color: lightgray;
-        }
-        #searchText:hover{
-            background-color: lightgray;
-            color: midnightblue;
-            border-radius: 10px;
-        }
-        #analyse:hover{
-            background-color: lightgray;
-            color: midnightblue;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="mainCSS.css">
+    <link href="indexCSS.css" type="text/css" rel="stylesheet">
 </head>
 <body style="margin: 0px" >
     <div id="bg">
@@ -175,9 +15,11 @@
             <form method="post" id="form3" action="<%=path%>/index.jsp" >
                 <input type="submit" id="searchText" value="论文列表">
             </form>
-
-            <form method="post" id="form6" action="<%=path%>/analyze" >
-                <input type="submit" id="analyse" value="分析论文">
+            <form method="post" id="form" action="<%=path%>/iccv.jsp" >
+                <input type="submit" id="analyse" value="热度走势">
+            </form>
+            <form method="post" id="form8" action="<%=path%>/analyze" >
+                <input type="submit" id="top" value="TOP10">
             </form>
         </div>
         <div id="body">
@@ -201,20 +43,20 @@
                     <tr>
                         <td width="15%">${post.title} </td>
                         <td width="15%">${post.content} <input type="hidden" id="title" name="title" value="${post.title}"></td>
-                        <td width="15%">${post.keyWord} <input type="hidden" id="key" name="key" value="${key}"></td>
-                        <td width="14%">${post.link}</td>
-                        <td width="14%">${post.time}</td>
-                        <td width="14%">${post.platform}</td>
-                        <td width="10%">
+                        <td width="26%">${post.keyWord} <input type="hidden" id="key" name="key" value="${key}"></td>
+                        <td width="20%">${post.link}</td>
+                        <td width="8%">${post.time}</td>
+                        <td width="8%">${post.platform}</td>
+                        <td width="5%">
                             <button type="submit" id="see" name="see" >查看</button>
-                            <button id="edit">编辑</button>
+                            <!--button id="edit">编辑</button-->
                             <!--button id="delete">删除</button-->
                         </td>
                     </tr>
                 </c:forEach>
             </table>
             </form>
-            <div id="paging"> <!-----------翻页功能-------------->
+            <div id="paging">
                 <table>
                     <tr>
                         <form method="post" id="form4" action="<%=path%>/hello">
@@ -231,14 +73,22 @@
                                 <input type="hidden" id="nex" name="nex" value="${count}">
                             </c:if>
                             <input type="submit" id="next" value="Next" style="margin-left: 1%" >
+
+
                         </form>
-                        共&nbsp;&nbsp;${page}页
+                        共&nbsp;&nbsp;${page}页&nbsp;&nbsp;
                         当前第&nbsp;${count+1}页&nbsp;&nbsp;
                     </tr>
                 </table>
-
             </div>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    function check() {
+        // 调用后端servlet，并将数据进行传递
+        document.getElementById("form2").submit();
+    }
+</script>
