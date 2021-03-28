@@ -8,6 +8,7 @@ p{
     border-radius: 15px;
     padding: 20px 20px;
     border: 1px solid #000;
+    margin: 40px auto;
 }
 .content{
     display: flex;

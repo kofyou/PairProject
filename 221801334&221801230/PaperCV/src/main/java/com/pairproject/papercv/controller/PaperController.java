@@ -29,7 +29,7 @@ public class PaperController {
      */
     @GetMapping("/all")
     public List<Paper> getPaperList() {
-        return paperService.getAll();
+        return paperService.getAll().subList(0,1000);
     }
 
     /**
