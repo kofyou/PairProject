@@ -17,16 +17,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
-    <title>Paper Search For U -collection</title>
+    <title>Paper Search For U -收藏夹</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">    
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <!--
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    -->
-    <link type="text/css" rel="stylesheet" href="css/collStyles.css" />
+    
+    <link type="text/css" rel="stylesheet" href="collStyles.css" />
     <script language="javascript">
             function delcfm() {
                 if (!confirm("确认要删除？")) {
@@ -36,19 +34,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </script>
     </head>
 <body>
-    <h1>我的收藏夹</h1>
-    <a href="main.jsp">首页</a> >> <a href="main.jsp">论文列表</a>
-    <hr> 
-    <div id="paperlist">
-    <form action="" method="">      
-            <table>
-                <tr>
-                    <th>论文</th>
-                    <th>来源会议</th>
-                    <th>关键词</th>
-                    <th>发布时间</th>
-                    <th>操作</th>
-                </tr>
+    <div id="nav">
+        <div class="divimg">
+            <img src="flower.jpg" />
+        </div>
+        <div id="menu">
+
+            <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
+        </div>
+        <div id="menu">
+            <a href="collection.jsp"><button id="papersearch">论文收藏夹</button><br></a>
+        </div>
+        <div id="menu">
+            <a href="top.jsp"><button id="papersearch">热门领域</button><br></a>
+        </div>
+        <div id="menu">
+            <button id="papersearch">研究热词</button><br>
+        </div>
+    </div>
+    <div id="section">
+        <h1>我的收藏夹</h1>
+        <form action="">
+
+            <input type="text" name="key" value="" placeholder="输入论文题目查找   支持模糊查询">
+            <a href="main.jsp?keyword=document.getElementById("key").value"><input type="submit" value="搜索"></a>
+        </form>
+        <div id="paperlist">
+            <form action="" method="">
+                <table>
+                    <tr>
+                        <th>论文</th>
+                        <th>来源会议</th>
+                        <th>关键词</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
+                    </tr>
                 <% 
                    //首先判断session中是否有收藏夹对象
                    if(request.getSession().getAttribute("collection")!=null)
@@ -86,7 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
              %>
             
-        </form>
-    </div>
+            </form>
+        </div>
+    </div> 
 </body>
 </html>
