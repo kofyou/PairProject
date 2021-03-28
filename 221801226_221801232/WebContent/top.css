@@ -1,7 +1,4 @@
 @charset "UTF-8";
-hr{
-    border-color:FF7F00; 
-}
 body {
     background-image: url(back.JPG);
     margin: 0;
@@ -11,12 +8,17 @@ h1 {
     color: #eeeeee;
 }
 
+#header {
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
 .divimg img {
     margin-bottom: 10px;
     width: 150px;
     height: 150px;
     margin-top: 10px;
-    margin-left: 50px;
 }
 
 #nav {
@@ -56,61 +58,24 @@ h1 {
     padding: 10px;
 }
 
+#h1 {
+    color: #1d6141;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 hr {
     border-color: FF7F00;
 }
 
-div {
-    float: left;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
+
 
 #tablelist {
-    width: 900px;
+    width: 980px;
     border-style: dotted dashed solid double;
     border-radius: 12px;
     background-color: #ffffff;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 30px;
-    background: rgba( 255, 255, 255, 0.5);
+    background: rgba( 255, 255, 255, 0.8);
 }
-
-#table {
-    width: 860px;
-    border-style: dotted dashed solid double;
-    border-radius: 12px;
-    background-color: #ffffff;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    background: rgba( 255, 255, 255, 0.5);
-    margin-right: 20px;
-}
-
-#collect {
-    width: 50px;
-    background-color: #414141;
-    color: white;
-    border-style: solid;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-#collection {
-    float: right;
-    width: max-content;
-    background-color: #414141;
-    color: white;
-    border-style: solid;
-    border-radius: 8px;
-}
-span{
-    padding:0 2px;border:1px #c0c0c0 solid;cursor:pointer;
-}
-a{
-    text-decoration: none; 
-}        
-        

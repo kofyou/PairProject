@@ -18,11 +18,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="expires" content="0">    
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-	<title>Paper Search For U -details</title>
+	<title>Paper Search For U -论文详情</title>
 	
-    <link rel="stylesheet" type="text/css" href="css/detailStyles.css">
+    <link rel="stylesheet" type="text/css" href="detailStyles.css">
     
-    <link href="css/main.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/lhgcore.js"></script>
     <script type="text/javascript" src="js/lhgdialog.js"></script>
     <script type="text/javascript">
@@ -36,53 +35,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 </head>
 <body>
-<h1>论文详情</h1>
-    <a href="index.jsp">首页</a> >> <a href="index.jsp">论文列表</a>
-    <hr>
-        <table width="750" height="60" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-            <!-- 论文详情 -->
-            <% 
-                ItemsDao itemDao = new ItemsDao();
-                items item = itemDao.getItemsById(Integer.parseInt(request.getParameter("id")));
-                if(item!=null)
-                {
-            %>
-            <td width="70%" valign="top">
-                <table>
-            
+    <div id="nav">
+        <div class="divimg">
+            <img src="flower.jpg" />
+        </div>
+        <div id="menu">
+
+            <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
+        </div>
+        <div id="menu">
+            <a href="collection.jsp"><button id="papersearch">论文收藏夹</button><br></a>
+        </div>
+        <div id="menu">
+            <button id="papersearch">热门领域</button><br>
+        </div>
+        <div id="menu">
+            <button id="papersearch">研究热词</button><br>
+        </div>
+    </div>
+    <div id="section">
+        <h1>论文详情</h1>
+        <hr>
+        <div id="tablelist">
+        
+            <table id="table" >
                 <tr>
-                    <td><B><%=item.getTitle() %></B></td> 
-                </tr>
-                <tr>
-                    <td>abstract：<%=item.getAbstracts()%></td>
-                </tr>
-                <tr>
-                    <td>conference：<%=item.getConference() %></td>
-                </tr>
-                <tr>
-                    <td>keyword：<%=item.getKeyword() %></td>
-                </tr>
-                <tr>
-                    <td>time：<%=item.getTime() %></td>
-                </tr>
-                <tr>
-                    <td>link：<%=item.getLink() %></td>
-                </tr>
-                </table>
-                <div id="collection">
-                <a href="javascript:selflog_show(<%=item.getId()%>)"><button type="button">收藏</button></a>
+                <!-- 论文详情 -->
+                <% 
+                    ItemsDao itemDao = new ItemsDao();
+                    items item = itemDao.getItemsById(Integer.parseInt(request.getParameter("id")));
+                    if(item!=null)
+                    {
+                %>
+                <td >
+                    <table>
                 
-                <a href="servlet/CollectionServlet?action=show"><button type="button">查看收藏夹</button></a>
-                </div>
-            </td>
-            <% 
-                }
-            %>
+                        <tr>
+                            <td><B><%=item.getTitle() %></B></td> 
+                        </tr>
+                        <tr>
+                            <td>abstract：<%=item.getAbstracts()%></td>
+                        </tr>
+                        <tr>
+                            <td>conference：<%=item.getConference() %></td>
+                        </tr>
+                        <tr>
+                            <td>keyword：<%=item.getKeyword() %></td>
+                        </tr>
+                        <tr>
+                            <td>time：<%=item.getTime() %></td>
+                        </tr>
+                        <tr>
+                            <td>link：<%=item.getLink() %></td>
+                        </tr>
+                    </table>
+                    <div id="collection">
+                    <a href="javascript:selflog_show(<%=item.getId()%>)"><button id="collect">收藏</button></a>
+                    
+                    <a href="servlet/CollectionServlet?action=show"><button id="collection">查看收藏夹</button></a>
+                    </div>
+                </td>
+                <% 
+                    }
+                %>
           
           
           
-        </tr>
-        </table>
-</body>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </body>
 </html>

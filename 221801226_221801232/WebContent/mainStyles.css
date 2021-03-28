@@ -1,4 +1,8 @@
 @charset "UTF-8";
+hr{
+  border-color:FF7F00; 
+}
+
 body {
     background-image: url(back.JPG);
     margin: 0;
@@ -6,6 +10,12 @@ body {
 
 h1 {
     color: #eeeeee;
+}
+
+#header {
+    color: white;
+    text-align: center;
+    padding: 5px;
 }
 
 .divimg img {
@@ -54,7 +64,7 @@ h1 {
 
 input[type=text],
 select {
-    width: 800px;
+    width: 890px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -62,8 +72,8 @@ select {
     border-radius: 12px;
     box-sizing: border-box;
     background-color: #e0e0e0;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-left: 20px;
+    margin-top: 40px;
 }
 
 input[type=submit] {
@@ -73,18 +83,13 @@ input[type=submit] {
     color: white;
     padding: 12px 20px;
     margin: 8px 0;
-    margin-top: 10px;
+    margin-top: 40px;
     border: none;
     border-radius: 8px;
 }
 
-#paperlist {
-    color: black;
-    background: rgba( 255, 255, 255, 0.5);
-}
-
 #table {
-    width: max-content;
+    width: 980px;
     height: 60px;
     border-style: dotted dashed solid double;
     border-radius: 12px;
@@ -94,53 +99,31 @@ input[type=submit] {
     background: rgba( 255, 255, 255, 0.5);
 }
 
-#paperlist {
-    text-align: center;
-    margin: 0 auto;
-    width: 80%
+div dl {
+    color: rgb(16, 46, 16);
+    margin: 1px;
+    padding: 20px;
+    border-style: dotted dashed solid double;
+    border-radius: 12px;
+    background: rgba( 255, 255, 255, 1);
 }
 
-#section h1 {
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+div dd {
+    background-color: #ffffff;
+    color: rgb(16, 46, 16);
+    margin-left: 20px;
+    width: fit-content;
+    border-radius: 12px;
+    font-size:10pt;
+    margin:0px;
 }
 
-#paperlist table {
-    width: 100%;
-    line-height: 24px;
-    border-top: 2px solid #333333;
-    border-bottom: 2px solid #2c2c2c;
+div dt.dt_title {
+    color: rgb(2, 6, 231);
+    font-size: 15px;
 }
 
-#paperlist table th {
-    background: #aaaaaa;
-    color: black;
-}
-
-#paperlist table td {
-    padding: 10px 0;
-    border-top: 1px solid #464646;
-}
-
-#paperlist table td.title {
-    border: 1px solid #dfdfe0;
-    margin: 0 10px;
-    vertical-align: middle;
-}
-
-#paperlist table td.conference {
-    text-align: center;
-    width: 100px;
-    border-left: 1px solid #e1e1e1;
-}
-
-#paperlist table td.keyword {
-    color: black;
-    font-weight: bold;
-}
-
-#paperlist table td.time {
-    width: 100px;
-    text-align: center;
-    border-left: 1px solid #e1e1e1;
+div dd.dd_abstract {
+    color: rgb(0, 0, 0);
+    font-size: 10px;
 }
