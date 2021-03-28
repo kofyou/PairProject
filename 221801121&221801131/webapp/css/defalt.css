@@ -12,6 +12,26 @@ body {
 	margin: 0 auto;
 }
 
+.td1 {
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;/*规定段落的文本不进行换行*/
+	overflow: hidden;/*超出隐藏*/
+	text-overflow: ellipsis;/*隐藏的字符用省略号表示  IE*/
+	-moz-text-overflow: ellipsis;/*隐藏的字符用省略号表示  火狐*/
+}
+
+td,th,tr {
+	text-align: center;
+}
+
+table {
+	background: #f5f5f57d;
+	table-layout:fixed;/*table的内部布局固定大小，才可以通过td的width控制宽度*/
+	word-wrap:break-word; /*允许长单词换到下一行*/
+	height: 500px;
+}
+
 #buttons {
 	width: 50%;
 	position:absolute;left:25%; height:100px;

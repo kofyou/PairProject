@@ -11,10 +11,45 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>论文管理</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- CSS样式 -->
+    <script src="./js/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/defalt.css" />
+    <style type="text/css">
+        .container div {
+            text-align: center;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            height: 100px;
+            width:100%;
+        }
+    </style>
 </head>
 <body>
-
+<h1 style="font-family:verdana">论文列表</h1>
+<a href="index.html">
+    <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(this).button('loading').delay(1000).queue(function () {
+                    // $(this).button('reset');
+                    // $(this).dequeue();
+                });
+            });
+        });
+    </script>
+</a>
     <table align="center" border="0" width="85%">
         <thead>
         <tr bgcolor="#6699FF" width="30">
@@ -41,9 +76,9 @@
             {
                 Post post = (Post)posts.get(i);
         %>
-        <tr>
+        <tr >
             <td><%=post.getTitle() %></td>
-            <td><%=post.getAbs() %></td>
+            <td class="td1"><%=post.getAbs() %></td>
             <td>
                 <%
                     List<String> kwd = post.getKwds();
@@ -62,8 +97,8 @@
         <%
             }
         %>
-        <tr bgcolor="#6699FF" width="30">
-            <td colspan="4">
+        <tr  width="30" align="center">
+            <td colspan="6">
                 <%
                     if (pageNum != 0){
                 %>
@@ -118,3 +153,15 @@
     </table>
 </body>
 </html>
+
+<script>
+    $(function () {
+        $("td").on("click",function() {
+            if (this.offsetWidth < this.scrollWidth) {
+                var that = this;
+                var text = $(this).text();
+                layer.alert(text);
+            }
+        });
+    })
+</script>
