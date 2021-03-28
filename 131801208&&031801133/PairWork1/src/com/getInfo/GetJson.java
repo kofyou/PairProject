@@ -7,15 +7,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.mysql.jdbc.log.Log;
 
 import jdk.nashorn.internal.parser.Lexer;
 
@@ -39,16 +42,25 @@ public class GetJson {
 							//List<Map<String, Object>> list = JSONObject.parseObject(readJson, new TypeReference<List<Map<String, Object>>>() {} );
 							JSONObject jsonObject = JSONObject.parseObject(readJson);
 							
+							Map<String,String> stringMap =new HashMap<>();
+							Set<String> keys = jsonObject.keySet();
+							Iterator<String> iterator = keys.iterator();
+							while(iterator.hasNext()){
+								String key = (String) iterator.next();
+								System.out.printf(key+" ");
+								stringMap.put(key,jsonObject.getString(key));
+							}
+					
 							//JSONArray jsonArray = JSONArray.fromObject(jsonObject);
 							
 							
-							System.out.println(jsonObject.toJSONString());
+							//System.out.println(jsonObject.toJSONString());
 							/*for (Map<String, Object> map : list) {
 					            for (String s : map.keySet()) {
 					                System.out.print(map.get(s) + "  ");
 					            }
 					        }*/
-							System.out.println(readJson.length());
+							//System.out.println(readJson.length());
 //							System.out.println(readJson.toString());
 							/*JSONObject jsonObject = JSONObject.parseObject(readJson);
 				            System.out.println(JSON.toJSONString(jsonObject));*/
