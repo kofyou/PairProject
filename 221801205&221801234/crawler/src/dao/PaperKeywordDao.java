@@ -35,9 +35,26 @@ public class PaperKeywordDao {
 	
 	public LinkedList<PaperKeywordBean> searchKeywordListByName(String name){
 		LinkedList<PaperKeywordBean> beans = new LinkedList<PaperKeywordBean>();
-		String sql = "select * from paper where name like '?'";
+		String sql = "select * from name_keyword where name = ?";
 		Connection conn = JDBCUtil.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				PaperKeywordBean bean = new PaperKeywordBean();
+				bean.setName(name);
+				bean.setKeyword(rs.getString("keyword"));
+				beans.add(bean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.release(conn, ps, rs);
+		}
+		return beans;
+		
 	}
 }
