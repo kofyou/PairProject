@@ -287,34 +287,40 @@ public class ItemsDao {
     }
     
     /**
-     * 获取排名第一热词3年的出现数据
+     * 获取排名前三热词3年的出现数据
+     * @param kw 排名第几的热词
      * @return
      */
-    public int key1YearNum() {
+    public int[] keyYearNum(int kw) {
         String allKw = getKeywordsFromDB();
         String[] topkw = words(getHotkw(allKw));
         
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        
+        int year = 2016;
+        int[] num = new int[3];
+        
         try {
             conn = DBHelper.getConnection();
-            String sql = "select * from paperslist where conference like ? and keyword like ?;"; // SQL语句
-            stmt = conn.prepareStatement(sql);
-            String y2016 = "%2016%";
-            String kw1 = "%"+ topkw[0] + "%";
-            stmt.setString(1, y2016);
-            stmt.setString(2, kw1);
-            rs = stmt.executeQuery();
-            int num2016 = 0;
-            while (rs.next()) {
-                num2016++;
+            for(int i = 0;i < 3;i++) {
+                String sql = "select * from paperslist where conference like ? and keyword like ?;"; // SQL语句
+                stmt = conn.prepareStatement(sql);
+                String y = "%" + year + "%";
+                String kw1 = "%"+ topkw[kw] + "%";
+                stmt.setString(1, y);
+                stmt.setString(2, kw1);
+                rs = stmt.executeQuery();
+                while (rs.next()) {
+                    num[i]++;
+                }
+                year += 2;
             }
-            System.out.println(num2016);
-            return num2016;
+            return num;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return -1;
+            return null;
         } finally {
             // 释放数据集对象
             if (rs != null) {

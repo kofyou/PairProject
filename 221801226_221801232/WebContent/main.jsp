@@ -61,6 +61,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- 论文循环开始 -->
                 <% 
                     ItemsDao itemsDao = new ItemsDao(); 
+                //三年最热热词出现次数测试
+                    int[] num = itemsDao.keyYearNum(0);
+                    for(int i=0;i<3;i++){
+                        System.out.println(num[i]+" ");
+                    }
                     ArrayList<items> list = new ArrayList<items>();
                     if(request.getParameter("key")!=null){
                         list = itemsDao.getItemsByTitle(request.getParameter("key"));
