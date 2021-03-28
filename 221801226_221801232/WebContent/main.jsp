@@ -61,10 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- 论文循环开始 -->
                 <% 
                     ItemsDao itemsDao = new ItemsDao(); 
-                    String hotword = itemsDao.getKeywordsFromDB();
-                    List<Map.Entry<String, Integer>> kwList = itemsDao.getHotkw(hotword);
-                    String[] topKw = itemsDao.words(kwList);
-                    int[] topKwNum = itemsDao.num(kwList);
                     ArrayList<items> list = new ArrayList<items>();
                     if(request.getParameter("key")!=null){
                         list = itemsDao.getItemsByTitle(request.getParameter("key"));
