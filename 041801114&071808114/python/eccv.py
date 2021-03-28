@@ -3,16 +3,17 @@ import os
 import json
 import pymysql
 
+db = pymysql.connect(host='####',user='####',password='####',database='####')
 cursor = db.cursor()
 
 parent = '论文数据/ECCV'
-for cvpr in os.listdir(parent):
-    with open(parent + '/' + cvpr, 'r', encoding='utf-8') as f:
+for eccv in os.listdir(parent):
+    with open(parent + '/' + eccv, 'r', encoding='utf-8') as f:
         data = json.load(f)
         try:
             sql = "INSERT INTO posts(title, keywords, abstract, url) VALUES (%s, %s, %s, %s)"
             cursor.execute(sql, (data["论文名称"], ','.join(data["关键词"]), data["摘要"], data["原文链接"]))
-            db.commit()
+            db.commit() 
         except Exception as e:
             print(e)
             db.rollback()
