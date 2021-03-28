@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 李星源
+ * DataService实现类
+ *
  * @date 2021/03/25
  */
 @Service
@@ -22,6 +23,11 @@ public class DataServiceImpl implements DataService {
     @Autowired
     private PaperMapper paperMapper;
 
+    /**
+     * 获取top500热词
+     *
+     * @return
+     */
     @Override
     public List<Map.Entry<String, Integer>> getTop500() {
         List<Paper> papers = paperMapper.selectAll();
@@ -43,6 +49,13 @@ public class DataServiceImpl implements DataService {
         return words.subList(0, 500);
     }
 
+    /**
+     * 获取热词趋势
+     *
+     * @param meeting
+     * @param years
+     * @return
+     */
     @Override
     public List<Word> getTrendWord(String meeting, List<String> years) {
         List<Paper> papers = paperMapper.selectByMeeting(meeting);
@@ -98,6 +111,12 @@ public class DataServiceImpl implements DataService {
         return res;
     }
 
+    /**
+     * 获取论文数量
+     *
+     * @param meeting
+     * @return
+     */
     @Override
     public int getPaperCount(String meeting) {
         return paperMapper.readCount(meeting);

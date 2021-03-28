@@ -8,25 +8,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author 李星源
+ * 跨域过滤器
+ *
  * @date 2021/03/25
  */
 @Component
 public class CorsFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
         throws IOException, ServletException {
-        HttpServletResponse res = (HttpServletResponse) response;
-        res.addHeader("Access-Control-Allow-Credentials", "true");
-        res.addHeader("Access-Control-Allow-Origin", "*");
-        res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-        res.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
-        if (((HttpServletRequest) request).getMethod().equals("OPTIONS")) {
-            response.getWriter().println("ok");
-            return;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        response.addHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Cache-Control,Pragma," +
+            "Content-Type,Token, Content-Type");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        String method = request.getMethod();
+        if (method.equalsIgnoreCase("OPTIONS")) {
+            servletResponse.getOutputStream().write("Success".getBytes("utf-8"));
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
-        chain.doFilter(request, response);
     }
     @Override
     public void destroy() {
