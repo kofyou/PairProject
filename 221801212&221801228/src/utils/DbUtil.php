@@ -1,5 +1,6 @@
 <?php
-require_once("db.config.php");
+//require_once("db.config.php");
+require_once(dirname(__FILE__)."\\..\\config\\db.config.php");
 class DbUtil
 {
     private static $db = null;
@@ -20,9 +21,3 @@ class DbUtil
         return $db;
     }
 }
-
-$con = DbUtil::getConnection();
-if ($con->connect_error)
-    echo "faile\n";
-else
-    echo "succ\n";

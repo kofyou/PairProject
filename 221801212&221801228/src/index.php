@@ -1,2 +1,2 @@
-<%
-echo hello world
+<?php
+echo "gekk";
