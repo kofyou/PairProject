@@ -36,13 +36,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="menu">
 
-            <button id="papersearch">论文检索</button><br>
+            <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">论文列表</button><br>
+            <a href="collection.jsp"><button id="papersearch">论文收藏夹</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">热门领域</button><br>
+            <a href="top.jsp"><button id="papersearch">热门领域</button><br></a>
         </div>
         <div id="menu">
             <button id="papersearch">研究热词</button><br>
@@ -51,10 +51,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="section">
         <form action="">
 
-            <input type="text" name="key" value="根据论文题目查找">
+            <input type="text" name="key" value="" placeholder="输入论文题目查找   支持模糊查询">
             <a href="main.jsp?keyword=document.getElementById("key").value"><input type="submit" value="搜索"></a>
         </form>
-        <table id="table" width="750" height="60" cellpadding="0" cellspacing="0" border="0">
+        <table id="table" >
             <tr>
                 <td>
                 
@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </dt>
                     
                     <dd class="dd_abstract">abstract:&nbsp;&nbsp;&nbsp;&nbsp;<%=item.getAbstracts() %></dd> 
-                    <dd class="dd_conference">conference: &nbsp;&nbsp;<%=item.getConference() %></dd> 
+                    <dd class="dd_conference">来源会议: &nbsp;&nbsp;<%=item.getConference() %></dd> 
                     
                     </dl>
                 </div>

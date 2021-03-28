@@ -101,7 +101,8 @@ input[type=submit] {
 
 div dl {
     color: rgb(16, 46, 16);
-    margin: px;
+    margin: 1px;
+    padding: 20px;
     border-style: dotted dashed solid double;
     border-radius: 12px;
     background: rgba( 255, 255, 255, 1);
