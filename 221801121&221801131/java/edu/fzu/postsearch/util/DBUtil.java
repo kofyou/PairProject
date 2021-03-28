@@ -1,9 +1,13 @@
 package edu.fzu.postsearch.util;
 
+import edu.fzu.postsearch.dao.PostDAO;
+import edu.fzu.postsearch.dao.PostDAOimpl;
+import edu.fzu.postsearch.pojo.Post;
+
 import java.sql.*;
+import java.util.List;
 
 public class DBUtil {
-
 	static String loginName = "root";
 	static String password = "root";
 
@@ -44,5 +48,8 @@ public class DBUtil {
 
 	public static void main(String[] args) throws SQLException {
 		System.out.println(getConnection());
+		PostDAO postDAO = new PostDAOimpl();
+		List<Post> posts = postDAO.listSearch("");
+		System.out.println(posts.get(0).getTitle());
 	}
 }

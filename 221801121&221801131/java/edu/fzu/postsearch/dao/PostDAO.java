@@ -7,7 +7,7 @@ public interface PostDAO {
     int getTotal();
     void add(Post post);
     void update(Post post);
-    void delete(String title) ;
+    void delete(int id) ;
     Post get(String title);
     List<Post> list();
     public List<Post> listSearch(String search);
