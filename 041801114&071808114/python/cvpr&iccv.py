@@ -3,7 +3,7 @@ import os
 import json
 import pymysql
 
-db = pymysql.connect(host='blog.tozzger.info',user='######',password='######',database='######')
+db = pymysql.connect(host='####',user='####',password='####',database='####')
 cursor = db.cursor()
 def foo(dir):
     for file in os.listdir(dir):
@@ -12,11 +12,12 @@ def foo(dir):
             out = {}
             out["title"] = data["formulaStrippedArticleTitle"]
             out["abstract"] = data.get("abstract" , "")
-            out["keywords"] = ','.join([value for key, value in [value for value in data.get("keywords", {})]])
+            out["keywords"] = ','.join(sum([value for value in [value["kwd"] for value in [value for value in data.get("keywords", {})]]],[]))
             out["url"] = data["doiLink"]
             try:
                 sql = "INSERT INTO posts(title, keywords, abstract, url) VALUES (%s, %s, %s, %s)"
-                cursor.execute(sql, (out["title"], out["keywords"], out["abstract"], out["url"]))
+                cursor.execute(sql, (out["title"], out["keywords"],
+                out["abstract"], out["url"]))
                 db.commit()
             except Exception as e:
                 print(e)
