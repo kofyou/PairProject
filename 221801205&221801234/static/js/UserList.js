@@ -29,6 +29,7 @@ let vm = new Vue({
             //     headers: {'X-Custom-Header': 'foobar'}
             // });
 
+            var that=this;
             axios.post(url, data,{
                 // headers: {
                 //     'Content-Type': 'application/json;charset=UTF-8'
@@ -36,7 +37,7 @@ let vm = new Vue({
             }).then(function (response) {
                     // console.log(response);
                     // 获取服务端返回的数据
-                    vm.$data.list = response.data;
+                    that.list = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -45,14 +46,14 @@ let vm = new Vue({
     }
 });
 //页面跳转
-new Vue({
-    el: "#app2",
-    methods: {
-        func() {
-            window.location.href="static/html/study.html";
-        }
-    }
-});
+// new Vue({
+//     el: "#app2",
+//     methods: {
+//         func() {
+//             window.location.href="static/html/study.html";
+//         }
+//     }
+// });
 
 
 // this.$router.push({path: ''/order/index''});

@@ -1,0 +1,20 @@
+.listContainer{
+    background: lightcyan;
+    border:1px solid #BBFFE3;
+    border-radius: 10px;
+    /*text-align: center;*/
+}
+
+.listContainer nav{
+    text-align: center;
+}
+
+.listContainer button{
+    background: cornflowerblue;
+}
+
+.container{
+    border:1px solid #BBFFE3;
+    border-radius: 10px;
+    height: 700px;
+}
