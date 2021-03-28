@@ -1,0 +1,30 @@
+@charset "UTF-8";
+#body {
+	background-color: #1B6D85;
+}
+
+#header {
+    /*background-color:red;*/
+    text-align:center;
+    padding:15px;
+}
+#content {
+	margin:150px;
+	height:100%;
+	text-align:center;
+}
+
+#biaoti {
+	font-size: 26px;
+}
+
+.zhengwen{
+	background-color: #f3f3f3;
+}
+
+.btn1 {
+	background-color: #5BC0DE;
+	font-size: 2em;
+	height:150px;
+	width:240px;
+}
