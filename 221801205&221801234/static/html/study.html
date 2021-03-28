@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<div id="app" class="aa" >
+<div id="app" class="aa" v-html="message==true?'t':'f'">
 <!--	插值表达式-->
-	{{message}}
+<!--	{{message}}-->
 </div >
 <div id="app2">
 	<span v-bind:title="message">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
@@ -27,7 +27,7 @@
 <div id="app4">
 	<ol>
 		<li v-for="(todo,index) in todos">
-			{{ todo.text }}{{index}}
+			<h1>{{ todo.text }}{{index}}</h1>
 		</li>
 	</ol>
 </div>
@@ -62,8 +62,9 @@
 <!--</div>-->
 
 <div id="app11">
+
 	<img v-bind:src="imgSrc" alt="" :title="imgTitle"/>
-	<img :src="imgSrc" :class="{active:isActive}" @click="change"/>
+	<img :src="imgSrc" :class="{active:isActive}" @click="change(5)"/>
 	<img v-bind:src="imgSrc" alt=""/>
 </div>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -96,7 +97,7 @@
             /* 不能挂载在html body中 */
 			el:"#app",
 			data:{
-			    message: "hello world!"
+			    message: true
 			}
 		});
         var app2 = new Vue({
@@ -198,8 +199,9 @@
 	            isActive:false
             },
 	        methods:{
-                change:function () {
-					this.isActive = !this.isActive;
+                change:function (s) {
+                    alert(s);
+					//this.isActive = !this.isActive;
                 }
 	        }
         });

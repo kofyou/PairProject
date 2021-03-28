@@ -1,5 +1,6 @@
 // 服务端请求地址
 let url = 'http://localhost:8080/MyShop_war_exploded/User';
+
 let vm = new Vue({
     el: "#app",
     data: {
@@ -8,6 +9,7 @@ let vm = new Vue({
         //向后端传递数据
         name: 'sww',
         saying: '123',
+
     },
     methods: {
         add() {
@@ -42,6 +44,22 @@ let vm = new Vue({
         }
     }
 });
+//页面跳转
+new Vue({
+    el: "#app2",
+    methods: {
+        func() {
+            window.location.href="static/html/study.html";
+        }
+    }
+});
+
+
+// this.$router.push({path: ''/order/index''});
+// this.$router.push({path: '/order/page1',query:{ id:'2'}});
+// this.$router.push({name: '/order/page2',params:{ id:'6'}});
+
+
 // axios.get(url, {})
 //     .then(function (response) {
 //         vm.$data.list = response.data;
