@@ -1,6 +1,8 @@
 package serializer
 
-import "backend/model"
+import (
+	"backend/model"
+)
 
 type Paper struct {
 	Id				int64		`json:"id"`
