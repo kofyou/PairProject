@@ -12,18 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import bean.KeywordBean;
 import bean.PaperBean;
 import bean.PaperKeywordBean;
-import dao.KeywordDao;
 import dao.PaperDao;
 import dao.PaperKeywordDao;
 
 /**
- * Servlet implementation class PaperListByTitle
+ * Servlet implementation class PaperListDetailByTitle
  */
-@WebServlet("/PaperListByTitle")
-public class PaperListByTitle extends HttpServlet {
+@WebServlet("/PaperListDetailByTitle")
+public class PaperListDetailByTitle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -43,34 +41,31 @@ public class PaperListByTitle extends HttpServlet {
 		String name = reqJson.getString("title");
 		
 		PaperDao paperDao = new PaperDao();
-		LinkedList<PaperBean> paperList = paperDao.searchPaperListByName(name);
-		//LinkedList<PaperBean> paperList = paperDao.searchPaperListByName("Accurate");
+		PaperBean paper = paperDao.searchPaperByName(name);
+		//PaperBean paper = paperDao.searchPaperByName("3D human pose search using oriented cylinders");
 		//System.out.println(paperList.size());
 		PaperKeywordDao paperKeywordDao = new PaperKeywordDao();
-		JSONArray ja = new JSONArray();
-		for (PaperBean paper:paperList) {
-			JSONObject jo = new JSONObject();
-			jo.put("name", paper.getName());
-			jo.put("meeting", paper.getMeeting());
-			jo.put("year", paper.getYear());
-			LinkedList<PaperKeywordBean> keywordList = paperKeywordDao.searchKeywordListByName(paper.getName());
+		JSONObject jo = new JSONObject();
+		jo.put("name", paper.getName());
+		jo.put("meeting", paper.getMeeting());
+		jo.put("year", paper.getYear());
+		jo.put("url", paper.getUrl());
+		jo.put("abstract", paper.getAbstractt());
+		LinkedList<PaperKeywordBean> keywordList = paperKeywordDao.searchKeywordListByName(paper.getName());
 			
 			//System.out.println(keywordList.size());
-			String keywords = "";
-			int cnt = 0;
-			for (PaperKeywordBean keyword:keywordList) {
-				keywords += keyword.getKeyword();
-				keywords += ",";
-				cnt ++;
-				if (cnt == 2) break;
-			}
-			if (keywords.length() != 0)
-				keywords = keywords.substring(0, keywords.length()-1);
-			jo.put("keywords", keywords);
-			ja.add(jo);
+		String keywords = "";
+		int cnt = 0;
+		for (PaperKeywordBean keyword:keywordList) {
+			keywords += keyword.getKeyword();
+			keywords += ",";
 		}
-		response.getWriter().write(ja.toJSONString());
+		if (keywords.length() != 0)
+			keywords = keywords.substring(0, keywords.length()-1);
 		
+		jo.put("keywords", keywords);
+
+		response.getWriter().write(jo.toJSONString());
 	}
 
 }

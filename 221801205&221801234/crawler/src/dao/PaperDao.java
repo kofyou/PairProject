@@ -88,4 +88,41 @@ public class PaperDao {
 		}
 		return beans;
 	}
+	
+//	public LinkedList<PaperBean> searchPaperListByNameList(LinkedList<String> nameList){
+//		LinkedList<PaperBean> beans = new LinkedList<PaperBean>();
+//		
+//		for (String name:nameList) {
+//			beans.addAll(searchPaperListByName(name));
+//		}
+//		
+//		return beans;
+//	}
+	public PaperBean searchPaperByName(String name){
+		PaperBean bean = new PaperBean();
+		String sql = "select * from paper where name = ?";
+		Connection conn = JDBCUtil.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			//System.out.println("11");
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				//System.out.println("123"+rs.getString("name"));
+				bean.setName(rs.getString("name"));
+				bean.setYear(rs.getString("year"));
+				bean.setMeeting(rs.getString("meeting"));
+				bean.setAbstractt(rs.getString("abstract"));
+				bean.setUrl(rs.getString("url"));
+				//accesstimes
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.release(conn, ps, rs);
+		}
+		return bean;
+	}
 }
