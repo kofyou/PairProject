@@ -7,7 +7,6 @@
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
-<link href="C:\Users\apple\Desktop\QuickFind.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -19,7 +18,8 @@
 			<li><a href="file:///C:/Users/apple/Desktop/QuickFind.html">关于我们</a></li>
 		</ul>
 	</div>
-	<!-- TemplateBeginEditable name="1" -->1<!-- TemplateEndEditable -->
+	<!-- TemplateBeginEditable name="edit1" -->edit1<!-- TemplateEndEditable -->
+	
 	
 </body>
 </html>
