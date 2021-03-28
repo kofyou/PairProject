@@ -82,3 +82,56 @@
     background-color: rgb(64, 116, 54);
     color: white;
 }
+.removeItem{
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  width: 0px;
+  height: 30px;
+  line-height: 30px;
+  position: fixed;
+  left: 60px;
+  top:120px;
+  border:0px solid;
+  border-radius: 3px;
+  transition: all linear .2s;
+}
+.removeItem:hover{
+  background-color: rgb(64, 116, 54);
+  color: white;
+}
+
+.icon-shanchu{
+  cursor: pointer;
+  font-size: 25px;
+  text-align: center;
+  position: absolute;
+  right:0;
+  transition: all ease .2s;
+}
+.icon-shanchu:hover{
+  color:rgb(64, 116, 54);
+}
+
+.deleteLike{
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    position: fixed;
+    left: -110px;
+    top:40px;
+    border:1px solid;
+    border-radius: 3px;
+    transition: all linear .2s;
+}
+.deleteLike:hover{
+  background-color: rgb(64, 116, 54);
+  color: white;
+}
