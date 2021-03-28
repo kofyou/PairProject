@@ -41,7 +41,7 @@ public class UserController {
      * 用户登录
      *
      * @param user  必须包含account和password
-     * @return the result
+     * @return the result 包含用户名
      */
     @PostMapping("/login")
     public Result login(@RequestBody User user, HttpServletRequest request) {
@@ -53,7 +53,7 @@ public class UserController {
             result = Result.error("-1","账号未注册");
         }else {
             if (password.equals(loginUser.getPassword())) {
-                result = Result.success();
+                result = Result.success(loginUser.getUsername());
                 HttpSession session = request.getSession();//使用session
                 session.setAttribute("id",loginUser.getId());
             }else {

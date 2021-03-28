@@ -26,4 +26,12 @@ public interface KeywordDao extends JpaRepository<Keyword,Integer> {
             "limit 10",nativeQuery = true)
     List<String> findTopTenFrequencyKeywordByUserId(Integer userId);
 
+    /**
+     * 通过论文id查询该论文的所有关键词
+     *
+     * @param paperId the paper id 论文id
+     * @return the list 关键词列表
+     */
+    @Query(value = "select * from keywords where paperId = ?1",nativeQuery = true)
+    List<Keyword> findKeywordsByPaperId(Integer paperId);
 }

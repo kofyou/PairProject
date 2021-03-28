@@ -1,10 +1,9 @@
 package cn.edu.fzu.papermanage.controller;
 
 import cn.edu.fzu.papermanage.common.Result;
-import cn.edu.fzu.papermanage.dao.PaperDao;
 import cn.edu.fzu.papermanage.entity.Paper;
+import cn.edu.fzu.papermanage.entity.PaperWithKeywords;
 import cn.edu.fzu.papermanage.service.UserPaperService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -70,5 +69,21 @@ public class UserPaperController {
     public Result deleteUserPaperByUserIdAndPaperId(@SessionAttribute Integer id,@RequestParam Integer paperId) {
         userPaperService.deleteUserPaperByUserIdAndPaperId(id,paperId);
         return Result.success();
+    }
+
+    /**
+     * 根据关键词获取用户所有包含该关键词的论文
+     *
+     * @param id       the id 用户id
+     * @param keyword  the keyword 关键词
+     * @param pageNum  the page num 页数 默认为1
+     * @param pageSize the page size 单页论文数 默认为5
+     * @return the user full paper by keyword 所有包含传入关键词的论文（包括关键词）
+     */
+    @GetMapping("/keyword")
+    public Result<List<PaperWithKeywords>> getUserFullPaperByKeyword(@SessionAttribute Integer id
+            ,@RequestParam String keyword,@RequestParam(defaultValue = "1") Integer pageNum
+            ,@RequestParam(defaultValue = "5") Integer pageSize) {
+        return Result.success(userPaperService.findUserFullPapersByKeyword(pageNum,pageSize,id,keyword));
     }
 }
