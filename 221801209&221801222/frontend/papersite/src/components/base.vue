@@ -2,49 +2,39 @@
   <div class = "base">
     <div id = "head">
 
-      <el-row :gutter="20">
+      <el-row>
         <el-col :span="3" >
-          <router-link to = "/index">
-            <div class="grid-content bg-purple" :class = "{active : isActive['index']}"  @click= 'changeState("index")' >
+          <router-link to="/index" style="text-decoration: none !important;">
+            <div class="grid-content bg-purple" :class = "{active : isActive['index']}" >
               <span>主页</span>
             </div>
           </router-link>
         </el-col>
 
         <el-col :span="3">
-          <router-link to = "/starlist">
-            <div class="grid-content bg-purple"  :class = "{active : isActive['starlist']}"  @click= 'changeState("starlist")'>
+          <router-link to="starlist"  style="text-decoration: none !important;" >
+            <div class="grid-content bg-purple"  :class = "{active : isActive['starlist']}" >
               <span>我的收藏</span>
             </div>
           </router-link>
         </el-col>
 
         <el-col :span="3">
-          <router-link to = "/analysis">
-            <div class="grid-content bg-purple" :class = "{active : isActive['analysis']}"  @click= 'changeState("analysis")' >
+          <router-link to= "/analysis" style="text-decoration: none !important;">
+            <div class="grid-content bg-purple" :class = "{active : isActive['analysis']}" >
               <span>顶会数据</span>
             </div>
           </router-link>
         </el-col>
-
-
-        <el-col :span="3" :offset="10">
-          <router-link to = "/index">
-            <div class="grid-content bg-purple"  :class = "{active : isActive['user']}"  @click= 'changeState("user")'>
-              <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar><span>{{ username }}</span>
-            </div>
-          </router-link>
-        </el-col>
-
       </el-row>
     </div>
-    <el-divider content-position="left"></el-divider>
   </div>
 </template>
 
 <script>
 export default {
   name: "login",
+  props:['type'],
   data(){
     return {
       username: "DemoJi",
@@ -56,30 +46,33 @@ export default {
      },
     }
   },
+  created() {
+    console.log(this.type);
+    this.isActive[this.type] = true;
+  },
   methods: {
     doLogin() {
-
     },
     goToRegister() {
 
-    },
-    changeState(click_type){   //传入参数为点击的类型，例如主页，数据分析等等
-      let key;
-      for(key in this.isActive){
-        this.$set(this.isActive,key,false);
-        // this.isActive[key] = false;
-      }
-      let type = click_type.toString();
-      this.$set(this.isActive,type,true);
-      // this.isActive[type] = true;
-      // this.$forceUpdate();
     }
+    // changeState(click_type){   //传入参数为点击的类型，例如主页，数据分析等等
+    //   let key;
+    //   for(key in this.isActive){
+    //     this.$set(this.isActive,key,false);
+    //     // this.isActive[key] = false;
+    //   }
+    //   let type = click_type.toString();
+    //   this.$set(this.isActive,type,true);
+    //   // this.isActive[type] = true;
+    //   // this.$forceUpdate();
+    // }
   }
 }
 </script>
 
 //scoped只影响本组件
-<style scoped>
+<style scope>
 
 el-row {
   margin-bottom: 20px;
@@ -115,7 +108,9 @@ el-col {
 }
 
 .base{
-  background-color: cornsilk;
+  background-color: black;
+  height: 60px;
+  margin-bottom: 50px;
 }
 
 /*.inactive-item{*/

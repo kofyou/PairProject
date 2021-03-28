@@ -97,7 +97,7 @@ export default {
 //scoped只影响本组件
 <style scoped>
 .index-view {
-  background-image: url("../assets/background.jpg");
+  /*background-image: url("../assets/background.jpg");*/
   background-attachment: fixed;
   background-size: 100% 100%;
   background-repeat: no-repeat;

@@ -1,6 +1,6 @@
 <template>
   <div id = "starlist" class = "root-div">
-    <Base></Base>
+    <Base type="starlist"></Base>
     <div class = "main">
 
       <div id = "search-div">
@@ -148,7 +148,7 @@ export default {
     /*搜索响应函数*/
     doSearch(searchWord){
       const that = this;
-      this.axios.get("/star/list", {withCredentials: true})
+      this.axios.get("/api/star/list", {withCredentials: true})
         .then(
           function (response){
             console.log("内容");
@@ -161,13 +161,13 @@ export default {
               if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
                 that.tableData[i]["no"] = "无";
             }
+            this.handleSizeChange(that.tableMes.eachPageItem);
           }
         ).catch(
         function (error){
           console.log(error);
         }
       );
-      this.handleSizeChange(this.tableMes.eachPageItem);
       console.log(searchWord);
     },
     doStar(){
@@ -176,7 +176,7 @@ export default {
       clearTimeout(t)
       t = setTimeout(function (){
         console.log(that.selectedAId);
-        that.axios.post('/star/add', {
+        that.axios.post('/apis/star/add', {
           aid: that.selectedAId
         }, {withCredentials: true})
           .then(
@@ -263,7 +263,7 @@ export default {
   margin-top: 3%;
   margin-left: auto;
   margin-right: auto;
-  background: RGBA(229,217,215,0.6);
+  background: RGBA(102, 102, 102,0.9);
   min-height: 500px;
   box-shadow: 0 1px 1px !important;
   border-radius: 15px;

@@ -1,7 +1,7 @@
 <template>
   <div class = "index-view">
-<!--    回到主页按钮-->
-<!--    <i class="el-icon-back"></i>-->
+    <!--    回到主页按钮-->
+    <!--    <i class="el-icon-back"></i>-->
     <div id = my-title-div>
       <span id = "my-title"> 顶会论文 </span>
     </div>
@@ -25,11 +25,11 @@
         </tr>
         <tr><td>&nbsp;&nbsp;</td></tr>
         <tr>
-            <td colspan="2">
-                <!-- 点击事件的两种不同的写法v-on:click和 @click-->
-                <!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
-                <el-button id = "login-button" style="width: 300px" type="primary" @click="doLogin">登录</el-button>
-            </td>
+          <td colspan="2">
+            <!-- 点击事件的两种不同的写法v-on:click和 @click-->
+            <!--<el-button style="width: 300px" type="primary" v-on:click="doLogin">登录</el-button>-->
+            <el-button id = "login-button" style="width: 300px" type="primary" @click="doLogin">登录</el-button>
+          </td>
         </tr>
         <tr>
           <td colspan="2">

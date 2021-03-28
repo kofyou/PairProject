@@ -1,6 +1,6 @@
 <template>
   <div id="analysis" class="root-div">
-    <Base></Base>
+    <Base type= "analysis"></Base>
     <div className="main">
     </div>
   </div>
