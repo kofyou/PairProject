@@ -89,15 +89,15 @@ public class PaperDao {
 		return beans;
 	}
 	
-//	public LinkedList<PaperBean> searchPaperListByNameList(LinkedList<String> nameList){
-//		LinkedList<PaperBean> beans = new LinkedList<PaperBean>();
-//		
-//		for (String name:nameList) {
-//			beans.addAll(searchPaperListByName(name));
-//		}
-//		
-//		return beans;
-//	}
+	public LinkedList<PaperBean> searchPaperListByNameList(LinkedList<String> nameList){
+		LinkedList<PaperBean> paperList = new LinkedList<PaperBean>();
+		for (String name:nameList) {
+			PaperBean bean = searchPaperByName(name);
+			paperList.add(bean);
+		}
+		return paperList;
+	}
+	
 	public PaperBean searchPaperByName(String name){
 		PaperBean bean = new PaperBean();
 		String sql = "select * from paper where name = ?";
@@ -125,4 +125,5 @@ public class PaperDao {
 		}
 		return bean;
 	}
+	
 }

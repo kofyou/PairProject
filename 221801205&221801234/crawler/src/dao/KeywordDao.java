@@ -61,7 +61,7 @@ public class KeywordDao {
 			JDBCUtil.release(conn, ps, null);
 		}
 	}
-	//存在则出现次数+1，否则添加
+	
 	public void insertOrUpdateOne(KeywordBean keyword) {	
 		if (isExistDabase(keyword)) {
 			updateAppeartimes(keyword);
@@ -76,4 +76,29 @@ public class KeywordDao {
 			insertOrUpdateOne(keyword);
 		}
 	}
+	
+	public LinkedList<KeywordBean> searchMaxTen(){
+		LinkedList<KeywordBean> keywordList = new LinkedList<KeywordBean>();
+		String sql = "select * from keywords order by appeartimes desc limit 10";
+		Connection conn = JDBCUtil.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				KeywordBean keyword = new KeywordBean();
+				keyword.setKeyword(rs.getString("keyword"));
+				keyword.setAppeartimes(rs.getInt("appeartimes"));
+				keywordList.add(keyword);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.release(conn, ps, rs);
+		}
+		return keywordList;
+	}
+	
+	
 }

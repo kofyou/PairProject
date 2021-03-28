@@ -57,4 +57,25 @@ public class PaperKeywordDao {
 		return beans;
 		
 	}
+	
+	public LinkedList<String> searchPaperNameListBykeyword(String keyword){
+		String sql = "select name from name_keyword where keyword = ?";
+		Connection conn = JDBCUtil.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		LinkedList<String> nameList = new LinkedList<String>();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, keyword);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				nameList.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.release(conn, ps, rs);
+		}
+		return nameList;
+	}
 }
