@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 
 public class DBUtil{
     static String driver = "com.mysql.jdbc.Driver";
-    static String ip="";    //IP名字
-    static int port=0;      //端口
-    static String database = "";    //数据库名字
+    static String ip="rm-2zeo875ys8j8pq6epuo.mysql.rds.aliyuncs.com";    //IP名字
+    static int port=3306;      //端口
+    static String database = "tmall";    //数据库名字
     static String encoding = "UTF-8";
-    static String loginName = "";
-    static String password = "";
+    static String loginName = "wzn";
+    static String password = "Ww123456";
     static int firSize = 10;    //初始化线程池大小
     static int maxId = 20;      //最大空闲数量
     static int minId = 5;       //最小空闲数量
