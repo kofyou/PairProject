@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <meta http-equiv="description" content="This is my page">
         <title>Paper Search For U</title>
         
-	    <link rel="stylesheet" type="text/css" href="css/styles.css">
+	    <link rel="stylesheet" type="text/css" href="css/mainStyles.css">
 	    
     </head>
 <body>
@@ -51,9 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>
                 <dl>
                 <dt>
-                    <a href="details.jsp?id=<%=item.getId()%>"></a>
+                    <a href="details.jsp?id=<%=item.getId()%>"><%=item.getTitle() %></a>
                 </dt>
-                <dd class="dd_title"><%=item.getTitle() %></dd> 
+                
                 <dd class="dd_abstract">abstract:&nbsp;&nbsp;&nbsp;&nbsp;<%=item.getAbstracts() %></dd> 
                 <dd class="dd_conference">conference: &nbsp;&nbsp;<%=item.getConference() %></dd> 
                 
