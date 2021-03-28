@@ -2375,3 +2375,47 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
+
+/**
+*循环创建柱子，代码是for循环中的代码，数据根据自己业务改变
+*
+*/
+function createLeftBar(i,data){
+	var planWidth = createValue(data.planProcess,"%") == "--"?"0":createValue(data.planProcess,"%");//计划进度
+	var realWidth = createValue(data.realProcess,"%") == "--"?"0":createValue(data.realProcess,"%");//实际进度
+	var yqWidth = parseFloat(data.planProcess) - parseFloat(data.realProcess);//延期进度
+	var realBorderRadius = "";//实际进度条 画圆角
+	if(parseFloat(data.realProcess) > 0 && yqWidth > 0){
+		realBorderRadius = "border-radius: 15px 0 0 15px;";
+	}else if(parseFloat(data.realProcess) > 0 && yqWidth <= 0){
+		realBorderRadius = "border-radius: 15px;";
+	}
+	var yqBorderRadius = "";//延期进度条 画圆角
+	if(parseFloat(data.realProcess) <= 0 && yqWidth > 0){
+		yqBorderRadius = "border-radius: 15px;";
+	}else if(parseFloat(data.realProcess) > 0 && yqWidth > 0){
+		yqBorderRadius = "border-radius:0 15px 15px 0;";
+	}
+	var $div = '<div class="cloumn" style="">';
+		$div += '<div class="label_left">'+createValue(data.projectName,"")+'</div>';
+		$div += '<div class="content" id="bar0">';
+		$div += '<div style="width:100%;">';
+		$div += '<div class="progress">';
+		$div += '<span style="width: '+planWidth+';border-radius:15px;" class="green" data-tooltip="'+createValue(data.planNodeName,"")+'"><span style="color:#E6F5FA;">'+createValue(data.planNodeName,"")+'</span></span>';
+		$div += '</div>';
+		$div += '</div>';
+		$div += '<div style="width:100%;">';
+		$div += '<div class="progress">';
+		$div += '<span style="z-index:1;width: '+realWidth+';'+realBorderRadius+'" class="orange" data-tooltip="'+createValue(data.realNodeName,"")+'"><span style="color:#E6F5FA;">'+createValue(data.realNodeName,"")+'</span></span>';
+		if(yqWidth > 0){
+			$div += '<span style="width: '+yqWidth+'%;'+yqBorderRadius+'" class="red"></span>';
+		}
+		$div += '</div>';
+		$div += '</div>';
+		$div += '</div>';
+		$div += '<div class="label_right" style="flex-flow: column;">';
+		$div += '<div class="value plan_font_cls">'+createValue(data.planProcess,"%")+'</div>';
+		$div += '<div class="value real_font_cls">'+createValue(data.realProcess,"%")+'</div>';
+		$div += '</div> ';
+	$("#leftBar").append($div);	
+}
