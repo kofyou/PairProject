@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#header {
+	/*background-color:#FF0000;*/
+	margin:60px auto 0;
+	text-align:center;
+}
+
+#content {
+	/*position: relative;
+	background-color:#FF0000;*/
+	margin:50px 150px 50px 150px;
+	height:600px;
+}
+
+#btn {
+	position:absolute;
+	bottom: 0px;
+	left:250px;
+	right:250px;
+	padding: 0 auto;
+	text-align:center;
+}
+
+#exit {
+	margin:50px auto;
+	height:80px;
+	width:300px;
+	font-size:2em;
+}
