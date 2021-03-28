@@ -5,9 +5,11 @@
     <title>首页-顶会论文</title>
     <link rel="stylesheet" type="text/css" href="../static/info/css/reset.css">
     <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/info/css/jquery.pagination.css">
     <script type="text/javascript" src="../static/info/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="../static/info/js/main.js"></script>
     <script type="text/javascript" src="../static/info/js/index.js"></script>
+    <script type="text/javascript" src="../static/info/js/jquery.pagination.min.js"></script>
 </head>
 <body>
     <div class="header_con">
@@ -21,50 +23,42 @@
     </div>
     <div class="center_con">
         <ul class="list_con fl">
-            <li>
-                <a href="#" class="paper_title fl">日本史上最大IPO之一要来了：软银计划将手机业务分拆上市软银计划将手机业务分拆上市</a>
-                <a href="#" class="paper_detail fl">据日经新闻网，软银计划让旗下核心业务移动手机部门SoftBank Corp.分拆上市，或募资2万亿日元(约180亿美元)。随着软银逐步向投资公司转型，此举旨在给手机业务部门更多自主权。</a>
-                <div class="author_info fl">
-                    <div class="author fl">
-                        <img src="../static/info/images/person.png" alt="author">
-                        <a href="#">乐鸣</a>
+            {% for paper in data.paper %}
+             <li>
+                <a href="#" class="paper_title fl">{{ paper.title }}</a>
+                <span class="paper_detail fl">摘要：{{ paper.abstract }}</span>
+                <div class="type_info fl">
+                    <div class="type fl">
+                        <span>&emsp;所属顶会: {{ paper.typeandyear }}</span>
                     </div>
-                    <div class="time fl">2017-01-01 00:00:00</div>
+                    <div class="time fl">{{ paper.releasetime }}</div>
                 </div>
             </li>
-            <li>
-                <a href="#" class="paper_title fl">日本史上最大IPO之一要来了：软银计划将手机业务分拆上市</a>
-                <a href="#" class="paper_detail fl">据日经新闻网，软银计划让旗下核心业务移动手机部门SoftBank Corp.分拆上市，或募资2万亿日元(约180亿美元)。随着软银逐步向投资公司转型，此举旨在给手机业务部门更多自主权。</a>
-                <div class="author_info fl">
-                    <div class="source fl">
-                        来源：广州日报
-                    </div>
-                    <div class="time fl">2017-01-01 00:00:00</div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="paper_title fl">Contextual-Based Image Inpainting: Infer, Match, and Translate</a>
-                <span class="paper_detail fl">摘要：We study the task of image inpainting, which is to fill in
-                    the missing region of an incomplete image with plausible contents. To this end, we propose a learning-based
-                    approach to generate visually coherent completion given a high-resolution image.</span>
-                <div class="author_info fl">
-                    <div class="author fl">
-                        <img src="../static/info/images/person.png" alt="author">
-                        <a href="#">乐鸣</a>
-                    </div>
-                    <div class="time fl">2017-01-01 00:00:00</div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="paper_title fl">日本史上最大IPO之一要来了：软银计划将手机业务分拆上市</a>
-                <a href="#" class="paper_detail fl">据日经新闻网，软银计划让旗下核心业务移动手机部门SoftBank Corp.分拆上市，或募资2万亿日元(约180亿美元)。随着软银逐步向投资公司转型，此举旨在给手机业务部门更多自主权。</a>
-                <div class="author_info fl">
-                    <div class="source fl">
-                        来源：广州日报
-                    </div>
-                    <div class="time fl">2017-01-01 00:00:00</div>
-                </div>
-            </li>
+            {% endfor %}
+{#            <li>#}
+{#                <a href="#" class="paper_title fl">Contextual-Based Image Inpainting: Infer, Match, and Translate</a>#}
+{#                <span class="paper_detail fl">摘要：We study the task of image inpainting, which is to fill in#}
+{#                    the missing region of an incomplete image with plausible contents. To this end, we propose a learning-based#}
+{#                    approach to generate visually coherent completion given a high-resolution image.</span>#}
+{#                <div class="author_info fl">#}
+{#                    <div class="author fl">#}
+{#                        <a href="#">乐鸣</a>#}
+{#                    </div>#}
+{#                    <div class="time fl">2017-01-01 00:00:00</div>#}
+{#                </div>#}
+{#            </li>#}
+        <div id="pagination" class="page"></div>
+        <script>
+            $(function() {
+                $("#pagination").pagination({
+                    currentPage: {{ data.currentPage }},
+                    totalPage: {{ data.totalPage }},
+                    callback: function(current) {
+                        window.location.href = "/?p="+current;
+                    }
+                });
+            });
+        </script>
         </ul>
         <div class="rank_con fr">
             <div class="rank_title">
