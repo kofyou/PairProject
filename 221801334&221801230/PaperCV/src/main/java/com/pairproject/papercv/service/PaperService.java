@@ -19,11 +19,19 @@ public interface PaperService {
     List<Paper> getAll();
 
     /**
-     * 通过题目查询论文，论文不存在则爬取数据再返回
+     * 通过论文标题查询论文（模糊查询）
      *
-     * @param title 论文题目
-     * @return 论文
+     * @param title 论文标题
+     * @return 论文列表
      */
-    Paper getPaper(String title);
+    List<Paper> getPaper(String title);
+
+    /**
+     * 通过关键词查询论文
+     *
+     * @param keyWord 关键词
+     * @return
+     */
+    List<Paper> getPaperByKey(String keyWord);
 
 }

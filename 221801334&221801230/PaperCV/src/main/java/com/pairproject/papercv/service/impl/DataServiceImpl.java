@@ -7,7 +7,10 @@ import com.pairproject.papercv.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 李星源
@@ -36,7 +39,7 @@ public class DataServiceImpl implements DataService {
             }
         }
         List<Map.Entry<String, Integer>> words = new ArrayList<>(wordMap.entrySet());
-        Collections.sort(words, (o1, o2) -> o2.getValue() - o1.getValue());
+        words.sort((o1, o2) -> o2.getValue() - o1.getValue());
         return words.subList(0, 500);
     }
 
@@ -57,14 +60,14 @@ public class DataServiceImpl implements DataService {
             }
         }
         List<Map.Entry<String, Integer>> words = new ArrayList<>(wordMap.entrySet());
-        Collections.sort(words, (o1, o2) -> o2.getValue() - o1.getValue());
+        words.sort((o1, o2) -> o2.getValue() - o1.getValue());
 
         Map<String, Integer> hotWord = new HashMap<>();
         for (Paper paper : papers) {
             for (String year : years) {
                 if (year.equals(paper.getYear())) {
                     for (String key : paper.getKeyWord().split(",")) {
-                        for (int i = 0;i < 3;i++){
+                        for (int i = 0;i < 5;i++){
                             if (words.get(i).getKey().equals(key)) {
                                 String keyMap = year + "_" + key;
                                 if (hotWord.containsKey(keyMap)) {
@@ -81,12 +84,12 @@ public class DataServiceImpl implements DataService {
         }
 
         List<Word> res = new ArrayList<>(8);
-        for (int i = 0;i < 3;i++){
+        for (int i = 0;i < 5;i++){
             res.add(new Word(words.get(i).getKey(), years, new ArrayList<>()));
         }
 
         for (String year : years) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 5; j++) {
                 String keyMap = year + "_" + words.get(j).getKey();
                 res.get(j).getCounts().add(hotWord.getOrDefault(keyMap, 0));
             }

@@ -21,12 +21,12 @@ public interface PaperMapper {
     List<Paper> selectAll();
 
     /**
-     * 通过论文题目查询论文
+     * 通过论文标题查询论文（模糊查询）
      *
-     * @param title 论文题目
-     * @return 论文
+     * @param title 论文标题
+     * @return 论文列表
      */
-    Paper selectByTitle(String title);
+    List<Paper> selectByTitle(String title);
 
     /**
      * 通过会议查询论文
