@@ -1,4 +1,10 @@
 package dao;
 
-public class PaperDAO {
+import pojo.Paper;
+
+public interface PaperDAO {
+    Paper getByTitle(String s);
+    Paper getByKeyword(String s);
+    Paper getByType(String s);
+
 }
