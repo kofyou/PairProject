@@ -9,14 +9,14 @@
       </el-menu>
       <div  class="paperlisttitle">论文列表</div>
       <ul style="list-style: none; position:absolute;top: 130px;left: 50%;margin-left: -90px">
-        <li v-for="(item,index) in paperList" class="paperlistitem">
+        <li v-for="(item,index) in paperList" class="paperlistitem" :key="index">
           <el-card shadow="hover">
             <span style="position: absolute;left: 25%">{{index}}{{item}}</span>
             <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 75%;" @click="deleteItem(index)"></i>
           </el-card>
         </li>
         <li class="paperlistitem"><el-card shadow="hover">
-          
+          <i class="fa fa-plus" aria-hidden="true" style="color: #d3dce6"></i>
         </el-card></li>
       </ul>
 
@@ -32,6 +32,12 @@ name: "sidebar",
     paperList:['title1','title2',],
     defaultActive:'1',
   }
+  },
+  methods:{
+   deleteItem(value)
+   {
+    this.paperList.splice(value,1);;
+   }
   }
 }
 </script>

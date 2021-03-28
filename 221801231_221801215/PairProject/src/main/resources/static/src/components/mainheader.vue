@@ -2,7 +2,7 @@
   <el-menu :default-active="defaultActive" class="el-menu-demo mainheader" mode="horizontal">
     <router-link to="/CrawlResult" class="myheaderitem"><el-menu-item index="1">论文爬取结果</el-menu-item></router-link>
     <router-link to="/keywordMap" class="myheaderitem"><el-menu-item index="2">关键词谱图</el-menu-item></router-link>
-    <router-link to="/keywordMap" class="myheaderitem"><el-menu-item index="3">热度走势</el-menu-item></router-link>
+    <router-link to="/heattrend" class="myheaderitem"><el-menu-item index="3">热度走势</el-menu-item></router-link>
   </el-menu>
 </template>
 
