@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Search Result</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="searchresult.css">
+    <link rel="stylesheet" type="text/css" href="paperlist.css">
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.15.1/lib/index.js"></script>
 
 </head>
 <body>
@@ -14,14 +16,14 @@
     <div id="left">
         <img class="head" src="image/head.png" alt="alt"/>
 
-        <div class="icons">
-            <div class="this_">
-                <img id="this_icon" src="image/mb-search.svg" alt="alt"/>
-                <p id="this_p">论文查询</p>
-            </div>
+        <div class="icons" style="top: 20%">
             <div class="icon" id="icon2">
-                <img src="image/md-dehaze.svg" alt="alt"/>
-                <p>列表</p>
+                <img src="image/mb-search%202.svg" alt="搜索"/>
+                <p>论文查询</p>
+            </div>
+            <div class="this_">
+                <img src="image/md-dehaze%20Copy.svg" style="background-color: #356FC8; " id="this_icon">
+                <p style="top: 0%; margin-top: 0px; margin-bottom: 90%" id="this_p">列表</p>
             </div>
             <div class="icon" id="icon3">
                 <img src="image/antOutline-line-chart.svg" alt="alt"/>
@@ -43,12 +45,52 @@
     </div>
 
 
+    <div class="menu">
+        <div class="font_menu">
+            <div id="app">
+                <el-dropdown>
+                    <span class="el-dropdown-link" style="font-size: 18px; color: #757575; font-weight: bold">
+                        排序方式<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>题名</el-dropdown-item>
+                        <el-dropdown-item>发表时间</el-dropdown-item>
+                        <el-dropdown-item>导入时间</el-dropdown-item>
+                </el-dropdown>
+            </div>
+            <label>检索历史</label>
+            <label id="chooseall">批量选择</label>
+        </div>
+        <img src="image/add.png" id="icon_add">
+    </div>
+    <div id="content">
+
+        <form name="search_key" id="search_key">
+            <input type="text" id="title" name="title" class="key" value="题名"/>
+            <input type="text" id="author" name="author" class="key" value="作者"/>
+            <input type="text" id="date" name="date" class="key" value="时间"/>
+            <input type="submit" id="ensure" name="ensure" value="在结果中检索" class="key"/>
+        </form>
+
+        <div class="result_" id="result1">
+            <img src="image/md-close.svg" class="icon_close" id="icon_close_one"/>
+            <p class="paper_title" id="one">计算机视觉顶级会议CVPR动态观察</p>
+            <p class="source" id="source_one">[期刊来源] 吴建鑫-《中国计算机协会通讯》</p>
+            <p class="summary" id="summary_one">摘要：农作物病害是制约农业发展的主要因素之一，准确、高效地识别病害对于保证农作物的正常生长具有重要的意义。计算机视觉技术对加速农业现代化建设、提高生产效率影响深远。本文以农作物病害类别的检测与识别......</p>
+            <a href="" id="paper_link">阅读全文</a>
+            <p class="keywords" id="keyword_one">CVPR</p>
+            <p class="keywords" id="keyword_two">计算机视觉</p>
+            <p class="keywords" id="keyword_three">模式识别</p>
+            <button class="in_bt_one" id="bt_in_one">导入</button>
+        </div>
+    </div>
 
 
 
 </div>
 
-
 </body>
-
+<script>
+    new Vue().$mount('#app')
+</script>
 </html>
