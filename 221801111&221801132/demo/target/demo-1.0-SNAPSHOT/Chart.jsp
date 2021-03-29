@@ -1,30 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zcdn
-  Date: 2021/3/29
-  Time: 15:05
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
-    <head>
-        <meta charset="utf-8">
-        <!-- 引入 ECharts 文件 -->
-        <script src="${pageContext.request.contextPath}/dist/echarts.js"></script>
-    </head>
+    <title>第一个 ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script type="text/javascript" src="./dist/echarts.js"></script>
 </head>
-
-<script type = "text/javascript">
-</script>
-
-<div id="div1" class="topnav">
-    <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
-    <a class="active" href="DataAnalysis.jsp" target="leftFrame"> 数据分析</a>
-    <a href="CHart.jsp"target="leftFrame"> 图表</a>
-</div>
 <body>
+
 
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 600px;height:400px;"></div>
@@ -48,13 +31,12 @@
         series: [{
             name: '销量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: [5, 20, 90, 10, 10, 20]
         }]
     };
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
-
 </body>
 </html>

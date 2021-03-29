@@ -42,14 +42,22 @@
         background-color: #333333;
     }
 
-
 </style>
+
+<head>
+    <title>数据分析</title>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="${pageContext.request.contextPath}/dist/echarts.js"></script>
+
+</head>
+
 <script type = "text/javascript">
 </script>
 
-<div id="div1" class="topnav">
+<div class="topnav">
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
-    <a class="active" href="DataAnalysis.jsp" target="leftFrame"> 数据分析</a>
+    <a class="active" href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
     <a href="Chart.jsp"target="leftFrame"> 图表</a>
 </div>
 
