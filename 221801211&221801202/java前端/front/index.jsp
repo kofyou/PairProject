@@ -27,12 +27,23 @@
     <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
     <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
     <script src="<%= basePath+"javascript/Jcloud.js" %>"></script>
+    <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
+    <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
 
     <link rel="stylesheet" href="<%= basePath+"css/cloud.css" %>" type="text/css">
     <link rel="stylesheet" href="<%= basePath+"css/style1.css" %>" type="text/css">
 </head>
 
 <body style="background: url(<%= basePath+"Photos/back.jpg" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed;">
+    <style type="text/css">
+        .abstract{
+            width:400px;
+            flaot:left;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -104,16 +115,14 @@
                 });
             </script>
 
-            <div class="row clearfix">
+            <div class="row clearfix" >
                 <div class="col-md-6 column">
                     <table class="table table-condensed table-hover table-striped">
+
                         <thead>
                         <tr>
                             <th>
                                 论文标题
-                            </th>
-                            <th>
-                                作者
                             </th>
                             <th>
                                 会议名称
@@ -121,14 +130,11 @@
                             <th>
                                 会议年份
                             </th>
-                            <th>
+                            <th style="width: 50px">
                                 摘要
                             </th>
                             <th>
                                 链接
-                            </th>
-                            <th>
-                                论文上传时间
                             </th>
                             <th>
                                 关键词
@@ -141,15 +147,15 @@
                         <!--表格内容-->
                         <tbody>
                         <% List<PaperInfo> list= (List<PaperInfo>) request.getAttribute("paperInfos"); %>
+                        <% int i=0;%>
                         <% for(PaperInfo user : list){ %>
+                        <% if(i<10){%>
                         <tr>
                             <td><%=user.getTitle()%></td>
-                            <td><%=user.getAuthor()%></td>
                             <td><%=user.getMeeting()%></td>
                             <td><%=user.getYear()%></td>
-                            <td><%=user.getAbstr()%></td>
+                            <td style="width: 50px; overflow: hidden; white-space: nowrap; word-break: keep-all; text-overflow: ellipsis;"><div class="abstract"><%=user.getAbstr()%></div></td>
                             <td><%=user.getUrl()%></td>
-                            <td><%=user.getAccesstimes()%></td>
                             <td><%=user.getKeyword()%></td>
                             <td>
                                 <form action="homepage" method="get">
@@ -160,6 +166,8 @@
                                 </form>
                             </td>
                         </tr>
+                        <%}%>
+                        <%i++;%>
                         <% } %>
                         </tbody>
                     </table>
