@@ -3,12 +3,43 @@
 </template>
 <script>
 import { inject, onMounted } from "vue";
-import { defineComponent } from "vue";
+import { defineComponent , getCurrentInstance } from "vue";
 export default defineComponent({
   name: "HotSpot",
   setup() {
+    const { ctx } = getCurrentInstance();
+    const keywords = ["Computer Vision", "Shape", "AI"];
+    const years = [2011, 2012, 2013];
+    var twoDimArray = new Array();
+    // const batchQuery = () => {
+    async function batchQuery() {    
+      for (let i = 0; i < keywords.length; i++) {
+        twoDimArray[i] = new Array();  
+        for (let j = 0; j < years.length; j++) {
+        //   console.log(searchKeyword(keywords[i], years[j]))  
+          await function () {
+            twoDimArray[i][j] = searchKeyword(keywords[i], years[j]);
+          }  
+        }
+      }
+      console.log(twoDimArray);
+    };
+    const searchKeyword = (k, y) => {
+    // async function searchKeyword(k,y){
+      ctx.$http
+        .get("/word/year", {
+            keyword: k,
+            years: y,
+        })
+        .then((data) => {
+            console.log(data);
+            return data;
+        })
+    };
+
     let echarts = inject("ec"); //引入
     onMounted(() => {
+      searchKeyword("sea",2011)  
       //需要获取到element,所以是onMounted的Hook
       let myChart = echarts.init(document.getElementById("hotspot"));
       // 绘制图表
@@ -113,7 +144,6 @@ export default defineComponent({
       };
     });
   },
-  mounted() {},
 });
 </script>
 <style scoped>
