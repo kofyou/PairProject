@@ -66,8 +66,6 @@ def hello_world():
     if keywords:
         isSearch = True
         filters.append(Paper.title.contains(keywords))
-        filters.append(Paper.keywords.contains(keywords))
-        filters.append(Paper.abstract.contains(keywords))
         perPage = Paper.query.filter(*filters).count()
     try:
         page = int(page)
@@ -98,8 +96,9 @@ def hello_world():
         "totalPage": totalPage,
         "currentPage": currentPage,
         "top": top_list,
-        "searchCount":perPage,
-        "searchWord":keywords
+        "paper": paper_list,
+        "searchCount": perPage,
+        "searchWord": keywords
     }
     return render_template("index.html", data=data)
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页-顶会论文</title>
+    <title>顶会论文查询</title>
     <link rel="stylesheet" type="text/css" href="../static/info/css/reset.css">
     <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
     <link rel="stylesheet" type="text/css" href="../static/info/css/jquery.pagination.css">
@@ -28,7 +28,7 @@
     <div class="center_con">
         <ul class="list_con fl">
               {% if data.isSearch %}
-                <p>搜索到相关结果如下，共计{{ data.searchCount }}条结果：</p>
+                <p>根据{{ data.searchWord }}搜索到相关结果如下，共计{{ data.searchCount }}条结果：</p>
               {% endif %}
             {% for paper in data.paper %}
              <li>
@@ -39,6 +39,7 @@
                         <span>&emsp;所属顶会: {{ paper.typeandyear }}</span>
                     </div>
                     <div class="time fl">{{ paper.releasetime }}</div>
+                    <div><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></div>
                 </div>
             </li>
             {% endfor %}
