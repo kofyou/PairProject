@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/defalt.css" />
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- CSS样式 -->
+
+    <title>热词分析</title>
+</head>
+<h1 style="font-family:verdana">热词分析</h1>
+<a href="analyze.html">
+    <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(this).button('loading').delay(1000).queue(function () {
+                    // $(this).button('reset');
+                    // $(this).dequeue(); 
+                });
+            });
+        });
+    </script>
+</a>
+
+<body style="height: 100%; margin: 0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <div id="main1" style="height: 50% "></div>
+    
+
+
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main1'));
+    
+        // 指定图表的配置项和数据
+        var yearlist = ['2001','2007','2009','2011','2013','2015','2017','2019'];
+        var countryList = ['image','computer','analysis','vision','layout','recognition','detection'];
+        var flagIcons = {
+            'usa': 'usa.png',
+            'chn': 'chn.png',
+            'jpn': 'jpn.png',
+            'deu': 'deu.png',
+            'gbr': 'gbr.png',
+            'fra': 'fra.png',
+            'ita': 'ita.png',
+            'ind': 'ind.png'
+        };
+        var option = {
+            timeline:{
+                axisType: 'category',
+                autoPlay: true,
+                playInterval: 1500,
+                data: yearlist,
+                label:{
+                    fontSize: 18
+                }
+            },
+    
+            baseOption:{
+                dataset:{
+                    source:[
+                        ['year','image','computer','analysis','vision','layout','recognition','detection'],
+                        ['2001',115,76,26,45,39,26,25],
+                        ['2007',249,143,117,103,81,81,78],
+                        ['2009',404,341,162,279,162,111,140],
+                        ['2011',272,150,106,41,32,20,36],
+                        ['2013',158,126,101,24,87,32,39],
+                        ['2011',273,120,136,61,82,10,56],
+                        ['2017',102,80,59,59,48,20,30],
+                        ['2019',200,78,63,42,46,48,35],
+                    ]
+                },
+    
+                title: {
+                    text: '2000年ICCV走势图',
+                    left: 'center',
+                    textStyle:{
+                        fontSize:15
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                legend: {
+                },
+                grid: {
+                    left: '10%',
+                    bottom: '15%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type:'category',
+                        data: countryList,
+                        axisPointer: {
+                            type: 'shadow'
+                        },
+    
+                        axisLabel: {
+                            formatter: function (value) {
+                                return '{value|' + value + '}';
+                            },
+                            margin: 20,
+                            rich: {
+                                value: {
+                                    lineHeight: 30,
+                                    fontSize: 18,
+                                    align: 'center'
+                                },
+                                image: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.usa
+                                    }
+                                },
+                                computer: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.chn
+                                    }
+                                },
+                                analysis: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.jpn
+                                    }
+                                },
+                                vision: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.deu
+                                    }
+                                },
+                                layout: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.gbr
+                                    }
+                                },
+                                recognition: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.fra
+                                    }
+                                },
+                                detection: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.ita
+                                    }
+                                },
+                                tomography: {
+                                    height: 20,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: flagIcons.ind
+                                    }
+                                },
+                            }
+                        }
+    
+                    },
+                ],
+                yAxis:[
+                    {
+                        name:'热度',
+                        type:'value',
+                        nameTextStyle:{
+                            fontSize:18
+                        },
+                        axisLabel:{
+                            fontSize:18
+                        }
+                    },
+                ],
+                series: [
+                    {
+                        //name: 'GDP',
+                        type: 'bar',
+                        seriesLayoutBy: 'row',
+                        encode:{
+                            x:'year',
+                            y:'2001'
+                        }
+                    },
+                ]
+            },
+            options:[]
+        };
+    
+        for (var n = 0; n<yearlist.length; n++){
+            option.options.push({
+                title:{
+                    show:true,
+                    text:yearlist[n]+'年ICCV热度走势',
+                    left: 'center',
+                    textStyle:{
+                        fontSize:24
+                    }
+                },
+                series:[
+                    {
+                        type: 'bar',
+                        seriesLayoutBy: 'row',
+                        encode:{
+                            x:'year',
+                            y:yearlist[n]
+                        }
+                    },
+                ]
+            });
+        }
+    
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+
+
+    </body>
+
+</html>
