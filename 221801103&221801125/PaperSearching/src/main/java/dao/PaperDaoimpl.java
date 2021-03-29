@@ -220,14 +220,9 @@ public class PaperDaoimpl
         try
         {
             Connection connection=Jdbcutils.GetConnection();
-
-
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "");
-
-
-            preparedStatement.setString();
-            preparedStatement.setString();
+                    "SELECT * FROM papers WHERE isbn IN (SELECT isbn FROM usercollect WHERE account=?)");
+            preparedStatement.setString(1,username);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next())
             {

@@ -1,5 +1,7 @@
 package web;
 
+import com.mysql.cj.xdevapi.JsonArray;
+import net.sf.json.JSONObject;
 import service.impl.Paperserviceimpl;
 
 import javax.servlet.*;
@@ -24,11 +26,13 @@ public class GetHottestKeywordsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HashMap<String,Integer> hashMap=new Paperserviceimpl().GetHottestKeywords();
-        List<String> strings=new ArrayList<>();
+        JsonArray jsonArray=new JsonArray();
         for(Map.Entry<String,Integer> entry:hashMap.entrySet())
         {
-            strings.add(entry.getKey());
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("keyword",entry.getKey());
+            jsonObject.put("count",entry.getValue());
         }
-        response.getWriter().print(strings);
+        response.getWriter().print(jsonArray);
     }
 }
