@@ -24,6 +24,7 @@ body
     border: none;
     text-align: center;
     height: 30px;
+    border-radius: 10px;
 }
 
 #num
@@ -38,14 +39,19 @@ body
     font-size: 50px;
 }
 
+.search
+{
+    text-align: center;
+}
+
 #key
 {
     width: 220px;
     height: 30px;
     line-height: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
     text-align: left;
-    text-indent: 55px;
+    text-indent: 10px;
     border: 1px solid rgba(211, 211, 211, 100);
     outline: none;
 }
@@ -55,9 +61,82 @@ body
     width: 220px;
     height: 30px;
     line-height: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
     text-align: left;
-    text-indent: 55px;
+    text-indent: 10px;
     border: 1px solid rgba(211, 211, 211, 100);
     outline: none;
+}
+
+#sort
+{
+    width: 220px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 10px;
+    margin-left: 230px;
+    text-align: left;
+    text-indent: 10px;
+    border: 1px solid rgba(211, 211, 211, 100);
+    outline: none;
+}
+
+#search
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#sbtn
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#exit
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 1250px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#new
+{
+    position: relative;
+    margin-top: 1px;
+    margin-left: 550px;
+    border:none;
+    background-color: rgb(103, 236, 207);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#chart
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    border-radius: 10px;
+    background-color: rgb(103, 236, 207);
+    width: 150px;
+    height:30px;
 }
