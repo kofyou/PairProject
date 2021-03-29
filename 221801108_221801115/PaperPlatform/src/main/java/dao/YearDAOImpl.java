@@ -1,7 +1,5 @@
 package dao;
 
-import pojo.Keyword;
-import util.CountWordsUtil;
 import util.DBUtil;
 
 import java.sql.Connection;

@@ -13,7 +13,8 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="https://cdn.staticfile.org/echarts/5.0.2/echarts.js"></script>
+    <script type="text/javascript" src="../dist/echarts.js"></script>
+    <script type="text/javascript" src="../dist/echarts-wordcloud.js"></script>
     <%
         KeywordDAO keywordDAO = new KeywordDAOImpl();
         ArrayList<Keyword> keywordList = keywordDAO.GetTop10Keywords();
@@ -28,7 +29,58 @@
 </head>
 <body>
 
+<div id='wcloud' style="width: 600px;height:350px;"></div>
+<script>
+    var chart = echarts.init(document.getElementById('wcloud'));
 
+    var option = {
+        tooltip: {},
+        series: [ {
+            type: 'wordCloud',
+            gridSize: 2,
+            sizeRange: [12, 50],
+            rotationRange: [-90, 90],
+            shape: 'pentagon',
+            width: 600,
+            height: 400,
+            drawOutOfBound: true,
+            textStyle: {
+                color: function () {
+                    return 'rgb(' + [
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160),
+                        Math.round(Math.random() * 160)
+                    ].join(',') + ')';
+                }
+            },
+            emphasis: {
+                textStyle: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: [
+                <%
+                    for (Keyword kw:keywordList) {
+                        out.print("{");
+                        out.print("    name:'"+kw.getName()+"',");
+                        out.print("    value:"+kw.getFrequency()+",");
+                        out.print("    emphasis: {");
+                        out.print("        textStyle: {");
+                        out.print("            color: 'red'");
+                        out.print("        }");
+                        out.print("    }");
+                        out.print("},");
+                    }
+                %>
+            ]
+        } ]
+    };
+
+    chart.setOption(option);
+
+    window.onresize = chart.resize;
+</script>
 
 <div id="wordbargraph" style="width: 1500px;height:400px;"></div>
 <script type="text/javascript">

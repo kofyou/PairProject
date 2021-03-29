@@ -13,6 +13,10 @@
 </head>
 <body>
 
+<p>
+    <input type ="button" value ="返回"  onclick="window.history.back();">
+</p>
+
 <h3>论文题目：${requestScope.paperInfo.title} </h3>
 <h4>摘要：</h4>
 <p> ${requestScope.paperInfo.summary} </p>
