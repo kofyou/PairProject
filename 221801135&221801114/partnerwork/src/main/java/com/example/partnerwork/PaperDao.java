@@ -9,14 +9,19 @@ import java.util.Locale;
 public class PaperDao {
     private static PaperDao paperDao;
     private List<Paper> paperList;
+
     
     private PaperDao(){}
-    
+
     public static PaperDao getInstance(){
         if (paperDao == null){
             paperDao = new PaperDao();
         }
         return paperDao;
+    }
+
+    public Paper findPaperByIterator(int i){
+        return paperList.get(i);
     }
 
     public int getTotal(){
@@ -142,6 +147,17 @@ public class PaperDao {
         }
     }
 
+    public void delete(int iterator){
+        int id = paperList.get(iterator).getId();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "delete from paper where id="+id;
+            s.execute(sql);
+            paperList.remove(iterator);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Paper> list(){
         paperList = new ArrayList<Paper>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
@@ -153,7 +169,7 @@ public class PaperDao {
                 paper.setTitle(rs.getString("title"));
                 paper.setAbstractText(rs.getString("abstract"));
                 paper.setKeywords(rs.getString("keywords"));
-                paper.setTags();
+                paper.setTagList();
                 paper.setDoiLink(rs.getString("doiLink"));
                 paper.setPublicationDate(rs.getInt("publicationDate"));
                 paper.setConference(rs.getString("conference"));
