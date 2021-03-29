@@ -1,6 +1,6 @@
-package com.main;
+package com.cs.PairWork1.Service;
 
-import com.getInfo.GetJson;
+import com.cs.PairWork1.Utils.GetJson;
 
 public class Main {
 	public static void main(String[] args) {

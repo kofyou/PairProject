@@ -1,7 +1,7 @@
-package com.getInfo;
+package com.cs.PairWork1.Utils;
 
 import java.io.BufferedReader;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,18 +9,14 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+
 import java.util.Map;
 import java.util.Set;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.mysql.jdbc.log.Log;
 
-import jdk.nashorn.internal.parser.Lexer;
+
 
 public class GetJson {
 	private String id;
@@ -39,7 +35,7 @@ public class GetJson {
 			String tempString = null;
 			while ((tempString = reader.readLine()) != null) {
 				readJson += tempString;
-
+				
 				JSONObject jsonObject = JSONObject.parseObject(readJson);
 
 				Map<String, String> stringMap = new HashMap<>();
@@ -50,24 +46,36 @@ public class GetJson {
 					//System.out.printf(key + " \n");
 					stringMap.put(key, jsonObject.getString(key));
 				}
+				
+				//System.out.println(readJson);
 				id = stringMap.get("articleId");
-				System.out.println("文章id："+id+"\n");
+				//System.out.println("文章id："+id+"\n");
 				
 				title = stringMap.get("title");
-				System.out.println("文章标题："+title+"\n");
+				//System.out.println("文章标题："+title+"\n");
 				
 				about = stringMap.get("doi");
-				System.out.println("文章论坛相关："+about+"\n");
+				//System.out.println("文章论坛相关："+about+"\n");
 							
 				
 				keywords = stringMap.get("keywords");
-				System.out.println("文章关键词："+keywords+"\n");
+				//System.out.println("文章关键词："+keywords+"\n");
 				
 				url = stringMap.get("doiLink");
-				System.out.println("文章链接："+url+"\n");							
-
+				//System.out.println("文章链接："+url+"\n");	
+				
+				/*JSONArray picArray=JSONArray.parseArray(readJson.toString().trim());
+				//JSONArray picArray = JSONArray.parseArray(readJson);
+				if (picArray != null) {
+					for(int i = 0; i < picArray.size(); i++) {
+					JSONObject jsonObject1 = picArray.getJSONObject(i);
+					String pic = jsonObject1.getString("picture");
+				 	System.out.println(pic);
+				}}*/
+				
+			
 			}
-
+			
 			// System.out.println(jsonObject.toJSONString());
 			/*
 			 * for (Map<String, Object> map : list) { for (String s : map.keySet()) {
@@ -79,6 +87,7 @@ public class GetJson {
 			 * JSONObject jsonObject = JSONObject.parseObject(readJson);
 			 * System.out.println(JSON.toJSONString(jsonObject));
 			 */
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,4 +116,6 @@ public class GetJson {
 	public String getAbout() {
 		return this.about;
 	}
+	
+	
 }

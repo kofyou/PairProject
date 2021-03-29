@@ -5,8 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 
-	<bean id="paperListConTroller"
-		class="com.Controller.PaperListConTroller">
+	<bean id="paperListController"
+		class="com.cs.PairWork1.Controller.PaperListController">
 		
 	</bean>
 	<bean
@@ -14,7 +14,7 @@
 		<property name="mappings">
 			<props>
 
-				<prop key="/paperListConTroller.do">paperListConTroller</prop>
+				<prop key="/paperListController.do">paperListController</prop>
 				
 			</props>
 		</property>

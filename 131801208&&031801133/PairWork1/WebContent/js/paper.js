@@ -5,7 +5,7 @@ $ (function($){
 	
 	table.bootstrapTable({
 		height:"600px",
-		url : "/PairWork1/paperListConTroller.do",
+		url : "/PairWork1/paperListController.do",
 		method : "GET",
 		/*data:[
 			{
@@ -39,7 +39,7 @@ $ (function($){
 			},
 			
 			{
-			field:'paper',
+			field:'url',
 			title:"论文链接",
 			align:"center",
 			valign:"middle",
@@ -53,7 +53,7 @@ $ (function($){
 			},
 			
 			{
-			field:'keyword',
+			field:'keywords',
 			title:"关键字",
 			align:"center",
 			valign:"middle",
