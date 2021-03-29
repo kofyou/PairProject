@@ -16,7 +16,9 @@ import java.util.List;
 public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
-        System.out.println(title);
-       request.getRequestDispatcher("PaperList.jsp").forward(request,response);
+        PaperDAO paperDAO = new PaperDAOImpl();
+        paperDAO.deletePaper(title);
+        //System.out.println(title);
+        request.getRequestDispatcher("PaperList.jsp").forward(request,response);
     }
 }

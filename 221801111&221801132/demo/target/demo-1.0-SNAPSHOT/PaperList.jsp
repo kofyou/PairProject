@@ -110,6 +110,7 @@
 <div class="topnav">
     <a class="active" href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
+    <a href="Chart.jsp"target="leftFrame"> 图表</a>
 </div>
 
 <body>
@@ -132,6 +133,7 @@
 
 <%
     list = (List<Paper>) request.getAttribute("list");
+    if(list != null) {
 %>
 
     <table border="1" width="400">
@@ -146,7 +148,6 @@
         </tr>
 
         <%
-            if(list != null) {
                 for (Paper paper : list) {
         %>
 
@@ -161,7 +162,7 @@
                 <td>
                     <form method="post" id="form1" action="<%=path%>/DeleteServlet">
                     <input type="submit" name="deleteButton" value="删除">
-                    <input type="hidden" id="title" name="title" value="${paper.getTitle()}">
+                    <input type="hidden" id="title" name="title" value="<%=paper.getTitle() %>">
                     </form>
                 </td>
 

@@ -35,23 +35,27 @@
         color: #333333;
     }
 
-    div{
+    #div1{
         margin:0 auto;
         width:1500px;
         height:55px;
         background-color: #333333;
     }
 
+
 </style>
 <script type = "text/javascript">
 </script>
 
-<div class="topnav">
+<div id="div1" class="topnav">
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a class="active" href="DataAnalysis.jsp" target="leftFrame"> 数据分析</a>
+    <a href="Chart.jsp"target="leftFrame"> 图表</a>
 </div>
 
 <body>
+
+
 
 </body>
 </html>
