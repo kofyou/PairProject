@@ -21,9 +21,8 @@ public class ChartServlet extends HttpServlet {
 
         WordDAO wordDAO = new WordDAOImpl();
         List<KeyWord> keyWordList = new ArrayList<>();
-        keyWordList = wordDAO.listGetByYear();//关键词列表
+        keyWordList = wordDAO.listGetByYear2012();//关键词列表
 
-        int cnt = 0;
 
         Map<String,Integer> map = new HashMap<String,Integer>();//创建map,key保存字符串,value保存出现的次数
 
@@ -40,16 +39,23 @@ public class ChartServlet extends HttpServlet {
             }
         }
         map = sortByValueDescending(map);
-        HotWord[] hotWords = new HotWord[map.size()];
+
+        List<HotWord> hotWordList = new ArrayList<>();
         for (Map.Entry<String,Integer> vo : map.entrySet()) {
-            hotWords[cnt].setWord(vo.getKey());
-            hotWords[cnt++].setNum(vo.getValue());
+            HotWord hotWord = new HotWord();
+            hotWord.setWord(vo.getKey());
+            hotWord.setNum(vo.getValue());
+            hotWordList.add(hotWord);
         }
 
-        for (int i = 0;i < 10;i++) {
-            System.out.println(hotWords[i].getWord() + " " + hotWords[i].getNum());
-        }
+        HotWord hotWord = new HotWord();
+        hotWord = hotWordList.get(0);
+        System.out.println(hotWord.getWord() + " " + hotWord.getNum());
 
+
+        /*for (int i = 0;i < 10;i++) {
+            System.out.println(hotWordList.get(i).getWord() + " " + hotWordList.get(i).getNum());
+        }*/
 
         request.setAttribute("list", keyWordList);
         request.getRequestDispatcher("Chart.jsp").forward(request, response);
@@ -66,7 +72,7 @@ public class ChartServlet extends HttpServlet {
     }
 
     public static String[] strCut(String s) {//字符串切割
-        String[] tempStr = null;//仅包含字母和数字的字符串数组
+        String[] tempStr = new String[100];//仅包含字母和数字的字符串数组
         int cnt = 0;//字符串个数计数
         Pattern pattern = Pattern.compile(",");
         String[] newStr = pattern.split(s);
@@ -75,7 +81,11 @@ public class ChartServlet extends HttpServlet {
                 tempStr[cnt++] = ss;
             }
         }
-        return tempStr;
+        String[] Str = new String[cnt];
+        for (int i = 0;i < cnt;i++) {
+            Str[i] = tempStr[i];
+        }
+        return Str;
     }
 
 

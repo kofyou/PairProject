@@ -5,5 +5,5 @@ import pojo.KeyWord;
 import java.util.List;
 
 public interface WordDAO {
-    List<KeyWord> listGetByYear();
+    List<KeyWord> listGetByYear2012();
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WordDAOImpl implements WordDAO{
     @Override
-    public List<KeyWord> listGetByYear() {
+    public List<KeyWord> listGetByYear2012() {
         String sql = "select keyword from post where year = '2012' and type = 'CVPR'";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery(sql);
