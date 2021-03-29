@@ -81,10 +81,7 @@ def hello_world():
         paper_list.append(paper.to_short_dict())
         
     # 顶会热词获取
-    try:
-        topWord = TopWord.query.all()
-    except Exception as e:
-        print("err!!获取失败")
+    topWord = TopWord.query.all()
     top_list = []
     for i in topWord:
         top_list.append(i.name)
@@ -100,6 +97,7 @@ def hello_world():
     return render_template("index.html", data=data)
 
 
+# 从列表中删除
 @app.route('/delete/<id>')
 def delete(id):
     paper = Paper.query.filter(Paper.id == id).first()
@@ -107,6 +105,8 @@ def delete(id):
     db.session.commit()
     return redirect('/')
 
+
+# 查看详情页面
 @app.route('/detail/<path:id>')
 def goto_detail(id):
 
