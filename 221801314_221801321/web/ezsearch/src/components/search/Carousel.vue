@@ -14,7 +14,6 @@ export default defineComponent({
   name: "Carousel",
 
   setup() {
-    console.log("123");
     const path = require("@/assets/CVPR.jpg");
     const images = [
       { url: require("@/assets/CVPR.jpg") },

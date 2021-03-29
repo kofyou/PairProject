@@ -1,31 +1,54 @@
 <template>
   <el-autocomplete
-    id="search-input"
     class="inline-input"
-    v-model="state1"
+    v-model="inputValue"
     prefix-icon="el-icon-search"
     :fetch-suggestions="querySearch"
     placeholder="请输入内容"
-    @select="handleSelect"
+    @select="handleSelect()"
   ></el-autocomplete>
 </template>
 <script>
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
 export default defineComponent({
   name: "Search",
   setup() {
-    const restaurants = ref([]);
+    const { ctx } = getCurrentInstance();
+    var inputValue = ref("");
+    //get方法获取文章title
+    const getTitles = () => {
+      ctx.$http
+        .get("/paper/title", {
+          title: inputValue.value,
+        })
+        .then((res) => {
+          console.log(res)
+        });
+    };
+
+    const paperTitles = ref([]);
     const querySearch = (queryString, cb) => {
-      var results = queryString
-        ? restaurants.value.filter(createFilter(queryString))
-        : restaurants.value;
+      ctx.$http
+        .get("/paper/title", {
+          title: inputValue.value,
+        })
+        .then(({data}) => {
+          console.log(data);
+          for (let i = 0; i < data.data.length; i++) {
+            data.data[i].value = data.data[i].title;
+          }
+          cb(data.data);
+        });
+      // var results = queryString
+      //   ? paperTitles.value.filter(createFilter(queryString))
+      //   : paperTitles.value;
       // 调用 callback 返回建议列表的数据
-      cb(results);
+      // cb(results);
     };
     const createFilter = (queryString) => {
-      return (restaurant) => {
+      return (paperTitles) => {
         return (
-          restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
+          paperTitles.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
           0
         );
       };
@@ -37,10 +60,12 @@ export default defineComponent({
       console.log(item);
     };
     onMounted(() => {
-      restaurants.value = loadAll();
+      paperTitles.value = loadAll();
     });
     return {
-      restaurants,
+      inputValue,
+      getTitles,
+      paperTitles,
       state1: ref(""),
       state2: ref(""),
       querySearch,
