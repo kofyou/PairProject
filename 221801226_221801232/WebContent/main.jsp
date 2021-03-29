@@ -35,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="images/flower.jpg" />
         </div>
         <div id="menu">
-
             <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
         </div>
         <div id="menu">
@@ -45,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a href="top.jsp"><button id="papersearch">热门领域</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">研究热词</button><br>
+            <a href="hotline.jsp"><button id="papersearch">热词趋势</button><br></a>
         </div>
     </div>
     <div id="section">
@@ -61,10 +60,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- 论文循环开始 -->
                 <% 
                     ItemsDao itemsDao = new ItemsDao(); 
-                //三年最热热词出现次数测试
-                    int[] num = itemsDao.keyYearNum(0);
+                    //三年最热热词出现次数测试
+                    int[] num1 = itemsDao.keyYearNum(0);
                     for(int i=0;i<3;i++){
-                        System.out.println(num[i]+" ");
+                        System.out.println(num1[i]+" ");
+                    }
+                    int[] num2 = itemsDao.keyYearNum(1);
+                    for(int i=0;i<3;i++){
+                        System.out.println(num2[i]+" ");
+                    }
+                    int[] num3 = itemsDao.keyYearNum(3);
+                    for(int i=0;i<3;i++){
+                        System.out.println(num3[i]+" ");
+                    }
+                    int[] num4 = itemsDao.keyYearNum(4);
+                    for(int i=0;i<3;i++){
+                        System.out.println(num4[i]+" ");
                     }
                     ArrayList<items> list = new ArrayList<items>();
                     if(request.getParameter("key")!=null){

@@ -37,20 +37,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
     <div id="nav">
         <div class="divimg">
-            <img src="flower.jpg" />
+            <img src="images/flower.jpg" />
         </div>
         <div id="menu">
-
             <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
         </div>
         <div id="menu">
             <a href="collection.jsp"><button id="papersearch">论文收藏夹</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">热门领域</button><br>
+            <a href="top.jsp"><button id="papersearch">热门领域</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">研究热词</button><br>
+            <a href="hotline.jsp"><button id="papersearch">热词趋势</button><br></a>
         </div>
     </div>
     <div id="section">

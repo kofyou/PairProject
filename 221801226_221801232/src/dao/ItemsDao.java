@@ -264,8 +264,6 @@ public class ItemsDao {
         for (int i = 0; i < highFreqList.size(); i++) {
             Map.Entry<String, Integer> temp = highFreqList.get(i);
             kw[i] = temp.getKey();
-
-            System.out.println(kw[i]);
         }
         return kw;
     }
@@ -280,8 +278,6 @@ public class ItemsDao {
         for (int i = 0; i < highFreqList.size(); i++) {
             Map.Entry<String, Integer> temp = highFreqList.get(i);
             num[i] = temp.getValue();
-
-            System.out.println(num[i]);
         }
         return num;
     }
@@ -343,4 +339,5 @@ public class ItemsDao {
 
         }
     }
+    
 }
