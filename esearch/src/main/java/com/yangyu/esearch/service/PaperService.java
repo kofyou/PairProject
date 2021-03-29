@@ -33,9 +33,9 @@ public class PaperService {
     }
 
     //根据标题模糊查询论文
-    public List<Paper> selectTitle(String title)
+    public List<Paper> selectTitle(String title,Integer adress)
     {
-        return paperMapper.selectTitle(title);
+        return paperMapper.selectTitle(title, adress);
     }
 
     //根据会议查询论文
@@ -54,5 +54,11 @@ public class PaperService {
     public List<Paper> selectKeyword(String keyword)
     {
         return paperMapper.selectKeyword(keyword);
+    }
+
+    //根据关键词及年份查询论文
+    public List<Paper> selectKeywordYear(String years, String keyword)
+    {
+        return paperMapper.selectKeywordYear(years, keyword);
     }
 }

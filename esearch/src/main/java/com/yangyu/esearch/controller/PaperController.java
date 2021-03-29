@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author : yangyu
  * @ClassName : com.yangyu.esearch.controller.PaperController
- * @Description : 类描述
+ * @Description : PaperController类
  * @date : 2021-03-23 22:28:28
  * Copyright  2021 user. All rights reserved.
  */
