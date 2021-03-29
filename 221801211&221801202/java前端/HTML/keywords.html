@@ -24,10 +24,11 @@
           /*!
            * Create an array of word objects, each representing a word in the cloud
            */
+          /*点击关键词跳转相关论文的列表*/
           var word_array = [
               {text: "关键词1", weight: 150, link: "#"},
               {text: "关键词2", weight: 90, link: "#"},
-              {text: "关键词3", weight: 60, link:"index.html"},
+              {text: "关键词3", weight: 60, link:"#"},
               {text: "关键词4", weight: 70, link: "#"},
               {text: "关键词5", weight: 25, link: "#"},
               {text: "关键词6", weight: 55, link: "#"},
@@ -46,9 +47,10 @@
         <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                <nav class="navbar navbar-default navbar-inverse" role="navigation">
                     <div class="navbar-header">
-                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index.html">主页</a>
+                        <!--可更改主页跳转的链接-->
+                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">主页</a>
                     </div>
                     
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -94,11 +96,11 @@
                             ]
                             var chart = new sBarChart('canvas',data,{
                                 title: '关键词统计',
-                                bgColor: '#829dba',
-                                titleColor: '#ffffff',      // 标题颜色
+                                bgColor: '#fff3ee',
+                                titleColor: '#ce0000',      // 标题颜色
                                 titlePosition: 'top',       // 标题位置
-                                fillColor: '#72f6ff',       // 柱状填充色
-                                axisColor: '#eeeeee',       // 坐标轴颜色
+                                fillColor: '#02f78e',       // 柱状填充色
+                                axisColor: '#a23400',       // 坐标轴颜色
                                 contentColor: '#bbbbbb'     // 内容横线颜色
                             });
                         </script>
