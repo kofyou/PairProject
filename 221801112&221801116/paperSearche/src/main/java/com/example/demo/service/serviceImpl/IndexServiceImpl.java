@@ -28,7 +28,7 @@ public class IndexServiceImpl implements IndexSerice {
     @Override
     public User login(User user) {
         System.out.println("进入service层:" + user.getName());
-        User tmp = userMapper.selUserByName(user.getName());
+        User tmp = userMapper.selUserByName(user);
         System.out.println("获得的USER：" + tmp.getName());
         if (user.getPassword() == null || !(user.getPassword().equals(tmp.getPassword())))
             return null;
@@ -39,7 +39,8 @@ public class IndexServiceImpl implements IndexSerice {
         return userMapper.selAllPaper();
     }
 
-    public PaperAnslyse getPaperAnslyse(PaperAnslyse paperAnslyse) {
+    public PaperAnslyse getPaperAnslyse(PaperAnslyse paperAnslyse)
+    {
         return userMapper.selPaperAnslyseByPaId(paperAnslyse);
     }
 
@@ -117,7 +118,7 @@ public class IndexServiceImpl implements IndexSerice {
             System.out.println("取得的摘要：" + String.valueOf(node.get("abstract")));
             Paper paper = new Paper();
             paper.setAbstrac(String.valueOf(node.get("abstract")));
-            paper.setPersistentLink(String.valueOf(node.get("htmlLink")));
+            paper.setPersistentLink(String.valueOf(node.get("doiLink")));
             paper.setPublicationTitle(String.valueOf(node.get("title")));
             paper.setPublicationYear(String.valueOf(node.get("publicationYear")));
             List<PaperAuthors> authorslist = paper.getAuthorsList();
@@ -196,14 +197,17 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<java.util.Map.Entry < java.lang.String, java.lang.Integer>>
      * @Date: 2021/3/25
      */
-    public List<Map.Entry<String, Integer>> alalysePaperToGetTopKeyWords(Paper paper) {
+    public List<Map.Entry<String, Integer>> alalysePaperToGetTopKeyWords(Paper paper)
+    {
         List<Paper> paperList = userMapper.selPaperByConference(paper);
         System.out.println("开始分析词频");
         Map<String, Integer> keyMap = new HashMap<>();
         System.out.println("获取的论文数量" + paperList.size());
-        for (int i = 0; paperList != null && i < paperList.size(); i++) {
+        for (int i = 0; paperList != null && i < paperList.size(); i++)
+        {
             System.out.println("获取paper" + paperList.get(i).getPublicationYear() + "条数：" + i);
-            if (paperList.get(i).getKeywords() == null) {
+            if (paperList.get(i).getKeywords() == null)
+            {
                 System.out.println("break的数量" + i);
                 continue;
             }
@@ -215,9 +219,11 @@ public class IndexServiceImpl implements IndexSerice {
             for (int j = 0; j < arr.length; j++)
                 arr[j] = arr[j] + "&&&&&" + paperList.get(i).getPublicationYear().replaceAll("\"", "");
             System.out.println("获取的数组的长度" + arr.length);
-            for (int j = 0; arr != null && j < arr.length; j++) {
+            for (int j = 0; arr != null && j < arr.length; j++)
+            {
                 System.out.println("关键词：" + arr[j]);
-                if (keyMap.get(arr[j]) == null) {
+                if (keyMap.get(arr[j]) == null)
+                {
                     keyMap.put(arr[j], 1);
                 } else
                     keyMap.put(arr[j], keyMap.get(arr[j]) + 1);
@@ -227,11 +233,13 @@ public class IndexServiceImpl implements IndexSerice {
         List<Map.Entry<String, Integer>> list = sortMapByValue(keyMap);
         List<Map.Entry<String, Integer>> answer = new ArrayList<>();
         Map<String, Integer> tmp_count = new HashMap<>();
-        for (int i = 0, j = 0, k; i < list.size(); i++) {
+        for (int i = 0, j = 0, k; i < list.size(); i++)
+        {
             String[] years = list.get(i).getKey().split("&&&&&");
             if (years != null && tmp_count.get(years[1]) == null)
                 tmp_count.put(years[1], 0);
-            else if (years != null && tmp_count.get(years[1]) < Top_TEN * 2) {
+            else if (years != null && tmp_count.get(years[1]) < Top_TEN * 2)
+            {
                 tmp_count.put(years[1], tmp_count.get(years[1]) + 1);
                 answer.add(list.get(i));
             }
@@ -246,13 +254,15 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<StaticData> alalysePaperToGetTopKeyWordsHelper1(Paper paper) {
+    public List<StaticData> alalysePaperToGetTopKeyWordsHelper1(Paper paper)
+    {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<StaticData> listStr = new ArrayList<>();
         StaticData staticData;
 
 
-        for (int i = 0; i < lists.size(); i++) {
+        for (int i = 0; i < lists.size(); i++)
+        {
             staticData = new StaticData();
             String[] values = lists.get(i).getKey().split("&&&&&");
             staticData.setName(values[0]);
@@ -288,7 +298,8 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<List<String>> alalysePaperToGetTopKeyWordsHelper2(Paper paper) {
+    public List<List<String>> alalysePaperToGetTopKeyWordsHelper2(Paper paper)
+    {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<List<String>> listList = new ArrayList<>();
         List<String> listStr = new ArrayList<>();
@@ -300,7 +311,8 @@ public class IndexServiceImpl implements IndexSerice {
         listStr.add("Year");
         listList.add(listStr);
         System.out.println("获得的数据数量" + lists.size());
-        for (int i = 0; i < lists.size(); i++) {
+        for (int i = 0; i < lists.size(); i++)
+        {
             List<String> tmp = new ArrayList<>();
             tmp.add(0, String.valueOf(lists.get(i).getValue()));
             tmp.add(1, "");
@@ -320,12 +332,14 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<WordsCloud> alalysePaperToGetTopKeyWordsHelper3(Paper paper) {
+    public List<WordsCloud> alalysePaperToGetTopKeyWordsHelper3(Paper paper)
+    {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<WordsCloud> listStr = new ArrayList<>();
         WordsCloud wordsCloud;
 
-        for (int i = lists.size() - 1; i > lists.size() - 20 && i >= 0; i--) {
+        for (int i = lists.size() - 1; i > lists.size() - 20 && i >= 0; i--)
+        {
             wordsCloud = new WordsCloud();
             String[] values = lists.get(i).getKey().split("&&&&&");
             wordsCloud.setName(values[0]);
@@ -341,7 +355,8 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public boolean saveAlalysePaperToGetTopKey() throws JsonProcessingException {
+    public boolean saveAlalysePaperToGetTopKey() throws JsonProcessingException
+    {
         List<Paper> paperList = new ArrayList<>();
         Paper paper = new Paper();
         paper.setConference("CVPR");
@@ -352,7 +367,8 @@ public class IndexServiceImpl implements IndexSerice {
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        for (int i = 0; i < paperList.size(); i++) {
+        for (int i = 0; i < paperList.size(); i++)
+        {
             PaperAnslyse paperAnslyse = new PaperAnslyse();
             ObjectMapper objectMapper = new ObjectMapper();
             paperAnslyse.setDataStaticData(objectMapper.writeValueAsString(alalysePaperToGetTopKeyWordsHelper1(paper)));
@@ -372,7 +388,8 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<java.util.Map.Entry < java.lang.String, java.lang.Integer>>
      * @Date: 2021/3/25
      */
-    private List<Map.Entry<String, Integer>> sortMapByValue(Map<String, Integer> map) {
+    private List<Map.Entry<String, Integer>> sortMapByValue(Map<String, Integer> map)
+    {
         //将hashMap转化为list
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
         //进行排序
@@ -392,7 +409,8 @@ public class IndexServiceImpl implements IndexSerice {
         return list;
     }
 
-    private List<Map.Entry<String, Integer>> sortMapByKeyAndValue(List<Map.Entry<String, Integer>> list) {
+    private List<Map.Entry<String, Integer>> sortMapByKeyAndValue(List<Map.Entry<String, Integer>> list)
+    {
 
         //进行排序
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -409,5 +427,23 @@ public class IndexServiceImpl implements IndexSerice {
             }
         });
         return list;
+    }
+
+    /**
+    * @Description:  注册
+    * @Param: [user]
+    * @return: java.lang.Integer
+    * @Date: 2021/3/29
+    */
+    public Integer register(User user)
+    {
+        if (user==null||user.getName()==null||user.getPassword()==null)
+        {
+            return 0;
+        }
+        else
+        {
+            return userMapper.insUser(user);
+        }
     }
 }

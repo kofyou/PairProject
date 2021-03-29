@@ -4,6 +4,7 @@ import com.example.demo.bean.Paper;
 import com.example.demo.bean.PaperAnslyse;
 import com.example.demo.bean.PaperResponsBody;
 import com.example.demo.bean.User;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.serviceImpl.IndexServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vdurmont.emoji.EmojiParser;
@@ -39,27 +40,27 @@ public class IndexController
         return "test";
     }
 
-    @GetMapping(value = {"/","/login"})
+    @RequestMapping(value = {"/", "/login"})
     public String login(User user, HttpSession session, Model model)
     {
         logger.debug("开始登录");
-        User user1=null;
-        if (user.getName()!=null)
-            user1=indexSerice.login(user);
-        if (user1!=null)
+        User user1 = null;
+        if (user.getName() != null)
+            user1 = indexSerice.login(user);
+        if (user1 != null)
         {
             user1.setPassword("");
-            session.setAttribute("userName",user1.getName());
-            model.addAttribute("userName",user1.getName());
+            session.setAttribute("userName", user1.getName());
+            model.addAttribute("userName", user1.getName());
             System.out.println(user1.getName());
-        }
-        else
+            return "index";
+        } else
         {
-            session.setAttribute("userName","请登录");
-            model.addAttribute("userName","请登录");
+            session.setAttribute("userName", "请登录");
+            model.addAttribute("userName", "请登录");
             System.out.println("请登录");
         }
-        return "index";
+        return "lastlogin";
     }
 
     //本次commit 不提交
@@ -75,9 +76,9 @@ public class IndexController
     public Paper getPaper(User user, HttpSession session, Model model)
     {
         logger.debug("开始获取论文");
-        List<User> list=null;
-        List<Paper> paperList=indexSerice.getPaper();
-        if (paperList==null)
+        List<User> list = null;
+        List<Paper> paperList = indexSerice.getPaper();
+        if (paperList == null)
             return null;
         return paperList.get(0);
     }
@@ -86,7 +87,7 @@ public class IndexController
     @ResponseBody
     public PaperResponsBody getAllPaper()
     {
-        PaperResponsBody paperResponsBody=new PaperResponsBody();
+        PaperResponsBody paperResponsBody = new PaperResponsBody();
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
         paperResponsBody.setCount(1000);
@@ -104,7 +105,7 @@ public class IndexController
 
     @RequestMapping("/topKeyWords")
     @ResponseBody
-    public String  getTopKeyWordsByConference(PaperAnslyse paperAnslyse)
+    public String getTopKeyWordsByConference(PaperAnslyse paperAnslyse)
     {
         return EmojiParser.parseToUnicode(indexSerice.getPaperAnslyse(paperAnslyse).getDataStaticData());
     }
@@ -119,7 +120,7 @@ public class IndexController
     @ResponseBody
     public String getTopKeyWordCloud()
     {
-        PaperAnslyse paperAnslyse=new PaperAnslyse();
+        PaperAnslyse paperAnslyse = new PaperAnslyse();
         paperAnslyse.setConference("CVPR");
         return indexSerice.getPaperAnslyse(paperAnslyse).getDataWordsCloud();
     }
@@ -129,4 +130,12 @@ public class IndexController
     {
         return indexSerice.saveAlalysePaperToGetTopKey();
     }
+
+    @RequestMapping("/register")
+    public String register(User user)
+    {
+        int ans=indexSerice.register(user);
+        return "lastlogin";
+    }
+
 }

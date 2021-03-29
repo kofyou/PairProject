@@ -12,8 +12,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper
 {
-    @Select("SELECT * FROM USER WHERE NAME='曹鑫'")
-    public User selUserByName(String name);
+    @Select("SELECT * FROM user where name=#{name}")
+    public User selUserByName(User user);
 
     @Insert("INSERT INTO paper VALUES(DEFAULT,#{authors},#{keywords},#{abstrac},#{publicationTitle},#{publicationYear},#{persistentLink},#{conference})")
     public int insPaper(Paper paper);
@@ -29,4 +29,8 @@ public interface UserMapper
 
     @Select("SELECT * FROM paperanslyse WHERE conference=#{conference}")
     public PaperAnslyse selPaperAnslyseByPaId(PaperAnslyse paperAnslyse);
+
+    @Insert("INSERT INTO user VALUES(DEFAULT,#{name},#{password})")
+    public Integer insUser(User user);
+
 }
