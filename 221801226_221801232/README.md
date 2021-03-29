@@ -31,7 +31,7 @@ IDE:eclipse 4.12.0
  使用MVC开发流程进行架构，利用Servlet+JSP+Jdbc实现功能。
  ##项目如何运行
  1. 搭建eclipse JSP环境
- 2. 数据库使用MySQL,辅助navicat for mysql管理。建立数据库PaperSearch 账号:root 密码:123456 端口号：3306
+ 2. 数据库使用MySQL,辅助navicat for mysql管理。建立数据库PaperSearch 账号:root 密码:123456 端口号：3306，执行提供的paperslist.sql文件建表
  3. 
  - 第一次运行：将爬取到的论文的数据文件夹放入D盘，如D:\ECCV，在main.jsp将`//GetDataToDB logfile = new GetDataToDB("D://ECCV");`注释取消，运行main.jsp，即可将数据导入本地数据库。
  - 非第一次运行/数据已导入数据库：编译运行main.jsp
