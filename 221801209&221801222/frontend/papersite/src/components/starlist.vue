@@ -6,11 +6,14 @@
       <div id = "search-div">
         <!--            搜索框和搜索按钮-->
         <el-row :gutter="20">
-          <el-col :span="4" :offset="15">
+          <el-col :span="4" :offset="14">
             <el-input v-model="searchWord" placeholder="输入检索条件"  clearable></el-input>
           </el-col>
           <el-col :span="2">
             <el-button type="primary" icon="el-icon-search" @click = "doSearch(searchWord)">检索论文</el-button>
+          </el-col>
+          <el-col :span="1" :offset="1">
+            <el-button type="primary" icon="el-icon-refresh-right" @click="doRefresh" circle></el-button>
           </el-col>
         </el-row>
       </div>
@@ -137,45 +140,87 @@ export default {
     Base
   },
   mounted(){    //初始化界面
-    const that = this;
-    this.axios.get("/star/list", {withCredentials: true,
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:8080',
-      },
-      credentials: 'include'
-    })
-      .then(
-        function (response){
-          const thatThat = that;
-          let articleIds = response.data.starlist;
-          that.tableMes.totalItem = articleIds.length;
-          let cnt = that.tableMes.totalItem;
-          for(let i = 0; i < cnt; i++) {
-            that.axios.get("/article/" + articleIds[i]).then(
-              function (response2){
-                if(response2.data.code !== "0"){
-                  let myArticle = response2.data.article;
-                  if (myArticle["author"] == "[]");
-                  myArticle["author"] = "无";
-                  if (myArticle["no"] == "[]" || myArticle["no"] == null)
-                    myArticle["no"] = "无";
-                  thatThat.tableData.push(myArticle);
-                }
-              }
-            ).catch(function (error){
-              console.log(error);
-            })
-          }
-        }
-      ).catch(
-      function (error){
-        console.log(error);
-      }
-    );
+    this.doRefresh();
   },
   methods :{
     /*搜索响应函数*/
     doSearch(searchWord){
-
+      searchWord = searchWord.toString().toLowerCase();
+      let midTableData = this.tableData.slice(0);
+      let cnt = midTableData.length;
+      this.tableData.splice(0, cnt);  //清空列表
+      console.log(searchWord);
+      for(let i = 0; i < cnt; i++)
+      {
+        console.log(midTableData[i]);
+        console.log(midTableData[i]['keywords'].indexOf(searchWord));
+        if(midTableData[i]['aid'].toString() === searchWord || midTableData[i]['author'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['title'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['keywords'].toLowerCase().indexOf(searchWord) !== -1)
+        {
+            this.tableData.push(midTableData[i]);
+        }
+        this.tableMes.totalItem = this.tableData.length;
+      }
+      if(this.tableData.length === 0)   //收藏列表没有符合的
+      {
+        const that = this;
+        this.axios.get('/search?title=' + searchWord + '&keyword=' + searchWord)
+          .then(
+            function (response){
+              that.tableData = response.data.article;
+              that.tableMes.totalItem = that.tableData.length;
+              for(let i = 0; i < that.tableMes.totalItem; i++) {
+                if (that.tableData[i]["author"] == "[]")
+                  that.tableData[i]["author"] = "无";
+                if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == null)
+                  that.tableData[i]["no"] = "无";
+              }
+              that.handleSizeChange(that.tableMes.eachPageItem);
+              that.alertMes("收藏列表中没有符合搜索条件的论文，已显示从数据库中检索的论文！");
+            }
+          ).catch(
+          function (error){
+            console.log(error);
+          }
+        );
+      }
+    },
+    doRefresh(){   //更新（初始化）页面
+      const that = this;
+      this.axios.get("/star/list", {withCredentials: true,
+        headers: {'Access-Control-Allow-Origin': 'http://localhost:8080',
+        },
+        credentials: 'include'
+      })
+        .then(
+          function (response){
+            const thatThat = that;
+            thatThat.tableData.slice(0, thatThat.tableData.length);
+            thatThat.displayedTableData.slice(0, thatThat.displayedTableData.length);
+            let articleIds = response.data.starlist;
+            that.tableMes.totalItem = articleIds.length;
+            let cnt = that.tableMes.totalItem;
+            for(let i = 0; i < cnt; i++) {
+              that.axios.get("/article/" + articleIds[i]).then(
+                function (response2){
+                  if(response2.data.code !== "0"){
+                    let myArticle = response2.data.article;
+                    if (myArticle["author"] == "[]");
+                    myArticle["author"] = "无";
+                    if (myArticle["no"] == "[]" || myArticle["no"] == null)
+                      myArticle["no"] = "无";
+                    thatThat.tableData.push(myArticle);
+                  }
+                }
+              ).catch(function (error){
+                console.log(error);
+              })
+            }
+          }
+        ).catch(
+        function (error){
+          console.log(error);
+        }
+      );
     },
     /*取消关注监听事件*/
     doUnStar(){
@@ -189,7 +234,7 @@ export default {
         }, {withCredentials: true})
           .then(
             function (response) {
-              if(response.data.code == '0') {
+              // if(response.data.code == '0') {
                 let cnt = that.tableData.length;  //删除数据
                 for(let i = 0; i < cnt; i++)
                 {
@@ -199,7 +244,7 @@ export default {
                     that.tableData.splice(0, i + 1);
                   }
                 }
-              }
+              // }
             })
           .catch(
             function (error) {
@@ -236,7 +281,7 @@ export default {
       /*console.log(`每页 ${val} 条`);*/
       this.tableMes.eachPageItem = val;
       this.tableMes.total_page = Math.ceil(this.tableMes.totalItem / this.tableMes.eachPageItem);
-      this.tableMes.current_page = 1
+      this.tableMes.current_page = 1;
       this.handleCurrentChange(this.tableMes.current_page);
     },
     handleCurrentChange(val) {
