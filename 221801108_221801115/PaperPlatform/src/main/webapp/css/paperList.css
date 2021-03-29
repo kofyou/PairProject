@@ -1,0 +1,63 @@
+#papertable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    table-layout:fixed;
+}
+
+#papertable td, #papertable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#papertable tr:nth-child(even){background-color: #f2f2f2;}
+
+#papertable tr:hover {background-color: #ddd;}
+
+#papertable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.num {
+    width: 3%;
+}
+
+.title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 20%;
+}
+
+.conference {
+    width: 5%;
+}
+
+.summary {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 33%;
+}
+
+.link {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 15%;
+}
+
+.keywords {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 20%;
+}
+
+.delete {
+    width: 4%;
+}
