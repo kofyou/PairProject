@@ -29,18 +29,16 @@
     if (flag.equals("")){
 %>
 <h1 style="font-family:verdana">论文列表</h1>
-<div class="div-btn">
-<a href="index.jsp">
 <%
     }
     else {
 %>
 <h1 style="font-family:verdana"><%=flag%>的搜索结果</h1>
-<div class="div-btn">
-<a href="search.jsp">
 <%
     }
 %>
+    <div class="div-btn">
+        <a href="JavaScript:history.back(-1)">
     <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
         <span class="glyphicon glyphicon-arrow-left"></span>
     </button>

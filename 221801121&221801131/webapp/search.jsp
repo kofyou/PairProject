@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="div-btn">
-<a href="index.jsp">
+    <a href="JavaScript:history.back(-1)">
     <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
         <span class="glyphicon glyphicon-arrow-left"></span>
     </button>
