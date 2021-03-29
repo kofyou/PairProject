@@ -55,6 +55,10 @@ var Main = {
         },
     },
     methods: {
+        viewClick(row){
+            var s=row.title;
+            window.location="../index/Paperscan?data="+s;
+        },
         handleSizeChange(val) {
             this.pagesize = val;
         },
@@ -62,7 +66,8 @@ var Main = {
             this.currpage = val;
         },
         handleClick(row) {
-            tableData.splice(tableData.findIndex(e => e.title == row.title), 1);
+            this.tableData.splice(this.tableData.findIndex(e => e.title == row.title), 1);
+            this.sourceData.splice(this.sourceData.findIndex(e => e.title == row.title), 1);
         },
         changeTableSort(column) {
             //获取字段名称和排序类型
