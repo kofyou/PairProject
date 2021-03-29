@@ -2,6 +2,7 @@ var tableData = [];
 window.onload = function(){
     var href=window.location.search;
     var word = href.substring(href.lastIndexOf('=')+1, href.length);//获取要搜索的数据
+    console.log(word);
     if(word!='')
     {
         $.ajax(
@@ -25,10 +26,19 @@ window.onload = function(){
 var Main = {
     data() {
         return {
-            tableData
+            tableData,
+            currentPage1:1,
+            pagesize:10,
+            currpage:1,
         }
     },
     methods: {
+        handleSizeChange(val){
+            this.pagesize=val;
+        },
+        handleCurrentChange(val){
+            this.currpage=val;
+        },
         handleClick(row) {
             tableData.splice(tableData.findIndex(e => e.title == row.title), 1);
         },

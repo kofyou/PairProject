@@ -26,9 +26,9 @@
             </div>
         </template>
         <template>
-            <el-autocomplete v-model="state":fetch-suggestions="querySearchAsync"
+            <el-input v-model="state"
             placeholder="请输入内容"@select="handleSelect" id="title" clearable >
-            </el-autocomplete>
+            </el-input>
             <el-row>
                 <el-button icon="el-icon-search" onclick="search()" circle></el-button>
             </el-row>

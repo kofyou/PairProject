@@ -26,27 +26,23 @@
                         <div id="myList">
                             <p id="title">论文 | 论文列表</p>
                         </div>
+                        <div id="papersearch">
                         <el-input placeholder="请输入内容" v-model="devfilter" clearable id="textsearch">
                         </el-input>
-                        <el-date-picker v-model="value2" type="daterange" align="right" unlink-panels
-                            range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"
-                            :picker-options="pickerOptions">
-                        </el-date-picker>
                         <el-radio-group v-model="radio1">
-                            <el-radio-button label="按时间搜索"></el-radio-button>
                             <el-radio-button label="按关键词搜索"></el-radio-button>
                             <el-radio-button label="按标题搜索"></el-radio-button>
-                        </el-radio-group>
-                        <el-table :data="tableData" height="300" style="width: 1000px;" @sort-change="changeTableSort"
+                        </el-radio-group></div>
+                        <el-table :data="tableData.slice((currpage-1)*pagesize,currpage*pagesize)" height="300" style="width: 1000px;" @sort-change="changeTableSort"
                             id="mytable">
                             <el-table-column prop="num" label="论文编号" width="220px">
                                 <template slot-scope="scope">{{scope.$index + 1}}</template>
                             </el-table-column>
-                            <el-table-column prop="title" label="论文题目" width="220px">
+                            <el-table-column prop="title" label="论文题目" width="220px"  sortable="cunstom">
                             </el-table-column>
                             <el-table-column prop="keyword" label="关键词" width="220px">
                             </el-table-column>
-                            <el-table-column prop="releasetime" label="发布时间" width="220px" sortable="cunstom">
+                            <el-table-column prop="releasetime" label="发布时间" width="220px">
                             </el-table-column>
                             <el-table-column label="操作" width="100px">
                                 <template slot-scope="scope">
@@ -55,6 +51,15 @@
                                 </template>
                             </el-table-column>
                         </el-table>
+                        <el-pagination 
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currpage"
+                        :page-sizes="[5,10,15,20]"
+                        :page-size="pagesize"
+                        layout="total,sizes,prev,pager,next,jumper"
+                        :total="tableData.length"
+                        ></el-pagination>
                     </el-carousel-item>
                 </el-carousel>
             </div>

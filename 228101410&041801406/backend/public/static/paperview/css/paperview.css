@@ -117,7 +117,7 @@ body {
     color: white;
 }
 
-.el-input{
+#papersearch .el-input{
     width:300px;
     position: fixed;
     top:200px;
@@ -174,4 +174,10 @@ body {
 }
 .el-table__row{
     height:25px;
+}
+.el-pagination{
+    position: fixed;
+    left: 580px;
+    top: 630px;
+    z-index:97;
 }
