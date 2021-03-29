@@ -3,16 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Simple Blog System—发表文章</title>
+    <link rel="stylesheet" href="new_post.css" type="text/css" />
+    <title>发表文章</title>
   </head>
   <body>
-  <h1>发表博客文章</h1>
+  <h1 id="title">发表文章</h1>
+  <div class="new_post">
   <form action="new_post.php" method="post">
     <p>标题:</p>
-    <p><input type="text" name="title" maxlength="60" size="30" /></p>
+    <p><input type="text" name="title" maxlength="60" size="30" id="tips"/></p>
     <p>正文:</p>
-    <p><textarea name = "content" rows="10" cols="80"></textarea></p>
-    <p><input type="submit" value="提交" /></p>
+    <p><textarea name = "content" rows="10" cols="80" id="passage"></textarea></p>
+    <p><input type="submit" value="提交" id="submit"/></p>
   </form>
+</div>
   </body>
 </html>
