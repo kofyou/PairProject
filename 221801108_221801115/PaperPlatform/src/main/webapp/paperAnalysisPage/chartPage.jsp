@@ -13,6 +13,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="../css/Analysis.css" />
     <script type="text/javascript" src="../dist/echarts.js"></script>
     <script type="text/javascript" src="../dist/echarts-wordcloud.js"></script>
     <%
@@ -28,149 +29,163 @@
     %>
 </head>
 <body>
+<div class="header" >
+    <div class="logo_box">
+        <img class="logo" src="../img/2.png" >
+    </div>
+    <div class="navigation_box">
+        <div class="nav">
+            <ul>
+                <li><a href="" >论文列表</a></li>
+                <li class="nav_study"><a class="a2" href="" >热门研究</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div id='wcloud' style="width: 600px;height:350px;"></div>
+    <script>
+        var chart = echarts.init(document.getElementById('wcloud'));
 
-<div id='wcloud' style="width: 600px;height:350px;"></div>
-<script>
-    var chart = echarts.init(document.getElementById('wcloud'));
-
-    var option = {
-        tooltip: {},
-        series: [ {
-            type: 'wordCloud',
-            gridSize: 2,
-            sizeRange: [12, 50],
-            rotationRange: [-90, 90],
-            shape: 'pentagon',
-            width: 600,
-            height: 400,
-            drawOutOfBound: true,
-            textStyle: {
-                color: function () {
-                    return 'rgb(' + [
-                        Math.round(Math.random() * 160),
-                        Math.round(Math.random() * 160),
-                        Math.round(Math.random() * 160)
-                    ].join(',') + ')';
-                }
-            },
-            emphasis: {
+        var option = {
+            tooltip: {},
+            series: [ {
+                type: 'wordCloud',
+                gridSize: 2,
+                sizeRange: [12, 50],
+                rotationRange: [-90, 90],
+                shape: 'pentagon',
+                width: 600,
+                height: 400,
+                drawOutOfBound: true,
                 textStyle: {
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
-            },
-            data: [
-                <%
-                    for (Keyword kw:keywordList) {
-                        out.print("{");
-                        out.print("    name:'"+kw.getName()+"',");
-                        out.print("    value:"+kw.getFrequency()+",");
-                        out.print("    emphasis: {");
-                        out.print("        textStyle: {");
-                        out.print("            color: 'red'");
-                        out.print("        }");
-                        out.print("    }");
-                        out.print("},");
+                    color: function () {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
                     }
-                %>
-            ]
-        } ]
-    };
-
-    chart.setOption(option);
-
-    window.onresize = chart.resize;
-</script>
-
-<div id="wordbargraph" style="width: 1500px;height:400px;"></div>
-<script type="text/javascript">
-    var myChart = echarts.init(document.getElementById('wordbargraph'));
-
-    var categoryData = [
-        <% for (Keyword kw:keywordList) {
-            out.print("'" + kw.getName() + "',");
-        } %>
-    ];
-
-    option = {
-        title: {
-            align: 'center'
-        },
-        baseOption: {
-            timeline: {
-                axisType: 'category',
-                autoPlay: true,
-                playInterval: 1200,
+                },
+                emphasis: {
+                    textStyle: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
                 data: [
-                    <% for (Integer y:yearList) {
-                        out.print("'" + y + "',");
-                    } %>
+                    <%
+                        for (Keyword kw:keywordList) {
+                            out.print("{");
+                            out.print("    name:'"+kw.getName()+"',");
+                            out.print("    value:"+kw.getFrequency()+",");
+                            out.print("    emphasis: {");
+                            out.print("        textStyle: {");
+                            out.print("            color: 'red'");
+                            out.print("        }");
+                            out.print("    }");
+                            out.print("},");
+                        }
+                    %>
+                ]
+            } ]
+        };
+
+        chart.setOption(option);
+
+        window.onresize = chart.resize;
+    </script>
+
+    <div id="wordbargraph" style="width: 1500px;height:400px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('wordbargraph'));
+
+        var categoryData = [
+            <% for (Keyword kw:keywordList) {
+                out.print("'" + kw.getName() + "',");
+            } %>
+        ];
+
+        option = {
+            title: {
+                align: 'center'
+            },
+            baseOption: {
+                timeline: {
+                    axisType: 'category',
+                    autoPlay: true,
+                    playInterval: 1200,
+                    data: [
+                        <% for (Integer y:yearList) {
+                            out.print("'" + y + "',");
+                        } %>
+                    ]
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: categoryData,
+                    axisLabel: {
+                        interval: 0,
+                        textStyle: {
+                            fontSize: 10
+                        }},
+                    splitLine: {show: false}
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '热度(出现次数)',
+                    max: 250,
+                    data: null
+                },
+                legend: {
+                    right:'10%' ,
+                    data: ['CVPR', 'ECCV', 'ICCV']
+                },
+                calculable : true,
+                series: [
+                    {name: 'CVPR', type: 'bar'},
+                    {name: 'ECCV', type: 'bar'},
+                    {name: 'ICCV', type: 'bar'},
                 ]
             },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
+            options: [
+                <%
+                for (int i = 0; i < yearNum; i++) {
+                    out.print("{title: {left:'center',text: '" + yearList.get(i) + "年关键词热度'}," + "series: [");
+
+                    out.print("{data: [");
+                    for (int j = 0; j < keywordNum; j++) {
+                        out.print(CVPRYearFrequencyList.get(i).getFrequency().get(j) + ",");
+                    }
+                    out.print( "]}," );
+
+                    out.print("{data: [");
+                    for (int j = 0; j < keywordNum; j++) {
+                        out.print(ECCVYearFrequencyList.get(i).getFrequency().get(j) + ",");
+                    }
+                    out.print( "]}," );
+
+                    out.print("{data: [");
+                    for (int j = 0; j < keywordNum; j++) {
+                        out.print(ICCVYearFrequencyList.get(i).getFrequency().get(j) + ",");
+                    }
+                    out.print( "]}," );
+
+                    out.print("]},");
                 }
-            },
-            xAxis: {
-                type: 'category',
-                data: categoryData,
-                axisLabel: {
-                    interval: 0,
-                    textStyle: {
-                        fontSize: 10
-                    }},
-                splitLine: {show: false}
-            },
-            yAxis: {
-                type: 'value',
-                name: '热度(出现次数)',
-                max: 250,
-                data: null
-            },
-            legend: {
-                right:'10%' ,
-                data: ['CVPR', 'ECCV', 'ICCV']
-            },
-            calculable : true,
-            series: [
-                {name: 'CVPR', type: 'bar'},
-                {name: 'ECCV', type: 'bar'},
-                {name: 'ICCV', type: 'bar'},
+                %>
             ]
-        },
-        options: [
-            <%
-            for (int i = 0; i < yearNum; i++) {
-                out.print("{title: {left:'center',text: '" + yearList.get(i) + "年关键词热度'}," + "series: [");
+        };
 
-                out.print("{data: [");
-                for (int j = 0; j < keywordNum; j++) {
-                    out.print(CVPRYearFrequencyList.get(i).getFrequency().get(j) + ",");
-                }
-                out.print( "]}," );
+        myChart.setOption(option);
+    </script>
 
-                out.print("{data: [");
-                for (int j = 0; j < keywordNum; j++) {
-                    out.print(ECCVYearFrequencyList.get(i).getFrequency().get(j) + ",");
-                }
-                out.print( "]}," );
-
-                out.print("{data: [");
-                for (int j = 0; j < keywordNum; j++) {
-                    out.print(ICCVYearFrequencyList.get(i).getFrequency().get(j) + ",");
-                }
-                out.print( "]}," );
-
-                out.print("]},");
-            }
-            %>
-        ]
-    };
-
-    myChart.setOption(option);
-</script>
-
+</div>
 </body>
 </html>
