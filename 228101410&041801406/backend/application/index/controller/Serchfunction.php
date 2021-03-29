@@ -50,4 +50,17 @@ class Serchfunction extends Controller
         $data = Db::query("select keyword,time from keywordtendency where type='CVPR' and year='2018'");
         return json($data);
     }
+
+    public function get2019CVPRkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='CVPR' and year='2019'");
+        return json($data);
+    }
+
+    public function get2020CVPRkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='CVPR' and year='2020'");
+        return json($data);
+    }
+
 }

@@ -1,5 +1,5 @@
 new Vue().$mount('#app')
-
+//以下是CVPR会议数据分析部分
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
 var app = {};
@@ -23,11 +23,11 @@ option = {
         inverse: true,
         animationDuration: 300,
         animationDurationUpdate: 300,
-        max: 9 // only the largest 3 bars will be displayed
+        max: 9 
     },
     series: [{
         realtimeSort: true,
-        name: '2018年CVPR热词走势',
+        name: '正在查询2018年CVPR热词走势，请等待',
         type: 'bar',
         data: data,
         label: {
@@ -44,9 +44,7 @@ option = {
     animationEasing: 'linear',
     animationEasingUpdate: 'linear'
 };
-var k=[];
-k.push("feature extraction");
-var num=[500,500,500];
+
 function run () {
     $.ajax(
             {
@@ -69,22 +67,101 @@ function run () {
     
     myChart.setOption(option);
 }
+
+
 function add2019()
 {
-    var dataname=option.yAxis.data;
-    var data = option.series[0].data;
-    option.series[0].name='2019年CVPR热词走势';
-    myChart.setOption(option);
-    for(var j=0;j<k.length;j++)
-    {
-        for (var i = 0; i < data.length; ++i) {
-            console.log(dataname[i]);
-            if(dataname[i]==k[j])
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2019CVPRkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option.series[0].data;
+            for (var i in res) 
             {
-                data[i]+=num[j];
+                k.push(res[i].keyword);
+                num.push(res[i].time);
             }
-    }
-    }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart.setOption(option);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option.series[0].name='累加至2019年CVPR热词走势';
+    myChart.setOption(option);
+}
+
+function add2020()
+{
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2020CVPRkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option.series[0].data;
+            for (var i in res) 
+            {
+                k.push(res[i].keyword);
+                num.push(res[i].time);
+            }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart.setOption(option);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option.series[0].name='累加至2020年CVPR热词走势';
     myChart.setOption(option);
 }
 
@@ -95,11 +172,11 @@ setTimeout(function() {
 
 setTimeout(function() {
     add2019();
-}, 3000);
-/*
-setInterval(function () {
-    run();
-}, 3000);*/
+}, 8000);
+
+setTimeout(function() {
+    add2020();
+}, 15000);
 
 if (option && typeof option === 'object') {
     myChart.setOption(option);
