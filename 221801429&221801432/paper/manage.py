@@ -1,4 +1,4 @@
-from flask import Flask, render_template, current_app, request, flash
+from flask import Flask, render_template, current_app, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from config import Config
@@ -104,7 +104,7 @@ def delete(id):
     paper = Paper.query.filter(Paper.id == id).first()
     db.session.delete(paper)
     db.session.commit()
-    return '成功删除该论文！'
+    return redirect('/')
 
 
 @app.route('/detail')
