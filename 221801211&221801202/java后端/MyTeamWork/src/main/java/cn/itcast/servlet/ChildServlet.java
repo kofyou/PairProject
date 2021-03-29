@@ -23,12 +23,9 @@ public class ChildServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String,Integer> map = new HashMap<String, Integer>();
         KeynumDaoImpl keynumDao = new KeynumDaoImpl();
-        map = keynumDao.add();
         List<Keynum> keynumList = new ArrayList<Keynum>();
-        keynumList = keynumDao.addKeynums(map);
-        System.out.println(req.getParameter("p") + "aaaaa");
+        keynumList = keynumDao.selectkey();
         if(req.getParameter("p")!=null)
         {
             //req.setAttribute("keyword",req.getParameter("p"));
