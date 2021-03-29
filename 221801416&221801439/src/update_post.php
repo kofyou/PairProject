@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Simple Blog System—修改文章</title>
+    <link rel="stylesheet" href="new_post.css" type="text/css" />
+    <title>修改文章</title>
   </head>
   <body>
-  <h1>Simple Blog System—当前文章</h1>
+  <h1 id="title">当前文章</h1>
   <?php
   require('config.php');
 
@@ -24,12 +25,13 @@
 
   $row = $result->fetch_assoc(); //返回记录集第一行
   ?>
-
+ <div class="new_post">
   <form action="update_submit.php" method="post">
     <p>标题:</p>
-    <p><input type="text" name="title" maxlength="60" size="30" value="<?php $_title = $_GET["title"];echo $_GET["title"];?>"/></p>
+    <p><input type="text" name="title" maxlength="60" size="30" id="tips" value="<?php $_title = $_GET["title"];echo $_GET["title"];?>"/></p>
     <p>正文:</p>
-    <p><textarea  name = "content" rows="8" cols="60" ><?php  echo $row['post_content']; ?></textarea></p>
+    <p><textarea  name = "content" rows="8" cols="60" id="passage" ><?php  echo $row['post_content']; ?></textarea></p>
     <p><input type="hidden" name="oldtitle" value="<?php echo $_GET["title"];?>"/></p> 
-    <p><input type="submit" value="提交" /></p>
+    <p><input type="submit" value="提交" id="submit"/></p>
   </form>
+  </div>
