@@ -2,6 +2,8 @@ $(function () {
   function Page(){}
   $.extend(Page.prototype,{
     init:function(){
+      this.bindEvents()
+
       if(USER_INFO.name==""&&USER_INFO.userID=="")
       {
         $(".right-part:eq(3) div:eq(0)").html("未登录");
@@ -19,6 +21,15 @@ $(function () {
       } else {
         $(".right-part:eq(3)").css("margin-right", "20px");
       }
+    },
+    bindEvents:function(){
+      // var logOut = $(".slide-down li:eq(1)")
+      // logOut.click(this.logOutFunc)
+    },
+    logOutFunc:function(){
+      // if(confirm("确定要退出吗")){
+      //   window.location.replace("../login&regist/login.html")
+      // }
     }
   })
   var p = new Page()

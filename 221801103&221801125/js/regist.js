@@ -47,8 +47,7 @@ document.getElementById("regist").onclick = () => {
           $("#reg_wait").css("display", "none");
           if (data == 1) {
             alert("注册成功,即将跳转到登陆界面");
-            USER_INFO.userID = inputs[0].value;
-            USER_INFO.password = inputs[1].value;
+            localStorage.setItem("userName", inputs[0].value)
             setTimeout(() => {
               window.open("./login.html", "_self");
             }, 2000);

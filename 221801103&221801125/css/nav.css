@@ -102,10 +102,13 @@ body {
   bottom: 5px;
 }
 #search_btn {
-  color: #0f996b;
+  color: rgb(245,245,245);
   cursor: pointer;
   position: relative;
   right: 40px;
+}
+#search_btn:hover{
+  color:#0f996b
 }
 #list {
   position: relative;

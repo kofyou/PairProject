@@ -9,12 +9,12 @@
 
 var USER_INFO = 
     {
-        "name" : "",
-        "userID" : "1",
-        "sign" : "",
-        "company" : "",
-        "address" : "",
-        "password" : ""
+        "name" : localStorage.getItem("name")==null? "":localStorage.getItem("name"),
+        "userID" : localStorage.getItem("userName")==null? "":localStorage.getItem("userName"),
+        "sign" : localStorage.getItem("sign")==null? "":localStorage.getItem("sign"),
+        "company" : localStorage.getItem("company")==null? "":localStorage.getItem("company"),
+        "address" : localStorage.getItem("address")==null? "":localStorage.getItem("address"),
+        "password" : localStorage.getItem("password")==null? "":localStorage.getItem("password")
     }
 
 var DATA_NEEDED_TO_BE_CHANGED = false
@@ -38,15 +38,7 @@ var HOTTEST_THREE = {}
 //     "like" : "",
 //     "link" : ""
 // }]
-var ALL_PAGE_LIST = [{
-        "title" : "",
-        "keyword" : "",
-        "info" : "",
-        "author" : "",
-        "link" : "",
-        "like":true
-    }
-    ]
+var ALL_PAGE_LIST = []
 
 // var LIKE_LIST = [{
 //     "title" : "",
@@ -106,26 +98,26 @@ var LIKE_LIST = [{
 }]
 
 
-/**
- * 
- * 每隔五分钟问后端要一次数据
- * 
- */
-var GET_ALL_DATA_INTERVAL = setInterval(function(){
-    /**
-     * 
-     * 发送ajax数据，获取后端总数据
-     * 
-     */
-    $.ajax({
-        url : "",
-        data : {
-            "userName" : USER_INFO.userID
-        },
-        type : "POST",
-        dataType : "json",
-        success : data=>{
+// /**
+//  * 
+//  * 每隔五分钟问后端要一次数据
+//  * 
+//  */
+// var GET_ALL_DATA_INTERVAL = setInterval(function(){
+//     /**
+//      * 
+//      * 发送ajax数据，获取后端总数据
+//      * 
+//      */
+//     $.ajax({
+//         url : "",
+//         data : {
+//             "userName" : USER_INFO.userID
+//         },
+//         type : "POST",
+//         dataType : "json",
+//         success : data=>{
 
-        }
-    })
-},300000)
+//         }
+//     })
+// },300000)

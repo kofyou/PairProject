@@ -1,4 +1,25 @@
 $(function(){
+    var logOut = $(".slide-down li:eq(1)")
+    logOut.click(logOutFunc)
+    var btn = $("#search_btn")
+    btn.click(searchFunc)
+    function searchFunc(){
+        let search = $(".search:eq(0)").val()
+        if(search!="")
+        {
+          window.open("./paper/searchList.html?search="+search,"_self")
+        }
+        else
+        {
+          window.open("../pages/paper/allPaperList.html","_self")
+        }
+      }
+
+    function logOutFunc(){
+        if(confirm("确定要退出吗")){
+            window.location.replace("../login&regist/login.html")
+          }
+    }
     $(".setting-userName").val(USER_INFO.userID)
     $(".setting-name").val(USER_INFO.name)
     $(".setting-company").val(USER_INFO.company)

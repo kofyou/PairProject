@@ -1,31 +1,50 @@
 $(function(){
-        console.log(HOTTEST_TOP10.length)
-        if($.isEmptyObject(HOTTEST_THREE)&&HOTTEST_TOP10.length==0)
-        {
-            //发送ajax请求
-            $.ajax({
-                url:"",
-                dataType:"json",
-                type:"post",
-                success:data=>{
-                    var obj = {
-                        "cvpr" : data.cvpr, //cvpr的前5月排行int数组
-                        "iccv" : data.iccv,
-                        "eccv" : data.eccv,
-                    }
-                    HOTTEST_THREE = obj
-                    for(let i=0;i<data.hottest.length;i++)
-                    {
-                        let obj2 = {
-                            "name" : data.hottest[i],
-                            "value" : data.hottest_value[i] 
-                        }
-                        HOTTEST_TOP10.push(obj2)
-                    }
-                    
-                }
-            })
+         var logOut = $(".slide-down li:eq(1)")
+        logOut.click(logOutFunc)
+        var btn = $("#search_btn")
+        btn.click(searchFunc)
+        function searchFunc(){
+            let search = $(".search:eq(0)").val()
+            if(search!="")
+            {
+              window.open("./paper/searchList.html?search="+search,"_self")
+            }
+            else
+            {
+              window.open("../pages/paper/allPaperList.html","_self")
+            }
+          }
+    
+        function logOutFunc(){
+            if(confirm("确定要退出吗")){
+                window.location.replace("../login&regist/login.html")
+              }
         }
+        $.ajax({
+            url:"",
+            dataType:"json",
+            type:"post",
+            success:data=>{
+                var obj = {
+                    "cvpr" : data.cvpr, //cvpr的前5月排行int数组
+                    "iccv" : data.iccv,
+                    "eccv" : data.eccv,
+                }
+                HOTTEST_THREE = obj
+                for(let i=0;i<data.hottest.length;i++)
+                {
+                    let obj2 = {
+                        "name" : data.hottest[i],
+                        "value" : data.hottest_value[i] 
+                    }
+                    HOTTEST_TOP10.push(obj2)
+                }
+                
+            },
+            error:()=>{
+                alert("网络出错了，可能有问题")
+            }
+        })
         var height = window.innerHeight - 61;
         var dom = document.getElementsByClassName("container")[0];
         var dom2 = document.getElementsByClassName("wrap")[0];
@@ -91,42 +110,47 @@ $(function(){
                     name: 'cvpr',
                     type: 'line',
                     stack: '总量',
-                    data: [120, 132, 101, 134, 90, 230, 210]
+                    data: HOTTEST_THREE.cvpr
                 },
                 {
                     name: 'iccv',
                     type: 'line',
                     stack: '总量',
-                    data: [220, 182, 191, 234, 290, 330, 310]
+                    data: HOTTEST_THREE.iccv
                 },
                 {
                     name: 'eccv',
                     type: 'line',
                     stack: '总量',
-                    data: [150, 232, 201, 154, 190, 330, 410]
+                    data: HOTTEST_THREE.eccv
                 }
             ]
         };
 
         option2 = {
-        title: {
-            text: '排名前10数据'
-        },
-        xAxis: {
-            type: 'category',
-            data: ['第一项', '第二项', '第三项', '第四项', '第五项', '第六项', '第七项', '第八项', '第九项','第十项']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [120, 200, 150, 80, 70, 110, 130,20,80,100],
-            type: 'bar',
-            showBackground: true,
-            backgroundStyle: {
-                color: 'rgba(180, 180, 180, 0.2)'
+            title: {
+                text: '排名前10数据'
+            },
+            xAxis: {
+                type: 'category',
+                data: HOTTEST_TOP10[0].name,
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: HOTTEST_TOP10[0].values,
+                type: 'bar',
+                //url:["www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com",],
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                }
+            },
+            ],
+            legend:{
+                
             }
-        }]
         };
         if (option && typeof option === 'object') {
             myChart.setOption(option);
