@@ -21,6 +21,9 @@ func main() {
 	// username=?&&thesis_id=?
 	r.GET("/user/add/like", user.UserAddLike)
 
+	// username=?
+	r.GET("/user/show/like", user.UserShowLike)
+
 	// source=?&&keyword=?&&year=?
 	r.GET("/search/list", thesisSearch.GetThesisList)
 
