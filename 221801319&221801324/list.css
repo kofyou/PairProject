@@ -3,9 +3,9 @@
     padding: 0;
 }
 #header
-{   position: fixed;
+{   position: relative;
     top: 0;
-    height: 10%;
+    height: 100px;
     width: 100%;
     background-color: rgb(182, 176, 176);
     text-align:center
@@ -14,18 +14,9 @@
 {
 float: left;
 height: 90px;
-position: relative;
+position:relative;
 left: 0px;
 
-}
-#pi
-{
-    float: right;
-    width: 400px;
-    height: 90px;
-    background-size:cover;
-    background-image: url(3.png)
-   
 }
 .hh{
     margin-top: 20px;
@@ -50,13 +41,12 @@ left: 0px;
     font-size: 20px;
     font-weight: bold;
 }
+
 #content
 {
     width: 80%;
-    position: fixed;
-    top: 10%;
+    position: relative;
     left: 10%;
-    height: 2000px;
     background-color: rgb(238, 238, 238);
 }
 .title
@@ -71,6 +61,7 @@ left: 0px;
     border-style: solid;
     border-width: 2px;
     border-color: aqua;
+    
 
 }
 .abstract
