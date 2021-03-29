@@ -50,6 +50,7 @@
 </form>
 <form method="post" id="queryForm" action="<%=path%>/SearchServlet">
     <input type="text" name="pTitle" value="${paper.paperTitle}" placeholder="论文标题"/>
+    <input type="text" name="pKeyword" value="${paper.paperKeyword}" placeholder="论文关键词"/>
     <input type="hidden" name="type" value="0" />
     <input type="hidden" name="pageNum" value="${pageNum}" />
     <input type="hidden" id="changeNum" name="changeNum" value="" />

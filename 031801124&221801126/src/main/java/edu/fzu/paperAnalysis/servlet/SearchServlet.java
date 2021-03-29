@@ -54,6 +54,7 @@ public class SearchServlet extends HttpServlet {
             PaperService paperService=new PaperServiceImpl();
             Paper tempPaper=new Paper();
             tempPaper.setPaperTitle(req.getParameter("pTitle"));
+            tempPaper.setPaperKeyword(req.getParameter("pKeyword"));
             tempPaper.setPaperReleasetime(req.getParameter("PaperReleasetime"));
             String pageNum = req.getParameter("pageNum");
             String changeNum = req.getParameter("changeNum");
