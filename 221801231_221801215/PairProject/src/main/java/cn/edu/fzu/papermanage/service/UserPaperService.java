@@ -74,13 +74,32 @@ public class UserPaperService {
      * @param keyword  the keyword 关键字
      * @return the list 所有包含传入关键字的论文列表（包含关键词，已分页）
      */
-    public List<PaperWithKeywords> findUserFullPapersByKeyword(Integer pageNum, Integer pageSize, Integer userId, String keyword) {
+    public List<PaperWithKeywords> findUserFullPapersByKeyword(Integer pageNum, Integer pageSize, Integer userId
+            , String keyword) {
         Sort sort = new Sort(Sort.Direction.DESC,"publishYear");
         Pageable pageRequest = PageRequest.of(pageNum - 1,pageSize,sort);
         Page<Paper> papers = paperDao.findUserPapersByKeyword(userId,keyword,pageRequest);
+        return getPaperWithKeywords(papers);
+    }
+
+    /**
+     * 获取用户的所有关联论文（包括关键词），并分页
+     *
+     * @param pageNum  the page num 页数
+     * @param pageSize the page size 单页论文数
+     * @param userId   the user id 用户id
+     * @return the list 分页后的用户关联论文列表
+     */
+    public List<PaperWithKeywords> findAllUserFullPaperByPage(Integer pageNum,Integer pageSize,Integer userId) {
+        Pageable pageRequest = PageRequest.of(pageNum - 1,pageSize);
+        Page<Paper> papers = paperDao.findAllUserPapersByPage(userId,pageRequest);
+        return getPaperWithKeywords(papers);
+    }
+
+    private List<PaperWithKeywords> getPaperWithKeywords(Page<Paper> papers) {
         List<PaperWithKeywords> papersWithKeywords = new LinkedList<>();
         PaperWithKeywords paperWithKeywords;
-        for (Paper paper:papers) {
+        for (Paper paper : papers) {
             paperWithKeywords = new PaperWithKeywords(paper);
             paperWithKeywords.setKeywords(keywordDao.findKeywordsByPaperId(paper.getId()));
             papersWithKeywords.add(paperWithKeywords);
