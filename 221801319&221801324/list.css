@@ -59,7 +59,21 @@ left: 0px;
     height: 2000px;
     background-color: rgb(238, 238, 238);
 }
-.list
+.title
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 120px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.abstract
 {   
 
     width: 80%;
@@ -68,6 +82,62 @@ left: 0px;
     margin-left: 10%;
     margin-top: 3%;
     height: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.typeandyear
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.keywords
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.releasetime
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.link
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
     border-style: solid;
     border-width: 2px;
     border-color: aqua;
