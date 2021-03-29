@@ -31,7 +31,7 @@
               prop="aid"
               label="论文编号"
               sortable
-              width="150">
+              width="60">
             </el-table-column>
             <el-table-column
               prop="title"
@@ -43,7 +43,7 @@
               prop="author"
               label="作者"
               sortable
-              width="120">
+              width="80">
             </el-table-column>
             <el-table-column
               prop="keywords"
@@ -54,17 +54,18 @@
               prop="no"
               label="发表时间"
               sortable
-              width="120">
+              width="90">
             </el-table-column>
             <el-table-column
               prop="abstract"
               label="摘要"
-              width="300">
+              width="520">
             </el-table-column>
             <el-table-column
-              fixed="right"
+
               label="操作"
               width="100">
+<!--              fixed="right"-->
               <template slot-scope="scope">
                 <el-button icon="el-icon-search" @click="goToOriWeb" circle></el-button>
                 <el-button type="warning" icon="el-icon-star-off"  @click="doStar" circle style="background-color: palegreen;"></el-button>
@@ -82,7 +83,9 @@
               :page-sizes="[2, 3, 5, 10]"
               :page-size="tableMes.total_page"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="tableMes.totalItem">
+              :total="tableMes.totalItem"
+              style="background-color: #f9fafc !important;"
+            >
             </el-pagination>
           </div>
 
@@ -135,7 +138,7 @@ export default {
             for(let i = 0; i < that.tableMes.totalItem; i++) {
               if (that.tableData[i]["author"] == "[]")
                 that.tableData[i]["author"] = "无";
-              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
+              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == null)
                 that.tableData[i]["no"] = "无";
             }
             that.handleSizeChange(that.tableMes.eachPageItem);
