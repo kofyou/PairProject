@@ -1,20 +1,32 @@
 $(document).ready(function () {
     var httpRoot = "http://localhost:8080";
     // var httpRoot = "http://120.24.27.29:8080";
-    // var MAX_COUNT = 9999999999;
+    // var MAX_COUNT = 50;
 
-    var items = [];
+
     $("#read-list").click(function (){
-        $("#item-list").empty();
+        if (isEmpty($("#paperSearch").val())) {
+            alert("搜索框为空");
+            return ;
+        }
+
         selectPaper($("#paperSearch").val());
     });
 
     selectPaper("all");
 
     function selectPaper(title) {
+        var items = [];
+        var URL = httpRoot + `/paper/` + title;
+        if (title != "all") {
+            if ($("#checkAllYear").is(':checked')){
+                URL = URL + "?isSort=1";
+            } else {
+                URL = URL + "?isSort=0";
+            }
+        }
         $.ajax({
-            // url:httpRoot + `/paper/` + $("#paperSearch").val(),
-            url:httpRoot + `/paper/` + title,
+            url:URL,
             type:"GET",
             dataType:"json",
             async:false,
@@ -49,6 +61,7 @@ $(document).ready(function () {
                 }
             },
         });
+        $("#item-list").empty();
         for (var i = 0;i < items.length;i++) {
             $("#item-list").append(items[i]);
         }
@@ -59,4 +72,7 @@ $(document).ready(function () {
         });
     }
 
+    function isEmpty(obj){
+        return typeof obj == "undefined" || obj == null || obj == "";
+    }
 });

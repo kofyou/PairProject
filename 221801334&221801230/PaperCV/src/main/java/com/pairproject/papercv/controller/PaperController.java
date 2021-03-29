@@ -46,6 +46,9 @@ public class PaperController {
         if (isSort != 0) {
             paperList.sort(Comparator.comparing(Paper::getTitle));
         }
+
+        System.out.println(isSort);
+
         return paperList;
     }
 
