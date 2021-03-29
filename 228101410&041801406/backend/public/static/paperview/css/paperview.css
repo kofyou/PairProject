@@ -164,16 +164,12 @@ body {
     top: 300px;
     border-radius: 10px;
 }
-
 .has-gutter th,
 .has-gutter tr,
 .el-table__footer-wrapper,
 .el-table__header-wrapper {
     background-color: rgb(58, 166, 238);
     color: black;
-}
-.el-table__row{
-    height:25px;
 }
 .el-pagination{
     position: fixed;

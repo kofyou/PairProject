@@ -1,4 +1,3 @@
-
 new Vue().$mount('#app')
 
 var dom = document.getElementById("container");
@@ -105,4 +104,3 @@ setInterval(function () {
 if (option && typeof option === 'object') {
     myChart.setOption(option);
 }
-

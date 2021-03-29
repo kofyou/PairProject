@@ -124,7 +124,7 @@ body {
     border-width: 1px;
     opacity: 70%;
     width: 1400px;
-    height: 600px;
+    height: 650px;
     border-radius: 18px;
     position: fixed;
     left: 260px;
@@ -155,13 +155,56 @@ body {
     border-width: 1px;
     width: 600px;
     height: 400px;
+    zoom:80%;
     border-radius: 18px;
     position: fixed;
-    left: 1000px;
-    top: 250px;
+    left: 1450px;
+    top: 200px;
 }
 
+#container{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    border-radius: 18px;
+    height:300px;
+    width: 600px;
+    margin-top:50px;
+    background-color: white;
+    position: absolute;
+    left:500px;
+    top: 130px;
+    z-index: 100;
+}
 
+#container1{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    border-radius: 18px;
+    height:300px;
+    width: 600px;
+    margin-top:50px;
+    background-color: white;
+    position: absolute;
+    left:290px;
+    top: 440px;
+    z-index: 100;
+}
+#container2{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    border-radius: 18px;
+    height:300px;
+    width: 600px;
+    margin-top:50px;
+    background-color: white;
+    position: absolute;
+    left:1000px;
+    top: 440px;
+    z-index: 100;
+}
 ul.cloud {
     list-style: none;
     padding-left: 0;
@@ -185,7 +228,6 @@ ul.cloud {
   ul.cloud a:focus {
     outline: 1px dashed;
   }
-
 
 ul.cloud a[data-weight="1"] { --size: 0.5; font-style: italic;}
 ul.cloud a[data-weight="2"] { --size: 1.5; }

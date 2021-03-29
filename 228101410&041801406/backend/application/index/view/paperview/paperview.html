@@ -19,7 +19,6 @@
                         <el-breadcrumb separator="/">
                             <el-breadcrumb-item><a href="../?jump=1">论文搜索</a></el-breadcrumb-item>
                             <el-breadcrumb-item><a href="../index/Paperview">论文管理</a></el-breadcrumb-item>
-                            <el-breadcrumb-item><a href="/">论文查看</a></el-breadcrumb-item>
                             <el-breadcrumb-item><a href="../index/Paperanalysis" id="paperanalysis">论文分析</a>
                             </el-breadcrumb-item>
                         </el-breadcrumb>
@@ -33,14 +32,15 @@
                             <el-radio-button label="按关键词搜索"></el-radio-button>
                             <el-radio-button label="按标题搜索"></el-radio-button>
                         </el-radio-group></div>
-                        <el-table :data="tableData.slice((currpage-1)*pagesize,currpage*pagesize)" height="300" style="width: 1000px;" @sort-change="changeTableSort"
+                        <el-table  :data="tableData.slice((currpage-1)*pagesize,currpage*pagesize)" 
+                        height="300px" style="width: 1000px;" @sort-change="changeTableSort"
                             id="mytable">
                             <el-table-column prop="num" label="论文编号" width="220px">
                                 <template slot-scope="scope">{{scope.$index + 1}}</template>
                             </el-table-column>
-                            <el-table-column prop="title" label="论文题目" width="220px"  sortable="cunstom">
+                            <el-table-column prop="title" label="论文题目" width="220px"  sortable="cunstom"   :show-overflow-tooltip='true'>
                             </el-table-column>
-                            <el-table-column prop="keyword" label="关键词" width="220px">
+                            <el-table-column prop="keyword" label="关键词" width="220px"   :show-overflow-tooltip='true'>
                             </el-table-column>
                             <el-table-column prop="releasetime" label="发布时间" width="220px">
                             </el-table-column>

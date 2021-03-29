@@ -20,6 +20,8 @@ window.onload = function() {
         }
     } else if (wordlist[1] == "2") {
         if (wordlist[0] != '') {
+            wordlist[0]=wordlist[0].replaceAll("%20"," ");
+            console.log(wordlist[0]);
             $.ajax({
                 url: '../index.php/index/Serchfunction/serchbykeyword?words=' + wordlist[0],
                 type: 'get',
@@ -27,7 +29,7 @@ window.onload = function() {
                 dataType: 'json'
             }).then(function(res) {
                 for (var i in res) {
-                    tableData.push(res[i]) //把从json获取的数据赋值给数组
+                    td.push(res[i]) //把从json获取的数据赋值给数组
                 }　　　　　　　　　　
             }).fail(function() {
                 console.log('失败');
