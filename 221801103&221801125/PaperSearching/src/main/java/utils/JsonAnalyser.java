@@ -42,7 +42,13 @@ public class JsonAnalyser
 
                     BufferedReader bufferedReader = new BufferedReader(new FileReader(files[k]));
 
-                    String paperString = bufferedReader.readLine();
+                    String paperString="";
+                    String temp1;
+                    while((temp1 = bufferedReader.readLine())!=null)
+                    {
+                        paperString+=temp1;
+                    }
+
                     JSONObject jsonObject = JSONObject.fromObject(paperString.substring(0, paperString.length() - 1));
 
                     /*isbn = JSONObject.fromObject(
@@ -84,6 +90,7 @@ public class JsonAnalyser
                     {
                         theabstract="";
                     }
+
                     publishDate = jsonObject.getString("chronOrPublicationDate");
                     String datestr;
                     if(getMonth(publishDate).equals("00"))
@@ -116,8 +123,8 @@ public class JsonAnalyser
                     paper.setConferrence(conference);
                     paper.setPaperlink(paperlink);
                     paper.setDate(date);
-                    System.out.println(paper);
                     list.add(paper);
+                    System.out.println(paper);
                 }
 
             }
@@ -127,6 +134,7 @@ public class JsonAnalyser
         catch (Exception e)
         {
             e.printStackTrace();
+            System.out.println("我操你妈，老子找到你了");
         }
         return null;
     }
@@ -221,6 +229,7 @@ public class JsonAnalyser
                     paper.setPublishDate(publishDate);
                     paper.setConferrence(conference);
                     paper.setPaperlink(paperlink);
+                    paper.setDate(date);
                     list.add(paper);
                 }
 

@@ -291,4 +291,27 @@ public class PaperDaoimpl
             e.printStackTrace();
         }
     }
+
+    public HashMap<String,Integer> GetConferencesCount()
+    {
+        HashMap<String,Integer> hashMap=new HashMap<>();
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(
+                    "select conference as conference,count(*) as count from papers GROUP BY conference");
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                hashMap.put(resultSet.getString("conference"),resultSet.getInt("count"));
+            }
+
+            Jdbcutils.CloseConnection(resultSet,preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return hashMap;
+    }
 }

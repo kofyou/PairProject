@@ -45,4 +45,9 @@ public class Paperserviceimpl
         paperDaoimpl.DeleteMyCollect(account,title);
     }
 
+    public HashMap<String,Integer> GetConferenceCount()
+    {
+        return paperDaoimpl.GetConferencesCount();
+    }
+
 }
