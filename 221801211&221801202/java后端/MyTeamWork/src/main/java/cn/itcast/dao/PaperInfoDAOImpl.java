@@ -20,21 +20,18 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
 
     public List<PaperInfo> selectPaperInfos() {
         List<PaperInfo> list = new ArrayList<PaperInfo>();
-        String sql = "select * from paperinfo";
+        String sql = "select * from paper";
         try {
             connection = DBUtil1.getConnection();   //优化
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 PaperInfo paperInfo = new PaperInfo();
-                paperInfo.setTitle(resultSet.getString("title"));
-                paperInfo.setAuthor(resultSet.getString("authors"));
-                paperInfo.setYear(resultSet.getString("chronDate"));
+                paperInfo.setTitle(resultSet.getString("name"));
+                paperInfo.setYear(resultSet.getString("year"));
                 paperInfo.setMeeting(resultSet.getString("meeting"));
                 paperInfo.setAbstr(resultSet.getString("abstract"));
                 paperInfo.setUrl(resultSet.getString("url"));
-                paperInfo.setAccesstimes(resultSet.getString("accesstimes"));
-                paperInfo.setKeyword(resultSet.getString("keywords"));
                 list.add(paperInfo);
             }
             if (connection != null) {
@@ -55,7 +52,7 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
     public List<PaperInfo> getinfo(String title) {
         List<PaperInfo> list = new ArrayList<PaperInfo>();
         String sx = "'"+title+"%'";
-        String sql = "select * from paperinfo where title like " + sx;
+        String sql = "select * from paper where name like " + sx;
         try {
             connection = DBUtil1.getConnection();   //优化
             preparedStatement = connection.prepareStatement(sql);
@@ -63,13 +60,10 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
             while (resultSet.next()) {
                 PaperInfo paperInfo = new PaperInfo();
                 paperInfo.setTitle(resultSet.getString(1));
-                paperInfo.setAuthor(resultSet.getString(2));
-                paperInfo.setYear(resultSet.getString(3));
-                paperInfo.setMeeting(resultSet.getString(4));
-                paperInfo.setAbstr(resultSet.getString(5));
-                paperInfo.setUrl(resultSet.getString(6));
-                paperInfo.setAccesstimes(resultSet.getString(7));
-                paperInfo.setKeyword(resultSet.getString(8));
+                paperInfo.setYear(resultSet.getString(2));
+                paperInfo.setMeeting(resultSet.getString(3));
+                paperInfo.setAbstr(resultSet.getString(4));
+                paperInfo.setUrl(resultSet.getString(5));
                 list.add(paperInfo);
             }
             if (connection != null) {
@@ -94,13 +88,10 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
             while (resultSet.next()) {
                 PaperInfo paperInfo = new PaperInfo();
                 paperInfo.setTitle(resultSet.getString(1));
-                paperInfo.setAuthor(resultSet.getString(2));
-                paperInfo.setYear(resultSet.getString(3));
-                paperInfo.setMeeting(resultSet.getString(4));
-                paperInfo.setAbstr(resultSet.getString(5));
-                paperInfo.setUrl(resultSet.getString(6));
-                paperInfo.setAccesstimes(resultSet.getString(7));
-                paperInfo.setKeyword(resultSet.getString(8));
+                paperInfo.setYear(resultSet.getString(2));
+                paperInfo.setMeeting(resultSet.getString(3));
+                paperInfo.setAbstr(resultSet.getString(4));
+                paperInfo.setUrl(resultSet.getString(5));
                 list.add(paperInfo);
             }
             if (connection != null) {
