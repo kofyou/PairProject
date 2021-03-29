@@ -3,6 +3,9 @@
 ## 结对学号
 221801226&221801232
 
+## 作业链接
+[作业要求](https://edu.cnblogs.com/campus/fzu/FZUSESPR21/homework/11891)
+
 ## 项目名称
 PaperSearchForU
 
