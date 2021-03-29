@@ -5,7 +5,10 @@ body,html{
     background-image: url("image/bg.png");
     background-attachment: fixed;
     background-size: 100% 100%;
+<<<<<<< HEAD
     background-position: left top;
+=======
+>>>>>>> 66d52de29cf84da22b17d42d8d486e10e7b04ef6
     padding: 0px;
     margin: 0px;
 }

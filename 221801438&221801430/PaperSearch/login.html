@@ -176,11 +176,33 @@
         <img id="image" src="image/login-图片@1x.png" alt="alt"/> 
         <form  action="">
             <label id="name">用户名/邮箱</label>
-            <input id="nametext" type="text"></input>
+            <input id="nametext" type="text" value=""></input>
             <label id="password">密码</label>
-            <input id="passwordtext" type="password"></input>
-            <input type="submit" value="登录"></input>
+            <input id="passwordtext" type="password" value=""></input>
+            <input id="submit" type="submit" value="登录" onclick="login()"></input>
         </form>
     </div>
 </body>
+
+<script type="text/javascript">
+
+    function login() {
+        //防止表单跳转
+        event.returnValue = false;
+        var username = document.getElementById("nametext").value;
+        var password = document.getElementById("passwordtext").value;
+        if (username == "test" && password == 123456)
+        {
+            alert("登录成功");
+            window.location.href = "sinplesearch.html";
+
+        }
+        else{
+            alert("用户名错误或密码错误");
+            form1.uname.focus();
+            return false;
+        }
+    }
+</script>
+
 </html>
