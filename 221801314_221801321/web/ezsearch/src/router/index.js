@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Graph from '@/views/Graph.vue'
+import HotSpot from '@/components/graph/HotSpot.vue'
+import Top10 from '@/components/graph/Top10.vue'
 
 const routes = [{
         path: '/',
@@ -14,7 +16,22 @@ const routes = [{
     {
         path: '/graph',
         name: 'Graph',
-        component: Graph
+        component: Graph,
+        children: [{
+                path: '/graph',
+                redirect: Top10
+            },
+            {
+                path: '/hotspot',
+                name: 'HotSpot',
+                component: HotSpot
+            },
+            {
+                path: '/top10',
+                name: 'Top10',
+                component: Top10
+            },
+        ]
     },
 
 ]

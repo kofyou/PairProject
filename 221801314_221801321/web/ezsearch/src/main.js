@@ -6,6 +6,7 @@ import './styles/normalize.css';
 import App from './App.vue'
 import router from './router'
 import axios from './js/axios.js';
+import * as echarts from 'echarts'
 
 const store = createStore({
     pageNum() {
@@ -27,4 +28,5 @@ const store = createStore({
 
 const app = createApp(App)
 app.config.globalProperties.$http = axios;
+app.echarts = echarts
 app.use(router).use(ElementPlus).use(store).mount('#app')

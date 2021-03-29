@@ -34,14 +34,12 @@ export default defineComponent({
           title: inputValue.value,
         })
         .then((data) => {
-          console.log(data);
-          for (let i = 0; i < data.data.length; i++) {
-            data.data[i].value = data.data[i].title;
+          for (let i = 0; i < data.length; i++) {
+            console.log(data[i].title)
+            data[i].value = data[i].title;
           }
-          cb(data.data);
-        })
-        .catch(function (error) {
-          console.log(error)
+          console.log(data)
+          cb(data);
         })
       // var results = queryString
       //   ? paperTitles.value.filter(createFilter(queryString))

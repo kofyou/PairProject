@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://47.100.89.20:8880/esearch' //测试
 //post请求头
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
 //设置超时
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 100000;
 
 axios.interceptors.request.use(
     config => {
