@@ -155,10 +155,11 @@ body {
     border-width: 1px;
     width: 600px;
     height: 400px;
+    zoom:80%;
     border-radius: 18px;
     position: fixed;
-    left: 950px;
-    top: 300px;
+    left: 1450px;
+    top: 200px;
 }
 
 #container{
@@ -171,11 +172,39 @@ body {
     margin-top:50px;
     background-color: white;
     position: absolute;
-    left:280px;
-    top: 300px;
+    left:500px;
+    top: 130px;
     z-index: 100;
 }
 
+#container1{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    border-radius: 18px;
+    height:300px;
+    width: 600px;
+    margin-top:50px;
+    background-color: white;
+    position: absolute;
+    left:290px;
+    top: 440px;
+    z-index: 100;
+}
+#container2{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    border-radius: 18px;
+    height:300px;
+    width: 600px;
+    margin-top:50px;
+    background-color: white;
+    position: absolute;
+    left:1000px;
+    top: 440px;
+    z-index: 100;
+}
 ul.cloud {
     list-style: none;
     padding-left: 0;
