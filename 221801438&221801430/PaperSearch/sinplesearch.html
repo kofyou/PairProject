@@ -18,7 +18,7 @@
             left: 15%;
             top: 22%;
             width: 60%;
-            height: 40%;
+            height: 35%;
             padding: 10%;
             line-height: 20px;
             opacity: 0.8;
@@ -123,11 +123,11 @@
                         <img id="this_icon" src="image/mb-search.svg" alt="alt"/>
                         <p id="this_p">论文查询</p>
                     </div>
-                    <div class="icon" id="icon2">
+                    <div class="icon" id="icon2" onclick="change2()">
                         <img src="image/md-dehaze.svg" alt="alt"/>
                         <p>列表</p>
                     </div>
-                    <div class="icon" id="icon3">
+                    <div class="icon" id="icon3" onclick="change3()">
                         <img src="image/antOutline-line-chart.svg" alt="alt"/>
                         <p>数据分析</p>
                     </div>
@@ -219,6 +219,17 @@
         var Ctor = Vue.extend(title)
         new Ctor().$mount('#typesreach')
         
+        function change2() {
+            //防止表单跳转
+            event.returnValue = false;
+            window.location.href = "paper_list.html";
+        }
+
+        function change3() {
+            //防止表单跳转
+            event.returnValue = false;
+            window.location.href = "data_analyse.html";
+        }
 
     </script>
 </html>
