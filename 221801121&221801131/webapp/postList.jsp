@@ -13,6 +13,7 @@
 <head>
 
     <title>论文管理</title>
+    <link rel="icon" href="img/logo.png" sizes="32x32">
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
@@ -21,21 +22,25 @@
     <!-- CSS样式 -->
     <script src="./js/layer/layer.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/defalt.css" />
-    <style type="text/css">
-        .container div {
-            text-align: center;
-        }
-        footer {
-            position: absolute;
-            bottom: 0;
-            height: 100px;
-            width:100%;
-        }
-    </style>
 </head>
 <body>
+<%
+    String flag = request.getParameter("search");
+    if (flag.equals("")){
+%>
 <h1 style="font-family:verdana">论文列表</h1>
-<a href="index.html">
+<div class="div-btn">
+<a href="index.jsp">
+<%
+    }
+    else {
+%>
+<h1 style="font-family:verdana"><%=flag%>的搜索结果</h1>
+<div class="div-btn">
+<a href="search.jsp">
+<%
+    }
+%>
     <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
         <span class="glyphicon glyphicon-arrow-left"></span>
     </button>
@@ -50,6 +55,7 @@
         });
     </script>
 </a>
+    </div>
     <table align="center" border="0" width="85%">
         <thead>
         <tr bgcolor="#6699FF" width="30">
@@ -58,13 +64,12 @@
             <th>关键词</th>
             <th>原文链接</th>
             <th>年份</th>
+            <th>顶会</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <%
-
-            String flag = request.getParameter("search");
             if (flag != null){
             int pageNum = (int) request.getAttribute("pageNum");
             int maxPage = (int) request.getAttribute("maxPage");
@@ -84,7 +89,7 @@
                     List<String> kwd = post.getKwds();
                     for (int j = 0;j<kwd.size();j++){
                 %>
-                    <a href=""><%= kwd.get(j)%>
+                    <a href="postList?search=<%=kwd.get(j)%>"><%= kwd.get(j)%>
                     </a>
                 <%
                     }
@@ -92,13 +97,14 @@
             </td>
             <td><a href="<%=post.getLink()%>"><%=post.getLink() %></a></td>
             <td><%=post.getYear() %></td>
+            <td><%=post.getType() %></td>
             <td><input type="button" style="" value="删除数据" onclick="if(confirm('确认？')==false)return false;location.href='DeleteServlet?id=<%=post.getId()%>&search=<%=flag%>'" /></td>
         </tr>
         <%
             }
         %>
         <tr  width="30" align="center">
-            <td colspan="6">
+            <td colspan="7">
                 <%
                     if (pageNum != 0){
                 %>
@@ -144,7 +150,12 @@
                 <%
                     }
                 %>
+                <input type="text" id="val" />
+                <input type="button" value="跳转" onclick="location.href='postList?search=<%=flag%>&pageNum='+document.getElementById('val').value" />
             </td>
+
+
+
         </tr>
         </tbody>
         <%

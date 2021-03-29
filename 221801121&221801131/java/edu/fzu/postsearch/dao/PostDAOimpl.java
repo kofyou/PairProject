@@ -57,7 +57,7 @@ public class PostDAOimpl implements PostDAO{
     public List<Post> list() {
         List<Post> postList = new ArrayList<>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post";
+            String sql = "select * from post order by year desc,type";
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()){
                 int id = rs.getInt("id");
@@ -79,7 +79,7 @@ public class PostDAOimpl implements PostDAO{
     public List<Post> listSearch(String search) {
         List<Post> postList = new ArrayList<>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post where title like \'%%" + search +"%%\'" + "or keywords like \'%%" + search +"%%\'";
+            String sql = "select * from post where title like \'%%" + search +"%%\'" + "or keywords like \'%%" + search +"%%\'order by year desc,type";
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()){
                 int id = rs.getInt("id");
