@@ -5,16 +5,16 @@ import java.sql.*;
 import java.util.*;
 
 public class PaperDao {
-    private static com.example.partnerwork.PaperDao paperDao;
+    private static PaperDao paperDao;
     private List<Paper> paperList;
     private Map<String, Integer> tagMap;
     private List<HashMap.Entry<String, Integer>> sortTagList;
-
+    
     private PaperDao(){}
 
-    public static com.example.partnerwork.PaperDao getInstance(){
+    public static PaperDao getInstance(){
         if (paperDao == null){
-            paperDao = new com.example.partnerwork.PaperDao();
+            paperDao = new PaperDao();
         }
         return paperDao;
     }
@@ -80,7 +80,8 @@ public class PaperDao {
         tag = tag.trim().toLowerCase();
         paperList = new ArrayList<Paper>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from paper where lower(keywords) like '%" + tag + "%'";
+            String sql = "select * from paper where lower(keywords) like '%," + tag + ",%' or lower(keywords) like '" + tag + ",%'";
+            System.out.println(sql);
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
                 Paper paper = new Paper();
@@ -93,13 +94,14 @@ public class PaperDao {
                 paper.setPublicationDate(rs.getInt("publicationDate"));
                 paper.setConference(rs.getString("conference"));
                 paperList.add(paper);
+                System.out.println(paper);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return list(1, 8);
     }
-
+    
     public void add(Paper bean){
         String sql = "insert into paper values(null ,? ,? ,? ,? ,? ,?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -144,6 +146,7 @@ public class PaperDao {
     }
 
     public void delete(int iterator){
+        deleteTag(paperList.get(iterator));
         int id = paperList.get(iterator).getId();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
             String sql = "delete from paper where id="+id;
@@ -181,8 +184,6 @@ public class PaperDao {
         if (paperList == null){
             list();
             setTagMap();
-            setSortTagList();
-            getSortTagList();
         }
         List<Paper> list = new ArrayList<Paper>();
         if (start * count > paperList.size()){
@@ -200,6 +201,7 @@ public class PaperDao {
         tagMap = new HashMap<String, Integer>();
         for (Paper paper : paperList){
             for (String tag : paper.getTagList()){
+                tag = tag.toLowerCase();
                 if (tagMap.containsKey(tag)) {
                     int n = tagMap.get(tag);
                     tagMap.put(tag, n + 1);
@@ -227,9 +229,21 @@ public class PaperDao {
     }
 
     public List<HashMap.Entry<String, Integer>> getSortTagList() {
-        for (HashMap.Entry entry : sortTagList) {
-            System.out.println(entry.getKey()+ ": "+ entry.getValue());
-        }
         return sortTagList;
+    }
+
+    public void deleteTag(Paper paper){
+        for (String tag : paper.getTagList()){
+            tag = tag.toLowerCase();
+            if (tagMap.containsKey(tag)){
+                int count = tagMap.get(tag);
+                if (count - 1 == 0){
+                    tagMap.remove(tag);
+                } else{
+                    count --;
+                    tagMap.put(tag, count);
+                }
+            }
+        }
     }
 }
