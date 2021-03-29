@@ -42,7 +42,7 @@ public class SearchServlet extends HttpServlet {
 
                 break;
             case "3": // 删除
-
+                deletePaper(req, resp);
                 break;
             default: // 查询
                 queryPapers(req, resp);
@@ -95,5 +95,15 @@ public class SearchServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    int deletePaper(HttpServletRequest req, HttpServletResponse resp)
+    {
+        System.out.println("111111111");
+        String Link=req.getParameter("pLink");
+        PaperService paperService=new PaperServiceImpl();
+        System.out.println(paperService.deletePaper(Link));
+        return 0;
     }
 }
