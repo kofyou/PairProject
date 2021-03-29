@@ -2,20 +2,19 @@ package com.example.partnerwork;
 
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class PaperDao {
-    private static PaperDao paperDao;
+    private static com.example.partnerwork.PaperDao paperDao;
     private List<Paper> paperList;
+    private Map<String, Integer> tagMap;
+    private List<HashMap.Entry<String, Integer>> sortTagList;
 
-    
     private PaperDao(){}
 
-    public static PaperDao getInstance(){
+    public static com.example.partnerwork.PaperDao getInstance(){
         if (paperDao == null){
-            paperDao = new PaperDao();
+            paperDao = new com.example.partnerwork.PaperDao();
         }
         return paperDao;
     }
@@ -38,7 +37,6 @@ public class PaperDao {
                 paper.setTitle(rs.getString("title"));
                 paper.setAbstractText(rs.getString("abstract"));
                 paper.setKeywords(rs.getString("keywords"));
-                paper.setTags();
                 paper.setTagList();
                 paper.setDoiLink(rs.getString("doiLink"));
                 paper.setPublicationDate(rs.getInt("publicationDate"));
@@ -52,7 +50,7 @@ public class PaperDao {
 
     public List<Paper> find(String findString){
         if (findString.trim().equals("")){
-            paperList = null;
+            list();
             return list(1, 8);
         }
         findString = findString.trim().toLowerCase();
@@ -66,7 +64,6 @@ public class PaperDao {
                 paper.setTitle(rs.getString("title"));
                 paper.setAbstractText(rs.getString("abstract"));
                 paper.setKeywords(rs.getString("keywords"));
-                paper.setTags();
                 paper.setTagList();
                 paper.setDoiLink(rs.getString("doiLink"));
                 paper.setPublicationDate(rs.getInt("publicationDate"));
@@ -91,7 +88,6 @@ public class PaperDao {
                 paper.setTitle(rs.getString("title"));
                 paper.setAbstractText(rs.getString("abstract"));
                 paper.setKeywords(rs.getString("keywords"));
-                paper.setTags();
                 paper.setTagList();
                 paper.setDoiLink(rs.getString("doiLink"));
                 paper.setPublicationDate(rs.getInt("publicationDate"));
@@ -103,7 +99,7 @@ public class PaperDao {
         }
         return list(1, 8);
     }
-    
+
     public void add(Paper bean){
         String sql = "insert into paper values(null ,? ,? ,? ,? ,? ,?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -184,6 +180,9 @@ public class PaperDao {
     public List<Paper> list(int start, int count){
         if (paperList == null){
             list();
+            setTagMap();
+            setSortTagList();
+            getSortTagList();
         }
         List<Paper> list = new ArrayList<Paper>();
         if (start * count > paperList.size()){
@@ -195,5 +194,42 @@ public class PaperDao {
             list = paperList.subList((start - 1) * count , (start - 1) * count + count);
         }
         return list;
+    }
+
+    public void setTagMap(){
+        tagMap = new HashMap<String, Integer>();
+        for (Paper paper : paperList){
+            for (String tag : paper.getTagList()){
+                if (tagMap.containsKey(tag)) {
+                    int n = tagMap.get(tag);
+                    tagMap.put(tag, n + 1);
+                } else {
+                    tagMap.put(tag, 1);
+                }
+            }
+        }
+    }
+
+    public void setSortTagList(){
+        sortTagList = new ArrayList<>(tagMap.entrySet());
+
+        Collections.sort(sortTagList, new Comparator<HashMap.Entry<String, Integer>>() {
+            @Override
+            public int compare(HashMap.Entry<String, Integer> tag1, HashMap.Entry<String, Integer> tag2) {
+                if (tag1.getValue().equals(tag2.getValue())) {
+                    return tag1.getKey().compareTo(tag2.getKey());
+                } else {
+                    return tag2.getValue() - tag1.getValue();
+                }
+            }
+        });
+        sortTagList = sortTagList.subList(0, 10);
+    }
+
+    public List<HashMap.Entry<String, Integer>> getSortTagList() {
+        for (HashMap.Entry entry : sortTagList) {
+            System.out.println(entry.getKey()+ ": "+ entry.getValue());
+        }
+        return sortTagList;
     }
 }
