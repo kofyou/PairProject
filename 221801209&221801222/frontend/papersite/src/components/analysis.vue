@@ -6,12 +6,10 @@
     </div>
   </div>
 </template>
-
 <script>
 
 import Base from '../components/base'
 import Echarts from '../components/echarts'
-
 
 export default {
   name: "analysis",
@@ -23,7 +21,5 @@ export default {
 </script>
 
 <style scoped>
-
-
 
 </style>

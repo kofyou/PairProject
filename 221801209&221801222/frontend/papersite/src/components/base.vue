@@ -47,26 +47,9 @@ export default {
     }
   },
   created() {
-    console.log(this.type);
     this.isActive[this.type] = true;
   },
   methods: {
-    doLogin() {
-    },
-    goToRegister() {
-
-    }
-    // changeState(click_type){   //传入参数为点击的类型，例如主页，数据分析等等
-    //   let key;
-    //   for(key in this.isActive){
-    //     this.$set(this.isActive,key,false);
-    //     // this.isActive[key] = false;
-    //   }
-    //   let type = click_type.toString();
-    //   this.$set(this.isActive,type,true);
-    //   // this.isActive[type] = true;
-    //   // this.$forceUpdate();
-    // }
   }
 }
 </script>
@@ -112,10 +95,5 @@ el-col {
   height: 60px;
   margin-bottom: 50px;
 }
-
-/*.inactive-item{*/
-/*  background: #d3dce6;*/
-/*}*/
-
 
 </style>

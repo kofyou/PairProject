@@ -57,22 +57,24 @@
               width="90">
             </el-table-column>
             <el-table-column
-              prop="abstract"
-              label="摘要"
-              width="520">
+              prop="type"
+              label="类型"
+              width="80">
             </el-table-column>
             <el-table-column
-
+              prop="abstract"
+              label="摘要"
+              width="440">
+            </el-table-column>
+            <el-table-column
               label="操作"
               width="100">
-<!--              fixed="right"-->
               <template slot-scope="scope">
                 <el-button icon="el-icon-search" @click="goToOriWeb" circle></el-button>
                 <el-button type="warning" icon="el-icon-star-off"  @click="doStar" circle style="background-color: palegreen;"></el-button>
               </template>
             </el-table-column>
           </el-table>
-
 
           <!--        分页实现-->
           <div class="block">
@@ -131,8 +133,6 @@ export default {
       this.axios.get('/search?title=' + searchWord + '&keyword=' + searchWord)
         .then(
           function (response){
-            console.log("内容");
-            console.log(response);
             that.tableData = response.data.article;
             that.tableMes.totalItem = that.tableData.length;
             for(let i = 0; i < that.tableMes.totalItem; i++) {
@@ -148,33 +148,24 @@ export default {
             console.log(error);
           }
       );
-      console.log(searchWord);
     },
     doStar(){
       let t;
       const that = this;
       clearTimeout(t)
       t = setTimeout(function (){
-        console.log(that.selectedAId);
         that.axios.post('/star/add', {
           aid: that.selectedAId
         }, {withCredentials: true})
           .then(
             function (response) {
-              // if(response.data.code == '0') {
-              //   // alert("登录成功！");
-              //   Router.push({ path: 'index' });
-              // }
-              // else{
-              //   alert('用户名与密码不匹配！');
-              // }
-              console.log(response);
+              if(response.data.code == '0')
+                that.alertMes("成功收藏！");
             })
           .catch(
             function (error) {
               console.log(error);
             });
-        console.log('执行了');
       }, 500);
     },
     goToOriWeb(){   /*跳转*/
@@ -183,7 +174,6 @@ export default {
       const that = this;
       clearTimeout(t)
       t = setTimeout(function (){
-        console.log(that.selectedAId);
         for(let i = 0; i < that.displayedTableData.length; i++) {
           if(that.displayedTableData[i]['aid'] == that.selectedAId) {
             url = that.displayedTableData[i]['url'];
@@ -191,10 +181,8 @@ export default {
           }
         }
         if(url != "" && url != null){
-          console.log(url)
           window.open(url, '_blank');
         }
-        console.log('执行了');
       }, 500);
 
     },
@@ -222,8 +210,18 @@ export default {
         this.displayedTableData = this.tableData.slice(leftIndex);
       else
         this.displayedTableData = this.tableData.slice(leftIndex, rightIndex);
-
-    }
+    },
+    alertMes(mes){
+      this.$alert(mes, '提示', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'info',
+            message: `action: ${ action }`
+          });
+        }
+      });
+    },
   }
 }
 </script>

@@ -85,7 +85,7 @@ export default {
             else{
               that.alertMes('用户名已存在！');
             }
-            console.log(myResponse);
+            // console.log(myResponse);
           }).catch(function (error) {
             console.log(error);
           });

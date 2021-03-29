@@ -89,7 +89,7 @@ export default {
                 m.set("name", mes[i]['keyword']);
                 that.data2[i] = {value: mes[i]['count'], name: mes[i]['keyword']};
               }
-              console.log(that.data2);
+              // console.log(that.data2);
             }
           })
         .catch(

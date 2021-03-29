@@ -52,6 +52,11 @@
               width="120">
             </el-table-column>
             <el-table-column
+              prop="type"
+              label="类型"
+              width="80">
+            </el-table-column>
+            <el-table-column
               prop="no"
               label="发表时间"
               sortable
@@ -60,7 +65,7 @@
             <el-table-column
               prop="abstract"
               label="摘要"
-              width="520">
+              width="440">
             </el-table-column>
             <el-table-column
 
@@ -69,7 +74,7 @@
               <!--              fixed="right"-->
               <template slot-scope="scope">
                 <el-button icon="el-icon-search" @click="goToOriWeb" circle></el-button>
-                <el-button type="warning" icon="el-icon-star-off"  @click="doStar" circle style="background-color: palegreen;"></el-button>
+                <el-button type="danger" icon="el-icon-delete"  @click="doUnStar" circle></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -121,87 +126,86 @@ export default {
       },
     }
   },
+  watch:{
+    tableData:{
+      handler (val, oldVal){
+        this.handleSizeChange(this.tableMes.eachPageItem);
+      }
+    }
+  },
   components: {
     Base
   },
+  mounted(){    //初始化界面
+    const that = this;
+    this.axios.get("/star/list", {withCredentials: true,
+      headers: {'Access-Control-Allow-Origin': 'http://localhost:8080',
+      },
+      credentials: 'include'
+    })
+      .then(
+        function (response){
+          const thatThat = that;
+          let articleIds = response.data.starlist;
+          that.tableMes.totalItem = articleIds.length;
+          let cnt = that.tableMes.totalItem;
+          for(let i = 0; i < cnt; i++) {
+            that.axios.get("/article/" + articleIds[i]).then(
+              function (response2){
+                if(response2.data.code !== "0"){
+                  let myArticle = response2.data.article;
+                  if (myArticle["author"] == "[]");
+                  myArticle["author"] = "无";
+                  if (myArticle["no"] == "[]" || myArticle["no"] == null)
+                    myArticle["no"] = "无";
+                  thatThat.tableData.push(myArticle);
+                }
+              }
+            ).catch(function (error){
+              console.log(error);
+            })
+          }
+        }
+      ).catch(
+      function (error){
+        console.log(error);
+      }
+    );
+  },
   methods :{
-    // create(){
-    //   const that = this;
-    //   this.axios.get("/star/list",{withCredentials: true})
-    //     .then(
-    //       function (response){
-    //         console.log("内容");
-    //         console.log(response);
-    //         that.tableData = response.data.article;
-    //         that.tableMes.totalItem = that.tableData.length;
-    //         for(let i = 0; i < that.tableMes.totalItem; i++) {
-    //           if (that.tableData[i]["author"] == "[]")
-    //             that.tableData[i]["author"] = "无";
-    //           if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
-    //             that.tableData[i]["no"] = "无";
-    //         }
-    //       }
-    //     ).catch(
-    //     function (error){
-    //       console.log(error);
-    //     }
-    //   );
-    // },
     /*搜索响应函数*/
     doSearch(searchWord){
-      const that = this;
-      this.axios.get("/star/list", {withCredentials: true,
-        headers: {'Access-Control-Allow-Origin': 'http://localhost:8080',
-        },
-        credentials: 'include'
-      })
-        .then(
-          function (response){
-            console.log("内容");
-            console.log(response);
-            that.tableData = response.data.article;
-            that.tableMes.totalItem = that.tableData.length;
-            for(let i = 0; i < that.tableMes.totalItem; i++) {
-              if (that.tableData[i]["author"] == "[]")
-                that.tableData[i]["author"] = "无";
-              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == "[]" == null)
-                that.tableData[i]["no"] = "无";
-            }
-            this.handleSizeChange(that.tableMes.eachPageItem);
-          }
-        ).catch(
-        function (error){
-          console.log(error);
-        }
-      );
-      console.log(searchWord);
+
     },
-    doStar(){
+    /*取消关注监听事件*/
+    doUnStar(){
       let t;
       const that = this;
       clearTimeout(t)
       t = setTimeout(function (){
         console.log(that.selectedAId);
-        that.axios.post('/apis/star/add', {
+        that.axios.post('/star/delete', {
           aid: that.selectedAId
         }, {withCredentials: true})
           .then(
             function (response) {
-              // if(response.data.code == '0') {
-              //   // alert("登录成功！");
-              //   Router.push({ path: 'index' });
-              // }
-              // else{
-              //   alert('用户名与密码不匹配！');
-              // }
-              console.log(response);
+              if(response.data.code == '0') {
+                let cnt = that.tableData.length;  //删除数据
+                for(let i = 0; i < cnt; i++)
+                {
+                  if(that.tableData[i]['aid'] == that.selectedAId)
+                  {
+                    let mid = that.tableData[i];
+                    that.tableData.splice(0, i + 1);
+                  }
+                }
+              }
             })
           .catch(
             function (error) {
               console.log(error);
             });
-        console.log('执行了');
-      }, 500);
+      }, 1000);
     },
     goToOriWeb(){   /*跳转*/
       let t;
@@ -248,8 +252,18 @@ export default {
         this.displayedTableData = this.tableData.slice(leftIndex);
       else
         this.displayedTableData = this.tableData.slice(leftIndex, rightIndex);
-
-    }
+    },
+    alertMes(mes){
+      this.$alert(mes, '提示', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'info',
+            message: `action: ${ action }`
+          });
+        }
+      });
+    },
   }
 }
 </script>
