@@ -1,0 +1,131 @@
+body
+{
+    background-image:url(pp.jpg) ;
+    color:black;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+    
+}
+
+.list
+{
+    background: rgba(255, 255, 255,0.2);
+    border-radius: 10px;
+    border: 1px rgba(0, 0, 0, 0.3) solid;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+    padding:10px;
+    margin-top: 5px;
+}
+
+#link
+{
+    background-color: rgb(103, 236, 207);
+    border: none;
+    text-align: center;
+    height: 30px;
+    border-radius: 10px;
+}
+
+#num
+{
+    margin-left:1250px;
+    font-size:16px;
+}
+
+#title
+{
+    text-align: center;
+    font-size: 50px;
+}
+
+.search
+{
+    text-align: center;
+}
+
+#key
+{
+    width: 220px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 10px;
+    text-align: left;
+    text-indent: 10px;
+    border: 1px solid rgba(211, 211, 211, 100);
+    outline: none;
+}
+
+#time
+{
+    width: 220px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 10px;
+    text-align: left;
+    text-indent: 10px;
+    border: 1px solid rgba(211, 211, 211, 100);
+    outline: none;
+}
+
+#sort
+{
+    width: 220px;
+    height: 30px;
+    line-height: 20px;
+    border-radius: 10px;
+    margin-left: 230px;
+    text-align: left;
+    text-indent: 10px;
+    border: 1px solid rgba(211, 211, 211, 100);
+    outline: none;
+}
+
+#search
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#sbtn
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#exit
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 1250px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
+
+#new
+{
+    position: relative;
+    margin-top: 1px;
+    margin-left: 870px;
+    border:none;
+    background-color: rgb(103, 236, 207);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+    text-align: center;
+}
