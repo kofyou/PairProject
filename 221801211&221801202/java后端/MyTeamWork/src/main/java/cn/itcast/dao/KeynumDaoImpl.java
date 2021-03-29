@@ -19,16 +19,21 @@ public class KeynumDaoImpl implements KeynumDao{
     BasicDataSource basicDataSource;
     ResultSet resultSet;
 
-    public Map<String,Integer> add() {
+    @Override
+    public Map<String, Integer> add() {
+        return null;
+    }
+
+    /*public Map<String,Integer> add() {
         List<Keynum> list = new ArrayList<Keynum>();
         List<String> keylist = new ArrayList<String>();
         String sql = "select * from paperinfo";
         try {
-            connection = DBUtil1.getConnection();   //优化
+            connection = DBUtil1.getConnection("keywords");   //优化
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String key = resultSet.getString("keywords");
+                String key = resultSet.getString("keyword");
                 keylist.add(key);
             }
         } catch (SQLException e) {
@@ -60,8 +65,34 @@ public class KeynumDaoImpl implements KeynumDao{
             }
         });
         return keynums;
+    }*/
+
+    public List<Keynum> selectkey() {
+        List<Keynum> list = new ArrayList<Keynum>();
+        String sql = "select * from keywords";
+        try {
+            connection = DBUtil1.getConnection();   //优化
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Keynum keynum = new Keynum();
+                keynum.setKeyword(resultSet.getString("keyword"));
+                keynum.setAppeartimes(resultSet.getInt("appeartimes"));
+                list.add(keynum);
+                System.out.println(keynum.getAppeartimes() + ":" + keynum.getKeyword());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil1.close(resultSet, preparedStatement, connection);
+        }
+        Collections.sort(list, new Comparator<Keynum>() {
+            @Override
+            public int compare(Keynum o1, Keynum o2) {
+                return Integer.compare(o2.getAppeartimes(), o1.getAppeartimes());
+            }
+        });
+        return list;
     }
-
-
 }
 
