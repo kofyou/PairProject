@@ -1,4 +1,8 @@
+<%@ page import="pojo.Word" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"  %>
+<% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +12,39 @@
 </head>
 <body>
 
+<form method="post" id="form" action="<%=path%>/ChartServlet">
+    <div id="search"><input id="input2" type="submit" name="searchButton" value="生成图表">  </div>
+</form>
+
+<%!
+    List<Word> list = new ArrayList<>();
+%>
+
+<%
+    list = (List<Word>) request.getAttribute("list");
+    if(list != null) {
+%>
+
+<table border="1" width="400">
+    <tr>
+        <td>关键词</td>
+        <td>年份</td>
+    </tr>
+
+    <%
+        for (Word word : list) {
+    %>
+
+    <tr>
+        <td><%=word.getKeywords() %></td>
+        <td><%=word.getYear() %></td>
+    </tr>
+    <%
+            }
+        }
+    %>
+
+</table>
 
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 600px;height:400px;"></div>
