@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Simple Blog System—发表文章</title>
+    <link rel="stylesheet" href="list_post.css" type="text/css" />
+    <title>展示文章列表</title>
   </head>
   <body>
-  <h1>Simple Blog System—文章列表</h1>
+  <h1 id="title">文章列表</h1>
 <?php
   require('config.php');
 
@@ -24,16 +25,16 @@
 
   $num_results = $result->num_rows;
 
-  echo '<p>共有文章: '.$num_results.' 篇</p>';
+  echo '<div id="num"><p>共有文章: '.$num_results.' 篇</p></div>';
 
   for ($i=0; $i <$num_results; $i++)
   {
      $row = $result->fetch_assoc();
-     echo '<h2>'.($i+1).'.  ' . htmlspecialchars(stripslashes($row['post_title'])) . "</h2>\n";
-     echo '<p>发表时间：' . htmlspecialchars(stripslashes($row['release_date'])) . "</p>\n";
-     echo '<p>会议时间：' . htmlspecialchars(stripslashes($row['meeting_date'])) . "</p>\n";
-     echo '<p>摘要：'.nl2br(htmlspecialchars(stripslashes($row['post_content']))).'</p>';
-     echo '<a href="'.htmlspecialchars(stripslashes($row['link'])).'">原文链接</a>';
+     echo '<div class="list"><h2>'.($i+1).'.  ' . htmlspecialchars(stripslashes($row['post_title'])) . "</h2>\n".
+      '<p>发表时间：' . htmlspecialchars(stripslashes($row['release_date'])) . "</p>\n".
+      '<p>会议时间：' . htmlspecialchars(stripslashes($row['meeting_date'])) . "</p>\n".
+      '<p>摘要：'.nl2br(htmlspecialchars(stripslashes($row['post_content']))).'</p>'.
+      '<a href="'.htmlspecialchars(stripslashes($row['link'])).'"><button  id="link">原文链接</button></a></div>';
   }
 
   $result->free();
