@@ -8,7 +8,12 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>热词分析</el-dropdown-item>
+              <router-link to="/home">
+                <el-dropdown-item>搜索论文</el-dropdown-item>
+              </router-link>
+              <router-link to="/graph">
+                <el-dropdown-item>热词分析</el-dropdown-item>
+              </router-link>
             </el-dropdown-menu>
           </template>
         </el-dropdown>

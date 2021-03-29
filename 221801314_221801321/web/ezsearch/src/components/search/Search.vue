@@ -30,15 +30,19 @@ export default defineComponent({
     const querySearch = (queryString, cb) => {
       ctx.$http
         .get("/paper/title", {
+          address: 5,
           title: inputValue.value,
         })
-        .then(({data}) => {
+        .then((data) => {
           console.log(data);
           for (let i = 0; i < data.data.length; i++) {
             data.data[i].value = data.data[i].title;
           }
           cb(data.data);
-        });
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
       // var results = queryString
       //   ? paperTitles.value.filter(createFilter(queryString))
       //   : paperTitles.value;

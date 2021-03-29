@@ -9,6 +9,10 @@ import Header from "@/components/common/Header.vue";
 import Footer from "@/components/common/Footer.vue";
 export default defineComponent({
   name: "Graph",
+  components: {
+      Header,
+      Footer,
+  }
 });
 </script>
 <style scoped>
