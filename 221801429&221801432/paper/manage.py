@@ -23,13 +23,12 @@ class Paper(db.Model):
     keywords = db.Column(db.Text)
     releasetime = db.Column(db.String(255))
     link = db.Column(db.String(255))
-
     def to_short_dict(self):
         if self.abstract:
             if len(self.abstract) > 300:
                 abstract = self.abstract[0:300]+"..."
-        else:
-            abstract = self.abstract
+            else:
+                abstract = self.abstract
         paper = {
             "id": self.id,
             "title": self.title,
