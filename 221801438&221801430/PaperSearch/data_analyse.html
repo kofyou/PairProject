@@ -172,78 +172,68 @@
 
             <div  id="table2">
                 <div id="container2" style="height: 100%"></div>
-
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-    
-        <script type="text/javascript">
-var dom = document.getElementById("container2");
-var myChart = echarts.init(dom);
-var app = {};
-
-var option;
-
-
-
-option = {
-    title: {
-        text: ''
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['deep learning','object detection', 'semantic seqmentation']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['2016', '2018', '2020']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: 'deep learning',
-            type: 'line',
-            stack: '热度',
-            data:[25,101,90]
-        },
-        {
-            name: 'object detection',
-            type: 'line',
-            stack: '热度',
-            data: [11,48,87]
-        },
-        {
-            name: 'semantic seqmentation',
-            type: 'line',
-            stack: '热度',
-            data: [4,27,46]
-        },
-        
-    ]
-};
-
-if (option && typeof option === 'object') {
-    myChart.setOption(option);
-}
-
-        </script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+                    <script type="text/javascript">
+                        var dom = document.getElementById("container2");
+                        var myChart = echarts.init(dom);
+                        var app = {};
+                        var option;
+                        option = {
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data: ['deep learning','object detection', 'semantic seqmentation']
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            toolbox: {
+                                feature: {
+                                    saveAsImage: {}
+                                }
+                            },
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: ['2016', '2018', '2020']
+                            },
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [
+                                {
+                                    name: 'deep learning',
+                                    type: 'line',
+                                    stack: '热度',
+                                    data:[25,101,90]
+                                },
+                                {
+                                    name: 'object detection',
+                                    type: 'line',
+                                    stack: '热度',
+                                    data: [11,48,87]
+                                },
+                                {
+                                    name: 'semantic seqmentation',
+                                    type: 'line',
+                                    stack: '热度',
+                                    data: [4,27,46]
+                                },
+                                
+                            ]
+                        };
+                        if (option && typeof option === 'object') {
+                            myChart.setOption(option);
+                        }
+                    </script>
+                </div>
             </div>
-        </div>
     </body>
-
-    
 </html>
