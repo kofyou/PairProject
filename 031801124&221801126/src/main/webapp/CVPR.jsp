@@ -19,8 +19,8 @@
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('main'));
 
-    var yearlist = ['2015','2017','2019'];
-    var countryList = ['image','learning','object','feature','computer','analysis','recognition','detection','vision','reconstruction'];
+    var yearlist = ['2018','2019','2020'];
+    var countryList = ['image','learning','neural','feature','analysis ','object ','segmentation','extraction ','detection ','recognition '];
     var option = {
         timeline:{
             axisType: 'category',
@@ -34,15 +34,33 @@
         baseOption:{
             dataset:{
                 source:[
-                    ['year','image','learning','object','feature','computer','analysis','recognition','detection','vision','reconstruction'],
-                    ['2015',9.0628,15.029,14.0325,12.239,8.6502,4.5031,10.4214,11.2701,3,12],
-                    ['2017',10.2523,13.2113,14.8875,11.9431,17.6578,8.3622,4.4684,11.1438,6,3],
-                    ['2019',13.9364,15.4706,4.1151,7.0686,1.7845,1.4943,10.5149,11.2707,14,7]
+                    ['year','image','learning','neural','feature','analysis ','object ','segmentation','extraction ','detection ','recognition '],
+                    ['2018',937 ,370 ,301 ,269 ,251 ,226 ,223 ,217 ,199 ,192],
+                    ['2019',1029,
+                        653,
+                        337,
+                        247,
+                        250,
+                        261,
+                        234,
+                        177,
+                        302,
+                        270],
+                    ['2020',1360,
+                        624,
+                        555,
+                        305,
+                        342,
+                        204,
+                        136,
+                        221,
+                        181,
+                        170]
                 ]
             },
 
             title: {
-                text: '2015年',
+                text: '2018年',
                 left: 'center',
                 textStyle:{
                     fontSize:24
@@ -85,7 +103,7 @@
                     seriesLayoutBy: 'row',
                     encode:{
                         x:'year',
-                        y:'2015'
+                        y:'2018'
                     }
                 },
             ]
