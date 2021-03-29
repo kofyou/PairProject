@@ -6,7 +6,7 @@ spring:
     password: lw091211
 
 server:
-  port: 8080
+  port: 8880
   servlet:
     context-path: /esearch
 
