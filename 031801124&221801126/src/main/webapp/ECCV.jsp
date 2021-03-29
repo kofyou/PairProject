@@ -18,8 +18,8 @@
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('main'));
 
-    var yearlist = ['2015','2017','2019'];
-    var countryList = ['image','learning','object','feature','computer','analysis','recognition','detection','vision','reconstruction'];
+    var yearlist = ['2016','2018','2020'];
+    var countryList = ['learning','image','neural','convolutional','network ','deep','object ','detection','segmentation ','networks'];
     var option = {
         timeline:{
             axisType: 'category',
@@ -33,15 +33,45 @@
         baseOption:{
             dataset:{
                 source:[
-                    ['year','image','learning','object','feature','computer','analysis','recognition','detection','vision','reconstruction'],
-                    ['2015',9.0628,15.029,14.0325,12.239,8.6502,4.5031,10.4214,11.2701,3,12],
-                    ['2017',10.2523,13.2113,14.8875,11.9431,17.6578,8.3622,4.4684,11.1438,6,3],
-                    ['2019',13.9364,15.4706,4.1151,7.0686,1.7845,1.4943,10.5149,11.2707,14,7]
+                    ['year','learning','image','neural','convolutional','network ','deep','object ','detection','segmentation ','networks'],
+                    ['2016',81,
+                        73,
+                        63,
+                        55,
+                        55,
+                        50,
+                        42,
+                        39,
+                        32,
+                        31
+                    ],
+                    ['2018',281,
+                        148,
+                        127,
+                        90,
+                        107,
+                        164,
+                        100,
+                        108,
+                        90,
+                        127
+                    ],
+                    ['2020',416,
+                        228,
+                        130,
+                        48,
+                        97,
+                        126,
+                        147,
+                        177,
+                        115,
+                        111
+                    ]
                 ]
             },
 
             title: {
-                text: '2015年',
+                text: '2016年',
                 left: 'center',
                 textStyle:{
                     fontSize:24
@@ -84,7 +114,7 @@
                     seriesLayoutBy: 'row',
                     encode:{
                         x:'year',
-                        y:'2015'
+                        y:'2016'
                     }
                 },
             ]
