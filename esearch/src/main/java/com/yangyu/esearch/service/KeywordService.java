@@ -19,6 +19,10 @@ public class KeywordService {
 
 
     private Map<String,Integer> wordsMap;
+    private String []wordKey = {"Cameras", "Training", "Computer vision","Feature extraction", "Shape",
+            "Image segmentation", "Robustness", "Visualization", "Three-dimensional displays",
+            "Image reconstruction"};
+    private Integer []wordValue = {2162, 2023, 1769, 1683, 1420, 1292, 1266, 1108, 1056, 955};
 
     //返回词频最高的十个关键词
     public List<Keyword> topWord(List<Paper> papers)
@@ -55,6 +59,19 @@ public class KeywordService {
             Keyword keyWord = new Keyword();
             keyWord.setKeyword(entry.getKey());
             keyWord.setNum(entry.getValue());
+            keywordList.add(keyWord);
+        }
+        return keywordList;
+    }
+
+    public List<Keyword> wordList()
+    {
+        List<Keyword> keywordList = new LinkedList<>();
+        Keyword keyWord = new Keyword();
+        for(int i = 0; i < 10; i++)
+        {
+            keyWord.setKeyword(wordKey[i]);
+            keyWord.setNum(wordValue[i]);
             keywordList.add(keyWord);
         }
         return keywordList;
