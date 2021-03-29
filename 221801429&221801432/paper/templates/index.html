@@ -38,7 +38,7 @@
                         <span>&emsp;所属顶会: {{ paper.typeandyear }}</span>
                     </div>
                     <div class="time fl">{{ paper.releasetime }}</div>
-                    <div><a href="/" title="从列表中删除"><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></a></div>
+                    <div><a href="/delete/{{ paper.id }}" title="从列表中删除"><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></a></div>
                 </div>
             </li>
             {% endfor %}

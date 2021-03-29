@@ -1,4 +1,4 @@
-from flask import Flask, render_template, current_app, request
+from flask import Flask, render_template, current_app, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from config import Config
@@ -53,7 +53,7 @@ class TopWord(db.Model):
     frequency = db.Column(db.Integer)
 
 
-# 显示首页
+# 显示首页/搜索
 @app.route('/')
 def hello_world():
 
@@ -97,6 +97,14 @@ def hello_world():
         "searchWord": keywords
     }
     return render_template("index.html", data=data)
+
+
+@app.route('/delete/<id>')
+def delete(id):
+    paper = Paper.query.filter(Paper.id == id).first()
+    db.session.delete(paper)
+    db.session.commit()
+    return '成功删除该论文！'
 
 
 @app.route('/detail')
