@@ -8,9 +8,6 @@ public class Paper {
     private int id;
     private String title;
     private String abstractText;
-    private String tag1 = "";
-    private String tag2 = "";
-    private String tag3 = "";
     private List<String> tagList;
     private String keywords;
     private String doiLink;
@@ -39,44 +36,6 @@ public class Paper {
 
     public void setAbstractText(String abstractText) {
         this.abstractText = abstractText;
-    }
-
-    public String getTag1() {
-        return tag1;
-    }
-
-    public void setTag1(String tag1) {
-        this.tag1 = tag1;
-    }
-
-    public String getTag2() {
-        return tag2;
-    }
-
-    public void setTag2(String tag2) {
-        this.tag2 = tag2;
-    }
-
-    public String getTag3() {
-        return tag3;
-    }
-
-    public void setTag3(String tag3) {
-        this.tag3 = tag3;
-    }
-
-    public void setTags(){
-        Pattern pattern = Pattern.compile("[,]");
-        String[] tags = pattern.split(keywords);
-        for (int i = 0;i < tags.length;i ++){
-            if (i == 0){
-                setTag1(tags[i]);
-            }else if (i == 1){
-                setTag2(tags[i]);
-            }else if (i == 2){
-                setTag3(tags[i]);
-            }
-        }
     }
 
     public void setTagList() {
@@ -129,16 +88,15 @@ public class Paper {
     @Override
     public String toString() {
         String s = "";
-        s += getTitle();
-        s += getAbstractText();
-        s += getKeywords();
-        s += getTag1();
-        s += getTag2();
-        s += getTag3();
-        s += getDoiLink();
-        s += getPublicationDate();
-        s += getConference();
+        s += getTitle()+ "\n";
+        s += getAbstractText()+ "\n";
+        s += getKeywords()+ "\n";
+        //for (String tag : getTagList())
+        //    s += tag+"\n";
+        s += getDoiLink()+ "\n";
+        s += getPublicationDate()+ "\n";
+        s += getConference()+ "\n";
         s += "\n";
-        return super.toString();
+        return s;
     }
 }
