@@ -5,9 +5,9 @@ import (
 )
 
 type UserPaper struct {
-	Id      	int64
-	PaperId 	int64 	`xorm:"index notnull"`
-	UId     	int64 	`xorm:"index notnull"`
+	Id      int64
+	PaperId int64 `xorm:"index notnull"`
+	UId     int64 `xorm:"index notnull"`
 }
 
 func (user *User) UserAddPaper(paperId int64) error {
@@ -16,8 +16,8 @@ func (user *User) UserAddPaper(paperId int64) error {
 
 func PaperSubscribe(userId, paperId int64) error {
 	userPaper := UserPaper{
-		PaperId:   paperId,
-		UId: 	userId,
+		PaperId: paperId,
+		UId:     userId,
 	}
 
 	_, err := userPaper.Insert()
@@ -42,7 +42,7 @@ func (user *User) GetPaperIdList(p int64) ([]int64, int64) {
 	}
 
 	list := make([]int64, 0)
-	err := Engine.Table("user_paper").Where("u_id = ?", user.Id).Cols("paper_id").Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (p - 1))).Find(&list)
+	err := Engine.Table("user_paper").Where("u_id = ?", user.Id).Cols("paper_id").Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(p-1))).Find(&list)
 	if err != nil {
 		util.Log().Error(err.Error())
 	}

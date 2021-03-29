@@ -31,12 +31,12 @@ func GetPapersByKeywordId(keywordId, page int64) ([]Paper, int64) {
 		return nil, -1
 	}
 
-	err = Engine.Table("paper_keyword").Where("keyword_id = ?", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Cols("paper_id").Find(&paperId)
+	err = Engine.Table("paper_keyword").Where("keyword_id = ?", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Cols("paper_id").Find(&paperId)
 	if err != nil {
 		util.Log().Error(err.Error())
 	}
 	papers := make([]Paper, 0)
-	for _, id := range paperId{
+	for _, id := range paperId {
 		paper, _ := GetPaper(id)
 		papers = append(papers, paper)
 	}

@@ -56,7 +56,7 @@ func BuildPaper(paper model.Paper) Paper {
 		Abstract:   paper.Abstract,
 		Meeting:    paper.Meeting,
 		Year:       paper.Year,
-		OriginLink: paper.Meeting,
+		OriginLink: paper.OriginLink,
 		Keywords:   TransKeyword(keyword),
 	}
 }
@@ -90,7 +90,7 @@ func BuildSearchResult(paper []model.Paper, pageCount int64, page int64, count i
 	return PaperSearchList{
 		Page:      page,
 		PageCount: pageCount,
-		Total: count,
+		Total:     count,
 		Papers:    papers,
 	}
 }

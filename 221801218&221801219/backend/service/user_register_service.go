@@ -7,9 +7,9 @@ import (
 )
 
 type UserRegisterService struct {
-	Uid					string		`form:"user_id" json:"user_id" binding:"required,min=3,max=30"`
-	Password			string		`form:"password" json:"password" binding:"required,min=6,max=40"`
-	PasswordConfirm		string		`form:"password_confirm" json:"password_confirm" binding:"required,min=6,max=40"`
+	Uid             string `form:"user_id" json:"user_id" binding:"required,min=3,max=30"`
+	Password        string `form:"password" json:"password" binding:"required,min=6,max=40"`
+	PasswordConfirm string `form:"password_confirm" json:"password_confirm" binding:"required,min=6,max=40"`
 }
 
 // valid 表单验证
@@ -17,7 +17,7 @@ func (service *UserRegisterService) valid() *serializer.Response {
 	if service.PasswordConfirm != service.Password {
 		return &serializer.Response{
 			Code: serializer.CodeParamErr,
-			Msg: "两次输入的密码不相同",
+			Msg:  "两次输入的密码不相同",
 		}
 	}
 
@@ -25,8 +25,8 @@ func (service *UserRegisterService) valid() *serializer.Response {
 
 	if has {
 		return &serializer.Response{
-			Code:  serializer.CodeParamErr,
-			Msg:   "用户名已经存在",
+			Code: serializer.CodeParamErr,
+			Msg:  "用户名已经存在",
 		}
 	}
 
@@ -36,7 +36,7 @@ func (service *UserRegisterService) valid() *serializer.Response {
 // Register 用户注册
 func (service *UserRegisterService) Register() serializer.Response {
 	user := model.User{
-		Uid:       service.Uid,
+		Uid: service.Uid,
 	}
 
 	if err := service.valid(); err != nil {

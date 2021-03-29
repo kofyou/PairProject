@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func PaperSearch(c *gin.Context)  {
+func PaperSearch(c *gin.Context) {
 	var service service.SearchPaperService
 	param1 := c.DefaultQuery("title", "")
 	param2 := c.DefaultQuery("page", "1")

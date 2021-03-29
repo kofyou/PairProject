@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func UserRegister(c *gin.Context)  {
+func UserRegister(c *gin.Context) {
 	var service service.UserRegisterService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.Register()
@@ -17,7 +17,7 @@ func UserRegister(c *gin.Context)  {
 	}
 }
 
-func UserLogin(c *gin.Context)  {
+func UserLogin(c *gin.Context) {
 	var service service.UserLoginService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.Login(c)
@@ -34,6 +34,6 @@ func UserLogout(c *gin.Context) {
 	_ = s.Save()
 	c.JSON(200, serializer.Response{
 		Code: 0,
-		Msg:    "登出成功",
+		Msg:  "登出成功",
 	})
 }

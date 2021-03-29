@@ -22,7 +22,7 @@ func (service *DeletePaperListService) Delete(user model.User, paperId int64) se
 	}
 
 	return serializer.Response{
-		Code:  0,
-		Msg:   "Success",
+		Code: 0,
+		Msg:  "Success",
 	}
 }

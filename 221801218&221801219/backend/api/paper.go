@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func ShowPaperDetail(c *gin.Context)  {
+func ShowPaperDetail(c *gin.Context) {
 	var service service.ShowPaperListService
 	idString := c.Param("id")
 	id, err := strconv.Atoi(idString)
@@ -19,7 +19,7 @@ func ShowPaperDetail(c *gin.Context)  {
 	}
 }
 
-func ShowPapersByKeywordID(c *gin.Context)  {
+func ShowPapersByKeywordID(c *gin.Context) {
 	var service service.ShowPaperListService
 	p := c.DefaultQuery("page", "1")
 	k := c.DefaultQuery("keyword", "-1")
@@ -37,7 +37,7 @@ func ShowPapersByKeywordID(c *gin.Context)  {
 	}
 }
 
-func ShowPaperList(c *gin.Context)  {
+func ShowPaperList(c *gin.Context) {
 	var service service.ShowPaperListService
 	p := c.DefaultQuery("page", "1")
 	page, err := strconv.Atoi(p)
@@ -49,7 +49,7 @@ func ShowPaperList(c *gin.Context)  {
 	}
 }
 
-func AddPaperList(c *gin.Context)  {
+func AddPaperList(c *gin.Context) {
 	var service service.SubscribePaperService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.Subscribe(*CurrentUser(c))

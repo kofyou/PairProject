@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func Init()  {
+func Init() {
 	_ = godotenv.Load()
 
 	util.BuildLogger(os.Getenv("LOG_LEVEL"))

@@ -83,6 +83,9 @@ func (service *SearchPaperService) Search(title, keyword string, page int64, mee
 		util.Log().Error(err.Error())
 		return serializer.ParamErr("3", err)
 	}
+	for _, p := range papers {
+		p.GetPaperKeywordList()
+	}
 
 	_, _ = model.Engine.Exec("drop table temp.temp_table")
 

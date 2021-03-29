@@ -36,7 +36,7 @@ func (paper *Paper) GetPaperKeywordList() []Keyword {
 	}
 
 	kwds := make([]Keyword, 0)
-	for _, i := range list{
+	for _, i := range list {
 		kwds = append(kwds, GetKeyword(i))
 	}
 	return kwds

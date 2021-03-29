@@ -6,9 +6,9 @@ import (
 )
 
 type User struct {
-	Id             	int64
-	Uid       		string 		`xorm:"varchar(200) unique notnull"`
-	PasswordDigest 	string 		`xorm:"varchar(200) notnull"`
+	Id             int64
+	Uid            string `xorm:"varchar(200) unique notnull"`
+	PasswordDigest string `xorm:"varchar(200) notnull"`
 }
 
 const (

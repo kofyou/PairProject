@@ -5,13 +5,13 @@ import (
 )
 
 type Paper struct {
-	Id         	int64
-	Title      	string 	`xorm:"notnull"`
-	Abstract   	string 	`xorm:"notnull"`
-	Meeting    	string 	`xorm:"varchar(8) notnull"`
-	Year       	int    	`xorm:"notnull"`
-	OriginLink 	string 	`xorm:"notnull"`
-	Click		int64	`xorm:"notnull default 0"`
+	Id         int64
+	Title      string `xorm:"notnull"`
+	Abstract   string `xorm:"notnull"`
+	Meeting    string `xorm:"varchar(8) notnull"`
+	Year       int    `xorm:"notnull"`
+	OriginLink string `xorm:"notnull"`
+	Click      int64  `xorm:"notnull default 0"`
 }
 
 func GetPaper(ID interface{}) (Paper, bool) {
@@ -35,16 +35,16 @@ func (paper *Paper) Add() (int64, error) {
 // SearchPaperByTitle 页面超出返回nil, -1
 func SearchPaperByTitle(title []string, page int64, meeting string) ([]Paper, int64) {
 	var sql string
-	for _, t := range title{
+	for _, t := range title {
 		sql = sql + " or " + `title like "%` + t + `%"`
 	}
 
-	return SearchPaperByParam("1 = 0" + sql, page, meeting)
+	return SearchPaperByParam("1 = 0"+sql, page, meeting)
 }
 
 func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
 	var sql string
-	for _, k := range keyword{
+	for _, k := range keyword {
 		sql = sql + " or " + "content like \"%" + k + "%\""
 	}
 
@@ -53,7 +53,7 @@ func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
 		util.Log().Error(err.Error())
 	}
 
-	total, err := Engine.Table("paper_keyword").Select("paperId").Where("keyword_id in (?)", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Count()
+	total, err := Engine.Table("paper_keyword").Select("paperId").Where("keyword_id in (?)", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Count()
 	if err != nil {
 		util.Log().Error(err.Error())
 	}
@@ -62,7 +62,7 @@ func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
 		return nil, -1
 	}
 
-	if err := Engine.Table("paper_keyword").Select("paperId").Where("keyword_id in (?)", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paperId); err != nil {
+	if err := Engine.Table("paper_keyword").Select("paperId").Where("keyword_id in (?)", keywordId).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Find(&paperId); err != nil {
 		util.Log().Error(err.Error())
 	}
 
@@ -74,7 +74,6 @@ func SearchPaperByKeyword(keyword []string, page int64) ([]Paper, int64) {
 
 	return paper, total
 }
-
 
 // SearchPaperByParam 搜索 没有结果时返回0
 func SearchPaperByParam(sql string, page int64, meeting string) ([]Paper, int64) {
@@ -104,12 +103,12 @@ func SearchPaperByParam(sql string, page int64, meeting string) ([]Paper, int64)
 	}
 
 	if b {
-		err = Engine.Where(sql).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
+		err = Engine.Where(sql).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Find(&paper)
 		if err != nil {
 			util.Log().Error(err.Error())
 		}
 	} else {
-		err = Engine.Where(sql).And("meeting = ?", meeting).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize * (page - 1))).Find(&paper)
+		err = Engine.Where(sql).And("meeting = ?", meeting).Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Find(&paper)
 		if err != nil {
 			util.Log().Error(err.Error())
 		}

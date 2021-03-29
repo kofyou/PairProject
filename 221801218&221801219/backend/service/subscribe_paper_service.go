@@ -6,7 +6,7 @@ import (
 )
 
 type SubscribePaperService struct {
-	PaperId			int64		`form:"paper_id" json:"paper_id"`
+	PaperId int64 `form:"paper_id" json:"paper_id"`
 }
 
 func (service *SubscribePaperService) Subscribe(user model.User) serializer.Response {
@@ -27,7 +27,7 @@ func (service *SubscribePaperService) Subscribe(user model.User) serializer.Resp
 		return serializer.DBErr("论文订阅保存失败", err)
 	}
 	return serializer.Response{
-		Code:  0,
-		Msg:   "论文订阅成功",
+		Code: 0,
+		Msg:  "论文订阅成功",
 	}
 }

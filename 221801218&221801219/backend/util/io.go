@@ -18,7 +18,7 @@ func GetAllFilesInDir(dirPath string) (files []string) {
 
 	for _, file := range dir {
 		if !file.IsDir() {
-			files = append(files, dirPath + pathSep + file.Name())
+			files = append(files, dirPath+pathSep+file.Name())
 		}
 	}
 
