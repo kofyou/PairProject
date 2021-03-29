@@ -1222,15 +1222,15 @@ body{
 	text-indent:10px;
   }
 
-.paper_filter_form .input_sub{
-    float:left;
-    margin:0px;
-    margin-left:10px;
-    width:100px;
-    height:28px;
-    border:0px;
-    border-radius:4px;
-    background: #009afc;
-    color:#fff;
-    cursor:pointer;
-}
+  .paper_filter_form .input_sub{
+	float:left;
+	margin:0px;
+	margin-left:10px;
+	width:100px;
+	height:28px;
+	border:0px;
+	border-radius:4px;
+	background: #009afc;
+	color:#fff;
+	cursor:pointer;
+  }
