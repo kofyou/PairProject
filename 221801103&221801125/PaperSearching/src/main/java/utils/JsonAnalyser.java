@@ -8,9 +8,8 @@ import pojo.Paper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class JsonAnalyser
 {
@@ -78,26 +77,29 @@ public class JsonAnalyser
                         addKeywordsCount(keywords);
                     }
 
+                    theabstract = jsonObject.getString("abstract");
 
-                    if (jsonObject.containsKey("abstract"))
+                    publishDate = jsonObject.getString("chronOrPublicationDate");
+                    String datestr;
+                    if(getMonth(publishDate).equals("00"))
                     {
-                        theabstract = jsonObject.getString("abstract");
+                        datestr = publishDate.substring(publishDate.length() - 4, publishDate.length())
+                                + "-"
+                                + "01"//getMonth(publishDate)
+                                + "-01";
                     }
-                    else {
-                        theabstract="";
-                    }
-
-                    if (jsonObject.containsKey("chronOrPublicationDate"))
+                    else
                     {
-                        publishDate = jsonObject.getString("chronOrPublicationDate");
+                        datestr = publishDate.substring(publishDate.length() - 4, publishDate.length())
+                                + "-"
+                                + "getMonth(publishDate)"
+                                + "-01";
                     }
-                    else {
-                        publishDate="";
-                    }
-
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date utilDate = sdf.parse(datestr);
+                    java.sql.Date date=new java.sql.Date(utilDate.getTime());
 
                     conference = theConference;
-
                     paperlink=jsonObject.getString("doiLink");
 
                     paper.setIsbn(isbn);
@@ -108,6 +110,7 @@ public class JsonAnalyser
                     paper.setPublishDate(publishDate);
                     paper.setConferrence(conference);
                     paper.setPaperlink(paperlink);
+                    paper.setDate(date);
 
                     System.out.println(paper.toString());
                     list.add(paper);
@@ -123,9 +126,6 @@ public class JsonAnalyser
         }
         return null;
     }
-
-
-
 
     public List<Paper> Analyse1(String path,String theConference)
     {
@@ -184,22 +184,27 @@ public class JsonAnalyser
 
                     addKeywordsCount(keywords);
 
-                    if (jsonObject.containsKey("摘要"))
-                    {
-                        theabstract = jsonObject.getString("摘要");
-                    }
-                    else {
-                        theabstract="";
-                    }
+                    theabstract = jsonObject.getString("摘要");
 
-                    if (jsonObject.containsKey("发布时间"))
+                    publishDate = jsonObject.getString("发布时间");
+                    String datestr;
+                    if(getMonth(publishDate).equals("00"))
                     {
-                        publishDate = jsonObject.getString("发布时间");
+                        datestr = publishDate.substring(publishDate.length() - 4, publishDate.length())
+                                + "-"
+                                + "01"//getMonth(publishDate)
+                                + "-01";
                     }
-                    else {
-                        publishDate="";
+                    else
+                    {
+                        datestr = publishDate.substring(publishDate.length() - 4, publishDate.length())
+                                + "-"
+                                + getMonth(publishDate)
+                                + "-01";
                     }
-
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date utilDate = sdf.parse(datestr);
+                    java.sql.Date date=new java.sql.Date(utilDate.getTime());
 
                     conference = theConference;
 
@@ -249,6 +254,62 @@ public class JsonAnalyser
     public HashMap<String,Integer> retKeyCount()
     {
        return keywordsCount;
+    }
+
+    public String getMonth(String publishDate)
+    {
+        if(publishDate.contains("Jan"))
+        {
+            return "01";
+        }
+        else if(publishDate.contains("Feb"))
+        {
+            return "02";
+        }
+        else if(publishDate.contains("Mar"))
+        {
+            return "03";
+        }
+        else if(publishDate.contains("Apr"))
+        {
+            return "04";
+        }
+        else if(publishDate.contains("May"))
+        {
+            return "05";
+        }
+        else if(publishDate.contains("Jun"))
+        {
+            return "06";
+        }
+        else if(publishDate.contains("Jul"))
+        {
+            return "07";
+        }
+        else if(publishDate.contains("Aug"))
+        {
+            return "08";
+        }
+        else if(publishDate.contains("Sep"))
+        {
+            return "09";
+        }
+        else if(publishDate.contains("Oct"))
+        {
+            return "10";
+        }
+        else if(publishDate.contains("Nov"))
+        {
+            return "11";
+        }
+        else if(publishDate.contains("Dec"))
+        {
+            return "12";
+        }
+        else
+        {
+            return "00";
+        }
     }
 
     public static void main(String args[])

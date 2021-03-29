@@ -23,17 +23,18 @@ public class PaperDaoimpl
         {
             Connection connection= Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
-                    "insert into papers values(?,?,?,?,?,?,?,?)");
-            for(int i=0;i<paperinfos.size();i++)
+                    "insert into papers values(?,?,?,?,?,?,?,?,?)");
+            for(Paper paper:paperinfos)
             {
-                preparedStatement.setString(1, paperinfos.get(i).getIsbn());
-                preparedStatement.setString(2, paperinfos.get(i).getTitle());
-                preparedStatement.setString(3, paperinfos.get(i).getAuthors());
-                preparedStatement.setString(4, paperinfos.get(i).getKeywords());
-                preparedStatement.setString(5, paperinfos.get(i).getTheabstract());
-                preparedStatement.setString(6, paperinfos.get(i).getPublishDate());
-                preparedStatement.setString(7, paperinfos.get(i).getConferrence());
-                preparedStatement.setString(8, paperinfos.get(i).getPaperlink());
+                preparedStatement.setString(1, paper.getIsbn());
+                preparedStatement.setString(2, paper.getTitle());
+                preparedStatement.setString(3, paper.getAuthors());
+                preparedStatement.setString(4, paper.getKeywords());
+                preparedStatement.setString(5, paper.getTheabstract());
+                preparedStatement.setString(6, paper.getPublishDate());
+                preparedStatement.setString(7, paper.getConferrence());
+                preparedStatement.setString(8, paper.getPaperlink());
+                preparedStatement.setDate(9,paper.getDate());
                 preparedStatement.addBatch();
 
             }

@@ -1,5 +1,7 @@
 package pojo;
 
+import java.util.Date;
+
 public class Paper
 {
     private String isbn;
@@ -10,6 +12,15 @@ public class Paper
     private String publishDate;
     private String conferrence;
     private String paperlink;
+    private java.sql.Date date;
+
+    public java.sql.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.sql.Date date) {
+        this.date = date;
+    }
 
     public String getPaperlink() {
         return paperlink;
@@ -98,6 +109,7 @@ public class Paper
                 ", publishDate='" + publishDate + '\'' +
                 ", conferrence='" + conferrence + '\'' +
                 ", paperlink='" + paperlink + '\'' +
+                ", date=" + date +
                 '}';
     }
 }
