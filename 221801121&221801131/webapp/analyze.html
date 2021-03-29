@@ -32,34 +32,55 @@
 </a>
 
 <body style="height: 100%; margin: 0">
-
-    <div id="container" style="height: 100%"></div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script type="text/JavaScript">
+    <!--
+    function MM_jumpMenu(targ,selObj,restore){ //v3.0
+     eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+     if (restore) selObj.selectedIndex=0;
+    }
+    //-->
+    </script>
+<select name="dgLink2" id="dgLink2" style="WIDTH: 150px" onchange="MM_jumpMenu('parent',this,0)">
+ <option value="#">－－－期刊热度－－－</option>
+ <option value="cvpralz.html">CVPR</option>
+ <option value="eccvalz.html">ECCV</option>
+ <option value="iccvalz.html">ICCV</option>
+ 
+    <div id="main2" style="height: 50% "></div>
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="text/javascript">
-        var dom = document.getElementById("container");
-        var myChart = echarts.init(dom);
-        var app = {};
-
-        var option;
-
-
+        var chartDom = document.getElementById('main2');
+        var myChart = echarts.init(chartDom);
+        var option1;
 
         var data = [];
-        for (let i = 0; i < 5; ++i) {
-            data.push(Math.round(Math.random() * 200));
+        for (let i = 0; i < 10; ++i) {
+            data.push(111);
         }
 
-        option = {
+        option1 = {
             xAxis: {
                 max: 'dataMax',
             },
             yAxis: {
                 type: 'category',
-                data: ['A', 'B', 'C', 'D', 'E'],
+                data: ['Training', 'Cameras', 'Computer vision', 'Feature extraction', 'Shape', 'Robustness', 'Visualization', '3d displays', 'Image segmentation', 'Image reconstruction'],
                 inverse: true,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
-                max: 2 // only the largest 3 bars will be displayed
+
             },
             series: [{
                 realtimeSort: true,
@@ -76,36 +97,81 @@
                 show: true
             },
             animationDuration: 0,
-            animationDurationUpdate: 3000,
+            animationDurationUpdate: 1000,
             animationEasing: 'linear',
             animationEasingUpdate: 'linear'
         };
 
         function run() {
-            var data = option.series[0].data;
-            for (var i = 0; i < data.length; ++i) {
-                if (Math.random() > 0.9) {
-                    data[i] += Math.round(Math.random() * 2000);
-                }
-                else {
-                    data[i] += Math.round(Math.random() * 200);
-                }
-            }
-            myChart.setOption(option);
+            var data = option1.series[0].data;
+            data[1] = 654;
+            data[2] = 456;
+            data[3] = 761;
+            data[4] = 437;
+            data[5] = 546;
+            data[6] = 799;
+            data[7] = 964;
+            data[8] = 734;
+            data[9] = 430;
+            data[0] = 1264;
+            myChart.setOption(option1);
         }
 
+        function run2() {
+            var data = option1.series[0].data;
+            data[1] = 1654;
+            data[2] = 1456;
+            data[3] = 1761;
+            data[4] = 1437;
+            data[5] = 1546;
+            data[6] = 1799;
+            data[7] = 964;
+            data[8] = 1734;
+            data[9] = 1430;
+            data[0] = 1164;
+
+            myChart.setOption(option1);
+        }
+        function run3() {
+            var data = option1.series[0].data;
+            data[1] = 1254;
+            data[2] = 1756;
+            data[3] = 1161;
+            data[4] = 937;
+            data[5] = 1746;
+            data[6] = 1699;
+            data[7] = 1437;
+            data[8] = 964;
+            data[9] = 1967;
+            data[0] = 1743;
+
+            myChart.setOption(option1);
+        }
         setTimeout(function () {
             run();
-        }, 0);
-        setInterval(function () {
-            run();
-        }, 3000);
-
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
+        }, 100);
+        setTimeout(function () {
+            run2();
+        }, 1000);
+        setTimeout(function () {
+            run3();
+        }, 2000);
+        if (option1 && typeof option1 === 'object') {
+            myChart.setOption(option1);
         }
 
     </script>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
