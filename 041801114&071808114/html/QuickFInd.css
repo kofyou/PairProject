@@ -107,10 +107,10 @@ input.deletebtn{
 }
 
 p.list{
-	float: left;
+	
 	vertical-align: text-bottom;
     margin: 0;
-	
+	white-space: nowrap;
 
 }
 
@@ -152,7 +152,8 @@ a.aboutUs{
 	text-align: left;
 	display: block;
 	padding:0;
-	font-size: 15px;	
+	font-size: 15px;
+	width: 30%;
 }
 
 div.pagelist{
