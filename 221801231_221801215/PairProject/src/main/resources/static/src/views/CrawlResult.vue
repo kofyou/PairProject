@@ -6,7 +6,7 @@
       <div class="returnbutton">
         <router-link to="/index"><i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size:80px;color: #133382"></i></router-link>
       </div>
-      <el-dialog :visible.sync="dialogVisible">
+      <el-dialog :visible.sync="dialogVisible" class="detaildialog">
             <div style="height: 700px">
               <div class="paperdetailstitle">论文详情:</div>
               <div class="papertitle">论文题目:{{this.dialogDetail.paperTitle}}</div>
@@ -18,9 +18,10 @@
             </div>
           </el-dialog>
       <el-tabs type="border-card" stretch="true" style="position: relative">
-        <el-tab-pane>
+        <el-tab-pane style="">
           <span slot="label"><i class="el-icon-date"></i> 爬取结果显示</span>
-          <ul style="list-style: none">
+          <el-collapse-transition>
+            <ul style="list-style: none" v-show="this.showpaperList">
             <li
               v-for="(item, index) in paperDetailList.slice(
                 (currentPage - 1) * pagesize,
@@ -53,7 +54,8 @@
                 @click="deleteCard(index)"
               ></i>
             </li>
-          </ul>
+          </ul></el-collapse-transition>
+
           <el-pagination
             small
             @current-change="handleCurrentChange"
@@ -61,79 +63,79 @@
             :page-size="pagesize"
             layout="prev, pager, next"
             :total="100"
-            style="position: relative; bottom: -50px"
+            style="position:relative;"
           >
           </el-pagination>
-        </el-tab-pane>
+        </el-tab-pane >
         <el-tab-pane label="关键词图谱">
           <el-card shadow="hover" class="keymap">
             <div
               class="keyword"
               style="font-size: 50px; top: 100px; left: 350px; color: red"
-              @click="showPapers(0)"
+              @click="showKeywordPapers(0)"
             >
               热词一
             </div>
             <div
               class="keyword"
               style="font-size: 20px; top: 50px; left: 350px; color: #d9c880"
-              @click="showPapers(1)"
+              @click="showKeywordPapers(1)"
             >
               热词二
             </div>
             <div
               class="keyword"
               style="font-size: 25px; top: 60px; left: 250px; color: #b1a9c1"
-              @click="showPapers(2)"
+              @click="showKeywordPapers(2)"
             >
               热词三
             </div>
             <div
               class="keyword"
               style="font-size: 26px; top: 60px; left: 450px; color: #93aab8"
-              @click="showPapers(3)"
+              @click="showKeywordPapers(3)"
             >
               热词四
             </div>
             <div
               class="keyword"
               style="font-size: 15px; top: 80px; left: 150px; color: #81a027"
-              @click="showPapers(4)"
+              @click="showKeywordPapers(4)"
             >
               热词五
             </div>
             <div
               class="keyword"
               style="font-size: 29px; top: 120px; left: 150px; color: #ffa634"
-              @click="showPapers(5)"
+              @click="showKeywordPapers(5)"
             >
               热词六
             </div>
             <div
               class="keyword"
               style="font-size: 20px; top: 90px; left: 550px; color: #fcb1c0"
-              @click="showPapers(6)"
+              @click="showKeywordPapers(6)"
             >
               热词七
             </div>
             <div
               class="keyword"
               style="font-size: 23px; top: 120px; left: 500px; color: #adacab"
-              @click="showPapers(7)"
+              @click="showKeywordPapers(7)"
             >
               热词八
             </div>
             <div
               class="keyword"
               style="font-size: 26px; top: 150px; left: 400px; color: #d2ff4d"
-              @click="showPapers(8)"
+              @click="showKeywordPapers(8)"
             >
               热词九
             </div>
             <div
               class="keyword"
               style="font-size: 35px; top: 160px; left: 250px; color: #8c0000"
-              @click="showPapers(9)"
+              @click="showKeywordPapers(9)"
             >
               热词十
             </div>
@@ -190,7 +192,7 @@
             :page-size="keywordsize"
             layout="prev, pager, next"
             :total="100"
-            style="text-align: center"
+            style="position:relative;bottom:-50px"
           >
           </el-pagination>
         </el-tab-pane>
@@ -258,7 +260,7 @@ export default {
       pagesize: 3,
       keywordPage: 1,
       keywordsize: 2,
-
+      showpaperList:false,
       paperDetailList: [
         {
           paperId: 7,
@@ -279,6 +281,9 @@ export default {
           paperAbstract: "",
           paperKeyword:[],
       },
+      keywordList:[
+
+      ],
       keywordPaperList:[
         {
           paperId: 6,
@@ -349,6 +354,7 @@ export default {
   },
   mounted() {
     this.drawLine();
+    this.showpaperList=true;
   },
   methods: {
     drawLine() {
@@ -390,6 +396,22 @@ export default {
       this.dialogVisible = true;
       this.dialogDetail=this.keywordPaperList[value];
     },
+    showKeywordPaper:function (value) {
+       let _this=this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/keyword", {
+          params: {
+
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }
   },
 };
 </script>

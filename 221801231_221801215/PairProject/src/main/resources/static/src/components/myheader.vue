@@ -27,7 +27,7 @@
 export default {
   props:{
   'userName':String,
-  'loginStatus':Boolean
+  'loginStatus':String
   },
   name:'myheader',
   data(){
@@ -44,9 +44,11 @@ export default {
      'userName':function(val)
      {
      this.userName=val;
+     alert(this.userName);
      },
      'loginStatus':function(val){
       this.loginStatus=val;
+      alert(this.loginStatus);
      }
   },
   methods:{

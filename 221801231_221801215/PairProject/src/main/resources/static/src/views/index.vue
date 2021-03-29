@@ -1,6 +1,6 @@
 <template>
   <div>
-<myheader :userName='this.Username' :loginStatus=this.loginStatus></myheader>
+<myheader :userName='this.Username' :loginStatus='this.loginStatus'></myheader>
     <el-main>
   <el-image src="https://i.loli.net/2021/03/25/8LunI4sv1UGlEdD.png" style="width: 500px"/>
       <div class="searchBox">
@@ -8,7 +8,7 @@
          <li style="padding-left:16px" >单个<i class="el-icon-arrow-down el-icon--right"></i></li>
          <li class="batch">批量</li>
        </ul>
-        <input class="searchInput" type="text" placeholder="添加单个论文题目" v-model="searchForm.singleSearchText"></input>
+        <input class="searchInput" type="text" placeholder="输入相关论文题目词汇" v-model="searchForm.singleSearchText"></input>
         <input class="searchButton" type="button" value="添加" style="color: #eeeeee" @click="AddTitle">
       </div>
       <router-link to="/crawlresult">
@@ -20,11 +20,11 @@
        <div class="paperList">
         <ul v-for="(items,index) in tableData" :key="index">
           <li class="paperItem">
-            <span style="margin-right: 300px">
+            <el-tooltip><span style="width:300px;position:absolute;left:20px;text-align:left; text-overflow: ellipsis;overflow:hidden;white-space:nowrap;">
               {{ items.title}}
               {{index}}
-            </span>
-            <i class="fa fa-trash" aria-hidden="true" style="margin-left: 100px" @click="deleteItem(index)"></i>
+            </span></el-tooltip>
+            <i class="fa fa-trash" aria-hidden="true" style="margin-left: 400px" @click="deleteItem(items.id,index)"></i>
           </li>
         </ul>
        </div>
@@ -36,58 +36,74 @@
 import Myheader from "../components/myheader";
 import Mymain from "../components/mymain";
 export default {
-
-  name:'index',
-  components: {Mymain, Myheader},
-  data()
-  {
+  name: "index",
+  components: { Mymain, Myheader },
+  data() {
     return {
-      searchForm:{
-        searchWay:true,
-        singleSearchText:""
+      searchForm: {
+        searchWay: true,
+        singleSearchText: "",
       },
-      tableData: [{
-
-        title: '王小虎',
-
-      }, {
-
-        title: '王小虎',
-
-      }, {
-
-        title: '王小虎',
-
-      }, {
-
-        title: '王小虎',
-
-      }],
-      buttonhover:false,
-      Username:"",
-      loginStatus:false
-    }
+      tableData: [
+      ],
+      buttonhover: false,
+      Username: "",
+      loginStatus: true,
+    };
   },
-  mounted(){
+  mounted() {
+    this.loginStatus = this.$route.query.isLogin;
      this.Username=sessionStorage.getItem('username');
+    //  this.loginStatus=localStorage.getItem('loginstatus');
   },
-  methods:{
-     AddTitle:function(){
-       let newTitle={};
-       newTitle.title=this.searchForm.singleSearchText;
-       this.searchForm.singleSearchText="";
-       this.tableData.push(newTitle);
-     },
-     deleteItem:function ()
-     {
+  methods: {
+    AddTitle: function () {
+      let newTitle = {};
+      let _this = this;
 
-     },
-     showButtonText:function () {
-       this.buttonhover=!this.buttonhover;
-     }
-    }
+      this.$axios.get(
+        _this.$api.globalUrl + "/userPaper/add", {
+          params: {
+            titleOrigin: _this.searchForm.singleSearchText,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+            response.data.data.forEach(element => {
+            let newTitle={};
+            newTitle.id=element.id;
+            newTitle.title=element.title;
+            _this.tableData.push(newTitle);
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+   this.searchForm.singleSearchText = "";
+    },
+    deleteItem: function (value,index) {
+      let _this = this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/delete", {
+          params: {
+            paperId:value
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+          _this.tableData.splice(index,1);
 
-}
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    showButtonText: function () {
+      this.buttonhover = !this.buttonhover;
+    },
+  },
+};
 </script>
 
 <style>
@@ -100,70 +116,66 @@ export default {
   margin: 0 !important;
   padding: 0 !important;
 }
-.searchInput{
+.searchInput {
   display: inline-block;
   position: absolute;
   width: 500px;
   height: 50px;
-  left:50%;
+  left: 50%;
   margin-left: -250px;
   border: #133382 2px solid;
 }
-.searchButton{
+.searchButton {
   position: absolute;
 
   right: 60px;
-  width:136px;
+  width: 136px;
   height: 54px;
   border: #133382 2px solid;
   background-color: #133382;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
 }
-.dropDownMenu{
+.dropDownMenu {
   display: inline-block;
   height: 50px;
   width: 100px;
   background-color: #133382;
   line-height: 50px;
-  color:#ffffff;
+  color: #ffffff;
   margin-right: 0px;
   position: absolute;
-  left:100px;
+  left: 100px;
   border: #133382 2px solid;
   border-top-left-radius: 5%;
-  border-bottom-left-radius:5%;
+  border-bottom-left-radius: 5%;
   list-style: none;
 }
-.dropDownMenu>li:nth-child(2)
-{
+.dropDownMenu > li:nth-child(2) {
   display: none;
   height: 50px;
   width: 100px;
   background-color: #133382;
   position: absolute;
   border: #133382 1px solid;
-  left:-2px;
+  left: -2px;
 }
-.searchBox
-{
+.searchBox {
   display: block;
   position: relative;
   height: 80px;
   width: 900px;
   top: -100px;
-  left:50%;
+  left: 50%;
   margin-left: -450px;
   line-height: 80px;
-
 }
-.paperList
-{
+.paperList {
   position: absolute;
   width: 600px;
   height: 400px;
-  left:50%;
-  top:500px;
+  left: 50%;
+  top: 500px;
   margin-left: -300px;
   border: #d3dce6 1px solid;
   box-shadow: 2px 2px 5px #d3dce6;
@@ -171,27 +183,25 @@ export default {
   overflow-y: auto;
   border-radius: 10px;
 }
-.paperItem{
+.paperItem {
   display: block;
   width: 100%;
   height: 60px;
   border: #d3dce6 1px solid;
   line-height: 60px;
 }
-.crawlButton
-{
+.crawlButton {
   position: absolute;
   width: 50px;
   height: 50px;
-  top:430px;
- right:500px;
+  top: 430px;
+  right: 500px;
   background-color: #133382;
- line-height: 50px;
+  line-height: 50px;
   color: #ffffff;
-  border-radius:10em;
+  border-radius: 10em;
 }
-.crawlButton:hover
-{
+.crawlButton:hover {
   width: 200px;
 }
 </style>
