@@ -18,16 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="expires" content="0">    
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
- <!--  
+ 
     <link rel="stylesheet" type="text/css" href="top.css">
---> 
+
 
 <style>
     body {
 	    background-image: url(back.JPG);
 	    margin: 0;
 	}
-	
+	a{text-decoration:none;}
 	.divimg img {
 	    margin-bottom: 10px;
 	    width: 150px;
@@ -169,22 +169,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 </head>
 <body>
-    <div id="nav">
+        <div id="nav">
         <div class="divimg">
-            <img src="flower.jpg" />
+            <img src="images/flower.jpg" />
         </div>
         <div id="menu">
-
-            <button id="papersearch">论文检索</button><br>
+            <a href="main.jsp"><button id="papersearch">论文检索</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">论文列表</button><br>
+            <a href="collection.jsp"><button id="papersearch">论文收藏夹</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">热门领域</button><br>
+            <a href="top.jsp"><button id="papersearch">热门领域</button><br></a>
         </div>
         <div id="menu">
-            <button id="papersearch">研究热词</button><br>
+            <a href="hotline.jsp"><button id="papersearch">热词趋势</button><br></a>
         </div>
     </div>
     <div id="section">
@@ -197,25 +196,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            String[] topkw = itemsDao.words(itemsDao.getHotkw(allKw));
              %>
             <div>
-                <p id="p3"><%= topkw[2] %></p>
+                <a href="main.jsp"><p id="p3"><%= topkw[2] %></p></a>
             </div>
             <div>
-                <p id="p8"><%= topkw[7] %></p>
-                <p id="p4"><%= topkw[3] %></p>
+                <a href="main.jsp"><p id="p8"><%= topkw[7] %></p></a>
+                <a href="main.jsp"><p id="p4"><%= topkw[3] %></p></a>
 
-                <p id="p5"><%= topkw[4] %></p>
-                <p id="p10"><%= topkw[9] %></p>
+                <a href="main.jsp"><p id="p5"><%= topkw[4] %></p></a>
+                <a href="main.jsp"><p id="p10"><%= topkw[9] %></p></a>
             </div>
             <div>
 
-                <p id="p1"><%= topkw[0] %></p>
-                <p id="p6"><%= topkw[5] %></p>
+                <a href="main.jsp"><p id="p1"><%= topkw[0] %></p></a>
+                <a href="main.jsp"><p id="p6"><%= topkw[5] %></p></a>
 
             </div>
-            <p id="p7"><%= topkw[6] %></p>
-            <p id="p9"><%= topkw[8] %></p>
+            <a href="main.jsp"><p id="p7"><%= topkw[6] %></p></a>
+            <a href="main.jsp"><p id="p9"><%= topkw[8] %></p></a>
             <div>
-                <p id="p2"><%= topkw[1] %></p>
+                <a href="main.jsp"><p id="p2"><%= topkw[1] %></p></a>
             </div>
         </div>
 
