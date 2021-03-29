@@ -70,6 +70,19 @@
             border: none;
             font-weight: bold;
         }
+        #wordcloud{
+            background-color: #ffffff;
+            width: 150px;
+            height: 35px;
+            line-height: 10px;
+            border-radius: 15px;
+            color: #7a7281;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            border: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -78,14 +91,30 @@
 
 <div >
     <h1>
-
     </h1>
 </div>
 
-<a id = "msg" href ="paperInfo.jsp" target ="rightframe">  论文信息  </a><br /><div><p></p></div>
+
+<a id = "msg" href ="paperInfo.jsp" target ="rightframe">  论文信息  </a><br />
+<div >
+    <h1>
+    </h1>
+</div>
 <a id = "info" href ="paperList.jsp" target ="rightframe">  论文搜索  </a><br />
+<div >
+    <h1>
+    </h1>
+</div>
 <a id = "tendency" href ="paperTendency.jsp" target ="rightframe">  论文趋势  </a><br />
+<div >
+    <h1>
+    </h1>
+</div>
 <a id = "topten" href ="topten.jsp" target ="rightframe"> 热词TOP10 </a><br />
+<div >
+    <h1>
+    </h1>
+</div>
 <a id = "wordcloud" href ="wordCloud.jsp" target ="rightframe"> 词云 </a><br />
 
 </body>
