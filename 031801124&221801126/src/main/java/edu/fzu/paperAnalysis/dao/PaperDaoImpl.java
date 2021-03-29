@@ -139,6 +139,29 @@ public class PaperDaoImpl implements PaperDao{
     }
 
     @Override
+    public int deletePaper(String Link) {
+        if(Link==null||Link=="")
+            return 1;
+        StringBuffer sql = new StringBuffer("delete from paperInfo  ");
+        sql.append(" where paperLink= '"+Link+"'");
+        System.out.println(sql.toString());
+        MysqlDB mysqlDB = new MysqlDB();
+        Connection conn = mysqlDB.getConn();
+        Statement stmt = null;
+        ResultSet rs = null;
+        int result=999;
+        try {
+            stmt = conn.createStatement();
+            result=stmt.executeUpdate(sql.toString());
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
     public List<Paper> queryUsers(Paper p, int pageNum, int lineNum) throws SQLException {
         int limit_x = (pageNum - 1) * lineNum;
         int limit_y = lineNum;

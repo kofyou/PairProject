@@ -40,4 +40,10 @@ public class PaperServiceImpl implements PaperService{
 
 
     }
+
+    @Override
+    public int deletePaper(String Link) {
+        PaperDao paperDao=new PaperDaoImpl();
+        return  paperDao.deletePaper(Link);
+    }
 }

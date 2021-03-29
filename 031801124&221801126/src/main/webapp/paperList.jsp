@@ -51,6 +51,7 @@
 <form method="post" id="queryForm" action="<%=path%>/SearchServlet">
     <input type="text" name="pTitle" value="${paper.paperTitle}" placeholder="论文标题"/>
     <input type="text" name="pKeyword" value="${paper.paperKeyword}" placeholder="论文关键词"/>
+    <input type="hidden" name="pLink" value="${paper.paperLink}" placeholder="论文链接"/>
     <input type="hidden" name="type" value="0" />
     <input type="hidden" name="pageNum" value="${pageNum}" />
     <input type="hidden" id="changeNum" name="changeNum" value="" />
@@ -78,9 +79,17 @@
             <td>${l.getPaperLink()}</td>
             <td>
                 <button  type="button" onclick="">编 辑</button>
-                <button type="button" onclick="">删 除</button>
+                <%--<button type="button" onclick="deletePaper(l.getPaperLink())">删 除</button>--%>
+                <form method="post" id="deleteForm" action="<%=path%>/SearchServlet">
+                    <input type="hidden" name="pLink" value="${l.getPaperLink()}"/>
+                    <input type="hidden" name="type" value="3" />
+                    <input type="hidden" name="pageNum" value="${pageNum}" />
+                    <input type="hidden"  name="changeNum" value="" />
+                    <button  onclick="deletePaper(${l.getPaperLink()});">删除</button>
+                </form>
             </td>
         </tr>
+
     </c:forEach>
 </table>
 <button type="button" onclick="changePage(-1)">上一页</button>
@@ -96,4 +105,10 @@
         document.getElementById("queryForm").submit();
     }
 
+    function deletePaper(link)
+    {
+        document.getElementById("changeNum").type=3;
+        document.getElementById("queryForm").pLink=link;
+        document.getElementById("queryForm").submit();
+    }
 </script>

@@ -10,6 +10,7 @@ public interface PaperDao {
     List<Paper> queryAll() throws SQLException;
     int queryNumber(Paper p) throws SQLException;
     List<Paper> queryUsers(Paper paper, int pageNum, int lineNum) throws SQLException;
+    int deletePaper(String Link);
 
 
 }

@@ -10,4 +10,5 @@ public interface PaperService {
     List<Paper> queryAll() throws SQLException;
     int queryNumber(Paper paper) throws SQLException;
     List<Paper> queryPapers(Paper paper, int pageNum, int lineNum) throws SQLException;
+    int deletePaper(String Link);
 }
