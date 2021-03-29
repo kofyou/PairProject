@@ -35,5 +35,14 @@ public class Paperserviceimpl
     {
         return paperDaoimpl.GetMyCollect(username);
     }
+    public void UpdateMyCollect(String account,String title)
+    {
+        paperDaoimpl.UpdateMyCollect(account, title);
+    }
+
+    public void DeleteMyCollect(String account,String title)
+    {
+        paperDaoimpl.DeleteMyCollect(account,title);
+    }
 
 }

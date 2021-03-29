@@ -23,9 +23,9 @@ public class MyCollectServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String username=(String)request.getAttribute("username");
+        String account=(String)request.getAttribute("account");
         List<JSONObject> jsonObjects=new ArrayList<>();
-        List<Paper> papers=paperserviceimpl.GetMyCollect(username);
+        List<Paper> papers=paperserviceimpl.GetMyCollect(account);
         for(Paper paper:papers)
         {
             JSONObject jsonObject=new JSONObject();

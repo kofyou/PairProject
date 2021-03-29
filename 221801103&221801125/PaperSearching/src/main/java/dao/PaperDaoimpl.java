@@ -1,6 +1,7 @@
 package dao;
 
 import com.mysql.cj.jdbc.ClientPreparedStatement;
+import com.mysql.cj.jdbc.ConnectionImpl;
 import pojo.Paper;
 import sun.util.resources.cldr.so.CalendarData_so_ET;
 import utils.Jdbcutils;
@@ -89,7 +90,7 @@ public class PaperDaoimpl
             if (type==0)
             {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM papers WHERE title LIKE ''%'?'%'' OR keywords LIKE ''%'?'%''");
+                        "SELECT * FROM papers WHERE title LIKE %?% OR keywords LIKE %?%");
 
                 for(int i=0;i<searchWords.length;i++)
                 {
@@ -221,7 +222,8 @@ public class PaperDaoimpl
         {
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM papers WHERE isbn IN (SELECT isbn FROM usercollect WHERE account=?)");
+                    "SELECT * FROM papers WHERE isbn IN " +
+                            "(SELECT isbn FROM usercollect WHERE account=?)");
             preparedStatement.setString(1,username);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next())
@@ -237,6 +239,9 @@ public class PaperDaoimpl
                 paper.setPaperlink(resultSet.getString("paperlink"));
                 papers.add(paper);
             }
+
+            Jdbcutils.CloseConnection(resultSet,preparedStatement,connection);
+
             return papers;
         }
         catch(Exception e)
@@ -246,4 +251,43 @@ public class PaperDaoimpl
         return null;
     }
 
+    public void UpdateMyCollect(String account,String title)
+    {
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(
+                    "INSERT into usercollect VALUES(?, " +
+                            "(SELECT isbn FROM papers WHERE title=?));");
+            preparedStatement.setString(1,account);
+            preparedStatement.setString(2,title);
+            preparedStatement.execute();
+
+            Jdbcutils.CloseConnection(preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteMyCollect(String account,String title)
+    {
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(
+                    "DELETE from usercollect where account=? " +
+                            "and isbn=(SELECT isbn from papers where title=?);");
+            preparedStatement.setString(1,account);
+            preparedStatement.setString(2,title);
+            preparedStatement.execute();
+
+            Jdbcutils.CloseConnection(preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
