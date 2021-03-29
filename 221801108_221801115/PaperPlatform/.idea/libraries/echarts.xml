@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="echarts" type="kotlin.js">
-    <CLASSES>
-      <root url="file://$USER_HOME$/Desktop/echarts.js" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
