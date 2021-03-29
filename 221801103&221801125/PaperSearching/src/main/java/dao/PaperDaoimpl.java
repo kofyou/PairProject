@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PaperDaoimpl
@@ -139,4 +140,49 @@ public class PaperDaoimpl
         return null;
     }
 
+    public void InsertKeyword(HashMap<String,Integer> hashMap)
+    {
+        try
+        {
+            Connection connection = Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO keyword values(?,?)");
+            for (HashMap.Entry<String, Integer> entry : hashMap.entrySet())
+            {
+                preparedStatement.setString(1,entry.getKey());
+                preparedStatement.setInt(2,entry.getValue());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
+
+            Jdbcutils.CloseConnection(preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public HashMap<String,Integer> GetHottestKeywords()
+    {
+        HashMap<String,Integer> hashMap=new HashMap<>();
+        try
+        {
+            Connection connection = Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from keyword order by total desc limit 0,10");
+
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                hashMap.put(resultSet.getString("keyword"), resultSet.getInt("tatol"));
+            }
+            Jdbcutils.CloseConnection(preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return hashMap;
+    }
 }

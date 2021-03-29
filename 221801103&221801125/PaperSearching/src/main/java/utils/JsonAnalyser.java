@@ -3,18 +3,20 @@ package utils;
 import dao.PaperDaoimpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.mortbay.util.ajax.JSON;
 import pojo.Paper;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class JsonAnalyser
 {
-    public static List<Paper> Analyse(String path,String theConference)
+    HashMap<String,Integer> keywordsCount=new HashMap<>();
+
+    public List<Paper> Analyse(String path,String theConference)
     {
         List<Paper> list=new ArrayList<Paper>();
         try
@@ -51,31 +53,31 @@ public class JsonAnalyser
                     title = jsonObject.getString("title");
 
                     JSONArray authorArray = jsonObject.getJSONArray("authors");
-                    for (int i = 0; i < authorArray.size(); i++) {
+                    for (int i = 0; i < authorArray.size(); i++)
+                    {
 
                         authors += JSONObject.fromObject(
                                 jsonObject.getJSONArray("authors").get(i)).getString("name") + "//";
                     }
 
+
+
                     if (jsonObject.containsKey("keywords"))
                     {
                         JSONArray jsonArray = jsonObject.getJSONArray("keywords");
-                        for (int i = 0; i < jsonArray.size(); i++)
-                        {
-                            JSONObject temp = JSONObject.fromObject(jsonArray.get(i));
-                            String kwd = temp.getString("kwd");
-                            JSONArray jsonArray1 = JSONArray.fromObject(kwd);
-                            Object[] objects = jsonArray1.toArray();
-                            for (Object keyword : objects) {
 
-                                keywords += keyword + "//";
-                            }
+                        JSONObject temp = JSONObject.fromObject(jsonArray.get(0));
+                        String kwd = temp.getString("kwd");
+                        JSONArray jsonArray1 = JSONArray.fromObject(kwd);
+                        Object[] objects = jsonArray1.toArray();
+                        for (Object keyword : objects)
+                        {
+                            keywords += keyword + "//";
                         }
+
+                        addKeywordsCount(keywords);
                     }
-                    else
-                    {
-                        authors="";
-                    }
+
 
                     if (jsonObject.containsKey("abstract"))
                     {
@@ -109,7 +111,6 @@ public class JsonAnalyser
 
                     System.out.println(paper.toString());
                     list.add(paper);
-
                 }
 
             }
@@ -123,7 +124,10 @@ public class JsonAnalyser
         return null;
     }
 
-    public static List<Paper> Analyse1(String path,String theConference)
+
+
+
+    public List<Paper> Analyse1(String path,String theConference)
     {
         List<Paper> list=new ArrayList<Paper>();
         try
@@ -177,10 +181,8 @@ public class JsonAnalyser
                             keywords += keyword + "//";
                         }
                     }
-                    else
-                    {
-                        authors="";
-                    }
+
+                    addKeywordsCount(keywords);
 
                     if (jsonObject.containsKey("摘要"))
                     {
@@ -228,16 +230,40 @@ public class JsonAnalyser
         return null;
     }
 
+    public void addKeywordsCount(String keywords)
+    {
+        String[] str=keywords.split("//");
+        for(String s:str)
+        {
+            if(!keywordsCount.containsKey(s))
+            {
+                keywordsCount.put(s,1);
+            }
+            else
+            {
+                keywordsCount.put(s,keywordsCount.get(s)+1);
+            }
+        }
+    }
+
+    public HashMap<String,Integer> retKeyCount()
+    {
+       return keywordsCount;
+    }
 
     public static void main(String args[])
     {
         PaperDaoimpl paperDaoimpl=new PaperDaoimpl();
-        /*paperDaoimpl.PaperStorage(JsonAnalyser.Analyse(
+        JsonAnalyser jsonAnalyser=new JsonAnalyser();
+        paperDaoimpl.PaperStorage(jsonAnalyser.Analyse(
+                "C:\\Users\\韩小韬\\Desktop\\论文数据\\论文数据\\CVPR（2000年至2020年，6916篇）",
+                "cvpr"));
+        paperDaoimpl.PaperStorage(jsonAnalyser.Analyse(
                 "C:\\Users\\韩小韬\\Desktop\\论文数据\\论文数据\\ICCV（2001年至2019年，3196篇）",
-                "iccv"));*/
-        paperDaoimpl.PaperStorage(JsonAnalyser.Analyse1(
+                "iccv"));
+        paperDaoimpl.PaperStorage(jsonAnalyser.Analyse1(
                 "C:\\Users\\韩小韬\\Desktop\\论文数据\\论文数据\\ECCV（2016至2020，3033份）",
                 "eccv"));
-
+        paperDaoimpl.InsertKeyword(jsonAnalyser.retKeyCount());
     }
 }

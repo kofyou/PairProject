@@ -3,7 +3,9 @@ package service.impl;
 import dao.PaperDaoimpl;
 import pojo.Paper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Paperserviceimpl
 {
@@ -18,4 +20,11 @@ public class Paperserviceimpl
     {
         return paperDaoimpl.GetPaticularPapers(searchwords,type);
     }
+
+    public HashMap<String,Integer> GetHottestKeywords()
+    {
+        return paperDaoimpl.GetHottestKeywords();
+    }
+
+
 }
