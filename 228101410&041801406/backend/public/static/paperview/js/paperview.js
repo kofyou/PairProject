@@ -11,8 +11,10 @@ window.onload = function() {
                 data: {},
                 dataType: 'json'
             }).then(function(res) {
+                var j=0;
                 for (var i in res) {
-                    td.push(res[i]) //把从json获取的数据赋值给数组
+                    td.push(res[i]); //把从json获取的数据赋值给数组
+                    j++;
                 }　　　　　　　　　　
             }).fail(function() {
                 console.log('失败');
@@ -67,7 +69,7 @@ var Main = {
         },
         handleClick(row) {
             this.tableData.splice(this.tableData.findIndex(e => e.title == row.title), 1);
-            this.sourceData.splice(this.sourceData.findIndex(e => e.title == row.title), 1);
+            this.sourceData=this.tableData;
         },
         changeTableSort(column) {
             //获取字段名称和排序类型
