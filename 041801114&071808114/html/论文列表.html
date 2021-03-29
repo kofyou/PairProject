@@ -8,12 +8,23 @@
 <!-- InstanceBeginEditable name="head" -->
 <link href="QuickFind.css" rel="stylesheet" type="text/css">
 <script>
-	function mutiselectfunc(){
+	window.onload = function(){
+	/*从url中解析出参数*/
+	var re = /\?param=([^&]+)$/gi;
+	var p = re.exec(location.search);
+	document.getElementById('searchtext').value = p[1];
+}
+	
+	
+	
+	/*function mutiselectfunc(){
 		var checkboxs=document.getElementsByClassName("checkbox");
         	for (var i = 0; i<checkboxs.length;i++) {
         		   checkboxs[i].style.display='inline';
         		 };
-	}
+	}*/
+	
+	
 	
 	function checkboxfunc(){
 		/*var checkboxs=document.getElementsByClassName("checkbox");
@@ -23,11 +34,11 @@
 					break;
 				}
         		 else document.getElementById('deletebtn').style.backgroundColor='black';*/
-			document.getElementById('deletebtn').style.backgroundColor='red';
+			document.getElementById('deletebtn').style.backgroundColor='#D60104';
 			}
 		
-	function titlefunc(){
-		document.getElementById("pagemessage").style.display='inline';
+	function jump(){
+		window.location.href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E6%9F%A5%E7%9C%8B%E6%96%87%E7%AB%A0.html";
 	}
 	</script>
 <!-- InstanceEndEditable -->
@@ -46,8 +57,7 @@
 	<div class="main">
 		<div class="upper">
 			<form class="operate">
-				<input type="button" class="button" id="mutiselect" value="多选" onclick="mutiselectfunc();">
-				<input type="text" class="search" id="searchtext" name="search">
+				<input type="text" class="search" id="searchtext"  name="search">
 				<input type="button" class="button" id="searchbtn" value="搜索">
 			</form>
 		</div>
@@ -55,10 +65,21 @@
 		
 		
 		<div class="middle">
-			<form action="" method="get">
-				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value=""  onclick="checkboxfunc();"/> 论文标题1</p>
-				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();"/> 论文标题2</p>
-				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();"/> 论文标题3</p>
+			<form >
+				<div class="texttitle">
+					<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
+						<p class="list" onclick="jump();">    论文标题1</p>	
+				</div>
+				
+				<div class="texttitle">
+					<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
+						<p class="list" onclick="jump();">    论文标题2</p>	
+				</div>
+				
+				<div class="texttitle">
+					<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
+						<p class="list" onclick="jump();">    论文标题3</p>	
+				</div>
 			</form>
 		</div>
 		
@@ -82,18 +103,7 @@
 		</div>
 	
 	</div>
-	<div class="page">
-		<div class="message" id="pagemessage">
-		<p>标题</p>
-				<form><input type="text" class="message" name="title"></form>
-		<p>摘要</p>
-				<form><input type="text" class="message" name="abstract"></form>
-		<p>关键词</p>
-				<form><input type="text" class="message" name="keyword"></form>
-		<p>原文链接</p>
-				<form><input type="text" class="message" name="pagelink"></form>
-	</div>
-	</div>
+	
 
 	<!-- InstanceEndEditable -->
 	

@@ -45,8 +45,8 @@ ul.template {
 div.main{
 	
 	height: 100%;
-	width: 55%;
-	float: left;
+	width: 85%;
+	float: right;
 	
 	
 }
@@ -59,31 +59,30 @@ div.upper{
 	
 	top: 0;
 	margin: 20px;	
-	padding-left: 150px;
+	padding-left: 300px;
 	position:relative;
 	
 }
 
 div.middle{
-	margin-left: 200px; 
+	
+	margin-left: 300px; 
 	top:200px;
 }
 
 div.down{
 	margin-top: 400px;
-	padding-left: 250px;
+	padding-left: 300px;
 }
 
 div.page{
-	float: right;
+	margin: 0 auto;
 	height: 100%;
-	width: 30%;
-	
+	width: 50%;
 }
+
 div.message{
-	padding-left: 80px;
-	padding-top: 150px;
-	display: none;
+	padding-top: 20px;
 }
 
 
@@ -99,49 +98,55 @@ input.button{
 }
 input.deletebtn{
 	height: 30px;
-	width: 100%;
+	width: 70%;
 	background-color:#120B85;
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
 	border-radius: 8px;
 	margin-left: -30px;
+}
+
+p.list{
+	float: left;
+	vertical-align: text-bottom;
+    margin: 0;
 	
+
 }
 
 #searchtext{
-	
-	
 }
 
 
 
-#searchbtn{
-	
-	
+#searchbtn{	
 }
+
 input.search {
 	
  	width:300px;
  	padding: 10px;
  	margin: 10px;
  	box-sizing: border-box;
+	border-radius: 5px;
 }
 
 input.checkbox{
-	display: none;
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;
 }
 
-
-
+div.texttitle{
+	width: 200px;
+	height: 60px;
+}
 
 p {
 	font-size: 25px;
 	margin: 20px;
 }
-
-
-
 
 a.aboutUs{
 	color: black;
@@ -167,9 +172,20 @@ div.pagelist{
 	width: 25px;
 	height: 25px;
 	border-radius: 5px;
+	
 }
 
 
+textarea.mutitext{
+	width: 100%;
+	resize: none;
+	overflow: auto;
+	border-radius: 5px;
+}
+
+input.message{
+	border-radius: 5px;
+}
 
 #container{
 	width: 700px;
@@ -194,7 +210,8 @@ div.analyse{
 
 input.analysebtn{
 	height: 30px;
-	width: 100%;
+	width: 70%;
+	margin-left: -300px;
 	background-color:#120B85;
 	color: white;
 	font-size: 20px;

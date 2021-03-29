@@ -110,11 +110,9 @@
 		chart.resize();
 		chart.on('click',function(params){
 //	        console.log('myChart----click---:',params,'------',params.data) 
-		document.getElementById("pagemessage1").style.display="inline";
+			window.location.href='file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html? value='+params.data;
 		});
 	</script>
-	
-	
 	
 	<div  Id = "container"  ></div>
 	<script src="echarts.min.js"></script>
@@ -174,28 +172,18 @@
 			myChart.setOption(option);
 			
 	</script>
-	<div class="analyse">
+	<div class="down">
+	 <div class="analyse">
 		<form>
  			<input type="button" class="analysebtn"  value="分析" />
     	</form>
-	</div>
-	
-</div>
-	
-	
-	
-<div class="page">
-	<div class="message" id="pagemessage1">
-	<p>标题</p>
-				<form><input type="text" class="message" name="title"></form>
-		<p>摘要</p>
-				<form><input type="text" class="message" name="abstract"></form>
-		<p>关键词</p>
-				<form><input type="text" class="message" name="keyword"></form>
-		<p>原文链接</p>
-				<form><input type="text" class="message" name="pagelink"></form>
+	 </div>
 	</div>
 </div>
+	
+
+	
+
 	<!-- InstanceEndEditable -->
 	
 	
