@@ -1,9 +1,9 @@
 package dao;
 
-import pojo.Word;
+import pojo.KeyWord;
 
 import java.util.List;
 
 public interface WordDAO {
-    List<Word> listGetByYear();
+    List<KeyWord> listGetByYear();
 }

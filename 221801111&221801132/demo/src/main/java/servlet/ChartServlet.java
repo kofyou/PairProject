@@ -2,7 +2,8 @@ package servlet;
 
 import dao.WordDAO;
 import dao.WordDAOImpl;
-import pojo.Word;
+import pojo.HotWord;
+import pojo.KeyWord;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @WebServlet("/ChartServlet")
@@ -20,18 +20,38 @@ public class ChartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         WordDAO wordDAO = new WordDAOImpl();
-        List<Word> list ;
-        list = wordDAO.listGetByYear();
+        List<KeyWord> keyWordList = new ArrayList<>();
+        keyWordList = wordDAO.listGetByYear();//关键词列表
 
-        String hotwords[];
         int cnt = 0;
 
-        for (Word word : list) {
-            String s = word.getKeywords();
-            strCut(s);
+        Map<String,Integer> map = new HashMap<String,Integer>();//创建map,key保存字符串,value保存出现的次数
+
+        for (KeyWord word : keyWordList) {
+            String s = word.getWord();
+            String[] temp = strCut(s);
+            int size = temp.length;
+            for (int i = 0; i < size; i++) {//遍历temp数组
+                if (map.containsKey(temp[i])) {
+                    map.put(temp[i], map.get(temp[i]) + 1);
+                }
+                else
+                    map.put(temp[i],1);
+            }
+        }
+        map = sortByValueDescending(map);
+        HotWord[] hotWords = new HotWord[map.size()];
+        for (Map.Entry<String,Integer> vo : map.entrySet()) {
+            hotWords[cnt].setWord(vo.getKey());
+            hotWords[cnt++].setNum(vo.getValue());
         }
 
-        request.setAttribute("list", list);
+        for (int i = 0;i < 10;i++) {
+            System.out.println(hotWords[i].getWord() + " " + hotWords[i].getNum());
+        }
+
+
+        request.setAttribute("list", keyWordList);
         request.getRequestDispatcher("Chart.jsp").forward(request, response);
     }
 
@@ -56,5 +76,22 @@ public class ChartServlet extends HttpServlet {
             }
         }
         return tempStr;
+    }
+
+
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValueDescending(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                int compare = o1.getValue().compareTo(o2.getValue());
+                return -compare;
+            }
+        });
+        Map<K, V> result = new LinkedHashMap<K, V>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
 }

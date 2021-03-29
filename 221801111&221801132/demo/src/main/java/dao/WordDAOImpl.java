@@ -1,7 +1,6 @@
 package dao;
 
-import pojo.Paper;
-import pojo.Word;
+import pojo.KeyWord;
 import util.DBUtil;
 
 import java.sql.Connection;
@@ -13,14 +12,14 @@ import java.util.List;
 
 public class WordDAOImpl implements WordDAO{
     @Override
-    public List<Word> listGetByYear() {
+    public List<KeyWord> listGetByYear() {
         String sql = "select keyword from post where year = '2012' and type = 'CVPR'";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery(sql);
-            List<Word> list = new ArrayList<>();
+            List<KeyWord> list = new ArrayList<>();
             while (rs.next()) {
-                Word w = new Word();
-                w.setKeywords(rs.getString(1));
+                KeyWord w = new KeyWord();
+                w.setWord(rs.getString(1));
                 w.setYear("2012");
                 list.add(w);
             }

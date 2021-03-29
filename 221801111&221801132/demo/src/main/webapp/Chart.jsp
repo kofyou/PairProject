@@ -1,4 +1,4 @@
-<%@ page import="pojo.Word" %>
+<%@ page import="pojo.KeyWord" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8"  %>
@@ -17,11 +17,11 @@
 </form>
 
 <%!
-    List<Word> list = new ArrayList<>();
+    List<KeyWord> list = new ArrayList<>();
 %>
 
 <%
-    list = (List<Word>) request.getAttribute("list");
+    list = (List<KeyWord>) request.getAttribute("list");
     if(list != null) {
 %>
 
@@ -32,11 +32,11 @@
     </tr>
 
     <%
-        for (Word word : list) {
+        for (KeyWord word : list) {
     %>
 
     <tr>
-        <td><%=word.getKeywords() %></td>
+        <td><%=word.getWord() %></td>
         <td><%=word.getYear() %></td>
     </tr>
     <%
