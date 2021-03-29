@@ -21,6 +21,9 @@ func main() {
 	// username=?&&thesis_id=?
 	r.GET("/user/add/like", user.UserAddLike)
 
+	// username=?&&thesis_id=?
+	r.GET("/user/delete/like", user.UserDeleteLike)
+
 	// username=?
 	r.GET("/user/show/like", user.UserShowLike)
 
