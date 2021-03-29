@@ -45,13 +45,13 @@
             <ul class="rank_list">
                 {% for item in data.top %}
                     {% if loop.index==1 %}
-                        <li><span class="first">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                        <li><span class="first">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
                     {% elif loop.index==2 %}
-                        <li><span class="second">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                        <li><span class="second">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
                     {% elif loop.index==3 %}
-                        <li><span class="third">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                        <li><span class="third">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
                     {% else %}
-                        <li><span class="">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                        <li><span class="">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
