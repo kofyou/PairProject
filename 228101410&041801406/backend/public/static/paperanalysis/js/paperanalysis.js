@@ -48,7 +48,7 @@ option = {
 function run () {
     $.ajax(
             {
-                url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2018CVPRkey',
+                url: '../index.php/index/Serchfunction/get2018CVPRkey',
                 type: 'get',
                 data: {},
                 dataType: 'json'
@@ -74,7 +74,7 @@ function add2019()
 
     $.ajax(
         {
-            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2019CVPRkey',
+            url: '../index.php/index/Serchfunction/get2019CVPRkey',
             type: 'get',
             data: {},
             dataType: 'json'
@@ -122,7 +122,7 @@ function add2020()
 
     $.ajax(
         {
-            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2020CVPRkey',
+            url: '../index.php/index/Serchfunction/get2020CVPRkey',
             type: 'get',
             data: {},
             dataType: 'json'
@@ -180,4 +180,190 @@ setTimeout(function() {
 
 if (option && typeof option === 'object') {
     myChart.setOption(option);
+}
+
+
+//以下是ECCV会议柱状图js
+
+var dom1 = document.getElementById("container1");
+var myChart1 = echarts.init(dom1);
+var app = {};
+
+var option1;
+
+
+
+var data1 = [];
+for (let i = 0; i < 10; ++i) {
+    data1.push(0);
+}
+option1 = {
+    xAxis: {
+        max: 'dataMax',
+    },
+    yAxis: {
+        type: 'category',
+        data: ['deep learning','convolutional neural network','convolutional layer','deep neural network'
+                ,'object detection','attributes','cnn','context','convolutional neural networks'
+                ,'object recognition'],
+        inverse: true,
+        animationDuration: 300,
+        animationDurationUpdate: 300,
+        max: 9 
+    },
+    series: [{
+        realtimeSort: true,
+        name: '正在查询2016年ECCV热词走势，请等待',
+        type: 'bar',
+        data: data1,
+        label: {
+            show: true,
+            position: 'right',
+            valueAnimation: true
+        }
+    }],
+    legend: {
+        show: true
+    },
+    animationDuration: 0,
+    animationDurationUpdate: 3000,
+    animationEasing: 'linear',
+    animationEasingUpdate: 'linear'
+};
+
+function run_ECCV() {
+    $.ajax(
+            {
+                url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2016ECCVkey',
+                type: 'get',
+                data: {},
+                dataType: 'json'
+            }).then(function (res) 
+            {
+                var data1 = option1.series[0].data;
+                for (var i in res) 
+                {
+                    data1[i]+=res[i].time;
+                }　　　　　　　　　　
+            }).fail(function () 
+            {
+                    console.log('失败');
+            })
+        
+    
+    myChart1.setOption(option1);
+}
+
+
+function add2018_ECCV()
+{
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2018ECCVkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option1.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option1.series[0].data;
+            for (var i in res) 
+            {
+                k.push(res[i].keyword);
+                num.push(res[i].time);
+            }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart1.setOption(option1);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option1.series[0].name='累加至2018年ECCV热词走势';
+    myChart1.setOption(option1);
+}
+
+function add2020_ECCV()
+{
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2020ECCVkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option1.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option1.series[0].data;
+            for (var i in res) 
+            {
+                k.push(res[i].keyword);
+                num.push(res[i].time);
+            }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart1.setOption(option1);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option1.series[0].name='累加至2020年ECCV热词走势';
+    myChart1.setOption(option1);
+}
+
+
+setTimeout(function() {
+    run_ECCV();
+}, 0);
+
+setTimeout(function() {
+    add2018_ECCV();
+}, 8000);
+
+setTimeout(function() {
+    add2020_ECCV();
+}, 15000);
+
+if (option1 && typeof option1 === 'object') {
+    myChart1.setOption(option1);
 }

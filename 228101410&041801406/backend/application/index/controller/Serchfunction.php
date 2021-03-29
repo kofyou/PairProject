@@ -70,4 +70,22 @@ class Serchfunction extends Controller
         return json($data);
     }
 
+    public function get2016ECCVkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='ECCV' and year='2016'");
+        return json($data);
+    }
+
+    public function get2018ECCVkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='ECCV' and year='2018'");
+        return json($data);
+    }
+
+    public function get2020ECCVkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='ECCV' and year='2020'");
+        return json($data);
+    }
+
 }
