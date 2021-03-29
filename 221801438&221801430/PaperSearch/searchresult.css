@@ -18,6 +18,9 @@
     color: #757575;
     padding-left: 3%;;
 }
+#search_key:focus{
+    border: none;
+}
 #submit_icon{
     position: absolute;
     z-index: 99999;
@@ -66,11 +69,10 @@
 .result_{
     position: absolute;
     width: 94%;
-    height: 30%;
+    height: 20%;
     background-color: rgba(195, 232, 255, 51);
     left: 3%;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 100);
     border-radius: 25px 25px 25px 25px;
     top: 8%;
 }
@@ -89,14 +91,38 @@
 }
 .source{
     position: absolute;
-    top: 12%;
+    top: 20%;
     padding-left: 1%;
     color: #3671CC;
     font-size: 16px;
 }
 .summary{
     position: absolute;
-    padding: 0px 1%;
-    top: 20%;
+    padding-left: 1%;
+    padding-right: 9%;
+    top: 35%;
     font-size: 16px;
 }
+.keywords{
+    position: relative;
+    display: inline;
+    font-size: 16px;
+    top: 73%;
+    padding-right: 5%;
+    padding-left: 1%;
+    color: #757575;
+    text-decoration: underline;
+}
+.in_bt_one{
+    position: absolute;
+    width: 4%;
+    height: 16%;
+    right: 5%;
+    top: 45%;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 25px 25px 25px 25px;
+    color: #356FC8;
+
+}
+

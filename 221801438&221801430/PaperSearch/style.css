@@ -5,12 +5,9 @@ body,html{
     background-image: url("image/bg.png");
     background-attachment: fixed;
     background-size: 100% 100%;
-<<<<<<< HEAD
     background-position: left top;
-=======
     padding: 0px;
     margin: 0px;
->>>>>>> 101ad10ca04401939290a3bbd3840dec1316e585
 }
 
 .content{
@@ -159,6 +156,8 @@ body,html{
     position: relative;
     margin-top: 90%;
 }
+
+
 
 
 
