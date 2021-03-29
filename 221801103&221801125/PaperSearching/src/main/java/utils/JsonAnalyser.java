@@ -77,8 +77,13 @@ public class JsonAnalyser
                         addKeywordsCount(keywords);
                     }
 
-                    theabstract = jsonObject.getString("abstract");
-
+                    if (jsonObject.containsKey("abstract")) {
+                        theabstract = jsonObject.getString("abstract");
+                    }
+                    else
+                    {
+                        theabstract="";
+                    }
                     publishDate = jsonObject.getString("chronOrPublicationDate");
                     String datestr;
                     if(getMonth(publishDate).equals("00"))
@@ -92,7 +97,7 @@ public class JsonAnalyser
                     {
                         datestr = publishDate.substring(publishDate.length() - 4, publishDate.length())
                                 + "-"
-                                + "getMonth(publishDate)"
+                                + getMonth(publishDate)
                                 + "-01";
                     }
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -111,8 +116,7 @@ public class JsonAnalyser
                     paper.setConferrence(conference);
                     paper.setPaperlink(paperlink);
                     paper.setDate(date);
-
-                    System.out.println(paper.toString());
+                    System.out.println(paper);
                     list.add(paper);
                 }
 
@@ -161,7 +165,6 @@ public class JsonAnalyser
                     {
                         paperString+=temp;
                     }
-                    System.out.println(paperString);
                     JSONObject jsonObject = JSONObject.fromObject(paperString);
 
                     /*isbn = JSONObject.fromObject(
@@ -218,10 +221,7 @@ public class JsonAnalyser
                     paper.setPublishDate(publishDate);
                     paper.setConferrence(conference);
                     paper.setPaperlink(paperlink);
-
-                    System.out.println(paper.toString());
                     list.add(paper);
-
                 }
 
             }
