@@ -6,6 +6,11 @@
 
     <welcome-file-list>
         <welcome-file>framesetTest.jsp</welcome-file>
+        <!--<welcome-file>ICCV.jsp</welcome-file>-->
+        <!--<welcome-file>ECCV.jsp</welcome-file>-->
+       <!-- <welcome-file>CVPR.jsp</welcome-file>-->
+
+
     </welcome-file-list>
     
     <servlet>

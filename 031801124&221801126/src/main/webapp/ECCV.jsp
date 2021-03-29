@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>ECCV</title>
     <script src="./dist/echarts.js"></script>
 
 </head>

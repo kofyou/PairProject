@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>CVPR</title>
     <script src="./dist/echarts.js"></script>
 
 </head>
