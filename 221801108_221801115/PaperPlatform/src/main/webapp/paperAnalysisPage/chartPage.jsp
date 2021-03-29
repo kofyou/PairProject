@@ -30,9 +30,9 @@
 
 
 
-<div id="main" style="width: 1500px;height:400px;"></div>
+<div id="wordbargraph" style="width: 1500px;height:400px;"></div>
 <script type="text/javascript">
-    var myChart = echarts.init(document.getElementById('main'));
+    var myChart = echarts.init(document.getElementById('wordbargraph'));
 
     var categoryData = [
         <% for (Keyword kw:keywordList) {
