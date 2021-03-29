@@ -1,0 +1,26 @@
+body
+{
+    background-image:url(pp.jpg) ;
+    color:black;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+    
+}
+
+#title
+{
+   text-align: center;
+}
+
+#a
+{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 80px;
+    border:none;
+    background-color: rgba(246, 255, 166, 0.856);
+    border-radius: 10px;
+    width: 150px;
+    height:30px;
+}
