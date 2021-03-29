@@ -133,6 +133,7 @@ export default {
     tableData:{
       handler (val, oldVal){
         this.handleSizeChange(this.tableMes.eachPageItem);
+        console.log(1);
       }
     }
   },
@@ -207,6 +208,7 @@ export default {
                     if (myArticle["no"] == "[]" || myArticle["no"] == null)
                       myArticle["no"] = "无";
                     thatThat.tableData.push(myArticle);
+                    thatThat.tableMes.totalItem++;
                   }
                 }
               ).catch(function (error){

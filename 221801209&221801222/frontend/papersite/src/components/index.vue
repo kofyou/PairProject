@@ -133,15 +133,21 @@ export default {
       this.axios.get('/search?title=' + searchWord + '&keyword=' + searchWord)
         .then(
           function (response){
-            that.tableData = response.data.article;
-            that.tableMes.totalItem = that.tableData.length;
-            for(let i = 0; i < that.tableMes.totalItem; i++) {
-              if (that.tableData[i]["author"] == "[]")
-                that.tableData[i]["author"] = "无";
-              if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == null)
-                that.tableData[i]["no"] = "无";
+            if(response.data.article.length === 0)
+            {
+              that.alertMes("搜索结果为空！！！");
             }
-            that.handleSizeChange(that.tableMes.eachPageItem);
+            else{
+              that.tableData = response.data.article;
+              that.tableMes.totalItem = that.tableData.length;
+              for(let i = 0; i < that.tableMes.totalItem; i++) {
+                if (that.tableData[i]["author"] == "[]")
+                  that.tableData[i]["author"] = "无";
+                if (that.tableData[i]["no"] == "[]" || that.tableData[i]["no"] == null)
+                  that.tableData[i]["no"] = "无";
+              }
+              that.handleSizeChange(that.tableMes.eachPageItem);
+            }
           }
         ).catch(
           function (error){
