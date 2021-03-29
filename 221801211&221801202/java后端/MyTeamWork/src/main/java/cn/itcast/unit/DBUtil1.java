@@ -23,6 +23,11 @@ public class DBUtil1 {
 		return DriverManager.getConnection(url, loginName, password);
 	}
 
+	public static Connection getConnection(String str) throws SQLException {
+		String url = String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s&serverTimezone=GMT", ip, port, str, encoding);
+		return DriverManager.getConnection(url, loginName, password);
+	}
+
 	/* 关闭连接的方法 */
 	public static void close(ResultSet rs, Statement stmt, Connection conn) {
 		try {

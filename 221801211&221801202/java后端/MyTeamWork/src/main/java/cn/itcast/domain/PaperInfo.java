@@ -8,6 +8,7 @@ public class PaperInfo {
     private String abstr;
     private String url;
     private String accesstimes;
+    private String keyword;
 
     public String getTitle() {
         return title;
@@ -63,5 +64,26 @@ public class PaperInfo {
 
     public void setAccesstimes(String accesstimes) {
         this.accesstimes = accesstimes;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString() {
+        return "PaperInfo{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", year='" + year + '\'' +
+                ", meeting='" + meeting + '\'' +
+                ", abstr='" + abstr + '\'' +
+                ", url='" + url + '\'' +
+                ", accesstimes='" + accesstimes + '\'' +
+                '}';
     }
 }
