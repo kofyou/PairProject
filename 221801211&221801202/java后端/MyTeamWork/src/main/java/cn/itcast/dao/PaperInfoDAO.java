@@ -2,6 +2,7 @@ package cn.itcast.dao;
 
 import cn.itcast.domain.PaperInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface PaperInfoDAO {

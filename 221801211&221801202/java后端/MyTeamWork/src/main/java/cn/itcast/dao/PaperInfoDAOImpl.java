@@ -18,6 +18,25 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
     BasicDataSource basicDataSource;
     ResultSet resultSet;
 
+
+    public void addkey(PaperInfo paperInfo)
+    {
+        String sql = "select * from name_keyword where name like "+paperInfo.getTitle();
+        String str ="";
+        try {
+            connection = DBUtil1.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                str+=resultSet.getString("keyword");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil1.close(resultSet, preparedStatement, connection);
+        }
+    }
+
     public List<PaperInfo> selectPaperInfos() {
         List<PaperInfo> list = new ArrayList<PaperInfo>();
         String sql = "select * from paper";
@@ -42,7 +61,13 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
         }finally {
             DBUtil1.close(resultSet,preparedStatement,connection);
         }
-        return list;
+        List<PaperInfo> paperInfos = new ArrayList<PaperInfo>();
+        for(PaperInfo paperInfo : list)
+        {
+            addkey(paperInfo);
+            paperInfos.add(paperInfo);
+        }/**/
+        return paperInfos;
     }
 
     public void add(PaperInfo paperInfo) {
@@ -77,22 +102,15 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
         return list;
     }
 
-    public List<PaperInfo> getkey(String title) {
-        List<PaperInfo> list = new ArrayList<PaperInfo>();
-        String sx = "'"+title+"%'";
-        String sql = "select * from paperinfo where keywords like " + sx;
+    public List<PaperInfo> getkey(String keyword) {
+        String sql = "select * from name_keyword where keyword like " + keyword;
+        String name =null;
         try {
             connection = DBUtil1.getConnection();   //优化
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                PaperInfo paperInfo = new PaperInfo();
-                paperInfo.setTitle(resultSet.getString(1));
-                paperInfo.setYear(resultSet.getString(2));
-                paperInfo.setMeeting(resultSet.getString(3));
-                paperInfo.setAbstr(resultSet.getString(4));
-                paperInfo.setUrl(resultSet.getString(5));
-                list.add(paperInfo);
+                name = resultSet.getString("name");
             }
             if (connection != null) {
                 connection.close();
@@ -102,6 +120,8 @@ public class PaperInfoDAOImpl implements PaperInfoDAO {
         }finally {
             DBUtil1.close(resultSet,preparedStatement,connection);
         }
+        List<PaperInfo> list = new ArrayList<PaperInfo>();
+        list = getinfo(name);
         return list;
     }
 
