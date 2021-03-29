@@ -1,6 +1,6 @@
 <template>
   <div>
-<myheader></myheader>
+<myheader :userName='this.Username' :loginStatus=this.loginStatus></myheader>
     <el-main>
   <el-image src="https://i.loli.net/2021/03/25/8LunI4sv1UGlEdD.png" style="width: 500px"/>
       <div class="searchBox">
@@ -8,8 +8,8 @@
          <li style="padding-left:16px" >单个<i class="el-icon-arrow-down el-icon--right"></i></li>
          <li class="batch">批量</li>
        </ul>
-        <input class="searchInput" type="text" placeholder="添加单个论文题目"></input>
-        <input class="searchButton" type="button" value="添加" style="color: #eeeeee">
+        <input class="searchInput" type="text" placeholder="添加单个论文题目" v-model="searchForm.singleSearchText"></input>
+        <input class="searchButton" type="button" value="添加" style="color: #eeeeee" @click="AddTitle">
       </div>
       <router-link to="/crawlresult">
       <div class="crawlButton" @mouseenter="showButtonText" @mouseleave="showButtonText">
@@ -18,10 +18,10 @@
       </div>
       </router-link>
        <div class="paperList">
-        <ul v-for="(items,index) in tableData" >
+        <ul v-for="(items,index) in tableData" :key="index">
           <li class="paperItem">
             <span style="margin-right: 300px">
-              {{ items.name}}
+              {{ items.title}}
               {{index}}
             </span>
             <i class="fa fa-trash" aria-hidden="true" style="margin-left: 100px" @click="deleteItem(index)"></i>
@@ -36,6 +36,7 @@
 import Myheader from "../components/myheader";
 import Mymain from "../components/mymain";
 export default {
+
   name:'index',
   components: {Mymain, Myheader},
   data()
@@ -46,26 +47,37 @@ export default {
         singleSearchText:""
       },
       tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
+
+        title: '王小虎',
+
       }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
+
+        title: '王小虎',
+
       }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
+
+        title: '王小虎',
+
       }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
+
+        title: '王小虎',
+
       }],
       buttonhover:false,
+      Username:"",
+      loginStatus:false
     }
   },
+  mounted(){
+     this.Username=sessionStorage.getItem('username');
+  },
   methods:{
+     AddTitle:function(){
+       let newTitle={};
+       newTitle.title=this.searchForm.singleSearchText;
+       this.searchForm.singleSearchText="";
+       this.tableData.push(newTitle);
+     },
      deleteItem:function ()
      {
 

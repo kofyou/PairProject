@@ -14,24 +14,40 @@
             left: -100px;
           "
         ></i>
-        <span>计算机论文查询平台</span>
+        <router-link to="/index" style="text-decoration:none;color:white"><span>计算机论文查询平台</span></router-link>
       </div>
-      <el-button class="loginbutton" @click="toLogin">登录</el-button>
-      <el-button class="registerbutton" @click="toRegister">注册</el-button>
+      <el-button class="loginbutton" @click="toLogin" v-show="!loginStatus">登录</el-button>
+      <el-button class="registerbutton" @click="toRegister" v-show="!loginStatus">注册</el-button>
       <el-avatar :size="50" :src="circleUrl" style="position: absolute;top:15px;right: 250px"></el-avatar>
+      <div class="showusername" style="position:absolute;right:100px;font-weight:bold">欢迎你：{{userName}}</div>
     </el-header>
   </div>
 </template>
 <script>
 export default {
+  props:{
+  'userName':String,
+  'loginStatus':Boolean
+  },
   name:'myheader',
   data(){
     return{
       circleUrl:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
-        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
+        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+        username:this.userName,
+        loginstatus:this.loginStatus
     }
+  },
+  watch:{
+     'userName':function(val)
+     {
+     this.userName=val;
+     },
+     'loginStatus':function(val){
+      this.loginStatus=val;
+     }
   },
   methods:{
     toLogin:function (){

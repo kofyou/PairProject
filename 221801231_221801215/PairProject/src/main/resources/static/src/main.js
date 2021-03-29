@@ -12,6 +12,7 @@ import api from './api/global_variable';
 import md5 from 'js-md5';
 import echarts from 'echarts'
 import 'echarts/map/js/china'
+import  store from './store/index'
 Vue.use(Vuex)
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$md5 = md5;
@@ -19,10 +20,8 @@ Vue.prototype.$api=api;
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-router.beforeEach((to,from,next)=>{
-
-})
 /* eslint-disable no-new */
+axios.defaults.withCredentials = true
 new Vue({
   el: '#app',
   router,
