@@ -86,6 +86,7 @@
 <a id = "info" href ="paperList.jsp" target ="rightframe">  论文搜索  </a><br />
 <a id = "tendency" href ="paperTendency.jsp" target ="rightframe">  论文趋势  </a><br />
 <a id = "topten" href ="topten.jsp" target ="rightframe"> 热词TOP10 </a><br />
+<a id = "wordcloud" href ="wordCloud.jsp" target ="rightframe"> 词云 </a><br />
 
 </body>
 </html>

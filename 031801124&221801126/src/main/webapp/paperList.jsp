@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.getAttribute("paperList2");
+    String name = request.getParameter("name");//用request得到
 %>
 <html>
 <head>
@@ -110,5 +111,6 @@
         document.getElementById("changeNum").type=3;
         document.getElementById("queryForm").pLink=link;
         document.getElementById("queryForm").submit();
+
     }
 </script>

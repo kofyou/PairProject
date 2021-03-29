@@ -27,7 +27,54 @@ import java.util.List;
 public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        try
+        {
+        System.out.println("77777");
+        PaperService paperService=new PaperServiceImpl();
+        Paper tempPaper=new Paper();
+/*        tempPaper.setPaperTitle(req.getParameter("pTitle"));*/
+            String keyword=new String(req.getParameter("name").getBytes("ISO8859-1"),"UTF-8");
+        tempPaper.setPaperKeyword(keyword);
+/*        tempPaper.setPaperReleasetime(req.getParameter("PaperReleasetime"));*/
+        String pageNum = "1";
+        String changeNum = "0";
+        // pl每页显示的记录行数， pn当前页码，cn（上一页、下一页、查询），tn总的记录数
+        int pl = 10, pn = 1, cn = 0, tn = paperService.queryNumber(tempPaper);
+        // tp总的页数
+        int tp = tn / 10 + (tn % 10 == 0 ? 0 : 1);
+        // 当根据查询条件查询结果为空时，总页数默认为1页
+        if (tp == 0) {
+            tp = 1;
+        }
+        if (pageNum != null && !"".equals(pageNum)) {
+            pn = Integer.parseInt(pageNum);
+        }
+        if (changeNum != null && !"".equals(changeNum)) {
+            cn = Integer.parseInt(changeNum);
+        }
+
+        if (!(pn == 1 && cn == -1) && !(pn == tp && cn == 1)) {
+            pn = pn + cn;
+        }
+
+        if (pn > tp) {
+            pn = tp;
+        }
+
+        List<Paper> list = paperService.queryPapers(tempPaper, pn, pl);
+        req.setAttribute("paper", tempPaper);
+        req.setAttribute("pageNum", pn);
+        req.setAttribute("totalPageNum", tp);
+        req.setAttribute("totalNum", tn);
+        req.setAttribute("paperList2", list);
+        req.getRequestDispatcher("paperList.jsp").forward(req, resp);
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    } catch (ServletException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
     @Override
@@ -51,6 +98,7 @@ public class SearchServlet extends HttpServlet {
 
     public void queryPapers(HttpServletRequest req, HttpServletResponse resp) {
         try {
+            System.out.println("77777");
             PaperService paperService=new PaperServiceImpl();
             Paper tempPaper=new Paper();
             tempPaper.setPaperTitle(req.getParameter("pTitle"));
@@ -98,12 +146,12 @@ public class SearchServlet extends HttpServlet {
     }
 
 
-    int deletePaper(HttpServletRequest req, HttpServletResponse resp)
-    {
+    int deletePaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("111111111");
         String Link=req.getParameter("pLink");
         PaperService paperService=new PaperServiceImpl();
         System.out.println(paperService.deletePaper(Link));
+        req.getRequestDispatcher("paperList.jsp").forward(req, resp);
         return 0;
     }
 }

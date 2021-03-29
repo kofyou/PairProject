@@ -14,8 +14,9 @@ import java.sql.SQLException;
 public class MysqlDB {
 
     private final static String DB_DRIVER = "com.mysql.jdbc.Driver";
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/paper?useUnicode=true&characterEncoding=utf8";
-    private final static String DB_USER = "root";
+    /*private final static String DB_URL = "jdbc:mysql://localhost:3306/paper?useUnicode=true&characterEncoding=utf8";*/
+    private final static String DB_URL = "jdbc:mysql://112.74.179.171:3306/paper?useUnicode=true&characterEncoding=utf8";
+    private final static String DB_USER = "yuancheng";
     private final static String DB_PASSWD = "123456";
 
     public Connection getConn() {
