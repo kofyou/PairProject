@@ -33,7 +33,7 @@ public class KeywordAndCount extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LinkedList<KeywordBean> keywordList = new KeywordDao().searchMaxTen();
+		LinkedList<KeywordBean> keywordList = new KeywordDao().searchMaxTen(10);
 		JSONArray ja = new JSONArray();
 		for (KeywordBean keyword:keywordList) {
 			JSONObject jo = new JSONObject();
@@ -41,7 +41,7 @@ public class KeywordAndCount extends HttpServlet {
 			jo.put("appeartimes", keyword.getAppeartimes());
 			ja.add(jo);
 		}
-		System.out.println(ja);
+		response.getWriter().write(ja.toJSONString());
 	}
 
 }

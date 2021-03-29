@@ -77,14 +77,15 @@ public class KeywordDao {
 		}
 	}
 	
-	public LinkedList<KeywordBean> searchMaxTen(){
+	public LinkedList<KeywordBean> searchMaxTen(int count){
 		LinkedList<KeywordBean> keywordList = new LinkedList<KeywordBean>();
-		String sql = "select * from keywords order by appeartimes desc limit 10";
+		String sql = "select * from keywords order by appeartimes desc limit ?";
 		Connection conn = JDBCUtil.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, count);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				KeywordBean keyword = new KeywordBean();
