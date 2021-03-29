@@ -5,10 +5,7 @@ body,html{
     background-image: url("image/bg.png");
     background-attachment: fixed;
     background-size: 100% 100%;
-<<<<<<< HEAD
     background-position: left top;
-=======
->>>>>>> 222d1cc3db54e398ffca329a31fbf02e9f1051b9
     padding: 0px;
     margin: 0px;
 }
@@ -151,7 +148,7 @@ body,html{
     text-align: center;
     padding: 0px;
     margin-top: 2%;
-    margin-bottom: 85%;
+    margin-bottom: 88%;
     color: #403D3D;
 }
 

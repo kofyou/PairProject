@@ -75,6 +75,7 @@
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
     top: 8%;
+    padding-left: 1%;
 }
 .icon_close{
     position: absolute;
@@ -86,7 +87,6 @@
 .paper_title{
     position: absolute;
     padding-left: 1%;
-    font-weight: bold;
     font-size: 20px;
 }
 .source{
@@ -102,12 +102,20 @@
     padding-right: 9%;
     top: 35%;
     font-size: 16px;
+    color: #757575;
+}
+#paper_link{
+    position: absolute;
+    top: 70%;
+    color: #356FC8;
+    padding-left: 1%;
+
 }
 .keywords{
     position: relative;
     display: inline;
     font-size: 16px;
-    top: 73%;
+    top: 85%;
     padding-right: 5%;
     padding-left: 1%;
     color: #757575;
@@ -123,6 +131,5 @@
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
     color: #356FC8;
-
 }
 
