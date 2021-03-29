@@ -4,6 +4,7 @@ import (
 	"backend/database"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -23,6 +24,7 @@ func GetThesisList(c *gin.Context) {
 	source := c.Query("source")
 	year := c.Query("year")  //类型是否有问题？
 	keyword := c.Query("keyword")
+	pageStr := c.Query("page")
 
 	keyword = strings.ReplaceAll(keyword, "\n", "%")
 	keyword = strings.ReplaceAll(keyword, "\r", "%")
@@ -46,10 +48,20 @@ func GetThesisList(c *gin.Context) {
 		}
 		selectStr += "Keyword like '" + keyword + "' "
 	}
-
 	if source == "" && year == "" && keyword == "" {
 		length := len(selectStr) - 6
 		selectStr = selectStr[0:length]
+	}
+	if pageStr != "" {
+		page, _ :=strconv.Atoi(pageStr)
+		if page >= 1 {
+			page --
+		} else {
+			page = 0
+		}
+		page *= 4
+		pageStr = strconv.Itoa(page)
+		selectStr += " limit " + pageStr + " , 4"
 	}
 	selectStr += " ;"
 
