@@ -34,4 +34,29 @@ public interface KeywordDao extends JpaRepository<Keyword,Integer> {
      */
     @Query(value = "select * from keywords where paperId = ?1",nativeQuery = true)
     List<Keyword> findKeywordsByPaperId(Integer paperId);
+
+    /**
+     * 获取数据库中出现频率最高的十个关键词词
+     *
+     * @return the list 关键词字符串表
+     */
+    @Query(value = "select distinct keyword from keywords " +
+            "group by keyword " +
+            "order by count(keyword) desc " +
+            "limit 10",nativeQuery = true)
+    List<String> findTopTenFrequencyKeyword();
+
+    /**
+     * 根据会议获取出现频率最高的十个关键词
+     *
+     * @param source the source 会议名称
+     * @return the list 热词字符串列表
+     */
+    @Query(value = "select distinct keyword " +
+            "from keywords_with_detail " +
+            "where source = ?1 " +
+            "group by keyword " +
+            "order by count(keyword) desc " +
+            "limit 10",nativeQuery = true)
+    List<String> findTopTenFrequencyKeywordBySource(String source);
 }
