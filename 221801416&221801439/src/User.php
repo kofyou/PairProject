@@ -10,21 +10,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Simple Blog System—登录</title>
+    <title>登录</title>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css" />
   </head>
   <body>
-
-  <h1>登录</h1>
+  <div class="login">
+  <h1 id="login">登录</h1>
   <form action="user_submit.php" method="post">
-    <p>用户名:</p>
-    <p><input type="text" name="username" /></p>
-    <p>密码:</p>
-    <p><input type="password" name="pwd" /></p> 
-    <p><input type="submit" value="登录" /></p>
+    <p><input type="text" name="username" id="name"  placeholder="请输入用户名"/></p>
+    <p><input type="password" name="pwd"  id="password" placeholder="请输入密码"/></p> 
+    <p><input type="submit" value="登录" id="btn"/></p>
   </form>
-    <a href="list_post2.php">游客</a>
+    <a href="list_post2.php" id="normal">游客登录</a>
     <br/>
     <br/>
-    <p>初始账号为：lhy  密码为：123</p>
+    <p  id="ps">初始账号为：lhy  密码为：123</p>
+  </div>
   </body>
 </html>
