@@ -15,6 +15,12 @@
 </head>
 <body>
 
+<div style="color:#c1cbd7">
+    <h1 style="background-color:#656565">
+        论文检索系统
+    </h1>
+</div>
+
 <div id="main" style="width: 1536px;height:864px;"></div>
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('main'));

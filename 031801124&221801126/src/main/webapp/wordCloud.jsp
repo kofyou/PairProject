@@ -14,6 +14,13 @@
     <script src='./js/echarts-wordcloud.js'></script>
 </head>
 <body>
+
+<div style="color:#c1cbd7">
+    <h1 style="background-color:#656565">
+        论文检索系统
+    </h1>
+</div>
+
 <style>
     html, body, #main {
         width: 100%;
