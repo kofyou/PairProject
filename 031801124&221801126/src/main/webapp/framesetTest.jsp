@@ -9,7 +9,7 @@
 <%--<%@ include file="/head.jsp"%>
 <%@ include file="/leftMenu.jsp"%>--%>
 <html>
-<title>FrameSet测试</title>
+<title>论文检索系统</title>
 <frameset cols="120,*">
 
     <frame src="leftMenu.jsp">

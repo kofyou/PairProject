@@ -38,7 +38,7 @@
         series: [ {
             type: 'wordCloud',
             gridSize: 2,
-            sizeRange: [12, 50],
+            sizeRange: [120, 190],
             rotationRange: [-90, 90],
             shape: 'pentagon',
             width: 600,

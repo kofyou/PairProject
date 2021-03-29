@@ -61,10 +61,28 @@
             border: none;
             font-weight: bold;
         }
+        #btnSearch{
+            /*position: absolute;*/
+            background-color: #ffffff;
+            left: 90%;
+            top:10%;
+            width: 100px;
+            height: 32px;
+            line-height: 6px;
+            border-radius: 10px;
+            color: #c12e2e;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            border: none;
+            font-weight: bold;
+        }
+        body{ text-align:center}
+        #divcss5{margin:0 auto;width:300px;height:100px}
     </style>
 </head>
 
-<body >
+<body style="background: url(bg.jpg)">
 <%--/*上条栏使用 #c1cbd7*/--%>
 <%--/*上文字使用 #656565*/--%>
 <div style="color:#c1cbd7">
@@ -73,18 +91,20 @@
     </h1>
 </div>
 
-<form action="PaperServlet" method="post">
+<%--<form action="PaperServlet" method="post">
     <button id="btnShuaXin">刷新列表</button>
-</form>
+</form>--%>
+<div id="divcss5">
 <form method="post" id="queryForm" action="<%=path%>/SearchServlet">
-    <input type="text" name="pTitle" value="${paper.paperTitle}" placeholder="论文标题"/>
-    <input type="text" name="pKeyword" value="${paper.paperKeyword}" placeholder="论文关键词"/>
+    <input  type="text" name="pTitle" value="${paper.paperTitle}" placeholder="论文标题"/><br><br>
+    <input  type="text" name="pKeyword" value="${paper.paperKeyword}" placeholder="论文关键词"/><br>
     <input type="hidden" name="pLink" value="${paper.paperLink}" placeholder="论文链接"/>
     <input type="hidden" name="type" value="0" />
     <input type="hidden" name="pageNum" value="${pageNum}" />
     <input type="hidden" id="changeNum" name="changeNum" value="" />
-    <button  onclick="changePage(0);">查 询</button>
+    <button  onclick="changePage(0);" id="btnSearch">查 询</button>
 </form>
+</div>
 <table border="1">
     <tr>
         <td>序号</td>
@@ -106,7 +126,7 @@
             <td>${l.getPaperReleasetime()}</td>
             <td>${l.getPaperLink()}</td>
             <td>
-                <button  type="button" onclick="">编 辑</button>
+                <%--<button  type="button" onclick="">编 辑</button>--%>
                 <%--<button type="button" onclick="deletePaper(l.getPaperLink())">删 除</button>--%>
                 <form method="post" id="deleteForm" action="<%=path%>/SearchServlet">
                     <input type="hidden" name="pLink" value="${l.getPaperLink()}"/>

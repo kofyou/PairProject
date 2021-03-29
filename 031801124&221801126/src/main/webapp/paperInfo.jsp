@@ -12,7 +12,7 @@
 <head>
     <title>XX论文详情页</title>
 </head>
-<body>
+<body style="background: url(bg.jpg)">
     <%--/*上条栏使用 #c1cbd7*/--%>
     <%--/*上文字使用 #656565*/--%>
     <div style="color:#c1cbd7">
