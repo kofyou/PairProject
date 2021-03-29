@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import com.example.demo.bean.Paper;
 import com.example.demo.bean.PaperResponsBody;
 import com.example.demo.service.serviceImpl.LimitPaperImpl;
@@ -53,7 +54,7 @@ public class LimitPaperController {
     {
         List<Paper> paperList = limitPaperService.searchByKeyWords(keywords,Integer.parseInt(start),Integer.parseInt(limit));
         for(Paper paper:paperList) {
-            if(paper.getPersistentLink().contains("https://ieeexplore.ieee.org")){
+            if(paper.getPersistentLink().contains("https:")){
 
             }else {
                 paper.setPersistentLink("https://ieeexplore.ieee.org"+paper.getPersistentLink());

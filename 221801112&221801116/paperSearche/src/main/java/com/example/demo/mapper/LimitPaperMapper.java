@@ -19,11 +19,11 @@ public interface LimitPaperMapper {
     @Select("SELECT COUNT(*) FROM paper")
     public Integer getCount();
 
-    @Select("SELECT * FROM paper WHERE keywords like concat('%', #{value}, '%')" +
-            "or publicationTitle like concat('%', #{value}, '%') limit #{startPosition} ,#{pageSize}")
+    @Select("SELECT * FROM paper WHERE persistentLink != 'null' and (keywords like concat('%', #{value}, '%')" +
+            "or publicationTitle like concat('%', #{value}, '%')) limit #{startPosition} ,#{pageSize}")
     public List<Paper> searchByKeyWords(@Param("value") String keyword,@Param("startPosition") int startPosition, @Param("pageSize") int pageSize);
 
-    @Select("SELECT COUNT(*) FROM paper WHERE keywords like concat('%', #{value}, '%') or publicationTitle like concat('%', #{value}, '%')")
+    @Select("SELECT COUNT(*) FROM paper WHERE persistentLink != 'null' and (keywords like concat('%', #{value}, '%') or publicationTitle like concat('%', #{value}, '%'))")
     public Integer getCuntS(@Param("value") String keyword);
 
     @Delete("DELETE FROM paper WHERE paperId = #{id}")

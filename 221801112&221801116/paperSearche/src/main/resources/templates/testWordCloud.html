@@ -60,20 +60,46 @@
 </div>
 
 
-<div id="wordContainer" style="width: 500px;height: 500px"></div>
+<!--搜索结果展示-->
+<table id="currentTableId24" style="width: 800px;float: left;border-color: #117a8b;border-radius: 1.5%"></table>
 
-<table id="currentTableId24"></table>
+
+<!--词云-->
+<div id="wordContainer" style="width: 500px;height: 500px;float: right;margin-top: 25px;border-color: #117a8b;border-radius: 1.5%;box-shadow:  darkgrey 10px 10px 10px 5px"></div>
+
+
 
 
 <script src="/js/getWord.js">
     // JS 代码
 </script>
-<script src="layui/layui.js"></script>
-<script>
-    function toKeyWord(keyword){
 
+
+
+<script src="layui/layui.js"></script>
+
+
+
+<script>
+
+    $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
+
+
+    layui.config({
+        base: 'cardTable2/' //配置 layui 第三方扩展组件存放的基础目录
+    })
+    layui.use(['cardTable'], function () {
+        let cardTable = layui.cardTable;
+
+        cardTable.render({
+            elem: '#currentTableId24',
+            url: '/searchByKeyWord?keywords='+'task analysis',
+        })
+    })
+
+    function toKeyWord(keyword){
         layui.config({
-            base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录
+            base: 'cardTable2/' //配置 layui 第三方扩展组件存放的基础目录
         })
 
         layui.use(['cardTable'], function () {
@@ -86,5 +112,7 @@
         })
     }
 </script>
+
+
 </body>
 </html>

@@ -20,16 +20,16 @@ public class LimitPaperImpl implements LimitPaperService {
     @Autowired
     LimitPaperMapper limitPaperMapper;
 
-    public List<Paper> getLimitPaper(int startPosition,int pageSize) {
-        return limitPaperMapper.getLimitPaper(startPosition,pageSize);
+    public List<Paper> getLimitPaper(int startPosition, int pageSize) {
+        return limitPaperMapper.getLimitPaper(startPosition, pageSize);
     }
 
     public Integer getCount() {
         return limitPaperMapper.getCount();
     }
 
-    public List<Paper> searchByKeyWords(String keyword,int startPosition,int pageSize) {
-        return limitPaperMapper.searchByKeyWords(keyword,startPosition,pageSize);
+    public List<Paper> searchByKeyWords(String keyword, int startPosition, int pageSize) {
+        return limitPaperMapper.searchByKeyWords(keyword, startPosition, pageSize);
     }
 
     public Integer getCountS(String keyword) {
@@ -37,14 +37,14 @@ public class LimitPaperImpl implements LimitPaperService {
     }
 
     public Integer deletePaper(int paperId) {
-       return limitPaperMapper.deletePaper(paperId);
+        return limitPaperMapper.deletePaper(paperId);
     }
 
-    public Integer updatePaper(int id,String title,String key,String abstrac,String link,String year) {
-        return limitPaperMapper.updatePaper(id,key,abstrac,title,year,link);
+    public Integer updatePaper(int id, String title, String key, String abstrac, String link, String year) {
+        return limitPaperMapper.updatePaper(id, key, abstrac, title, year, link);
     }
 
-    public Integer insertPaper(String title,String key,String abstrac,String link,String year) {
-        return limitPaperMapper.insertPaper(key,abstrac,title,year,link);
+    public Integer insertPaper(String title, String key, String abstrac, String link, String year) {
+        return limitPaperMapper.insertPaper(key, abstrac, title, year, link);
     }
 }
