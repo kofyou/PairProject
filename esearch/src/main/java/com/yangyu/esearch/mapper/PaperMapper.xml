@@ -23,7 +23,14 @@
         select * from papers
     </select>
     <select id="selectTitle" resultMap="Paper" >
-        select * from papers where title like CONCAT('%', #{title}, '%') limit #{address}, 5
+        select * from papers where title like CONCAT('%', #{title}, '%')
+        <if test='source != null'>
+            and source = #{source}
+        </if>
+        <if test="years != null">
+            and years = #{years}
+        </if>
+        limit #{address}, 5
     </select>
     <select id="selectSource" resultMap="Paper" parameterType="java.lang.String">
         select * from papers where source = #{source}
@@ -31,8 +38,8 @@
     <select id="selectYears" resultMap="Paper" parameterType="java.lang.String">
         select * from papers where years = #{years}
     </select>
-    <select id="selectKeyword" resultMap="Paper" parameterType="java.lang.String">
-        select * from papers where keyword like CONCAT('%', #{keyword}, '%')
+    <select id="selectKeyword" resultMap="Paper">
+        select * from papers where keyword like CONCAT('%', #{keyword}, '%') limit #{address}, 5
     </select>
     <select id="selectKeywordYear" resultMap="Paper" >
         select * from papers where years = #{years} and keyword like CONCAT('%', #{keyword}, '%')

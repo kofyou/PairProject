@@ -15,9 +15,9 @@ public interface PaperMapper {
 
     int createPaper(Paper paper);
     List<Paper> queryAll();
-    List<Paper> selectTitle(String title, Integer address);
+    List<Paper> selectTitle(String title,String source, String years, Integer address);
     List<Paper> selectSource(String source);
     List<Paper> selectYears(String years);
-    List<Paper> selectKeyword(String keyword);
+    List<Paper> selectKeyword(String keyword, Integer address);
     List<Paper> selectKeywordYear(String years, String keyword);
 }

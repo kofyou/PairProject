@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,7 +36,7 @@ public class KeywordController {
     }
 
     @GetMapping("meet")
-    public List<Keyword> meetTop(@ApiParam("顶会名称") String source)
+    public List<Keyword> meetTop( String source)
     {
         return keywordService.topWord(paperService.selectSource(source));
     }

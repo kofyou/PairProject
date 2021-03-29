@@ -26,37 +26,37 @@ public class PaperController {
     @Autowired
     private PaperService paperService;
 
-    @GetMapping("query")
+    //@GetMapping("query")
     public List<Paper> query()
     {
         return paperService.queryAll();
     }
 
     @GetMapping("title")
-    public List<Paper> selectTitle(String title, Integer address)
+    public List<Paper> selectTitle(String title, String source, String years, Integer address)
     {
-        return paperService.selectTitle(title, address*5);
+        return paperService.selectTitle(title, source, years, address*5);
     }
 
     @GetMapping("source")
-    public List<Paper> selectSource(@ApiParam("顶会名称") String source)
+    public List<Paper> selectSource(String source)
     {
         return paperService.selectSource(source);
     }
 
     @GetMapping("years")
-    public List<Paper> selectYears(@ApiParam("会议年份") String years)
+    public List<Paper> selectYears(String years)
     {
         return paperService.selectYears(years);
     }
 
     @GetMapping("keyword")
-    public List<Paper> selectKeyword(@ApiParam("关键词") String keyword)
+    public List<Paper> selectKeyword(String keyword, Integer address)
     {
-        return paperService.selectKeyword(keyword);
+        return paperService.selectKeyword(keyword, address);
     }
 
-    @GetMapping("read")
+    //@GetMapping("read")
     public void read()
     {
         ReadPaper readPaper = new ReadPaper();
