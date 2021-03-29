@@ -17,7 +17,7 @@ func (service *SearchPaperService) Search(title, keyword string, page int64, mee
 	}
 
 	if _, err := model.Engine.Exec("CREATE TEMPORARY TABLE `temp_table` (`id` INTEGER PRIMARY KEY NOT NULL, `title` TEXT NOT NULL, `abstract` TEXT NOT NULL, `meeting` TEXT NOT NULL, `year` INTEGER NOT NULL, `origin_link` TEXT NOT NULL, `click` INTEGER DEFAULT 0 NOT NULL);"); err != nil {
-		return serializer.DBErr("Creating temporary table", err)
+		return serializer.DBErr("搜索太频繁，请稍后再试", err)
 	}
 
 	re := regexp.MustCompile(`\s`)
@@ -63,7 +63,7 @@ func (service *SearchPaperService) Search(title, keyword string, page int64, mee
 	}
 
 	if meeting != "" {
-		sqlDelete := "DELETE * FROM temp_table WHERE meeting != ?"
+		sqlDelete := "DELETE FROM temp_table WHERE meeting != ?"
 		_, err := model.Engine.Exec(sqlDelete, meeting)
 		if err != nil {
 			util.Log().Error(err.Error())
@@ -79,13 +79,12 @@ func (service *SearchPaperService) Search(title, keyword string, page int64, mee
 	}
 
 	var papers []model.Paper
-	err := model.Engine.Table("temp_table").Distinct().Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Asc("id").Find(&papers)
-	if err != nil {
+	if err := model.Engine.Table("temp_table").Distinct().Limit(util.PaperPageMaxSize, int(util.PaperPageMaxSize*(page-1))).Asc("id").Find(&papers); err != nil {
 		util.Log().Error(err.Error())
 		return serializer.ParamErr("3", err)
 	}
 
 	_, _ = model.Engine.Exec("drop table temp.temp_table")
 
-	return serializer.BuildPaperListResponse(papers, pageCount, page)
+	return serializer.BuildSearchResultResponse(papers, pageCount, page, int64(total))
 }
