@@ -29,6 +29,8 @@ class Paper(db.Model):
                 abstract = self.abstract[0:300]+"..."
             else:
                 abstract = self.abstract
+        else:
+            abstract = 'null'
         paper = {
             "id": self.id,
             "title": self.title,
