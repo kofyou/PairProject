@@ -25,8 +25,9 @@ class Paper(db.Model):
     link = db.Column(db.String(255))
 
     def to_short_dict(self):
-        if len(self.abstract) > 300:
-            abstract = self.abstract[0:300]+"..."
+        if self.abstract:
+            if len(self.abstract) > 300:
+                abstract = self.abstract[0:300]+"..."
         else:
             abstract = self.abstract
         paper = {
@@ -60,7 +61,7 @@ def hello_world():
     page = request.args.get("p", "1")
 
     # 搜索的关键词
-    keywords = request.args.get("keywords","")
+    keywords = request.args.get("keywords", "")
     keywords = keywords.replace('+', ' ')
     filters = []
     isSearch = False
