@@ -3,7 +3,9 @@ package com.yangyu.esearch.controller;
 import com.yangyu.esearch.entity.Paper;
 import com.yangyu.esearch.service.PaperService;
 import com.yangyu.esearch.untils.ReadPaper;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,25 +33,25 @@ public class PaperController {
     }
 
     @GetMapping("title")
-    public List<Paper> selectTitle(String title)
+    public List<Paper> selectTitle(String title, Integer address)
     {
-        return paperService.selectTitle(title);
+        return paperService.selectTitle(title, address*5);
     }
 
     @GetMapping("source")
-    public List<Paper> selectSource(String source)
+    public List<Paper> selectSource(@ApiParam("顶会名称") String source)
     {
         return paperService.selectSource(source);
     }
 
     @GetMapping("years")
-    public List<Paper> selectYears(String years)
+    public List<Paper> selectYears(@ApiParam("会议年份") String years)
     {
         return paperService.selectYears(years);
     }
 
     @GetMapping("keyword")
-    public List<Paper> selectKeyword(String keyword)
+    public List<Paper> selectKeyword(@ApiParam("关键词") String keyword)
     {
         return paperService.selectKeyword(keyword);
     }
