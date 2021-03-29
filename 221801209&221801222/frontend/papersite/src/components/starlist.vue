@@ -152,8 +152,6 @@ export default {
       console.log(searchWord);
       for(let i = 0; i < cnt; i++)
       {
-        console.log(midTableData[i]);
-        console.log(midTableData[i]['keywords'].indexOf(searchWord));
         if(midTableData[i]['aid'].toString() === searchWord || midTableData[i]['author'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['title'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['keywords'].toLowerCase().indexOf(searchWord) !== -1)
         {
             this.tableData.push(midTableData[i]);
@@ -228,7 +226,6 @@ export default {
       const that = this;
       clearTimeout(t)
       t = setTimeout(function (){
-        console.log(that.selectedAId);
         that.axios.post('/star/delete', {
           aid: that.selectedAId
         }, {withCredentials: true})
@@ -236,12 +233,12 @@ export default {
             function (response) {
               // if(response.data.code == '0') {
                 let cnt = that.tableData.length;  //删除数据
-                for(let i = 0; i < cnt; i++)
-                {
-                  if(that.tableData[i]['aid'] == that.selectedAId)
-                  {
-                    let mid = that.tableData[i];
-                    that.tableData.splice(0, i + 1);
+                for(let i = 0; i < cnt; i++) {
+                    if (that.tableData[i]['aid'] == that.selectedAId) {
+                      let mid = that.tableData[i];
+                      that.tableMes.totalItem -= 1;
+                      that.tableData.splice(i, 1);
+                      break;
                   }
                 }
               // }
@@ -258,7 +255,6 @@ export default {
       const that = this;
       clearTimeout(t)
       t = setTimeout(function (){
-        console.log(that.selectedAId);
         for(let i = 0; i < that.displayedTableData.length; i++) {
           if(that.displayedTableData[i]['aid'] == that.selectedAId) {
             url = that.displayedTableData[i]['url'];
@@ -266,10 +262,9 @@ export default {
           }
         }
         if(url != "" && url != null){
-          console.log(url)
+          // console.log(url)
           window.open(url, '_blank');
         }
-        console.log('执行了');
       }, 500);
 
     },
@@ -282,6 +277,7 @@ export default {
       this.tableMes.eachPageItem = val;
       this.tableMes.total_page = Math.ceil(this.tableMes.totalItem / this.tableMes.eachPageItem);
       this.tableMes.current_page = 1;
+      console.log(this.tableMes.eachPageItem + "  " + this.tableMes.totalItem + "  " + this.tableMes.totalPage );
       this.handleCurrentChange(this.tableMes.current_page);
     },
     handleCurrentChange(val) {
