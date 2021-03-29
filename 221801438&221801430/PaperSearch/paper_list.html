@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Search Result</title>
+    <title>Paper List</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="paperlist.css">
     <script src="//unpkg.com/vue/dist/vue.js"></script>
@@ -17,7 +17,7 @@
         <img class="head" src="image/head.png" alt="alt"/>
 
         <div class="icons" style="top: 20%">
-            <div class="icon" id="icon2">
+            <div class="icon" id="icon2" onclick="change1()">
                 <img src="image/mb-search%202.svg" alt="搜索"/>
                 <p>论文查询</p>
             </div>
@@ -25,7 +25,7 @@
                 <img src="image/md-dehaze%20Copy.svg" style="background-color: #356FC8; " id="this_icon">
                 <p style="top: 0%; margin-top: 0px; margin-bottom: 90%" id="this_p">列表</p>
             </div>
-            <div class="icon" id="icon3">
+            <div class="icon" id="icon3" onclick="change2()">
                 <img src="image/antOutline-line-chart.svg" alt="alt"/>
                 <p>数据分析</p>
             </div>
@@ -92,5 +92,16 @@
 </body>
 <script>
     new Vue().$mount('#app')
+
+    function change1() {
+            //防止表单跳转
+            event.returnValue = false;
+            window.location.href = "sinplesearch.html";
+        }
+    function change3() {
+        //防止表单跳转
+        event.returnValue = false;
+        window.location.href = "data_analyse.html";
+    }
 </script>
 </html>
