@@ -14,15 +14,22 @@
 <body>
     <div class="header_con">
         <div class="header">
-            <a href="#" class="logo fl"><img src="../static/info/images/main_logo.png" alt="logo"  width="40" height="40"></a>
+            <a href="/" class="logo fl"><img src="../static/info/images/main_logo.png" alt="logo"  width="40" height="40"></a>
             <ul class="menu fl">
                 <li class="active" data-cid="1"><a href="javascript:;">论文列表</a></li>
                 <li data-cid="2"><a href="javascript:;">统计图表</a></li>
             </ul>
+            <form class="paper_filter_form">
+                <input type="text" placeholder="请输入要搜索论文的相关内容" class="input_txt" name="keywords">
+                <input type="submit" value="搜 索" class="input_sub">
+            </form>
         </div>
     </div>
     <div class="center_con">
         <ul class="list_con fl">
+              {% if data.isSearch %}
+                <p>搜索到相关结果如下，共计{{ data.searchCount }}条结果：</p>
+              {% endif %}
             {% for paper in data.paper %}
              <li>
                 <a href="#" class="paper_title fl">{{ paper.title }}</a>
@@ -67,13 +74,13 @@
             <ul class="rank_list">
                 {% for item in data.top %}
                     {% if loop.index==1 %}
-                        <li><span class="first">{{ loop.index }}</span><a href="#">{{ item }}</a></li>
+                        <li><span class="first">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
                     {% elif loop.index==2 %}
-                        <li><span class="second">{{ loop.index }}</span><a href="#">{{ item }}</a></li>
+                        <li><span class="second">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
                     {% elif loop.index==3 %}
-                        <li><span class="third">{{ loop.index }}</span><a href="#">{{ item }}</a></li>
+                        <li><span class="third">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
                     {% else %}
-                        <li><span class="">{{ loop.index }}</span><a href="#">{{ item }}</a></li>
+                        <li><span class="">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

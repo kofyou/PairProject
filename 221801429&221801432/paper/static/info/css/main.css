@@ -1181,16 +1181,6 @@ body{
     text-indent:10px;
 }
 
-.focus_other{
-    overflow:hidden;
-    margin-top:40px;
-    text-align:center;
-}
-
-.focus_other a{
-    text-align:left;
-}
-
 .ui-pagination-container{
     text-align:center;
     margin-top:20px;
@@ -1214,3 +1204,33 @@ body{
 .ui-pagination-container .ui-pagination-page-item:hover{
     color:#333;
 }
+
+.paper_filter_form{
+	float:right;
+	height:36px;
+	margin:4px 10px 0 0;
+}
+
+.paper_filter_form .input_txt{
+	float:left;
+	margin:0px;
+	width:298px;
+	height:26px;
+	border:1px solid #d0d0d0;
+	border-radius:4px;
+	outline:none;
+	text-indent:10px;
+  }
+
+  .paper_filter_form .input_sub{
+	float:left;
+	margin:0px;
+	margin-left:10px;
+	width:100px;
+	height:28px;
+	border:0px;
+	border-radius:4px;
+	background: #009afc;
+	color:#fff;
+	cursor:pointer;
+  }

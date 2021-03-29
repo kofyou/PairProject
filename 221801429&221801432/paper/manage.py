@@ -49,17 +49,32 @@ class TopWord(db.Model):
     name = db.Column(db.String(255))
     frequency = db.Column(db.Integer)
 
+
+# 显示首页
 @app.route('/')
 def hello_world():
 
     # 分页展示论文列表
     page = request.args.get("p", "1")
+
+    # 搜索的关键词
+    keywords = request.args.get("keywords","")
+    keywords = keywords.replace('+', ' ')
+    filters = []
+    isSearch = False
+    perPage = 10
+    if keywords:
+        isSearch = True
+        filters.append(Paper.title.contains(keywords))
+        filters.append(Paper.keywords.contains(keywords))
+        filters.append(Paper.abstract.contains(keywords))
+        perPage = Paper.query.filter(*filters).count()
     try:
         page = int(page)
     except Exception as e:
         page = 1
     try:
-        paginate = Paper.query.order_by("title").paginate(page, 10, False)
+        paginate = Paper.query.filter(*filters).order_by("title").paginate(page, perPage, False)
     except Exception as e:
         print(e)
         print("err!")
@@ -79,10 +94,12 @@ def hello_world():
     for i in topWord:
         top_list.append(i.name)
     data = {
+        "isSearch": isSearch,
         "totalPage": totalPage,
         "currentPage": currentPage,
         "top": top_list,
-        "paper": paper_list
+        "searchCount":perPage,
+        "searchWord":keywords
     }
     return render_template("index.html", data=data)
 
