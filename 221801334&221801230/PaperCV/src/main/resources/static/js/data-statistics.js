@@ -2,7 +2,7 @@ $(document).ready(function () {
     var httpRoot = "http://localhost:8080";
     // var httpRoot = "http://120.24.27.29:8080";
 
-    // 热词趋势
+    // 数量统计
     $.ajax({
         url:httpRoot + `/data/meeting/count`,
         type:"GET",
@@ -34,19 +34,22 @@ $(document).ready(function () {
         },
     });
 
+    var res;
     // 热词
     $.ajax({
         url:httpRoot + `/data/hotWord`,
         type:"GET",
         dataType:"json",
-        async:true,
+        async:false,
         success:function(result){
+            res = result;
             var hotWord = [];
             for (var i = 0;i < 10;i++) {
                 for (var item in result[i]) {
                     hotWord.push([item, result[i][item]]);
                 }
             }
+            addButton(hotWord);
             option = {
                 legend: {
                     top: 'bottom'
@@ -91,54 +94,81 @@ $(document).ready(function () {
     });
 
     // 图谱
-    $.ajax({
-        url:httpRoot + `/data/hotWord`,
-        type:"GET",
-        dataType:"json",
-        async:true,
-        success:function(result){
-            JosnList = [];
-            for (var i = 0;i < 500;i++) {
-                for (var item in result[i]) {
-                    JosnList.push({name: item, value: result[i][item]});
-                }
-            }
-            optionFour = {
-                tooltip: {
-                    show: true
-                },
-                series: [{
-                    name: '项目分析',
-                    type: 'wordCloud',
-                    sizeRange: [10, 50],//文字范围
-                    //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
-                    rotationRange: [-45, 90],
-                    rotationStep: 45,
-                    textRotation: [0, 45, 90, -45],
-                    //形状
-                    shape: 'circle',
-                    textStyle: {
-                        normal: {
-                            color: function() {//文字颜色的随机色
-                                return 'rgb(' + [
-                                    Math.round(Math.random() * 250),
-                                    Math.round(Math.random() * 250),
-                                    Math.round(Math.random() * 250)
-                                ].join(',') + ')';
-                            }
-                        },
-                        //悬停上去的字体的阴影设置
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowColor: '#333'
-                        }
-                    },
-                    data: JosnList
-                }]
-            };
-            myChartFour = echarts.init(document.getElementById('table4'));
-            //使用制定的配置项和数据显示图表
-            myChartFour.setOption(optionFour);
+    JosnList = [];
+    for (var i = 0;i < 500;i++) {
+        for (var item in res[i]) {
+            JosnList.push({name: item, value: res[i][item]});
+        }
+    }
+    optionFour = {
+        tooltip: {
+            show: true
         },
-    });
+        series: [{
+            name: '项目分析',
+            type: 'wordCloud',
+            sizeRange: [10, 50],//文字范围
+            //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
+            rotationRange: [-45, 90],
+            rotationStep: 45,
+            textRotation: [0, 45, 90, -45],
+            //形状
+            shape: 'circle',
+            textStyle: {
+                normal: {
+                    color: function() {//文字颜色的随机色
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 250),
+                            Math.round(Math.random() * 250),
+                            Math.round(Math.random() * 250)
+                        ].join(',') + ')';
+                    }
+                },
+                //悬停上去的字体的阴影设置
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            data: JosnList
+        }]
+    };
+    myChartFour = echarts.init(document.getElementById('table4'));
+    //使用制定的配置项和数据显示图表
+    myChartFour.setOption(optionFour);
+
+    // 添加热词按钮
+    function addButton(hotWord) {
+        $("#hot-list-one").empty();
+        $("#hot-list-two").empty();
+        $("#hot-list-one").append(
+            "<button name=\"" + hotWord[0][0] + "\" type=\"button\" class=\"btn btn-outline-danger mb-2" +
+            " hotWordButton\">" + hotWord[0][0] + "</button>\n" +
+            "<button name=\"" + hotWord[1][0] + "\" type=\"button\" class=\"btn btn-outline-dark mb-2" +
+            " hotWordButton\">" + hotWord[1][0] + "</button>\n" +
+            "<button name=\"" + hotWord[2][0] + "\" type=\"button\" class=\"btn btn-outline-secondary mb-2" +
+            " hotWordButton\">" + hotWord[2][0] + "</button>\n" +
+            "<button name=\"" + hotWord[3][0] + "\" type=\"button\" class=\"btn btn-outline-primary mb-2" +
+            " hotWordButton\">" + hotWord[3][0] + "</button>\n" +
+            "<button name=\"" + hotWord[4][0] + "\" type=\"button\" class=\"btn btn-outline-warning mb-2" +
+            " hotWordButton\">" + hotWord[4][0] + "</button>");
+
+        $("#hot-list-two").append(
+            "<button name=\"" + hotWord[5][0] + "\" type=\"button\" class=\"btn btn-outline-warning" +
+            " mb-2 hotWordButton\">" + hotWord[5][0] + "</button>\n" +
+            "<button name=\"" + hotWord[6][0] + "\" type=\"button\" class=\"btn btn-outline-info" +
+            " mb-2 hotWordButton\">" + hotWord[6][0] + "</button>\n" +
+            "<button name=\"" + hotWord[7][0] + "\" type=\"button\" class=\"btn btn-outline-success" +
+            " mb-2 hotWordButton\">" + hotWord[7][0] + "</button>\n" +
+            "<button name=\"" + hotWord[8][0] + "\" type=\"button\" class=\"btn btn-outline-secondary" +
+            " mb-2 hotWordButton\">" + hotWord[8][0] + "</button>\n" +
+            "<button name=\"" + hotWord[9][0] + "\" type=\"button\" class=\"btn btn-outline-primary" +
+            " mb-2 hotWordButton\">" + hotWord[9][0] + "</button>");
+
+        $(".hotWordButton").click(function () {
+            window.localStorage.removeItem("keyWord");
+            window.localStorage.setItem("keyWord", $(this).attr("name"));
+            window.location.href = "paper-list.html";
+        });
+    }
 });
