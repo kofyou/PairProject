@@ -367,3 +367,190 @@ setTimeout(function() {
 if (option1 && typeof option1 === 'object') {
     myChart1.setOption(option1);
 }
+
+
+//以下是ICCV会议柱状图js
+
+
+var dom2 = document.getElementById("container2");
+var myChart2 = echarts.init(dom2);
+var app = {};
+
+var option2;
+
+
+
+var data2 = [];
+for (let i = 0; i < 10; ++i) {
+    data2.push(0);
+}
+option2 = {
+    xAxis: {
+        max: 'dataMax',
+    },
+    yAxis: {
+        type: 'category',
+        data: ['computer vision','feature extraction','image reconstruction','training'
+                ,'image segmentation','learning (artificial intelligence)'
+                ,'cameras','object detection','visualization','three-dimensional displays'],
+        inverse: true,
+        animationDuration: 300,
+        animationDurationUpdate: 300,
+        max: 9 
+    },
+    series: [{
+        realtimeSort: true,
+        name: '正在查询2015年ICCV热词走势，请等待',
+        type: 'bar',
+        data: data2,
+        label: {
+            show: true,
+            position: 'right',
+            valueAnimation: true
+        }
+    }],
+    legend: {
+        show: true
+    },
+    animationDuration: 0,
+    animationDurationUpdate: 3000,
+    animationEasing: 'linear',
+    animationEasingUpdate: 'linear'
+};
+
+function run_ICCV() {
+    $.ajax(
+            {
+                url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2015ICCVkey',
+                type: 'get',
+                data: {},
+                dataType: 'json'
+            }).then(function (res) 
+            {
+                var data1 = option2.series[0].data;
+                for (var i in res) 
+                {
+                    data1[i]+=res[i].time;
+                }　　　　　　　　　　
+            }).fail(function () 
+            {
+                    console.log('失败');
+            })
+        
+    
+    myChart2.setOption(option2);
+}
+
+
+function add2017_ICCV()
+{
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2017ICCVkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option2.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option2.series[0].data;
+            for (var i in res) 
+            {
+                k.push(res[i].keyword);
+                num.push(res[i].time);
+            }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart2.setOption(option2);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option2.series[0].name='累加至2017年ICCV热词走势';
+    myChart2.setOption(option2);
+}
+
+function add2019_ICCV()
+{
+
+    $.ajax(
+        {
+            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/get2019ICCVkey',
+            type: 'get',
+            data: {},
+            dataType: 'json'
+        }).then(function (res) 
+        {
+            var dataname=option2.yAxis.data;
+            var k=[];
+            var num=[];
+            var data = option2.series[0].data;
+            for (var i in res) 
+            {
+                k.push(res[i].keyword);
+                num.push(res[i].time);
+            }
+            for(var j=0;j<k.length;j++)
+            {
+                var flag=0;
+                for (var i = 0; i < data.length; ++i) 
+                {
+                    if(dataname[i]==k[j])
+                    {
+                        data[i]+=num[j];
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0)
+                {
+                    dataname.push(k[j]);
+                    data.push(num[j]);
+                }
+            }
+            myChart2.setOption(option2);     　　　　　　　　　
+        }).fail(function () 
+        {
+                console.log('失败');
+        })
+    
+    option2.series[0].name='累加至2019年ICCV热词走势';
+    myChart2.setOption(option2);
+}
+
+
+setTimeout(function() {
+    run_ICCV();
+}, 0);
+
+setTimeout(function() {
+    add2017_ICCV();
+}, 8000);
+
+setTimeout(function() {
+    add2019_ICCV();
+}, 15000);
+
+if (option2 && typeof option2 === 'object') {
+    myChart2.setOption(option2);
+}

@@ -37,6 +37,6 @@ function search(){
     /*var paperview=document.getElementById("paperview");
     var paperanalysis=document.getElementById("paperanalysis");
     paperview.setAttribute("href","../index/Paperview");
-    paperanalysis.setAttribute("href","../index/Paperanalysis");*/
+    paperanalysis.setAttribute("href","..public/index/Paperanalysis");*/
     window.location="../public/index/Paperview?data="+i.value+"+1";
 }
