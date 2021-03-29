@@ -80,11 +80,13 @@ div.page{
 	width: 30%;
 	
 }
-
-div.pagemessage{
+div.message{
 	padding-left: 80px;
 	padding-top: 150px;
+	display: none;
 }
+
+
 input.button{
 	
 	padding: 10px;
@@ -127,7 +129,7 @@ input.search {
 }
 
 input.checkbox{
-	
+	display: none;
 }
 
 

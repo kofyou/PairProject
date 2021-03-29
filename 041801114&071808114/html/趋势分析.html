@@ -108,6 +108,10 @@
 	};
 		chart.setOption(option);
 		chart.resize();
+		chart.on('click',function(params){
+//	        console.log('myChart----click---:',params,'------',params.data) 
+		document.getElementById("pagemessage1").style.display="inline";
+		});
 	</script>
 	
 	
@@ -168,7 +172,7 @@
     ]
 };
 			myChart.setOption(option);
-	
+			
 	</script>
 	<div class="analyse">
 		<form>
@@ -181,7 +185,7 @@
 	
 	
 <div class="page">
-	<div class="pagemessage">
+	<div class="message" id="pagemessage1">
 	<p>标题</p>
 				<form><input type="text" class="message" name="title"></form>
 		<p>摘要</p>

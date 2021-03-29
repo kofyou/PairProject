@@ -7,6 +7,29 @@
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <link href="QuickFind.css" rel="stylesheet" type="text/css">
+<script>
+	function mutiselectfunc(){
+		var checkboxs=document.getElementsByClassName("checkbox");
+        	for (var i = 0; i<checkboxs.length;i++) {
+        		   checkboxs[i].style.display='inline';
+        		 };
+	}
+	
+	function checkboxfunc(){
+		/*var checkboxs=document.getElementsByClassName("checkbox");
+        	for (var i = 0; i<checkboxs.length;i++) {
+        		if(checkboxs[i].style.checked='true'){
+					document.getElementById('deletebtn').style.backgroundColor='red';
+					break;
+				}
+        		 else document.getElementById('deletebtn').style.backgroundColor='black';*/
+			document.getElementById('deletebtn').style.backgroundColor='red';
+			}
+		
+	function titlefunc(){
+		document.getElementById("pagemessage").style.display='inline';
+	}
+	</script>
 <!-- InstanceEndEditable -->
 </head>
 
@@ -23,7 +46,7 @@
 	<div class="main">
 		<div class="upper">
 			<form class="operate">
-				<input type="button" class="button" id="mutiselect" value="多选" >
+				<input type="button" class="button" id="mutiselect" value="多选" onclick="mutiselectfunc();">
 				<input type="text" class="search" id="searchtext" name="search">
 				<input type="button" class="button" id="searchbtn" value="搜索">
 			</form>
@@ -33,9 +56,9 @@
 		
 		<div class="middle">
 			<form action="" method="get">
-				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题1</p>
-				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题2</p>
-				<p class="list"><input type="checkbox" class="checkbox" name="text" value="" /> 论文标题3</p>
+				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value=""  onclick="checkboxfunc();"/> 论文标题1</p>
+				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();"/> 论文标题2</p>
+				<p class="list" onclick="titlefunc();"><input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();"/> 论文标题3</p>
 			</form>
 		</div>
 		
@@ -60,7 +83,7 @@
 	
 	</div>
 	<div class="page">
-		<div class="pagemessage">
+		<div class="message" id="pagemessage">
 		<p>标题</p>
 				<form><input type="text" class="message" name="title"></form>
 		<p>摘要</p>
