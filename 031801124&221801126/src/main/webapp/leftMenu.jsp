@@ -82,7 +82,7 @@
     </h1>
 </div>
 
-<a id = "msg" href ="paperInfo.jsp" target ="rightframe">  论文信息  </a><br />
+<a id = "msg" href ="paperInfo.jsp" target ="rightframe">  论文信息  </a><br /><div><p></p></div>
 <a id = "info" href ="paperList.jsp" target ="rightframe">  论文搜索  </a><br />
 <a id = "tendency" href ="paperTendency.jsp" target ="rightframe">  论文趋势  </a><br />
 <a id = "topten" href ="topten.jsp" target ="rightframe"> 热词TOP10 </a><br />
