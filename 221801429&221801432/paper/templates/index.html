@@ -32,7 +32,7 @@
               {% endif %}
             {% for paper in data.paper %}
              <li>
-                <a href="#" class="paper_title fl">{{ paper.title }}</a>
+                <a href="/detail/{{ paper.title }}" class="paper_title fl">{{ paper.title }}</a>
                 <span class="paper_detail fl">摘要：{{ paper.abstract }}</span>
                 <div class="type_info fl">
                     <div class="type fl">

@@ -16,7 +16,8 @@ db = SQLAlchemy(app)
 class Paper(db.Model):
     __tablename__ = 'paper'
 
-    title = db.Column(db.String(255), primary_key=True)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    title = db.Column(db.String(255))
     abstract = db.Column(db.Text)
     typeandyear = db.Column(db.String(255))
     keywords = db.Column(db.Text)
@@ -29,12 +30,13 @@ class Paper(db.Model):
         else:
             abstract = self.abstract
         paper = {
+            "id": self.id,
             "title": self.title,
             "abstract": abstract,
             "typeandyear": self.typeandyear,
             "keywords": self.keywords,
-            "releasetime":self.releasetime,
-            "link":self.link
+            "releasetime": self.releasetime,
+            "link": self.link
         }
         return paper
 
@@ -70,9 +72,11 @@ def hello_world():
     try:
         page = int(page)
     except Exception as e:
+        print(e)
         page = 1
     try:
         paginate = Paper.query.filter(*filters).order_by("title").paginate(page, perPage, False)
+        paginate = Paper.query.order_by('title').paginate(page, 10, False)
     except Exception as e:
         print(e)
         print("err!")
@@ -101,6 +105,11 @@ def hello_world():
         "searchWord": keywords
     }
     return render_template("index.html", data=data)
+
+
+@app.route('/detail/<path:title>')
+def goto_detail(title):
+    return render_template('detail.html')
 
 
 if __name__ == '__main__':
