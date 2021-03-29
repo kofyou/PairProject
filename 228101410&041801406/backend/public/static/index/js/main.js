@@ -38,5 +38,5 @@ function search(){
     var paperanalysis=document.getElementById("paperanalysis");
     paperview.setAttribute("href","../index/Paperview");
     paperanalysis.setAttribute("href","../index/Paperanalysis");*/
-    window.location="../public/index/Paperview?data="+i.value;
+    window.location="../public/index/Paperview?data="+i.value+"+1";
 }

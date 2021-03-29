@@ -21,9 +21,16 @@ class Serchfunction extends Controller
 
     public function serchdata($words = " Information")
     {
-        $words = $_GET["words"];  //等实现前后端接口交互的时候可以用来获取想要搜索的词->column('title,keyword,releasetime')where('title','like','%'.$words.'%')->
+        $words = $_GET["words"];  //等实现前后端接口交互的时候可以用来获取想要搜索的词
         $data = Db::query("select title,keyword,releasetime from paper where title like '%".$words."%'");
         return json($data);  
+    }
+
+    public function serchbykeyword($words= "face recognition")
+    {
+        $words = $_GET["words"];  
+        $data = Db::query("select title,keyword,releasetime from paper where keyword like '%".$words."%'");
+        return json($data); 
     }
 
     public function getMaxword()

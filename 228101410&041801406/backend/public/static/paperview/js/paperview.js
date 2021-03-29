@@ -2,26 +2,52 @@ var tableData = [];
 window.onload = function(){
     var href=window.location.search;
     var word = href.substring(href.lastIndexOf('=')+1, href.length);//获取要搜索的数据
-    console.log(word);
-    if(word!='')
+    var wordlist =word.split('+');
+    if(wordlist[1]=="1")
     {
-        $.ajax(
+        if(wordlist[0]!='')
         {
-            url: 'http://localhost/PairProject/228101410&041801406/backend/public/index.php/index/Serchfunction/serchdata?words='+word,
-            type: 'get',
-            data: {},
-            dataType: 'json'
+            $.ajax(
+            {
+                url: '../index.php/index/Serchfunction/serchdata?words='+wordlist[0],
+                type: 'get',
+                data: {},
+                dataType: 'json'
             }).then(function (res) 
             {
                 for (var i in res) 
                 {
-                tableData.push(res[i])  //把从json获取的数据赋值给数组
+                    tableData.push(res[i])  //把从json获取的数据赋值给数组
                 }　　　　　　　　　　
             }).fail(function () 
             {
-                console.log('失败');
+                    console.log('失败');
             })
+        }
     }
+    else if(wordlist[1]=="2")
+    {
+        if(wordlist[0]!='')
+        {
+            $.ajax(
+            {
+                url: '../index.php/index/Serchfunction/serchbykeyword?words='+wordlist[0],
+                type: 'get',
+                data: {},
+                dataType: 'json'
+            }).then(function (res) 
+            {
+                for (var i in res) 
+                {
+                    tableData.push(res[i])  //把从json获取的数据赋值给数组
+                }　　　　　　　　　　
+            }).fail(function () 
+            {
+                    console.log('失败');
+            })
+        }
+    }
+    
 }
 var Main = {
     data() {
