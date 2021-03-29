@@ -18,6 +18,9 @@ func main() {
 	// username=?&&password=?
 	r.GET("/user/register", user.UserRegister)
 
+	// username=?&&thesis_id=?
+	r.GET("/user/add/like", user.UserAddLike)
+
 	// source=?&&keyword=?&&year=?
 	r.GET("/search/list", thesisSearch.GetThesisList)
 
