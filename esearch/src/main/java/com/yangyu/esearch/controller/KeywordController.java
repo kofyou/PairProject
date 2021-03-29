@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class KeywordController {
     @GetMapping("top")
     public List<Keyword> topWord()
     {
-        return keywordService.topWord(paperService.queryAll());
+        return keywordService.wordList();
     }
 
     @GetMapping("meet")
