@@ -129,5 +129,20 @@ def goto_detail(id):
     return render_template('detail.html', data=data)
 
 
+# 查看统计图表
+@app.route('/chart')
+def goto_chart():
+    topWord = TopWord.query.all()
+    top_list = []
+    for i in topWord:
+        top_list.append(i.name)
+    chart_data = []
+    data = {
+        'chart_data': chart_data,
+        'top': top_list
+    }
+    return render_template('chart.html', data=data)
+
+
 if __name__ == '__main__':
     app.run()
