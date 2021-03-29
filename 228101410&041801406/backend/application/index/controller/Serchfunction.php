@@ -44,4 +44,10 @@ class Serchfunction extends Controller
         $data = Keywordtendency::select();
         return json($data);
     }
+
+    public function get2018CVPRkey()
+    {
+        $data = Db::query("select keyword,time from keywordtendency where type='CVPR' and year='2018'");
+        return json($data);
+    }
 }
