@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,11 +37,16 @@ public class PaperController {
      * 根据论文标题查询论文（模糊查询）
      *
      * @param title 论文标题
+     * @param isSort 是否排序
      * @return 论文列表
      */
     @GetMapping("/{title}")
-    public List<Paper> getPaper(@PathVariable("title") String title) {
-        return paperService.getPaper(title);
+    public List<Paper> getPaper(@PathVariable("title") String title,Integer isSort) {
+        List<Paper> paperList = paperService.getPaper(title);
+        if (isSort != 0) {
+            paperList.sort(Comparator.comparing(Paper::getTitle));
+        }
+        return paperList;
     }
 
     /**
