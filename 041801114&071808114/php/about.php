@@ -7,12 +7,13 @@
 </head>
 
 <body>
+<script></script>
 	<div class="nav">
 		<ul class="template">
-			<li><a href="" id="navIcon"></a></li>
-			<li><a href="">论文列表</a></li>
-			<li><a href="">趋势分析</a></li>
-			<li><a href="">关于我们</a></li>
+			<li><a href="index" id="navIcon"></a></li>
+			<li><a href="index">论文列表</a></li>
+			<li><a href="analy">趋势分析</a></li>
+			<li><a href="about">关于我们</a></li>
 		</ul>
 	</div>
 <div class="main">

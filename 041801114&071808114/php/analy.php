@@ -10,10 +10,10 @@
 <body>
 	<div class="nav">
 		<ul class="template">
-			<li><a href="" id="navIcon"></a></li>
-			<li><a href="" >论文列表</a></li>
-			<li><a href="">趋势分析</a></li>
-			<li><a href="">关于我们</a></li>
+			<li><a href="index" id="navIcon"></a></li>
+			<li><a href="index">论文列表</a></li>
+			<li><a href="analy">趋势分析</a></li>
+			<li><a href="about">关于我们</a></li>
 		</ul>
 	</div>
 <div class="main">
@@ -22,6 +22,9 @@
 	<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts-wordcloud.min.js"></script>
 	<script type="text/javascript">
 	var chart = echarts.init(document.getElementById('hotWordContainer'));
+chart.on('click', (param) => {
+alert(param);
+});
     var option = {
       title: {
          text: '热门领域'
@@ -171,15 +174,16 @@
 			myChart.setOption(option);
 			
 	</script>
+<!--
 	<div class="down">
+
 	 <div class="analyse">
 		<form>
  			<input type="button" class="analysebtn"  value="分析" />
     	</form>
 	 </div>
 	</div>
+-->
 </div>
-	
-
 </body>
 </html>

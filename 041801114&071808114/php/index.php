@@ -45,13 +45,16 @@
 </head>
 
 <body>
+<script>
+alert(<?= wp_enqueue_script("jquery"); ?>);
+</script>
 	<?= $_GET['page']?>
 	<div class="nav">
 		<ul class="template">
-			<li><a href="" id="navIcon"></a></li>
-			<li><a href="" >论文列表</a></li>
-			<li><a href="">趋势分析</a></li>
-			<li><a href="">关于我们</a></li>
+			<li><a href="index" id="navIcon"></a></li>
+			<li><a href="index">论文列表</a></li>
+			<li><a href="analy">趋势分析</a></li>
+			<li><a href="about">关于我们</a></li>
 		</ul>
 	</div>
 <div class="main">
@@ -103,7 +106,26 @@
     </div>
 	
 </div>
-	
 
+<script>
+var ajaxurl = '<?php echo admin_url('admin-ajax.php')?>';
+document.getElementById('searchbtn').onClick = function(e){     
+			alert(1); 
+                        $.ajax({
+                                type:'post',
+                                url:ajaxurl,
+                                data:{'action':'handler','a':$('#a').val(),'b':$('#b').val(),'c':$('#c').val()},
+                                cache:false,
+                                dataType:'json',
+                                success:function(result){
+                                        alert("ooo");
+                                },
+                                error:function(data){
+                                        alert("err");
+                                }
+                        });
+                        return false;
+                };
+</script>
 </body>
 </html>
