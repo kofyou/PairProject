@@ -67,8 +67,7 @@ export default {
 
     getData() {
       const that = this;
-      this.axios.post('top10', stringify(
-        {
+      this.axios.post('top10', stringify({
           'min': this.minYear,
           'max': this.maxYear
         }
@@ -131,8 +130,7 @@ export default {
               saveAsImage: {show: true}
             }
           },
-          series: [
-            {
+          series: [{
               name: 'top10',
               type: 'pie',
               radius: [50, 250],

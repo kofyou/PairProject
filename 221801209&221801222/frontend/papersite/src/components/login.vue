@@ -51,8 +51,8 @@ export default {
     return {
       user:{
         //<-- 调试先定死 -->
-        username:'zhangsan',
-        password:'123',
+        username:'',
+        password:'',
       }
     }
   },
@@ -63,15 +63,14 @@ export default {
       let username = this.user.username
       let psw = this.user.password;
       if(username == "")
-        alert("用户名不能为空！");
+        this.alertMes("用户名不能为空！");
       else if(psw == "")
-        alert("密码不能为空！");
+        this.alertMes("密码不能为空！");
       else {
         // let data=new FormData()
         // data.append('username',this.user.username.toString());
         // data.append('password',this.user.password.toString());
-        this.axios.post('user/login', stringify(
-          {
+        this.axios.post('user/login', stringify({
             'username': that.user.username,
             'password': that.user.password
           }
@@ -85,7 +84,7 @@ export default {
                 Router.push({ path: 'index' });
               }
               else{
-                alert('用户名与密码不匹配！');
+                that.alertMes("账号与密码不匹配！！！");
                 }
               console.log(myResponse);
             })
@@ -94,6 +93,17 @@ export default {
               console.log(error);
             });
       }
+    },
+    alertMes(mes){
+        this.$alert(mes, '提示', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$message({
+              type: 'info',
+              message: `action: ${ action }`
+            });
+          }
+        });
     },
   }
 }

@@ -54,9 +54,9 @@ export default {
     return {
       user:{
         //<-- 调试先定死 -->
-        username:'zhangsan',
-        password1:'123',
-        password2:'123'
+        username:'',
+        password1:'',
+        password2:''
       }
     }
   },
@@ -68,11 +68,11 @@ export default {
       let psw1 = this.user.password1;
       let psw2 = this.user.password2;
       if(username == "")
-        alert("用户名不能为空！");
+        that.alertMes("用户名不能为空！");
       else if(psw1 == "" || psw2 == "")
-        alert("密码不能为空！");
+        that.alertMes("密码不能为空！");
       else if( psw1 !== psw2)
-        alert("两次输入的密码不匹配！");
+        that.alertMes("两次输入的密码不一致！");
       else {
         this.axios.post('user/register', {
           username: that.user.username,
@@ -80,17 +80,28 @@ export default {
         }).then(function (response) {
             myResponse = response;
             if(myResponse.data.code == '0') {
-              alert("注册成功，请返回登陆！");
+              that.alertMes("注册成功，请返回登陆！");
             }
             else{
-              alert('用户名已存在！');
+              that.alertMes('用户名已存在！');
             }
             console.log(myResponse);
           }).catch(function (error) {
             console.log(error);
           });
       }
-    }
+    },
+    alertMes(mes){
+      this.$alert(mes, '提示', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'info',
+            message: `action: ${ action }`
+          });
+        }
+      });
+    },
   }
 }
 </script>
