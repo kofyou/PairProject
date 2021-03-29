@@ -69,17 +69,8 @@ def hello_world():
         isSearch = True
         filters.append(Paper.title.contains(keywords))
         perPage = Paper.query.filter(*filters).count()
-    try:
-        page = int(page)
-    except Exception as e:
-        print(e)
-        page = 1
-    try:
-        paginate = Paper.query.filter(*filters).order_by("title").paginate(page, perPage, False)
-        paginate = Paper.query.order_by('title').paginate(page, 10, False)
-    except Exception as e:
-        print(e)
-        print("err!")
+    page = int(page)
+    paginate = Paper.query.filter(*filters).order_by("title").paginate(page, perPage, False)
     totalPage = paginate.pages
     currentPage = page
     items = paginate.items
@@ -107,8 +98,8 @@ def hello_world():
     return render_template("index.html", data=data)
 
 
-@app.route('/detail/<path:title>')
-def goto_detail(title):
+@app.route('/detail')
+def goto_detail():
     return render_template('detail.html')
 
 

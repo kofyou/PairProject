@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
     <link rel="stylesheet" type="text/css" href="../static/info/css/jquery.pagination.css">
     <script type="text/javascript" src="../static/info/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="../static/info/js/main.js"></script>
     <script type="text/javascript" src="../static/info/js/index.js"></script>
     <script type="text/javascript" src="../static/info/js/jquery.pagination.min.js"></script>
 </head>
@@ -32,29 +31,17 @@
               {% endif %}
             {% for paper in data.paper %}
              <li>
-                <a href="/detail/{{ paper.title }}" class="paper_title fl">{{ paper.title }}</a>
+                <a href="/detail" class="paper_title fl">{{ paper.title }}</a>
                 <span class="paper_detail fl">摘要：{{ paper.abstract }}</span>
                 <div class="type_info fl">
                     <div class="type fl">
                         <span>&emsp;所属顶会: {{ paper.typeandyear }}</span>
                     </div>
                     <div class="time fl">{{ paper.releasetime }}</div>
-                    <div><a href="#" title="从列表中删除"><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></a></div>
+                    <div><a href="/" title="从列表中删除"><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></a></div>
                 </div>
             </li>
             {% endfor %}
-{#            <li>#}
-{#                <a href="#" class="paper_title fl">Contextual-Based Image Inpainting: Infer, Match, and Translate</a>#}
-{#                <span class="paper_detail fl">摘要：We study the task of image inpainting, which is to fill in#}
-{#                    the missing region of an incomplete image with plausible contents. To this end, we propose a learning-based#}
-{#                    approach to generate visually coherent completion given a high-resolution image.</span>#}
-{#                <div class="author_info fl">#}
-{#                    <div class="author fl">#}
-{#                        <a href="#">乐鸣</a>#}
-{#                    </div>#}
-{#                    <div class="time fl">2017-01-01 00:00:00</div>#}
-{#                </div>#}
-{#            </li>#}
         <div id="pagination" class="page"></div>
         <script>
             $(function() {
