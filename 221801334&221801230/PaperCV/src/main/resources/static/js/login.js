@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    var httpRoot = "http://localhost:8080";
-    // var httpRoot = "http://120.24.27.29:8080";
-
     var login_name = $("#loginName");
     var login_password = $("#loginPassword");
     var register_name = $("#registerName");

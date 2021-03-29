@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    var httpRoot = "http://localhost:8080";
-    // var httpRoot = "http://120.24.27.29:8080";
     var MAX_COUNT = 50;// 限制当前页面最大显示论文的数量
 
     var keyWord = window.localStorage.getItem("keyWord");
