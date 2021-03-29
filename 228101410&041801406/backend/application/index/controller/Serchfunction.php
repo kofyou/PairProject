@@ -33,6 +33,13 @@ class Serchfunction extends Controller
         return json($data); 
     }
 
+    public function serchforpaperscan($words = "Contextual-Based Image Inpainting: Infer, Match, and Translate")
+    {
+        $words = $_GET["words"];  
+        $data = Db::query("select abstract,link from paper where title='".$words."'");
+        return json($data); 
+    }
+
     public function getMaxword()
     {
         $data = Maxkeyword::select();
