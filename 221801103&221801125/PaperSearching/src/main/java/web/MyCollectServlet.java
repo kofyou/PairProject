@@ -1,7 +1,5 @@
 package web;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import pojo.Paper;
 import service.impl.Paperserviceimpl;
@@ -13,25 +11,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "PaperListServlet", value = "/PaperListServlet")
-public class PaperListServlet extends HttpServlet
+@WebServlet(name = "MyCollectServlet", value = "/MyCollectServlet")
+public class MyCollectServlet extends HttpServlet
 {
     Paperserviceimpl paperserviceimpl=new Paperserviceimpl();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] searchingString = (String[])JSONArray.fromObject
-                (request.getAttribute("str")).toArray();
-        int type=(int)request.getAttribute("type");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
         String username=(String)request.getAttribute("username");
-
         List<JSONObject> jsonObjects=new ArrayList<>();
-        List<Paper> papers=paperserviceimpl.GetPaperList(searchingString,type);
+        List<Paper> papers=paperserviceimpl.GetMyCollect(username);
         for(Paper paper:papers)
         {
             JSONObject jsonObject=new JSONObject();
@@ -39,7 +33,6 @@ public class PaperListServlet extends HttpServlet
             jsonObject.put("author",paper.getAuthors());
             jsonObject.put("keyword",paper.getKeywords());
             jsonObject.put("info",paper.getTheabstract());
-            jsonObject.put("iscollect",paperserviceimpl.IsCollected(username,paper.getTitle()));
         }
         response.getWriter().print(jsonObjects);
     }

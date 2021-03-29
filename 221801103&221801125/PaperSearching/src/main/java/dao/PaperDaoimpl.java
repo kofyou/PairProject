@@ -185,4 +185,70 @@ public class PaperDaoimpl
         }
         return hashMap;
     }
+
+    public boolean IsCollected(String username,String title)
+    {
+        int n=0;
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(
+                    "SELECT * usercollect where username=? AND title=?");
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,title);
+
+            ResultSet resultSet= preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                n++;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        if(n!=0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public List<Paper> GetMyCollect(String username)
+    {
+        List<Paper> papers=new ArrayList<>();
+        try
+        {
+            Connection connection=Jdbcutils.GetConnection();
+
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "");
+
+
+            preparedStatement.setString();
+            preparedStatement.setString();
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                Paper paper=new Paper();
+                paper.setIsbn(resultSet.getString("isbn"));
+                paper.setTitle(resultSet.getString("title"));
+                paper.setAuthors(resultSet.getString("authors"));
+                paper.setKeywords(resultSet.getString("keywords"));
+                paper.setTheabstract(resultSet.getString("abstract"));
+                paper.setPublishDate(resultSet.getString("publishdate"));
+                paper.setConferrence(resultSet.getString("conference"));
+                paper.setPaperlink(resultSet.getString("paperlink"));
+                papers.add(paper);
+            }
+            return papers;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

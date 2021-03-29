@@ -26,5 +26,14 @@ public class Paperserviceimpl
         return paperDaoimpl.GetHottestKeywords();
     }
 
+    public Boolean IsCollected(String username,String title)
+    {
+        return paperDaoimpl.IsCollected(username,title);
+    }
+
+    public List<Paper> GetMyCollect(String username)
+    {
+        return paperDaoimpl.GetMyCollect(username);
+    }
 
 }
