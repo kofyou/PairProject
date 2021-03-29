@@ -15,7 +15,7 @@
     <title>热词分析</title>
 </head>
 <h1 style="font-family:verdana">热词分析</h1>
-<a href="index.html">
+<a href="analyze.html">
     <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
         <span class="glyphicon glyphicon-arrow-left"></span>
     </button>
@@ -33,35 +33,9 @@
 
 <body style="height: 100%; margin: 0">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-<script type="text/JavaScript">
-    <!--
-    function MM_jumpMenu(targ,selObj,restore){ //v3.0
-     eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-     if (restore) selObj.selectedIndex=0;
-    }
-    //-->
-    </script>
-<select name="dgLink2" id="dgLink2" style="WIDTH: 150px" onchange="MM_jumpMenu('parent',this,0)">
- <option value="#">－－－期刊热度－－－</option>
- <option value="cvpralz.html">CVPR</option>
- <option value="eccvalz.html">ECCV</option>
- <option value="iccvalz.html">ICCV</option>
- 
-    <div id="main2" style="height: 50% "></div>
-
-
-
-
-
-
-
-
-
-
-
-
+    <div id="main1" style="height: 50% "></div>
     <script type="text/javascript">
-        var chartDom = document.getElementById('main2');
+        var chartDom = document.getElementById('main1');
         var myChart = echarts.init(chartDom);
         var option1;
 
@@ -76,7 +50,7 @@
             },
             yAxis: {
                 type: 'category',
-                data: ['Training', 'Cameras', 'Computer vision', 'Feature extraction', 'Shape', 'Robustness', 'Visualization', '3d displays', 'Image segmentation', 'Image reconstruction'],
+                data: ['Deep learning', 'Object detection', 'Semantic segmentation', 'Domain adaptation', '3D reconstruction', 'Unsupervised learning', 'Attention', '3d displays', 'Convolutional neural networks', 'Image reconstruction'],
                 inverse: true,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
@@ -134,28 +108,28 @@
         }
         function run3() {
             var data = option1.series[0].data;
-            data[1] = 1254;
-            data[2] = 1756;
-            data[3] = 1161;
-            data[4] = 937;
-            data[5] = 1746;
-            data[6] = 1699;
-            data[7] = 1437;
-            data[8] = 964;
-            data[9] = 1967;
-            data[0] = 1743;
+            data[1] = 194;
+            data[2] = 90;
+            data[3] = 80;
+            data[4] = 55;
+            data[5] = 42;
+            data[6] = 42;
+            data[7] = 40;
+            data[8] = 40;
+            data[9] = 36;
+            data[0] = 33;
 
             myChart.setOption(option1);
         }
         setTimeout(function () {
             run();
-        }, 100);
+        }, 1);
         setTimeout(function () {
             run2();
-        }, 1000);
+        }, 1200);
         setTimeout(function () {
             run3();
-        }, 2000);
+        }, 2400);
         if (option1 && typeof option1 === 'object') {
             myChart.setOption(option1);
         }
@@ -164,14 +138,6 @@
 
 
 
-
-
-
-
-
-
-
-
-</body>
+    </body>
 
 </html>
