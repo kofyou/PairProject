@@ -21,9 +21,12 @@ type AnalyzedThesis struct {
 // GetThesisList 模糊搜索、查找相应文章
 func GetThesisList(c *gin.Context) {
 	source := c.Query("source")
-	year := c.Query("year")
+	year := c.Query("year")  //类型是否有问题？
 	keyword := c.Query("keyword")
 
+	keyword = strings.ReplaceAll(keyword, "\n", "%")
+	keyword = strings.ReplaceAll(keyword, "\r", "%")
+	keyword = strings.ReplaceAll(keyword, "\t", "%")
 	keyword = strings.ReplaceAll(keyword, " ", "%")  //problem:正则表达式无法处理，交前端限制？
 	keyword = "%" + keyword + "%"
 

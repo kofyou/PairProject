@@ -30,7 +30,6 @@ func main() {
 	// source=?&&keyword=?&&year=?
 	r.GET("/search/list", thesisSearch.GetThesisList)
 
-	//r.POST("/user", user.HandleList)
 	r.GET("/")
 	r.Run(":8080")
 }
