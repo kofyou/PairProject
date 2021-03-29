@@ -1,0 +1,102 @@
+.search{
+    position: relative;
+    top: 10%;
+    left: 12%;
+    width: 50%;
+    height: 5%
+}
+
+#search_key{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 50px;
+    background-color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    color: #757575;
+    padding-left: 3%;;
+}
+#submit_icon{
+    position: absolute;
+    z-index: 99999;
+    left: 78%;
+    top: 25%;
+    width: 28px;
+}
+.results{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    top: 13%;
+    left: 12%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.7);
+}
+#nums{
+    position: absolute;
+    left: 2%;
+    font-size: 14px;
+    color: #757575;
+}
+#bt_in{
+    position: absolute;
+    width: 8%;
+    height: 3%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.7);
+    right: 2%;
+    top: 3%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+#icon_in{
+    position: absolute;
+    z-index: 99999;
+    right: 3%;
+    top: 3%;
+}
+
+.result_{
+    position: absolute;
+    width: 94%;
+    height: 30%;
+    background-color: rgba(195, 232, 255, 51);
+    left: 3%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 25px 25px 25px 25px;
+    top: 8%;
+}
+.icon_close{
+    position: absolute;
+    right: 1%;
+}
+#icon_close_one{
+    top: 5%;
+}
+.paper_title{
+    position: absolute;
+    padding-left: 1%;
+    font-weight: bold;
+    font-size: 20px;
+}
+.source{
+    position: absolute;
+    top: 12%;
+    padding-left: 1%;
+    color: #3671CC;
+    font-size: 16px;
+}
+.summary{
+    position: absolute;
+    padding: 0px 1%;
+    top: 20%;
+    font-size: 16px;
+}
