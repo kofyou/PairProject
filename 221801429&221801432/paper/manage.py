@@ -106,10 +106,26 @@ def delete(id):
     db.session.commit()
     return redirect('/')
 
+@app.route('/detail/<path:id>')
+def goto_detail(id):
 
-@app.route('/detail')
-def goto_detail():
-    return render_template('detail.html')
+    topWord = TopWord.query.all()
+    top_list = []
+    for i in topWord:
+        top_list.append(i.name)
+    detail = Paper.query.filter_by(id=id).first()
+    if detail.keywords is None:
+        detail.keywords = "暂无"
+    data = {
+        'title': detail.title,
+        'abstract': detail.abstract,
+        'typeandyear': detail.typeandyear,
+        'keywords': detail.keywords,
+        'releasetime': detail.releasetime,
+        'link': detail.link,
+        'top': top_list
+    }
+    return render_template('detail.html', data=data)
 
 
 if __name__ == '__main__':

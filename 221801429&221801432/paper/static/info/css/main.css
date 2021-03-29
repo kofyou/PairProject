@@ -245,6 +245,12 @@ body{
     background:url(../images/clock.png) left center no-repeat;
 }
 
+.link_source{
+    color: #1478F0;
+    font-size: 12px;
+    text-indent:20px;
+}
+
 .summary{
     letter-spacing: .5px;
     text-align: justify;
