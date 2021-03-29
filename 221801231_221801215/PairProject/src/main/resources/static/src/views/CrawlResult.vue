@@ -191,7 +191,7 @@
             :current-page="keywordPage"
             :page-size="keywordsize"
             layout="prev, pager, next"
-            :total="100"
+            :total="this.paperNum"
             style="position:relative;bottom:-50px"
           >
           </el-pagination>
@@ -261,6 +261,7 @@ export default {
       keywordPage: 1,
       keywordsize: 2,
       showpaperList:false,
+      paperNum:10,
       paperDetailList: [
         {
           paperId: 7,
@@ -355,6 +356,8 @@ export default {
   mounted() {
     this.drawLine();
     this.showpaperList=true;
+    this.getpagenum();
+    alert(this.paperNum);
   },
   methods: {
     drawLine() {
@@ -411,8 +414,28 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-      }
+      },
+    getpagenum:function () {
+      this.paperNum=sessionStorage.getItem('papernum');
+      },
+    getkeyword:function(maxNum){
+      let _this=this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/keyword", {
+          params: {
+
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   },
+
 };
 </script>
 
@@ -547,7 +570,7 @@ export default {
 }
 .returnbutton{
   position:absolute;
-  bottom: 20px;
-  left: 400px;
+  bottom: -50px;
+  left: 450px;
 }
 </style>

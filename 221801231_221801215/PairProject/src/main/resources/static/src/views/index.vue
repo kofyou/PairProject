@@ -8,7 +8,7 @@
          <li style="padding-left:16px" >单个<i class="el-icon-arrow-down el-icon--right"></i></li>
          <li class="batch">批量</li>
        </ul>
-        <input class="searchInput" type="text" placeholder="输入相关论文题目词汇" v-model="searchForm.singleSearchText"></input>
+        <input class="searchInput" type="text" placeholder="输入相关论文题目词汇" v-model="searchForm.singleSearchText">
         <input class="searchButton" type="button" value="添加" style="color: #eeeeee" @click="AddTitle">
       </div>
       <router-link to="/crawlresult">
@@ -17,10 +17,10 @@
         <i class="fa fa-arrow-right" aria-hidden="true" style="font-size: 30px;position: absolute;top:50%;right:13px;margin-top: -15px" ></i>
       </div>
       </router-link>
-       <div class="paperList">
+       <div class="paperList" v-show="tableData.length!=0">
         <ul v-for="(items,index) in tableData" :key="index">
           <li class="paperItem">
-            <el-tooltip><span style="width:300px;position:absolute;left:20px;text-align:left; text-overflow: ellipsis;overflow:hidden;white-space:nowrap;">
+            <el-tooltip :content="items.title" effect="light"><span style="width:300px;position:absolute;left:20px;text-align:left; text-overflow: ellipsis;overflow:hidden;white-space:nowrap;">
               {{ items.title}}
               {{index}}
             </span></el-tooltip>

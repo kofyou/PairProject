@@ -1,30 +1,31 @@
 <template>
   <div class="mySideBar">
     <div>
-      <input type="text" placeholder="请输入论文题目" class="mySideBar-input"></input>
+      <input type="text" placeholder="请输入论文题目" class="mySideBar-input">
       <button class="mySideBar-search" @click="search"><i class="fa fa-search" aria-hidden="true"></i></button>
       <div class="mysidebarlist">
         <el-tabs type="border-card mysearchtab" stretch="true" v-model="sidebarPage">
           <el-tab-pane label="全部论文" name="page1">
             <div  class="paperlisttitle">论文列表</div>
-            <ul style="height:750px;list-style: none; position:absolute;top: 40px;left: 50%;margin-left: -90px;overflow-y:auto;overflow-x: hidden" id="#list">
+            <ul style="height:750px;list-style: none; position:absolute;top: 40px;left: 10px;overflow-y:auto;overflow-x: hidden" id="#list">
               <li v-for="(item,index) in paperList" class="paperlistitem" :key="index">
                 <el-card shadow="hover" style="line-height:100%">
-                  <el-tooltip :content="item.title" effect="light" open-delay="500"><span style="width:100px;height:30px;position: absolute;left: 15%;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;">{{item.title}}</span></el-tooltip>
-                  <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 80%;" @click="deleteItem(item.id,index)"></i>
+                  <el-tooltip :content="item.title" effect="light" open-delay="500">
+                    <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{item.title}}</span></el-tooltip>
+                  <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 80%;cursor:pointer" @click="deleteItem(item.id,index)"></i>
                 </el-card>
               </li>
               <li class="paperlistitem">
                 <el-card shadow="hover" @click.native="addItem()">
-                <i class="fa fa-plus" aria-hidden="true" style="color: #d3dce6" ></i>
+                <i class="fa fa-plus" aria-hidden="true" style="color: #d3dce6;margin-left:80px;margin-top:-5px;font-size:30px" ></i>
               </el-card></li>
             </ul>
             </el-tab-pane>
-          <el-tab-pane label="搜索结果" name="page2"><div class="paperlisttitle">结果列表</div><ul style="height:700px;list-style: none; position:absolute;top: 40px;left: 50%;margin-left: -90px;overflow-y: auto;overflow-x: hidden">
+          <el-tab-pane label="搜索结果" name="page2"><div class="paperlisttitle">结果列表</div>
+          <ul style="height:700px;list-style: none; position:absolute;top: 40px;left: 10px;overflow-y: auto;overflow-x: hidden">
             <li v-for="(item,index) in resultList" class="paperlistitem" :key="index">
               <el-card shadow="hover">
-                <span style="position: absolute;left: 25%">{{index}}{{item}}</span>
-                <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 75%;" @click="deleteItem(index)"></i>
+                <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{index}}{{item}}</span>
               </el-card>
             </li></ul>
          </el-tab-pane>
@@ -82,6 +83,7 @@ export default {
         })
         .then(function (response) {
           console.log(response);
+          sessionStorage.setItem('papernum',response.data.data.length);
           response.data.data.forEach(element => {
             let newitem={};
             newitem.id=element.id;
@@ -154,7 +156,7 @@ export default {
 
 <style scoped>
 .mySideBar {
-  width: 200px;
+  width: 400px;
   position: absolute;
   height: 100%;
   border: #d3dce6 1px solid;
@@ -226,9 +228,11 @@ export default {
 }
 .paperlistitem {
   float: left;
-  width: 180px;
+  width: 450px;
   height: 50px !important;
   margin-top: 5px;
+  margin-left:-100px;
+
 }
 .el-card {
   height: 50px;
