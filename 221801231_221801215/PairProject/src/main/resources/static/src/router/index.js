@@ -4,8 +4,7 @@ import Login from '../views/Login.vue'
 import index from '../views/index.vue'
 import Register from "../views/Register";
 import CrawlResult from "../views/CrawlResult";
-import KeywordMap from  "../views/keywordMap";
-import heatTrend from "../views/heatTrend";
+
 Vue.use(Router)
 
 export default new Router({
@@ -34,17 +33,6 @@ export default new Router({
       name: 'CrawlResult',
       component:CrawlResult
     },
-    {
-      //关键词谱页
-      path: '/keywordmap',
-      name: 'Keywordmap',
-      component:KeywordMap
-    },{
-  //关键词谱页
-     path: '/heattrend',
-    name: 'Heattrend',
-    component:heatTrend
-}
 
   ]
 })

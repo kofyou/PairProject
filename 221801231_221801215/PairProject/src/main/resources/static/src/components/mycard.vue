@@ -2,15 +2,15 @@
 <div>
   <el-card shadow="hover" class="papercard">
      <div class="papertitle">
-       论文题目1
+      {{this.paperDetail.paperTitle}}
      </div>
     <div class="precis">
-      摘要内容
+      论文摘要:{{this.paperDetail.paperAbstract}}
     </div>
     <div class="keyword">
-      关键词
+      关键词:<span v-for="(item,index) in this.paperDetail.paperKeyword" :key="index">{{item}}</span>
     </div>
-    <a href="" class="originallink">
+    <a :href="this.paperDetail.paperUrl" class="originallink">
       原文链接
     </a>
     <slot></slot>
@@ -20,7 +20,15 @@
 
 <script>
 export default {
+ props:{
+   paperDetail:{
+     type:Object,
+     default:()=>{  return{}}
+   }
+ },
+  mounted(){
 
+  }
 }
 </script>
 
@@ -33,29 +41,39 @@ export default {
   position: relative;
 }
 .papertitle{
-  width: 100px;
+  width: 700px;
   height: 50px;
   line-height: 50px;
   position: absolute;
   top:10px;
-  left: 20px;
-  font-size: 20px;
+  left: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
 }
 .precis{
-  width: 100%;
+  width: 700px;
   height: 60px;
   line-height: 60px;
   position: absolute;
-  top:60px;
-  left: 20px;
+  top:40px;
+  left: 30px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
 }
 .keyword{
-  width: 50px;
+  width: 700px;
   height: 40px;
   line-height: 40px;
   position: absolute;
   top:130px;
-  left: 20px;
+  left: 30px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
 }
 .originallink{
   display: block;
@@ -64,7 +82,7 @@ export default {
   line-height: 40px;
   position: absolute;
   top:160px;
-  left: 20px;
+  left: 30px;
   font-size: 15px;
   text-decoration: none;
   color: #d3dce6;

@@ -158,6 +158,10 @@ name: "Register",
        password: _this.$md5(_this.registerform.registerPassword)
      }).then(function (response) {
        console.log(response);
+       this.$message({
+         message:'注册成功',
+         type:'success'
+       });
 
      }, function (error) {
        console.log("error");

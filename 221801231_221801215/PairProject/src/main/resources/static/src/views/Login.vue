@@ -26,7 +26,7 @@
           <el-form-item>
             <el-button
               type="primary"
-              @click="registerForm('form')"
+              @click="loginForm('form')"
               style="
                 width: 500px;
                 background-color: #333333;
@@ -54,6 +54,7 @@
   </el-container>
 </template>
 <script>
+
 import Myheader from "../components/myheader";
 import mymain from "../components/mymain";
 export default {
@@ -95,16 +96,29 @@ export default {
         type: "warning",
       });
     },
-    registerForm(formName)
+    loginForm(formName)
     {
       console.log(this.$md5(this.form.loginPassword));
       let _this=this;
       this.$axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.loginName,account:_this.form.loginName,password:_this.$md5(_this.form.loginPassword)}).then(function (response) {
-        console.log(response);
-
+        console.log(response.data.data);
+        _this.$message({
+          message:'登录成功',
+          type:'success'
+        });
+        _this.$router.push({
+          path:'/index',
+          query: {
+            username:response.data.data,
+            isLogin:true
+          }});
+          sessionStorage.setItem('username',response.data.data);
       },function (error) {
         console.log("error");
-
+        _this.$message({
+          message:'登录失败',
+          type:'warning'
+        });
       })
     }
   },
