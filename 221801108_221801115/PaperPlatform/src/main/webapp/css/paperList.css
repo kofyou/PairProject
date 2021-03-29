@@ -48,14 +48,22 @@ body{
 
 }
 
-a:link,a:active{
+.a2:link,.a2:active{
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
     color: #FFFFFF;
 }
-a:visited {
+.a2:visited {
     color: #FFFFFF;
+}
+#papertable a:link,a:active{
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+#papertable a:visited {
+    color: black;
 }
 .a1:link,.a1:active{
     text-decoration: none;
@@ -69,6 +77,7 @@ a:visited {
 
 
 #papertable {
+    margin: auto;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 80%;
@@ -172,7 +181,7 @@ a:visited {
     outline: none;
 }
 #div_paperList{
-
+    text-align: center;
 }
 #div_paging{
     position: absolute;

@@ -39,7 +39,7 @@
         <div class="nav">
             <ul>
                 <li class="nav_post"><a class="a1" href="" >论文列表</a></li>
-                <li><a href="" >热门研究</a></li>
+                <li><a class="a2" href="" >热门研究</a></li>
             </ul>
         </div>
     </div>
