@@ -30,6 +30,8 @@ func NewRouter() *gin.Engine {
 
 		v1.GET("search", api.PaperSearch)
 
+		v1.GET("statistics", api.GetTopKeywords)
+
 		// 登陆保护
 		authed := v1.Group("/")
 		authed.Use(middleware.LoginRequired())

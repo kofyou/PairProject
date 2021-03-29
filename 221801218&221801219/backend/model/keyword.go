@@ -51,3 +51,9 @@ func GetKeyword(ID int64) Keyword {
 	}
 	return kwd
 }
+
+func GetKeywordTop10() ([]Keyword, error) {
+	var keywords []Keyword
+	err := Engine.Desc("freq").Limit(10).Find(&keywords)
+	return keywords, err
+}
