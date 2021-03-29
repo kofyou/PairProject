@@ -32,12 +32,16 @@ public class GetJson {
 			FileInputStream fileInputStream = new FileInputStream(filePath);
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
 			reader = new BufferedReader(inputStreamReader);
+			
 			String tempString = null;
+			
 			while ((tempString = reader.readLine()) != null) {
-				readJson += tempString;
+				readJson += tempString;	
+			}
+			
+				readJson=readJson.substring(0, readJson.length()-1);	
 				
 				JSONObject jsonObject = JSONObject.parseObject(readJson);
-
 				Map<String, String> stringMap = new HashMap<>();
 				Set<String> keys = jsonObject.keySet();
 				Iterator<String> iterator = keys.iterator();
@@ -74,7 +78,7 @@ public class GetJson {
 				}}*/
 				
 			
-			}
+			
 			
 			// System.out.println(jsonObject.toJSONString());
 			/*
