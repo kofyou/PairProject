@@ -305,29 +305,6 @@ body{
 }
 
 
-.login_form_con,.register_form_con{
-    display:none;
-}
-
-
-.login_form,.register_form{
-    width:350px;
-    height:400px;
-    position:fixed;
-    background:#fff;
-    border-radius:5px;
-    left:50%;
-    top:50%;
-    margin-left:-175px;
-    margin-top:-200px;
-    z-index:9999;
-}
-
-.register_form{
-    height:500px;
-    margin-top:-250px;
-}
-
 .mask{
     position:fixed;
     width:100%;
@@ -338,18 +315,6 @@ body{
     left:0px;
     top:0px;
     z-index:9998;
-}
-
-.login_title,.register_title{
-    height:72px;
-    border-bottom:1px solid #dcdcdc;
-    position:relative;
-}
-.login_title h3,.register_title h3{
-    line-height:72px;
-    text-align:center;
-    font-size:18px;
-    color:#1482f0;
 }
 
 .form_group{
@@ -368,13 +333,6 @@ body{
     position:relative;
 }
 
-.register_form .form_group{
-    margin:15px auto 0;
-}
-
-.register_form .input_sub{
-    margin:30px auto 0;
-}
 
 .form_group .error_tip,.form_group2 .error_tip{
     position:absolute;
@@ -553,241 +511,6 @@ body{
     display: block;
     margin: 0 auto;
 }
-.collected:hover{
-    background-position:10px -73px;
-}
-
-.collected .out{
-    position:absolute;
-    left:40px;
-    top:8px;
-}
-
-.collected:hover .out{
-    left:40px;
-    top:35px;
-}
-
-.collected .over{
-    position:absolute;
-    left:40px;
-    top:35px;
-}
-
-.collected:hover .over{
-    left:33px;
-    top:8px;
-}
-
-.focused:hover{
-    background-position:10px -73px;
-}
-
-.focused .out{
-    position:absolute;
-    left:40px;
-    top:8px;
-}
-
-.focused:hover .out{
-    left:40px;
-    top:35px;
-}
-
-.focused .over{
-    position:absolute;
-    left:40px;
-    top:35px;
-}
-
-.focused:hover .over{
-    left:33px;
-    top:8px;
-}
-
-
-
-
-.comment_form_logout{
-    border:1px solid #e3e8ee;
-    width:756px;
-    border-radius:4px;
-    padding:15px 10px;
-    outline:none;
-    font-size:16px;
-    color:#e3e8ee;
-    margin-top:50px;
-}
-
-
-.comment_form{
-    margin-top:50px;
-    overflow:hidden;
-}
-
-.comment_form .person_pic{
-    float:left;
-    width:40px;
-    height:40px;
-}
-
-.comment_form img{
-    width:40px;
-    height:40px;
-    border-radius:20px;
-}
-
-.comment_form .comment_input{
-    float:left;
-    width:690px;
-    height:60px;
-    margin-left:20px;
-    border-radius:4px;
-    padding:10px;
-    outline:none;
-    border:1px solid #2185ed;
-}
-
-.comment_form .comment_sub{
-    float:right;
-    width:58px;
-    height:28px;
-    border:1px solid #2185ed;
-    background:#fff;
-    border-radius:4px;
-    margin:10px 7px 0 0;
-    cursor:pointer;
-}
-
-.comment_form .comment_sub:hover{
-    background:#2185ed;
-    color:#fff;
-}
-
-.comment_count{
-    font-size: 16px;
-    color: #333;
-    border-bottom: 1px solid #ebebeb;
-    padding: 12px 0
-}
-
-
-.comment_list{
-    border-bottom:1px solid #ebebeb;
-    overflow:hidden;
-    margin-top:15px;
-    padding-bottom:15px;
-}
-
-
-.comment_list .person_pic{
-    width:40px;
-    height:40px;
-    float:left;
-}
-
-.comment_list .person_pic img{
-    width:40px;
-    height:40px;
-    border-radius:20px;
-}
-
-.user_name{
-    width:690px;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
-    color: #333;
-    margin-left:20px;
-}
-
-.comment_text{
-    width:718px;
-    font-size: 14px;
-    line-height: 20px;
-    color: #333;
-    margin:5px 0 0 20px;
-}
-
-.comment_time{
-    font-size:12px;
-    color:#999;
-    margin:10px 0 0 60px;
-}
-
-
-
-.comment_reply{
-    font-size:12px;
-    color:#999;
-    text-indent:20px;
-    margin:10px 0 0 20px;
-    background:url(../images/reply_icon.png) left center no-repeat;
-}
-
-
-.reply_text_con{
-    width:698px;
-    padding:10px;
-    background:#fafafa;
-    margin:10px 0 0 60px;
-}
-
-.reply_text_con .user_name2{
-    font-size:12px;
-    font-weight:bold;
-    color:#000;
-    margin-bottom:5px;
-}
-
-.reply_text_con .reply_text{
-    color:#666;
-    font-size:12px;
-}
-
-.reply_form{
-    width:718px;
-    overflow:hidden;
-    margin:10px 0 0 60px;
-    display:none;
-}
-
-.reply_input{
-    float:left;
-    width:692px;
-    height:30px;
-    border-radius:4px;
-    padding:10px;
-    outline:none;
-    border:1px solid #2185ed;
-}
-
-.reply_sub,.reply_cancel{
-    width:40px;
-    height:23px;
-    background:#76b6f4;
-    border:0px;
-    border-radius:2px;
-    color:#fff;
-    margin:10px 5px 0 10px;
-    cursor:pointer;
-}
-
-.reply_cancel{
-    background:#fff;
-    color: #909090;
-}
-
-
-.user_con{
-    width:778px;
-    min-height:660px;
-    padding:20px;
-    overflow:hidden;
-    background:#f9f9f9;
-    border:1px solid #ececee;
-}
-
 .main_frame{
     width:778px;
     min-height:660px;
@@ -797,34 +520,6 @@ body{
     background:#f9f9f9;
 }
 
-.user_menu_con{
-    width:308px;
-    height:600px;
-    background:#fff;
-    border:1px solid #ececee;
-    margin:100px 0 0 50px;
-    position:relative;
-}
-
-.user_center_pic{
-    width:198px;
-    height:198px;
-    position:absolute;
-    left:55px;
-    top:-100px;
-}
-
-.user_center_pic img{
-    width:198px;
-    height:198px;
-    border-radius:99px;
-}
-
-.user_center_name{
-    text-align:center;
-    margin-top:120px;
-    font-size:18px;
-}
 
 .option_list{
     width:268px;
@@ -950,113 +645,6 @@ body{
     margin-top:8px;
 }
 
-.article_list{
-    width:700px;
-    margin:30px auto 0;
-}
-
-.article_list li{
-    height:50px;
-    border-bottom:1px solid #ededed;
-    position:relative;
-}
-
-.article_list li a{
-    line-height:50px;
-    width:450px;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;    
-    font-size:14px;
-    color:#666;
-    float:left;
-    position:relative;
-    text-indent:20px;
-}
-
-.article_list li a:hover{
-    color:#39f;
-}
-
-.article_list li a:before{
-    content:"· ";
-    color:#1482f0;
-    font-size:40px;
-    position:absolute;
-    left:-17px;
-    top:-2px;
-}
-.article_list li span{
-    line-height:50px;
-    font-size:14px;
-    color:#999;
-    text-indent:20px;
-    float:right;
-    background:url(../images/clock.png) left center no-repeat;
-}
-
-.article_list li em{
-    line-height:50px;
-    font-size:14px;
-    color:#999;
-    float:left;
-    margin-left:20px;
-
-}
-
-.article_list li b{
-    position:absolute;
-    width:602px;
-    height:72px;
-    background:url(../images/tip_bg.png) no-repeat;
-    left:20px;
-    top:36px;
-    font-weight:normal;
-    font-size:12px;
-    color:#666;
-    z-index:100;
-    padding:13px 10px 0;
-    display:none;
-}
-
-.article_list li:hover b{
-    display:block;
-}
-
-.article_list li .pass{
-    color:green;
-}
-
-.article_list li .review{
-    color:#dca80a;
-}
-
-.article_list li .nopass{
-    color:#f00;
-}
-
-.loader_more{
-    display:block;
-    margin:30px auto 0;
-    width:118px;
-    line-height:38px;
-    text-align:center;
-    border:1px solid #ddd;
-    border-radius:4px;
-    color:#666;
-    font-size:14px;
-}
-
-.loader_more:hover{
-    color:#39f;
-}
-
-.error_con{
-    width:800px;
-    height:500px;
-    margin:100px auto 0;
-}
-
 .error_con img{
     float:left;
     margin-right:20px;
@@ -1165,12 +753,6 @@ body{
     position:absolute;
     left:-100px;
     top:0px;
-}
-
-
-.other_detail{
-    width:268px;
-    margin:30px auto 0;
 }
 
 .other_detail li{
