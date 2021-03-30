@@ -33,7 +33,7 @@ public class KeywordController {
     @GetMapping("top")
     public List<Keyword> topWord()
     {
-        return keywordService.wordList();
+        return keywordService.topWord(paperService.queryAll());
     }
 
     @GetMapping("meet")
