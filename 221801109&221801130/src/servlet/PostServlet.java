@@ -4,8 +4,6 @@ import dao.PostDAO;
 import dao.PostDAOImpl;
 import pojo.Post;
 import util.DBUtil;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,10 +34,10 @@ public class PostServlet extends HttpServlet {
             count = Integer.parseInt(req.getParameter("count"));
             string = req.getParameter("string");
         } else if (req.getParameter("nex") != null) {
-            count = Integer.parseInt(req.getParameter("nex")) + 1;
+            count = (Integer.parseInt(req.getParameter("nex")) + 1) * 10;
             string = req.getParameter("string2");
         } else if (req.getParameter("pre") != null) {
-            count = Integer.parseInt(req.getParameter("pre")) - 1;
+            count = (Integer.parseInt(req.getParameter("pre")) - 1) *10;
             string = req.getParameter("string1");
         } else if (req.getParameter("string") != null){
             string = req.getParameter("string");
@@ -47,28 +45,43 @@ public class PostServlet extends HttpServlet {
         String sql = "select * from post";
         List<Post> postList = new ArrayList<>();
         postList = postDAO.list(string);
-
-        int page = 0;
-        if (postList.size() == 0){
+        int size = postList.size();
+        int page = 1;
+        if (size == 0){
             req.getRequestDispatcher("/index.jsp").forward(req,resp);
-        }
-        if (postList.size() % 1 == 0) {// 如果记录总条数对每页显示记录数取整等于0，则表示页面数刚好分完。
-            page = postList.size() / 1;
-        } else {// 如果取不尽，那么就添加一页来放剩余的记录
-            page = postList.size() / 1 + 1;
         }
         if (count < 0){
             count = 0;
-        } else if (count > postList.size()-1) {
-            count = postList.size()-1;
+        } else if (count > size) {
+            count = count - 10;
         }
-        list = postList.subList(count, count+1);
-
+        if (size % 10 == 0) {// 如果记录总条数对每页显示记录数取整等于0，则表示页面数刚好分完。
+            page = size / 10;
+            list = postList.subList(count, count+10);
+        } else {// 如果取不尽，那么就添加一页来放剩余的记录
+            if (size <= 10) {
+                page = 1;
+                list = postList.subList(count, size);
+            } else {
+                page = postList.size() / 10 + 1;
+                if (count < (page-1)*10 ) {
+                    list = postList.subList(count, count+10);
+                } else {
+                    list = postList.subList(count, count+postList.size()-(page-1)*10);
+                }
+            }
+        }
+        count /= 10;
         req.setAttribute("key",string);
         req.setAttribute("postList",list);
         req.setAttribute("count",count);
         req.setAttribute("page",page);
         req.getRequestDispatcher("/index.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServletException {
+        doPost(req,resp);
     }
 
 }
