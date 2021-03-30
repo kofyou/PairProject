@@ -23,7 +23,7 @@
     <script src="./js/layer/layer.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/defalt.css" />
 </head>
-<body>
+<body id="Top">
 <%
     String flag = request.getParameter("search");
     if (flag.equals("")){
@@ -71,8 +71,8 @@
             if (flag != null){
             int pageNum = (int) request.getAttribute("pageNum");
             int maxPage = (int) request.getAttribute("maxPage");
-            int end = (pageNum + 1) * 4 - 1;
-            int begin = pageNum * 4;
+            int end = (pageNum + 1) * 31 - 1;
+            int begin = pageNum * 31;
             List<Post> posts = (List<Post>) request.getAttribute("posts");
 
             for(int i = begin;i < end && i < posts.size();i++)
@@ -150,10 +150,8 @@
                 %>
                 <input type="text" id="val" />
                 <input type="button" value="跳转" onclick="location.href='postList?search=<%=flag%>&pageNum='+document.getElementById('val').value" />
+                <a href="#Top">返回顶部</a>
             </td>
-
-
-
         </tr>
         </tbody>
         <%
@@ -169,7 +167,12 @@
             if (this.offsetWidth < this.scrollWidth) {
                 var that = this;
                 var text = $(this).text();
-                layer.alert(text);
+                //layer.alert(text);
+                layer.open({
+                    title: '内容简介',
+                    offset: '25%',
+                    content: text
+                });
             }
         });
     })

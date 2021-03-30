@@ -39,6 +39,7 @@
 <div class="div1">
     <div class="div2">
         <form action="postList" method="get">
+            <img src="./img/chalunwen.png" id="imgsearch"><br>
             <input type="text" name="search" id="search"/>
             <input type="submit" id="buttonsub"/><br>
         </form>

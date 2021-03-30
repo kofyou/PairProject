@@ -52,10 +52,18 @@
 </div>
 
 <div id="buttons">
-    <a href="search.jsp" title="论文查询"><img src="./img/fa5-search.svg" width="20%"></a>
-    <a href="postList?search=" title="论文列表"><img src="./img/fa5-th-list.svg" width="20%"></a>
-    <a href="analyze.jsp" title="热词分析"><img src="./img/md-trending_up.svg" width="20%"></a>
-
+    <div>
+        <a href="search.jsp" title="论文查询"><img src="./img/fa5-search.svg" width="80%"></a><br>
+        <p>论文查询</p>
+    </div>
+    <div>
+    <a href="postList?search=" title="论文列表"><img src="./img/fa5-th-list.svg" width="80%"></a><br>
+        <p>论文列表</p>
+    </div>
+    <div>
+    <a href="analyze.jsp" title="热词分析"><img src="./img/md-trending_up.svg" width="80%"></a><br>
+        <p>热词分析</p>
+    </div>
 </div>
 </body>
 </html>
