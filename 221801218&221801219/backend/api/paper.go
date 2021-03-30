@@ -58,3 +58,13 @@ func AddPaperList(c *gin.Context) {
 		c.JSON(200, ErrorResponse(err))
 	}
 }
+
+func CheckSubscriptionStatus(c *gin.Context)  {
+	var service service.SearchPaperService
+	paperId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(200, ErrorResponse(err))
+	}
+	res := service.CheckSubscriptionStatus(CurrentUser(c), int64(paperId))
+	c.JSON(200, res)
+}

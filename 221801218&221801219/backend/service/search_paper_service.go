@@ -11,6 +11,14 @@ import (
 type SearchPaperService struct {
 }
 
+func (service *SearchPaperService) CheckSubscriptionStatus(user *model.User, paperId int64) serializer.Response {
+	if user != nil {
+		return serializer.BuildSubscriptionStatusResponse(user.Id, paperId, true)
+	} else {
+		return serializer.BuildSubscriptionStatusResponse(-1, -1, false)
+	}
+}
+
 func (service *SearchPaperService) Search(title, keyword string, page int64, meeting string) serializer.Response {
 	if title == "" && keyword == "" {
 		return serializer.ParamErr("参数错误", nil)

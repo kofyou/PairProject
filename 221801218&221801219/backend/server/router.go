@@ -32,6 +32,8 @@ func NewRouter() *gin.Engine {
 
 		v1.GET("statistics", api.GetTopKeywords)
 
+		v1.GET("/subscription/status/:id", api.CheckSubscriptionStatus)
+
 		// 登陆保护
 		authed := v1.Group("/")
 		authed.Use(middleware.LoginRequired())

@@ -10,8 +10,16 @@ type UserPaper struct {
 	UId     int64 `xorm:"index notnull"`
 }
 
-func (user *User) UserAddPaper(paperId int64) error {
+func (user *User) UserSubscribePaper(paperId int64) error {
 	return PaperSubscribe(user.Id, paperId)
+}
+
+func (user *User) UserUnsubscribePaper(paperId int64) (int64, error) {
+	return PaperUnsubscribe(user.Id, paperId)
+}
+
+func IsSubscribed(userId, paperId int64) (bool, error) {
+	return Engine.Where("u_id = ? and paper_id = ?", userId, paperId).Exist(&UserPaper{})
 }
 
 func PaperSubscribe(userId, paperId int64) error {
