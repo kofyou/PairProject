@@ -1,49 +1,692 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8"> 
-	<link rel="stylesheet" type="text/css" href="../css/list.css">
-	<script type="text/javascript" src="../js/list.js"></script>
+<head> 
+<link rel="stylesheet" type="text/css" href="css/list.css">
+<meta charset="utf-8"> 
 <title>列表管理</title> 
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1>列表管理</h1>
-			<button class = "btn1" onclick="window.open('../index.html','_self')">返回</button>
-		</div>
-		<div id="content">
-			<table border="1" width="75%" align="center">
-				 <caption id="biaoti">论文总览</caption>
-			<tr>
-				<th>标题</th>
-				<th>关键词</th>
-				<th>摘要</th>
-				<th>原文链接</th>
-			</tr>
-			<tr>
-				<td class = "zhengwen">row 1, cell 1</td>
-				<td class = "zhengwen">row 1, cell 2</td>
-				<td class = "zhengwen">row 1, cell 1</td>
-				<td class = "zhengwen">row 1, cell 2</td>
-				<td><button onclick ="remove(this)">删除</button></td>
-			</tr>
-			<tr>
-				<td class = "zhengwen">row 2, cell 1</td>
-				<td class = "zhengwen">row 2, cell 2</td>
-				<td class = "zhengwen">row 1, cell 1</td>
-				<td class = "zhengwen">row 1, cell 2</td>
-				<td><button onclick="remove(this)">删除</button></td>
-			</tr>
-			<tr>
-				<td class = "zhengwen">row 1, cell 1</td>
-				<td class = "zhengwen">row 1, cell 2</td>
-				<td class = "zhengwen">row 1, cell 1</td>
-				<td class = "zhengwen">row 1, cell 2</td>
-				<td><button onclick ="remove(this)">删除</button></td>
-			</tr>
-			</table>
-		</div>
-	</div>
+ 
+
+ <div id="container">
+<div id="header" style = "text-align: center;">
+<h1>列表管理</h1></div>
+<div style="text-align:center;float:right">
+		<button class = "btn1" onclick="window.open('../index.html','_self')">返回</button>
+	</div> 
+ 
+<div id="content">
+<table border="1" cellspacing="60" cellpadding="30" align="center">
+	 <caption id="biaoti">论文总览</caption>
+<tr>
+<th>标题</th>
+<th>关键词</th>
+<th>摘要</th>
+<th>原文链接</th>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a Predictable and Generative Vector Representation for Objects</td>
+<td class = "zhengwen">Natural Image,Cosine Distance,Image Network,Convolutional Layer,Prediction Loss</td>
+<td class = "zhengwen">What is a good vector representation of an object? We believe that it should be generative in 3D, in the sense that it can produce new 3D objects; as well as be predictable from 2D, in the sense that it can be perceived from 2D images. We propose a novel architecture, called the TL-embedding network, to learn an embedding space with these properties. The network consists of two components: (a) an autoencoder that ensures the representation is generative; and (b) a convolutional network that ensures the representation is predictable. This enables tackling a number of tasks including voxel prediction from 2D images and 3D model retrieval. Extensive experimental analysis demonstrates the usefulness and versatility of this embedding.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-319-46466-4_29</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a Predictable and Generative Vector Representation for Objects</td>
+<td class = "zhengwen">Natural Image,Cosine Distance,Image Network,Convolutional Layer,Prediction Loss</td>
+<td class = "zhengwen">What is a good vector representation of an object? We believe that it should be generative in 3D, in the sense that it can produce new 3D objects; as well as be predictable from 2D, in the sense that it can be perceived from 2D images. We propose a novel architecture, called the TL-embedding network, to learn an embedding space with these properties. The network consists of two components: (a) an autoencoder that ensures the representation is generative; and (b) a convolutional network that ensures the representation is predictable. This enables tackling a number of tasks including voxel prediction from 2D images and 3D model retrieval. Extensive experimental analysis demonstrates the usefulness and versatility of this embedding.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-319-46466-4_29</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning and the language of thought</td>
+<td class = "zhengwen">Probabilistic logic,Conferences,Merging,Calculus,Stochastic processes,Humans,Cognitive science</td>
+<td class = "zhengwen">Logic and probability are key themes of cognitive science that have long had an uneasy coexistence. This paper describe the probabilistic language of thought approach that brings them together into compositional representations with probabilistic meaning formalized as stochastic lambda calculus. It will describe how this general framework is realized in the probabilistic programming language Church.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCVW.2011.6130313</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning CCA Representations for Misaligned Data</td>
+<td class = "zhengwen">Canonical correlation analysis,Learning compact representations,Misalignment resilience,Change detection</td>
+<td class = "zhengwen">Canonical correlation analysis (CCA) is a statistical learning method that seeks to build view-independent latent representations from multi-view data. This method has been successfully applied to several pattern analysis tasks such as image-to-text mapping and view-invariant object/action recognition. However, this success is highly dependent on the quality of data pairing (i.e., alignments) and mispairing adversely affects the generalization ability of the learned CCA representations.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-11018-5_39</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning class-specific affinities for image labelling</td>
+<td class = "zhengwen">Labeling,Image segmentation,Graphical models,Image recognition,Maximum likelihood estimation,Birds,Computer vision,Cost function,Clustering algorithms,Training data</td>
+<td class = "zhengwen">Spectral clustering and eigenvector-based methods have become increasingly popular in segmentation and recognition. Although the choice of the pairwise similarity metric (or affinities) greatly influences the quality of the results, this choice is typically specified outside the learning framework. In this paper, we present an algorithm to learn class-specific similarity functions. Mapping our problem in a conditional random fields (CRF) framework enables us to pose the task of learning affinities as parameter learning in undirected graphical models. There are two significant advances over previous work. First, we learn the affinity between a pair of data-points as a function of a pairwise feature and (in contrast with previous approaches) the classes to which these two data-points were mapped, allowing us to work with a richer class of affinities. Second, our formulation provides a principled probabilistic interpretation for learning all of the parameters that define these affinities. Using ground truth segmentations and labellings for training, we learn the parameters with the greatest discriminative power (in an MLE sense) on the training data. We demonstrate the power of this learning algorithm in the setting of joint segmentation and recognition of object classes. Specifically, even with very simple appearance features, the proposed method achieves state-of-the-art performance on standard datasets.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2008.4587432</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning component-level sparse representation using histogram information for image classification</td>
+<td class = "zhengwen">Dictionaries,Image reconstruction,Training,Encoding,Vectors,Histograms,Accuracy</td>
+<td class = "zhengwen">A novel component-level dictionary learning framework which exploits image group characteristics within sparse coding is introduced in this work. Unlike previous methods, which select the dictionaries that best reconstruct the data, we present an energy minimization formulation that jointly optimizes the learning of both sparse dictionary and component level importance within one unified framework to give a discriminative representation for image groups. The importance measures how well each feature component represents the image group property with the dictionary by using histogram information. Then, dictionaries are updated iteratively to reduce the influence of unimportant components, thus refining the sparse representation for each image group. In the end, by keeping the top K important components, a compact representation is derived for the sparse coding dictionary. Experimental results on several public datasets are shown to demonstrate the superior performance of the proposed algorithm compared to the-state-of-the-art methods.</td>
+<td class = "zhengwen">https://doi.org/10.1109/ICCV.2011.6126410</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Keypoint Descriptors for Non-rigid Shape Matching</td>
+<td class = "zhengwen">Local feature descriptor,Triplet CNNs,Non-rigid shapes</td>
+<td class = "zhengwen">In this paper, we present a novel deep learning framework that derives discriminative local descriptors for 3D surface shapes. In contrast to previous convolutional neural networks (CNNs) that rely on rendering multi-view images or extracting intrinsic shape properties, we parameterize the multi-scale localized neighborhoods of a keypoint into regular 2D grids, which are termed as ‘geometry images’. The benefits of such geometry images include retaining sufficient geometric information, as well as allowing the usage of standard CNNs. Specifically, we leverage a triplet network to perform deep metric learning, which takes a set of triplets as input, and a newly designed triplet loss function is minimized to distinguish between similar and dissimilar pairs of keypoints. At the testing stage, given a geometry image of a point of interest, our network outputs a discriminative local descriptor for it. Experimental results for non-rigid shape matching on several benchmarks demonstrate the superior performance of our learned descriptors over traditional descriptors and the state-of-the-art learning-based alternatives.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01237-3_1</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Scene Semantics and Structure from a Single Depth Image</td>
+<td class = "zhengwen">Three-dimensional displays,Shape,Semantics,Image reconstruction,Image segmentation,Feature extraction,Periodic structures</td>
+<td class = "zhengwen">In this paper, we aim to understand the semantics and 3D structure of a scene from a single depth image. Recent deep neural networks based methods aim to simultaneously learn object class labels and infer the 3D shape of a scene represented by a large voxel grid. However, individual objects within the scene are usually only represented by a few voxels leading to a loss of geometric detail. In addition, significant computational and memory resources are required to process the large scale voxel grid of a whole scene. To address this, we propose an efficient and holistic pipeline, 3R-Depth, to simultaneously learn the semantics and structure of a scene from a single depth image. Our key idea is to deeply fuse an efficient 3D shape estimator with existing recognition (e.g., ResNets) and segmentation (e.g., MaskR-CNN) techniques. Object level semantics and latent feature maps are extracted and then fed to a shape estimator to extract the 3D shape. Extensive experiments are conducted on large-scale synthesized indoor scene datasets, quantitatively and qualitatively demonstrating the merits and superior performance of 3R-Depth.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPRW.2018.00069</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning 3D Shapes as Multi-layered Height-Maps Using 2D Convolutional Networks</td>
+<td class = "zhengwen">CNN on 3D shapes,3D shape representation,ModelNet,Shape classification,Shape generation</td>
+<td class = "zhengwen">We present a novel global representation of 3D shapes, suitable for the application of 2D CNNs. We represent 3D shapes as multi-layered height-maps (MLH) where at each grid location, we store multiple instances of height maps, thereby representing 3D shape detail that is hidden behind several layers of occlusion. We provide a novel view merging method for combining view dependent information (Eg. MLH descriptors) from multiple views. Because of the ability of using 2D CNNs, our method is highly memory efficient in terms of input resolution compared to the voxel based input. Together with MLH descriptors and our multi view merging, we achieve the state-of-the-art result in classification on ModelNet dataset.</td>
+<td class = "zhengwen">https://doi.org/10.1007/978-3-030-01270-0_5</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a convolutional neural network for non-uniform motion blur removal</td>
+<td class = "zhengwen">Kernel,Estimation,Neural networks,Cameras,Markov processes,Predictive models,Neurons</td>
+<td class = "zhengwen">In this paper, we address the problem of estimating and removing non-uniform motion blur from a single blurry image. We propose a deep learning approach to predicting the probabilistic distribution of motion blur at the patch level using a convolutional neural network (CNN). We further extend the candidate set of motion kernels predicted by the CNN using carefully designed image rotations. A Markov random field model is then used to infer a dense non-uniform motion blur field enforcing motion smoothness. Finally, motion blur is removed by a non-uniform deblurring model using patch-level image prior. Experimental evaluations show that our approach can effectively estimate and remove complex non-uniform motion blur that is not handled well by previous approaches.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2015.7298677</td>
+</tr>
+<tr>
+<td class = "zhengwen">Learning a distance metric from multi-instance multi-label data</td>
+<td class = "zhengwen">Iterative algorithms,Algorithm design and analysis,Supervised learning,Kernel,Nearest neighbor searches,Support vector machines,Support vector machine classification,Computer science,Data engineering,Radiology</td>
+<td class = "zhengwen">Multi-instance multi-label learning (MIML) refers to the learning problems where each example is represented by a bag/collection of instances and is labeled by multiple labels. An example application of MIML is visual object recognition in which each image is represented by multiple key points (i.e., instances) and is assigned to multiple object categories. In this paper, we study the problem of learning a distance metric from multi-instance multi-label data. It is significantly more challenging than the conventional setup of distance metric learning because it is difficult to associate instances in a bag with its assigned class labels. We propose an iterative algorithm for MIML distance metric learning: it first estimates the association between instances in a bag and its assigned class labels, and learns a distance metric from the estimated association by a discriminative analysis; the learned metric will be used to update the association between instances and class labels, which is further used to improve the learning of distance metric. We evaluate the proposed algorithm by the task of automated image annotation, a well known MIML problem. Our empirical study shows an encouraging result when combining the proposed algorithm with citation-kNN, a state-of-the-art algorithm for multi-instance learning.</td>
+<td class = "zhengwen">https://doi.org/10.1109/CVPR.2009.5206684</td>
+</tr>
+
+</table>
+</div>
+ 
 </body>
 </html>
