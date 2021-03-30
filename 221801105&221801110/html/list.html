@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head> 
-<link rel="stylesheet" type="text/css" href="../css/list.css">
-<meta charset="utf-8"> 
+<head>
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="../css/list.css">
+	<script type="text/javascript" src="../js/list.js"></script>
 <title>列表管理</title> 
 </head>
 <body>
- 
-
- <div id="container">
-<div id="header">
-<h1>列表管理</h1>
-<button class = "btn1" onclick="window.open('../index.html','_self')">返回</button>
- </div>
-<div id="content">
-<table border="1" width="75%" align="center">
-	 <caption id="biaoti">论文总览</caption>
-<tr>
-<th>标题</th>
-<th>关键词</th>
-<th>摘要</th>
-<th>原文链接</th>
-</tr>
-<tr>
-<td class = "zhengwen">row 1, cell 1</td>
-<td class = "zhengwen">row 1, cell 2</td>
-<td class = "zhengwen">row 1, cell 1</td>
-<td class = "zhengwen">row 1, cell 2</td>
-<td><button>删除</button></td>
-</tr>
-<tr>
-<td class = "zhengwen">row 2, cell 1</td>
-<td class = "zhengwen">row 2, cell 2</td>
-<td class = "zhengwen">row 1, cell 1</td>
-<td class = "zhengwen">row 1, cell 2</td>
-<td><button>删除</button></td>
-</tr>
-<tr>
-<td class = "zhengwen">row 1, cell 1</td>
-<td class = "zhengwen">row 1, cell 2</td>
-<td class = "zhengwen">row 1, cell 1</td>
-<td class = "zhengwen">row 1, cell 2</td>
-<td><button>删除</button></td>
-</tr>
-</table>
-</div>
-</div>
- 
+	<div id="container">
+		<div id="header">
+			<h1>列表管理</h1>
+			<button class = "btn1" onclick="window.open('../index.html','_self')">返回</button>
+		</div>
+		<div id="content">
+			<table border="1" width="75%" align="center">
+				 <caption id="biaoti">论文总览</caption>
+			<tr>
+				<th>标题</th>
+				<th>关键词</th>
+				<th>摘要</th>
+				<th>原文链接</th>
+			</tr>
+			<tr>
+				<td class = "zhengwen">row 1, cell 1</td>
+				<td class = "zhengwen">row 1, cell 2</td>
+				<td class = "zhengwen">row 1, cell 1</td>
+				<td class = "zhengwen">row 1, cell 2</td>
+				<td><button onclick ="remove(this)">删除</button></td>
+			</tr>
+			<tr>
+				<td class = "zhengwen">row 2, cell 1</td>
+				<td class = "zhengwen">row 2, cell 2</td>
+				<td class = "zhengwen">row 1, cell 1</td>
+				<td class = "zhengwen">row 1, cell 2</td>
+				<td><button onclick="remove(this)">删除</button></td>
+			</tr>
+			<tr>
+				<td class = "zhengwen">row 1, cell 1</td>
+				<td class = "zhengwen">row 1, cell 2</td>
+				<td class = "zhengwen">row 1, cell 1</td>
+				<td class = "zhengwen">row 1, cell 2</td>
+				<td><button onclick ="remove(this)">删除</button></td>
+			</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
