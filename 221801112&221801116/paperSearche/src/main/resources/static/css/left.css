@@ -33,7 +33,7 @@
 .left-span-csk{
     color: black;
 }
-.nav-title2-csk,.nav-title-csk{
+.nav-title2-csk,.nav-title-csk,.nav-title3-csk{
     border-bottom: dotted;
 }
 .left-title-csk{
@@ -51,7 +51,7 @@
     width: 25px;
     float: left;
 }
-.nav-title-csk>a,.nav-title2-csk>a,.left-title-csk>a{
+.nav-title-csk>a,.nav-title2-csk>a,.left-title-csk>a,.nav-title3-csk>a{
     display: block;
     height: 50px;
     width: 100%;
@@ -61,7 +61,7 @@
     text-align: center;
     text-decoration: none;
 }
-.nav-title2-csk>a:hover,.nav-title-csk>a:hover,.left-title-csk>a:hover{
+.nav-title2-csk>a:hover,.nav-title-csk>a:hover,.left-title-csk>a:hover,.nav-title3-csk>a:hover{
     display: block;
     height: 50px;
     width: 100%;
@@ -71,7 +71,7 @@
     text-align: center;
     line-height: 50px;
 }
-.nav-title-csk:hover,.left-title-csk:hover,.nav-title2-csk:hover,.myclose-csk:hover{
+.nav-title-csk:hover,.left-title-csk:hover,.nav-title2-csk:hover,.myclose-csk:hover,.nav-title3-csk:hover{
     cursor: pointer;
     background-image: linear-gradient(to right, #2C3E50 25%, #333399 75%);
     opacity:0.5;

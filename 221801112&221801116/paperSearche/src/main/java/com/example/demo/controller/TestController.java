@@ -25,6 +25,11 @@ public class TestController {
         return "paperlist";
     }
 
+    @GetMapping("/spider")
+    public String getSpider() {
+        return "paperSpider";
+    }
+
     @GetMapping("/ciyun")
     public String getCi() {
         return "ciyuntest";

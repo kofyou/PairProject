@@ -1,9 +1,9 @@
 spring:
   datasource:
     #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://1.15.129.32:3306/paperSearch?serverTimezone=UTC
-    username: root
-    password: 1750340569!Xm
+    url: jdbc:mysql://rm-bp1x9ybs944ibpin6do.mysql.rds.aliyuncs.com/papersearch?serverTimezone=UTC
+    username: csk_mysql
+    password: 13959616517!aA
 
     contentnegotiation:
       favor-parameter: true  #开启请求参数内容协商模式
@@ -27,3 +27,5 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: false
+
+
