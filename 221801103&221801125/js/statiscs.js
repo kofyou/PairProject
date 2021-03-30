@@ -1,4 +1,6 @@
 $(function(){
+        var names = []
+        var values = []
         var logOut = $(".slide-down li:eq(1)")
         logOut.click(logOutFunc)
         var btn = $("#search_btn")
@@ -32,18 +34,12 @@ $(function(){
                     "eccv" : data.eccv,
                 }
                 HOTTEST_THREE = obj
-                var names = []
-                var values = []
                 for(let i=0;i<data.top10.length;i++)
                 {
                     names.push(data.top10[i].keyword)
                     values.push(data.top10[i].count)
                 }
-                var obj2 = {
-                    "name" : names,
-                    "value" :  values
-                }
-                HOTTEST_TOP10.push(obj2)
+                
                 
             },
             error:()=>{
@@ -145,13 +141,13 @@ $(function(){
             xAxis: {
                 type: 'category',
                 //data:["1",'2','3','4','5','6','7','8','9','10']
-                data: HOTTEST_TOP10[0].name,
+                data: names,
             },
             yAxis: {
                 type: 'value'
             },
             series: [{
-                data: HOTTEST_TOP10[0].values,
+                data: values,
                 //data: [10,10,10,10,10,10,10,10,10,10],
                 type: 'bar',
                 //url:["www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com",],

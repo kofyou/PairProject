@@ -9,7 +9,7 @@ $(function(){
                 type : "post",
                 data : JSON.stringify({
                     "type" : 0,
-                    "userName" : USER_INFO.userID
+                    "account" : USER_INFO.userID
                 }),
                 contentType:"application/json",
                 success:data=>{

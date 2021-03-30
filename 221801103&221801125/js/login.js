@@ -9,10 +9,11 @@ $(function () {
       //校验,登录
       $.ajax({
         url: "../LoginServlet",
-        data: {
+        data: JSON.stringify({
           "account": inputs[0].value,
           "password": inputs[1].value,
-        },
+        }),
+        contentType:"application/json"
         type: "POST",
         dataType: "json",
         success: (data) => {
