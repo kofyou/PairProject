@@ -48,4 +48,29 @@ class PaperDao
         $paper->keywords = KeywordDao::getKeywordsByPaperID($paperID);
         return $paper;
     }
+
+    public static function getAddPaperSQL(Paper $paper)
+    {
+        $keywords = $paper->keywords;
+        $sql = "";
+        if ($keywords !== null)
+        {
+            foreach ($keywords as $keyword)
+            {
+                $sql .= KeywordDao::getAddKeywordSQL($keyword);
+            }
+        }
+        $sql .= "insert into paper(id, title, abstract, link, year, forum) ".
+        "values($paper->id, '$paper->title', '$paper->abstract', '$paper->link', $paper->year, '$paper->forum');";
+        $con = DbUtil::getConnection();
+        $con->query($sql);
+        if ($keywords != null)
+        {
+            foreach ($keywords as $keyword)
+            {
+                $sql .= KeywordDao::getAddKeywordPaperSQL($keyword, $paper->id);
+            }
+        }
+        return $sql;
+    }
 }

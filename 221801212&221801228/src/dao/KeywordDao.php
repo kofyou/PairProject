@@ -17,18 +17,16 @@ class KeywordDao
         return $keywords;
     }
 
-    public static function addKeyword($keyword)
+    public static function getAddKeywordSQL($keyword)
     {
-        $con = DbUtil::getConnection();
-        $sql = "insert into keyword(keyword) values($keyword) on duplicate key update count = count + 1";
-        $con->query($sql);
+        return "insert into keyword(keyword) values('$keyword') on duplicate key update count = count + 1;";
     }
 
-    public static function addKeywordPaper($keyword, $paperid)
+    public static function getAddKeywordPaperSQL($keyword, $paperid)
     {
-        $con = DbUtil::getConnection();
         $sql = "insert into keyword_paper(keyid, paperid) ".
-        "select keyword.id, $paperid from keyword where keyword.keyword = '$keyword'";
+        "select keyword.id, $paperid from keyword where keyword.keyword = '$keyword';";
+        return $sql;
     }
     public static function getKeywodByKeywordID($keywordID)
     {

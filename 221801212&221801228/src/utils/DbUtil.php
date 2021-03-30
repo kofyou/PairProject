@@ -20,4 +20,15 @@ class DbUtil
         }
         return $db;
     }
+
+    public static function queryNoResult($sqls)
+    {
+        $con = DbUtil::getConnection();
+        $con->multi_query($sqls);
+        while ($con->more_results())
+        {
+            $con->next_result();
+            //$con->store_result()->free();
+        }
+    }
 }
