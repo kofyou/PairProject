@@ -41,7 +41,8 @@ func NewRouter() *gin.Engine {
 			// User PaperList
 			authed.GET("user/list", api.ShowPaperList)
 
-			authed.POST("paper/subscribe", api.AddPaperList)
+			authed.POST("paper/subscribe", api.PaperSubscribe)
+			authed.POST("paper/unsubscribe", api.PaperUnsubscribe)
 
 			authed.DELETE("logout", api.UserLogout)
 		}

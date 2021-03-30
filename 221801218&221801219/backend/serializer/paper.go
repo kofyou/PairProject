@@ -12,6 +12,7 @@ type Paper struct {
 	Year       int       `json:"year"`
 	OriginLink string    `json:"origin_link"`
 	Keywords   []Keyword `json:"keywords"`
+	IsSubscribed bool	`json:"is_subscribed"`
 }
 
 type Keyword struct {
@@ -70,6 +71,7 @@ func BuildPaperList(paper []model.Paper, pageCount int64, page int64) PaperList 
 			Title:   p.Title,
 			Meeting: p.Meeting,
 			Year:    p.Year,
+			IsSubscribed: true,
 		})
 	}
 

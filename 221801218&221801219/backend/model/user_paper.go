@@ -33,7 +33,7 @@ func PaperSubscribe(userId, paperId int64) error {
 }
 
 func PaperUnsubscribe(userId, paperId int64) (int64, error) {
-	affected, err := Engine.Where("user_id = ? and paper_id = ?", userId, paperId).Delete(&UserPaper{})
+	affected, err := Engine.Where("u_id = ? and paper_id = ?", userId, paperId).Delete(&UserPaper{})
 	return affected, err
 }
 

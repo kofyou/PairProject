@@ -49,10 +49,20 @@ func ShowPaperList(c *gin.Context) {
 	}
 }
 
-func AddPaperList(c *gin.Context) {
+func PaperSubscribe(c *gin.Context) {
 	var service service.SubscribePaperService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.Subscribe(*CurrentUser(c))
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+func PaperUnsubscribe(c *gin.Context) {
+	var service service.SubscribePaperService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.Unsubscribe(*CurrentUser(c))
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))

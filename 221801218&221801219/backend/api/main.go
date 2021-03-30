@@ -3,7 +3,6 @@ package api
 import (
 	"backend/model"
 	"backend/serializer"
-	"backend/util"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +19,6 @@ func ErrorResponse(err error) serializer.Response {
 func CurrentUser(c *gin.Context) *model.User {
 	if user, _ := c.Get("user"); user != nil {
 		if u, ok := user.(*model.User); ok {
-			util.Log().Debug(u.Uid)
 			return u
 		}
 	}
