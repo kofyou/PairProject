@@ -1,0 +1,56 @@
+/*.card{*/
+/*    font-family: 'Arial Normal', 'Arial', sans-serif;*/
+/*}*/
+#title1{
+    color: white;
+    position: absolute;
+    top: 90px;
+    left: 90px;
+}
+
+#card1{
+    position: absolute;
+    top: 194px;
+    left: 165px;
+}
+
+#card2{
+    position: absolute;
+    top: 194px;
+    left: 600px;
+}
+
+#card3{
+    position: absolute;
+    top: 194px;
+    left: 1034px;
+}
+
+#card4{
+    position: absolute;
+    top: 605px;
+    left: 165px;
+}
+
+#card5{
+    position: absolute;
+    top: 605px;
+    left: 600px;
+}
+
+#card6{
+    position: absolute;
+    top: 605px;
+    left: 1034px;
+}
+
+body{
+    background-image: url(../img/paper-statistics.jpg);
+    background-repeat:no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom;
+}
