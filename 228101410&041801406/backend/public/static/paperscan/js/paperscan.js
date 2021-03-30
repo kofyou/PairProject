@@ -10,7 +10,7 @@ window.onload = function(){
         data: {},
         dataType: 'json'
     }).then(function(res) {
-        var title = document.getElementById("title");
+        var title = document.getElementById("title2");
         var abstract = document.getElementById("abstract");
         var link = res[0].link;
         title.setAttribute("href", link);

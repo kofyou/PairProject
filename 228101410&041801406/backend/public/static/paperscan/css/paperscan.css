@@ -137,9 +137,8 @@ body {
 }
 
 #title{
-    font-size:30px;
-    font-weight: bold;
-    margin-left: 655px;
+    width:1400px;
+    text-align: center;
 }
 #abstract{
     font-size:20px;
