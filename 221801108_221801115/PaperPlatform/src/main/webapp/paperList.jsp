@@ -1,19 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% String path = request.getContextPath(); %>
-<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/paperList.css" />
+    <title>Title</title>
+    <link rel="stylesheet" href="css/paperList.css"/>
     <script type="text/javascript">
         function deletePaper(paperTitle) {
-            var t = document.getElementById("text");
+            var t = document.getElementById("query_text");
             var p = document.getElementById("pageNum");
             var c = document.getElementById("changeNum");
             var tv = t.getAttribute('value');
             var pv = p.getAttribute('value');
             var cv = c.getAttribute('value');
-
             if (window.confirm("是否删除此篇论文？")) {
                 window.location.href = "<%=path%>/PaperListServlet?operation=deletePaper&paperTitle="
                     + paperTitle+ "&str=" + tv + "&pn=" + pv + "&cn=" + cv;
@@ -31,6 +30,7 @@
     </script>
 </head>
 <body>
+
 <div class="header" >
     <div class="logo_box">
         <img class="logo" src="./img/2.png" >
@@ -38,8 +38,8 @@
     <div class="navigation_box">
         <div class="nav">
             <ul>
-                <li class="nav_post"><a class="a1" href="" >论文列表</a></li>
-                <li><a class="a2" href="" >热门研究</a></li>
+                <li class="nav_post"><a class="a1" href="<%=path%>/paperList.jsp" >论文列表</a></li>
+                <li><a class="a2" href="<%=path%>/paperAnalysisPage/chartPage.jsp" >热门研究</a></li>
             </ul>
         </div>
     </div>
@@ -75,17 +75,16 @@
                     <td class="summary" onclick="show('${pl.title}')"> ${pl.summary} </td>
                     <td class="link" onclick="show('${pl.title}')"> <a href=${pl.link} >${pl.link}</a> </td>
                     <td class="link" onclick="show('${pl.title}')"> ${pl.keywords} </td>
-                    <td class="delete"> <button type="button" class="delete_button" onclick="deletePaper('${pl.title}')"></button> </td>
+                    <td class="delete"> <button type="button" id="delete_button" onclick="deletePaper('${pl.title}')"></button> </td>
                 </tr>
             </c:forEach>
         </table>
+        <div id="div_paging">
+            <button id="btn_lastPage" type="button" onclick="changePage(-1)">上一页</button>
+            当前第  <span class="page_num">${requestScope.pageNum}</span>  页  <button id="btn_nextPage" type="button" onclick="changePage(1)">下一页</button>  共 ${requestScope.totalPage} 页，共 ${requestScope.totalNum} 条记录
+        </div>
     </div>
 
-    <div id="div_paging">
-        <button id="btn_lastPage" type="button" onclick="changePage(-1)">上一页</button>
-        <button id="btn_nextPage" type="button" onclick="changePage(1)">下一页</button>
-        当前第<span class="page_num">${requestScope.pageNum}</span>  页，共 ${requestScope.totalPage} 页，共 ${requestScope.totalNum} 条记录
-    </div>
 
 </div>
 </body>

@@ -19,7 +19,7 @@ public class DBUtil {
     }
 
     public static Connection getConnection() throws SQLException {
-        String url = String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s", ip, port, database, encoding);
+        String url = String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s&serverTimezone=GMT&useSSL=false", ip, port, database, encoding);
         return DriverManager.getConnection(url, loginName, password);
     }
 

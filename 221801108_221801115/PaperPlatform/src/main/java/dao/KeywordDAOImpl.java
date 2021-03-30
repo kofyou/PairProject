@@ -11,8 +11,31 @@ import java.util.ArrayList;
 
 public class KeywordDAOImpl implements KeywordDAO{
 
+    //返回关键词内含有keyword的论文数
+    public int getTotal(String keyword) {
+        int total = 0;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtil.getConnection();
+            stmt = conn.createStatement();
+            String sql = "select count(*) from paper where keywords like '%" + keyword + "%'";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt, conn);
+        }
+        return total;
+    }
+
     //根据关键词返回包含该关键词的论文列表
-    public ArrayList<Paper> keyList(String keyword) {
+    public ArrayList<Paper> keyList(String keyword,int pageNum, int lineNum) {
+        int start = (pageNum - 1) * lineNum;
         ArrayList<Paper> paperList = new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
@@ -20,7 +43,8 @@ public class KeywordDAOImpl implements KeywordDAO{
         try{
             conn = DBUtil.getConnection();
             stmt = conn.createStatement();
-            String sql = "select * from paper where keywords like '%" + keyword + "%'";
+            String sql = "select * from paper where keywords like '%" + keyword + "%'"
+                    + " limit " + start + "," + lineNum;
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 String title = rs.getString("title");

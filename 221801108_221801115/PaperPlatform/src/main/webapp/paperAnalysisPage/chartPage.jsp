@@ -36,8 +36,8 @@
     <div class="navigation_box">
         <div class="nav">
             <ul>
-                <li><a href="" >论文列表</a></li>
-                <li class="nav_study"><a class="a2" href="" >热门研究</a></li>
+                <li><a href="<%=path%>/paperList.jsp" >论文列表</a></li>
+                <li class="nav_study"><a class="a2" href="<%=path%>/paperAnalysisPage/chartPage.jsp" >热门研究</a></li>
             </ul>
         </div>
     </div>
@@ -94,6 +94,9 @@
         chart.setOption(option);
 
         window.onresize = chart.resize;
+        chart.on('click',function(params) {
+            window.location.href = "<%=path%>/PaperListServlet?operation=queryKeyPaper&query=" + params.name;
+        });
     </script>
 
     <div id="wordbargraph" style="width: 1500px;height:400px;"></div>

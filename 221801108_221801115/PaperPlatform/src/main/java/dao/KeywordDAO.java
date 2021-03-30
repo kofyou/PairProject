@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public interface KeywordDAO {
 
-    ArrayList<Paper> keyList(String keyword);
+    int getTotal(String keyword);
+
+    ArrayList<Paper> keyList(String keyword,int pageNum, int lineNum);
 
     ArrayList<Paper> keyList(String keyword, int year);
 
