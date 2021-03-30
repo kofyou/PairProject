@@ -10,12 +10,26 @@ import (
 	_ "strings"
 )
 
+type loginParam struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
 
+type userLikeParam struct {
+	Username string `json:"username" binding:"required"`
+	ThesisID string `json:"thesis_id" binding:"required"`
+}
+
+type showUserLikeParam struct {
+	Username string `json:"username" binding:"required"`
+}
 
 // UserLogin 用户登录
 func UserLogin(c *gin.Context){
-	username := c.Query("username")
-	password := c.Query("password")
+	param := loginParam{}
+	_ = c.ShouldBindJSON(&param)
+	username := param.Username
+	password := param.Password
 
 	ifExist, _ := database.DB.Raw("select * from user where username = ? and password = ?", username, password).Rows()
 	var i int
@@ -25,7 +39,7 @@ func UserLogin(c *gin.Context){
 
 	if (i == 1) {
 		c.JSON(http.StatusOK, gin.H{"ifCorrect":true})
-	}else {
+	} else {
 		c.JSON(http.StatusOK, gin.H{"ifCorrect":false})
 	}
 
@@ -34,8 +48,10 @@ func UserLogin(c *gin.Context){
 
 // UserRegister 用户注册
 func UserRegister(c *gin.Context) {
-	username := c.Query("username")
-	password := c.Query("password")
+	param := loginParam{}
+	_ = c.ShouldBindJSON(&param)
+	username := param.Username
+	password := param.Password
 
 	rows, _ := database.DB.Raw("select * from user where username = ? ", username).Rows()
 	var i int
@@ -58,8 +74,10 @@ func UserRegister(c *gin.Context) {
 
 // UserAddLike 用户增加收藏
 func UserAddLike(c *gin.Context) {
-	username := c.Query("username")
-	thesisID := c.Query("thesis_id")
+	param := userLikeParam{}
+	_ = c.ShouldBindJSON(&param)
+	username := param.Username
+	thesisID := param.ThesisID
 
 	//先判断用户和论文是否都存在
 	user, _ := database.DB.Raw("select * from user where username = ? ", username).Rows()
@@ -95,8 +113,10 @@ func UserAddLike(c *gin.Context) {
 
 // UserDeleteLike 用户删除收藏
 func UserDeleteLike(c *gin.Context) {
-	username := c.Query("username")
-	thesisID := c.Query("thesis_id")
+	param := userLikeParam{}
+	_ = c.ShouldBindJSON(&param)
+	username := param.Username
+	thesisID := param.ThesisID
 
 	//先判断用户和论文是否都存在
 	user, _ := database.DB.Raw("select * from user where username = ? ", username).Rows()
@@ -132,7 +152,9 @@ func UserDeleteLike(c *gin.Context) {
 
 // UserShowLike 返回用户收藏列表
 func UserShowLike(c *gin.Context) {
-	username := c.Query("username")
+	param := showUserLikeParam{}
+	_ = c.ShouldBindJSON(&param)
+	username := param.Username
 
 	//取出该用户所有收藏文章的ID号
 	idRows ,_ := database.DB.Raw("select thesis_id from user_like where username = ?", username).Rows()
