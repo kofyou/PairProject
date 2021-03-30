@@ -47,8 +47,8 @@ export default defineComponent({
     const meeting = ref("");
 
     function getCond() {
-        // console.log(year.value);
-        // console.log(meeting.value);
+        console.log(year.value);
+        console.log(meeting.value);
         // document.getElementById("#pop").style.display = "none";
         emit("year",year.value);
         emit("meeting", meeting.value);

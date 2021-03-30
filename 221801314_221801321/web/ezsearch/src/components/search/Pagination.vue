@@ -25,7 +25,7 @@ export default defineComponent({
     function handleCurrentChange(val) {
       page = val;
       getPage();
-      console.log(`当前页: ${page}`);
+      // console.log(`当前页: ${page}`);
     }
     const getPage = () => {
       emit("page", page);

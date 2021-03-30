@@ -11,26 +11,21 @@
         <!-- 搜索框 -->
         <el-col :span="5" :offset="0"></el-col>
         <el-col :span="12">
-          <SearchBar
-            @title="getTitle"
-            />
+          <SearchBar @title="getTitle" />
         </el-col>
         <!-- 搜索按钮 -->
         <el-col :span="1" :push="0">
           <el-button
             type="primary"
             class="search-btn blue-background"
-            style="height: 60px; font-size:20px;"
+            style="height: 60px; font-size: 20px"
             @click="search"
             >搜索</el-button
           >
         </el-col>
         <!-- 高级搜索 -->
         <el-col :span="1" :push="0">
-          <AdvanceSearch
-            @year="getYear" 
-            @meeting="getMeeting"
-            />
+          <AdvanceSearch @year="getYear" @meeting="getMeeting" />
         </el-col>
         <el-col :span="5" :offset="0"></el-col>
       </el-row>
@@ -43,21 +38,25 @@
       <Paper />
       <Paper />
     </el-space>
-    <Pagination 
-      @page="getPage"
-      />
+    <Pagination @page="getPage" />
     <Footer />
   </div>
 </template>
 <script>
-import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
+import {
+  provide,
+  defineComponent,
+  ref,
+  onMounted,
+  getCurrentInstance,
+} from "vue";
 import Header from "@/components/common/Header.vue";
 import Paper from "@/components/search/Paper.vue";
 import Carousel from "@/components/search/Carousel.vue";
 import CarouselV from "@/components/search/CarouselVertical.vue";
 import SearchBar from "@/components/search/Search.vue";
-import AdvanceSearch from "@/components/search/AdvanceSearch.vue"
-import Pagination from "@/components/search/Pagination.vue"
+import AdvanceSearch from "@/components/search/AdvanceSearch.vue";
+import Pagination from "@/components/search/Pagination.vue";
 import Footer from "@/components/common/Footer.vue";
 export default defineComponent({
   name: "Home",
@@ -73,50 +72,64 @@ export default defineComponent({
   },
   setup() {
     const { ctx } = getCurrentInstance();
-    var title = ref('');
-    var year = ref('');
-    var meeting = ref('');
-    var page = ref('');
+    var title = ref("");
+    var year;
+    var meeting;
+    var page;
     //获取输入框组件title
     const getTitle = (val) => {
       title = val;
       console.log(title);
-    }
+    };
     //获取高级搜索组件条件
     const getYear = (val) => {
-      console.log(val)
+      console.log(val);
       year = val;
-    }
+    };
     const getMeeting = (val) => {
-      console.log(val)
+      console.log(val);
       meeting = val;
-    }
+    };
     //获取分页组件当前页面
     const getPage = (val) => {
       page = val;
-    }
+    };
     //搜索按钮事件
     const search = () => {
-      console.log(title);
-      console.log(year)
-      console.log(meeting)
-      if (page === undefined)
-        page = 1;
+      if (page === undefined) page = 1;
+      // console.log(title);
+      // console.log(year);
+      // console.log(meeting);
+      meeting === undefined ? null : meeting;
+      title.value === "" ? null : title.value;
+      year === undefined ? null : year;
+      console.log(
+        JSON.stringify({
+          address: page - 1,
+          source: meeting,
+          title: title,
+          years: year,
+        })
+      );
+
       queryPaper();
-    }
+    };
     //get请求查询title
     const queryPaper = () => {
       ctx.$http
         .get("/paper/title", {
-          address: page-1, //页数
+          address: page - 1, //页数
           source: meeting,
           title: title,
           years: year,
         })
         .then((data) => {
-          console.log(data)
+          console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            let name = "paper" + i;
+          }
         });
-    }
+    };
     return {
       title,
       year,
