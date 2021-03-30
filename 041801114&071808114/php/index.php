@@ -7,11 +7,13 @@
 <script>
 	function checkboxfunc(){
 			document.getElementById('deletebtn').style.backgroundColor='#D60104';
-			}
-		
-	function jump(a){
-		alert(a);
 	}
+	function jump(a){
+			sessionStorage['paper_id'] = a;
+			window.location.href = "http://blog.tozzger.info/quickfind/paper";
+	}
+	if (sessionStorage['curr_page'] == undefined)
+		sessionStorage['curr_page'] = "1";
 	</script>
 </head>
 
@@ -37,7 +39,7 @@
 	<div class="middle">
 		<div class="texttitle" id="paper_template" style="display:none;">
 			<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
-			<p class="list" onclick="jump('x');"></p>	
+			<p class="list" onClick="jump(this.type)"></p>	
 		</div>
 		<form id="paperlist">
 	    </form>
@@ -49,15 +51,7 @@
 			  <input type="button" class="deletebtn" id="deletebtn" value="删除">
 		  </form>
 	    </div>
-		<div class="pagelist">
-			<a href="#">«</a>
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<a href="#">3</a>
-			<a href="#">4</a>
-			<a href="#">5</a>
-			<a href="#">6</a>
-	 		<a href="#">»</a>
+		<div class="pagelist" id="pagelist">
 			
 	    </div>
     </div>
@@ -66,37 +60,69 @@
 
 <script src=<?= bloginfo('template_directory').'/quickfind/jquery.min.js'; ?>></script>
 <script>
+		function addPageBtn(str, index)
+		{
+			var btn = document.createElement('a');
+			btn.innerHTML = str;
+			btn.type = index;
+			btn.onclick = function() {
+				sessionStorage['curr_page'] = btn.type;
+				document.getElementById('searchbtn').click();
+			};
+			document.getElementById('pagelist').appendChild(btn);
+		}
 		function succ(result){
         	var childs=document.getElementById('paperlist').childNodes;  
 			for(var i=childs.length-1;i>=0;i--){  
 				document.getElementById('paperlist').removeChild(childs.item(i));  
 			}
-			for(var i=0;i<result.length;i++){
+			for(var i=0;i<result["row"].length;i++){
 				var paper = document.getElementById('paper_template').cloneNode(true);
 				paper.style = '';
-				paper.getElementsByTagName('p')[0].innerHTML = result[i].title;
+				paper.getElementsByTagName('p')[0].type = result["row"][i].id;
+				paper.getElementsByTagName('p')[0].innerHTML = result["row"][i].title;
 				document.getElementById('paperlist').appendChild(paper);
 			}
-        }
+			childs = document.getElementById('pagelist').childNodes;
+			for(var i=childs.length-1;i>=0;i--){  
+				document.getElementById('pagelist').removeChild(childs.item(i));  
+			}
+			var page = Math.ceil(result.leng / 10);
+			if (page > 1) {
+				if (sessionStorage['curr_page'] != 1) {
+					addPageBtn("<", sessionStorage['curr_page'] - 1)
+				}
+				var from = Math.max(1, sessionStorage['curr_page']);
+				var to = Math.min(from + 6, page);
+				for (var i = from; i < Math.min(from + 6, to); i++)
+				{
+					addPageBtn(i, i)
+				}
+				if (sessionStorage['curr_page'] != page) {
+				addPageBtn(">", parseInt(sessionStorage['curr_page']) + 1)
+				}
+			}
+		}
 
 		$(document).ready(function() {
 			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
 			function search(){     
-			$.ajax({
-				type:'post',
-				url:ajaxurl,
-                data:{'action':'keyword_search',
-					  'kwd':document.getElementById('searchtext').value.trim(),
-					  'except':sessionStorage['except']},
-                cache:false,
-                dataType:'json',
-                success:succ,
-                error:function(data){
-					console.log("error")
-				}
-			});
-			return false;
-		}
+				$.ajax({
+					type:'post',
+					url:ajaxurl,
+                	data:{'action':'keyword_search',
+					  	'kwd':document.getElementById('searchtext').value.trim(),
+					  	'except':sessionStorage['except'],
+						 'curr_page':sessionStorage['curr_page']},
+                	cache:false,
+                	dataType:'json',
+                	success:succ,
+                	error:function(data){
+						console.log("error")
+					}
+				});
+				return false;
+			}	
 			document.getElementById('searchbtn').onclick = search;
 			search();
 		});

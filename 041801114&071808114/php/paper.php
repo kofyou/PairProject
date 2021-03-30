@@ -19,7 +19,7 @@
   <div class="page">
 	 <div class="message" id="pagemessage">
 	   <p>标题</p>
-			 <form><input type="text" class="message" name="title" readonly="readonly"></form>
+			 <textarea class="mutitext"  id="title" rows="5"  readonly="readonly"></textarea>
 	   <p>摘要</p>
 			 <textarea class="mutitext"  id="abstract" rows="5"  readonly="readonly"></textarea>
 	   <p>关键词</p>
@@ -30,4 +30,28 @@
   </div>
 </div>
 </body>
+<script src=<?= bloginfo('template_directory').'/quickfind/jquery.min.js'; ?>></script>
+<script>
+$(document).ready(function() {
+			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';  
+			$.ajax({
+				type:'post',
+				url:ajaxurl,
+                data:{'action':'paper_detail',
+					  'paper_id':sessionStorage['paper_id']},
+                cache:false,
+                dataType:'json',
+                success:function(result){
+					document.getElementById('title').innerHTML = result.title;
+					document.getElementById('abstract').innerHTML = result.abstract;
+					document.getElementById('keyword').innerHTML = result.keywords;
+					document.getElementById('pagelink').innerHTML = result.url;
+				},
+                error:function(data){
+					console.log("error")
+				}
+			});
+			return false;
+});
+</script>
 </html>
