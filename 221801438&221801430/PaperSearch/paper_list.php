@@ -65,9 +65,9 @@
     <div id="content">
 
         <form name="search_key" id="search_key">
-            <input type="text" id="title" name="title" class="key" value="题名"/>
-            <input type="text" id="author" name="author" class="key" value="作者"/>
-            <input type="text" id="date" name="date" class="key" value="时间"/>
+            <input type="text" id="title" name="title" class="key" value="" placeholder="标题"/>
+            <input type="text" id="author" name="author" class="key" value="" placeholder="会议"/>
+            <input type="text" id="date" name="date" class="key" value="" placeholder="关键词"/>
             <input type="submit" id="ensure" name="ensure" value="在结果中检索" class="key"/>
         </form>
 
@@ -77,7 +77,7 @@
             $db_password = "";
             $db_database = "paperdb";
             /*创建连接*/
-            $conn = new mysqli($db_host, 	$db_username, $db_password, $db_database);
+            $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
             if (mysqli_connect_errno()) {
                echo '错误: 无法连接到数据库. 请稍后再次重试.';
                exit;
@@ -91,18 +91,36 @@
                 // 输出数据
                 while($row = $result->fetch_assoc()) {
                     echo '<div class="result_" id="result1">'.
-                    '<img src="image/md-close.svg" class="icon_close" id="icon_close_one" alt="alt"/>'.
                     '<p class="paper_title" id="one">'.$row["post_title"].'</p>'.
                     '<p class="source" id="source_one">'.$row["meeting_date"].' ('.$row["release_date"].')</p>'.
                     '<textarea rows="3" cols="100" class="summary" id="summary_one" readonly="readonly">'.$row["post_content"].'</textarea>'.
                     '<a href='.$row["link"].' id="paper_link" target="_blank">阅读全文</a>'.
                     '<p class="keywords" id="keyword_one">'.$row["keywords"].'</p>'.
-                    '<button class="in_bt_one" id="bt_in_one">导入</button>'.
+                    '<a href="paper_list.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="paper_list.php">删除</a>'.
                 '</div>';
                 }
             } else {
                 echo "0 结果";
             }
+            $conn->close();
+        ?>
+
+        <?php
+            $db_host = "localhost";
+            $db_username = "root";
+            $db_password = "";
+            $db_database = "paperdb";
+            /*创建连接*/
+            $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
+            if (mysqli_connect_errno()) {
+                echo '错误: 无法连接到数据库. 请稍后再次重试.';
+                exit;
+            }
+            $conn->query("SET NAMES utf8");
+            //删除当前选择列表
+            $title = isset($_GET['title'])?$_GET['title']:' ';
+            $sql = "delete from paper_user where post_title='".$title."'";
+            $result = $conn->query($sql);
             $conn->close();
         ?>
     </div>
