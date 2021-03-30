@@ -110,7 +110,7 @@
 <div class="topnav">
     <a class="active" href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
-    <a href="Chart.jsp"target="leftFrame"> 图表</a>
+    <a href="CVPR.jsp"target="leftFrame"> 图表</a>
 </div>
 
 <body>
