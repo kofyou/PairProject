@@ -6,13 +6,15 @@ $(function(){
             $.ajax({
                 url:"../../PaperListServlet",
                 type:"post",
-                data:{
+                data:JSON.stringify({
                     "userName":USER_INFO.userID,
                     "type": 1,
                     "str" : ""
-                },
+                }),
+                contentType:"application/json",
                 dataType:"json",
                 success:data=>{
+                    $("#reg_wait").css("display","none")
                     $.each(data,function(index,paper){
                         var obj = {
                             "title" : paper.title,
@@ -54,8 +56,10 @@ $(function(){
                 },
                 error:()=>{
                     alert("网络烂掉了，你什么也看不到了")
+                    $("#reg_wait").css("display","none")
                 }
             }),
+            $("#reg_wait").css("display","inline-block")
             $(".kongxin").click(function(){
                 if(confirm("确定要收藏吗"))
                 {
@@ -63,10 +67,11 @@ $(function(){
                     let addInLike = $(".paper-title").eq(addIndex).text()
                     $.ajax({
                         url:"../../UpdateMyCollectServlet",
-                        data:{
+                        data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : addInLike
-                        },
+                        }),
+                        contentType:"application/json",
                         type:"POST",
                         success:data=>{
                             if(data==true){
@@ -90,10 +95,11 @@ $(function(){
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
                         url:"../../DeleteMyCollectSevlet",
-                        data:{
+                        data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : removeInLike
-                        },
+                        }),
+                        contentType:"application/json",
                         type:"POST",
                         success:data=>{
                             if(data==true){

@@ -43,22 +43,30 @@ $(function(){
          */
         $.ajax({
             url : "../GetUserInfoServlet",
-            data : {
+            type:"post",
+            data : JSON.stringify({
                 "account" : USER_INFO.userID,
                 "userName" : USER_INFO.name,
                 "address" : USER_INFO.address,
                 "company" : USER_INFO.company,
                 "info" : USER_INFO.sign
-            },
+            }),
+            contentType:"application/json",
             success:data=>{
+                $("#set_wait").css("display","none")
+                $("#saveWord").css("display","inline")
                 if(data==true)
                     alert("保存成功")
                 else
                     alert("也不知道为什么就保存失败了qwq")
             },
             error:()=>{
+                $("#set_wait").css("display","none")
+                $("#saveWord").css("display","inline")
                 alert("网络可能已经炸了，再等等吧orz")
             }
         })
+        $("#set_wait").css("display","inline-block")
+        $("#saveWord").css("display","none")
     })
 })

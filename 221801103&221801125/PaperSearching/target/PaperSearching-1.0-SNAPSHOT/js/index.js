@@ -21,9 +21,10 @@ $(function(){
             this.bindEvents()
             $.ajax({
                 url:"../GetHottestKeywordsServlet",
-                method:"post",
+                type:"post",
                 dataType:"json",
                 success:data=>{
+                    $("#reg_wait").css("display","none")
                     let i = 0
                     $.each(data,function(index,str)
                     {
@@ -46,8 +47,10 @@ $(function(){
                 },
                 error:()=>{
                     alert("网烂掉了哦")
+                    $("#reg_wait").css("display","none")
                 }
             })
+            $("#reg_wait").css("display","inline-block")
         },
         bindEvents:function(){
             var logOut = $(".slide-down li:eq(1)")

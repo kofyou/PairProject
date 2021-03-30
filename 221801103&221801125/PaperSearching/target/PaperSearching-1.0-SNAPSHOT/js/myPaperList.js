@@ -7,11 +7,13 @@ $(function(){
             $.ajax({
                 url : "../../MyCollectServlet",
                 type : "post",
-                data : {
+                data : JSON.stringify({
                     "type" : 0,
                     "userName" : USER_INFO.userID
-                },
+                }),
+                contentType:"application/json",
                 success:data=>{
+                    $("#reg_wait").css("display","none")
                     $.each(data,function(index,like){
                         var obj = {
                             "title" : like.title,
@@ -45,8 +47,10 @@ $(function(){
                 error:()=>{
                     alert("网络不好，什么都看不到")
                     $(".deleteLike").addClass("xiaoshi")
+                    $("#reg_wait").css("display","none")
                 }
-            }),
+            })
+            $("#reg_wait").css("display","inline-block")
             $(".icon-shanchu").click(function(){
                 if(confirm("确定取消收藏吗"))
                 {
@@ -54,10 +58,11 @@ $(function(){
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
                         url:"../../DeleteMyCollectServlet",
-                        data:{
+                        data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : removeInLike
-                        },
+                        }),
+                        contentType:"application/json",
                         type:"POST",
                         success:data=>{
                             if(data==true){
