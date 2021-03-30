@@ -28,6 +28,10 @@ public class GetHottestKeywordsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HashMap<String,Integer> hashMap=new Paperserviceimpl().GetHottestKeywords();
+        JSONObject hottest =new JSONObject();
+        hottest.put("eccv",new int[]{315,0,776,324,1334});
+        hottest.put("cvpr",new int[]{451,504,465,465,486});
+        hottest.put("iccv",new int[]{0,505,0,494,0});
         List<JSONObject> jsonObjects=new ArrayList<>();
         for(Map.Entry<String,Integer> entry:hashMap.entrySet())
         {
@@ -36,7 +40,8 @@ public class GetHottestKeywordsServlet extends HttpServlet
             jsonObject.put("count",entry.getValue());
             jsonObjects.add(jsonObject);
         }
+        hottest.put("top10",jsonObjects);
 
-        response.getWriter().print(jsonObjects);
+        response.getWriter().print(hottest);
     }
 }
