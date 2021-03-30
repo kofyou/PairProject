@@ -92,8 +92,8 @@
     var myChart = echarts.init(document.getElementById('main'));
 
     // 指定图表的配置项和数据
-    var yearlist = ['2001','2007','2009','2011','2013','2015','2017','2019'];
-    var wordList = ['image','computer','analysis','vision','layout','recogn','detection'];
+    var year = ['2001','2007','2009','2011','2013','2015','2017','2019'];
+    var word = ['image','computer','analysis','vision','layout','recogn','detection'];
     var option = {
         timeline:{
             axisType: 'category',
@@ -145,7 +145,7 @@
             xAxis: [
                 {
                     type:'category',
-                    data: wordList,
+                    data: word,
                     axisPointer: {
                         type: 'shadow'
                     },
@@ -178,7 +178,7 @@
         options:[]
     };
 
-    for (var n = 0; n<yearlist.length; n++){
+    for (var n = 0; n<year.length; n++){
         option.options.push({
             title:{
                 show:true,
@@ -193,7 +193,7 @@
                     seriesLayoutBy: 'row',
                     encode:{
                         x:'year',
-                        y:yearlist[n]
+                        y:year[n]
                     }
                 },
             ]

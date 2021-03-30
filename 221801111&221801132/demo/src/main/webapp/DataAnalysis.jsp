@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: LQ
-  Date: 2021/3/23
-  Time: 20:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -80,7 +73,7 @@
 </div>
 
 <div class="topnav2">
-    <a href="#"target="leftFrame">关键词图谱</a>
+    <a href="KeyWordChart.jsp" target="leftFrame">关键词图谱</a>
     <a href="Type.jsp" target="leftFrame"> 热词动图</a>
 </div>
 

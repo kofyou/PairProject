@@ -1,12 +1,7 @@
 <%@ page import="pojo.Paper" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: LQ
-  Date: 2021/3/23
-  Time: 20:30
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
@@ -112,6 +107,7 @@
         margin: 10px auto;
         border-collapse: collapse;/*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
     }
+
     th,td {
         height: 100px;
         line-height: 25px;
@@ -179,13 +175,13 @@
 
     <table border="1" width="400">
         <tr>
-            <td>论文标题</td>
-            <td>摘要</td>
-            <td>原文链接</td>
-            <td>关键词</td>
-            <td>年份</td>
-            <td>类别</td>
-            <td>操作</td>
+            <th>论文标题</th>
+            <th>摘要</th>
+            <th>原文链接</th>
+            <th>关键词</th>
+            <th>年份</th>
+            <th>类别</th>
+            <th>操作</th>
         </tr>
 
         <%
@@ -202,8 +198,8 @@
                 <td><%=paper.getType() %></td>
                 <td>
                     <form method="post" id="form1" action="<%=path%>/DeleteServlet">
-                    <input type="submit" name="deleteButton" value="删除">
-                    <input type="hidden" id="title" name="title" value="<%=paper.getTitle() %>">
+                        <input type="submit" name="deleteButton" value="删除">
+                        <input type="hidden" id="title" name="title" value="<%=paper.getTitle() %>">
                     </form>
                 </td>
 

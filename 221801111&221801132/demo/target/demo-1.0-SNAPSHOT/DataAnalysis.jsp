@@ -80,7 +80,7 @@
 </div>
 
 <div class="topnav2">
-    <a href="#"target="leftFrame">关键词图谱</a>
+    <a href="KeyWordChart.jsp" target="leftFrame">关键词图谱</a>
     <a href="Type.jsp" target="leftFrame"> 热词动图</a>
 </div>
 
