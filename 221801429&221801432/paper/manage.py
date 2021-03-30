@@ -160,7 +160,7 @@ def goto_chart():
     data = {
         'top': top_list,
         'list': list_a,
-        'list_word': list_word
+        'list_word': list_word[0:7],
     }
     return render_template('chart.html', data=data)
 

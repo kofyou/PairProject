@@ -23,8 +23,8 @@
         <div class="detail_con fl" style="height:auto">
             <h3>图表</h3>
             <div class="detail_about clearfix">
-                <span class="time_souce fl">不限
-                    <span style="margin-left: 10px;">来源: <strong>大数据</strong></span>
+                <span class="time_souce fl">不限{{ data.list_word}}
+                    <span style="margin-left: 10px;">来源: <strong>近几年三大顶会</strong></span>
                 </span>
             </div>
             <h4>折线图</h4>
@@ -35,182 +35,183 @@
             <div id="container_iccv" style="height: 400px"></div>
             <script>
                 var dom_cvpr = document.getElementById("container_cvpr");
-var myChart_cvpr = echarts.init(dom_cvpr);
-var option_cvpr;
+                var myChart_cvpr = echarts.init(dom_cvpr);
+                var option_cvpr;
 
-var dom_eccv = document.getElementById("container_eccv");
-var myChart_eccv = echarts.init(dom_eccv);
-var option_eccv;
+                var dom_eccv = document.getElementById("container_eccv");
+                var myChart_eccv = echarts.init(dom_eccv);
+                var option_eccv;
 
-var dom_iccv = document.getElementById("container_iccv");
-var myChart_iccv = echarts.init(dom_iccv);
-var option_iccv;
+                var dom_iccv = document.getElementById("container_iccv");
+                var myChart_iccv = echarts.init(dom_iccv);
+                var option_iccv;
 
 
 
-option_cvpr = {
-    title: {
-        text: 'CVPR'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['邮件营销', '联盟广告', '视频广告']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: [{% for i in range(7)%}
-                {{ data.list_word[i] }}
-               {% endfor %}
-        ]
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: '邮件营销',
-            type: 'line',
-            stack: '',
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: '联盟广告',
-            type: 'line',
-            stack: '',
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: '视频广告',
-            type: 'line',
-            stack: '',
-            data: [150, 232, 201, 154, 190, 330, 410]
-        }
-    ]
-};
+                option_cvpr = {
+                    title: {
+                        text: 'CVPR'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['邮件营销', '联盟广告', '视频广告']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                       type: 'category',
+                        boundaryGap: false,
+                        data: [
+                            {% for i in range(7) %}
+                            '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '邮件营销',
+                            type: 'line',
+                            stack: '',
+                            data: [120, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '联盟广告',
+                            type: 'line',
+                            stack: '',
+                            data: [220, 182, 191, 234, 290, 330, 310]
+                        },
+                        {
+                            name: '视频广告',
+                            type: 'line',
+                            stack: '',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        }
+                    ]
+                };
 
-option_eccv = {
-    title: {
-        text: 'ECCV'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['邮件营销', '联盟广告', '视频广告']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: '邮件营销',
-            type: 'line',
-            stack: '',
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: '联盟广告',
-            type: 'line',
-            stack: '',
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: '视频广告',
-            type: 'line',
-            stack: '',
-            data: [150, 232, 201, 154, 190, 330, 410]
-        }
-    ]
-};
+                option_eccv = {
+                    title: {
+                        text: 'ECCV'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['邮件营销', '联盟广告', '视频广告']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '邮件营销',
+                            type: 'line',
+                            stack: '',
+                            data: [120, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '联盟广告',
+                            type: 'line',
+                            stack: '',
+                            data: [220, 182, 191, 234, 290, 330, 310]
+                        },
+                        {
+                            name: '视频广告',
+                            type: 'line',
+                            stack: '',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        }
+                    ]
+                };
 
-option_iccv = {
-    title: {
-        text: 'ICCV'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['邮件营销', '联盟广告', '视频广告']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: '邮件营销',
-            type: 'line',
-            stack: '',
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: '联盟广告',
-            type: 'line',
-            stack: '',
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: '视频广告',
-            type: 'line',
-            stack: '',
-            data: [150, 232, 201, 154, 190, 330, 410]
-        }
-    ]
-};
+                option_iccv = {
+                    title: {
+                        text: 'ICCV'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['邮件营销', '联盟广告', '视频广告']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '邮件营销',
+                            type: 'line',
+                            stack: '',
+                            data: [120, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '联盟广告',
+                            type: 'line',
+                            stack: '',
+                            data: [220, 182, 191, 234, 290, 330, 310]
+                        },
+                        {
+                            name: '视频广告',
+                            type: 'line',
+                            stack: '',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        }
+                    ]
+                };
 
-if (option_cvpr && typeof option_cvpr === 'object') {
-    myChart_cvpr.setOption(option_cvpr);
-    myChart_eccv.setOption(option_eccv);
-    myChart_iccv.setOption(option_iccv);
-}
+                if (option_cvpr && typeof option_cvpr === 'object') {
+                    myChart_cvpr.setOption(option_cvpr);
+                    myChart_eccv.setOption(option_eccv);
+                    myChart_iccv.setOption(option_iccv);
+                }
 
-            </script>
+                </script>
 
         </div>
         <div class="rank_con fr">
