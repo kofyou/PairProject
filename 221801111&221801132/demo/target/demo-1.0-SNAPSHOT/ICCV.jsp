@@ -99,7 +99,7 @@
             axisType: 'category',
             autoPlay: true,
             playInterval: 1500,
-            data: yearlist,
+            data: year,
             label:{
                 fontSize: 18
             }

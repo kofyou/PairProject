@@ -1,8 +1,6 @@
 <%@ page import="pojo.Paper" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.PaperDAO" %>
-<%@ page import="dao.PaperDAOImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>

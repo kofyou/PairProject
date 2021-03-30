@@ -1,12 +1,7 @@
 <%@ page import="pojo.Paper" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: LQ
-  Date: 2021/3/23
-  Time: 20:30
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
