@@ -9,12 +9,21 @@
 		class="com.cs.PairWork1.Controller.PaperListController">
 		
 	</bean>
+	<bean id="paperListController2"
+		class="com.cs.PairWork1.Controller.PaperListController">
+		
+	</bean>
+	<bean id="paperListController3"
+		class="com.cs.PairWork1.Controller.PaperListController">
+		
+	</bean>
 	<bean
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-
 				<prop key="/paperListController.do">paperListController</prop>
+				<prop key="/paperListController2.do">paperListController2</prop>
+				<prop key="/paperListController3.do">paperListController3</prop>
 				
 			</props>
 		</property>
@@ -32,6 +41,6 @@
 			</value>
 		</property>
 		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />
+		<property name="suffix" value=".html" />
 	</bean>
 </beans>

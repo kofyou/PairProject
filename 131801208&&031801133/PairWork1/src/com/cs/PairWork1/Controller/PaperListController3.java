@@ -17,7 +17,7 @@ import com.cs.PairWork1.Dao.Paper;
 import com.cs.PairWork1.Service.PaperListServiceImpl;
 import com.cs.PairWork1.Utils.GetJson;
 
-public class PaperListController implements Controller {
+public class PaperListController3 implements Controller {
 
 	
 	@Override
@@ -30,9 +30,9 @@ public class PaperListController implements Controller {
 		
 		JSONArray jsonArray= new JSONArray();
 		PaperListServiceImpl p =new PaperListServiceImpl();
-	
-		File 	 file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
-	
+		
+		File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
+		
 		jsonArray.addAll(p.getDirectory(file));
 		byte[] retArr = jsonArray.toJSONString().getBytes();
 		arg1.getOutputStream().write(retArr);

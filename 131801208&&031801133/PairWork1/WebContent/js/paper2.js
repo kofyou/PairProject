@@ -52,30 +52,5 @@ $ (function($){
 		]
 	
 	});
-	$("#CVPR").on("click",function(e){
-		alert("hellw1111");
-		$.ajax({
-			type : "post",
-			url : "/PairWork1/paperListController3.do",
-			data : {
-				about : about,
-				url : url,
-				title : title,
-				keywords : keywords,
-				id : id,
-			},
-			dataType : "json",
-			success : function(json) {
-
-				$("#papertab").bootstrapTable('load', json);
-			}
-		});
-			 
-
-		// $("#papertab").load("/PairWork1/paperListController3.do");
-		
-		//$("#papertab").bootstrapTable('load',"/PairWork1/paperListController3.do");
-		
-	});
 
 });
