@@ -2,7 +2,7 @@ window.onload = function(){
 	var tr=document.getElementsByTagName("tr");
 	for (var i= 0;i < tr.length;i ++){
 		bgcChange(tr[i]);
-	}           
+	}
 }
 
 //鼠标悬停事件
