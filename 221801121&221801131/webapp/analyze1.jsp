@@ -73,14 +73,27 @@
             option1 = {
                 xAxis: {
                     max: 'dataMax',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#000000'
+                        }
+                    }
                 },
                 yAxis: {
                     type: 'category',
-                    data: ['Deep learning', 'Object detection', 'Semantic segmentation', 'Domain adaptation', '3D reconstruction', 'Unsupervised learning', 'Attention', '3d displays', 'Convolutional neural networks'],
+                    data: ['Cameras', 'Training', 'Computer vision', 'Feature extraction', 'Shape', 'Image segmentation', 'Robustness', 'Visualization', '3D displays', 'Layout'],
                     inverse: true,
                     animationDuration: 300,
                     animationDurationUpdate: 300,
-                    max: 4 // only the largest 3 bars will be displayed
+                    max: 4,
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#000000'
+                        },
+                        interval:0,
+                    }
                 },
                 series: [{
                     realtimeSort: true,
@@ -94,12 +107,19 @@
                     }
                 }],
                 legend: {
+                    textStyle:{
+                        fontSize: 18,//字体大小
+                        color: '#000000'//字体颜色
+                    },
                     show: true
                 },
                 animationDuration: 0,
                 animationDurationUpdate: 1000,
                 animationEasing: 'linear',
-                animationEasingUpdate: 'linear'
+                animationEasingUpdate: 'linear',
+                grid:{
+                    left:140,
+                }
             };
 
             function run() {

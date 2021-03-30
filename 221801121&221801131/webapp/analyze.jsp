@@ -64,7 +64,6 @@
             var chartDom = document.getElementById('main1');
             var myChart = echarts.init(chartDom);
             var option1;
-
             var data = [];
             for (let i = 0; i < 10; ++i) {
                 data.push(111);
@@ -73,6 +72,12 @@
             option1 = {
                 xAxis: {
                     max: 'dataMax',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#000000'
+                        }
+                    }
                 },
                 yAxis: {
                     type: 'category',
@@ -81,7 +86,13 @@
                     animationDuration: 300,
                     animationDurationUpdate: 300,
                     max: 4,
-
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#000000'
+                        },
+                        interval:0,
+                    }
                 },
                 series: [{
                     realtimeSort: true,
@@ -95,12 +106,19 @@
                     }
                 }],
                 legend: {
+                    textStyle:{
+                        fontSize: 18,//字体大小
+                        color: '#000000'//字体颜色
+                    },
                     show: true
                 },
                 animationDuration: 0,
                 animationDurationUpdate: 1000,
                 animationEasing: 'linear',
-                animationEasingUpdate: 'linear'
+                animationEasingUpdate: 'linear',
+                grid:{
+                    left:140,
+                }
             };
 
             function run() {
