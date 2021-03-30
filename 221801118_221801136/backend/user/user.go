@@ -73,7 +73,7 @@ func UserRegister(c *gin.Context) {
 
 
 // UserAddLike 用户增加收藏
-func UserAddLike(c *gin.Context) {
+func UserLikeAdd(c *gin.Context) {
 	param := userLikeParam{}
 	_ = c.ShouldBindJSON(&param)
 	username := param.Username
@@ -112,7 +112,7 @@ func UserAddLike(c *gin.Context) {
 
 
 // UserDeleteLike 用户删除收藏
-func UserDeleteLike(c *gin.Context) {
+func UserLikeDelete(c *gin.Context) {
 	param := userLikeParam{}
 	_ = c.ShouldBindJSON(&param)
 	username := param.Username
@@ -151,7 +151,7 @@ func UserDeleteLike(c *gin.Context) {
 
 
 // UserShowLike 返回用户收藏列表
-func UserShowLike(c *gin.Context) {
+func UserLikeShow(c *gin.Context) {
 	param := showUserLikeParam{}
 	_ = c.ShouldBindJSON(&param)
 	username := param.Username
