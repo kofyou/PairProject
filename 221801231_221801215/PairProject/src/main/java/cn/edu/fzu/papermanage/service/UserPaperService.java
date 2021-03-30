@@ -91,12 +91,11 @@ public class UserPaperService {
      * @return the list 分页后的用户关联论文列表
      */
     public List<PaperWithKeywords> findAllUserFullPaperByPage(Integer pageNum,Integer pageSize,Integer userId) {
-        Pageable pageRequest = PageRequest.of(pageNum - 1,pageSize);
-        Page<Paper> papers = paperDao.findAllUserPapersByPage(userId,pageRequest);
+        List<Paper> papers = paperDao.findAllUserPapersByPage(userId,(pageNum - 1) * pageSize,pageSize);
         return getPaperWithKeywords(papers);
     }
 
-    private List<PaperWithKeywords> getPaperWithKeywords(Page<Paper> papers) {
+    private List<PaperWithKeywords> getPaperWithKeywords(Iterable<Paper> papers) {
         List<PaperWithKeywords> papersWithKeywords = new LinkedList<>();
         PaperWithKeywords paperWithKeywords;
         for (Paper paper : papers) {

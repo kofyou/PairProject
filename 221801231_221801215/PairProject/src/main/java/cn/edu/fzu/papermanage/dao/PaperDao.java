@@ -21,6 +21,49 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
     List<Paper> findPapersByTitle(String titleProcessed);
 
     /**
+     * 通过输入模糊查询所有论文标题，摘要，关键词
+     *
+     * @param fuzzyContent the fuzzy content 模糊查询的内容
+     * @return the list 论文列表（不包含关键词）
+     */
+    @Query(value = "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers " +
+            "where title like ?1 " +
+            "UNION " +
+            "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers " +
+            "where abstract like ?1 " +
+            "UNION " +
+            "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers,keywords " +
+            "where keywords.keyword like ?1 " +
+            "and keywords.paperId = papers.id",nativeQuery = true)
+    List<Paper> fuzzyFindPaperByKeywordOrTitleOrAbstract(String fuzzyContent);
+
+    /**
+     * Fuzzy find paper by keyword or title or abstract and page list.
+     *
+     * @param fuzzyContent the fuzzy content
+     * @param offset       the offset
+     * @param pageSize     the page size
+     * @return the list
+     */
+    @Query(value = "(select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers " +
+            "where title like ?1) " +
+            "UNION " +
+            "(select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers " +
+            "where abstract like ?1) " +
+            "UNION " +
+            "(select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from papers,keywords " +
+            "where keywords.keyword like ?1 " +
+            "and keywords.paperId = papers.id) " +
+            "limit ?2,?3",nativeQuery = true)
+    List<Paper> fuzzyFindPaperByKeywordOrTitleOrAbstractAndPage(String fuzzyContent,Integer offset,Integer pageSize);
+
+    /**
      * 通过用户id查找其关联的所有论文（不包括关键词）
      *
      * @param userId the user id 用户id
@@ -50,13 +93,15 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
     /**
      * 根据用户id查询所有用户关联的论文（不包含关键词）
      *
-     * @param userId      the user id 用户id
-     * @param pageRequest the page request 分页
+     * @param userId   the user id 用户id
+     * @param offset   the offset
+     * @param pageSize the page size 起始序号
      * @return the page 用户关联的论文列表页（不包含关键词）
      */
     @Query(value = "select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
             "from user_paper " +
             "inner join papers on user_paper.paperId = papers.id " +
-            "where user_paper.userId = ?1 ",nativeQuery = true)
-    Page<Paper> findAllUserPapersByPage(Integer userId,Pageable pageRequest);
+            "where user_paper.userId = ?1 " +
+            "limit ?2,?3 ",nativeQuery = true)
+    List<Paper> findAllUserPapersByPage(Integer userId,Integer offset,Integer pageSize);
 }
