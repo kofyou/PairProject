@@ -12,7 +12,7 @@
         select * from account where name = #{name}
     </select>
 
-    <insert id="insert" parameterType="com.pairproject.papercv.model.Account" keyProperty="name">
+    <insert id="insert" parameterType="com.pairproject.papercv.model.Account">
     insert into account ('name', password)
     values (#{name,jdbcType=CHAR}, #{password,jdbcType=CHAR})
   </insert>
