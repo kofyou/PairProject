@@ -6,11 +6,14 @@ use yii\widgets\ListView;
 use yii\caching\DbDependency;
 use common\models\Papersearchlist;
 use common\models\PapersearchlistSearch;
+use frontend\components\keyWordWidget;
+use common\models\Keywords;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\PapersearchlistSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 ?>
+
 <div class="container">
 
     <div class="row">
@@ -23,11 +26,21 @@ use common\models\PapersearchlistSearch;
             <li>论文广场</li>
     
             </ol>
-    
+
             <?= ListView::widget([
                     'id'=>'papersearchlist',
                     'dataProvider'=>$dataProvider,
                     'itemView'=>'_listitem',//子视图,显示一篇文章的标题等内容.
+
+                
+                  /*  echo Html::button('导入到论文列表',$options = [
+                   *     'onclick'=>addpaper_store($_id,$_title,$_abstract,$_y,$_pub,$_link,$_key),
+                   *     'class'=>'btn btn-danger btn-xs',
+                   *     'data' => [
+                   *     'confirm' => '是否确定导入到论文列表？',
+                   *     'method'=>'post'
+                   *     ],
+                   */
                     'layout'=>'{items} {pager}',
                     'pager'=>[
                           'maxButtonCount'=>10,
@@ -55,10 +68,22 @@ use common\models\PapersearchlistSearch;
                       <button type="submit" class="btn btn-default">搜索</button>
                     </form>
                   </li>
-                </ul>			
+                </ul>	
+      
             </div>
+
+            
+          <div class="keywordType">
+				<ul class="list-group">
+				  <li class="list-group-item">
+				  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  关键词<br>（仅展示出现次数>=10的关键词）
+				  </li>
+				  <li class="list-group-item">
+				  		<?= keyWordWidget::widget();?>
+				  </li>
+				</ul>
+		</div> 
         </div>
-    
       
     
     
