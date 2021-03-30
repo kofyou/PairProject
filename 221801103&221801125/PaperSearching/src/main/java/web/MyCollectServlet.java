@@ -30,8 +30,10 @@ public class MyCollectServlet extends HttpServlet
         {
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("title",paper.getTitle());
-            jsonObject.put("author",paper.getAuthors());
-            jsonObject.put("keyword",paper.getKeywords());
+            String[] authorList=paper.getAuthors().split("//");
+            jsonObject.put("author",authorList);
+            String[] keywordList=paper.getKeywords().split("//");
+            jsonObject.put("keyword",keywordList);
             jsonObject.put("info",paper.getTheabstract());
         }
         response.getWriter().print(jsonObjects);

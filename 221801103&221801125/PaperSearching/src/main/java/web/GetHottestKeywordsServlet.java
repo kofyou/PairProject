@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 @WebServlet(name = "GetHottestKeywordsServlet", value = "/GetHottestKeywordsServlet")
 public class GetHottestKeywordsServlet extends HttpServlet
 {
@@ -26,13 +28,15 @@ public class GetHottestKeywordsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HashMap<String,Integer> hashMap=new Paperserviceimpl().GetHottestKeywords();
-        JsonArray jsonArray=new JsonArray();
+        List<JSONObject> jsonObjects=new ArrayList<>();
         for(Map.Entry<String,Integer> entry:hashMap.entrySet())
         {
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("keyword",entry.getKey());
             jsonObject.put("count",entry.getValue());
+            jsonObjects.add(jsonObject);
         }
-        response.getWriter().print(jsonArray);
+
+        response.getWriter().print(jsonObjects);
     }
 }

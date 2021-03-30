@@ -10,10 +10,16 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import pojo.*;
+import utils.Jdbcutils;
+import utils.RequestToJson;
 
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet
+{
+
+    UserDaoimpl userDaoimpl=new UserDaoimpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,13 +27,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userName=request.getParameter("userName");
-        String password=request.getParameter("password");
+        JSONObject requestJson= JSONObject.fromObject(
+                RequestToJson.getRequestPostStr(request));
+
+        String account=requestJson.getString("account");
+        String password=requestJson.getString("password");
 
         JSONObject jsonObject=new JSONObject();
-        Userserviceimpl userserviceimpl=new Userserviceimpl();
-        UserDaoimpl userDaoimpl=new UserDaoimpl();
-        if(!userDaoimpl.IsUserExist(userName))
+
+        if(!userDaoimpl.IsUserExist(account))
         {
             jsonObject.put("type","0");
             jsonObject.put("name","");
@@ -37,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             response.getWriter().print(jsonObject);
         }
 
-        User user=userDaoimpl.GetUser(userName);
+        User user=userDaoimpl.GetUser(account);
         if(user.getPassword().equals(password))
         {
             jsonObject.put("type","1");

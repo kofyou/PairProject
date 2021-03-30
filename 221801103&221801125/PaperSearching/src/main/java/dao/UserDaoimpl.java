@@ -119,6 +119,35 @@ public class UserDaoimpl
        return user;
     }
 
+    public User GetUserInfo(String account)
+    {
+        User user=new User();
+        try
+        {
+            Connection connection= Jdbcutils.GetConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(
+                    "SELECT * FROM user where account=?");
+            preparedStatement.setString(1,account);
+            ResultSet resultSet=preparedStatement.executeQuery();
+
+            while(resultSet.next())
+            {
+                user.setAccount(resultSet.getString("account"));
+                user.setUsername(resultSet.getString("username"));
+                user.setCompany(resultSet.getString("company"));
+                user.setAddress(resultSet.getString("address"));
+                user.setInfo(resultSet.getString("info"));
+            }
+            Jdbcutils.CloseConnection(resultSet,preparedStatement,connection);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+
     /*public static void main(String args[])
     {
         String[] str = {"123","2","3","","fd"};

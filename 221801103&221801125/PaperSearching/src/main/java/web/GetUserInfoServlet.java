@@ -1,6 +1,5 @@
 package web;
 
-import dao.UserDaoimpl;
 import net.sf.json.JSONObject;
 import pojo.User;
 import service.impl.Userserviceimpl;
@@ -11,12 +10,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "UpdateUserInfoServlet", value = "/UpdateUserInfoServlet")
-public class UpdateUserInfoServlet extends HttpServlet
-{
-
+@WebServlet(name = "GetUserInfoServlet", value = "/GetUserInfoServlet")
+public class GetUserInfoServlet extends HttpServlet {
     Userserviceimpl userserviceimpl=new Userserviceimpl();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,19 +20,20 @@ public class UpdateUserInfoServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user=new User();
-
         JSONObject requestJson= JSONObject.fromObject(
                 RequestToJson.getRequestPostStr(request));
 
-        user.setAccount(requestJson.getString("account"));
-        user.setUsername(requestJson.getString("username"));
-        user.setAddress(requestJson.getString("address"));
-        user.setCompany(requestJson.getString("company"));
-        user.setInfo(requestJson.getString("info"));
+        User user= userserviceimpl.GetUserInfo(requestJson.getString("account"));
 
-        userserviceimpl.UpdateInfo(user);
 
-        response.getWriter().print(true);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("username",user.getUsername());
+        jsonObject.put("company",user.getCompany());
+        jsonObject.put("address",user.getAddress());
+        jsonObject.put("info",user.getInfo());
+
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+        response.getWriter().print(jsonObject);
     }
 }

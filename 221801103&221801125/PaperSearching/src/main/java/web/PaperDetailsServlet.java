@@ -5,6 +5,7 @@ import dao.PaperDaoimpl;
 import net.sf.json.JSONObject;
 import pojo.Paper;
 import service.impl.Paperserviceimpl;
+import utils.RequestToJson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,16 +23,19 @@ public class PaperDetailsServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title=(String)request.getAttribute("title");
+        JSONObject requestJson=JSONObject.fromObject(
+                RequestToJson.getRequestPostStr(request));
+
+        String title=requestJson.getString("title");
 
         Paper paper=paperserviceimpl.GetAPaper(title);
 
         JSONObject jsonObject=new JSONObject();
 
         jsonObject.put("title",paper.getTitle());
-        String[] authorList=paper.getAuthors().split("\\\\");
+        String[] authorList=paper.getAuthors().split("//");
         jsonObject.put("author",authorList);
-        String[] keywordList=paper.getAuthors().split("\\\\");
+        String[] keywordList=paper.getKeywords().split("//");
         jsonObject.put("keyword",keywordList);
         jsonObject.put("abstract",paper.getTheabstract());
         jsonObject.put("link",paper.getPaperlink());

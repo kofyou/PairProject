@@ -1,7 +1,14 @@
 package service.impl;
 
+import com.mysql.cj.jdbc.JdbcConnection;
 import dao.UserDaoimpl;
 import pojo.User;
+import utils.Jdbcutils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.jar.JarEntry;
 
 public class Userserviceimpl
 {
@@ -20,6 +27,11 @@ public class Userserviceimpl
         }
     }
 
+    public User GetUserInfo(String account)
+    {
+        return userDaoimpl.GetUserInfo(account);
+    }
+
 
     public User Login(String[] accountinfo)
     {
@@ -35,12 +47,22 @@ public class Userserviceimpl
         return null;
     }
 
-
     public void UpdateInfo(User infos)
     {
         userDaoimpl.UpdateUserInfo(infos);
     }
 
+    public Boolean IsUserExist(String account)
+    {
+        if (userDaoimpl.IsUserExist(account))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     /*public static void main(String args[])
     {
         String[] str={"123","123"};

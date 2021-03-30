@@ -1,6 +1,8 @@
 package web;
 
+import net.sf.json.JSONObject;
 import service.impl.Paperserviceimpl;
+import utils.RequestToJson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,8 +20,8 @@ public class DeleteMyCollectServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String account=(String)request.getAttribute("account");
-        String title=(String)request.getAttribute("title");
-        paperserviceimpl.DeleteMyCollect(account,title);
+        JSONObject requestJson= JSONObject.fromObject(
+                RequestToJson.getRequestPostStr(request));
+        paperserviceimpl.DeleteMyCollect(requestJson.getString("account"),requestJson.getString("title"));
     }
 }

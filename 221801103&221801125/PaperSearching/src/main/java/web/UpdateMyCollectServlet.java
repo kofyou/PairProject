@@ -1,7 +1,9 @@
 package web;
 
+import net.sf.json.JSONObject;
 import service.impl.Paperserviceimpl;
 import service.impl.Userserviceimpl;
+import utils.RequestToJson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,8 +21,10 @@ public class UpdateMyCollectServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String account=(String)request.getAttribute("account");
-        String title=(String)request.getAttribute("title");
+        JSONObject requestJson= JSONObject.fromObject(
+                RequestToJson.getRequestPostStr(request));
+        String account=requestJson.getString("account");
+        String title=requestJson.getString("title");
         paperserviceimpl.UpdateMyCollect(account,title);
     }
 }

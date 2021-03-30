@@ -46,7 +46,7 @@ public class JsonAnalyser
                     String temp1;
                     while((temp1 = bufferedReader.readLine())!=null)
                     {
-                        paperString+=temp1;
+                        paperString+=temp1 ;
                     }
 
                     JSONObject jsonObject = JSONObject.fromObject(paperString.substring(0, paperString.length() - 1));

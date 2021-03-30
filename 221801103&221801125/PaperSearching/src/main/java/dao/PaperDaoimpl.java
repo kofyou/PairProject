@@ -56,6 +56,7 @@ public class PaperDaoimpl
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
                     "select  * from papers where title=?");
+            preparedStatement.setString(1,title);
             ResultSet resultSet= preparedStatement.executeQuery();
             while(resultSet.next())
             {
@@ -81,7 +82,7 @@ public class PaperDaoimpl
         return null;
     }
 
-    public List<Paper> GetPaticularPapers(String[] searchWords,int type)
+    public List<Paper> GetPaticularPapers(List<String> searchWords,int type)
     {
         List<Paper> papers=new ArrayList<>();
         try
@@ -91,12 +92,12 @@ public class PaperDaoimpl
             if (type==0)
             {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM papers WHERE title LIKE %?% OR keywords LIKE %?%");
+                        "SELECT * FROM papers WHERE title LIKE ? OR keywords LIKE ?");
 
-                for(int i=0;i<searchWords.length;i++)
+                for(String str:searchWords)
                 {
-                    preparedStatement.setString(1,searchWords[i]);
-                    preparedStatement.setString(2,searchWords[i]);
+                    preparedStatement.setString(1,"%"+str+"%");
+                    preparedStatement.setString(2,"%"+str+"%");
                     ResultSet resultSet=preparedStatement.executeQuery();
                     while(resultSet.next())
                     {
@@ -177,7 +178,7 @@ public class PaperDaoimpl
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next())
             {
-                hashMap.put(resultSet.getString("keyword"), resultSet.getInt("tatol"));
+                hashMap.put(resultSet.getString("keyword"), resultSet.getInt("total"));
             }
             Jdbcutils.CloseConnection(preparedStatement,connection);
         }
@@ -188,15 +189,16 @@ public class PaperDaoimpl
         return hashMap;
     }
 
-    public boolean IsCollected(String username,String title)
+    public boolean IsCollected(String account,String title)
     {
         int n=0;
         try
         {
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
-                    "SELECT * usercollect where username=? AND title=?");
-            preparedStatement.setString(1,username);
+                    "SELECT * from usercollect where account=?" +
+                            " AND isbn=(SELECT isbn from papers where title=?)");
+            preparedStatement.setString(1,account);
             preparedStatement.setString(2,title);
 
             ResultSet resultSet= preparedStatement.executeQuery();
