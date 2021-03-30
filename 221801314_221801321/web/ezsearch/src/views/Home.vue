@@ -11,7 +11,9 @@
         <!-- 搜索框 -->
         <el-col :span="5" :offset="0"></el-col>
         <el-col :span="12">
-          <SearchBar/>
+          <SearchBar
+            @title="getTitles"
+            />
         </el-col>
         <!-- 搜索按钮 -->
         <el-col :span="1" :push="0">
@@ -19,6 +21,7 @@
             type="primary"
             class="search-btn blue-background"
             style="height: 60px; font-size:20px;"
+            @click="search"
             >搜索</el-button
           >
         </el-col>
@@ -42,7 +45,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
 import Header from "@/components/common/Header.vue";
 import Paper from "@/components/search/Paper.vue";
 import Carousel from "@/components/search/Carousel.vue";
@@ -64,16 +67,41 @@ export default defineComponent({
     Footer,
   },
   setup() {
-    const path = require("@/assets/CVPR.jpg");
-    const images = [
-      { url: require("@/assets/CVPR.jpg") },
-      { url: require("@/assets/ECCV.png") },
-      { url: require("@/assets/ICCV.png") },
-    ];
+    const { ctx } = getCurrentInstance();
+    var title = ref('');
+    //获取输入框组件title
+    const getTitles = (val) => {
+      // console.log(val);
+      title = val;
+    }
+    //获取高级搜索组件条件
+    const getConditions = () => {
+
+    }
+    //搜索按钮事件
+    const search = () => {
+      console.log(title);
+      queryPaper();
+    }
+    //get请求查询title
+    const queryPaper = () => {
+      ctx.$http
+        .get("/paper/title", {
+          address: 5,
+          // source: ,
+          title: title,
+          // years: ,
+        })
+        .then((data) => {
+          console.log(data)
+        });
+    }
     return {
-      input: ref(""),
-      images,
-      path,
+      title,
+      getTitles,
+      getConditions,
+      search,
+      queryPaper,
     };
   },
 });

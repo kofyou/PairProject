@@ -12,9 +12,13 @@
 import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
 export default defineComponent({
   name: "Search",
-  setup() {
+  setup(props,{emit}) {
     const { ctx } = getCurrentInstance();
     var inputValue = ref("");
+    //搜索框内容 子传父
+    const emitTitle = () => {
+      emit("title",inputValue.value);
+    }
     //get方法获取文章title
     const getTitles = () => {
       ctx.$http
@@ -28,6 +32,8 @@ export default defineComponent({
 
     const paperTitles = ref([]);
     const querySearch = (queryString, cb) => {
+      // console.log(inputValue)
+      emitTitle();
       ctx.$http
         .get("/paper/title", {
           address: 5,
@@ -35,10 +41,10 @@ export default defineComponent({
         })
         .then((data) => {
           for (let i = 0; i < data.length; i++) {
-            console.log(data[i].title)
+            // console.log(data[i].title)
             data[i].value = data[i].title;
           }
-          console.log(data)
+          // console.log(data)
           cb(data);
         })
       // var results = queryString
@@ -65,6 +71,7 @@ export default defineComponent({
       paperTitles.value = loadAll();
     });
     return {
+      emitTitle,
       inputValue,
       getTitles,
       paperTitles,
