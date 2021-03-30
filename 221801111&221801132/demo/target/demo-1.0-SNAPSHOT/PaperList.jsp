@@ -103,6 +103,47 @@
         background-color: #333333;
     }
 
+    /*表格样式*/
+    table {
+        table-layout: fixed;
+        word-wrap:break-word;
+        width: 90%;
+        background: #ccc;
+        margin: 10px auto;
+        border-collapse: collapse;/*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
+    }
+    th,td {
+        height: 100px;
+        line-height: 25px;
+        text-align: center;
+        border: 1px solid #ccc;
+    }
+
+    td {
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow: ellipsis;
+
+    }
+    th {
+        background: #eee;
+        font-weight: normal;
+    }
+    tr {
+        background: #fff;
+    }
+    tr:hover {
+        background: #8e8b8b;
+    }
+    td a {
+        color: #06f;
+        text-decoration: none;
+    }
+    td a:hover {
+        color: #06f;
+        text-decoration: underline;
+    }
+
 </style>
 <script type = "text/javascript">
 </script>
@@ -110,7 +151,7 @@
 <div class="topnav">
     <a class="active" href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
-    <a href="CVPR.jsp"target="leftFrame"> 图表</a>
+
 </div>
 
 <body>

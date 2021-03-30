@@ -80,8 +80,9 @@
 </div>
 
 <div class="topnav2">
-    <a href="#"target="leftFrame">关键词图谱</a>
-    <a href="Type.jsp" target="leftFrame"> 热词动图</a>
+    <a href="ECCV.jsp" target="leftFrame">ECCV</a>
+    <a href="ICCV.jsp" target="leftFrame"> ICCV</a>
+    <a href="CVPR.jsp" target="leftFrame">CVPR</a>
 </div>
 
 <body>

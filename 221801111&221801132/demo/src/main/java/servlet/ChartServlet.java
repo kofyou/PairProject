@@ -52,6 +52,8 @@ public class ChartServlet extends HttpServlet {
 
 
 
+        List<HotWord> total = new ArrayList<>();
+        int cnt = 0;
         List<HotWord> CVPRHotWordList = new ArrayList<>();
         for (int year = 2000;year < 2021;year++) {
             WordDAO wordDAO = new WordDAOImpl();
@@ -73,6 +75,11 @@ public class ChartServlet extends HttpServlet {
                     }
                 }
                 map = sortByValueDescending(map);
+
+                /*for (Map.Entry<String,Integer> vo : map.entrySet()) {
+                    System.out.println(vo.getKey() + " " + vo.getValue());
+                }*/
+
                 List<HotWord> HotWordList = new ArrayList<>();
                 for (Map.Entry<String,Integer> vo : map.entrySet()) {
                     HotWord hotWord = new HotWord();
@@ -83,26 +90,39 @@ public class ChartServlet extends HttpServlet {
                     HotWordList.add(hotWord);
                 }
 
-                //System.out.println(HotWordList.get(0).getWord());
+                /*for (HotWord word : HotWordList) {
+                    System.out.println(word.getWord() + " " + word.getNum() + "" + word.getYear() + " " + word.getType());
+                }*/
 
-                /*HotWord[] hotWord1 = new HotWord[10];
+                HotWord[] hotWord = new HotWord[10];
                 for (int i = 0;i < 10;i++) {
-                    hotWord1[i] = HotWordList.get(i);
+                    hotWord[i] = HotWordList.get(i);
                 }
 
                 for (int i = 0;i < 10;i++) {
-                    System.out.println(hotWord1[i].getWord() + " " + hotWord1[i].getNum() + " " + hotWord1[i].getType() + " " +
-                            hotWord1[i].getYear());
-                }*/
-                //System.out.println(year);
+                    CVPRHotWordList.add(hotWord[i]);//CVPR每年的热词
+                }
 
-                HotWord hotWord = new HotWord();
-                hotWord = HotWordList.get(0);
-                CVPRHotWordList.add(hotWord);//CVPR每年的热词
-                /*System.out.println(hotWord.getWord() + " " + hotWord.getNum() + " " + hotWord.getType() + " " +
-                        hotWord.getYear());*/
+                /*for (int i = 0;i < 10;i++) {
+                    System.out.println(CVPRHotWordList.get(i).getWord() + " " + CVPRHotWordList.get(i).getNum() + " " +
+                            CVPRHotWordList.get(i).getType() + " " + CVPRHotWordList.get(i).getYear());
+                }*/
+
+                System.out.println("111111");
+                //HotWord[] hotWord = new HotWord(10);
+                //hotWord = HotWordList.get(0);
+                //CVPRHotWordList.add(hotWord);//CVPR每年的热词
+                //System.out.println(hotWord.getWord() + " " + hotWord.getNum() + " " + hotWord.getType() + " " + hotWord.getYear());
+            }
+
+            for (int i = 0;i < 10;i++) {
+                total.add(CVPRHotWordList.get(i));
             }
         }
+        /*for (int i = 0;i < total.size();i++) {
+            System.out.println(total.get(i).getWord() + " " + total.get(i).getNum() + " " +
+                    total.get(i).getType() + " " + total.get(i).getYear());
+        }*/
 
 /*
         List<HotWord> ICCVHotWordList = new ArrayList<>();
@@ -225,7 +245,7 @@ public class ChartServlet extends HttpServlet {
 
 */
 
-        request.setAttribute("list", CVPRHotWordList);
+        request.setAttribute("list", total);
         request.getRequestDispatcher("CVPR.jsp").forward(request, response);
     }
 
