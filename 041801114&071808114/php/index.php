@@ -1,54 +1,21 @@
 <!doctype html>
-<?php
-    global $wpdb;
-	$myrows = $wpdb->get_results( "SELECT title FROM cv_posts LIMIT 3;" );
-?>
 <html>
 <head>
 <meta charset="utf-8">
 <title>template</title>
 <link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 <script>
-	window.onload = function(){
-	/*从url中解析出参数*/
-	var re = /\?param=([^&]+)$/gi;
-	var p = re.exec(location.search);
-	document.getElementById('searchtext').value = p[1];
-}
-	
-	
-	
-	/*function mutiselectfunc(){
-		var checkboxs=document.getElementsByClassName("checkbox");
-        	for (var i = 0; i<checkboxs.length;i++) {
-        		   checkboxs[i].style.display='inline';
-        		 };
-	}*/
-	
-	
-	
 	function checkboxfunc(){
-		/*var checkboxs=document.getElementsByClassName("checkbox");
-        	for (var i = 0; i<checkboxs.length;i++) {
-        		if(checkboxs[i].style.checked='true'){
-					document.getElementById('deletebtn').style.backgroundColor='red';
-					break;
-				}
-        		 else document.getElementById('deletebtn').style.backgroundColor='black';*/
 			document.getElementById('deletebtn').style.backgroundColor='#D60104';
 			}
 		
-	function jump(){
-		window.location.href="";
+	function jump(a){
+		alert(a);
 	}
 	</script>
 </head>
 
 <body>
-<script>
-alert(<?= wp_enqueue_script("jquery"); ?>);
-</script>
-	<?= $_GET['page']?>
 	<div class="nav">
 		<ul class="template">
 			<li><a href="index" id="navIcon"></a></li>
@@ -68,21 +35,11 @@ alert(<?= wp_enqueue_script("jquery"); ?>);
 		
 		
 	<div class="middle">
-		<form >
-			<div class="texttitle">
-				<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
-					<p class="list" onclick="jump();"><?=$myrows[0]->title;?></p>	
-		    </div>
-				
-			<div class="texttitle">
-				<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
-					<p class="list" onclick="jump();">    论文标题2*******************************</p>	
-		    </div>
-				
-			<div class="texttitle">
-				<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
-					<p class="list" onclick="jump();">    论文标题3*******************************</</p>	
-		    </div>
+		<div class="texttitle" id="paper_template" style="display:none;">
+			<input type="checkbox" class="checkbox" name="text" value="" onclick="checkboxfunc();" />
+			<p class="list" onclick="jump('x');"></p>	
+		</div>
+		<form id="paperlist">
 	    </form>
     </div>
 		
@@ -107,25 +64,39 @@ alert(<?= wp_enqueue_script("jquery"); ?>);
 	
 </div>
 
+<script src=<?= bloginfo('template_directory').'/quickfind/jquery.min.js'; ?>></script>
 <script>
-var ajaxurl = '<?php echo admin_url('admin-ajax.php')?>';
-document.getElementById('searchbtn').onClick = function(e){     
-			alert(1); 
-                        $.ajax({
-                                type:'post',
-                                url:ajaxurl,
-                                data:{'action':'handler','a':$('#a').val(),'b':$('#b').val(),'c':$('#c').val()},
-                                cache:false,
-                                dataType:'json',
-                                success:function(result){
-                                        alert("ooo");
-                                },
-                                error:function(data){
-                                        alert("err");
-                                }
-                        });
-                        return false;
-                };
+		function succ(result){
+        	var childs=document.getElementById('paperlist').childNodes;  
+			for(var i=childs.length-1;i>=0;i--){  
+				document.getElementById('paperlist').removeChild(childs.item(i));  
+			}
+			for(var i=0;i<result.length;i++){
+				var paper = document.getElementById('paper_template').cloneNode(true);
+				paper.style = '';
+				paper.getElementsByTagName('p')[0].innerHTML = result[i].title;
+				document.getElementById('paperlist').appendChild(paper);
+			}
+        }
+		$(document).ready(function() {
+		var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
+		document.getElementById('searchbtn').onclick = function(searchbtn_event){     
+			$.ajax({
+				type:'post',
+				url:ajaxurl,
+                data:{'action':'keyword_search',
+					  'kwd':document.getElementById('searchtext').value.trim(),
+					  'except':sessionStorage['except']},
+                cache:false,
+                dataType:'json',
+                success:succ,
+                error:function(data){
+					console.log("error")
+				}
+			});
+			return false;
+			};
+		});
 </script>
 </body>
 </html>
