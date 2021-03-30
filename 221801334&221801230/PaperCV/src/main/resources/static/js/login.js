@@ -1,90 +1,73 @@
 $(document).ready(function () {
-    var httpRoot = "http://localhost:8080";
-    // var httpRoot = "http://120.24.27.29:8080";
-
-    var NAME_EMPTY = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
-        "    用户名为空！\n" +
-        "    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-        "        <span aria-hidden=\"true\">&times;</span>\n" +
-        "    </button>\n" +
-        "</div>";
-
-    var PASSWORD_EMPTY = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
-        "    密码为空！\n" +
-        "    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-        "        <span aria-hidden=\"true\">&times;</span>\n" +
-        "    </button>\n" +
-        "</div>";
+    var login_name = $("#loginName");
+    var login_password = $("#loginPassword");
+    var register_name = $("#registerName");
+    var register_password = $("#registerPassword");
 
     // 登录
-    $("#").click(function (){
-        if (isEmpty()){
-            $("body").prepend(NAME_EMPTY);
+    $("#btn-login").click(function (){
+        if (isEmpty(login_name.val())){
+            alert("用户名为空");
             return ;
         }
-        if (isEmpty()){
-            $("body").prepend(PASSWORD_EMPTY);
+        if (isEmpty(login_password.val())){
+            alert("密码为空");
             return ;
         }
         var account = {
-            name:"123456",
-            password:"123456"
+            name:login_name.val(),
+            password:login_password.val()
         }
         $.ajax({
             url:httpRoot + "/account/login",
             type:"POST",
             cache:false,
             data:JSON.stringify(account),
-            dataType:"json",
             async:false,
             contentType:"application/json",
             success:function(result){
-                if(result == "ok"){
+                if(result == "登录成功"){
                     window.location.href = "home.html";
                 } else {
-                    $("body").prepend("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
-                        "    " + result + "\n" +
-                        "    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                        "        <span aria-hidden=\"true\">&times;</span>\n" +
-                        "    </button>\n" +
-                        "</div>");
+                    alert(result);
                 }
             }
         });
     });
 
     // 注册
-    $("#").click(function (){
-        if (isEmpty()){
-            $("body").prepend(NAME_EMPTY);
+    $("#btn-register").click(function (){
+        if (isEmpty(register_name.val())){
+            alert("用户名为空")
             return ;
         }
-        if (isEmpty()){
-            $("body").prepend(PASSWORD_EMPTY);
+        if (isEmpty(register_password.val())){
+            alert("密码为空")
+            return ;
+        }
+        if ($("#againPassword").val() != register_password.val()) {
+            alert("两次输入的密码不一致");
+            return ;
+        }
+        if (isEmpty($("#email").val())) {
+            alert("邮箱为空");
             return ;
         }
         var account = {
-            name:"123456",
-            password:"123456"
+            name:register_name.val(),
+            password:register_password.val()
         }
         $.ajax({
             url:httpRoot + "/account/register",
             type:"POST",
             cache:false,
             data:JSON.stringify(account),
-            dataType:"json",
             async:false,
             contentType:"application/json",
             success:function(result){
-                if(result == "ok"){
-                    location.reload();
-                } else {
-                    $("body").prepend("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
-                        "    " + result + "\n" +
-                        "    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                        "        <span aria-hidden=\"true\">&times;</span>\n" +
-                        "    </button>\n" +
-                        "</div>");
+                alert(result);
+                if(result == "注册成功"){
+                    window.location.href = "login.html";
                 }
             }
         });
