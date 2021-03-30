@@ -26,13 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'storeID',
             'displayTitle:ntext',
-            'abstract:ntext',
+        //    'abstract:ntext',
             'year:ntext',
-            'pubdate:ntext',
-            'keyword:ntext',
+         //   'pubdate:ntext',
+         //   'keyword:ntext',
             // 'link:ntext',
+            ['class' => 'yii\grid\ActionColumn','header'=>'操作','template' => '{view}  {delete}',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        ], 
+    ]]); 
+    ?> 
+    
 </div>
