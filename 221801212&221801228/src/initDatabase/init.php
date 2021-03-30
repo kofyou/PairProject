@@ -87,8 +87,8 @@ function read_paper_from_json_ECCV($fileName, $forumName)
     return $paper;
 }
 
-// open_all_file("datas/CVPR", "CVPR", "read_paper_from_json");
+ open_all_file(dirname(__FILE__)."datas/CVPR", "CVPR", "read_paper_from_json");
 
-// open_all_file("datas/ICCV", "ICCV", "read_paper_from_json");
+ open_all_file(dirname(__FILE__)."datas/ICCV", "ICCV", "read_paper_from_json");
 
-open_all_file("datas/ECCV", "ECCV", "read_paper_from_json_ECCV");
+open_all_file(dirname(__FILE__)."datas/ECCV", "ECCV", "read_paper_from_json_ECCV");
