@@ -54,6 +54,18 @@ class TopWord(db.Model):
     frequency = db.Column(db.Integer)
 
 
+# 历年热词分析模型类
+class Analysis(db.Model):
+    __tablename__ = "analysis"
+
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    keywordid = db.Column(db.String(255))
+    keyword = db.Column(db.String(255))
+    frequency = db.Column(db.String(255))
+    type = db.Column(db.String(255))
+    year = db.Column(db.String(255))
+
+
 # 显示首页/搜索
 @app.route('/')
 def hello_world():
@@ -136,13 +148,21 @@ def goto_chart():
     top_list = []
     for i in topWord:
         top_list.append(i.name)
-    chart_data = []
+    # 对分析的数据进行分类
+    list_word = ['learning', 'feature extraction', 'training', 'image reconstruction',
+                 'neural nets', 'task analysis', 'computer vision', 'cameras',
+                 'object detection', 'convolutional neural nets']
+    paper_type = ['CVPR', 'ECCV', 'ICCV']
+    cvpr_year = [2020, 2019, 2018]
+    eccv_year = [2020, 2018, 2016]
+    iccv_year = [2019, 2017, 2015]
+    list_a = Analysis.query.filter_by(type=paper_type[0], year=cvpr_year[0]).all()
     data = {
-        'chart_data': chart_data,
-        'top': top_list
+        'top': top_list,
+        'list': list_a,
+        'list_word': list_word
     }
     return render_template('chart.html', data=data)
-
 
 if __name__ == '__main__':
     app.run()
