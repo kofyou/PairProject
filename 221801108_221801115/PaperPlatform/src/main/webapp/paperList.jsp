@@ -48,7 +48,7 @@
     <div id="div_paperQueryForm">
         <form action="<%=path%>/PaperListServlet" method="post" id="queryForm">
             <input type="text" name="query" id="query_text" value="${requestScope.info}">
-            <button type="button" id="query_btn" onclick="changePage(0)">查询</button>
+            <button type="button" id="query_btn" onclick="changePage(0)">搜索</button>
             <input type="hidden" name="pageNum" id="pageNum" value="${requestScope.pageNum}" />
             <input type="hidden" id="changeNum" name="changeNum" value="" />
         </form>
@@ -84,7 +84,7 @@
     <div id="div_paging">
         <button id="btn_lastPage" type="button" onclick="changePage(-1)">上一页</button>
         <button id="btn_nextPage" type="button" onclick="changePage(1)">下一页</button>
-        当前第 ${requestScope.pageNum} 页，共 ${requestScope.totalPage} 页，共 ${requestScope.totalNum} 条记录
+        当前第<span class="page_num">${requestScope.pageNum}</span>  页，共 ${requestScope.totalPage} 页，共 ${requestScope.totalNum} 条记录
     </div>
 
 </div>

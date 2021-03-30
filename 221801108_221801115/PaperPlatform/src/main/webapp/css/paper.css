@@ -1,5 +1,7 @@
-body{
-
+html,body{
+    width: 100%;
+    height: 100%;
+    background: url("../img/1.png") repeat;
 }
 .header{
     width: 100%;
@@ -9,7 +11,6 @@ body{
 .main{
     width: 100%;
     height: 580px;
-    background: url("photo/1.png");
 }
 .logo{
     width: 50%;
@@ -20,13 +21,12 @@ body{
     float: left;
 }
 .message_box{
-
     width: 80%;
-    height: 600px;
     position: absolute;
-    top: 165px;
+    top: 150px;
 }
 .message{
+    padding: 20px;
     float: right;
     background-color: white;
     width: 75%;
@@ -36,22 +36,23 @@ body{
     box-shadow: darkgrey 4px 4px 4px 2px;
 }
 .gray {
-    height: 50px;
-    width: 120px;
+    height: 60px;
+    width: 60px;
     float: right;
     margin-right: 40px;
     margin-top: 20px;
-    color: #e9e9e9;
-    box-shadow: 0 -1px 0 #114566 inset,1px 0 0 #114566 inset;
-    border: solid 1px #476a4a;
-    border-radius: 5px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#67eccb), to(#439581));
-    background: -moz-linear-gradient(top,  #67eccb,  #439581);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#67eccb', endColorstr='#439581');
+    opacity: 70%;
 }
-.gray:active {
-    background: -webkit-gradient(linear, left top, left bottom, from(#439581), to(#67eccb));
-    background: -moz-linear-gradient(top,  #439581,  #67eccb);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#439581', endColorstr='#67eccb');
 
+.message_link{
+    float: left;
+    padding-top: 15px;
+}
+.message_year{
+    float: right;
+    padding-right:15px ;
+}
+.message_type{
+    float: right;
+    padding-right: 50px;
 }

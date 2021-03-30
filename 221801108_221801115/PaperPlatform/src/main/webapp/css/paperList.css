@@ -1,5 +1,7 @@
-body{
-
+html,body{
+    width: 100%;
+    height: 100%;
+    background: url("../img/1.png") repeat;
 }
 .header{
     width: 100%;
@@ -8,8 +10,7 @@ body{
 }
 .main{
     width: 100%;
-    height: 580px;
-    background: url("../img/1.png");
+    height: 100%;
 }
 .logo{
     width: 50%;
@@ -165,7 +166,9 @@ body{
     box-shadow: darkgrey 2px 2px 2px 1px;
 }
 #query_btn{
-    background-color: blue;
+    background-color: #02A7F0;
+    opacity: 88%;
+    border: #797979 1px;
     height: 110%;
     width: 100px;
     position: relative;
@@ -187,4 +190,25 @@ body{
     position: absolute;
     bottom: 15px;
     right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#btn_lastPage{
+    width: 75px;
+    height: 33px;
+    background-color: white;
+    border: #c4c3c3 1px solid;
+    border-radius: 4px;
+    color: #169BD5;
+}
+#btn_nextPage{
+    width: 75px;
+    height: 33px;
+    background-color: white;
+    border: #c4c3c3 1px solid;
+    border-radius: 4px;
+    color: #169BD5;
+}
+.page_num{
+    color: #ee4b4b;
 }
