@@ -16,6 +16,7 @@ type AnalyzedThesis struct {
 	Author string	`json:"author"`
 	Keyword string	`json:"keyword"`
 	Abstract string	`json:"abstract"`
+	Link string		`json:"link"`
 }
 
 type thesisSearchParam struct {
@@ -84,10 +85,11 @@ func GetThesisList(c *gin.Context) {
 	var Author string
 	var Keyword string
 	var Abstract string
+	var Link string
 	var thesisArr []AnalyzedThesis
 	for rows.Next() {
 		temp := AnalyzedThesis{}
-		_ = rows.Scan(&ID, &Source, &Year, &Title, &Author, &Keyword, &Abstract)
+		_ = rows.Scan(&ID, &Source, &Year, &Title, &Author, &Keyword, &Abstract, &Link)
 		temp.ID = ID
 		temp.Source = Source
 		temp.Year = Year
@@ -95,6 +97,7 @@ func GetThesisList(c *gin.Context) {
 		temp.Author = Author
 		temp.Keyword = Keyword
 		temp.Abstract = Abstract
+		temp.Link = Link
 		thesisArr = append(thesisArr,temp)
 
 		//Keys = append(Keys, Keyword)

@@ -174,6 +174,7 @@ func UserLikeShow(c *gin.Context) {
 	var Author string
 	var Keyword string
 	var Abstract string
+	var Link string
 	var thesisArr []thesisSearch.AnalyzedThesis
 	for rows.Next() {
 		temp := thesisSearch.AnalyzedThesis{}
@@ -185,6 +186,7 @@ func UserLikeShow(c *gin.Context) {
 		temp.Author = Author
 		temp.Keyword = Keyword
 		temp.Abstract = Abstract
+		temp.Link = Link
 		thesisArr = append(thesisArr,temp)
 	}
 
