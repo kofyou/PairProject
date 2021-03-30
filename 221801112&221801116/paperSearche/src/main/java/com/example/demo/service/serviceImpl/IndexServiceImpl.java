@@ -29,9 +29,9 @@ public class IndexServiceImpl implements IndexSerice {
     public User login(User user) {
         System.out.println("进入service层:" + user.getName());
         User tmp = userMapper.selUserByName(user);
-        System.out.println("获得的USER：" + tmp.getName());
         if (user.getPassword() == null || !(user.getPassword().equals(tmp.getPassword())))
             return null;
+        System.out.println("获得的USER：" + tmp.getName());
         return tmp;
     }
 

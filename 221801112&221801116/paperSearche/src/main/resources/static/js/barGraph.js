@@ -20,8 +20,8 @@ function show(conferecne)
     $.when(
         /*    $.getJSON('https://cdn.jsdelivr.net/npm/emoji-flags@1.3.0/data.json'),
             $.getJSON(ROOT_PATH + '/data/asset/data/life-expectancy-table.json')*/
-        $.getJSON('http://localhost:8080/topKeyWords?conference='+conferecne),
-        $.getJSON('http://localhost:8080/topKeyWordsData?conference='+conferecne)
+        $.getJSON('/topKeyWords?conference='+conferecne),
+        $.getJSON('/topKeyWordsData?conference='+conferecne)
         /*    $.getJSON('/data/data.json'),
             $.getJSON('/data/life_expert_table.json')*/
     ).done(function (res0, res1) {
@@ -161,3 +161,22 @@ function show(conferecne)
     }
 }
 
+function goWordAnalyse()
+{
+    window.location.href='/getKeyWordCloud';
+}
+
+
+function goLeft()
+{
+    window.location.href='/left';
+}
+
+
+function search()
+{
+    val=document.getElementById("input-32").value;
+    console.log(val);
+    localStorage.setItem('searchInfo', val);
+    window.location.href='left';
+}

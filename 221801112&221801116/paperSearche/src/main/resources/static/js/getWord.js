@@ -4,7 +4,7 @@ var text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibe
 //  array.find 的 ployfill 参见：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find#Polyfill
 // 	array.reduce 的 ployfill ：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Polyfill
 $.when(
-    $.getJSON('http://localhost:8080/topKeyWordCloud'),
+    $.getJSON('/topKeyWordCloud'),
 ).done(function (res0) {
     var data = res0;
     Highcharts.chart('wordContainer', {

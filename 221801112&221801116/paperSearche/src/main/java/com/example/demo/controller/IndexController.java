@@ -63,7 +63,14 @@ public class IndexController
         return "lastlogin";
     }
 
-    //本次commit 不提交
+
+    @RequestMapping("/lastLogin")
+    public String lastLogin(User user, HttpSession session, Model model)
+    {
+        return "lastlogin";
+    }
+
+    //本次commit
     @GetMapping("static")
     public String sta(HttpSession session, Model model)
     {
