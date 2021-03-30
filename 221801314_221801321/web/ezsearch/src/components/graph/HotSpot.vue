@@ -22,6 +22,10 @@ export default defineComponent({
       }
       console.log(twoDimArray);
     }
+    let curKey = "";
+    let curYear = "";
+    let keyIndex = 0;
+    let yearIndex = 0;
     const searchKeyword = (k, y) => {
       // async function searchKeyword(k,y){
       ctx.$http
@@ -30,14 +34,32 @@ export default defineComponent({
           years: y,
         })
         .then((data) => {
-          console.log(data);
+          console.log(k);
+          console.log(y);
+        //   if (curKey === "" || curYear === "") {
+        //     curKey = k;
+        //     curYear = y;
+        //     twoDimArray[keyIndex][yearIndex++] = data;
+        //   } else if (y !== curYear) {
+        //     twoDimArray[keyIndex][yearIndex++] = data;
+        //     curYear = y;
+        //   } else if (k !== curKey) {
+        //     console.log("change Key")  
+        //     keyIndex++;
+        //     yearIndex = 0;
+        //     twoDimArray[keyIndex][yearIndex++] = data;
+        //     curKey = k;
+        //   }
+
+          //   console.log(data);
           return data;
         });
     };
 
     let echarts = inject("ec"); //引入
     onMounted(() => {
-      searchKeyword("sea", 2011);
+      //   searchKeyword("sea", 2011);
+      batchQuery();
       //需要获取到element,所以是onMounted的Hook
       let myChart = echarts.init(document.getElementById("hotspot"));
       // 绘制图表
