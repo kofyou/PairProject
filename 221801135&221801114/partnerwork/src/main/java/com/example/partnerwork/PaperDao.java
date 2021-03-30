@@ -81,7 +81,6 @@ public class PaperDao {
         paperList = new ArrayList<Paper>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
             String sql = "select * from paper where lower(keywords) like '%," + tag + ",%' or lower(keywords) like '" + tag + ",%'";
-            System.out.println(sql);
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
                 Paper paper = new Paper();
@@ -245,5 +244,29 @@ public class PaperDao {
                 }
             }
         }
+    }
+
+    public int[][] countTagByYear(int[] years, String tag){
+        int[][] counts = new int[3][3];
+        String[] conferences = new String[]{"CVPR","ICCV","ECCV"};
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            for (int j = 0;j <= 2;j++){
+                for (int i = 0; i <= 2;i ++){
+                    int total = 0;
+                    String sql = "select count(*) from paper_library where lower(keywords) like '%" + tag +
+                            "%' and (publicationDate="+years[i] + " or publicationDate=" + (years[i] + 1) +
+                            ") and conference ='" + conferences[j] + "'";
+                    System.out.println(sql);
+                    ResultSet rs = s.executeQuery(sql);
+                    while (rs.next()) {
+                        total = rs.getInt(1);
+                    }
+                    counts[j][i] = total;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return counts;
     }
 }
