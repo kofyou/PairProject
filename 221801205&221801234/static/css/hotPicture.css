@@ -2,4 +2,9 @@
     border:1px solid #BBFFE3;
     border-radius: 10px;
     height: 700px;
+    /*text-align: center;*/
+}
+#MySelect{
+    text-align: center;
+    /*margin:0 auto ;*/
 }

@@ -12,6 +12,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/all.css"/>
         <link rel="stylesheet" type="text/css" href="../css/keyWord.css"/>
+        <script src="../js/vue.js"></script>
+        <script src="../js/axios.min.js"></script>
     </head>
 <body>
 <div class="container">
@@ -26,11 +28,11 @@
                 </button>
                 <a class="navbar-brand" href="./listView.html">论文爬取系统</a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="sign_out"><a href="login.html">管理员登录</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
+<!--            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li class="sign_out"><a href="login.html">管理员登录</a></li>-->
+<!--                </ul>-->
+<!--            </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
         </div>
     </nav>
     <ol class="breadcrumb">
@@ -41,28 +43,32 @@
     <!--menu-->
     <div class="row clearfix">
         <div class="col-md-2 column">
-            <ul class="nav nav-tabs nav-stacked">
-                <li class="active">
-                <a href="#">关键词图谱</a>
-                </li>
-                <li>
-                    <a href="./hotPicture.html">热词走势</a>
-                </li>
-                <li>
-                    <a href="./listView.html">论文爬取</a>
-                </li>
-
-
+<!--            <ul class="nav nav-tabs nav-stacked">-->
+<!--                <li>-->
+<!--                    <a href="./listView.html">论文爬取</a>-->
+<!--                </li>-->
+<!--                <li class="active">-->
+<!--                <a href="#">关键词图谱</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="./hotPicture.html">热词走势</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"><a href="./listView.html">论文爬取</a></li>
+                <li role="presentation" class="active"><a href="#">关键词图谱</a></li>
+                <li role="presentation"><a href="./hotPicture.html">热词走势</a></li>
             </ul>
         </div>
 
         <!--content-->
         <div class="col-md-10 column" id="main" style="width: 800px;height:400px;">
-
         </div>
-        <script src="../js/key.js"></script>
-
     </div>
 </div>
+<script src="../js/key.js"></script>
+<script>
+    vm.fun();
+</script>
 </body>
 </html>

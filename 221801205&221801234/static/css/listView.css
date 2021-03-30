@@ -1,9 +1,9 @@
-.listContainer{
-    background: lightcyan;
-    border:1px solid #BBFFE3;
-    border-radius: 10px;
-    /*text-align: center;*/
-}
+/*.listContainer{*/
+/*    background: lightcyan;*/
+/*    border:1px solid #BBFFE3;*/
+/*    border-radius: 10px;*/
+/*    !*text-align: center;*!*/
+/*}*/
 
 .listContainer nav{
     text-align: center;
@@ -14,7 +14,8 @@
 }
 
 .container{
-    border:1px solid #BBFFE3;
+    border-left:1px solid #BBFFE3;
+    border-right:1px solid #BBFFE3;
     border-radius: 10px;
     height: 700px;
 }
