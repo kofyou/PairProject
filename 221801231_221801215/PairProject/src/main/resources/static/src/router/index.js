@@ -9,6 +9,12 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+     {
+      //首页
+      path: '/',
+      name: 'LoginIndex',
+      component: Login
+    },
     {
       //登录页
       path: '/login',
