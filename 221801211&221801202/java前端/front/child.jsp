@@ -23,11 +23,16 @@
 
     <link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">	<meta name="description" content="">
-    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<%--    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>--%>
+<%--    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>--%>
+<%--    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>--%>
     <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+    <script src="<%= basePath+"javascript/jquery-1.8.3.js" %>"></script>
+    <script src="<%= basePath+"javascript/highchart.js" %>"></script>
+    <script src="<%= basePath+"javascript/exporting.js" %>"></script>
     <script src="<%= basePath+"javascript/Jcloud.js" %>"></script>
+    <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
 
     <link rel="stylesheet" href="<%= basePath+"css/cloud.css" %>" type="text/css">
     <link rel="stylesheet" href="<%= basePath+"css/style1.css" %>" type="text/css">
@@ -92,6 +97,7 @@
                 <% size = size * 0.9; %>
                 {text: "<%=keynum.getKeyword()%>", weight: <%=size%>, link:"<%=basePath + "/child?p=" + keynum.getKeyword()%>"},
                 <% } %>
+
             ];
             $(function() {
                 $("#example").jQCloud(word_array);

@@ -20,14 +20,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>index</title>
 
-    <link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">	<meta name="description" content="">
-    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<%--    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>--%>
+<%--    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>--%>
+<%--    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>--%>
     <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+    <script src="<%= basePath+"javascript/jquery-1.8.3.js" %>"></script>
+    <script src="<%= basePath+"javascript/highchart.js" %>"></script>
+    <script src="<%= basePath+"javascript/exporting.js" %>"></script>
     <script src="<%= basePath+"javascript/Jcloud.js" %>"></script>
-    <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
     <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
 
     <link rel="stylesheet" href="<%= basePath+"css/cloud.css" %>" type="text/css">
@@ -37,7 +39,14 @@
 <body style="background: url(<%= basePath+"Photos/back.jpg" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed;">
     <style type="text/css">
         .abstract{
-            width:400px;
+            width:300px;
+            flaot:left;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .absrtr{
+            width:200px;
             flaot:left;
             overflow: hidden;
             white-space: nowrap;
@@ -48,8 +57,6 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="row clearfix">
-
-
 
                 <nav class="navbar  navbar-default navbar-inverse" role="navigation">
                     <div class="navbar-header">
@@ -140,6 +147,9 @@
                                 关键词
                             </th>
                             <th>
+                                查看
+                            </th>
+                            <th>
                                 删除
                             </th>
                         </tr>
@@ -149,14 +159,21 @@
                         <% List<PaperInfo> list= (List<PaperInfo>) request.getAttribute("paperInfos"); %>
                         <% int i=0;%>
                         <% for(PaperInfo user : list){ %>
-                        <% if(i<10){%>
                         <tr>
-                            <td><%=user.getTitle()%></td>
+                            <td><div class="absrtr"><%=user.getTitle()%></div></td>
                             <td><%=user.getMeeting()%></td>
                             <td><%=user.getYear()%></td>
-                            <td style="width: 50px; overflow: hidden; white-space: nowrap; word-break: keep-all; text-overflow: ellipsis;"><div class="abstract"><%=user.getAbstr()%></div></td>
+                            <td><div class="abstract"><%=user.getAbstr()%></div></td>
                             <td><%=user.getUrl()%></td>
                             <td><%=user.getKeyword()%></td>
+                            <td>
+                                <form action="homepage" method="get">
+                                    <input type="hidden" name="view" value=
+                                        <%=user.getTitle()%>
+                                    >
+                                    <input type="submit" value="查看" />
+                                </form>
+                            </td>
                             <td>
                                 <form action="homepage" method="get">
                                     <input type="hidden" name="delete" value=
@@ -166,8 +183,6 @@
                                 </form>
                             </td>
                         </tr>
-                        <%}%>
-                        <%i++;%>
                         <% } %>
                         </tbody>
                     </table>
