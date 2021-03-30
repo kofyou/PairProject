@@ -2,12 +2,11 @@ package cn.itcast.domain;
 
 public class PaperInfo {
     private String title;
-    private String author;
     private String year;
     private String meeting;
     private String abstr;
     private String url;
-    private String accesstimes;
+    private String keyword;
 
     public String getTitle() {
         return title;
@@ -15,14 +14,6 @@ public class PaperInfo {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getYear() {
@@ -57,11 +48,22 @@ public class PaperInfo {
         this.url = url;
     }
 
-    public String getAccesstimes() {
-        return accesstimes;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setAccesstimes(String accesstimes) {
-        this.accesstimes = accesstimes;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString() {
+        return "PaperInfo{" +
+                "title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", meeting='" + meeting + '\'' +
+                ", abstr='" + abstr + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
