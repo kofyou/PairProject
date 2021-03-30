@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/loginRegist.css"/>
+    <link rel="stylesheet" href="../font&pic/iconfont.css">
+    <title>注册界面</title>
+</head>
+<style>
+    input:focus{
+        border-bottom: 2px solid #0F996B;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="logRegPanel">
+            <div class="panel_head">
+                <span>论文统计-注册</span>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-user"></span>
+                <input placeholder="请输入用户名" name="userName" id="regist_userName"/>
+            </div>
+            <div class="hint">
+                <span>用户名已存在</span>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-mima"></span>
+                <input placeholder="请输入密码" name="password" id="regist_password" type="password"/>
+            </div>
+            <div class="hint">
+                <span>密码太简单</span>
+            </div>
+            <div class="panel_item">
+                <span class="iconfont icon-zaicishurumima"></span>
+                <input placeholder="请再次输入密码" id="regist_rePassword" type="password"/>
+            </div>
+            <div class="hint">
+                <span>两次输入密码不匹配</span>
+            </div>
+            <div>
+                <button  class="btn" id="regist"><span id="reg_word">注册</span><span class="iconfont icon-dengdai" id="reg_wait"></span></button>
+            </div>
+            <div class="panel_foot">
+                <span>注册好啦</span>
+                <a href="login.html">去登陆</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="inform">
+        <div id="ok"><span class="iconfont icon-duigoutianchong-"></span><span>注册成功</span></div>
+        <div id="not"><span class="iconfont icon-cuowu"></span><span>注册失败，请稍后再试</span></div>
+    </div> -->
+    <script src="../jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/regist.js"></script>
+</body>
+</html>

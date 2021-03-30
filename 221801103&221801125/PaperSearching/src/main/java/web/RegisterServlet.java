@@ -26,6 +26,7 @@ public class RegisterServlet extends HttpServlet
 
         String account=requestJson.getString("account");
         String password=requestJson.getString("password");
+        System.out.println(request.getServletPath());
         if (userserviceimpl.IsUserExist(account))
         {
             response.getWriter().print(false);
