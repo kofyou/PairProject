@@ -18,8 +18,9 @@
       </div>
       <el-button class="loginbutton" @click="toLogin" v-show="!loginStatus">登录</el-button>
       <el-button class="registerbutton" @click="toRegister" v-show="!loginStatus">注册</el-button>
+      <el-button class="registerbutton" @click="toLogout" v-show="loginStatus">登出</el-button>
       <el-avatar :size="50" :src="circleUrl" style="position: absolute;top:15px;right: 250px"></el-avatar>
-      <div class="showusername" style="position:absolute;right:100px;font-weight:bold">欢迎你：{{userName}}</div>
+      <div class="showusername" style="position:absolute;right:100px;font-weight:bold" v-show="loginStatus">欢迎你：{{userName}}</div>
     </el-header>
   </div>
 </template>
@@ -61,6 +62,26 @@ export default {
     toRegister:function () {
       this.$router.push('/Register');
 
+    }
+    ,toLogout:function(){
+      this.$confirm('确定要退出登录吗?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          sessionStorage.clear();
+          this.$router.push("/login");
+
+          this.$message({
+            type: 'success',
+            message: '登出成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消'
+          });
+        });
     }
   }
 }
