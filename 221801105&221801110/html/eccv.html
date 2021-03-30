@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ECCV</title>
+		<link rel="stylesheet" type="text/css" href="../css/meeting.css">
+		<script src="../echart/echarts.min.js"></script>
+	</head>
+	<body>
+		<div id="header">
+		<h1 >ECCV</h1></div>
+		<div id = "content">
+			
+		</div>
+		<div id="btn">
+			<button class = "btn1" onclick="window.open('hot_word.html','_self')">返回<button>
+		</div>
+		
+		<script type="text/javascript">
+		    var chartDom = document.getElementById('content');
+		    var myChart = echarts.init(chartDom);
+		    var option1;
+		
+		    var data = [];
+		    for (let i = 0; i < 9; ++i) {
+		        data.push(111);
+		    }
+		
+		    option1 = {
+		        xAxis: {
+		            max: 'dataMax',
+		        },
+		        yAxis: {
+		            type: 'category',
+		            data: ['Deep learning', 'Object detection', 'Semantic segmentation', 'Domain adaptation', '3D reconstruction', 'Unsupervised learning', 'Attention', '3d displays', 'Convolutional neural networks'],
+		            inverse: true,
+		            animationDuration: 300,
+		            animationDurationUpdate: 300,
+		       
+		        },
+		        series: [{
+		            realtimeSort: true,
+		            name: 'X',
+		            type: 'bar',
+		            data: data,
+		            label: {
+		                show: true,
+		                position: 'right',
+		                valueAnimation: true
+		            }
+		        }],
+		        legend: {
+		            show: true
+		        },
+		        animationDuration: 0,
+		        animationDurationUpdate: 1000,
+		        animationEasing: 'linear',
+		        animationEasingUpdate: 'linear'
+		    };
+		
+		    function run() {
+		        var data = option1.series[0].data;
+		        data[1] = 65;
+		        data[2] = 45;
+		        data[3] = 76;
+		        data[4] = 43;
+		        data[5] = 54;
+		        data[6] = 79;
+		        data[7] = 96;
+		        data[8] = 73;
+		        data[0] = 12;
+		        myChart.setOption(option1);
+		    }
+		
+		    function run2() {
+		        var data = option1.series[0].data;
+		        data[1] = 54;
+		        data[2] = 56;
+		        data[3] = 61;
+		        data[4] = 37;
+		        data[5] = 46;
+		        data[6] = 99;
+		        data[7] = 64;
+		        data[8] = 34;
+		        data[0] = 64;
+		
+		        myChart.setOption(option1);
+		    }
+		    function run3() {
+		        var data = option1.series[0].data;
+		        data[0] = 33;
+		        data[1] = 194;
+		        data[2] = 90;
+		        data[3] = 80;
+		        data[4] = 55;
+		        data[5] = 42;
+		        data[6] = 42;
+		        data[7] = 40;
+		        data[8] = 40;
+		
+		        myChart.setOption(option1);
+		    }
+		    setTimeout(function () {
+		        run();
+		    }, 1);
+		    setTimeout(function () {
+		        run2();
+		    }, 1200);
+		    setTimeout(function () {
+		        run3();
+		    }, 2400);
+		    if (option1 && typeof option1 === 'object') {
+		        myChart.setOption(option1);
+		    }
+		
+		</script>
+	</body>
+</html>
