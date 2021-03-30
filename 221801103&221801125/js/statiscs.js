@@ -25,6 +25,7 @@ $(function(){
             dataType:"json",
             type:"post",
             success:data=>{
+                $("#reg_wait").css("display","none")
                 var obj = {
                     "cvpr" : data.cvpr, //cvpr的前5月排行int数组
                     "iccv" : data.iccv,
@@ -46,9 +47,11 @@ $(function(){
                 
             },
             error:()=>{
+                $("#reg_wait").css("display","none")
                 alert("网络出错了，可能有问题")
             }
         })
+        $("#reg_wait").css("display","inline-block")
         var height = window.innerHeight - 61;
         var dom = document.getElementsByClassName("container")[0];
         var dom2 = document.getElementsByClassName("wrap")[0];
