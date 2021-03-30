@@ -65,7 +65,7 @@
   else if (($title == "请输入标题关键字进行搜索" || $title == 'NA') && $time != "所有时间" && $time != "NA") {
     $query = "select * from paper where meeting_date like '%".$time."' order by ".$sort;
   }
-  else if (($title != "请输入标题关键字进行搜索" && $title != 'NA') && $time == "所有时间" || $time != "NA") {
+  else if (($title != "请输入标题关键字进行搜索" && $title != 'NA') && ($time == "所有时间" || $time != "NA")) {
     $query = "select * from paper where post_title like '%".$title."%' order by ".$sort;
   }
   else {
