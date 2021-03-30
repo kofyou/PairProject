@@ -2,15 +2,20 @@
     <div class="box-card" align="left">
         <div class="paper title">
             <h1>Visual Attention Consistency Under Image Transforms for Multi-Label Image Classification</h1>
-            <a>Author:</a>
+            <a>作者: </a>
             <span class="blue">Hao Guo, Kang Zheng, Xiaochuan Fan, Hongkai Yu, Song Wang</span>
         </div>
         <el-divider></el-divider>
         <div class="paper body">
-            <h2>Abstract</h2>
-            <p> Human visual perception shows good consistency for many multi-label image classification tasks under certain spatial transforms, such as scaling, rotation, flipping and translation. This has motivated the data augmentation strategy widely used in CNN classifier training -- transformed images are included for training by assuming the same class labels as their original images....</p>
-            <p>abcdefghijklmn</p>
-            <p>abcdefghijklmn</p>
+            <h2>摘要：</h2>
+            <div style="height: 80px; overflow:hidden">
+                <span>In this paper we propose a new technique to perform figure-ground segmentation in image sequences of moving objects under varying illumination conditions. Unlike most of the algorithms some of these hypotheses take into uccessfully track nonrigid contours. Reciprocally, the contour estimation is used to correct the color model. The integration of color and shape is done in a stage denominated 'sample concentration', that has been introduced as a final step to the well-known CONDENSATION algorithm. </span>
+            </div>
+            <div style="height:10px;"></div>
+            <h3>关键词:</h3>
+            <div style="height: 32px; overflow:hidden">
+                <span>Deformable models,Image segmentation,Image sequences,Lighting,Object segmentation,Colored noise,Multi-stage noise shaping,Noise generators,Fitting,Color</span>
+            </div>
         </div>
         <div class="right">
             <el-button class="btns"></el-button>
@@ -32,11 +37,9 @@ export default defineComponent({
         width:100%;
         height:100%;
         /* margin: 20px; */
-        margin-bottom: 50px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         float: left;
         border-radius: 10px;
-        margin-right: 10px;
         padding: 5px;
         padding-top: 15px;
     }
@@ -45,7 +48,7 @@ export default defineComponent({
         height:100%;
     }
     .title {
-        background-color: #f0a091de;
+        background-color: #ccadbb;
         /* filter: blur(2px); */
         border-radius: 7px;
         padding-top: 10px;
@@ -60,6 +63,7 @@ export default defineComponent({
     .body {
         width: 80%;
         float: left;
+        overflow: hidden;
         padding-left:40px;
         padding-bottom: 20px;
     }
@@ -79,7 +83,10 @@ export default defineComponent({
         display: block;
     }
     .blue {
-        color: rgb(139, 175, 218);
+        color: rgb(98, 123, 155);
+    }
+    .paper-details {
+        widows: 80%;;
     }
 
 </style>

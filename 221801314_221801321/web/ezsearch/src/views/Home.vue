@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <Header />
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="height: 40%">
       <el-col :span="12" :offset="3"><Carousel /></el-col>
       <el-col :span="6" :offset="0"><CarouselV /></el-col>
     </el-row>
@@ -30,7 +30,7 @@
       </el-row>
     </div>
     <div class="divider"></div>
-    <el-space direction="vertical">
+    <el-space direction="vertical" :size="40">
       <Paper />
       <Paper />
       <Paper />
