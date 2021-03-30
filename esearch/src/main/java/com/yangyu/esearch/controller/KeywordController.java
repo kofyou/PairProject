@@ -1,14 +1,15 @@
 package com.yangyu.esearch.controller;
 
 import com.yangyu.esearch.entity.Keyword;
+import com.yangyu.esearch.entity.WordYear;
+import com.yangyu.esearch.entity.YearWord;
 import com.yangyu.esearch.service.KeywordService;
 import com.yangyu.esearch.service.PaperService;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,9 +42,24 @@ public class KeywordController {
         return keywordService.topWord(paperService.selectSource(source));
     }
 
-    @GetMapping("year")
-    public int selectKeywordYear(String years, String keyword)
+    @PostMapping("year")
+    public List<YearWord> selectKeywordYear(@RequestBody WordYear wordYear)
     {
-        return paperService.selectKeywordYear(years, keyword).size();
+        String []years = wordYear.getYears();
+        String []keyword = wordYear.getKeyword();
+        List<YearWord> yearWords = new LinkedList<>();
+        for (String word : keyword)
+        {
+            YearWord yearWord = new YearWord();
+            yearWord.setKeyword(word);
+            int [] num = new int[years.length];
+            for (int i = 0; i < years.length; i++)
+            {
+                num[i] = paperService.selectKeywordYear(years[i], word).size();
+            }
+            yearWord.setNum(num);
+            yearWords.add(yearWord);
+        }
+        return yearWords;
     }
 }
