@@ -90,12 +90,6 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$message({
-        message: "登录成功",
-        type: "warning",
-      });
-    },
     loginForm(formName)
     {
       console.log(this.$md5(this.form.loginPassword));

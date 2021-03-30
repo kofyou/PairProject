@@ -57,6 +57,7 @@
       </el-form>
     </div>
   </mymain>
+  <el-footer>Footer</el-footer>
 </div>
 </template>
 

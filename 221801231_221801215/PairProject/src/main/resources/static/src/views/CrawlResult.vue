@@ -1,5 +1,6 @@
 <template>
-  <div>
+
+    <el-container>
     <myheader></myheader>
     <el-main>
       <sidebar></sidebar>
@@ -9,15 +10,15 @@
       <el-dialog :visible.sync="dialogVisible" class="detaildialog">
             <div style="height: 700px">
               <div class="paperdetailstitle">论文详情:</div>
-              <div class="papertitle">论文题目:{{this.dialogDetail.paperTitle}}</div>
-              <div class="papersource">论文来源:{{this.dialogDetail.paperSource}}</div>
-              <div class="paperyear">论文年份:{{this.dialogDetail.paperYear}}</div>
-              <div class="paperprecis">论文摘要: {{this.dialogDetail.paperAbstract}}</div>
-              <div class="paperkeyword">论文关键词:<span v-for="(item,index) in this.dialogDetail.paperKeyword" :key="index">{{item}}</span></div>
-              <a :href="this.dialogDetail.paperUrl" class="paperurl">原文链接</a>
+              <div class="papertitle"><strong>论文题目:</strong>《{{this.dialogDetail.title}}》</div>
+              <div class="papersource"><strong>论文来源:</strong>{{this.dialogDetail.source}}</div>
+              <div class="paperyear"><strong>论文年份:</strong>{{this.dialogDetail.publishYear}}</div>
+              <div class="paperprecis"><strong>论文摘要: </strong>{{this.dialogDetail._abstract}}</div>
+              <div class="paperkeyword"><strong>论文关键词:</strong><span v-for="(item,index) in this.dialogDetail.keywords" :key="index">[{{item.keyword}}]</span></div>
+              <a :href="this.dialogDetail.url" class="paperurl">原文链接</a>
             </div>
           </el-dialog>
-      <el-tabs type="border-card" stretch="true" style="position: relative">
+      <el-tabs type="border-card" stretch="true" style="position: relative" @tab-click="ShowPagenation">
         <el-tab-pane style="">
           <span slot="label"><i class="el-icon-date"></i> 爬取结果显示</span>
           <el-collapse-transition>
@@ -29,6 +30,7 @@
               )"
               style="position: relative"
               :key="index"
+              @click="showDetails(index)"
             >
               <mycard :paperDetail='item'>
               </mycard>
@@ -41,7 +43,7 @@
                   right: 40px;
                   cursor: pointer;
                 "
-                @click="showDetails(index)"
+
               ></i>
               <i
                 class="fa fa-trash"
@@ -55,89 +57,70 @@
               ></i>
             </li>
           </ul></el-collapse-transition>
-
-          <el-pagination
-            small
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-size="pagesize"
-            layout="prev, pager, next"
-            :total="100"
-            style="position:relative;"
-          >
-          </el-pagination>
         </el-tab-pane >
         <el-tab-pane label="关键词图谱">
           <el-card shadow="hover" class="keymap">
             <div
               class="keyword"
-              style="font-size: 50px; top: 100px; left: 350px; color: red"
-              @click="showKeywordPapers(0)"
+              style="font-size: 30px; top: 100px; left: 300px; color: red"
+
             >
-              热词一
+              <el-tooltip :content="keywordList[0]" effect="light"><span @click="showKeywordPapers(0)" class="keywordpointer">{{keywordList[0]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 20px; top: 50px; left: 350px; color: #d9c880"
-              @click="showKeywordPapers(1)"
+              style="font-size: 20px; top: 30px; left: 350px; color: #d9c880"
             >
-              热词二
+              <el-tooltip :content="keywordList[1]" effect="light"> <span @click="showKeywordPapers(1)" class="keywordpointer">{{keywordList[1]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 25px; top: 60px; left: 250px; color: #b1a9c1"
-              @click="showKeywordPapers(2)"
+              style="font-size: 25px; top: 60px; left: 100px; color: #b1a9c1"
             >
-              热词三
+               <el-tooltip :content="keywordList[2]" effect="light"><span @click="showKeywordPapers(2)" class="keywordpointer">{{keywordList[2]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 26px; top: 60px; left: 450px; color: #93aab8"
-              @click="showKeywordPapers(3)"
+              style="font-size: 26px; top: 60px; left: 400px; color: #93aab8;width:350px"
             >
-              热词四
+             <el-tooltip :content="keywordList[3]" effect="light"> <span @click="showKeywordPapers(3)" class="keywordpointer">{{keywordList[3]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 15px; top: 80px; left: 150px; color: #81a027"
+              style="font-size: 15px; top: 90px; left: 150px; color: #81a027;width:150px"
               @click="showKeywordPapers(4)"
             >
-              热词五
+               <el-tooltip :content="keywordList[4]" effect="light"><span @click="showKeywordPapers(4)" class="keywordpointer">{{keywordList[4]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 29px; top: 120px; left: 150px; color: #ffa634"
-              @click="showKeywordPapers(5)"
+              style="font-size: 29px; top: 120px; left: 50px; color: #ffa634;width:250px"
             >
-              热词六
+               <el-tooltip :content="keywordList[5]" effect="light"><span @click="showKeywordPapers(5)" class="keywordpointer">{{keywordList[5]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 20px; top: 90px; left: 550px; color: #fcb1c0"
-              @click="showKeywordPapers(6)"
+              style="font-size: 20px; top: 90px; left: 550px; color: #fcb1c0;width:250px"
             >
-              热词七
+              <el-tooltip :content="keywordList[6]" effect="light"><span @click="showKeywordPapers(6)" class="keywordpointer">{{keywordList[6]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 23px; top: 120px; left: 500px; color: #adacab"
-              @click="showKeywordPapers(7)"
+              style="font-size: 23px; top: 130px; left: 500px; color: #adacab"
             >
-              热词八
+              <el-tooltip :content="keywordList[7]" effect="light"><span @click="showKeywordPapers(7)" class="keywordpointer">{{keywordList[7]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 26px; top: 150px; left: 400px; color: #d2ff4d"
-              @click="showKeywordPapers(8)"
+              style="font-size: 26px; top: 160px; left: 400px; color: #d2ff4d"
             >
-              热词九
+               <el-tooltip :content="keywordList[8]" effect="light"><span @click="showKeywordPapers(8)" class="keywordpointer">{{keywordList[8]}}</span></el-tooltip>
             </div>
             <div
               class="keyword"
-              style="font-size: 35px; top: 160px; left: 250px; color: #8c0000"
-              @click="showKeywordPapers(9)"
+              style="font-size: 35px; top: 160px; left: 100px; color: #8c0000"
             >
-              热词十
+          <el-tooltip :content="keywordList[9]" effect="light"> <span @click="showKeywordPapers(9)" class="keywordpointer">{{keywordList[9]}}</span></el-tooltip>
             </div>
           </el-card>
           <div
@@ -145,11 +128,11 @@
               height: 40px;
               line-height: 50px;
               text-align: left;
-              width: 150px;
+              width: 200px;
               margin-left: 20px;
             "
           >
-            请选择你的热词:
+            请从以上选择你的热词:{{this.currentKeyword}}
           </div>
           <ul style="list-style: none">
             <li
@@ -181,20 +164,10 @@
                   right: 20px;
                   cursor: pointer;
                 "
-                @click="deleteCard(index)"
+                @click="deleteCard(index,item.id,1)"
               ></i>
             </li>
           </ul>
-          <el-pagination
-            small
-            @current-change="handlekeywordChange"
-            :current-page="keywordPage"
-            :page-size="keywordsize"
-            layout="prev, pager, next"
-            :total="this.paperNum"
-            style="position:relative;bottom:-50px"
-          >
-          </el-pagination>
         </el-tab-pane>
         <el-tab-pane label="热度走势">
            <el-form :model="statics">
@@ -239,11 +212,34 @@
               >确定</el-button
             >
           </div></el-form>
-          <div id="myChart" :style="{ width: '500px', height: '500px' }"></div>
+          <div id="myChart" :style="{ width: '600px', height: '600px' }"></div>
         </el-tab-pane>
       </el-tabs>
+         <el-pagination
+            small
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-size="pagesize"
+            layout="prev, pager, next"
+            :total="100"
+            style="position:absolute;left:50%"
+            v-show="pagePagination1"
+          >
+          </el-pagination>
+           <el-pagination
+            small
+            @current-change="handlekeywordChange"
+            :current-page="keywordPage"
+            :page-size="keywordsize"
+            layout="prev, pager, next"
+            :total="this.keywordPapersNum"
+            style="position:absolute;left:50%"
+            v-show="pagePagination2"
+          >
+          </el-pagination>
     </el-main>
-  </div>
+    <el-footer>Footer</el-footer>
+    </el-container>
 </template>
 
 <script>
@@ -260,8 +256,12 @@ export default {
       pagesize: 3,
       keywordPage: 1,
       keywordsize: 2,
+      keywordPapersNum:0,
       showpaperList:false,
       paperNum:10,
+      pagePagination1:true,
+      pagePagination2:false,
+      currentKeyword:"",
       paperDetailList: [
         {
           paperId: 7,
@@ -275,29 +275,12 @@ export default {
       ],
       dialogVisible: false,
       dialogDetail:{
-          paperTitle: "",
-          paperSource: "",
-          paperUrl: "",
-          paperYear: "",
-          paperAbstract: "",
-          paperKeyword:[],
       },
       keywordList:[
 
       ],
       keywordPaperList:[
-        {
-          paperId: 6,
-          paperTitle: "2001_A curve evolution approach for image segmentation using adaptive flows",
-          paperSource: "ICCV",
-          paperUrl: "https://doi.org/10.1109/ICCV.2001.937666",
-          paperYear: "2001",
-          paperAbstract: "In this paper, we develop a new active contour model for image segmentation using adaptive flows. This active contour model can be derived from minimizing a limiting form of the Mumford-Shah functional, where the segmented image is assumed to consist of piecewise constant regions. This paper is an extension of an active contour model developed by Chan-Vese. The segmentation method proposed in this paper adaptively estimates mean intensities for each separated region and uses a single curve to capture multiple regions with different intensities. The class of imagery that our new active model can handle is greater than the bimodal images. In particular, our method segments images with an arbitrary number of intensity levels and separated regions while avoiding the complexity of solving a full Mumford-Shah problem. The adaptive flow developed in this paper is easily formulated and solved using level set methods. We illustrate the performance of our segmentation methods on images generated by different modalities.",
-          paperKeyword:['关键词1','关键词2'],
-        }
       ],
-
-
       statics:{
         meetingValue: "全部顶会",
         startYearOptions: {
@@ -351,13 +334,12 @@ export default {
         value: "",
       },
       },
+      xdata:["2011","2022"],
     };
   },
   mounted() {
     this.drawLine();
     this.showpaperList=true;
-    this.getpagenum();
-    alert(this.paperNum);
   },
   methods: {
     drawLine() {
@@ -367,10 +349,10 @@ export default {
       // 绘制图表
       myChart.setOption({
         title: { text: "近年热度走势对比" },
-        legend:{data:['销量']},
+        legend:{data:['销量','数据']},
         tooltip: {},
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+          data: this.xdata,
         },
         yAxis: {},
         series: [
@@ -379,14 +361,74 @@ export default {
             type: "line",
             data: [5, 20, 36, 10, 10, 20],
           },
+          {
+            name: "数据",
+            type: "line",
+            data: [20, 5, 36, 10, 10, 20],
+          },
         ],
       });
     },
-    deleteCard: function (value) {
-      this.paperDetailList.splice(value, 1);
+    ShowPagenation:function (tab,event) {
+      if(tab.index==0)
+      {
+        this.pagePagination1=true;
+        this.pagePagination2=false;
+
+      }
+      else if(tab.index==1)
+      {
+        this.pagePagination2=true;
+        this.pagePagination1=false;
+        this.GetKeyword();
+        this.keywordPapersNum=this.keywordPaperList.length;
+      }
+      else{
+        this.pagePagination2=false;
+        this.pagePagination1=false;
+      }
+    },
+    deleteCard: function (value,id,index) {
+      if(index==0)
+      {this.paperDetailList.splice(value, 1);}
+      else(index==1)
+      {
+        this.keywordPaperList.splice(value,1);
+      }
+      let _this = this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/delete", {
+          params: {
+            paperId: id,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+           _this.$message({
+          message:'删除成功',
+          type:'success'
+        });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     handleCurrentChange: function (currentpage) {
       this.currentPage = currentpage;
+      let _this=this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/contentsPage", {
+          params: {
+           pageNum:_this.currentPage,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     handlekeywordChange: function (keywordpage) {
       this.keywordPage = keywordpage;
@@ -399,17 +441,19 @@ export default {
       this.dialogVisible = true;
       this.dialogDetail=this.keywordPaperList[value];
     },
-    showKeywordPaper:function (value) {
+    showKeywordPapers:function (value) {
        let _this=this;
       this.$axios
         .get(_this.$api.globalUrl + "/userPaper/keyword", {
           params: {
-
+            keyword:_this.keywordList[value],
+            pageNum:_this.keywordPage,
+            pageSize:_this.keywordsize
           },
         })
         .then(function (response) {
-          console.log(response);
-
+          _this.keywordPaperList=response.data.data;
+          _this.keywordPapersNum=response.data.data.length
         })
         .catch(function (error) {
           console.log(error);
@@ -418,17 +462,16 @@ export default {
     getpagenum:function () {
       this.paperNum=sessionStorage.getItem('papernum');
       },
-    getkeyword:function(maxNum){
+    GetKeyword:function(){
       let _this=this;
       this.$axios
-        .get(_this.$api.globalUrl + "/userPaper/keyword", {
+        .get(_this.$api.globalUrl + "/keyword/userTopTen", {
           params: {
-
           },
         })
         .then(function (response) {
           console.log(response);
-
+         _this.keywordList=response.data.data;
         })
         .catch(function (error) {
           console.log(error);
@@ -440,6 +483,17 @@ export default {
 </script>
 
 <style scoped>
+.el-footer {
+  background-color: #133382;
+  color: #d3dce6;
+  text-align: center;
+  line-height: 80px;
+  height: 80px !important;
+}
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+}
 .el-main {
   background-color: #e9eef3;
   color: #333;
@@ -479,10 +533,14 @@ export default {
   background-color: #f2f3f9;
 }
 .keyword {
-  width: 200px;
+  width: 300px;
   height: 50px;
   position: absolute;
   font-weight: bold;
+}
+.keywordpointer
+{
+   cursor: pointer;
 }
 .meetingchoosebox {
   width: 400px;
@@ -518,32 +576,32 @@ export default {
   height: 40px;
   top: 60px;
   left: 60px;
-  line-height: 40px;
+  line-height: 20px;
   text-align: left;
 }
 .papersource{
    position: absolute;
   width: 750px;
   height: 20px;
-  top: 140px;
+  top: 120px;
   left: 60px;
-  line-height: 40px;
+  line-height: 20px;
   text-align: left;
 }
 .paperyear{
     position: absolute;
   width: 750px;
   height: 20px;
-  top: 160px;
+  top: 140px;
   left: 60px;
-  line-height: 40px;
+  line-height: 20px;
   text-align: left;
 }
 .paperprecis {
   position: absolute;
   width: 750px;
   height: 500px;
-  top: 180px;
+  top: 160px;
   left: 60px;
   line-height: 40px;
   text-align: left;
@@ -552,8 +610,9 @@ export default {
   position: absolute;
   width: 750px;
   height: 100px;
-  bottom: 100px;
-  left: 65px;
+  bottom: 70px;
+  left: 60px;
+  line-height: 20px;
   text-align: left;
 }
 .paperurl{
@@ -561,8 +620,8 @@ export default {
   position: absolute;
   height: 40px;
   width: 100px;
-  bottom: 50px;
-  left: 65px;
+  top: 10px;
+  right: 65px;
   text-align: left;
   line-height: 40px;
   text-decoration: none;

@@ -1,4 +1,4 @@
-let globalUrl="http://192.168.50.167:8080";
+let globalUrl="http://120.77.40.111:9999";
 let baseUrl={
   globalUrl
 }

@@ -37,20 +37,24 @@ export default {
       squareUrl:
         "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
         username:this.userName,
-        loginstatus:this.loginStatus
+        loginstatus:""
     }
   },
-  watch:{
-     'userName':function(val)
-     {
-     this.userName=val;
-     alert(this.userName);
-     },
-     'loginStatus':function(val){
-      this.loginStatus=val;
-      alert(this.loginStatus);
-     }
+  mounted(){
+     this.username=localStorage.getItem['username'];
+     this.loginStatus=localStorage.getItem['loginstaus'];
+     alert(this.username);
   },
+  // watch:{
+  //    'userName':function(val)
+  //    {
+  //    this.userName=val;
+  //    alert(this.userName);
+  //    },
+  //    'loginStatus':function(val){
+  //     this.loginStatus=val;
+  //    }
+  // },
   methods:{
     toLogin:function (){
       this.$router.push('/login');

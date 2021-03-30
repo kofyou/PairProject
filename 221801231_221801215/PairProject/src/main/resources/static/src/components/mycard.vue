@@ -2,15 +2,15 @@
 <div>
   <el-card shadow="hover" class="papercard">
      <div class="papertitle">
-      {{this.paperDetail.paperTitle}}
+      论文题目:《{{this.paperDetail.title}}》
      </div>
     <div class="precis">
-      论文摘要:{{this.paperDetail.paperAbstract}}
+      论文摘要:{{this.paperDetail._abstract}}
     </div>
     <div class="keyword">
-      关键词:<span v-for="(item,index) in this.paperDetail.paperKeyword" :key="index">{{item}}</span>
+      关键词:<span v-for="(item,index) in this.paperDetail.keywords" :key="index">[{{item.keyword}}]</span>
     </div>
-    <a :href="this.paperDetail.paperUrl" class="originallink">
+    <a :href="this.paperDetail.url" class="originallink">
       原文链接
     </a>
     <slot></slot>
@@ -43,7 +43,7 @@ export default {
 .papertitle{
   width: 700px;
   height: 50px;
-  line-height: 50px;
+  line-height: 30px;
   position: absolute;
   top:10px;
   left: 30px;
@@ -56,12 +56,13 @@ export default {
   height: 60px;
   line-height: 60px;
   position: absolute;
-  top:40px;
+  top:80px;
   left: 30px;
   text-align: left;
   text-overflow: ellipsis;
   overflow:hidden;
   white-space:nowrap;
+  font-weight: bold;
 }
 .keyword{
   width: 700px;
@@ -74,6 +75,7 @@ export default {
   text-overflow: ellipsis;
   overflow:hidden;
   white-space:nowrap;
+  font-weight: bold;
 }
 .originallink{
   display: block;

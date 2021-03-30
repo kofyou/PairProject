@@ -10,7 +10,7 @@
             <ul style="height:750px;list-style: none; position:absolute;top: 40px;left: 10px;overflow-y:auto;overflow-x: hidden" id="#list">
               <li v-for="(item,index) in paperList" class="paperlistitem" :key="index">
                 <el-card shadow="hover" style="line-height:100%">
-                  <el-tooltip :content="item.title" effect="light" open-delay="500">
+                  <el-tooltip :content="item.title" effect="light" open-delay=500>
                     <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{item.title}}</span></el-tooltip>
                   <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 80%;cursor:pointer" @click="deleteItem(item.id,index)"></i>
                 </el-card>
