@@ -287,8 +287,9 @@ export default {
         value: "",
       },
       },
-      frequencyDatas:["1","2"],
-      newfrequencyDatas:[]
+      frequencyDatas:[],
+      newfrequencyDatas:[],
+      frequencyKeywords:[]
     };
   },
   mounted() {
@@ -298,16 +299,21 @@ export default {
     this.Username = sessionStorage.getItem("username");
     this.loginStatus=sessionStorage.getItem("loginstatus");
     this.GetPagePaperList(this.currentPage,this.pagesize,true);
+    this.GetKeyword();
     this.ShowTotalFrequency();
   },
   watch:{
     newfrequencyDatas:function(val,oldval){
-      if(val!=oldval)
-      {
-        console.log(oldval);
-        console.log(val);
+
         this.drawLine();
-      }
+
+
+    },
+    keywordList:function(val,oldval){
+
+        this.drawLine();
+
+
     },
    deep:true
   },
@@ -318,8 +324,12 @@ export default {
       myChart.resize();
       // 绘制图表
       myChart.setOption({
-        title: { text: "近年热度走势对比" },
-        legend:{data:['销量','数据']},
+        title: { text: "近年热度走势对比"
+        },
+        legend:{
+          show:true,
+          top:"6%",
+          data:this.keywordList},
         tooltip: {},
         xAxis: {
           data: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
@@ -464,17 +474,17 @@ export default {
         })
         .then(function (response) {
           console.log(response);
-          console.log(_this.newfrequencyDatas);
+          // console.log(response.data.data);
          _this.frequencyDatas=response.data.data;
          let newArray=[];
-         let singleArray=[];
-         for(let i=0;i<21;i++)
-         {
-            singleArray[i]="0";
-         }
-         console.log(singleArray);
+
           _this.frequencyDatas.forEach(
             element=>{
+              let singleArray=[];
+             for(let i=0;i<21;i++)
+            {
+            singleArray[i]="0";
+            }
               console.log(element);
               element.forEach(ele=>{
                  let year= parseInt(ele.publishYear)-2000;
