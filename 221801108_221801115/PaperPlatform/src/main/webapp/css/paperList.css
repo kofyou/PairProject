@@ -85,6 +85,7 @@ html,body{
     border-collapse: collapse;
     width: 80%;
     table-layout:fixed;
+    border-radius: 15px;
 }
 
 #papertable td, #papertable th {
@@ -92,27 +93,46 @@ html,body{
     padding: 8px;
 }
 
-#papertable tr:nth-child(even){background-color: #f2f2f2;}
-
-#papertable tr:hover {background-color: #ddd;}
-
 #papertable th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    color: #4f6b72;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     text-align: center;
-    background-color: #4CAF50;
-    color: white;
+    padding: 12px;
+    background: #CAE8EA;
+
+}
+#papertable td {
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+
+    padding: 6px 6px 6px 12px;
+    color: #4f6b72;
 }
 
+#papertable tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#papertable tr:nth-child(even) {
+    background-color: #F5FAFA;
+}
+
+
+
 .num {
-    width: 3%;
+    width: 6%;
 }
 
 .title {
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    width: 20%;
+    width: 19%;
 }
 
 .conference {
@@ -123,7 +143,7 @@ html,body{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    width: 30%;
+    width: 29%;
 }
 
 .link {
@@ -137,11 +157,19 @@ html,body{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    width: 20%;
+    width: 19%;
 }
 
 .delete {
     width: 7%;
+}
+.delete_button{
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/4.png");
+    border-style: none;
+    background-size: 100%;
+    opacity: 70%;
 }
 
 
@@ -196,9 +224,10 @@ html,body{
 }
 #div_paperList{
     text-align: center;
+    padding-bottom: 100px;
 }
 #div_paging{
-    position: absolute;
+    position:absolute;
     bottom: 15px;
     right: 15px;
     font-size: 15px;

@@ -75,7 +75,7 @@
                     <td class="summary" onclick="show('${pl.title}')"> ${pl.summary} </td>
                     <td class="link" onclick="show('${pl.title}')"> <a href=${pl.link} >${pl.link}</a> </td>
                     <td class="link" onclick="show('${pl.title}')"> ${pl.keywords} </td>
-                    <td class="delete"> <button type="button" onclick="deletePaper('${pl.title}')">删除</button> </td>
+                    <td class="delete"> <button type="button" class="delete_button" onclick="deletePaper('${pl.title}')"></button> </td>
                 </tr>
             </c:forEach>
         </table>
