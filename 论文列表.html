@@ -6,9 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="Untitled-1.css">
-
+<script>
+    function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){
+                console.log("pair[1]")   
+                return pair[1];}
+       }
+       return(false);
+}
+</script>
 </head>
-<body id="body">
+<body id="body"  onload="getQueryVariable(type)" >
     <div class="header">
         <div class="picture"><a href="#"><img src="2.png" ></a></div>
 		<div class="hh">
@@ -116,6 +129,6 @@
 </div>
 
 
-
+<script src="./js/list.js"></script>
 </body>
 </html>

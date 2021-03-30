@@ -20,14 +20,20 @@
 	</div>
 <!-- 主体 -->
 	<div class="main">
+
 		<div class="picture"><a href="#"><img src="1.png"></a></div>
 		<!-- 搜索框 -->
+
 		<div class="ss">
-			<input type="text" name="" id="ss-l" placeholder="请输入论文信息" />
-			<input @click="search" type="submit" name="" id="ss-r" value="搜索" />
-      <p>
-        {{info}}
-      </p>
+			<select id="se" v-model="type">
+				<option value="author">author</option>
+				<option value="title">title</option>
+				<option value="keyword">keyword</option>
+				<option value="abstracts">abstracts</option>
+			  </select>
+			<input type="text" v-model="value" id="ss-l" placeholder="请输入论文信息" />
+			<input @click="to" type="submit" name="" id="ss-r" value="搜索" />
+
       
 		</div>
 
