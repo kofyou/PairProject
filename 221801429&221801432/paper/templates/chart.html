@@ -23,7 +23,7 @@
         <div class="detail_con fl" style="height:auto">
             <h3>图表</h3>
             <div class="detail_about clearfix">
-                <span class="time_souce fl">不限{{ data.list_word}}
+                <span class="time_souce fl">不限
                     <span style="margin-left: 10px;">来源: <strong>近几年三大顶会</strong></span>
                 </span>
             </div>
@@ -56,7 +56,7 @@
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['邮件营销', '联盟广告', '视频广告']
+                        data: ['2020', '2019', '2018']
                     },
                     grid: {
                         left: '3%',
@@ -73,7 +73,7 @@
                        type: 'category',
                         boundaryGap: false,
                         data: [
-                            {% for i in range(7) %}
+                            {% for i in range(10) %}
                             '{{ data.list_word[i] }}',
                             {% endfor %}
                         ]
@@ -83,22 +83,30 @@
                     },
                     series: [
                         {
-                            name: '邮件营销',
+                            name: '2020',
                             type: 'line',
                             stack: '',
-                            data: [120, 132, 101, 134, 90, 230, 210]
+                            data: [
+                                {% for i in range(10) %}
+                                '{{ data.analysis_list[0][i].frequency }}',
+                                {% endfor %}
+                            ]
                         },
                         {
-                            name: '联盟广告',
+                            name: '2019',
                             type: 'line',
                             stack: '',
-                            data: [220, 182, 191, 234, 290, 330, 310]
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[1][i].frequency }}',
+                                   {% endfor %}]
                         },
                         {
-                            name: '视频广告',
+                            name: '2018',
                             type: 'line',
                             stack: '',
-                            data: [150, 232, 201, 154, 190, 330, 410]
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[2][i].frequency }}',
+                                   {% endfor %}]
                         }
                     ]
                 };
@@ -111,7 +119,7 @@
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['邮件营销', '联盟广告', '视频广告']
+                        data: ['2020', '2018', '2016']
                     },
                     grid: {
                         left: '3%',
@@ -125,44 +133,56 @@
                         }
                     },
                     xAxis: {
-                        type: 'category',
+                       type: 'category',
                         boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        data: [
+                            {% for i in range(10) %}
+                            '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
                     },
                     yAxis: {
                         type: 'value'
                     },
                     series: [
                         {
-                            name: '邮件营销',
+                            name: '2020',
                             type: 'line',
                             stack: '',
-                            data: [120, 132, 101, 134, 90, 230, 210]
+                            data: [
+                                {% for i in range(10) %}
+                                '{{ data.analysis_list[3][i].frequency }}',
+                                {% endfor %}
+                            ]
                         },
                         {
-                            name: '联盟广告',
+                            name: '2018',
                             type: 'line',
                             stack: '',
-                            data: [220, 182, 191, 234, 290, 330, 310]
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[4][i].frequency }}',
+                                   {% endfor %}]
                         },
                         {
-                            name: '视频广告',
+                            name: '2016',
                             type: 'line',
                             stack: '',
-                            data: [150, 232, 201, 154, 190, 330, 410]
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[5][i].frequency }}',
+                                   {% endfor %}]
                         }
                     ]
                 };
 
                 option_iccv = {
                     title: {
-                        text: 'ICCV'
+                        text: 'CVPR'
                     },
                     tooltip: {
                         trigger: 'axis'
                     },
                     legend: {
-                        data: ['邮件营销', '联盟广告', '视频广告']
+                        data: ['2019', '2017', '2015']
                     },
                     grid: {
                         left: '3%',
@@ -178,29 +198,41 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        data: [
+                            {% for i in range(10) %}
+                                '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
                     },
                     yAxis: {
                         type: 'value'
                     },
                     series: [
                         {
-                            name: '邮件营销',
+                            name: '2019',
                             type: 'line',
                             stack: '',
-                            data: [120, 132, 101, 134, 90, 230, 210]
+                            data: [
+                                {% for i in range(10) %}
+                                    '{{ data.analysis_list[6][i].frequency }}',
+                                {% endfor %}
+                            ]
                         },
                         {
-                            name: '联盟广告',
+                            name: '2017',
                             type: 'line',
                             stack: '',
-                            data: [220, 182, 191, 234, 290, 330, 310]
+                            data: [{% for i in range(10) %}
+                                '{{ data.analysis_list[7][i].frequency }}',
+                            {% endfor %}]
                         },
                         {
-                            name: '视频广告',
+                            name: '2015',
                             type: 'line',
                             stack: '',
-                            data: [150, 232, 201, 154, 190, 330, 410]
+                            data: [{% for i in range(10) %}
+                                '{{ data.analysis_list[8][i].frequency }}',
+                            {% endfor %}]
                         }
                     ]
                 };

@@ -149,20 +149,28 @@ def goto_chart():
     for i in topWord:
         top_list.append(i.name)
     # 对分析的数据进行分类
-    list_word = ['learning', 'feature extraction', 'training', 'image reconstruction',
+    list_word = ['learning', 'feature extraction', 'training', 'image recon',
                  'neural nets', 'task analysis', 'computer vision', 'cameras',
                  'object detection', 'convolutional neural nets']
     paper_type = ['CVPR', 'ECCV', 'ICCV']
     cvpr_year = [2020, 2019, 2018]
     eccv_year = [2020, 2018, 2016]
     iccv_year = [2019, 2017, 2015]
-    list_a = Analysis.query.filter_by(type=paper_type[0], year=cvpr_year[0]).all()
+    year_list = [cvpr_year, eccv_year, iccv_year]
+    print(year_list)
+    analysis_list = []
+    for i in range(3):
+        for j in range(3):
+            temp_list = Analysis.query.filter_by(type=paper_type[i], year=year_list[i][j])\
+                .order_by(Analysis.keyword).all()
+            analysis_list.append(temp_list)
     data = {
         'top': top_list,
-        'list': list_a,
-        'list_word': list_word[0:7],
+        'list_word': list_word,
+        'analysis_list': analysis_list
     }
     return render_template('chart.html', data=data)
+
 
 if __name__ == '__main__':
     app.run()
