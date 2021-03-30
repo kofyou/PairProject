@@ -33,7 +33,6 @@ app.use(logger('combined'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 app.use('/user', usersRouter)
 app.use('/search', searchRouter)
@@ -41,6 +40,7 @@ app.use('/star', starRouter)
 app.use('/top10', top10Router)
 app.use('/article', articleRouter)
 // catch 404 and forward to error handler
+app.use(express.static(path.join(__dirname, 'public')))
 
 // error handler
 // app.use(function(err, req, res, next) {
