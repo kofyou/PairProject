@@ -47,45 +47,66 @@
 
     <div class="menu">
         <div class="font_menu">
-            <div id="app">
-                <el-dropdown>
-                    <span class="el-dropdown-link" style="font-size: 18px; color: #757575; font-weight: bold">
-                        排序方式<i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>题名</el-dropdown-item>
-                        <el-dropdown-item>发表时间</el-dropdown-item>
-                        <el-dropdown-item>导入时间</el-dropdown-item>
-                </el-dropdown>
-            </div>
+            <form id="app" action="paper_list.php">
+                <select name="sort">
+                    <option onclick="orderbytitle()">排序方式</option>
+                    <option value="selected1">标题</option>
+                    <option value="selected2">会议时间</option>
+                    <input id="confirm" type="submit" value="确认"></input>
+                </select>
+            </form>
         </div>
-        <img src="image/add.png" id="icon_add" alt="alt">
+        <img src="image/add.png" id="icon_add" alt="alt" onclick="add()">
     </div>
 
     <div id="content">
 
-        <form name="search_key" id="search_key">
-            <input type="text" id="title" name="title" class="key" value="" placeholder="标题"/>
-            <input type="text" id="author" name="author" class="key" value="" placeholder="会议"/>
-            <input type="text" id="date" name="date" class="key" value="" placeholder="关键词"/>
-            <input type="submit" id="ensure" name="ensure" value="在结果中检索" class="key"/>
+        <form id="search_key">
+            <input type="text" id="title" class="key" name="s_title" placeholder="标题"/>
+            <input type="text" id="author" class="key" name="s_meeting" value="" placeholder="会议"/>
+            <input type="text" id="date" class="key" name="s_key" value="" placeholder="关键词"/>
+            <input type="submit" id="ensure" value="在关键词中搜索" class="key"/></input>
         </form>
 
         <?php
+            //数据库信息
             $db_host = "localhost";
             $db_username = "root";
             $db_password = "";
             $db_database = "paperdb";
-            /*创建连接*/
+
+            //创建连接
             $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
             if (mysqli_connect_errno()) {
                echo '错误: 无法连接到数据库. 请稍后再次重试.';
                exit;
             }
+            //设置字符集
             $conn->query("SET NAMES utf8");
-            //查询数据
-            $sql = "SELECT * FROM paper_user";
-            $result = $conn->query($sql);
+
+            //查看有没有排过序/搜索
+            $select = isset($_GET['sort'])?$_GET['sort']:'';
+            $search1 = isset($_GET['s_title'])?$_GET['s_title']:'';
+            $search2 = isset($_GET['s_meeting'])?$_GET['s_meeting']:'';
+            $search3 = isset($_GET['s_key'])?$_GET['s_key']:'';
+            if($select == "selected1") {
+                $sql = "SELECT * FROM paper_user order by post_title";
+                $result = $conn->query($sql);
+            }
+            else if($select == "selected2") {
+                $sql = "SELECT * FROM paper_user order by meeting_date";
+                $result = $conn->query($sql);
+            }
+            else if($search1!= "" && $search2!= "" && $search3!= "") {
+                $sql = "SELECT * FROM paper_user where post_title like '%".$search1."%' and meeting_date like '%".$search2."%' and keywords like '%".$search3."%'";
+                $result = $conn->query($sql);
+                echo "<script> document.getElementById('ensure').value = '查看全部文章';</script>";
+            }
+            else {
+                $sql = "SELECT * FROM paper_user";
+                $result = $conn->query($sql);
+            }
+
             //显示
             if ($result->num_rows > 0) {
                 // 输出数据
@@ -99,26 +120,29 @@
                     '<a href="paper_list.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="paper_list.php">删除</a>'.
                 '</div>';
                 }
-            } else {
-                echo "0 结果";
-            }
+            } 
+            
+            //关闭链接
             $conn->close();
         ?>
 
         <?php
+            //数据库信息
             $db_host = "localhost";
             $db_username = "root";
             $db_password = "";
             $db_database = "paperdb";
-            /*创建连接*/
+
+            //创建连接
             $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
             if (mysqli_connect_errno()) {
                 echo '错误: 无法连接到数据库. 请稍后再次重试.';
                 exit;
             }
             $conn->query("SET NAMES utf8");
+
             //删除当前选择列表
-            $title = isset($_GET['title'])?$_GET['title']:' ';
+            $title = isset($_GET['title'])?$_GET['title']:'';
             $sql = "delete from paper_user where post_title='".$title."'";
             $result = $conn->query($sql);
             $conn->close();
@@ -127,17 +151,20 @@
 </div>
 </body>
 <script>
-    new Vue().$mount('#app')
-
     function change1() {
-            //防止表单跳转
-            event.returnValue = false;
-            window.location.href = "sinplesearch.html";
-        }
+        //防止表单跳转
+        event.returnValue = false;
+        window.location.href = "sinplesearch.html";
+    }
     function change3() {
         //防止表单跳转
         event.returnValue = false;
         window.location.href = "data_analyse.html";
+    }
+    function add() {
+        //防止表单跳转
+        event.returnValue = false;
+        window.location.href = "sinplesearch.html";
     }
 </script>
 </html>

@@ -14,6 +14,32 @@ html,body {
     position: relative;
     top: 33%;
     left: 8%;
+    outline: none;
+}
+select {
+    border:none; 
+    font-size: 18px; 
+    color: #757575; 
+    font-weight: bold;
+}
+option {
+    border:none;
+    font-size: 16px; color: #000000; 
+    font-weight: normal;
+}
+#confirm {
+    position: relative;
+    margin-left: 2%;
+    bottom:8%;
+    width: 6%;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 25px 25px 25px 25px;
+    text-align: center;
+    vertical-align: middle;
+    color: #356FC8;
+    font-size: 12pt;
 }
 .menu{
     position: absolute;
