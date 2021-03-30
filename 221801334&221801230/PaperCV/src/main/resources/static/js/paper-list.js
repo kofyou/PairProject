@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var MAX_COUNT = 50;// 限制当前页面最大显示论文的数量
+    var MAX_COUNT = 30;// 限制当前页面最大显示论文的数量
 
     var keyWord = window.localStorage.getItem("keyWord");
     if (keyWord != null) {

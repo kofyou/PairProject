@@ -23,6 +23,11 @@ public class DataController {
     @Autowired
     private DataService dataService;
 
+    private static List<Word> ICCVTrend = null;
+    private static List<Word> ECCVTrend = null;
+    private static List<Word> CVPRTrend = null;
+    private static List<Map.Entry<String, Integer>> hotWord = null;
+
     /**
      * 查询iccv热词趋势
      *
@@ -30,7 +35,11 @@ public class DataController {
      */
     @GetMapping("/trend/iccv")
     public List<Word> getTrendICCV() {
-        return dataService.getTrendWord("ICCV", Arrays.asList("2011", "2013", "2015", "2017", "2019"));
+        if (ICCVTrend != null) {
+            return ICCVTrend;
+        }
+        ICCVTrend = dataService.getTrendWord("ICCV", Arrays.asList("2011", "2013", "2015", "2017", "2019"));
+        return ICCVTrend;
     }
 
     /**
@@ -40,7 +49,11 @@ public class DataController {
      */
     @GetMapping("/trend/eccv")
     public List<Word> getTrendECCV() {
-        return dataService.getTrendWord("ECCV", Arrays.asList("2016", "2018", "2020"));
+        if (ECCVTrend != null) {
+            return ECCVTrend;
+        }
+        ECCVTrend = dataService.getTrendWord("ECCV", Arrays.asList("2016", "2018", "2020"));
+        return ECCVTrend;
     }
 
     /**
@@ -50,7 +63,11 @@ public class DataController {
      */
     @GetMapping("/trend/cvpr")
     public List<Word> getTrendCVPR() {
-        return dataService.getTrendWord("CVPR", Arrays.asList("2016", "2017", "2018", "2019", "2020"));
+        if (CVPRTrend != null) {
+            return CVPRTrend;
+        }
+        CVPRTrend = dataService.getTrendWord("CVPR", Arrays.asList("2016", "2017", "2018", "2019", "2020"));
+        return CVPRTrend;
     }
 
     /**
@@ -74,7 +91,11 @@ public class DataController {
      */
     @GetMapping("/hotWord")
     public List<Map.Entry<String, Integer>> getHotWord() {
-        return dataService.getTop500();
+        if (hotWord != null) {
+            return hotWord;
+        }
+        hotWord = dataService.getTop500();
+        return hotWord;
     }
 
 }
