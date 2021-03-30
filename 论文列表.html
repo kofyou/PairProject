@@ -6,27 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="Untitled-1.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 <script>
     function getQueryVariable(variable)
-{
+{   
        var query = window.location.search.substring(1);
        var vars = query.split("&");
        for (var i=0;i<vars.length;i++) {
                var pair = vars[i].split("=");
-               if(pair[0] == variable){
-                console.log("pair[1]")   
+               if(pair[0] == variable){  
+                   console.log()       
                 return pair[1];}
+               
+        //document.getElementById("imgtalk").value="值";
        }
        return(false);
 }
 </script>
 </head>
-<body id="body"  onload="getQueryVariable(type)" >
+
+<body id="body"   >
+    <div id="app">
+
+ 
     <div class="header">
         <div class="picture"><a href="#"><img src="2.png" ></a></div>
 		<div class="hh">
-			<input type="text" name="" id="head-l" placeholder="请输入检索信息" />
-			<input type="submit" name="" id="head-r" value="搜索" />
+            <select id="se" v-model="type">
+				<option value="author">author</option>
+				<option value="title">title</option>
+				<option value="keyword">keyword</option>
+				<option value="abstracts">abstracts</option>
+			  </select>
+			<input type="text" name="" id="head-l" v-model="value"  placeholder="请输入检索信息" />
+			<input type="submit"  @click = "search" id="head-r" value="搜索" />
         </div>
         <div id="pi">
 
@@ -37,84 +51,16 @@
    
     <div id ="content">
 
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
-
-        </ul>
-        <ul class="list">
-
-            scrollbar-arrow-color上下按钮上三角箭头的颜色<br> 
-            scrollbar-base-color滚动条的基本颜色<br> 
-            scrollbar-dark-shadow-color立体滚动条强阴影的颜色<br> 
-            scrollbar-face-color立体滚动条凸出部分的颜色<br> 
-            scrollbar-highlight-color滚动条空白部分的颜色<br> 
-            scrollbar-shadow-color立体滚动条阴影的颜色<br> 
+        <ul class="list" v-for="novel in item">
+            <u class="u">
+            <a id="a" v-bind:href="novel.link">{{novel.title}}</a>
+        </u>
+        <br>
+        <b>abstract:   
+        </b>
+       
+            {{novel.abstracts}}
+        
 
         </ul>
         <div id="next">
@@ -128,7 +74,8 @@
 
 </div>
 
+</div>
+<script src="./js/list.js" onload="getQueryVariable('type')"></script>
 
-<script src="./js/list.js"></script>
 </body>
 </html>
