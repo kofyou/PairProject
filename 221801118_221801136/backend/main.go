@@ -19,16 +19,19 @@ func main() {
 	r.POST("/user/register/check", user.UserRegister)
 
 	// username=?&&thesis_id=?
-	r.POST("/search/list/like", user.UserLikeAdd)
-
-	// username=?&&thesis_id=?
 	r.POST("/user/like/delete", user.UserLikeDelete)
 
 	// username=?
 	r.POST("/user/like", user.UserLikeShow)
 
+	// username=?&&thesis_id=?
+	r.POST("/list/like", user.UserLikeAdd)
+
 	// source=?&&keyword=?&&year=?&&page=?
-	r.POST("/search/list", thesisSearch.GetThesisList)
+	r.POST("/list/search", thesisSearch.GetThesisList)
+
+	//
+	r.POST("/list", thesisSearch.GetThesisList)
 
 	r.POST("/")
 	r.Run(":8080")
