@@ -44,13 +44,14 @@ $(function(){
         $.ajax({
             url : "../GetUserInfoServlet",
             type:"post",
-            data : {
+            data : JSON.stringify({
                 "account" : USER_INFO.userID,
                 "userName" : USER_INFO.name,
                 "address" : USER_INFO.address,
                 "company" : USER_INFO.company,
                 "info" : USER_INFO.sign
-            },
+            }),
+            contentType:"application/json",
             success:data=>{
                 $("#set_wait").css("display","none")
                 $("#saveWord").css("display","inline")

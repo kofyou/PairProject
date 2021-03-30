@@ -42,21 +42,22 @@ document.getElementById("regist").onclick = () => {
         //检测账号是否已注册
         $.ajax({
           url: "../RegisterServlet",
-          data: {
+          data: JSON.stringify({
             "account": inputs[0].value,
-            "password": inputs[1].value,
-          },
+            "password": inputs[1].value
+          }),
+          contentType:"application/json",
           type: "POST",
           success: (data) => {
             $("#reg_word").removeClass("to_none");
             $("#reg_wait").css("display", "none");
-            if (data == true) {
+            if (data == "true") {
               alert("注册成功,即将跳转到登陆界面");
               localStorage.setItem("userName", inputs[0].value)
               setTimeout(() => {
                 window.open("./login.html", "_self");
               }, 2000);
-            } else if (data == false) {
+            } else if (data == "false") {
               hints[0].getElementsByTagName("span")[0].style.display = "inline";
             }
           },

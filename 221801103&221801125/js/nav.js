@@ -9,6 +9,7 @@ $(function () {
         $(".right-part:eq(3) div:eq(0)").html("未登录");
         $("a").css("cursor","not-allowed")
         $("a").attr("href","#")
+        $(".right-part:eq(3) ul li:eq(1)").html("去登陆");
       }
       else if(USER_INFO.name!="")
         $(".right-part:eq(3) div:eq(0)").html(USER_INFO.name);

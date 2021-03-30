@@ -7,10 +7,11 @@ $(function(){
             $.ajax({
                 url : "../../MyCollectServlet",
                 type : "post",
-                data : {
+                data : JSON.stringify({
                     "type" : 0,
                     "userName" : USER_INFO.userID
-                },
+                }),
+                contentType:"application/json",
                 success:data=>{
                     $("#reg_wait").css("display","none")
                     $.each(data,function(index,like){
@@ -57,10 +58,11 @@ $(function(){
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
                         url:"../../DeleteMyCollectServlet",
-                        data:{
+                        data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : removeInLike
-                        },
+                        }),
+                        contentType:"application/json",
                         type:"POST",
                         success:data=>{
                             if(data==true){
