@@ -24,7 +24,7 @@ public class UserPaperController {
      * @return the result
      */
     @GetMapping(path = "/add")
-    public Result<List<Paper>> fuzzyAddUserPaperByTitle(@SessionAttribute Integer id, @RequestParam String titleOrigin) {
+    public Result<List<Paper>> fuzzyAddUserPaperByTitle(@SessionAttribute Integer id,@RequestParam String titleOrigin) {
         List<Paper> papers = new ArrayList<>();
         Result<List<Paper>> result;
         result = new Result<>();
@@ -85,6 +85,18 @@ public class UserPaperController {
             ,@RequestParam String keyword,@RequestParam(defaultValue = "1") Integer pageNum
             ,@RequestParam(defaultValue = "5") Integer pageSize) {
         return Result.success(userPaperService.findUserFullPapersByKeyword(pageNum,pageSize,id,keyword));
+    }
+
+    /**
+     * 获取用户关注论文中包含某个关键词的数量
+     *
+     * @param id      the id 用户id
+     * @param keyword the keyword 查询的关键词
+     * @return the result 包含关键词的论文数量
+     */
+    @GetMapping("/countByKeyword")
+    public Result countByKeyword(@SessionAttribute Integer id,@RequestParam String keyword) {
+        return Result.success(userPaperService.countUserPapersByKeyword(id,keyword));
     }
 
     /**

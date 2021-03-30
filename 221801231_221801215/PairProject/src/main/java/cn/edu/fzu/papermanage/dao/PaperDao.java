@@ -91,6 +91,21 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
     Page<Paper> findUserPapersByKeyword(Integer userId,String keyword, Pageable pageRequest);
 
     /**
+     * 计算用户关注论文中包含某个关键词的论文数量
+     *
+     * @param userId  the user id 用户id
+     * @param keyword the keyword 关键词
+     * @return the integer 论文数量
+     */
+    @Query(value = "select count(distinct papers.id) " +
+            "from user_paper,papers,keywords " +
+            "where user_paper.userId = ?1 " +
+            "and user_paper.paperId = papers.id " +
+            "and papers.id = keywords.paperId " +
+            "and keywords.keyword like ?2",nativeQuery = true)
+    Integer countUserPapersByKeyword(Integer userId,String keyword);
+
+    /**
      * 根据用户id查询所有用户关联的论文（不包含关键词）
      *
      * @param userId   the user id 用户id

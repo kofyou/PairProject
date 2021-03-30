@@ -105,4 +105,15 @@ public class UserPaperService {
         }
         return papersWithKeywords;
     }
+
+    /**
+     * 计算用户关注论文中包含某个关键词的论文数量
+     *
+     * @param id      the id 用户id
+     * @param keyword the keyword 关键词
+     * @return the integer 包含关键词的论文数量
+     */
+    public Integer countUserPapersByKeyword(Integer id,String keyword) {
+        return paperDao.countUserPapersByKeyword(id,keyword);
+    }
 }
