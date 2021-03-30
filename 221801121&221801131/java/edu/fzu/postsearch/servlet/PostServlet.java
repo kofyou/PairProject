@@ -31,10 +31,11 @@ public class PostServlet extends BaseBackServlet{
         int maxPage = 0;// 最大页
         int pageCount = posts.size();// 得到查询出来的所有数据的数目
         // 如果是第一次执行,就会接收不到数据
-        if (strNum == null) {
+        if ((strNum == null)||(strNum.equals(""))) {
             strNum = "0";
         } else {// 接收到了用户点击的第几(pageNum)页
             pageNum = Integer.parseInt(strNum);
+            if (pageNum < 0 || pageNum > maxPage)pageNum = 0;
         }
         // 计算出要分多少页
         if (pageCount % 31 == 0) {
@@ -42,7 +43,6 @@ public class PostServlet extends BaseBackServlet{
         } else {
             maxPage = pageCount / 31 + 1;
         }
-        //System.out.println(posts.get(0).getTitle());
         req.setAttribute("maxPage", maxPage);// 存储最大页数
         req.setAttribute("pageNum", pageNum);// 将当前页面存储起来,给分页页面使用
         req.setAttribute("posts", posts);
