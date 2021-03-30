@@ -5,8 +5,8 @@
     <title>Search Result</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="searchresult.css">
-
 </head>
+
     <body>
 
         <div class="content">
@@ -43,10 +43,10 @@
             </div>
 
             <div class="search">
-                <form name="search_form" action="" method="get">
+                <form name="search_form" action="paper_list.php" method="get">
                     <input type="text" name="search_key" id="search_key"/>
                     <br/>
-                    <input type="submit" name="bt_sure" id="submit_icon" value=""/>  <!--设置点击事件-->
+                    <input type="submit" name="bt_sure" id="submit_icon" value=""/>
                     <br/>
                 </form>
             </div>
@@ -55,59 +55,43 @@
                 <P id="nums">为您查找到相关论文约15篇</P>
                 <button id="bt_in">全部导入</button>
                 <img src="image/icon_in.svg" id="icon_in"/>
-                <?php
 
+                <?php
                     $db_host = "localhost";
                     $db_username = "root";
                     $db_password = "";
                     $db_database = "paperdb";
-
                     /*创建连接*/
-                    function connect_db(){
-                        $db = new mysqli($db_host, 	$db_username, $db_password, $db_database);
-                        if (mysqli_connect_errno()) {
-                            echo '错误: 无法连接到数据库. 请稍后再次重试.';
-                            exit;
-                        }
-                        echo '打开数据库成功';
-                        return $db;
+                    $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
+                    if (mysqli_connect_errno()) {
+                       echo '错误: 无法连接到数据库. 请稍后再次重试.';
+                       exit;
                     }
-
-                    /*查询论文*/
-                    function query_db($paper_name){
-                        $db = connect_db();
-                        $sql = "select * from paper where paper_title like %".$_GET["search_key"].";";
-                        $result = $db -> query ($sql);
-                        //如果查询失败 输出错误
-                        if($result == false){
-                        //细节！对于多查询的时候，方便改错
-                        echo "<br>执行失败的SQL语句是：".$sql;
-                        echo"<br>失败原因是：".$conn->error;
-                        exit();
-                        }
-                        //从结果集中返回数据
-                        if($result->num_row>0){
-                        while($row = $result->fetch_assoc()){
-
-                        echo '<div class="result_">';
-                        '<img src="image/md-close.svg" class="icon_close" id="icon_close_one"/>';
-                        '<p class="paper_title" id="one">'.$row("post_title").'</p>';
-                        '<p class="source" id="source_one">'.$row("meeting_date").'</p>';
-                        '<p class="summary" id="summary_one">summary：'.$row("post_content").'</p>';
-                        '<a href="'.$row("link").'" id="paper_link">阅读全文</a>';
-                        '<p class="keywords" id="keyword_one">'.$row("keywords").'</p>';
-                        '<button class="in_bt_one" id="bt_in_one">导入</button>';
+                    $conn->query("SET NAMES utf8");
+                    //查询数据
+                    $search_key = isset($_GET["search_key"]) ? $_GET["search_key"] : '';
+                    $sql = "select * from paper where post_title like '%".$search_key."%'";
+                    $result = $conn->query($sql);
+                    //显示
+                    if ($result->num_rows > 0) {
+                        // 输出数据
+                        while($row = $result->fetch_assoc()) {
+                            echo '<div class="result_" id="result1">'.
+                            '<img src="image/md-close.svg" class="icon_close" id="icon_close_one" alt="alt"/>'.
+                            '<p class="paper_title" id="one">'.$row["post_title"].'</p>'.
+                            '<p class="source" id="source_one">'.$row["meeting_date"].' ('.$row["release_date"].')</p>'.
+                            '<textarea rows="3" cols="100" class="summary" id="summary_one" readonly="readonly">'.$row["post_content"].'</textarea>'.
+                            '<a href='.$row["link"].' id="paper_link" target="_blank">阅读全文</a>'.
+                            '<p class="keywords" id="keyword_one">'.$row["keywords"].'</p>'.
+                            '<button class="in_bt_one" id="bt_in_one">导入</button>'.
                         '</div>';
                         }
-                        }
+                    } else {
+                        echo '<h2>请输入标题查询！</h2>';
+                    }
+                    $conn->close();
 
-                        //释放结果集和连接
-                        $result -> free_result();
-                        $db -> close();
-                        }
-
-                        ?>
-
+                ?>
             </div>
 
         </div>
