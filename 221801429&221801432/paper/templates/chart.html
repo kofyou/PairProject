@@ -27,6 +27,9 @@
                     <span style="margin-left: 10px;">来源: <strong>近几年三大顶会</strong></span>
                 </span>
             </div>
+
+            <h4>饼图</h4>
+            <div id="container_pie" style="height: 400px;"></div>
             <h4>折线图</h4>
 
             <HR class="hr_class"><br>
@@ -46,7 +49,43 @@
                 var myChart_iccv = echarts.init(dom_iccv);
                 var option_iccv;
 
+                var dom = document.getElementById("container_pie");
+                var myChart = echarts.init(dom);
+                var option;
 
+                option = {
+                    title: {
+                        text: '三大顶会论文占比一览',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                    },
+                    series: [
+                        {
+                            name: '',
+                            type: 'pie',
+                            radius: '50%',
+                            data: [
+                                {value: {{ data.paper_count[0] }}, name: 'CVPR'},
+                                {value: {{ data.paper_count[1] }}, name: 'ECCV'},
+                                {value: {{ data.paper_count[2] }}, name: 'ICCV'}
+                            ],
+                            emphasis: {
+                                    itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
 
                 option_cvpr = {
                     title: {
@@ -241,6 +280,7 @@
                     myChart_cvpr.setOption(option_cvpr);
                     myChart_eccv.setOption(option_eccv);
                     myChart_iccv.setOption(option_iccv);
+                    myChart.setOption(option);
                 }
 
                 </script>

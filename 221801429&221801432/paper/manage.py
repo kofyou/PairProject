@@ -157,17 +157,21 @@ def goto_chart():
     eccv_year = [2020, 2018, 2016]
     iccv_year = [2019, 2017, 2015]
     year_list = [cvpr_year, eccv_year, iccv_year]
-    print(year_list)
     analysis_list = []
     for i in range(3):
         for j in range(3):
             temp_list = Analysis.query.filter_by(type=paper_type[i], year=year_list[i][j])\
                 .order_by(Analysis.keyword).all()
             analysis_list.append(temp_list)
+    paper_count_list = []
+    for i in range(3):
+        temp = Paper.query.filter(Paper.typeandyear.contains(paper_type[i])).count()
+        paper_count_list.append(temp)
     data = {
         'top': top_list,
         'list_word': list_word,
-        'analysis_list': analysis_list
+        'analysis_list': analysis_list,
+        'paper_count': paper_count_list
     }
     return render_template('chart.html', data=data)
 
