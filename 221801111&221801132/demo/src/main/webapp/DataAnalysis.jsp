@@ -9,6 +9,33 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
+
+    .topnav2 {
+        overflow: hidden;
+        background-color: white;
+    }
+
+    .topnav2 a {
+        float: left;
+        display: block;
+        color: #333333;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight:600;
+    }
+
+    .topnav2 a:hover {
+        background-color: deepskyblue;
+        color: white;
+    }
+
+    .topnav2 a.active {
+        background-color: white;
+        color: deepskyblue;
+    }
+
     .topnav {
         overflow: hidden;
         background-color: #333333;
@@ -50,6 +77,11 @@
     <a href="index.jsp"target="leftFrame"> 首页</a>
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a class="active" href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
+</div>
+
+<div class="topnav2">
+    <a href="index.jsp"target="leftFrame">关键词图谱</a>
+    <a href="PaperList.jsp" target="leftFrame"> 热词动图</a>
 </div>
 
 <body>
