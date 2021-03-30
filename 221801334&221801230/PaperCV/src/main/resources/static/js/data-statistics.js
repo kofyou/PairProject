@@ -18,6 +18,7 @@ $(document).ready(function () {
                         ['ECCV', meetingCount[2]],
                     ]
                 },
+
                 xAxis: {type: 'category'},
                 yAxis: {},
 
