@@ -2,10 +2,7 @@ package com.yangyu.esearch.controller;
 
 import com.yangyu.esearch.entity.Paper;
 import com.yangyu.esearch.service.PaperService;
-import com.yangyu.esearch.untils.ReadPaper;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,30 +53,4 @@ public class PaperController {
         return paperService.selectKeyword(keyword, address);
     }
 
-    //@GetMapping("read")
-    public void read()
-    {
-        ReadPaper readPaper = new ReadPaper();
-        List<Paper> papers;
-
-        papers = readPaper.readCVPR();//读取本地CVPR论文
-        papers.clear();//清空list列表
-        papers = readPaper.readCVPR();
-        for (Paper paper : papers)
-        {
-            paperService.createPaper(paper);
-        }
-        papers.clear();
-        papers = readPaper.readECCV();//读取本地ECCV论文
-        for (Paper paper : papers)
-        {
-            paperService.createPaper(paper);
-        }
-        papers.clear();
-        papers = readPaper.readICCV();////读取本地ICCV论文
-        for (Paper paper : papers)
-        {
-            paperService.createPaper(paper);
-        }
-    }
 }
