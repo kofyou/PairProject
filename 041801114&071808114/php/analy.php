@@ -1,189 +1,150 @@
-
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>template</title>
-<link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>template</title>
+	<link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 	<div class="nav">
 		<ul class="template">
-			<li><a href="index" id="navIcon"></a></li>
-			<li><a href="index">论文列表</a></li>
-			<li><a href="analy">趋势分析</a></li>
-			<li><a href="about">关于我们</a></li>
+			<li><a href="index" id="navIcon"></a>
+			</li>
+			<li><a href="index">论文列表</a>
+			</li>
+			<li><a href="analy">趋势分析</a>
+			</li>
+			<li><a href="about">关于我们</a>
+			</li>
 		</ul>
 	</div>
-<div class="main">
-	<div id="hotWordContainer"></div>
-	<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts.min.js"></script>
-	<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts-wordcloud.min.js"></script>
-	<script type="text/javascript">
-	var chart = echarts.init(document.getElementById('hotWordContainer'));
-chart.on('click', (param) => {
-alert(param);
-});
-    var option = {
-      title: {
-         text: '热门领域'
-      },
-      tooltip: {},
-      series: [{
-        type: 'wordCloud',
-        gridSize: 2,
-        sizeRange: [12, 50],
-        // rotationRange: [-90, 90],
-        rotationRange: [-50, 50],
-        shape: 'triangle',
-        textStyle: {
-          normal: {
-            color: function () {
-              return 'rgb(' + [
-                Math.round(Math.random() * 160),
-                Math.round(Math.random() * 160),
-                Math.round(Math.random() * 160)
-              ].join(',') + ')';
-            }
-          },
-          emphasis: {
-            shadowBlur: 10,
-            shadowColor: '#333'
-          }
-        },
-        data: [
-          {
-            name: 'Authentication',
-            value: 10000,
-            textStyle: {
-              normal: {
-                color: 'black'
-              },
-              emphasis: {
-                color: 'red'
-              }
-            }
-          },
-          {
-            name: 'Streaming of segmented content',
-            value: 6181
-          },
-          {
-            name: 'Amy Schumer',
-            value: 4386
-          },
-          {
-            name: 'Jurassic World',
-            value: 4055
-          },
-          {
-            name: 'Charter Communications',
-            value: 2467
-          },
-          {
-            name: 'Chick Fil A',
-            value: 2244
-          },
-          {
-            name: 'Planet Fitness',
-            value: 1898
-          },
-          {
-            name: 'Pitch Perfect',
-            value: 1484
-          },
-          {
-            name: 'Express',
-            value: 1112
-          },
-          {
-            name: 'Home',
-            value: 965
-          }
-          
-        ]
-      }]
-	};
-		chart.setOption(option);
-		chart.resize();
-		
-		<!--
-		chart.on('click',function(params){
-//	        console.log('myChart----click---:',params,'------',params.data) 
-			window.location.href='file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html? value='+params.data;
-		});
-		-->
-	</script>
-	
-	<div  Id = "container"  ></div>
-	<script src="echarts.min.js"></script>
-        
-        <script type="text/javascript">
-			var myChart=echarts.init(document.getElementById('container'));
-				var option = {
-    title: {
-        text: '顶会热词热度走势图'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['CVPR', 'ICCV', 'ECCV']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: 'CVPR',
-            type: 'line',
-            stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: 'ICCV',
-            type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: 'ECCV',
-            type: 'line',
-            stack: '总量',
-            data: [150, 232, 201, 154, 190, 330, 410]
-        },
-    ]
-};
-			myChart.setOption(option);
-			
-	</script>
-<!--
-	<div class="down">
+	<div class="main">
+		<div id="hotWordContainer"></div>
+		<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts.min.js"></script>
+		<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts-wordcloud.min.js"></script>
+		<script type="text/javascript">
+			var wc_chart = echarts.init( document.getElementById( 'hotWordContainer' ) );
+			wc_chart.on( 'click', ( param ) => {
+				alert( param.name );
+			} );
+		</script>
 
-	 <div class="analyse">
-		<form>
- 			<input type="button" class="analysebtn"  value="分析" />
-    	</form>
-	 </div>
+		<div Id="container"></div>
+
+		<script type="text/javascript">
+			var myChart = echarts.init( document.getElementById( 'container' ) );
+			var option = {
+				title: {
+					text: '顶会热词热度走势图'
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					data: [ 'CVPR', 'ICCV', 'ECCV' ]
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					}
+				},
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [ {
+					name: 'CVPR',
+					type: 'line',
+					stack: '总量',
+					data: [ 120, 132, 101, 134, 90, 230, 210 ]
+				}, {
+					name: 'ICCV',
+					type: 'line',
+					stack: '总量',
+					data: [ 220, 182, 191, 234, 290, 330, 310 ]
+				}, {
+					name: 'ECCV',
+					type: 'line',
+					stack: '总量',
+					data: [ 150, 232, 201, 154, 190, 330, 410 ]
+				}, ]
+			};
+			myChart.setOption( option );
+		</script>
 	</div>
--->
-</div>
 </body>
+<script src=<?= bloginfo( 'template_directory'). '/quickfind/jquery.min.js'; ?>>
+</script>
+<script>
+	$( document ).ready( function () {
+		var ajaxurl = '<?= admin_url('admin-ajax.php '); ?>';
+		$.ajax( {
+			type: 'post',
+			url: ajaxurl,
+			data: {
+				'action': 'wordcloud_process',
+				'except': sessionStorage[ 'except' ]
+			},
+			cache: false,
+			dataType: 'json',
+			success: function ( result ) {
+				var wc_option = {
+					title: {
+						text: '热门领域'
+					},
+					tooltip: {},
+					series: [ {
+						type: 'wordCloud',
+						gridSize: 2,
+						sizeRange: [ 12, 50 ],
+						// rotationRange: [-90, 90],
+						rotationRange: [ -50, 50 ],
+						shape: 'triangle',
+						textStyle: {
+							normal: {
+								color: function () {
+									return 'rgb(' + [
+										Math.round( Math.random() * 160 ),
+										Math.round( Math.random() * 160 ),
+										Math.round( Math.random() * 160 )
+									].join( ',' ) + ')';
+								}
+							},
+							emphasis: {
+								shadowBlur: 10,
+								shadowColor: '#333'
+							}
+						},
+						data: []
+					} ]
+				};
+
+				for ( var i = 0; i < result.length; i++ ) {
+					wc_option.series[ 0 ].data.push( {
+						name: result[i].word,
+						value: result[i].cnt
+					} );
+				}
+				wc_chart.setOption( wc_option );
+				wc_chart.resize();
+
+			},
+			error: function ( data ) {
+				console.log( "error" )
+			}
+		} );
+		return false;
+	} );
+</script>
 </html>

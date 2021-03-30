@@ -78,9 +78,10 @@
 				document.getElementById('paperlist').appendChild(paper);
 			}
         }
+
 		$(document).ready(function() {
-		var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
-		document.getElementById('searchbtn').onclick = function(searchbtn_event){     
+			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
+			function search(){     
 			$.ajax({
 				type:'post',
 				url:ajaxurl,
@@ -95,7 +96,9 @@
 				}
 			});
 			return false;
-			};
+		}
+			document.getElementById('searchbtn').onclick = search;
+			search();
 		});
 </script>
 </body>
