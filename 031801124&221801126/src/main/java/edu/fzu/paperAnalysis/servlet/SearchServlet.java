@@ -29,7 +29,6 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-        System.out.println("77777");
         PaperService paperService=new PaperServiceImpl();
         Paper tempPaper=new Paper();
 /*        tempPaper.setPaperTitle(req.getParameter("pTitle"));*/
@@ -98,7 +97,6 @@ public class SearchServlet extends HttpServlet {
 
     public void queryPapers(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            System.out.println("77777");
             PaperService paperService=new PaperServiceImpl();
             Paper tempPaper=new Paper();
             tempPaper.setPaperTitle(req.getParameter("pTitle"));
@@ -147,7 +145,6 @@ public class SearchServlet extends HttpServlet {
 
 
     int deletePaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("111111111");
         String Link=req.getParameter("pLink");
         PaperService paperService=new PaperServiceImpl();
         System.out.println(paperService.deletePaper(Link));
