@@ -16,6 +16,8 @@
 <body>
 
 
+<h1 id="h1testcsk">你好</h1>
+<button id="nihaoma" onclick="tothesearch()">跳转页面</button>
 
 <div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
     <img src="image/top.png" />
@@ -105,7 +107,22 @@
     </table>
 
 <script type="text/javascript" src="layui/layui.js"></script>
+
+
 <script>
+
+
+    function tothesearch() {
+        console.log('开始跳转');
+        var win = window.open('/left','_blank');
+        win.onload = function() {
+            console.log('？？？？？？？？')
+            $(win.document).find('#myinput1').innerText = 'task';
+            $(win.document).find('#input-32').value = 'task an'
+            $(win.document).find('#mybutton').click();
+        }
+    }
+
     $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 1000); return false; });
     layui.config({
         base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录

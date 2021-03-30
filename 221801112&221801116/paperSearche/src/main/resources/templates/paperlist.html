@@ -11,12 +11,22 @@
     <link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="public/css/demo.css" />
+    <link rel="icon" href="favicon.ico" >
     <script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="public/css/set.css" />
+    <script>
+        function fromSearch() {
+            var keyword = localStorage.getItem("searchInfo")
+            if(keyword!=""){
+                document.getElementById("input-32").value = keyword;
+                search();
+            }
+        }
+    </script>
     </head>
-    <body>
+    <body onload="fromSearch()">
 
     <!--    回到顶部-->
     <div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
@@ -30,8 +40,8 @@
             <li><a href=""><img src="image/logo2.jpg" alt="" class="logo"></a></li>
         </ul>
         <ul class="fr">
-            <li><a href=""><div class="eg"><img src="/image/cat.jfif" alt="" class="touxiang"></div></a></li>
-            <li class="userName"><a href=""></a>用户名 </li>
+            <li><div class="eg"><img src="/image/cat.jfif" alt="" class="touxiang"></div></li>
+            <li class="userName"><a href="/login" th:text="${session.userName}" style="font-size: 16px;text-decoration: none;color: white"></a> </li>
         </ul>
     </div>
 
@@ -171,11 +181,16 @@
             let form = layui.form;
             let $ = layui.jquery;
             let cardTable = layui.cardTable;
+            var key = localStorage.getItem("searchInfo");
+            if(key!=""){
+                localStorage.setItem("searchInfo","");
+            }else{
+                cardTable.render({
+                    elem: '#currentTableId',
+                    url: 'getLimitPaper',
+                })
+            }
 
-            cardTable.render({
-                elem: '#currentTableId',
-                url: 'getLimitPaper',
-            })
         })
 
 
