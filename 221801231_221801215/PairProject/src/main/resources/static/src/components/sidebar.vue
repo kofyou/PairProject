@@ -1,7 +1,7 @@
 <template>
   <div class="mySideBar">
     <div>
-      <input type="text" placeholder="请输入论文题目" class="mySideBar-input">
+      <input type="text" placeholder="请输入论文题目" class="mySideBar-input" v-model="this.addPaperTitle">
       <button class="mySideBar-search" @click="search"><i class="fa fa-search" aria-hidden="true"></i></button>
       <div class="mysidebarlist">
         <el-tabs type="border-card mysearchtab" :stretch="true" v-model="sidebarPage">
@@ -25,7 +25,8 @@
           <ul style="height:700px;list-style: none; position:absolute;top: 40px;left: 10px;overflow-y: auto;overflow-x: hidden">
             <li v-for="(item,index) in resultList" class="paperlistitem" :key="index">
               <el-card shadow="hover">
-                <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{index}}{{item}}</span>
+               <el-tooltip :content="item.title" effect="light" :open-delay=500>
+                    <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{item.title}}</span></el-tooltip>
               </el-card>
             </li></ul>
          </el-tab-pane>
@@ -49,19 +50,6 @@ export default {
 
       ],
       resultList: [
-        "result1",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
-        "result2",
       ],
       sidebarPage:"page1",
       addDialogVisible:false,
@@ -121,7 +109,21 @@ export default {
        this.addPaperTitle = "";
     },
     search: function () {
+      let _this=this;
       this.sidebarPage="page2";
+      this.$axios
+        .get(_this.$api.globalUrl + "/userPaper/search", {
+          params:{
+            originContent:_this.addPaperTitle
+          }
+        })
+        .then(function (response) {
+          console.log(response);
+          _this.resultList=response.data.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     deleteItem(value,index) {
       let _this=this;

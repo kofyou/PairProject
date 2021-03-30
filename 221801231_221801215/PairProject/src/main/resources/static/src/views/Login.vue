@@ -86,7 +86,7 @@ export default {
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
         "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-      loginImageUrl:"https://desktopwalls.net/wp-content/uploads/2018/12/Mountain%20Range%20Forest%20Dusk%204K%20Desktop%20Wallpaper-900x506.jpg",
+      loginImageUrl:"https://i.loli.net/2021/03/31/q6sy5CGrhvX91wE.jpg",
     };
   },
   methods: {
@@ -137,6 +137,7 @@ export default {
 }
 
 .el-main {
+  width:100%;
   background-color: #e9eef3;
   color: #333;
   text-align: center;
@@ -144,11 +145,8 @@ export default {
   height: 900px !important;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x:hidden;
 }
-
-body > .el-container {
-}
-
 .el-container:nth-child(5) .el-aside,
 .el-container:nth-child(6) .el-aside {
   line-height: 260px;

@@ -107,7 +107,7 @@ name: "Register",
   data()
   {
     return{
-      registerImageUrl:"",
+      registerImageUrl:"https://i.loli.net/2021/03/31/3KZkfXNLc4psEMl.jpg",
       registerform:{
         registerName:"",
         registerAccount:"",
@@ -174,6 +174,14 @@ name: "Register",
 </script>
 
 <style scoped>
+
+.el-footer {
+  background-color: #133382;
+  color: #d3dce6;
+  text-align: center;
+  line-height: 80px;
+  height: 80px !important;
+}
 .registertitle {
   width: 200px;
   height: 100px;
@@ -206,5 +214,13 @@ name: "Register",
 .registerinput {
   background:rgba(0,0,0,0.2) !important;
   border: 1px solid rgba(0,0,0, 0.2) ! important;
+}
+.pageimage {
+  margin-top: 0px;
+  height: 900px;
+  width: 50%;
+  float: left;
+  position: relative;
+  left: 0px;
 }
 </style>
