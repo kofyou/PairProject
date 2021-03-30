@@ -84,24 +84,24 @@ export default defineComponent({
     }
     //获取高级搜索组件条件
     const getYear = (val) => {
+      console.log(val)
       year = val;
     }
     const getMeeting = (val) => {
+      console.log(val)
       meeting = val;
     }
     //获取分页组件当前页面
     const getPage = (val) => {
-      console.log(val)
       page = val;
     }
     //搜索按钮事件
     const search = () => {
       console.log(title);
-      console.log(year);
-      console.log(meeting);
+      console.log(year)
+      console.log(meeting)
       if (page === undefined)
         page = 1;
-      console.log(page);
       queryPaper();
     }
     //get请求查询title
@@ -109,9 +109,9 @@ export default defineComponent({
       ctx.$http
         .get("/paper/title", {
           address: page-1, //页数
-          //source: meeting,
+          source: meeting,
           title: title,
-          //years: year,
+          years: year,
         })
         .then((data) => {
           console.log(data)
