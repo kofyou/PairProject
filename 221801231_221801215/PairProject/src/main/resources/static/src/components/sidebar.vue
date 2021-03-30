@@ -4,13 +4,13 @@
       <input type="text" placeholder="请输入论文题目" class="mySideBar-input">
       <button class="mySideBar-search" @click="search"><i class="fa fa-search" aria-hidden="true"></i></button>
       <div class="mysidebarlist">
-        <el-tabs type="border-card mysearchtab" stretch="true" v-model="sidebarPage">
+        <el-tabs type="border-card mysearchtab" :stretch="true" v-model="sidebarPage">
           <el-tab-pane label="全部论文" name="page1">
             <div  class="paperlisttitle">论文列表</div>
             <ul style="height:750px;list-style: none; position:absolute;top: 40px;left: 10px;overflow-y:auto;overflow-x: hidden" id="#list">
               <li v-for="(item,index) in paperList" class="paperlistitem" :key="index">
                 <el-card shadow="hover" style="line-height:100%">
-                  <el-tooltip :content="item.title" effect="light" open-delay=500>
+                  <el-tooltip :content="item.title" effect="light" :open-delay=500>
                     <span style="width:250px;height:30px;position: absolute;left: 10px;text-align:left;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;font-size:15px">{{item.title}}</span></el-tooltip>
                   <i class="fa fa-trash" aria-hidden="true" style="position: absolute;left: 80%;cursor:pointer" @click="deleteItem(item.id,index)"></i>
                 </el-card>
@@ -134,8 +134,10 @@ export default {
         .then(function (response) {
           console.log(response);
           _this.paperList.splice(index,1);
-
-
+          let num=sessionStorage.getItem('papernum')-1;
+          sessionStorage.setItem('papernum',num);
+          alert(sessionStorage.getItem('papernum'));
+          _this.$emit('ResetPage');
         })
         .catch(function (error) {
           console.log(error);

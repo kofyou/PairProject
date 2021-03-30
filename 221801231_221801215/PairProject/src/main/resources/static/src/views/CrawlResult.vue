@@ -1,33 +1,32 @@
 <template>
 
-    <el-container>
-    <myheader></myheader>
+    <el-container v-if="ifReload">
+    <myheader
+     :userName="this.Username"
+      :loginStatus="this.loginStatus"></myheader>
     <el-main>
-      <sidebar></sidebar>
+      <sidebar @ResetPage="ResetPage"></sidebar>
       <div class="returnbutton">
         <router-link to="/index"><i class="fa fa-arrow-circle-left" aria-hidden="true" style="font-size:80px;color: #133382"></i></router-link>
       </div>
       <el-dialog :visible.sync="dialogVisible" class="detaildialog">
-            <div style="height: 700px">
+            <div style="height: 1000px">
               <div class="paperdetailstitle">论文详情:</div>
               <div class="papertitle"><strong>论文题目:</strong>《{{this.dialogDetail.title}}》</div>
               <div class="papersource"><strong>论文来源:</strong>{{this.dialogDetail.source}}</div>
               <div class="paperyear"><strong>论文年份:</strong>{{this.dialogDetail.publishYear}}</div>
               <div class="paperprecis"><strong>论文摘要: </strong>{{this.dialogDetail._abstract}}</div>
-              <div class="paperkeyword"><strong>论文关键词:</strong><span v-for="(item,index) in this.dialogDetail.keywords" :key="index">[{{item.keyword}}]</span></div>
+              <div class="paperkeyword"><strong>论文关键词:</strong><span v-for="(item,index) in this.dialogDetail.keywords" :key="index" style="margin-left:10px;"><el-tag>{{item.keyword}}</el-tag></span></div>
               <a :href="this.dialogDetail.url" class="paperurl">原文链接</a>
             </div>
           </el-dialog>
-      <el-tabs type="border-card" stretch="true" style="position: relative" @tab-click="ShowPagenation">
+      <el-tabs type="border-card" :stretch="true" style="position: relative" @tab-click="ShowPagenation">
         <el-tab-pane style="">
           <span slot="label"><i class="el-icon-date"></i> 爬取结果显示</span>
           <el-collapse-transition>
             <ul style="list-style: none" v-show="this.showpaperList">
             <li
-              v-for="(item, index) in paperDetailList.slice(
-                (currentPage - 1) * pagesize,
-                currentPage * pagesize
-              )"
+              v-for="(item, index) in paperDetailList"
               style="position: relative"
               :key="index"
               @click="showDetails(index)"
@@ -53,7 +52,7 @@
                   right: 20px;
                   cursor: pointer;
                 "
-                @click="deleteCard(index)"
+                @click="deleteCard(index,item.id,0)"
               ></i>
             </li>
           </ul></el-collapse-transition>
@@ -172,7 +171,7 @@
         <el-tab-pane label="热度走势">
            <el-form :model="statics">
           <div class="meetingchoosebox">
-            <el-radio-group v-model="statics.meetingValue">
+            <el-radio-group v-model="statics.meetingValue" @change="ChangeMeetingFrequency">
               <el-radio-button label="全部顶会"></el-radio-button>
               <el-radio-button label="CVPR"></el-radio-button>
               <el-radio-button label="ICCV"></el-radio-button>
@@ -209,10 +208,10 @@
               </el-option>
             </el-select>
             <el-button type="primary" style="margin-left: 30px; width: 120px"
-              >确定</el-button
+              @click="RefreshFrequency">确定</el-button
             >
           </div></el-form>
-          <div id="myChart" :style="{ width: '600px', height: '600px' }"></div>
+          <div id="myChart" :style="{ width: '700px', height: '600px' }"></div>
         </el-tab-pane>
       </el-tabs>
          <el-pagination
@@ -221,7 +220,7 @@
             :current-page="currentPage"
             :page-size="pagesize"
             layout="prev, pager, next"
-            :total="100"
+            :total="this.papersNum"
             style="position:absolute;left:50%"
             v-show="pagePagination1"
           >
@@ -252,26 +251,20 @@ export default {
   components: { Sidebar, Myheader, Mycard },
   data() {
     return {
+      ifReload:true,
+      Username:"",
+      loginStatus:false,
       currentPage: 1,
       pagesize: 3,
       keywordPage: 1,
       keywordsize: 2,
       keywordPapersNum:0,
       showpaperList:false,
-      paperNum:10,
+      papersNum:10,
       pagePagination1:true,
       pagePagination2:false,
       currentKeyword:"",
       paperDetailList: [
-        {
-          paperId: 7,
-          paperTitle: "2001_A curve evolution approach for image segmentation using adaptive flows",
-          paperSource: "ICCV",
-          paperUrl: "https://doi.org/10.1109/ICCV.2001.937666",
-          paperYear: "2001",
-          paperAbstract: "In this paper, we develop a new active contour model for image segmentation using adaptive flows. This active contour model can be derived from minimizing a limiting form of the Mumford-Shah functional, where the segmented image is assumed to consist of piecewise constant regions. This paper is an extension of an active contour model developed by Chan-Vese. The segmentation method proposed in this paper adaptively estimates mean intensities for each separated region and uses a single curve to capture multiple regions with different intensities. The class of imagery that our new active model can handle is greater than the bimodal images. In particular, our method segments images with an arbitrary number of intensity levels and separated regions while avoiding the complexity of solving a full Mumford-Shah problem. The adaptive flow developed in this paper is easily formulated and solved using level set methods. We illustrate the performance of our segmentation methods on images generated by different modalities.",
-          paperKeyword:['关键词1','关键词2'],
-        }
       ],
       dialogVisible: false,
       dialogDetail:{
@@ -285,61 +278,38 @@ export default {
         meetingValue: "全部顶会",
         startYearOptions: {
         options: [
-          {
-            value: "1",
-            label: "黄金糕",
-          },
-          {
-            value: "2",
-            label: "双皮奶",
-          },
-          {
-            value: "3",
-            label: "蚵仔煎",
-          },
-          {
-            value: "4",
-            label: "龙须面",
-          },
-          {
-            value: "5",
-            label: "北京烤鸭",
-          },
         ],
         value: "",
       },
       endYearOptions: {
         options: [
-          {
-            value: "1",
-            label: "黄金糕",
-          },
-          {
-            value: "2",
-            label: "双皮奶",
-          },
-          {
-            value: "3",
-            label: "蚵仔煎",
-          },
-          {
-            value: "4",
-            label: "龙须面",
-          },
-          {
-            value: "5",
-            label: "北京烤鸭",
-          },
         ],
         value: "",
       },
       },
-      xdata:["2011","2022"],
+      frequencyDatas:["1","2"],
+      newfrequencyDatas:[]
     };
   },
   mounted() {
     this.drawLine();
     this.showpaperList=true;
+    this.papersNum=parseInt(sessionStorage.getItem('papernum'));
+    this.Username = sessionStorage.getItem("username");
+    this.loginStatus=sessionStorage.getItem("loginstatus");
+    this.GetPagePaperList(this.currentPage,this.pagesize,true);
+    this.ShowTotalFrequency();
+  },
+  watch:{
+    newfrequencyDatas:function(val,oldval){
+      if(val!=oldval)
+      {
+        console.log(oldval);
+        console.log(val);
+        this.drawLine();
+      }
+    },
+   deep:true
   },
   methods: {
     drawLine() {
@@ -352,21 +322,10 @@ export default {
         legend:{data:['销量','数据']},
         tooltip: {},
         xAxis: {
-          data: this.xdata,
+          data: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
         },
         yAxis: {},
-        series: [
-          {
-            name: "销量",
-            type: "line",
-            data: [5, 20, 36, 10, 10, 20],
-          },
-          {
-            name: "数据",
-            type: "line",
-            data: [20, 5, 36, 10, 10, 20],
-          },
-        ],
+        series: this.newfrequencyDatas,
       });
     },
     ShowPagenation:function (tab,event) {
@@ -374,7 +333,6 @@ export default {
       {
         this.pagePagination1=true;
         this.pagePagination2=false;
-
       }
       else if(tab.index==1)
       {
@@ -386,6 +344,7 @@ export default {
       else{
         this.pagePagination2=false;
         this.pagePagination1=false;
+        this.ShowTotalFrequency();
       }
     },
     deleteCard: function (value,id,index) {
@@ -403,35 +362,49 @@ export default {
           },
         })
         .then(function (response) {
-          console.log(response);
            _this.$message({
           message:'删除成功',
           type:'success'
         });
+        _this.refresh();
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    handleCurrentChange: function (currentpage) {
-      this.currentPage = currentpage;
+    GetPagePaperList:function (topagenum,topagesize,value) {
       let _this=this;
       this.$axios
         .get(_this.$api.globalUrl + "/userPaper/contentsPage", {
           params: {
-           pageNum:_this.currentPage,
+           pageNum:topagenum,
+           pageSize:topagesize
           },
         })
         .then(function (response) {
           console.log(response);
+          if(value==true)
+          {
+            alert(1);
+            _this.paperDetailList=response.data.data;
+          }
+          else{
+            _this.keywordPaperList=response.data.data;
+          }
 
         })
         .catch(function (error) {
           console.log(error);
         });
+      },
+    handleCurrentChange: function (currentpage) {
+      this.currentPage = currentpage;
+      this.GetPagePaperList(this.currentPage,this.pagesize,true);
     },
     handlekeywordChange: function (keywordpage) {
       this.keywordPage = keywordpage;
+      this.GetPagePaperList(this.keywordPage,this.keywordsize,false);
+
     },
     showDetails: function (value) {
       this.dialogVisible = true;
@@ -476,8 +449,87 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+    },
+    refresh:function ()//刷新界面
+    {
+     this.ifReload=false;
+     this.ifReload=true;
+    },
+    ShowTotalFrequency:function () {
+     let _this=this;
+      this.$axios
+        .get(_this.$api.globalUrl + "/keywordWithFrequency/all", {
+          params: {
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log(_this.newfrequencyDatas);
+         _this.frequencyDatas=response.data.data;
+         let newArray=[];
+         let singleArray=[];
+         for(let i=0;i<21;i++)
+         {
+            singleArray[i]="0";
+         }
+         console.log(singleArray);
+          _this.frequencyDatas.forEach(
+            element=>{
+              console.log(element);
+              element.forEach(ele=>{
+                 let year= parseInt(ele.publishYear)-2000;
+                 singleArray[year]=ele.frequency.toString();
+              });
+
+              _this.newfrequencyDatas.push({
+                name:element[0].keyword,
+                type:"line",
+                data:singleArray
+              });
+            }
+          );
+           console.log(_this.newfrequencyDatas)
+          // .forEach(element => {
+          //     let year= parseInt(element.publishYear)-2000;;
+          //     singleArray[year]=element.frequency.toString();
+          // });
+          // _this.newfrequencyDatas=singleArray;
+          // newArray.push(singleArray);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      },
+      RefreshFrequency:function () {
+
+    },
+     ChangeMeetingFrequency:function (value) {
+       let _this=this;
+       if(value!="全部顶会")
+       {
+         this.$axios
+        .get(_this.$api.globalUrl + "/keywordWithFrequency/source", {
+          params: {
+            source:value
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+       }
+       else{
+         this.ShowTotalFrequency();
+       }
+
+    },
+  ResetPage:function () {
+    this.papersNum=parseInt(sessionStorage.getItem('papernum'));
     }
   },
+
 
 };
 </script>
@@ -610,9 +662,9 @@ export default {
   position: absolute;
   width: 750px;
   height: 100px;
-  bottom: 70px;
+  bottom: 350px;
   left: 60px;
-  line-height: 20px;
+  line-height: 50px;
   text-align: left;
 }
 .paperurl{

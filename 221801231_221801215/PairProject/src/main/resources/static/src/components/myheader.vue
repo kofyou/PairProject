@@ -42,8 +42,7 @@ export default {
   },
   mounted(){
      this.username=localStorage.getItem['username'];
-     this.loginStatus=localStorage.getItem['loginstaus'];
-     alert(this.username);
+     this.loginStatus=localStorage.getItem['loginstatus'];
   },
   // watch:{
   //    'userName':function(val)
