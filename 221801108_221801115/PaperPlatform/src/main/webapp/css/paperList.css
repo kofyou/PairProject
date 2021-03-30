@@ -10,7 +10,8 @@ html,body{
 }
 .main{
     width: 100%;
-    height: 100%;
+    height: 80%;
+    position: absolute;
 }
 .logo{
     width: 50%;
@@ -61,10 +62,10 @@ html,body{
 #papertable a:link,a:active{
     text-decoration: none;
     font-size: 16px;
-    color: black;
+    color: cornflowerblue;
 }
 #papertable a:visited {
-    color: black;
+    color: cornflowerblue;
 }
 .a1:link,.a1:active{
     text-decoration: none;
@@ -76,6 +77,7 @@ html,body{
     color: #0000ff;
 }
 
+/********************************************************************************/
 
 #papertable {
     margin: auto;
@@ -121,7 +123,7 @@ html,body{
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    width: 33%;
+    width: 30%;
 }
 
 .link {
@@ -139,17 +141,25 @@ html,body{
 }
 
 .delete {
-    width: 4%;
+    width: 7%;
 }
+
+
+/********************************************************************************/
+
 #div_paperQueryForm{
     height:50px;
     top: 180px;
     position: relative;
 }
 #queryForm{
+    margin:auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     height: 80%;
-    width: 40%;
-    margin-left: 30%;
+    width: 720px;
     position: absolute;
 }
 #query_text{
@@ -167,6 +177,7 @@ html,body{
 }
 #query_btn{
     background-color: #02A7F0;
+    float: left;
     opacity: 88%;
     border: #797979 1px;
     height: 110%;
@@ -210,5 +221,5 @@ html,body{
     color: #169BD5;
 }
 .page_num{
-    color: #ee4b4b;
+    color: red;
 }
