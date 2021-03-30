@@ -28,7 +28,7 @@
     String flag = request.getParameter("search");
     if (flag.equals("")){
 %>
-<h1 style="font-family:verdana">论文列表</h1>
+<img src="./img/lunwenguanli.png" width="25%">
 <%
     }
     else {
