@@ -131,3 +131,33 @@ body {
   transform: translateX(-50%);
   width: 1200px;
 }
+
+
+@keyframes roll{
+  from {transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+#reg_wait{
+  display: none;
+  position: absolute;
+  top:50%;
+  left:50%;
+  font-size: 30px;
+  animation: roll 2s infinite linear;
+  transform: translate(-50%,-50%);
+}
+.to_block{
+  display: inline-block;
+}
+.to_none{
+  display: none;
+}
+#set_wait{
+  display: none;
+  font-size: 10px;
+  animation: roll 2s infinite linear;
+}
+
+#saveWord{
+  font-size:15px
+}

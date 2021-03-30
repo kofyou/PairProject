@@ -14,6 +14,7 @@ $(function(){
                 },
                 dataType:"json",
                 success:data=>{
+                    $("#reg_wait").css("display","none")
                     $.each(data,function(index,paper){
                         var obj = {
                             "title" : paper.title,
@@ -55,8 +56,10 @@ $(function(){
                 },
                 error:()=>{
                     alert("网络烂掉了，你什么也看不到了")
+                    $("#reg_wait").css("display","none")
                 }
             })
+            $("#reg_wait").css("display","inline-block")
             $(".kongxin").click(function(){
                 if(confirm("确定要收藏吗"))
                 {
