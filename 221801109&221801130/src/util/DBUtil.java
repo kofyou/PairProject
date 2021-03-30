@@ -27,29 +27,4 @@ public class DBUtil {
 		return DriverManager.getConnection(url, loginName, password);
 	}
 
-	/* 关闭连接的方法 */
-	public static void close(ResultSet rs, Statement stmt, Connection conn) {
-		try {
-			if (rs != null)
-				rs.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		try {
-			if (stmt != null)
-				stmt.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		try {
-			if (conn != null)
-				conn.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) throws SQLException {
-		System.out.println(getConnection());
-	}
 }
