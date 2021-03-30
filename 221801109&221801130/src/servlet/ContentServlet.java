@@ -3,9 +3,6 @@ package servlet;
 import dao.PostDAO;
 import dao.PostDAOImpl;
 import pojo.Post;
-
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,4 +39,10 @@ public class ContentServlet extends HttpServlet {
             }
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServletException {
+        doPost(req,resp);
+    }
+
 }
