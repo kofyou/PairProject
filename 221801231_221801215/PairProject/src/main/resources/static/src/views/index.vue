@@ -30,11 +30,11 @@
           @click="AddTitle"
         />
       </div>
-      <router-link to="/crawlresult">
         <div
           class="crawlButton"
           @mouseenter="showButtonText"
           @mouseleave="showButtonText"
+          @click="ToCrawlResult"
         >
           <span v-show="buttonhover">爬取内容</span>
           <i
@@ -49,7 +49,7 @@
             "
           ></i>
         </div>
-      </router-link>
+
       <div class="paperList" v-show="tableData.length != 0">
         <ul v-for="(items, index) in tableData" :key="index">
           <li class="paperItem">
@@ -97,13 +97,14 @@ export default {
       tableData: [],
       buttonhover: false,
       Username: "",
-      loginStatus: true,
+      loginStatus: false,
+      paperNum:0,
     };
   },
   mounted() {
-    this.loginStatus = this.$route.query.isLogin;
+    // this.loginStatus = this.$route.query.isLogin;
     this.Username = sessionStorage.getItem("username");
-    //  this.loginStatus=localStorage.getItem('loginstatus');
+    this.loginStatus=sessionStorage.getItem("loginstatus");
     this.GetUserPaperList();
   },
   methods: {
@@ -121,6 +122,7 @@ export default {
             newTitle.id = element.id;
             newTitle.title = element.title;
             _this.tableData.push(newTitle);
+            _this.paperNum=_this.tableData.length;
           });
         })
         .catch(function (error) {
@@ -179,6 +181,12 @@ export default {
     showButtonText: function () {
       this.buttonhover = !this.buttonhover;
     },
+    ToCrawlResult:function () {
+     this.$router.push({
+       path:'/crawlresult'
+     })
+     sessionStorage.setItem('papernum',this.tableData.length);
+      }
   },
 };
 </script>

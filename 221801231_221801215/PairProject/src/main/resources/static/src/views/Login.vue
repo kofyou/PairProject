@@ -107,7 +107,7 @@ export default {
             isLogin:true
           }});
           sessionStorage.setItem('username',response.data.data);
-          localStorage.setItem('loginstatus',true);
+          sessionStorage.setItem('loginstatus',true);
       },function (error) {
         console.log("error");
         _this.$message({
