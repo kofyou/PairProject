@@ -7,7 +7,6 @@ var Main ={
     },
     methods:{
         link(){
-            setChart()
         }
     }
 }

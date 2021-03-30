@@ -14,17 +14,19 @@
     <div id="app">
         <template>
             <div class="block">
-                <el-carousel trigger="click" height="100%" :autoplay="false" arrow="always">
+                <el-carousel trigger="click" height="100%" :autoplay="false" arrow="always" @change="changes">
                     <el-carousel-item v-for="item in 7" :key="item">
                         <el-breadcrumb separator="/">
                             <el-breadcrumb-item><a href="../?jump=1">论文搜索</a></el-breadcrumb-item>
-                            <el-breadcrumb-item><a href="../index/Paperanalysis" id="paperanalysis">论文分析</a></el-breadcrumb-item>
+                            <el-breadcrumb-item><a href="../index/Paperanalysis" id="paperanalysis">论文分析</a>
+                            </el-breadcrumb-item>
                         </el-breadcrumb>
+
                         <div id="myList">
-                            <p id="title1">论文 | 论文浏览</p>
-                            <div id="title"  ><a id="title2" href="www.baidu.com">
-                            </a></div>
-                            <textarea id="abstract"></textarea>
+                            <el-link id="title1">论文 | 论文浏览</el-link>
+                            <el-link type="primary" id="title"  v-model="link" href="www.baidu.com"></el-link>
+                            <el-input  id="abstract" type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea">
+                            </el-input>
                         </div>
                         <div id="post">
                         </div>
@@ -33,6 +35,7 @@
             </div>
         </template>
     </div>
+
 </body>
 <script src="../static/paperscan/js/paperscan.js"></script>
 
