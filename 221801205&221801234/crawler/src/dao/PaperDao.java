@@ -1,13 +1,14 @@
-package dao;
+package com.company.dao;
+
+
+import com.company.bean.PaperBean;
+import com.company.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
-import bean.PaperBean;
-import util.JDBCUtil;
 
 public class PaperDao {
 	
@@ -60,6 +61,7 @@ public class PaperDao {
 	
 	//根据标题查询论文列表（模糊查询）
 	public LinkedList<PaperBean> searchPaperListByName(String name){
+		System.out.println("name");
 		LinkedList<PaperBean> beans = new LinkedList<PaperBean>();
 		String sql = "select * from paper where name like \"%\"?\"%\"";
 		Connection conn = JDBCUtil.getConnection();

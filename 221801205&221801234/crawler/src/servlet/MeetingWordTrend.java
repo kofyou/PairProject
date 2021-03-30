@@ -1,18 +1,17 @@
-package servlet;
+package com.company.servlet;
 
-import java.io.IOException;
-import java.util.HashMap;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.company.dao.PaperKeywordDao;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import dao.PaperKeywordDao;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Servlet implementation class MeetingWordTrend
@@ -50,12 +49,13 @@ public class MeetingWordTrend extends HttpServlet {
 	
 	private String doECCV() {
 		String meeting = "ECCV";
-		String []years = {"2020", "2018", "2016"};
+		String[]years = {"2016", "2018", "2020"};
 		
-		HashMap []maps=new HashMap[3];
+		HashMap[]maps=new HashMap[3];
+
 		PaperKeywordDao dao = new PaperKeywordDao();
 		JSONArray jaOutside = new JSONArray();
-		String []keywords = dao.searchTopKeywordByMnY(meeting, "2020");	
+		String[]keywords = dao.searchTopKeywordByMnY(meeting, "2020");
 		for (int i = 0; i < 3; i ++) {
 			
 			maps[i] = dao.searchYnCByMnKnYC(meeting, keywords[i], 3);
@@ -65,7 +65,8 @@ public class MeetingWordTrend extends HttpServlet {
 			for (int j = 0; j < 3; j ++) {
 				JSONObject joInside = new JSONObject();
 				joInside.put("year", years[j]);
-				joInside.put("count", maps[i].get(years[j]));
+				System.out.println(maps[i].get(years[j]));
+				joInside.put("count", maps[i].get(years[j])==null?0:maps[i].get(years[j]));
 				jaInside.add(joInside);
 			}
 			joOutside.put("yearAndCount", jaInside);
@@ -77,9 +78,9 @@ public class MeetingWordTrend extends HttpServlet {
 	
 	private String doICCV() {
 		String meeting = "ICCV";
-		String []years = {"2019", "2017", "2015"};
-		String []keywords = new String[3];
-		HashMap []maps=new HashMap[3];
+		String[]years = {"2015", "2017", "2019"};
+		String[]keywords = new String[3];
+		HashMap[]maps=new HashMap[3];
 		PaperKeywordDao dao = new PaperKeywordDao();
 		JSONArray jaOutside = new JSONArray();
 		keywords = dao.searchTopKeywordByMnY(meeting, "2019");	
@@ -91,7 +92,8 @@ public class MeetingWordTrend extends HttpServlet {
 			for (int j = 0; j < 3; j ++) {
 				JSONObject joInside = new JSONObject();
 				joInside.put("year", years[j]);
-				joInside.put("count", maps[i].get(years[j]));
+				System.out.println(maps[i].get(years[j]));
+				joInside.put("count", maps[i].get(years[j])==null?0:maps[i].get(years[j]));
 				jaInside.add(joInside);
 			}
 			joOutside.put("yearAndCount", jaInside);
@@ -102,9 +104,9 @@ public class MeetingWordTrend extends HttpServlet {
 	
 	private String doCVPR() {
 		String meeting = "CVPR";
-		String []years = {"2020", "2019", "2018"};
-		String []keywords = new String[3];
-		HashMap []maps=new HashMap[3];
+		String[]years = {"2018", "2019", "2020"};
+		String[]keywords = new String[3];
+		HashMap[]maps=new HashMap[3];
 		PaperKeywordDao dao = new PaperKeywordDao();
 		JSONArray jaOutside = new JSONArray();
 		keywords = dao.searchTopKeywordByMnY(meeting, "2020");	
@@ -116,7 +118,8 @@ public class MeetingWordTrend extends HttpServlet {
 			for (int j = 0; j < 3; j ++) {
 				JSONObject joInside = new JSONObject();
 				joInside.put("year", years[j]);
-				joInside.put("count", maps[i].get(years[j]));
+				joInside.put("count", maps[i].get(years[j])==null?0:maps[i].get(years[j]));
+				System.out.println(maps[i].get(years[j]));
 				jaInside.add(joInside);
 			}
 			joOutside.put("yearAndCount", jaInside);

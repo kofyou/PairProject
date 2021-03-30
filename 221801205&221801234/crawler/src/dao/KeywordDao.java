@@ -1,13 +1,15 @@
-package dao;
+package com.company.dao;
+
+
+
+import com.company.bean.KeywordBean;
+import com.company.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
-import bean.KeywordBean;
-import util.JDBCUtil;
 
 public class KeywordDao {
 	

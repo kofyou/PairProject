@@ -1,14 +1,21 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+package com.company;
 
-import message.ParseMessage;
+
+
+import com.company.message.ParseMessage;
+
+import java.io.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 public class test {
 
-	public static void main(String[] args) {
-		ParseMessage p = new ParseMessage();
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String s="\"111";
+		String encode = URLDecoder.decode(s, "utf-8");
+		String encode1 = URLEncoder.encode(s, "utf-8");
+		System.out.println(encode1);
+		/*ParseMessage p = new ParseMessage();
 		
 		File file = new File("C:\\Users\\25820\\Desktop\\论文数据\\论文数据");
 		File[] paperFiles = file.listFiles();
@@ -88,7 +95,7 @@ public class test {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 }

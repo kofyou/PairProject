@@ -1,17 +1,17 @@
-package message;
+package com.company.message;
 
-import java.util.LinkedList;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.company.bean.KeywordBean;
+import com.company.bean.PaperBean;
+import com.company.bean.PaperKeywordBean;
+import com.company.dao.KeywordDao;
+import com.company.dao.PaperDao;
+import com.company.dao.PaperKeywordDao;
 
-import bean.KeywordBean;
-import bean.PaperBean;
-import bean.PaperKeywordBean;
-import dao.KeywordDao;
-import dao.PaperDao;
-import dao.PaperKeywordDao;
+
+import java.util.LinkedList;
 
 public class ParseMessage {
 	
@@ -34,7 +34,7 @@ public class ParseMessage {
 		
 		
 		LinkedList<KeywordBean> keywordBeans = new LinkedList<KeywordBean>();
-		KeywordDao keywordDao = new KeywordDao(); 
+		KeywordDao keywordDao = new KeywordDao();
 		JSONArray ja = jo.getJSONArray("keywords");
 		Object[]keywords = ja.getJSONObject(0).getJSONArray("kwd").toArray();
 		for (Object keyword:keywords) {

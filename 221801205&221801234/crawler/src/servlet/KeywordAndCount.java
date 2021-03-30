@@ -1,19 +1,18 @@
-package servlet;
+package com.company.servlet;
 
-import java.io.IOException;
-import java.util.LinkedList;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.company.bean.*;
+import com.company.dao.KeywordDao;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import bean.KeywordBean;
-import dao.KeywordDao;
+import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  * Servlet implementation class KeywordAndCount

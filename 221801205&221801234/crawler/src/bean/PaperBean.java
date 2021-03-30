@@ -1,4 +1,4 @@
-package bean;
+package com.company.bean;
 
 public class PaperBean {
 	private String name;

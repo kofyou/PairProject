@@ -1,28 +1,26 @@
-package servlet;
+package com.company.servlet;
 
-import java.io.IOException;
-import java.util.LinkedList;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.company.bean.PaperBean;
+import com.company.bean.PaperKeywordBean;
+import com.company.dao.PaperDao;
+import com.company.dao.PaperKeywordDao;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import bean.KeywordBean;
-import bean.PaperBean;
-import bean.PaperKeywordBean;
-import dao.KeywordDao;
-import dao.PaperDao;
-import dao.PaperKeywordDao;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.LinkedList;
 
 /**
  * Servlet implementation class PaperListByTitle
  */
-@WebServlet("/PaperListByTitle")
+@WebServlet(value="/PaperListByTitle")
 public class PaperListByTitle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +48,9 @@ public class PaperListByTitle extends HttpServlet {
 		JSONArray ja = new JSONArray();
 		for (PaperBean paper:paperList) {
 			JSONObject jo = new JSONObject();
+			//String encode = URLEncoder.encode(paper.getName(), "utf-8");
 			jo.put("name", paper.getName());
+
 			jo.put("meeting", paper.getMeeting());
 			jo.put("year", paper.getYear());
 			LinkedList<PaperKeywordBean> keywordList = paperKeywordDao.searchKeywordListByName(paper.getName());
@@ -69,6 +69,7 @@ public class PaperListByTitle extends HttpServlet {
 			jo.put("keywords", keywords);
 			ja.add(jo);
 		}
+
 		response.getWriter().write(ja.toJSONString());
 		
 	}

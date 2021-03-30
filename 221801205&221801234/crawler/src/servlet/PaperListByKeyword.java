@@ -1,21 +1,20 @@
-package servlet;
+package com.company.servlet;
 
-import java.io.IOException;
-import java.util.LinkedList;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.company.bean.PaperBean;
+import com.company.bean.PaperKeywordBean;
+import com.company.dao.PaperDao;
+import com.company.dao.PaperKeywordDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import bean.PaperBean;
-import bean.PaperKeywordBean;
-import dao.PaperDao;
-import dao.PaperKeywordDao;
+import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  * Servlet implementation class PaperListByKeyword

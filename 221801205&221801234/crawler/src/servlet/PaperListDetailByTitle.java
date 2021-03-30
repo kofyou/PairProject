@@ -1,21 +1,21 @@
-package servlet;
+package com.company.servlet;
 
-import java.io.IOException;
-import java.util.LinkedList;
+
+import com.alibaba.fastjson.JSONObject;
+import com.company.bean.PaperBean;
+import com.company.bean.PaperKeywordBean;
+import com.company.dao.PaperDao;
+import com.company.dao.PaperKeywordDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
-import bean.PaperBean;
-import bean.PaperKeywordBean;
-import dao.PaperDao;
-import dao.PaperKeywordDao;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.LinkedList;
 
 /**
  * Servlet implementation class PaperListDetailByTitle
@@ -35,13 +35,16 @@ public class PaperListDetailByTitle extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String reqString = request.getReader().readLine();
 		
 		JSONObject reqJson = JSONObject.parseObject(reqString);
 		String name = reqJson.getString("title");
-		
+		System.out.println("name"+name);
+		String decode = URLDecoder.decode(name, "utf-8");
+//		System.out.println("decode"+decode);
 		PaperDao paperDao = new PaperDao();
-		PaperBean paper = paperDao.searchPaperByName(name);
+		PaperBean paper = paperDao.searchPaperByName(decode);
 		//PaperBean paper = paperDao.searchPaperByName("3D human pose search using oriented cylinders");
 		//System.out.println(paperList.size());
 		PaperKeywordDao paperKeywordDao = new PaperKeywordDao();

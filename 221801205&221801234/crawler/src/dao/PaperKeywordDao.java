@@ -1,4 +1,9 @@
-package dao;
+package com.company.dao;
+
+
+
+import com.company.bean.PaperKeywordBean;
+import com.company.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,10 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import bean.PaperBean;
-import bean.PaperKeywordBean;
-import util.JDBCUtil;
 
 public class PaperKeywordDao {
 	public void insertOne(PaperKeywordBean paperKeywordBean) {
@@ -88,7 +89,7 @@ public class PaperKeywordDao {
 				+ "group by(keyword) "
 				+ "order by(count(keyword)) desc "
 				+ "limit 3";
-		String []keyword = new String[3];
+		String[]keyword = new String[3];
 		Connection conn = JDBCUtil.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
