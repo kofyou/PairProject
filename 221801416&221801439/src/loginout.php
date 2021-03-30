@@ -2,4 +2,4 @@
   session_start();
   $_SESSION['username']=null;
   header("location:User.php");
-  ?>
+?>

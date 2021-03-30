@@ -65,14 +65,15 @@
 
   echo '<p id="num">共有文章: '.$num_results.' 篇</p>';
 
-  for ($i=0; $i <$num_results; $i++)
-  {
+  for ($i=0; $i <$num_results; $i++) {
      $row = $result->fetch_assoc();
      echo '<div class="list"><h2>'.($i+1).'.  ' . htmlspecialchars(stripslashes($row['post_title'])) . "</h2>\n".
      '<p>发表时间：' . htmlspecialchars(stripslashes($row['release_date'])) . "</p>\n".
      '<p>会议时间：' . htmlspecialchars(stripslashes($row['meeting_date'])) . "</p>\n".
-     '<p>操作：'.'<a href="update_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'"><button  id="link">修改</button></a>'.
-     '  '.'<a href="delete_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'"><button  id="link">删除</button></a>'.
+     '<p>操作：'.'<a href="update_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'">
+     <button  id="link">修改</button></a>'.
+     '  '.'<a href="delete_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'">
+     <button  id="link">删除</button></a>'.
      '<p>摘要：'.nl2br(htmlspecialchars(stripslashes($row['post_content']))).'</p>'.
      '<a href="'.htmlspecialchars(stripslashes($row['link'])).'"><button  id="link">原文链接</button></a></div>';
   }

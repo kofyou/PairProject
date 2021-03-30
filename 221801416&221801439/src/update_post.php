@@ -8,6 +8,7 @@
   </head>
   <body>
   <h1 id="title">当前文章</h1>
+  <p id="limit">(仅限英文)</p>
   <?php
   require('config.php');
 
@@ -32,6 +33,6 @@
     <p>正文:</p>
     <p><textarea  name = "content" rows="8" cols="60" id="passage" ><?php  echo $row['post_content']; ?></textarea></p>
     <p><input type="hidden" name="oldtitle" value="<?php echo $_GET["title"];?>"/></p> 
-    <p><input type="submit" value="提交" id="submit"/></p>
+    <p><input type="submit" value="修改" id="submit"/></p>
   </form>
   </div>

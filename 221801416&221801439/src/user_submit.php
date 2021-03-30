@@ -12,7 +12,7 @@
     $query = "select * from user where username='$_POST[username]' and pwd='$_POST[pwd]'";
     $result = $db->query($query);
     $num_results = $result->num_rows;
-    if($num_results){
+    if ($num_results) {
        echo "<script> alert('登录成功！') </script>";
        session_start();
        $_SESSION['username']=$_POST["username"];

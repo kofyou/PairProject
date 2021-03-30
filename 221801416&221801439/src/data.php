@@ -19,7 +19,7 @@
      <a href="keyword.php?keyword=image classification"><button id="a">image classification</button></a>
      <a href="keyword.php?keyword=face recognition"><button id="a">face recognition</button></a>
  <div id="chart1" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+   <script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart1'));
     var options={
@@ -47,7 +47,7 @@
     myChart.setOption(options);
 </script>
 <div id="chart2" style="width:1000px;height:400px;"></div>
-<script type="text/javascript">
+<script  language="javascript" type="text/javascript">
 var myChart = echarts.init(document.getElementById('chart2'));
     var options={
         //定义一个标题
@@ -74,7 +74,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
     </script>
     <div id="chart3" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+    <script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart3'));
     var options={
@@ -102,7 +102,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart4" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart4'));
     var options={
@@ -130,7 +130,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart5" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart5'));
     var options={
@@ -158,7 +158,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart6" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart6'));
     var options={
@@ -186,7 +186,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart7" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签 
     var myChart = echarts.init(document.getElementById('chart7'));
     var options={
@@ -214,7 +214,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart8" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart8'));
     var options={
@@ -242,7 +242,7 @@ var myChart = echarts.init(document.getElementById('chart2'));
     myChart.setOption(options);
 </script>
 <div id="chart9" style="width:1000px;height:400px;"></div>
-   <script type="text/javascript">
+<script  language="javascript" type="text/javascript">
     // 初始化图表标签
     var myChart = echarts.init(document.getElementById('chart9'));
     var options={

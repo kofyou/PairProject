@@ -13,7 +13,7 @@
     $query = "update paper set post_title='$_POST[title]',post_content='$_POST[content]' where post_title='$_POST[oldtitle]'";
     $result = $db->query($query);
 
-    if($result){
+    if ($result) {
        echo "<script> alert('修改成功！') </script>";
        header("location:list_post.php");
     }

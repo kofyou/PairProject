@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Simple Blog System—发表文章</title>
+    <title>发表文章</title>
   </head>
   <body>
-  <h1>发表博客文章</h1>
+  <h1>发表文章</h1>
 <?php
   require('config.php');
   date_default_timezone_set('Asia/Shanghai');
@@ -14,8 +14,7 @@
   $title=$_POST['title'];
   $content=$_POST['content'];
 
-  if (!$title || !$content)
-  {
+  if (!$title || !$content) {
      echo '你未输入文章的标题或正文.<br />'
           .'请退回再次重试.';
      exit;
@@ -44,14 +43,13 @@
   echo '<pre>' . $query . '</pre>' ;
 
   $result = $db->query($query);
-  if ($result)
-   {   echo "<script> alert('添加成功！') </script>";
-      header("location:list_post.php");
-   }
-  else
- {
+  if ($result) {   
+    echo "<script> alert('添加成功！') </script>";
+    header("location:list_post.php");
+  }
+  else {
      echo "<script> alert('添加失败！') </script>";
- }
+  }
 
   $db->close();
 ?>

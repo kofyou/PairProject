@@ -13,7 +13,7 @@
     $query = "delete from paper where post_title='$_POST[title]'";
     $result = $db->query($query);
 
-    if($result){
+    if ($result){
        echo "<script> alert('删除成功！') </script>";
        header("location:list_post.php");
     }

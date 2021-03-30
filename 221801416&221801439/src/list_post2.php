@@ -27,8 +27,7 @@
 
   echo '<div id="num"><p>共有文章: '.$num_results.' 篇</p></div>';
 
-  for ($i=0; $i <$num_results; $i++)
-  {
+  for ($i=0; $i <$num_results; $i++) {
      $row = $result->fetch_assoc();
      echo '<div class="list"><h2>'.($i+1).'.  ' . htmlspecialchars(stripslashes($row['post_title'])) . "</h2>\n".
       '<p>发表时间：' . htmlspecialchars(stripslashes($row['release_date'])) . "</p>\n".

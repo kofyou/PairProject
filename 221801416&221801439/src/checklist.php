@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="checklist.css" type="text/css" />
     <title id="title">操作结果</title>
   </head>
-  <body>
+<body>
   <form action="loginout.php" method="post">
     <input type="submit" value="退出登录" id="exit"/>
   </form>
@@ -51,21 +51,21 @@
   $db = new mysqli($db_host, 	$db_username, $db_password, $db_database);
 
   if (mysqli_connect_errno()) {
-     echo '错误: 无法连接到数据库. 请稍后再次重试.';
-     exit;
+    echo '错误: 无法连接到数据库. 请稍后再次重试.';
+    exit;
   }
     // 设置字符集
   $db->query("SET NAMES utf8");
   $title = isset($_POST["title"])?$_POST["title"]:'NA';
   $time = isset($_POST["time"])?$_POST["time"]:'NA';
-  $sort = isset($_POST["sort"])?$_POST["sort"]:'NA';
-  if($title != "请输入标题关键字进行搜索" && $title != null && $time != "所有时间") {
+  $sort = isset($_POST["sort"])?$_POST["sort"]:'post_title';
+  if($title != "请输入标题关键字进行搜索" && $title != 'NA' && $time != "所有时间" && $time != "NA") {
     $query = "select * from paper where post_title like '%".$title."%' AND meeting_date like '%".$time."' order by ".$sort;
   }
-  else if(($title == "请输入标题关键字进行搜索" || $title == null) && $time != "所有时间") {
+  else if (($title == "请输入标题关键字进行搜索" || $title == 'NA') && $time != "所有时间" && $time != "NA") {
     $query = "select * from paper where meeting_date like '%".$time."' order by ".$sort;
   }
-  else if(($title != "请输入标题关键字进行搜索" && $title != null) && $time == "所有时间") {
+  else if (($title != "请输入标题关键字进行搜索" && $title != 'NA') && $time == "所有时间" || $time != "NA") {
     $query = "select * from paper where post_title like '%".$title."%' order by ".$sort;
   }
   else {
@@ -77,14 +77,15 @@
 
   echo '<p id="num">共有文章: '.$num_results.' 篇</p>';
 
-  for ($i=0; $i <$num_results; $i++)
-  {
+  for ($i=0; $i <$num_results; $i++) {
      $row = $result->fetch_assoc();
      echo '<div class="list"><h2>'.($i+1).'.  ' . htmlspecialchars(stripslashes($row['post_title'])) . "</h2>\n".
     '<p>发表时间：' . htmlspecialchars(stripslashes($row['release_date'])) . "</p>\n".
     '<p>会议时间：' . htmlspecialchars(stripslashes($row['meeting_date'])) . "</p>\n".
-    '<p>操作：'.'<a href="update_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'"><button  id="link">修改</button></a>'.
-    '  '.'<a href="delete_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'"><button  id="link">删除</button></a>'.
+    '<p>操作：'.'<a href="update_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'">
+    <button  id="link">修改</button></a>'.
+    '  '.'<a href="delete_post.php?title='.htmlspecialchars(stripslashes($row['post_title'])).'">
+    <button  id="link">删除</button></a>'.
     '<p>摘要：'.nl2br(htmlspecialchars(stripslashes($row['post_content']))).'</p>'.
     '<a href="'.htmlspecialchars(stripslashes($row['link'])).'"><button  id="link">原文链接</button></a></div>';
   }
