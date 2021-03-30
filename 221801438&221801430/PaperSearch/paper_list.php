@@ -99,8 +99,6 @@
                     '<a href="paper_list.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="paper_list.php">删除</a>'.
                 '</div>';
                 }
-            } else {
-                echo "0 结果";
             }
             $conn->close();
         ?>

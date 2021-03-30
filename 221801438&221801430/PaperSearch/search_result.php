@@ -43,7 +43,7 @@
             </div>
 
             <div class="search">
-                <form name="search_form" action="paper_list.php" method="get">
+                <form name="search_form" action="search_result.php" method="get">
                     <input type="text" name="search_key" id="search_key"/>
                     <br/>
                     <input type="submit" name="bt_sure" id="submit_icon" value=""/>
@@ -52,9 +52,6 @@
             </div>
 
             <div class="results">
-                <P id="nums">为您查找到相关论文约15篇</P>
-                <button id="bt_in">全部导入</button>
-                <img src="image/icon_in.svg" id="icon_in"/>
 
                 <?php
                     $db_host = "localhost";
@@ -68,30 +65,68 @@
                        exit;
                     }
                     $conn->query("SET NAMES utf8");
+
                     //查询数据
                     $search_key = isset($_GET["search_key"]) ? $_GET["search_key"] : '';
-                    $sql = "select * from paper where post_title like '%".$search_key."%'";
+                    //session传值机制
+                    session_start();
+                    $_SESSION["input_text"] = $search_key;
+                    //查找
+                    if($search_key != '') {
+                    $sql = "SELECT * FROM paper where post_title like '%".$search_key."%' or keywords like '%".$search_key."%'";
                     $result = $conn->query($sql);
+                    echo "<script> document.getElementById('search_key').value = '".$search_key."';</script>";
                     //显示
+                    echo '<P id="nums">为您查找到相关论文约'.$result->num_rows.'篇</P>';
                     if ($result->num_rows > 0) {
-                        // 输出数据
+
+                       // 输出数据
                         while($row = $result->fetch_assoc()) {
                             echo '<div class="result_" id="result1">'.
-                            '<img src="image/md-close.svg" class="icon_close" id="icon_close_one" alt="alt"/>'.
                             '<p class="paper_title" id="one">'.$row["post_title"].'</p>'.
                             '<p class="source" id="source_one">'.$row["meeting_date"].' ('.$row["release_date"].')</p>'.
                             '<textarea rows="3" cols="100" class="summary" id="summary_one" readonly="readonly">'.$row["post_content"].'</textarea>'.
                             '<a href='.$row["link"].' id="paper_link" target="_blank">阅读全文</a>'.
                             '<p class="keywords" id="keyword_one">'.$row["keywords"].'</p>'.
-                            '<button class="in_bt_one" id="bt_in_one">导入</button>'.
+                            '<a href="search_result.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="search_result.php">导入</a>'.
                         '</div>';
                         }
-                    } else {
-                        echo '<h2>请输入标题查询！</h2>';
                     }
+}
                     $conn->close();
-
                 ?>
+
+                <?php
+                    $db_host = "localhost";
+                    $db_username = "root";
+                    $db_password = "";
+                    $db_database = "paperdb";
+                    /*创建连接*/
+                    $conn = new mysqli($db_host, $db_username, $db_password, $db_database);
+                    if (mysqli_connect_errno()) {
+                        echo '错误: 无法连接到数据库. 请稍后再次重试.';
+                        exit;
+                    }
+                    $conn->query("SET NAMES utf8");
+                    //导入当前选择文章
+                    $title = isset($_GET['title'])?$_GET['title']:' ';
+                    $sql = "select * from paper where post_title like '%".$title."%'";
+                    $result = $conn->query($sql);
+                    $sql1 = "select * from paper_user where post_title like '%".$title."%'";
+                    $result1 = $conn->query($sql1);
+                    if ($result1 -> num_rows == 0){
+                        $row = $result->fetch_assoc();
+                        $sql2 = "insert into paper_user values ('".$row['post_title']."','".$row['post_content']."','".$row['release_date']."','".$row['keywords']."','".$row['release_date']."','".$row['link']."')";
+                        $result2 = $conn->query($sql2);
+                        echo "<script>alert('导入成功');</script>";
+                        //查询数据
+
+
+                    }
+
+                    $conn->close();
+                ?>
+
             </div>
 
         </div>

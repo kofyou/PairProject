@@ -47,7 +47,7 @@
 #nums{
     position: absolute;
     left: 2%;
-    font-size: 14px;
+    font-size: 16px;
     color: #757575;
 }
 #bt_in{
@@ -72,23 +72,18 @@
 }
 
 .result_{
-    position: absolute;
+    position: relative;
     width: 94%;
     height: 20%;
     background-color: rgba(195, 232, 255, 51);
     left: 3%;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
-    top: 8%;
-    padding-left: 1%;
-}
-.icon_close{
-    position: absolute;
-    right: 1%;
-}
-#icon_close_one{
     top: 5%;
+    padding-left: 1%;
+    margin-top: 3%;
 }
+
 .paper_title{
     position: absolute;
     padding-left: 1%;
@@ -104,10 +99,12 @@
 .summary{
     position: absolute;
     padding-left: 1%;
-    padding-right: 9%;
-    top: 35%;
+    padding-right: 4%;
+    top: 37%;
     font-size: 16px;
     color: #757575;
+    background-color: rgba(0,0,0,0);
+    border: none;
 }
 #paper_link{
     position: absolute;
@@ -128,7 +125,7 @@
 }
 .in_bt_one{
     position: absolute;
-    width: 4%;
+    width: 6%;
     height: 16%;
     right: 5%;
     top: 45%;
@@ -136,5 +133,8 @@
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
     color: #356FC8;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 0.5%;
 }
 
