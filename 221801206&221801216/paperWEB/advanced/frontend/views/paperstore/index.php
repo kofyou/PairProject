@@ -21,6 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+            'style'=>'overflow: auto; word-wrap: normal;'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -29,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
         //    'abstract:ntext',
             'year:ntext',
          //   'pubdate:ntext',
-         //   'keyword:ntext',
+            'keyword:ntext',
             // 'link:ntext',
-            ['class' => 'yii\grid\ActionColumn','header'=>'操作','template' => '{view}  {delete}',
+            ['class' => 'yii\grid\ActionColumn','header'=>'Operation','template' => '{view}  {delete}',
 
         ], 
     ]]); 
