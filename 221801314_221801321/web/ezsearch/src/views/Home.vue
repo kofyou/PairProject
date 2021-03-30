@@ -12,7 +12,7 @@
         <el-col :span="5" :offset="0"></el-col>
         <el-col :span="12">
           <SearchBar
-            @title="getTitles"
+            @title="getTitle"
             />
         </el-col>
         <!-- 搜索按钮 -->
@@ -27,7 +27,10 @@
         </el-col>
         <!-- 高级搜索 -->
         <el-col :span="1" :push="0">
-          <AdvanceSearch/>
+          <AdvanceSearch
+            @year="getYear" 
+            @meeting="getMeeting"
+            />
         </el-col>
         <el-col :span="5" :offset="0"></el-col>
       </el-row>
@@ -40,7 +43,9 @@
       <Paper />
       <Paper />
     </el-space>
-    <Pagination />
+    <Pagination 
+      @page="getPage"
+      />
     <Footer />
   </div>
 </template>
@@ -69,28 +74,44 @@ export default defineComponent({
   setup() {
     const { ctx } = getCurrentInstance();
     var title = ref('');
+    var year = ref('');
+    var meeting = ref('');
+    var page = ref('');
     //获取输入框组件title
-    const getTitles = (val) => {
-      // console.log(val);
+    const getTitle = (val) => {
       title = val;
+      console.log(title);
     }
     //获取高级搜索组件条件
-    const getConditions = () => {
-
+    const getYear = (val) => {
+      year = val;
+    }
+    const getMeeting = (val) => {
+      meeting = val;
+    }
+    //获取分页组件当前页面
+    const getPage = (val) => {
+      console.log(val)
+      page = val;
     }
     //搜索按钮事件
     const search = () => {
       console.log(title);
+      console.log(year);
+      console.log(meeting);
+      if (page === undefined)
+        page = 1;
+      console.log(page);
       queryPaper();
     }
     //get请求查询title
     const queryPaper = () => {
       ctx.$http
         .get("/paper/title", {
-          address: 5,
-          // source: ,
+          address: page-1, //页数
+          //source: meeting,
           title: title,
-          // years: ,
+          //years: year,
         })
         .then((data) => {
           console.log(data)
@@ -98,8 +119,13 @@ export default defineComponent({
     }
     return {
       title,
-      getTitles,
-      getConditions,
+      year,
+      meeting,
+      page,
+      getTitle,
+      getYear,
+      getMeeting,
+      getPage,
       search,
       queryPaper,
     };

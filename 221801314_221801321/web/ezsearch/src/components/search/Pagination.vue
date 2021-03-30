@@ -9,7 +9,6 @@
       :total="1000"
     >
     </el-pagination>
-    <div>{{currPage}}</div>
   </div>
 </template>
 <script>
@@ -17,32 +16,31 @@ import { defineComponent, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   name: "Pagination",
-  computed: {
-      currPage () {
-          //这里有bug   number undefined
-          //return this.$store.pageNum.number;
-      }
-  },
-  setup() {
-    const store = useStore();
-    onMounted(() => {
-        // setPage(val);
-      console.log(store.pageNum);
-    });
-  },
-  methods: {
-    handleSizeChange(val) {
+  setup(props, { emit }) {
+    // const store = useStore();
+    let page = 1;
+    function handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      this.$store.commit({
-        type: "setPages",
-        page: val,
-      });
-      console.log("设置页面" + val);
-    //   console.log(`当前页: ${val}`);
-    },
+    }
+    function handleCurrentChange(val) {
+      page = val;
+      getPage();
+      console.log(`当前页: ${page}`);
+    }
+    const getPage = () => {
+      emit("page", page);
+    }
+    onMounted(() => {
+      // setPage(val);
+      handleCurrentChange();
+    });
+    return { 
+      page,
+      handleCurrentChange,
+      handleSizeChange,
+    }
   },
+  methods: {},
   data() {
     return {
       currentPage1: 1,

@@ -42,14 +42,16 @@ import { defineComponent, ref } from "vue";
 // import {$} from "jquery";
 export default defineComponent({
   name: "AdvanceSearch",
-  setup() {
+  setup(props, {emit}) {
     const year = ref("");
     const meeting = ref("");
 
     function getCond() {
-        console.log("year"+year.value);
-        console.log("meeting"+meeting.value);
+        // console.log(year.value);
+        // console.log(meeting.value);
         // document.getElementById("#pop").style.display = "none";
+        emit("year",year.value);
+        emit("meeting", meeting.value);
     }
 
     return {
@@ -60,16 +62,16 @@ export default defineComponent({
 
       years: [
         {
-          value: "2021",
-          label: "2021年",
-        },
-        {
           value: "2020",
           label: "2020年",
         },
         {
           value: "2019",
           label: "2019年",
+        },
+        {
+          value: "2018",
+          label: "2018年",
         },
       ],
       meetings: [
