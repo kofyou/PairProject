@@ -58,7 +58,23 @@
     // 设置字符集
   $db->query("SET NAMES utf8");
   
-  $query = "select * from paper";
+  //$query = "select * from paper";
+  $title = isset($_POST["title"])?$_POST["title"]:'NA';
+  $time = isset($_POST["time"])?$_POST["time"]:'NA';
+  $sort = isset($_POST["sort"])?$_POST["sort"]:'post_title';
+  if($title != "请输入标题关键字进行搜索" && $title != "NA" && $time != "所有时间" && $time != "NA") {
+    $query = "select * from paper where post_title like '%".$title."%' AND meeting_date like '%".$time."' order by ".$sort;
+  }
+  else if(($title == "请输入标题关键字进行搜索" || $title == "NA") && $time != "所有时间" && $time != "NA") {
+    $query = "select * from paper where meeting_date like '%".$time."' order by ".$sort;
+  }
+  else if(($title != "请输入标题关键字进行搜索" && $title != "NA") && ($time == "所有时间" || $time == "NA")) {
+    $query = "select * from paper where post_title like '%".$title."%' order by ".$sort;
+  }
+  else {
+    $query = "select * from paper order by ".$sort;
+  }
+    
   $result = $db->query($query);
 
   $num_results = $result->num_rows;
