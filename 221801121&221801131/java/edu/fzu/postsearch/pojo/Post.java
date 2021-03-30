@@ -3,6 +3,7 @@ package edu.fzu.postsearch.pojo;
 import java.util.List;
 
 public class Post {
+    private int id;
     private String title;
     private List<String> kwds;
     private String abs;
@@ -10,13 +11,22 @@ public class Post {
     private String year;
     private String type;
 
-    public Post(String title,List<String> kwds,String abs,String link,String year,String type){
+    public Post(int id,String title,List<String> kwds,String abs,String link,String year,String type){
+        this.id = id;
         this.title = title;
         this.kwds = kwds;
         this.abs = abs;
         this.link = link;
         this.year = year;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

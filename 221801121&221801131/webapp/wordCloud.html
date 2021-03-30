@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src='https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js'></script>
+        <!-- <script src="../../echarts/dist/echarts.js"></script> -->
+        <script src='js/echarts-wordcloud.js'></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id='main'></div>
+        <script>
+            var chart = echarts.init(document.getElementById('main'));
+
+            var option = {
+                tooltip: {},
+                series: [ {
+                    type: 'wordCloud',
+                    gridSize: 2,
+                    sizeRange: [50, 100],
+                    rotationRange: [-90, 90],
+                    shape: 'pentagon',
+                    width: 600,
+                    height: 400,
+                    drawOutOfBound: true,
+                    textStyle: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        textStyle: {
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    data: [
+                        {
+                            name: 'feature',
+                            value: 1795,
+                            textStyle: {
+                                color: 'black'
+                            },
+                            emphasis: {
+                                textStyle: {
+                                    color: 'red'
+                                }
+                            }
+                        },
+                        {
+                            name: 'modeling',
+                            value: 1812
+                        },
+                        {
+                            name: 'recognition',
+                            value: 1962
+                        },
+                        {
+                            name: 'detection',
+                            value: 2138
+                        },
+                        {
+                            name: 'cameras',
+                            value: 2236
+                        },
+                        {
+                            name: 'vision',
+                            value: 2249
+                        },
+                        {
+                            name: 'training',
+                            value: 2437
+                        },
+                        {
+                            name: 'computer',
+                            value: 2994
+                        },
+                        {
+                            name: 'analysis',
+                            value: 3038
+                        },
+                        {
+                            name: 'image',
+                            value: 6724
+                        }
+                    ]
+                } ]
+            };
+
+
+
+
+            chart.setOption(option);
+
+            chart.on('click',function(params){
+			    	var name = params.data.name;
+                    window.location.href="https://www.baidu.com";
+                    alert(name);
+			    	console.log(name);
+		    });
+            window.onresize = chart.resize;
+        </script>
+    </body>
+</html>

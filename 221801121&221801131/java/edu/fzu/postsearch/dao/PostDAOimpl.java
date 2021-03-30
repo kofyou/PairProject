@@ -40,10 +40,14 @@ public class PostDAOimpl implements PostDAO{
     }
 
     @Override
-    public void delete(String title) {
-
+    public void delete(int id) {
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "delete from post where id = '" + id + "'";
+            s.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
     @Override
     public Post get(String title) {
         return null;
@@ -53,9 +57,10 @@ public class PostDAOimpl implements PostDAO{
     public List<Post> list() {
         List<Post> postList = new ArrayList<>();
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post";
+            String sql = "select * from post order by year desc,type";
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()){
+                int id = rs.getInt("id");
                 String title = rs.getString("title");
                 String keywords = rs.getString("keywords");
                 String abs = rs.getString("abstract");
@@ -63,7 +68,29 @@ public class PostDAOimpl implements PostDAO{
                 String year = rs.getString("year");
                 String type = rs.getString("type");
                 List<String> kwds= Arrays.asList(keywords.split(","));
-                postList.add(new Post(title,kwds,abs,link,year,type));
+                postList.add(new Post(id,title,kwds,abs,link,year,type));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return postList;
+    }
+
+    public List<Post> listSearch(String search) {
+        List<Post> postList = new ArrayList<>();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "select * from post where title like \'%%" + search +"%%\'" + "or keywords like \'%%" + search +"%%\'order by year desc,type";
+            ResultSet rs = s.executeQuery(sql);
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String keywords = rs.getString("keywords");
+                String abs = rs.getString("abstract");
+                String link = rs.getString("link");
+                String year = rs.getString("year");
+                String type = rs.getString("type");
+                List<String> kwds= Arrays.asList(keywords.split(","));
+                postList.add(new Post(id,title,kwds,abs,link,year,type));
             }
         }catch (SQLException e) {
             e.printStackTrace();

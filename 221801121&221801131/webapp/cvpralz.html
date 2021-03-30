@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/defalt.css" />
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- CSS样式 -->
+
+    <title>热词分析</title>
+</head>
+<h1 style="font-family:verdana">热词分析</h1>
+<a href="analyze.html">
+    <button id="fat-btn" class="btn btn-default" data-loading-text="Loading..." type="button"> 返回
+        <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(this).button('loading').delay(1000).queue(function () {
+                    // $(this).button('reset');
+                    // $(this).dequeue(); 
+                });
+            });
+        });
+    </script>
+</a>
+
+<body style="height: 100%; margin: 0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <div id="main1" style="height: 50% "></div>
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main1');
+        var myChart = echarts.init(chartDom);
+        var option1;
+
+        var data = [];
+        for (let i = 0; i < 10; ++i) {
+            data.push(111);
+        }
+
+        option1 = {
+            xAxis: {
+                max: 'dataMax',
+            },
+            yAxis: {
+                type: 'category',
+                data: ['Cameras', 'Training', 'Computer vision', 'Feature extraction', 'Shape', 'Image segmentation', 'Robustness', 'Visualization', '3D displays', 'Layout'],
+                inverse: true,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
+
+            },
+            series: [{
+                realtimeSort: true,
+                name: 'X',
+                type: 'bar',
+                data: data,
+                label: {
+                    show: true,
+                    position: 'right',
+                    valueAnimation: true
+                }
+            }],
+            legend: {
+                show: true
+            },
+            animationDuration: 0,
+            animationDurationUpdate: 1000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+
+        function run() {
+            var data = option1.series[0].data;
+            data[1] = 654;
+            data[2] = 456;
+            data[3] = 761;
+            data[4] = 437;
+            data[5] = 546;
+            data[6] = 799;
+            data[7] = 964;
+            data[8] = 734;
+            data[9] = 430;
+            data[0] = 1264;
+            myChart.setOption(option1);
+        }
+
+        function run2() {
+            var data = option1.series[0].data;
+            data[1] = 1654;
+            data[2] = 1456;
+            data[3] = 1761;
+            data[4] = 1437;
+            data[5] = 1546;
+            data[6] = 1799;
+            data[7] = 964;
+            data[8] = 1734;
+            data[9] = 1430;
+            data[0] = 1164;
+
+            myChart.setOption(option1);
+        }
+        function run3() {
+            var data = option1.series[0].data;
+            data[1] = 1254;
+            data[2] = 1756;
+            data[3] = 1161;
+            data[4] = 937;
+            data[5] = 1746;
+            data[6] = 1699;
+            data[7] = 1437;
+            data[8] = 964;
+            data[9] = 1967;
+            data[0] = 1743;
+
+            myChart.setOption(option1);
+        }
+        function run4() {
+            var data = option1.series[0].data;
+            data[1] = 1454;
+            data[2] = 2156;
+            data[3] = 1111;
+            data[4] = 837;
+            data[5] = 1476;
+            data[6] = 1969;
+            data[7] = 1977;
+            data[8] = 1964;
+            data[9] = 1267;
+            data[0] = 743;
+
+            myChart.setOption(option1);
+        }
+        function run5() {
+            var data = option1.series[0].data;
+            data[8] = 1437;
+            data[6] = 964;
+            data[9] = 1967;
+            data[0] = 1743;
+            data[7] = 1254;
+            data[5] = 1756;
+            data[3] = 1161;
+            data[4] = 937;
+            data[1] = 1746;
+            data[2] = 1699;
+
+            myChart.setOption(option1);
+        }
+        function run6() {
+            var data = option1.series[0].data;
+            data[1] = 1254;
+            data[2] = 1756;
+            data[3] = 1161;
+            data[4] = 937;
+            data[5] = 1746;
+            data[6] = 1699;
+            data[7] = 1437;
+            data[8] = 964;
+            data[9] = 1967;
+            data[0] = 1743;
+
+            myChart.setOption(option1);
+        }
+        function run7() {
+            var data = option1.series[0].data;
+            data[0] = 1658;
+            data[1] = 1189;
+            data[2] = 1350;
+            data[3] = 804;
+            data[4] = 724;
+            data[5] = 673;
+            data[6] = 932;
+            data[7] = 585;
+            data[8] = 1044;
+            data[9] = 918;
+
+            myChart.setOption(option1);
+        }
+        function run8() {
+            var data = option1.series[0].data;
+            data[1] = 1254;
+            data[2] = 756;
+            data[3] = 861;
+            data[4] = 937;
+            data[5] = 746;
+            data[6] = 699;
+            data[7] = 337;
+            data[8] = 464;
+            data[9] = 967;
+            data[0] = 743;
+
+            myChart.setOption(option1);
+        }
+        function run9() {
+            var data = option1.series[0].data;
+            data[0] = 1458;
+            data[1] = 1289;
+            data[2] = 1150;
+            data[3] = 1104;
+            data[4] = 924;
+            data[5] = 873;
+            data[6] = 832;
+            data[7] = 685;
+            data[8] = 644;
+            data[9] = 618;
+
+            myChart.setOption(option1);
+        }
+        setTimeout(function () {
+            run();
+        }, 1);
+        setTimeout(function () {
+            run2();
+        }, 1200);
+        setTimeout(function () {
+            run3();
+        }, 2400);
+        setTimeout(function () {
+            run4();
+        }, 3600);
+        setTimeout(function () {
+            run5();
+        }, 4800);
+        setTimeout(function () {
+            run6();
+        }, 6000);
+        setTimeout(function () {
+            run7();
+        }, 7200);
+        setTimeout(function () {
+            run8();
+        }, 8400);
+        setTimeout(function () {
+            run9();
+        }, 9600);
+        if (option1 && typeof option1 === 'object') {
+            myChart.setOption(option1);
+        }
+
+    </script>
+
+
+
+    </body>
+
+</html>
