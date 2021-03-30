@@ -43,6 +43,7 @@ $(function(){
          */
         $.ajax({
             url : "../GetUserInfoServlet",
+            type:"post",
             data : {
                 "account" : USER_INFO.userID,
                 "userName" : USER_INFO.name,

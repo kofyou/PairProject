@@ -21,7 +21,7 @@ $(function(){
             this.bindEvents()
             $.ajax({
                 url:"../GetHottestKeywordsServlet",
-                method:"post",
+                type:"post",
                 dataType:"json",
                 success:data=>{
                     $("#reg_wait").css("display","none")
