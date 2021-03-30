@@ -20,24 +20,29 @@ $(function(){
         init: function(){
             this.bindEvents()
             $.ajax({
-                url:"",
+                url:"../GetHottestKeywordsServlet",
                 method:"post",
+                dataType:"json",
                 success:data=>{
-                    strs = data
-                    for(let i = 0;i<10;i++)
+                    let i = 0
+                    $.each(data,function(index,str)
                     {
                         let cloud = "#cloud"+(i+1)
-                        $(cloud).html(strs[i].toString())
+                        $(cloud).html(str.keyword)
                         $(cloud).css("top",(top[i]+40)+"px")
                         $(cloud).css("left",(left[i]+10)+"px")
                         $(cloud).css("color",color[i])
                         $(cloud).css("opacity","1")
+                        $(cloud).click(function(){
+                            window.open("../pages/paper/searchList.html?search="+str.keyword,"_self")
+                        })
                         $(cloud).hover(function(){
                             $(cloud).css("text-shadow","2px 2px 5px "+color[i])
                         },function(){
                             $(cloud).css("text-shadow","none")
                         })
-                    }
+                        i++
+                    })
                 },
                 error:()=>{
                     alert("网烂掉了哦")

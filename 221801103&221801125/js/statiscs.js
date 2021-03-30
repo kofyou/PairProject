@@ -1,5 +1,5 @@
 $(function(){
-         var logOut = $(".slide-down li:eq(1)")
+        var logOut = $(".slide-down li:eq(1)")
         logOut.click(logOutFunc)
         var btn = $("#search_btn")
         btn.click(searchFunc)
@@ -21,7 +21,7 @@ $(function(){
               }
         }
         $.ajax({
-            url:"",
+            url:"../GetTendencyServlet",
             dataType:"json",
             type:"post",
             success:data=>{
@@ -31,14 +31,18 @@ $(function(){
                     "eccv" : data.eccv,
                 }
                 HOTTEST_THREE = obj
-                for(let i=0;i<data.hottest.length;i++)
+                var names = []
+                var values = []
+                for(let i=0;i<data.top10.length;i++)
                 {
-                    let obj2 = {
-                        "name" : data.hottest[i],
-                        "value" : data.hottest_value[i] 
-                    }
-                    HOTTEST_TOP10.push(obj2)
+                    names.push(data.top10[i].keyword)
+                    values.push(data.top10[i].count)
                 }
+                var obj2 = {
+                    "name" : names,
+                    "value" :  values
+                }
+                HOTTEST_TOP10.push(obj2)
                 
             },
             error:()=>{
@@ -53,25 +57,26 @@ $(function(){
         document.getElementsByClassName("wrap")[0].style.top = height+100 + "px"
         var myChart = echarts.init(dom);
         var myChart2 = echarts.init(dom2);
-        var months = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+        //var months = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
         var myDate = new Date;
-        var mon = myDate.getMonth() + 1;
+        //var mon = myDate.getMonth() + 1;
+        var year = myDate.getFullYear();
         var dataMonth = []
-        if(mon<5)
-        {
-            for(let k=0;k<5;k++)
-            {
-                if(k<(5-mon))
-                    dataMonth.push(months[(12-5+mon+k)])
-                else
-                    dataMonth.push(months[mon-5+k])
-            }
-        }else{
-            for(let l=0;l<5;l++)
-            {
-                dataMonth.push(months[mon-5+l])
-            }
-        }
+        // if(mon<5)
+        // {
+        //     for(let k=0;k<5;k++)
+        //     {
+        //         if(k<(5-mon))
+        //             dataMonth.push(months[(12-5+mon+k)])
+        //         else
+        //             dataMonth.push(months[mon-5+k])
+        //     }
+        // }else{
+        //     for(let l=0;l<5;l++)
+        //     {
+        //         dataMonth.push(months[mon-5+l])
+        //     }
+        // }
         
         var app = {};
         var app2 = {};
@@ -100,7 +105,7 @@ $(function(){
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: dataMonth
+                data: [year-5,year-4,year-3,year-2,year-1]
             },
             yAxis: {
                 type: 'value'
@@ -110,18 +115,21 @@ $(function(){
                     name: 'cvpr',
                     type: 'line',
                     stack: '总量',
-                    data: HOTTEST_THREE.cvpr
+                    data: HOTTEST_THREE.cvpr,
+                    //data:[10,10,10,10,10]
                 },
                 {
                     name: 'iccv',
                     type: 'line',
                     stack: '总量',
+                    //data:[10,10,10,10,10]
                     data: HOTTEST_THREE.iccv
                 },
                 {
                     name: 'eccv',
                     type: 'line',
                     stack: '总量',
+                    //data:[10,10,10,10,10]
                     data: HOTTEST_THREE.eccv
                 }
             ]
@@ -133,6 +141,7 @@ $(function(){
             },
             xAxis: {
                 type: 'category',
+                //data:["1",'2','3','4','5','6','7','8','9','10']
                 data: HOTTEST_TOP10[0].name,
             },
             yAxis: {
@@ -140,6 +149,7 @@ $(function(){
             },
             series: [{
                 data: HOTTEST_TOP10[0].values,
+                //data: [10,10,10,10,10,10,10,10,10,10],
                 type: 'bar',
                 //url:["www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com","www.baidu.com",],
                 showBackground: true,

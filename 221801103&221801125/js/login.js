@@ -10,8 +10,8 @@ $(function () {
       $.ajax({
         url: "../LoginServlet",
         data: {
-          userName: inputs[0].value,
-          password: inputs[1].value,
+          "account": inputs[0].value,
+          "password": inputs[1].value,
         },
         type: "POST",
         dataType: "json",
@@ -33,13 +33,18 @@ $(function () {
             localStorage.setItem("sign", USER_INFO.userID);
             localStorage.setItem("company", USER_INFO.userID);
             localStorage.setItem("address", USER_INFO.userID);
-            console.log(localStorage.getItem("lastname"))
+            //console.log(localStorage.getItem("lastname"))
           }
         },
         error: () => {
           $("#login_word").removeClass("to_none");
           $("#reg_wait").css("display", "none");
           alert("啊哦，网络可能出了些错误，请稍后重试");
+            localStorage.setItem("userName", "");
+            localStorage.setItem("name", "");
+            localStorage.setItem("sign", "");
+            localStorage.setItem("company", "");
+            localStorage.setItem("address", "");
         },
       });
       $("#login_word").addClass("to_none");

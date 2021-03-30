@@ -30,6 +30,11 @@ $(function(){
         USER_INFO.company = $(".setting-company").val().toString()
         USER_INFO.address = $(".setting-address").val().toString()
         USER_INFO.sign = $(".setting-info").val().toString()
+            localStorage.setItem("userName", USER_INFO.userID);
+            localStorage.setItem("name", USER_INFO.userID);
+            localStorage.setItem("sign", USER_INFO.userID);
+            localStorage.setItem("company", USER_INFO.userID);
+            localStorage.setItem("address", USER_INFO.userID);
         /**
          * 
          * 发送数据
@@ -37,17 +42,16 @@ $(function(){
          * 
          */
         $.ajax({
-            url : "",
+            url : "../GetUserInfoServlet",
             data : {
-                "username" : USER_INFO.userID,
-                "name" : USER_INFO.name,
+                "account" : USER_INFO.userID,
+                "userName" : USER_INFO.name,
                 "address" : USER_INFO.address,
                 "company" : USER_INFO.company,
                 "info" : USER_INFO.sign
             },
-            dataType:"json",
             success:data=>{
-                if(data.type==true)
+                if(data==true)
                     alert("保存成功")
                 else
                     alert("也不知道为什么就保存失败了qwq")

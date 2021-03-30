@@ -4,29 +4,30 @@ $(function(){
         init:function(){
             this.bindEvents()
             $.ajax({
-                url:"",
+                url:"../../PaperListServlet",
                 type:"post",
                 data:{
                     "userName":USER_INFO.userID,
-                    "type": 1
+                    "type": 1,
+                    "str" : ""
                 },
                 dataType:"json",
                 success:data=>{
                     $.each(data,function(index,paper){
                         var obj = {
-                        "title" : paper.title,
-                        "author" : paper.author,
-	                    "keyword" : paper.keyword,
-	                    "info"  : paper.info,
-                        "link" : paper.link,
-                        "like" : paper.like
+                            "title" : paper.title,
+                            "author" : paper.author,
+                            "keyword" : paper.keyword,
+                            "info"  : paper.info,
+                            "link" : paper.link,
+                            "like" : paper.iscollect
                         }
                         ALL_PAGE_LIST.push(obj)
                         $(".container").append("<div class='paper-item'>"+
                         "<div class='paper-head'>"+
                             "<span class='paper-title'><a href='"+paper.link+"'>"+paper.title+"</a></span>"+
                             "<!-- <span>作者：</span>"+
-                            "<span class='paper-author'>"+paper.author+"</span> -->"+
+                            "<span class='paper-author'>"+paper.author.toString()+"</span> -->"+
                             "<span class='iconfont icon-shoucang1 kongxin'></span>"+
                             "<span class='iconfont icon-shoucang xiaoshi shixin'></span>"+
                         "</div>"+
@@ -61,15 +62,14 @@ $(function(){
                     let addIndex = $(".kongxin").index(this);
                     let addInLike = $(".paper-title").eq(addIndex).text()
                     $.ajax({
-                        url:"",
+                        url:"../../UpdateMyCollectServlet",
                         data:{
-                            "userName" : USER_INFO.userID,
-                            "add" : addInLike
+                            "account" : USER_INFO.userID,
+                            "title" : addInLike
                         },
                         type:"POST",
-                        dataType:"json",
                         success:data=>{
-                            if(data.type==true){
+                            if(data==true){
                                 alert("收藏成功")
                                 $(".kongxin").eq(addIndex).addClass("xiaoshi")
                                 $(".shixin").eq(addIndex).removeClass("xiaoshi")
@@ -89,15 +89,14 @@ $(function(){
                     let removeIndex = $(".shixin").index(this)
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
-                        url:"",
+                        url:"../../DeleteMyCollectSevlet",
                         data:{
-                            "userName" : USER_INFO.userID,
-                            "remove" : removeInLike
+                            "account" : USER_INFO.userID,
+                            "title" : removeInLike
                         },
                         type:"POST",
-                        dataType:"json",
                         success:data=>{
-                            if(data.type==true){
+                            if(data==true){
                                 alert("取消收藏成功")
                                 $(".shixin").eq(removeIndex).addClass("xiaoshi")
                                 $(".kongxin").eq(removeIndex).removeClass("xiaoshi")

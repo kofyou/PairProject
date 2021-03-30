@@ -38,23 +38,21 @@ document.getElementById("regist").onclick = () => {
       $.ajax({
         url: "../RegisterServlet",
         data: {
-          userName: inputs[0].value,
-          password: inputs[1].value,
+          "account": inputs[0].value,
+          "password": inputs[1].value,
         },
         type: "POST",
         success: (data) => {
           $("#reg_word").removeClass("to_none");
           $("#reg_wait").css("display", "none");
-          if (data == 1) {
+          if (data == true) {
             alert("注册成功,即将跳转到登陆界面");
             localStorage.setItem("userName", inputs[0].value)
             setTimeout(() => {
               window.open("./login.html", "_self");
             }, 2000);
-          } else if (data == 0) {
+          } else if (data == false) {
             hints[0].getElementsByTagName("span")[0].style.display = "inline";
-          } else if (data == 2) {
-            alert("注册失败，也不知道为什么");
           }
         },
         error: () => {

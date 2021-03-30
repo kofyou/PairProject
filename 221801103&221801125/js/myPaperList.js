@@ -5,7 +5,7 @@ $(function(){
         init:function(){
             //发个ajax数据
             $.ajax({
-                url : "",
+                url : "../../MyCollectServlet",
                 type : "post",
                 data : {
                     "type" : 0,
@@ -16,7 +16,7 @@ $(function(){
                         var obj = {
                             "title" : like.title,
                             "keyword" : like.keyword,
-                            "info" : like.info,
+                            "info" : like.abstract,
                             "author" : like.author,
                             "link" : like.link
                         }
@@ -27,7 +27,7 @@ $(function(){
                         "<div class='paper-head'>"+
                             "<span class='paper-title'><a href='"+like.link+"'>"+like.title+"</a></span>"+
                             "<!-- <span>作者：</span>"+
-                            "<span class='paper-author'>"+like.author+"</span> -->"+
+                            "<span class='paper-author'>"+like.author.toString()+"</span> -->"+
                             "<span class='iconfont icon-shanchu xiaoshi '></span>"+
                         "</div>"+
                         "<div class='paper-mid'>"+
@@ -53,18 +53,18 @@ $(function(){
                     let removeIndex = $(".shixin").index(this)
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
-                        url:"",
+                        url:"../../DeleteMyCollectServlet",
                         data:{
-                            "userName" : USER_INFO.userID,
-                            "remove" : removeInLike
+                            "account" : USER_INFO.userID,
+                            "title" : removeInLike
                         },
                         type:"POST",
-                        dataType:"json",
                         success:data=>{
-                            if(data.type==true){
+                            if(data==true){
                                 alert("取消收藏成功")
                                 $(".shixin").eq(removeIndex).addClass("xiaoshi")
                                 $(".kongxin").eq(removeIndex).removeClass("xiaoshi")
+                                location.reload()
                             }
                             else
                                 alert("不知道为啥没成功哦，可能去了火星")
