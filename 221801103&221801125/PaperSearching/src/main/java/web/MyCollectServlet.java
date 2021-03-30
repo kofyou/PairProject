@@ -3,6 +3,7 @@ package web;
 import net.sf.json.JSONObject;
 import pojo.Paper;
 import service.impl.Paperserviceimpl;
+import utils.RequestToJson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,7 +24,9 @@ public class MyCollectServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String account=(String)request.getAttribute("account");
+        JSONObject requestJson=JSONObject.fromObject(
+                RequestToJson.getRequestPostStr(request));
+        String account=requestJson.getString("account");
         List<JSONObject> jsonObjects=new ArrayList<>();
         List<Paper> papers=paperserviceimpl.GetMyCollect(account);
         for(Paper paper:papers)
@@ -34,7 +37,9 @@ public class MyCollectServlet extends HttpServlet
             jsonObject.put("author",authorList);
             String[] keywordList=paper.getKeywords().split("//");
             jsonObject.put("keyword",keywordList);
-            jsonObject.put("info",paper.getTheabstract());
+            jsonObject.put("abstract",paper.getTheabstract());
+            jsonObject.put("link",paper.getPaperlink());
+            jsonObjects.add(jsonObject);
         }
         response.getWriter().print(jsonObjects);
     }

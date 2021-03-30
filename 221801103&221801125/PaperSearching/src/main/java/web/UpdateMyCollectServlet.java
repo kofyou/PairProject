@@ -26,5 +26,6 @@ public class UpdateMyCollectServlet extends HttpServlet
         String account=requestJson.getString("account");
         String title=requestJson.getString("title");
         paperserviceimpl.UpdateMyCollect(account,title);
+        response.getWriter().print(true);
     }
 }

@@ -50,6 +50,7 @@ public class PaperListServlet extends HttpServlet
             String[] keywordList=paper.getKeywords().split("//");
             jsonObject.put("keyword",keywordList);
             jsonObject.put("info",paper.getTheabstract());
+            jsonObject.put("link",paper.getPaperlink());
             jsonObject.put("iscollect",paperserviceimpl.IsCollected(account,paper.getTitle()));
             jsonObjects.add(jsonObject);
         }

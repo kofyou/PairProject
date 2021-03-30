@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet
 
         if(!userDaoimpl.IsUserExist(account))
         {
-            jsonObject.put("type","0");
+            jsonObject.put("type",false);
             jsonObject.put("name","");
             jsonObject.put("address","");
             jsonObject.put("company","");
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet
         User user=userDaoimpl.GetUser(account);
         if(user.getPassword().equals(password))
         {
-            jsonObject.put("type","1");
+            jsonObject.put("type",true);
             jsonObject.put("name",user.getUsername());
             jsonObject.put("address",user.getAddress());
             jsonObject.put("company",user.getCompany());
@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet
         }
         else
         {
-            jsonObject.put("type","0");
+            jsonObject.put("type",false);
             jsonObject.put("name","");
             jsonObject.put("address","");
             jsonObject.put("company","");

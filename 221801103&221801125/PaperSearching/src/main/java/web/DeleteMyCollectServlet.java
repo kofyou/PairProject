@@ -23,5 +23,6 @@ public class DeleteMyCollectServlet extends HttpServlet
         JSONObject requestJson= JSONObject.fromObject(
                 RequestToJson.getRequestPostStr(request));
         paperserviceimpl.DeleteMyCollect(requestJson.getString("account"),requestJson.getString("title"));
+        response.getWriter().print(true);
     }
 }
