@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+    //定义echart对象
+        var myChart = echarts.init(document.getElementById('main'));
+        //设置option参数
+        option = {
+           // backgroundColor:'#323a5e',
+           grid:{
+                left:'4%',
+                right:'2%',
+                bottom:'14%',
+                top:'16%',
+                containLabel:true
+           },
+           legend :{
+                data:['CVPR','ICCV','ECCV'],
+                right:100
+           },
+            xAxis: {
+                type: 'category',
+                name:'keywords',
+                data: ['vision', 'feature ', 'learning ', 'cameras', 'training', 'image', 'object','classification','shape','reconstruction'],//横轴
+                axisLine:{
+                    show:true,
+                    LineStyle:{
+                        color:'red'
+                    }
+                },
+                //nameGap:6,
+                triggerEvent:true,
+
+                axisLabel:{
+                    clickable:true,
+                    interval:0,
+                    rotate:45,
+                    formatter: function (value) {   
+                        var res = value
+                        if (res.length > 7) {
+                            res = res.substring(0, 6) + '..'
+                        }
+                        return res
+                    },
+                },
+            },
+
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name:'CVPR',
+                data: [2744,2551,2474,2302,2026,1886,1832,1441,1432,1320],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                }
+            },
+            {
+                name:'ICCV',
+                data: [2744,2551,2474,2302,2026,1886,1832,1441,1432,1320],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                },
+    
+            },
+
+                {
+                name:'ECCV',
+                data: [2744,2551,2474,2302,2026,1886,1832,1441,1432,1320],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                },
+    
+            }]
+        };
+
+        option && myChart.setOption(option);
+    //绑定option
+        myChart.on('click', function (params) {
+            alert(params.name);
+        });
+     </script>
+</body>
+</html>
