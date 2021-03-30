@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 论文控制器
@@ -22,6 +25,9 @@ public class PaperController {
     @Autowired
     private PaperService paperService;
 
+    private static List<Paper> allPaper = null;
+    private static Map<String, List<Paper>> keyWordList = new HashMap<>(64);
+
     /**
      * 获取所有的论文
      *
@@ -29,18 +35,27 @@ public class PaperController {
      */
     @GetMapping("/all")
     public List<Paper> getPaperList() {
-        return paperService.getAll().subList(0,1000);
+        if (allPaper != null) {
+            return allPaper;
+        }
+        allPaper = paperService.getAll().subList(0,1000);
+        return allPaper;
     }
 
     /**
      * 根据论文标题查询论文（模糊查询）
      *
      * @param title 论文标题
+     * @param isSort 是否排序
      * @return 论文列表
      */
     @GetMapping("/{title}")
-    public List<Paper> getPaper(@PathVariable("title") String title) {
-        return paperService.getPaper(title);
+    public List<Paper> getPaper(@PathVariable("title") String title,Integer isSort) {
+        List<Paper> paperList = paperService.getPaper(title);
+        if (isSort != 0) {
+            paperList.sort(Comparator.comparing(Paper::getTitle));
+        }
+        return paperList;
     }
 
     /**
@@ -51,6 +66,10 @@ public class PaperController {
      */
     @GetMapping("/keyWord/{key}")
     public List<Paper> getPaperByKey(@PathVariable("key") String key) {
-        return paperService.getPaperByKey(key);
+        if (keyWordList.containsKey(key)) {
+            return keyWordList.get(key);
+        }
+        keyWordList.put(key, paperService.getPaperByKey(key));
+        return keyWordList.get(key);
     }
 }
