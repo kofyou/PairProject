@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://47.100.89.20:8880/esearch' //测试
 //post请求头
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
 //设置超时
-axios.defaults.timeout = 100000;
+axios.defaults.timeout = 10000;
 
 axios.interceptors.request.use(
     config => {
@@ -27,7 +27,7 @@ axios.interceptors.response.use(
         }
     },
     error => {
-        console.log(`异常请求：${JSON.stringify(error.message)}`)
+        (`异常请求：${JSON.stringify(error.message)}`)
     }
 );
 export default {
@@ -35,11 +35,10 @@ export default {
 
     post(url, data) {
         return new Promise((resolve, reject) => {
-
             axios({
                     method: 'post',
                     url,
-                    data: qs.stringify(data),
+                    data: data,
                 })
                 .then(res => {
                     resolve(res.data)

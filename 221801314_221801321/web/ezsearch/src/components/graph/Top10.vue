@@ -9,8 +9,12 @@ import {
   defineComponent,
   getCurrentInstance,
 } from "vue";
+import WordCloud from "@/components/graph/WordCloud.vue"
 export default defineComponent({
-  name: "HotSpot",
+  name: "Top10",
+  components: { 
+      WordCloud,
+  },
   setup() {
     const { ctx } = getCurrentInstance();
     let echarts = inject("ec"); //引入
@@ -59,11 +63,6 @@ export default defineComponent({
           //自适应大小
           myChart.resize();
         };
-        // let op = myChart.getOption();
-        // op.dataset.source = myArray;
-        console.log(op.dataset.source);
-        // myChart.setOption(op,true);
-        // console.log(myArray);
       });
     };
     return {

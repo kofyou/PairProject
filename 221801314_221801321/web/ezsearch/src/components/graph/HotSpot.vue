@@ -8,18 +8,22 @@ export default defineComponent({
   name: "HotSpot",
   setup() {
     const { ctx } = getCurrentInstance();
-    const keywords = ["Computer Vision", "Shape", "AI"];
-    const years = [2011, 2012, 2013];
+    const keywordList = ["Computer Vision", "Shape", "AI"];
+    const yearList = ["2011", "2012", "2013"];
     var twoDimArray = new Array();
     // const batchQuery = () => {
     function batchQuery() {
-      for (let i = 0; i < keywords.length; i++) {
-        twoDimArray[i] = new Array();
-        for (let j = 0; j < years.length; j++) {
-          //   console.log(searchKeyword(keywords[i], years[j]))
-          twoDimArray[i][j] = searchKeyword(keywords[i], years[j]);
-        }
-      }
+
+      ctx.$http
+        .post("/word/year", 
+        {
+          keyword: keywordList,
+          years: yearList,
+        })
+        .then((data) => {
+            
+          console.log(data);
+        });
       console.log(twoDimArray);
     }
     let curKey = "";
@@ -34,25 +38,7 @@ export default defineComponent({
           years: y,
         })
         .then((data) => {
-          console.log(k);
-          console.log(y);
-        //   if (curKey === "" || curYear === "") {
-        //     curKey = k;
-        //     curYear = y;
-        //     twoDimArray[keyIndex][yearIndex++] = data;
-        //   } else if (y !== curYear) {
-        //     twoDimArray[keyIndex][yearIndex++] = data;
-        //     curYear = y;
-        //   } else if (k !== curKey) {
-        //     console.log("change Key")  
-        //     keyIndex++;
-        //     yearIndex = 0;
-        //     twoDimArray[keyIndex][yearIndex++] = data;
-        //     curKey = k;
-        //   }
-
-          //   console.log(data);
-          return data;
+          console.log(data);
         });
     };
 
