@@ -486,6 +486,7 @@ export default {
     GetPagePaperList: function (topagenum, topagesize, value) {
       let _this = this;
       let searchContent=sessionStorage.getItem('searchContent');
+      alert(searchContent);
       if(searchContent=="")
       {
         if (value == true) {
@@ -623,6 +624,7 @@ export default {
         });
     },
     GetSearchResultPaperList:function(value){
+      alert("3");
     let _this=this;
     let content=sessionStorage.getItem('searchContent');
      this.$axios

@@ -120,10 +120,15 @@ export default {
         .then(function (response) {
           console.log(response);
           _this.resultList=response.data.data;
+          alert(_this.addPaperTitle);
+          localStorage.setItem("searchContent",_this.addPaperTitle.toString());
+          alert(localStorage.getItem("searchContent"));
+           _this.$emit('GetPagePaperList');
         })
         .catch(function (error) {
           console.log(error);
         });
+        _this.addPaperTitle="";
     },
     deleteItem(value,index) {
       let _this=this;
@@ -170,8 +175,8 @@ export default {
   width: 80%;
   height: 30px;
   position: absolute;
-  top: -2px;
-  left: -2px;
+  top: -3px;
+  left:9px;
   border: #133382 2px solid;
   margin: 0;
 }
