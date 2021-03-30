@@ -1,0 +1,193 @@
+body{
+    margin: 0;
+    padding: 0;
+    background:#131f30;
+
+}
+a{
+    text-decoration: none;
+}
+button{
+    background: none;
+}
+img{
+    width: auto;
+    height: 100%;
+}
+.title_otherPage{
+    font-family:'Times New Roman', Times, serif;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 68px;
+    color: black;
+}
+.main{
+    min-height: 60vh;
+    width: 70%;
+    list-style: none;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 4%;
+    padding-top: 8%;
+    padding-left: 0;
+    padding-bottom: 60px;
+    margin-bottom: 15px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: #ffffff80;
+}
+.chartbar{
+    visibility: hidden;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    width: 50%;
+    height: 40%;
+    background:rgba(255, 255, 255, 0.8);
+    border: 1px solid black;
+}
+.leftpage_btn{
+    position: absolute;
+    left: 15.5%;
+    top: 50%;
+    height: 10%;
+    width: 5%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+}
+.rightpage_btn{
+    position: absolute;
+    right: 15.5%;
+    top: 50%;
+    height: 10%;
+    width: 5%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+}
+.selectbox{
+    margin: 0 auto;
+    align-items: center;
+    z-index: 1;
+}
+.chart_slide{
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    margin: 0;
+    transition: 0.5s;
+    text-align: center;
+}
+.checkbox{
+    display: none;
+}
+.slide{
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    height: fit-content;
+    width: 50%;
+}
+label{
+    width: fit-content;
+    height: 24px;
+    padding: 0 5px;
+    background: white;
+    border-radius: 15px;
+    margin: 0.5%;
+    position: relative;
+    transition: 0.4s;
+    line-height:24px;
+    text-align: center;
+    color: rgb(167, 167, 167);
+    font-size:10px;
+    border: 3px black solid;
+}
+#slide_1:checked~.slide #slide_btn_1,
+#slide_2:checked~.slide #slide_btn_2,
+#slide_3:checked~.slide #slide_btn_3,
+#slide_4:checked~.slide #slide_btn_4,
+#slide_5:checked~.slide #slide_btn_5,
+#slide_6:checked~.slide #slide_btn_6,
+#slide_7:checked~.slide #slide_btn_7,
+#slide_8:checked~.slide #slide_btn_8,
+#slide_9:checked~.slide #slide_btn_9,
+#slide_10:checked~.slide #slide_btn_10
+{
+    color: white;
+    background: rgb(0, 14, 53);
+}
+#slide_1:checked~.chart #slide_chart_1,
+#slide_2:checked~.chart #slide_chart_2,
+#slide_3:checked~.chart #slide_chart_3,
+#slide_4:checked~.chart #slide_chart_4,
+#slide_5:checked~.chart #slide_chart_5,
+#slide_6:checked~.chart #slide_chart_6,
+#slide_7:checked~.chart #slide_chart_7,
+#slide_8:checked~.chart #slide_chart_8,
+#slide_9:checked~.chart #slide_chart_9,
+#slide_10:checked~.chart #slide_chart_10{
+    visibility: visible;
+    width: 8%;
+    margin: 1%;
+}
+#slide_1:checked~#chartbar1,
+#slide_2:checked~#chartbar2,
+#slide_3:checked~#chartbar3,
+#slide_4:checked~#chartbar4,
+#slide_5:checked~#chartbar5,
+#slide_6:checked~#chartbar6,
+#slide_7:checked~#chartbar7,
+#slide_8:checked~#chartbar8,
+#slide_9:checked~#chartbar9,
+#slide_10:checked~#chartbar9{
+    visibility: visible;
+}
+#slide_1:checked~.chart #slide_chart_1{
+    background-image: linear-gradient(to top, #ff9569 0%, #e92758 80%);
+    height: 90%;
+}
+#slide_2:checked~.chart #slide_chart_2{
+    background-image: linear-gradient(to top, #ffbe69 0%, #e92788 80%);
+    height: 76%;
+}
+#slide_3:checked~.chart #slide_chart_3{
+    background-image: linear-gradient(to top, #ffd900 0%, #e92778 80%);
+    height: 64%;
+}
+#slide_4:checked~.chart #slide_chart_4{
+    height: 55%;
+    background-image: linear-gradient(to top, #cff300 0%, #e927b9 80%);
+}
+#slide_5:checked~.chart #slide_chart_5{
+    height: 48%;
+    background-image: linear-gradient(to top, #00e9ca 0%, #d227e9 80%);
+}
+#slide_6:checked~.chart #slide_chart_6{
+    height: 42%;
+    background-image: linear-gradient(to top, #69b7ff 0%, #7b27e9 80%);
+}
+#slide_7:checked~.chart #slide_chart_7{
+    height: 35%;
+    background-image: linear-gradient(to top, #69e1ff 0%, #4427e9 80%);
+}
+#slide_8:checked~.chart #slide_chart_8{
+    height: 30%;
+    background-image: linear-gradient(to top, #69ffeb 0%, #2764e9 80%);
+}
+#slide_9:checked~.chart #slide_chart_9{
+    height: 25%;
+    background-image: linear-gradient(to top, #69ffc1 0%, #2782e9 80%);
+}
+#slide_10:checked~.chart #slide_chart_10{
+    height: 20%;
+    background-image: linear-gradient(to top, #69ff8f 0%, #27c2e9 80%);
+}
