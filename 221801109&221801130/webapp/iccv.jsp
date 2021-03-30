@@ -6,85 +6,46 @@
     <meta charset="utf-8">
     <!-- 引入 ECharts 文件 -->
     <script src="js/echarts.min.js"></script>
-    <style>
-        div#heading{
-            background-color: dodgerblue;
-            width: 100%;
-            height: 12%;
-            text-align: center;
-        }
-        div#menu{
-            background-color: midnightblue;
-            width: 12%;
-            height: 88%;
-            float: left;
-        }
-        #searchText{
-            background: rgba(0,0,0,0);
-            border-width: 0;
-            color: white;
-            text-align:center;
-            font-size: 30px;
-            position: absolute;
-            top: 20%;
-            left: 2%;
-        }
-        #analyse{
-            background: rgba(0,0,0,0);
-            border-width: 0;
-            color: white;
-            text-align:center;
-            font-size: 30px;
-            position: absolute;
-            top: 40%;
-            left: 2%;
-        }
-        #top{
-            background: rgba(0,0,0,0);
-            border-width: 0;
-            color: white;
-            text-align:center;
-            font-size: 30px;
-            position: absolute;
-            top: 60%;
-            left: 2%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="mainCSS.css">
+    <link rel="stylesheet" type="text/css" href="cvCSS.css">
 </head>
 
 <body style="margin: 0px">
 
-<div id="heading">
+    <div id="heading">
+        热 词 分 析 统 计 平 台
+    </div>
+    <div id="menu" style="width:12%;height:88%;float: left;">
+        <form method="post" id="form" action="<%=path%>/index.jsp" >
+            <input type="submit" id="searchText" value="论文列表">
+        </form>
+        <form method="post" id="form4" action="<%=path%>/iccv.jsp" >
+            <input type="submit" id="analyse" value="热度走势">
+        </form>
+        <form method="post" id="form5" action="<%=path%>/analyze" >
+            <input type="submit" id="top" value="TOP10">
+        </form>
+    </div>
 
-</div>
-<div id="menu" style="width:12%;height:88%;float: left;">
-    <form method="post" id="form" action="<%=path%>/index.jsp" >
-        <input type="submit" id="searchText" value="论文列表">
-    </form>
-    <form method="post" id="form4" action="<%=path%>/iccv.jsp" >
-        <input type="submit" id="analyse" value="热度走势">
-    </form>
-    <form method="post" id="form5" action="<%=path%>/analyze" >
-        <input type="submit" id="top" value="TOP10">
-    </form>
-</div>
-<table>
-    <tr>
-        <div id="menu1" style="float: left;">
-            <form method="post" id="form1" action="<%=path%>/iccv.jsp" >
-                <input type="submit" id="ICCV" value="ICCV">
-            </form>
-            <form method="post" id="form2" action="<%=path%>/eccv.jsp" >
-                <input type="submit" id="ECCV" value="ECCV">
-            </form>
-            <form method="post" id="form3" action="<%=path%>/cvpr.jsp" >
-                <input type="submit" id="CVPR" value="CVPR">
-            </form>
+    <div id="body">
+        <table>
+            <tr>
+                <div id="menu1" style="float: left;">
+                    <form method="post" id="form1" action="<%=path%>/iccv.jsp" >
+                        <input type="submit" id="ICCV" value="ICCV">
+                    </form>
+                    <form method="post" id="form2" action="<%=path%>/eccv.jsp" >
+                        <input type="submit" id="ECCV" value="ECCV">
+                    </form>
+                    <form method="post" id="form3" action="<%=path%>/cvpr.jsp" >
+                        <input type="submit" id="CVPR" value="CVPR">
+                    </form>
 
-        </div>
-        <div id="main" style="width:84%;height:88%;float: right;"></div>
-    </tr>
-</table>
+                </div>
+                <div id="main" style="width:88%;height:88%;float: right;"></div>
+            </tr>
+        </table>
+    </div>
 
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
@@ -92,7 +53,7 @@
 
     // 指定图表的配置项和数据
     var yearlist = ['2001','2007','2009','2011','2013','2015','2017','2019'];
-    var countryList = ['image','computer','analysis','vision','layout','recognition','detection'];
+    var countryList = ['image','computer','analysis','vision','layout','recognize','detection'];
     var flagIcons = {
         'usa': 'usa.png',
         'chn': 'chn.png',
@@ -117,7 +78,7 @@
         baseOption:{
             dataset:{
                 source:[
-                    ['year','image','computer','analysis','vision','layout','recognition','detection'],
+                    ['year','image','computer','analysis','vision','layout','recognize','detection'],
                     ['2001',115,76,26,45,39,26,25],
                     ['2007',249,143,117,103,81,81,78],
                     ['2009',404,341,162,279,162,111,140],
@@ -205,7 +166,7 @@
                                     image: flagIcons.gbr
                                 }
                             },
-                            recognition: {
+                            recognize: {
                                 height: 20,
                                 align: 'center',
                                 backgroundColor: {

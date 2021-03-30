@@ -10,7 +10,9 @@
 </head>
 <body style="margin: 0px" >
     <div id="bg">
-        <div id="heading"></div>
+        <div id="heading">
+            热 词 分 析 统 计 平 台
+        </div>
         <div id="menu">
             <form method="post" id="form3" action="<%=path%>/index.jsp" >
                 <input type="submit" id="searchText" value="论文列表">
@@ -58,6 +60,8 @@
             </form>
             <div id="paging">
                 <table>
+                    <br>
+                    <br>
                     <tr>
                         <form method="post" id="form4" action="<%=path%>/hello">
                             <c:if test="${key!=null}">

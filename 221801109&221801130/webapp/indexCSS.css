@@ -48,9 +48,19 @@ td{
     border: none;
 }
 #button1{
-    height: 50px;
-    width: 100px;
+    height: 45px;
+    width: 80px;
     font-size: 20px;
+    border-radius: 18px;
+    background-color: transparent;
+    border:1px solid gray;
+    outline: none;
+}
+#button1:hover{
+    background-color: lightgray;
+}
+#button1:active{
+    background-color: gray;
 }
 div#input{
     position: absolute;
