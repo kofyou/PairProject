@@ -2,18 +2,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>template</title>
+<title>加载中...</title>
 <link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 <script>
-	function checkboxfunc(){
-			document.getElementById('deletebtn').style.backgroundColor='#D60104';
-	}
+	function checkboxfunc(){ }
 	function jump(a){
-			sessionStorage['paper_id'] = a;
-			window.location.href = "http://blog.tozzger.info/quickfind/paper";
+		sessionStorage['paper_id'] = a;
+		document.getElementById('paperlist').childNodes
+		window.location.href = "http://blog.tozzger.info/quickfind/paper";
+	}
+	function killpaper()
+	{
+		alert(sessionStorage['except']);
 	}
 	if (sessionStorage['curr_page'] == undefined)
 		sessionStorage['curr_page'] = "1";
+	if (sessionStorage['except'] == undefined)
+		sessionStorage['except'] = JSON.stringify(json);
 	</script>
 </head>
 
@@ -48,7 +53,7 @@
 	<div class="down">
 		<div class="delete">
 		  <form >
-			  <input type="button" class="deletebtn" id="deletebtn" value="删除">
+			  <input type="button" class="deletebtn" id="deletebtn" onClick="killpaper()" value="删除">
 		  </form>
 	    </div>
 		<div class="pagelist" id="pagelist">
@@ -62,6 +67,7 @@
 <script>
 		function addPageBtn(str, index)
 		{
+
 			var btn = document.createElement('a');
 			btn.innerHTML = str;
 			btn.type = index;
@@ -70,8 +76,10 @@
 				document.getElementById('searchbtn').click();
 			};
 			document.getElementById('pagelist').appendChild(btn);
+			return btn;
 		}
 		function succ(result){
+			document.title = '加载中...';
         	var childs=document.getElementById('paperlist').childNodes;  
 			for(var i=childs.length-1;i>=0;i--){  
 				document.getElementById('paperlist').removeChild(childs.item(i));  
@@ -87,27 +95,33 @@
 			for(var i=childs.length-1;i>=0;i--){  
 				document.getElementById('pagelist').removeChild(childs.item(i));  
 			}
-			var page = Math.ceil(result.leng / 10);
+			var page = Math.ceil(result.leng / 5);
+			sessionStorage['curr_page'] = Math.max(1, Math.min(page, sessionStorage['curr_page']));
 			if (page > 1) {
 				if (sessionStorage['curr_page'] != 1) {
 					addPageBtn("<", sessionStorage['curr_page'] - 1)
 				}
-				var from = Math.max(1, sessionStorage['curr_page']);
-				var to = Math.min(from + 6, page);
-				for (var i = from; i < Math.min(from + 6, to); i++)
+				var from = Math.max(1, sessionStorage['curr_page'] - 3);
+				var to = Math.min(from + 9, page);
+				for (var i = from; i < Math.min(from + 9, to); i++)
 				{
-					addPageBtn(i, i)
+					var btn = addPageBtn(i, i);
+					if (i == sessionStorage['curr_page'])
+						btn.style="color:red;"
 				}
 				if (sessionStorage['curr_page'] != page) {
-				addPageBtn(">", parseInt(sessionStorage['curr_page']) + 1)
+					addPageBtn(">", parseInt(sessionStorage['curr_page']) + 1)
 				}
 			}
+			document.title = '论文列表';
 		}
 
 		$(document).ready(function() {
 			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
-			function search(){     
+			function search(){
+				
 				$.ajax({
+					
 					type:'post',
 					url:ajaxurl,
                 	data:{'action':'keyword_search',
@@ -120,7 +134,9 @@
                 	error:function(data){
 						console.log("error")
 					}
+					
 				});
+				
 				return false;
 			}	
 			document.getElementById('searchbtn').onclick = search;

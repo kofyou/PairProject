@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>template</title>
+<title>加载中...</title>
 <link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -46,6 +46,7 @@ $(document).ready(function() {
 					document.getElementById('abstract').innerHTML = result.abstract;
 					document.getElementById('keyword').innerHTML = result.keywords;
 					document.getElementById('pagelink').innerHTML = result.url;
+					document.title = result.title;
 				},
                 error:function(data){
 					console.log("error")

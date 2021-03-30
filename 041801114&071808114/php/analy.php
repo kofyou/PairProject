@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>template</title>
+	<title>加载中...</title>
 	<link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -138,11 +138,14 @@
 				}
 				wc_chart.setOption( wc_option );
 				wc_chart.resize();
+				document.title = '趋势分析';
 
 			},
 			error: function ( data ) {
 				console.log( "error" )
+				document.title = '趋势分析';
 			}
+			
 		} );
 		return false;
 	} );
