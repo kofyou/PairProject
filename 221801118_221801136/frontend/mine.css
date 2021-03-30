@@ -78,7 +78,7 @@ p{
 }
 #subPart1{
     float: left;
-    /*display: none;*/
+    display: none;
 }
 form{
     float: left;
@@ -106,7 +106,7 @@ form{
 #subPart2{
     float: left;
     width: 100%;
-    display: none;
+    /*display: none;*/
 }
 #collectionPart{
     width: 80%;
