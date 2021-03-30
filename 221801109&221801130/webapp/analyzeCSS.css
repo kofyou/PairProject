@@ -36,49 +36,10 @@
     border: none;
     font-weight: normal;
 }
-#TOPtitle{
+#TOP10title{
     font-size: 50px;
     text-align: center;
     color: #ff8700;
     font-weight: bold;
-}
-#key1{
-    font-size: 46px;
-    color:#ff1103;
-}
-#key2{
-    font-size: 42px;
-    color: #ff6507;
-}
-#key3{
-    font-size: 38px;
-    color: #ffbb0b;
-}
-#key4{
-    font-size: 34px;
-    color: #f2ff06;
-}
-#key5{
-    font-size: 30px;
-    color: #aaff07;
-}
-#key6{
-    font-size: 26px;
-    color: #63ff0a;
-}
-#key7{
-    font-size: 22px;
-    color: #0aff13;
-}
-#key8{
-    font-size: 18px;
-    color: #07ff57;
-}
-#key9{
-    font-size: 14px;
-    color: #08ffbe;
-}
-#key10{
-    font-size: 10px;
-    color: #05adff;
+    font-family: "楷体-简";
 }
