@@ -17,8 +17,8 @@ p{
 }
 
 body{
-    background-image: url(../img/paper-list.jpg);
-    background-repeat:no-repeat;
+    /*background-image: url(../img/b.jpg);*/
+    /*background-repeat:no-repeat;*/
     list-style: none;
     /*去掉ui和li的 点*/
     -webkit-background-size: cover;
@@ -28,7 +28,7 @@ body{
     background-attachment: fixed;
     background-position: center bottom;
     color: #fff;
-    background-color: #333333;
+    background-color: #ecad9e;
     font-family: 'microsoft yahei', Arial, sans-serif;
 }
 
