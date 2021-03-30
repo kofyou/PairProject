@@ -7,11 +7,10 @@
 <style type="text/css">
     a{
         text-decoration: none;
-
     }
     .message_digest{
         display: block;
-        width: 300px;
+        width: 500px;
         overflow:hidden;
         text-overflow:ellipsis;
         display: -webkit-box;
@@ -36,13 +35,14 @@
     <div class="ui container">
         <div class="ui inverted secondary stackable menu" ><!--                在menu里面加一个条目-->
             <h2 class="ui blue header item ">MyPaper</h2>
-            <a href="InfoServlet" class="item" style="width: 7em " ><i class="home icon"></i>首页</a>
+            <a href="index.html" class="item" style="width: 7em " ><i class="home icon"></i>首页</a>
+            <a href="classify.html" class="item" style="width: 7em"><i class="idea icon"></i>分类</a>
             <a href="GraphServlet" class="item" style="width: 10em"><i class="chart pie icon"></i>年度热词图谱</a>
-            <a href="TrendServlet" class="item" style="width: 8em"><i class="chart line icon"></i>趋势走向</a>
+            <a href="TrendAnalysis.html" class="item" style="width: 8em"><i class="chart line icon"></i>趋势走向</a>
             <div class="right item " >
                 <div class="ui icon inverted transparent input">
                     <form action="InfoServlet">
-                        <input placeholder="Search...." type="text" name="searchId" id="searchId" autocomplete="off"/>
+                        <input placeholder="Search...." type="text" name="searchId" id="searchId"/>
                         <button class="ui secondary button">Search</button>
 
                     </form>
@@ -60,7 +60,7 @@
         <div class="ui stackable grid">
 
             <!--           页面左边卡片部分-->
-            <div class="five wide column">
+            <div class="four wide column">
                 <!--                    三大会议-->
                 <div class=" ui segments">
                     <div class="ui secondary segment">
@@ -70,7 +70,7 @@
                             </div>
                             <!--                                点击更多跳转到分类页面-->
                             <div class="right aligned column">
-                                <a href="GraphServlet"  >更多 <i class="angle double right icon"></i></a>
+                                <a href="classify.html" target="_blank" >更多 <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
@@ -100,39 +100,39 @@
                             </div>
                             <!--                                点击more跳转到年度热词图谱-->
                             <div class="right aligned column">
-                                <a href="GraphServlet" target="_blank" >更多 <i class="angle double right icon"></i></a>
+                                <a href="classify.html" target="_blank" >更多 <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="ui blue segment">
-                        <a href="GraphServlet" class="ui blue basic label my-marin-tb-tiny">热词1
+                        <a href="classify.html" class="ui blue basic label my-marin-tb-tiny">热词1
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词2
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词2
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词3
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词3
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic label my-marin-tb-tiny">热词4
+                        <a href="classify.html" class="ui blue basic label my-marin-tb-tiny">热词4
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词5
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词5
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词6
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词6
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic label my-marin-tb-tiny">热词7
+                        <a href="classify.html" class="ui blue basic label my-marin-tb-tiny">热词7
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词8
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词8
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href="GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词9
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词9
                             <div class="detail">文章数量</div>
                         </a>
-                        <a href=GraphServlet" class="ui blue basic  label my-marin-tb-tiny">热词10
+                        <a href="classify.html" class="ui blue basic  label my-marin-tb-tiny">热词10
                             <div class="detail">文章数量</div>
                         </a>
                     </div>
@@ -141,7 +141,7 @@
 
 
             <!--           页面右边论文列表部分-->
-            <div class="eleven wide column">
+            <div class="twelve wide column">
                 <!--                    header-->
                 <div class="ui to attached segment">
                     <div class="ui middle aligned two column grid">
@@ -149,71 +149,70 @@
                             <h3 class="ui blue header">论文</h3>
                         </div>
                         <div class=" right aligned column">
-                            共<h3 class="ui teal header my-inline-block my-text-thin">9365</h3>篇论文
+                            共<h3 class="ui teal header my-inline-block my-text-thin"><%=request.getAttribute("total")%></h3>篇论文
                         </div>
                     </div>
                 </div>
                 <div>
 
-                        <%
-                            String id=request.getParameter("id");
-                            int cur=Integer.parseInt(id);
-                            int last=1;
-                            int next=100;
-                            if(cur!=1) {
-                                last = cur - 10;
-                            }
-                            if(cur!=100) {
-                                next = cur + 10;
-                            }
-                            int top=1;
-                            int end=100;
-                        %>
-                        <%
-                            List<User> list=(List<User>)request.getAttribute("users");
+                    <%
+                        String id=request.getParameter("id");
+                        int cur=Integer.parseInt(id);
+                        int last=1;
+                        int next=(int) request.getAttribute("total");
+                        int top=1;
+                        int end=next;
+                        if(cur!=1) {
+                            last = cur - 10;
+                        }
+                        if(cur!=next) {
+                            next = cur + 10;
+                        }
 
-                            for(int i=0;i<list.size();i++){
-                                User user=list.get(i);
-                        %>
+                    %>
+                    <%
+                        List<User> list=(List<User>)request.getAttribute("users");
 
-
-                <div class="ui attached segment my-padded-tb-large">
-                    <div class="ui padded  vertical segment">
-                        <div class="ui mobile reversed stackable grid">
-                            <!--                            文章内容-->
-                            <div class="eleven wide column">
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <dl>
-                                                <dt>
-
-                                                </dt>
-                                                <dd class="message_title"><%=user.getTitle() %></dd>
-                                                <dd class="message_digest"><%=user.getDigest()%></dd>
-                                                <dd class="message_details"><%=user.getYear()%></dd>
-                                                <dd class="message_details"><%=user.getKey() %></dd>
-                                                <dd class="message_details"><%=user.getTime() %></dd>
-                                                <dd class="message_details"><%=user.getLink() %></dd>
-                                                <button class="ui button"><a href="DeleteServlet?id=<%=user.getId()%>">删除</a></button>
-                                                <div class="five wide column">
-                                                    <a href="SearchServlet?id=<%=user.getId()%>"    class="ui teal basic label my-padded-tb-mini ">详情>></a>
-                                                </div>
-                                            </dl>
-                                        </div>
+                        for(int i=0;i<list.size();i++){
+                            User user=list.get(i);
+                    %>
 
 
-                                    </td>
-                                </tr>
-                            </div>
-                            <!--                            文章图片（点击跳转文章详情页）-->
+                    <div class="ui attached segment my-padded-tb-large">
+                        <div class="ui padded  vertical segment">
+
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <dl>
+                                                    <dt>
+                                                        <div class="message_button">
+                                                            <button class="ui inverted red button my-padded-lr-large my-inline-block my-button"><a href="DeleteServlet?id=<%=user.getId()%>">删除</a></button>
+                                                        </div>
+                                                    </dt>
+                                                    <div class="clear"></div>
+                                                    <dd class="message_title"><%=user.getTitle() %></dd>
+                                                    <dd class="message_digest"><%=user.getDigest()%></dd>
+                                                    <dd class="message_details"><%=user.getYear()%></dd>
+                                                    <dd class="message_details key_color"><%=user.getKey() %></dd>
+                                                    <dd class="message_details"><%=user.getTime() %></dd>
+                                                    <dd class="message_details"><%=user.getLink() %></dd>
+
+                                                    <div class="message_button">
+                                                        <button class="ui inverted green button my-padded-lr-large my-inline-block my-button"><a href="SearchServlet?id=<%=user.getId()%>"    >详情>></a></button>
+                                                    </div>
+                                                </dl>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
 
                         </div>
                     </div>
-                </div>
-                        <%
-                            }
-                        %>
+                    <%
+                        }
+                    %>
 
                 </div>
 
