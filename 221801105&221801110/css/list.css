@@ -26,8 +26,24 @@
 	font-size: 26px;
 }
 
+table {
+	table-layout:fixed;
+	
+}
+
 .zhengwen{
 	background-color: #f3f3f3;
+	word-wrap:break-word;
+}
+
+button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .btn1 {
