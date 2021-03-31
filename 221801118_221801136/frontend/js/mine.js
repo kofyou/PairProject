@@ -6,9 +6,10 @@ $(function (){
             $("#name").text=localStorage.getItem("username");
             $.each(data,function(index,paper){
                 var div = "<div class='like' style='100%;height: 20px;'><span class='id'>" +
-                    data.id+"</span><a href='"+paper.link+">"+
+                    data.id+"</span><a>"+
                     paper.title+"</a><span class='delete'>"+"删除</span></div>";
                 $("#empty").append(div);
+                $("a").attr('href',data.link);
             })
         }
     })
