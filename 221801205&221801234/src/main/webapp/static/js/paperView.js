@@ -1,6 +1,6 @@
-// 服务端请求地址
 // let url = 'http://localhost:8080/crawler_war_exploded/PaperListDetailByTitle';
-let url="http://39.102.39.208/crawler_war/PaperListDetailByTitle";
+// let url="http://39.102.39.208/crawler_war/PaperListDetailByTitle";
+let url = turl+'PaperListDetailByTitle';
 let vm = new Vue({
     el:".container",
     data:{

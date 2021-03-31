@@ -1,6 +1,6 @@
 // 服务端请求地址
-// let url = 'http://localhost:8080/crawler_war_exploded/PaperListByTitle';
-let url="http://39.102.39.208/crawler_war/PaperListByTitle";
+let url = turl+'PaperListByTitle';
+
 let vm = new Vue({
     el: ".container",
     data: {
@@ -13,14 +13,16 @@ let vm = new Vue({
         option:1,
         tData:"",
         tp:[],
-
+        isActive:false,
+        ImgSrc:"../img/em.png",
         //后端向前端接收数据
         list: [],
         //向后端传递数据
-
     },
     methods: {
         getInfo() {
+
+            // var newArr4 = JSON.parse(JSON.stringify(arr));
             this.tp=this.list;
             var that=this;
             axios.post(url).then(function (response) {
@@ -36,9 +38,11 @@ let vm = new Vue({
             });
             this.tp = this.list;
             var that = this;
-            axios.post('http://39.102.39.208/crawler_war/PaperListByKeyword',data).then(function (response) {
+            this.ImgSrc="../img/loading.png";
+            axios.post(turl+'PaperListByKeyword',data).then(function (response) {
                 that.list = response.data;
                 that.tp=that.list;
+                that.ImgSrc="../img/em.png";
             }).catch(function (error) {
                 console.log(error);
             });
@@ -51,12 +55,20 @@ let vm = new Vue({
                 var that=this;
                 let data = JSON.stringify({
                     title: this.title,
-
                 });
+                this.ImgSrc="../img/loading.png";
                 axios.post(url,data).then(function (response) {
                     that.list = response.data;
                     that.tp=that.list;
-
+                    that.ImgSrc="../img/em.png";
+                    //隐藏
+                    if(that.tp.length==0){
+                        //alert("找不到");
+                        //that.ImgSrc="../img/em.png";
+                        that.changeEmptyStatus(false);
+                    }else{
+                        that.changeEmptyStatus(true);
+                    }
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -74,33 +86,57 @@ let vm = new Vue({
                 if(t==1){//key
                     this.tp = this.list.filter(value=>{ return value.keywords.toUpperCase().indexOf(this.tData.toUpperCase()) > -1});
                 }else if(t==2){//year
-                    this.tp = this.list.filter(value=>{ return value.year.toUpperCase().indexOf(this.tData.toUpperCase()) > -1});
+                    this.tp = this.list.filter(value=>{ return value.year.indexOf(this.tData) > -1});
                 }else if(t==3){//meeting
                     this.tp = this.list.filter(value=>{ return value.meeting.toUpperCase().indexOf(this.tData.toUpperCase()) > -1});
                 }else if(t==4){//name
                     this.tp = this.list.filter(value=>{ return value.name.toUpperCase().indexOf(this.tData.toUpperCase()) > -1});
                 }
+                if(this.tp.length==0){
+                    this.changeEmptyStatus(false);
+                }else{
+                    this.changeEmptyStatus(true);
+                }
             }
+        },
+
+        reset_list(){
+
+            this.tp=this.list;
+            if(this.tp.length!=0){
+                this.changeEmptyStatus(true)
+            }else this.changeEmptyStatus(false)
         },
 
         changeErr(){
             if(this.error){
                 this.error=!this.error;
             }
-
         },
 
 
         //删除
         deleteD(index){
-            this.list.splice(index,1);
-            this.tp=this.list;
+
+            this.tp.splice(index,1);
+            if(this.tp.length==0){
+                this.changeEmptyStatus(false);
+            }
+        },
+
+        changeEmptyStatus:function(par){
+            this.isActive=par;
         },
 
         //跳转详情页
         send(title){
-            window.location.href="paperView.html"+"?"+"title"+"="+encodeURI(title);
+            window.open("paperView.html"+"?"+"title"+"="+encodeURI(title));
         },
+
+
+        // send(title){
+        //     window.open("paperView.html");
+        // },
 
         get(){
             this.params = window.location.href.split('=')[1];

@@ -1,5 +1,6 @@
 // let url = 'http://localhost:8080/crawler_war_exploded/KeywordAndCount';
-let url="http://39.102.39.208/crawler_war/KeywordAndCount";
+// let url="http://39.102.39.208/crawler_war/KeywordAndCount";
+let url = turl+'KeywordAndCount';
 var JosnList = [
 
     {name: "龙头镇", value: "111"},

@@ -11,6 +11,8 @@
 	<title>登录</title>
 	<link rel="stylesheet" type="text/css" href="../css/all.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+	<script src="../js/vue.js"></script>
+	<script src="../js/axios.min.js"></script>
 </head>
 <body>
 
@@ -35,7 +37,7 @@
 	</nav>
 	<ol class="breadcrumb">
 		<li><a href="listView.html">主页</a></li>
-		<li><a href="#">登录</a></li>
+		<li><a href="#">爬虫</a></li>
 	</ol>
 
 	<div class="row clearfix">
@@ -43,28 +45,57 @@
 		<div class="col-md-4 column">
 			<div class="formContainerP">
 				<div class="formContainer col-md-10">
-					<h1>管理员登录</h1>
+					<h1>爬取信息</h1>
 					<form>
-						<div class="form-group">
-							<label for="exampleInput1">账号</label>
-							<input type="text" class="form-control" id="exampleInput1" placeholder="账号">
-						</div>
+
 						<div class="form-group">
 							<label for="exampleInputPassword1">密码</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+							<input type="password" class="form-control" id="exampleInputPassword1" v-model="pwd" placeholder="密码">
 						</div>
-						<div class="MyButton" style="text-align: center"><button  class="btn btn-default">登录</button></div>
+
+						<div class="form-group">
+							<label>年份</label>
+							<label>
+								<select class="selectpicker" v-model="year">
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+								</select>
+							</label>
+						</div>
+
+						<div class="form-group">
+							<label >会议</label>
+							<label>
+								<select class="selectpicker" v-model="meeting">
+									<option value="ICCV">ICCV</option>
+									<option value="CVPR">CVPR</option>
+									<option value="ECCV">ECCV</option>
+								</select>
+							</label>
+						</div>
+
+						<div class="form-group">
+							<label>信息条数</label>
+							<label>
+								<input type="number" class="form-control" id="count" v-model="count" placeholder="0~400">
+							</label>
+						</div>
+						<div class="MyButton" style="text-align: center">
+							<button  class="btn btn-default" @click="getInfo">爬取</button>
+						</div>
 					</form>
 				</div>
 			</div>
-
-
 		</div>
 		<div class="col-md-4 column"></div>
-
-
-		<!--content-->
 	</div>
 </div>
+<script src="../js/config.js"></script>
+<script src="../js/seek.js"></script>
 </body>
+
 </html>

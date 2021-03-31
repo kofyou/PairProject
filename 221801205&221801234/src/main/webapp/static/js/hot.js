@@ -1,6 +1,6 @@
-let url="http://39.102.39.208/crawler_war/MeetingWordTrend";
+// let url="http://39.102.39.208/crawler_war/MeetingWordTrend";
 // let url = 'http://localhost:8080/crawler_war_exploded/MeetingWordTrend';
-
+let url = turl+'MeetingWordTrend';
 var chartDom = document.getElementById('main');
 var myChart = echarts.init(chartDom);
 var option;
