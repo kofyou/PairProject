@@ -37,11 +37,14 @@ class PapersearchlistController extends Controller
     {
         $searchModel = new PapersearchlistSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+            //$c=2941;
+        	//$filepath="F:\jsonData\ECCV41";
+            //get_json($filepath,$c);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+           
     }
 
     /**

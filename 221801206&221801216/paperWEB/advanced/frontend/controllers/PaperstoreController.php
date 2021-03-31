@@ -8,6 +8,8 @@ use common\models\PaperstoreSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Connection;
+use common\models\Papersearchlist;
 
 /**
  * PaperstoreController implements the CRUD actions for Paperstore model.
@@ -17,6 +19,7 @@ class PaperstoreController extends Controller
     /**
      * @inheritdoc
      */
+    public $added=0;
     public function behaviors()
     {
         return [
@@ -121,4 +124,38 @@ class PaperstoreController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionAddpaper($_id){
+        $added=1;
+        $searchstr='select * from paperstore where storeID=\''.$_id.'\'';
+        $_exist=Yii::$app->db->createCommand($searchstr)->queryAll();
+        if(!($_exist))
+        {     
+            $resstr='select * from papersearchlist where storeID=\''.$_id.'\'';
+            $res=Yii::$app->db->createCommand($resstr)->queryOne();
+            $_title=$res['displayTitle'];
+            $_abstract=$res['abstract'];
+            $_y=$res['year'];
+            $_pub=$res['pubdate'];
+            $_link=$res['link'];
+            $_key=$res['keyword'];
+
+            Yii::$app->db->createCommand()->insert('paperstore', [
+            'storeID' => $_id,
+            'displayTitle' => $_title,
+            'abstract'=>$_abstract,
+            'year'=>$_y,
+            'pubdate'=>$_pub,
+            'link'=>$_link,
+            'keyword'=>$_key,
+            ])->execute();
+
+            $this->added=1;
+        }
+        else{
+            $this->added=0;           
+        }
+        return $this->render('addpaper',['added'=>$this->added]);
+
+    }  
 }

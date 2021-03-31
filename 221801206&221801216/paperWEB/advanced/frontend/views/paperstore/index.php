@@ -21,18 +21,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+            'style'=>'overflow: auto; word-wrap: normal;'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'storeID',
             'displayTitle:ntext',
-            'abstract:ntext',
+        //    'abstract:ntext',
             'year:ntext',
-            'pubdate:ntext',
+         //   'pubdate:ntext',
             'keyword:ntext',
             // 'link:ntext',
+            ['class' => 'yii\grid\ActionColumn','header'=>'Operation','template' => '{view}  {delete}',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        ], 
+    ]]); 
+    ?> 
+    
 </div>
