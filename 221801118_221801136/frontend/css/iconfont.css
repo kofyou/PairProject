@@ -35,8 +35,11 @@
   content: "\e63a";
 }
 
+
 .icon-sousuo:before {
   content: "\e616";
+  font-size: 30px;
+  font-weight: bolder;
 }
 
 .icon-biaoqiankuozhan_wode-230:before {

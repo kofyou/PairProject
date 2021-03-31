@@ -53,12 +53,13 @@
 .infoTab{
     background: #697878;
     float: left;
-    width: 90px;
+    width: 120px;
     height: 40px;
     line-height: 40px;
-    margin-left: 10px;
+    margin-left: 80px;
+    margin-top: 10px;
     text-align: center;
-    font-size: 18px;
+    font-size: 21px;
     color: #151313;
 }
 .infoTab:hover{
@@ -111,7 +112,7 @@ form{
     width: 80%;
     height: 480px;
     border: black 2px solid;
-    margin: 30px 20px;
+    margin: 20px 80px;
     overflow-x: hidden;
     overflow-y:scroll;
 }

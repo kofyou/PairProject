@@ -3,6 +3,7 @@ $(function (){
         url:"/user/like",
         method:"post",
         success:function (data){
+            $("#name").text=localStorage.getItem("username");
             $.each(data,function(index,paper){
                 var div = "<div class='like' style='100%;height: 20px;'><span class='id'>" +
                     data.id+"</span><a href='"+paper.link+">"+

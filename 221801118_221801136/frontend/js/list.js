@@ -45,7 +45,7 @@ $(function (){
         // $("#empty").append(div);
         $.ajax({
             url:"/list/like/add",
-            method: post,
+            method: "post",
             data:JSON.stringify({
                 "id":id,
                 "user":user
@@ -68,7 +68,7 @@ $(function (){
         // $("#empty").append(div);
         $.ajax({
             url:"/list/like/add",
-            method: post,
+            method: "psot",
             data:JSON.stringify({
                 "id":id,
                 "user":user
@@ -91,7 +91,7 @@ $(function (){
         // $("#empty").append(div);
         $.ajax({
             url:"/list/like/add",
-            method: post,
+            method: "post",
             data:JSON.stringify({
                 "id":id,
                 "user":user
@@ -114,7 +114,7 @@ $(function (){
         // $("#empty").append(div);
         $.ajax({
             url:"/list/like/add",
-            method: post,
+            method: "post",
             data:JSON.stringify({
                 "id":id,
                 "user":user
@@ -162,7 +162,7 @@ $(function (){
 
     });
     //右翻页
-    $("#left").click(function (){
+    $("#right").click(function (){
         var keyword=$("#searchInput").val();
         var year=$("#searchInput2").val();
         var source=$("#searchInput3").val();
