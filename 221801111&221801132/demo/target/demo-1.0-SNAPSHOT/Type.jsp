@@ -69,7 +69,7 @@
 <div class="topnav">
 
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
-    <a class="active" href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
+    <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
 </div>
 
 <div class="topnav2">

@@ -125,7 +125,7 @@
 </style>
 
 <div class="topnav">
-    <a class="active" href="PaperList.jsp" target="leftFrame"> 论文列表</a>
+    <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
     <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
 
 </div>
