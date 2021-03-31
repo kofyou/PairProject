@@ -12,18 +12,18 @@ $(document).ready(function () {
     }
 
     function showOne(URL, nowPage, back) {
-        selectOne(URL + "/" + nowPage + back);
+        selectOne(URL + "/" + nowPage + back);// 获取数据
 
         $("#item-list").pagination({
             currentPage: nowPage,
             totalPage: Math.ceil(totalCount/PAGE_COUNT),
             isShow:true,
-            count:5,
-            // homePageText:'首页',
-            // endPageText:'尾页',
+            count:5,// 显示个数
+            homePageText:'首页',
+            endPageText:'尾页',
             prevPageText:'上一页',
             nextPageText:'下一页',
-            callback: function (index) {
+            callback: function (index) {// 回调函数
                 showOne(URL, index, back);
             }
         });
