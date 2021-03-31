@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="cn" http-equiv="Content-Language"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <title>论析平台</title>
+<!--    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">-->
+<!--    <script src="{{url_for('static',filename='index.js')}}"></script>-->
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+
+<div class="background">
+    <noscript>
+        <iframe src="*.htm"></iframe>
+    </noscript>
+
+    <div id="content">
+        <br/>
+        <div class="search_part">
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <img class="smaller" src="" width=33%>
+            <form id="search_form" action="list.html" method="post">
+                <div class="search_bar">
+                    <input type="submit" name="sign" id="search_submit" value="🔎"  style="color: red;">
+                    <span>
+                    <i id="clear" onclick="clear_seach()"></i>
+                    <div class="si">
+
+                        <input class="search" type="text" value="" nkeyup="get_suggest()" onfocus="get_suggest()"
+                               onpaste="get_suggest()" autocomplete="off" id="search_input"
+                                name="search" placeholder="✎...  搜索-专注论文分析～">
+                    </div>
+                </span>
+                </div>
+                <br/>
+                <div class="filename_bar">
+                    <input type="submit" name="sign" id="filename_submit" value="❌" style="color: red;">
+                    <span>
+
+                    <div class="si">
+
+                        <input class="search" type="text" value="" nkeyup="get_suggest()" onfocus="get_suggest()"
+                               onpaste="get_suggest()" autocomplete="off" id="filename_input"
+                               name="filename" placeholder="✎...  删除-删除你想删的～">
+                    </div>
+                </span>
+                </div>
+                <div id="suggest" style="display:none">
+                    <ul id="suglist"></ul>
+                    <div class="close" onclick="close_sug()">| 收起</div>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <!--
+        <div style="text-align:center;"</div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=400 height=210 src="http://music.163.com/outchain/player?type=0&id=692469559&auto=1&height=230"></iframe>-->
+        <!--以下都是适配的谷歌浏览器，如需替换，请自己动手-->
+
+        <!-- 我的图标是用的阿里矢量图标，如果需要大量加入导航栏选项，请使用阿里在线的Symbol/Font class/Unicode如果图标为直链的话，可以直接填入直链 -->
+        <div>
+            <p>猜你想搜:</p>
+            <br/>
+        </div>
+        <div class="box">
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/论坛.png" ></p>-->
+            <p class="url1">软件工程</p>
+        </div>
+
+        <div class="box">
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/导航.png" ></p>-->
+            <p class="url2">人工智能</p>
+        </div>
+
+        <div class="box">
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/御淘呗.png" ></p>-->
+            <p class="url3">大数据</p>
+        </div>
+
+        <!--
+        如若要添加可复制一段
+        <div class="box">
+        <a href="地址"></a>
+        <p><img class="icon" src="img/icon6.png" ></p>
+        <p class="url">书签名称</p>
+        </div>
+        其中链接在href中如href="地址"建议填写folder://自己创建的文件夹地址，这样创建一次不必再修改
+        图标文件放置在img文件夹中定义如src="img/icon6.png"
+        显示的标题在<p class="url">书签名称</p>之间定义如<p class="url">酷安</p>
+        下方window.location.href =主页搜索引擎地址，目前为自用Pc版百度内部搜索，加上浏览器的顶部搜索即为双搜索，使用更方便
+
+        -->
+        <br>
+
+        <br>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
