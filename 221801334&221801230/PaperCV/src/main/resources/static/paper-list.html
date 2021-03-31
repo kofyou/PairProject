@@ -20,8 +20,25 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <script src="js/pagination.js"></script>
+
     <style>body {  min-height: 175rem;padding-top: 3.5rem;}</style>
     <link rel="stylesheet" href="css/paper-list.css">
+
+    <style>
+        .ui-pagination-container{
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+        .ui-pagination-page-item{
+            color: black;
+            margin-left: 10px;
+        }
+        .active{
+            color: red;
+        }
+    </style>
 
     <title>论文列表</title>
 </head>
@@ -46,89 +63,20 @@
 <!-- 头部导航栏end -->
 
 <div style="margin-top:20px">
-<form class="form-inline" style="display: flex;justify-content: center">
-<div class="form-group mx-sm-3 mb-2">
-    <label for="paperSearch" class="sr-only">论文名或关键词</label>
-    <input type="text" class="form-control" id="paperSearch" placeholder="请输入论文名或关键词" style="width: 300px; border: solid 1px">
+    <form class="form-inline" style="display: flex;justify-content: center">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="paperSearch" class="sr-only">论文名或关键词</label>
+            <input type="text" class="form-control" id="paperSearch" placeholder="请输入论文名或关键词" style="width: 300px; border: solid 1px">
+        </div>
+        <div style="margin-right: 20px">
+            <input type="checkbox" id="checkAllYear" style="margin-left: 20px"/>
+            <label style="font-size: xx-small;color: black">排序(标题)</label>
+        </div>
+        <button id="read-list" type="button" class="btn btn-primary mb-2">查询</button>
+    </form>
 </div>
-    <div style="margin-right: 20px">
-        <input type="checkbox" id="checkAllYear" style="margin-left: 20px"/>
-        <label style="font-size: xx-small;color: black">排序(标题)</label>
-    </div>
-    <button id="read-list" type="button" class="btn btn-primary mb-2">查询</button>
-</form>
-</div>
-
-<!--<div style="display: flex;justify-content: center;margin-top: 20px">-->
-<!--    <label style="font-size: larger; font-weight: bold">年份：</label>-->
-<!--    <span>-->
-<!--    <input type="checkbox" id="checkAllYear" onclick="checkAllYear()"/>-->
-<!--    <label>全选</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneYear" id="check2016">-->
-<!--    <label>2016</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneYear" id="check2017">-->
-<!--    <label>2017</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneYear" id="check2018">-->
-<!--    <label>2018</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneYear" id="check2019">-->
-<!--    <label>2019</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneYear" id="check2020">-->
-<!--    <label>2020</label>-->
-<!--    </span>-->
-<!--</div>-->
-
-<!--<div style="display: flex;justify-content: center">-->
-<!--    <label style="font-size: larger;font-weight: bold">会议：</label>-->
-<!--    <span>-->
-<!--    <input type="checkbox" id="checkAllMeeting" onclick="checkAllMeeting()"/>-->
-<!--    <label>全选</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneMeeting" id="checkCVPR">-->
-<!--    <label>CVPR</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneMeeting" id="checkICCV">-->
-<!--    <label>ICCV</label>-->
-<!--    </span>-->
-<!--    <span>-->
-<!--    <input type="checkbox" name="checkOneMeeting" id="checkECCV">-->
-<!--    <label>ECCV</label>-->
-<!--    </span>-->
-<!--</div>-->
 
 <div id="item-list">
-<!--    <div class="item" style="margin: 50px auto">&ndash;&gt;-->
-<!--                <div class="content">-->
-<!--                    <div class="img"><img src="img/paper.png" alt="paper" width="270px" height="340px"></div>-->
-<!--                    <div class="text">-->
-<!--                        <p class="text-head">Fooling deep neural detection networks withadaptive object-oriented adversarial perturbation-->
-<!--                        </p>-->
-<!--                        <p style="font-weight: bolder; margin: 10px 0;">Abstract:</p>-->
-<!--                        <div class="text-content">Shape analysis requires invariance undShape analysis requShape analysis requires invariance undShape analysis requires invariance under translation, scale and rotation. Translation and scale invariance can be realized by normalizing shape vectors with respect to their mean and norm. This maps the shape feature vectors onto the surface of a hypersphere. After normalization, the shape vectors can be made rotational invariant by modelling the resulting data using complex scalar rotation invariant distributions defined on the complex hypersphere, e.g., using the complex Bingham distribution. However, the use of these dist asdasd</div>-->
-<!--                        <div style="float: right"><a href="http://www.baidu.com">查看更多</a></div>-->
-<!--                        <div style="float: left"><p><span style="font-weight: bolder;">Keywords:</span>Shape,Parameter estimation,Kernel,Shape,Parameter estimation,Kernel,Gaussian distribution,Algorithm design and analysis,Face recognition,Classification algorithms,Distributed computing,Probability distribution,Symmetric matrices,</p></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="footer">-->
-<!--                    <div><a href="http://www.baidu.com">www.baidu.com</a></div>-->
-<!--                    <div>-->
-<!--                        <a type="submit" class="btn btn-primary mb-2">翻译</a>-->
-<!--                        <a type="submit" class="btn btn-primary mb-2">收藏</a>-->
-<!--                        <a type="submit" class="btn btn-primary mb-2">删除</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--    </div>-->
 </div>
 
 <script type="text/javascript" src="js/base.js"></script>
