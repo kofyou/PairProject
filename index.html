@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大象爬论文</title>
+<link rel="stylesheet" type="text/css" href="first.css">
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <script type="text/javascript" src="./js/echarts.js"></script>
+<script src="echarts-wordcloud.min.js"></script> -->
+
+<script type="text/javascript" src="./js/echarts.min.js"></script>
+<script type="text/javascript" src="./js/echarts-wordcloud.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <div class="head">
+		<div class="nav-right">
+			<ul>
+				<li><a href="#" id="r2">设置</a></li>
+				<li><a href="charts.html" ><input  type="button" id="r3"value="词云图"></a></li>
+			</ul>
+		</div>
+	</div>
+<!-- 主体 -->
+	<div class="main">
+
+		<div class="picture"><img src="1.png"></a></div>
+		<!-- 搜索框 -->
+
+		<div class="ss">
+			<select id="se" v-model="type">
+				<option value="author">author</option>
+				<option value="title">title</option>
+				<option value="keyword">keyword</option>
+				<option value="abstracts">abstracts</option>
+			  </select>
+			<input @keydown.enter ="to" type="text" v-model="value" id="ss-l" placeholder="请输入论文信息" />
+			<input @click="to" type="submit" name="" id="ss-r" value="搜索" />
+			  
+      
+		</div>
+
+	</div>
+	
+<!-- 底部 -->
+	<div class="footer">
+		<p>本站声明 | 有害信息举报 | 广告合作</p>
+	</div>
+</div>
+<script src="./js/main.js"></script>
+
+</body>
+</html>
