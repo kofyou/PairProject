@@ -9,66 +9,88 @@ import java.util.List;
 
 public class PaperDAOImpl implements PaperDAO {
 
-    List<Paper> list = new ArrayList<>();
-    Paper paper = null;
     @Override
-    public Paper getByTitle(String str) {
-        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post where title = " + str;
-            ResultSet rs = s.executeQuery(sql);
+    public List<Paper> listGetByTitle(String str) {
+        String sql = "select * from post where title " + "like" +"'%" + str + "%'";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery(sql);
+            List<Paper> list = new ArrayList<>();
             while (rs.next()) {
-                paper.setTitle(rs.getString(1));
-                paper.setSummary(rs.getString(2));
-                paper.setLink(rs.getString(3));
-                paper.setKeyword(rs.getString(4));
-                paper.setYear(rs.getString(5));
-                paper.setType(rs.getString(6));
-                list.add(paper);
+                Paper p = new Paper();
+                p.setTitle(rs.getString(1));
+                p.setSummary(rs.getString(2));
+                p.setLink(rs.getString(3));
+                p.setKeyword(rs.getString(4));
+                p.setYear(rs.getString(5));
+                p.setType(rs.getString(6));
+                list.add(p);
             }
+            return list;
         } catch (SQLException e) {
+            // TODO 自动生成的 catch 块
             e.printStackTrace();
         }
-        return paper;
-    }
-
-
-    @Override
-    public Paper getByKeyword(String str) {
-        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post where keyword = " + str;
-            ResultSet rs = s.executeQuery(sql);
-            while (rs.next()) {
-                paper.setTitle(rs.getString(1));
-                paper.setSummary(rs.getString(2));
-                paper.setLink(rs.getString(3));
-                paper.setKeyword(rs.getString(4));
-                paper.setYear(rs.getString(5));
-                paper.setType(rs.getString(6));
-                list.add(paper);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return paper;
+        return null;
     }
 
     @Override
-    public Paper getByType(String str) {
-        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from post where type = " + str;
-            ResultSet rs = s.executeQuery(sql);
+    public List<Paper> listGetByKeyword(String str) {
+        String sql = "select * from post where keyword "+ "like" +"'%" + str + "%'";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery(sql);
+            List<Paper> list = new ArrayList<>();
             while (rs.next()) {
-                paper.setTitle(rs.getString(1));
-                paper.setSummary(rs.getString(2));
-                paper.setLink(rs.getString(3));
-                paper.setKeyword(rs.getString(4));
-                paper.setYear(rs.getString(5));
-                paper.setType(rs.getString(6));
-                list.add(paper);
+                Paper p = new Paper();
+                p.setTitle(rs.getString(1));
+                p.setSummary(rs.getString(2));
+                p.setLink(rs.getString(3));
+                p.setKeyword(rs.getString(4));
+                p.setYear(rs.getString(5));
+                p.setType(rs.getString(6));
+                list.add(p);
             }
+            return list;
         } catch (SQLException e) {
+            // TODO 自动生成的 catch 块
             e.printStackTrace();
         }
-        return paper;
+        return null;
+    }
+
+    @Override
+    public List<Paper> listGetByType(String str) {
+        String sql = "select * from post where type "+ "like" +"'%" + str + "%'";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery(sql);
+            List<Paper> list = new ArrayList<>();
+            while (rs.next()) {
+                Paper p = new Paper();
+                p.setTitle(rs.getString(1));
+                p.setSummary(rs.getString(2));
+                p.setLink(rs.getString(3));
+                p.setKeyword(rs.getString(4));
+                p.setYear(rs.getString(5));
+                p.setType(rs.getString(6));
+                list.add(p);
+            }
+            return list;
+        } catch (SQLException e) {
+            // TODO 自动生成的 catch 块
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void deletePaper(String a){
+        String sql = "delete from post where title = '" + a + "'";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)){
+            ps.execute(sql);
+
+
+        } catch (SQLException e) {
+            // TODO 自动生成的 catch 块
+            e.printStackTrace();
+        }
     }
 }

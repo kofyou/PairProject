@@ -69,12 +69,14 @@
 <div class="topnav">
 
     <a href="PaperList.jsp" target="leftFrame"> 论文列表</a>
-    <a class="active" href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
+    <a href="DataAnalysis.jsp"target="leftFrame"> 数据分析</a>
 </div>
 
 <div class="topnav2">
-    <a href="KeyWordChart.jsp" target="leftFrame">关键词图谱</a>
-    <a href="Type.jsp" target="leftFrame"> 热词动图</a>
+    <a href="ECCV.jsp" target="leftFrame">ECCV</a>
+    <a href="ICCV.jsp" target="leftFrame"> ICCV</a>
+    <a href="CVPR.jsp" target="leftFrame">CVPR</a>
+    <a href="DataAnalysis.jsp" target="leftFrame">返回</a>
 </div>
 
 <body>
