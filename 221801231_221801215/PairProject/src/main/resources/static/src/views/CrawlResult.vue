@@ -897,6 +897,7 @@ export default {
     ChangeToFullResult() {
       this.GetPagePaperList(1, 3, true);
     },
+
   },
 };
 </script>

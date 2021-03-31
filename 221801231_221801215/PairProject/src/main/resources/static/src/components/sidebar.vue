@@ -237,14 +237,50 @@ export default {
             newitem.title = element.title;
             _this.resultList.push(newitem);
           });
-          sessionStorage.setItem("searchContent", sContent);
+          sessionStorage.setItem("searchContent", sContent.toString());
           _this.$emit("GetPagePaperList");
         })
         .catch(function (error) {
           console.log(error);
           _this.$message.error("搜索失败");
         });
-      _this.content = "";
+      if(this.resultList.length==0)
+      {
+          this.$confirm("没有搜索到相关题目，是否需要在数据库中继续搜索?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.$axios
+        .get(_this.$api.globalUrl + "/Paper/search", {
+          params: {
+            content: sContent,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+          response.data.data.forEach((element) => {
+            let newitem = {};
+            newitem.id = element.id;
+            newitem.title = element.title;
+            _this.resultList.push(newitem);
+          });
+          _this.$emit("GetPagePaperList");
+        })
+        .catch(function (error) {
+          console.log(error);
+          _this.$message.error("搜索失败");
+        });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消",
+          });
+        });
+      }
+      this.content = "";
     },
     deleteItem(value, index) {
       let _this = this;
