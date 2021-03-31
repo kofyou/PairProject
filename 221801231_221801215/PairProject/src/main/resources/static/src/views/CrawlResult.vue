@@ -19,8 +19,8 @@
           ></i
         ></router-link>
       </div>
-      <el-dialog :visible.sync="dialogVisible" class="detaildialog">
-        <div style="height: 1000px">
+      <el-dialog :visible.sync="dialogVisible" style="width:100%">
+        <div style="height: 1000px;width:800px">
           <div class="paperdetailstitle">论文详情:</div>
           <div class="papertitle">
             <strong>论文题目:</strong>《{{ this.dialogDetail.title }}》
