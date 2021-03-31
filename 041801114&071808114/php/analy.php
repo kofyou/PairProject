@@ -5,7 +5,9 @@
 	<title>加载中...</title>
 	<link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 </head>
-
+<script>
+		sessionStorage['lastChoice'] = "";
+</script>
 <body>
 	<div class="nav">
 		<ul class="template">
@@ -25,9 +27,6 @@
 		<script src="<?= bloginfo('template_url'); ?>/quickfind/echarts-wordcloud.min.js"></script>
 		<script type="text/javascript">
 			var wc_chart = echarts.init( document.getElementById( 'hotWordContainer' ) );
-			wc_chart.on( 'click', ( param ) => {
-				alert( param.name );
-			} );
 		</script>
 
 		<div Id="container"></div>
@@ -55,32 +54,12 @@
 						saveAsImage: {}
 					}
 				},
-				xAxis: {
-					type: 'category',
-					boundaryGap: false,
-					data: [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
-				},
+
 				yAxis: {
 					type: 'value'
 				},
-				series: [ {
-					name: 'CVPR',
-					type: 'line',
-					stack: '总量',
-					data: [ 120, 132, 101, 134, 90, 230, 210 ]
-				}, {
-					name: 'ICCV',
-					type: 'line',
-					stack: '总量',
-					data: [ 220, 182, 191, 234, 290, 330, 310 ]
-				}, {
-					name: 'ECCV',
-					type: 'line',
-					stack: '总量',
-					data: [ 150, 232, 201, 154, 190, 330, 410 ]
-				}, ]
+
 			};
-			myChart.setOption( option );
 		</script>
 	</div>
 </body>
@@ -139,13 +118,91 @@
 				wc_chart.setOption( wc_option );
 				wc_chart.resize();
 				document.title = '趋势分析';
+				wc_chart.on( 'click', ( param ) => {
+					if (sessionStorage['lastChoice'] == param.name)
+					{
+						window.location.href = "http://blog.tozzger.info/quickfind/index";
+					}
+					sessionStorage['lastChoice'] = param.name;
+					$.ajax({
+					
+					type:'post',
+					url:ajaxurl,
+                	data:{'action':'keyword_count',
+					  	'kwd':param.name,
+					  	'except':sessionStorage['except'],},
+                	cache:false,
+                	dataType:'json',
+                	success:function(result){
+						
+						var set = new Set();
+						for(var i = 0; i < result.length;i++){
+							set.add(result[i].year);
+						}
+						var list = Array.from(set).sort();
+						
+						option.xAxis= {
+					type: 'category',
+					boundaryGap: false,
+					data: list
+					};
+					var cvpr = {
+					name: 'CVPR',
+					type: 'line',
+					stack: '总量1',
+					data: new Array(list.length).fill(0, 0, list.length)
+					}
+					var iccv = {
+					name: 'ICCV',
+					type: 'line',
+					stack: '总量2',
+					data: new Array(list.length).fill(0, 0, list.length)
+					}
+					var eccv = {
+					name: 'ECCV',
+					type: 'line',
+					stack: '总量3',
+					data: new Array(list.length).fill(0, 0, list.length)
+					}
+					
+					var map = new Array();
+					for(var i = 0; i < list.length; i++){
+						map[list[i]] = i;
+					}
+					
+					for(var i = 0; i < result.length;i++){
+						var year = result[i].year;
+						var meeting = result[i].meeting;
+						var count = parseInt(result[i].cnt);
+						switch(meeting){
+							case 'CVPR':
+								meeting = cvpr;
+								break;
+							case 'ICCV':
+								meeting = iccv;
+								break;
+							case 'ECCV':
+								meeting = eccv;
+								break;
+						}
+						meeting.data[map[year]] = count;
+					}
+					
+					option.series= [ cvpr, iccv, eccv ];
+
+					myChart.setOption( option );
+					},
+                	error:function(data){
+						console.log("error")
+					}
+				});
+				} );
 
 			},
 			error: function ( data ) {
 				console.log( "error" )
 				document.title = '趋势分析';
 			}
-			
 		} );
 		return false;
 	} );
