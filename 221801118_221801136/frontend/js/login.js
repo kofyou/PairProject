@@ -6,7 +6,7 @@ $(function (){
         //不为空向后端发送ajax
         if(username!=""&&password!=""){
             $.ajax({
-                url:"",
+                url:"/user/login/check",
                 method:"post",
                 data:JSON.stringify({
                     "username":username,
@@ -44,7 +44,7 @@ $(function (){
         //不为空向后端发送ajax
         if(username!=""&&password!=""){
             $.ajax({
-                url:"",
+                url:"/user/register/check",
                 method:"post",
                 data:JSON.stringify({
                     "username":username,

@@ -12,7 +12,7 @@ $(function (){
        //不为空则从后端获得论文数据
         else {
             $.ajax({
-                url:"",
+                url:"/list/search",
                 method:"post",
                 data:JSON.stringify({
                     "keyword":contain,
@@ -44,7 +44,7 @@ $(function (){
         //     .text("<a href='"+link+"'>"+title+"</a>");
         // $("#empty").append(div);
         $.ajax({
-            url:" ",
+            url:"/list/like/add",
             method: post,
             data:JSON.stringify({
                 "id":id,
@@ -67,7 +67,7 @@ $(function (){
         //     .text("<a href='"+link+"'>"+title+"</a>");
         // $("#empty").append(div);
         $.ajax({
-            url:" ",
+            url:"/list/like/add",
             method: post,
             data:JSON.stringify({
                 "id":id,
@@ -90,7 +90,7 @@ $(function (){
         //     .text("<a href='"+link+"'>"+title+"</a>");
         // $("#empty").append(div);
         $.ajax({
-            url:" ",
+            url:"/list/like/add",
             method: post,
             data:JSON.stringify({
                 "id":id,
@@ -113,7 +113,7 @@ $(function (){
         //     .text("<a href='"+link+"'>"+title+"</a>");
         // $("#empty").append(div);
         $.ajax({
-            url:" ",
+            url:"/list/like/add",
             method: post,
             data:JSON.stringify({
                 "id":id,
@@ -136,7 +136,7 @@ $(function (){
         var source=$("#searchInput3").val();
         var page=$("#page").val();
         $.ajax({
-            url:'',
+            url:'/list/search',
             method:'post',
             data:JSON.stringify({
                 "keyword":keyword,
@@ -168,7 +168,7 @@ $(function (){
         var source=$("#searchInput3").val();
         var page=$("#page").val();
         $.ajax({
-            url:'',
+            url:'/list/search',
             method:'post',
             data:JSON.stringify({
                 "keyword":keyword,
