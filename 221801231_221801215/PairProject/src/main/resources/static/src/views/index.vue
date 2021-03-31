@@ -49,7 +49,7 @@
           "
         ></i>
       </div>
-
+      <div v-if="loadingFinished" class="paperList"><i class="el-icon-loading" style="font-size:30px"></i></div>
       <div class="paperList" v-show="tableData.length != 0">
         <ul v-for="(items, index) in tableData" :key="index">
           <li class="paperItem">
@@ -90,6 +90,7 @@ export default {
   components: { Mymain, Myheader },
   data() {
     return {
+      loadingFinished:true,
       searchForm: {
         searchWay: true,
         singleSearchText: "",
@@ -130,6 +131,7 @@ export default {
             _this.tableData.push(newTitle);
             _this.paperNum = _this.tableData.length;
           });
+          _this.loadingFinished=false;
         })
         .catch(function (error) {
           console.log(error);
