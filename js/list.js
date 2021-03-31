@@ -9,6 +9,9 @@
       ],
       link:" ",
       pageNum:1,
+      page:[
+
+      ],
       word:
       { 
         searchType:"title",
@@ -42,7 +45,8 @@
         .then(function(response)
         {   
             that.item=response.data.data.list;
-            console.log(that.item.data)
+            that.page=response.data.data;
+            
         }
         )
         .catch(function (error) { // 请求失败处理
@@ -63,6 +67,8 @@
         .then(function(response)
         {   console.log(response)
             that.item=response.data.data.list;
+            that.page=response.data.data;
+            console.log(response.data.data)
             scrollTo(0,0);
             
         }
@@ -72,11 +78,26 @@
         });
        
           },
-          Next:function()
+          del:function(id)
           {
-            this.pagNume=this.pagNume+1,
-            console.log(this.pagNume)
-           this.search()
+            if (window.confirm("是否确认要删除?")) {
+              // 确认时做的操作
+              axios.delete("http://81.68.149.69:18902/search/deletePaper?paperId="+id)
+              .then(function(response)
+              {  console.log(response)
+                  alert(response.data.data+"(paperID="+id+")")
+              }
+              )
+              .catch(function (error) { // 请求失败处理
+                alert(error);
+              });
+
+              
+              
+              } else {
+              // 取消时做的操作
+              }
+
           }
   },}) 
 

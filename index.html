@@ -31,7 +31,7 @@
 				<option value="keyword">keyword</option>
 				<option value="abstracts">abstracts</option>
 			  </select>
-			<input type="text" v-model="value" id="ss-l" placeholder="请输入论文信息" />
+			<input @keydown.enter ="to" type="text" v-model="value" id="ss-l" placeholder="请输入论文信息" />
 			<input @click="to" type="submit" name="" id="ss-r" value="搜索" />
 
       
