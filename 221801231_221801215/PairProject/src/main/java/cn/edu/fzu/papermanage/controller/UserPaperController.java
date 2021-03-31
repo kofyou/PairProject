@@ -47,10 +47,10 @@ public class UserPaperController {
     }
 
     /**
-     * 根据用户id（从session获取），获取其关联的所有论文内容（不包括关键词）
+     * 根据用户id（从session获取），获取其关联的所有论文内容（仅包括标题和id）
      *
      * @param id the id 用户id（从session获取）
-     * @return the result 用户关联的所有论文信息列表用户id（不包括关键词）
+     * @return the result 用户关联的所有论文信息列表用户id（仅包括标题和id）
      */
     @GetMapping("/all")
     public Result<List<Paper>> findAllPapersByUserId(@SessionAttribute Integer id) {

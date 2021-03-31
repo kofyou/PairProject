@@ -46,13 +46,20 @@ public class UserPaperService {
     }
 
     /**
-     * 查找用户关联的所有论文信息（不包括关键词）
+     * 查找用户关联的所有论文信息（仅包括标题和id）
      *
      * @param userId the user id 用户id
-     * @return the list 包含所有用户关联的论文信息（不包括关键词）
+     * @return the list 包含所有用户关联的论文信息（仅包括标题和id）
      */
     public List<Paper> findAllPapersByUserId(Integer userId) {
-        return paperDao.findAllPapersByUserId(userId);
+        List<Paper> papers = paperDao.findAllPapersByUserId(userId);
+        for (Paper paper : papers) {
+            paper.setUrl("");
+            paper.set_abstract("");
+            paper.setPublishYear("");
+            paper.setSource("");
+        }
+        return papers;
     }
 
     /**
