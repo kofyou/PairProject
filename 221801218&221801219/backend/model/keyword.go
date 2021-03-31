@@ -2,6 +2,7 @@ package model
 
 import (
 	"backend/util"
+	"strconv"
 )
 
 type Keyword struct {
@@ -52,8 +53,27 @@ func GetKeyword(ID int64) Keyword {
 	return kwd
 }
 
+func GetKeywordCount(id, year int) uint64 {
+	sql := "SELECT COUNT(*) FROM paper WHERE id IN (SELECT paper_id FROM paper_keyword WHERE keyword_id = ?) AND year = ?"
+	result, _ := Engine.Query(sql, id, year)
+	freq, _ := strconv.Atoi(string(result[0]["COUNT(*)"]))
+	return uint64(freq)
+}
+
 func GetKeywordTop10() ([]Keyword, error) {
 	var keywords []Keyword
-	err := Engine.Desc("freq").Limit(10).Find(&keywords)
+	result, err := Engine.Query("SELECT * FROM keyword WHERE id IN (SELECT keyword_id FROM paper_keyword WHERE paper_id IN (SELECT paper.id FROM paper) GROUP BY keyword_id ORDER BY COUNT(*) DESC LIMIT 10)")
+	for _, r := range result{
+		id, _ := strconv.Atoi(string(r["id"]))
+		year, _ := strconv.Atoi(string(r["year"]))
+		freq, _ := strconv.Atoi(string(r["freq"]))
+		keywords = append(keywords, Keyword{
+			Id:      int64(id),
+			Year:    uint16(year),
+			Freq:    uint64(freq),
+			Meeting: string(r["meeting"]),
+			Content: string(r["content"]),
+		})
+	}
 	return keywords, err
 }

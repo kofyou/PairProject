@@ -30,7 +30,9 @@ func NewRouter() *gin.Engine {
 
 		v1.GET("search", api.PaperSearch)
 
-		v1.GET("statistics", api.GetTopKeywords)
+		v1.GET("statistics/top", api.GetTopKeywords)
+
+		v1.GET("statistics/trend", api.GetKeywordsTrendStatistics)
 
 		v1.GET("/subscription/status/:id", api.CheckSubscriptionStatus)
 
