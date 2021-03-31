@@ -159,7 +159,10 @@ export default {
         sessionStorage.setItem("searchContent", "");
         this.$emit("ChangeToFullResult");
       } else {
-        this.search();
+        if(this.content!="")
+        {
+          this.search();
+        }
       }
     },
     getsidebarpaperlist() {

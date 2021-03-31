@@ -124,8 +124,8 @@
 .paperkeyword {
   position: absolute;
   width: 750px;
-  height: 100px;
-  bottom: 350px;
+  height: 500px;
+  bottom: 0px;
   left: 60px;
   line-height: 50px;
   text-align: left;

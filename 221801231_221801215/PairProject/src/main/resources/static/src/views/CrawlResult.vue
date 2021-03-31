@@ -20,7 +20,7 @@
         ></router-link>
       </div>
       <el-dialog :visible.sync="dialogVisible" style="width:100%">
-        <div style="height: 1000px;width:800px">
+        <div style="height: 1500px;width:800px">
           <div class="paperdetailstitle">论文详情:</div>
           <div class="papertitle">
             <strong>论文题目:</strong>《{{ this.dialogDetail.title }}》
