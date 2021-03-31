@@ -1,0 +1,149 @@
+.el-footer {
+  background-color: #133382;
+  color: #d3dce6;
+  text-align: center;
+  line-height: 80px;
+  height: 80px !important;
+}
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+  height: 900px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.mainpaperlist {
+  position: absolute;
+  background-color: transparent;
+  height: 500px;
+  width: 660px;
+  top: 230px;
+  left: 700px;
+  list-style: none;
+}
+.delete {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.el-tabs {
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  left: 600px;
+  top: 50px;
+}
+.keymap {
+  width: 770px;
+  height: 200px;
+  margin: 0 auto;
+  background-color: #f2f3f9;
+}
+.keyword {
+  width: 300px;
+  height: 50px;
+  position: absolute;
+  font-weight: bold;
+}
+.keywordpointer
+{
+   cursor: pointer;
+}
+.meetingchoosebox {
+  width: 400px;
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px;
+}
+.selectyear {
+  width: 200px;
+}
+.rulebox {
+  height: 70px;
+  line-height: 70px;
+  margin-left: -30px;
+  margin-top: 0px;
+}
+#myChart {
+  margin: 0 auto;
+}
+.paperdetailstitle {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  top: 20px;
+  left: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.papertitle {
+  position: absolute;
+  width: 750px;
+  height: 40px;
+  top: 60px;
+  left: 60px;
+  line-height: 20px;
+  text-align: left;
+}
+.papersource{
+   position: absolute;
+  width: 750px;
+  height: 20px;
+  top: 120px;
+  left: 60px;
+  line-height: 20px;
+  text-align: left;
+}
+.paperyear{
+    position: absolute;
+  width: 750px;
+  height: 20px;
+  top: 140px;
+  left: 60px;
+  line-height: 20px;
+  text-align: left;
+}
+.paperprecis {
+  position: absolute;
+  width: 750px;
+  height: 500px;
+  top: 160px;
+  left: 60px;
+  line-height: 40px;
+  text-align: left;
+}
+.paperkeyword {
+  position: absolute;
+  width: 750px;
+  height: 500px;
+  bottom: 0px;
+  left: 60px;
+  line-height: 50px;
+  text-align: left;
+}
+.paperurl{
+  display: block;
+  position: absolute;
+  height: 40px;
+  width: 100px;
+  top: 10px;
+  right: 65px;
+  text-align: left;
+  line-height: 40px;
+  text-decoration: none;
+  color: darkgrey;
+}
+.returnbutton{
+  position:absolute;
+  bottom: -50px;
+  left: 450px;
+}
