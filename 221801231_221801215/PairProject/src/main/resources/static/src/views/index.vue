@@ -79,6 +79,7 @@
         </ul>
       </div>
     </el-main>
+    <el-footer>copyright &copy; 2021 puffer&&tars 结对作业二</el-footer>
   </div>
 </template>
 
@@ -208,6 +209,13 @@ export default {
 </script>
 
 <style>
+.el-footer {
+  background-color: #133382;
+  color: #d3dce6;
+  text-align: center;
+  line-height: 80px;
+  height: 80px !important;
+}
 .el-main {
   background-color: #ffffff !important;
   color: #333;

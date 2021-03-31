@@ -63,7 +63,7 @@
         </el-form>
       </div>
     </mymain>
-    <el-footer>Footer</el-footer>
+   <el-footer>copyright &copy; 2021 puffer&&tars 结对作业二</el-footer>
   </div>
 </template>
 
