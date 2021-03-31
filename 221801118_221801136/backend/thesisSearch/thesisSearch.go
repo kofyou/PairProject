@@ -16,54 +16,66 @@ type AnalyzedThesis struct {
 	Author string	`json:"author"`
 	Keyword string	`json:"keyword"`
 	Abstract string	`json:"abstract"`
+	Link string		`json:"link"`
+}
+
+type thesisSearchParam struct {
+	Source string	`json:"source" binding:"required"`
+	Keyword string	`json:"password" binding:"required"`
+	Year int		`json:"year" binding:"required"`
+	Page int		`json:"page" binding:"required"`
 }
 
 
 // GetThesisList 模糊搜索、查找相应文章
 func GetThesisList(c *gin.Context) {
-	source := c.Query("source")
-	year := c.Query("year")  //类型是否有问题？
-	keyword := c.Query("keyword")
-	pageStr := c.Query("page")
+	param := thesisSearchParam{}
+	_ = c.ShouldBindJSON(&param)
+
+	source := param.Source
+	year := param.Year
+	keyword := param.Keyword
+	page := param.Page
+	yearStr := strconv.Itoa(year)
 
 	keyword = strings.ReplaceAll(keyword, "\n", "%")
 	keyword = strings.ReplaceAll(keyword, "\r", "%")
 	keyword = strings.ReplaceAll(keyword, "\t", "%")
-	keyword = strings.ReplaceAll(keyword, " ", "%")  //problem:正则表达式无法处理，交前端限制？
+	keyword = strings.ReplaceAll(keyword, " ",  "%")
 	keyword = "%" + keyword + "%"
 
 	var selectStr string = "select * from analyzed_thesis where "
 	if source != "" {
 		selectStr += "Source = '" + source + "' "
 	}
-	if year != "" {
+	if yearStr != "" {
 		if source != "" {
 			selectStr += "and "
 		}
-		selectStr += "Year = '" + year + "' "
+		selectStr += "Year = '" + yearStr + "' "
 	}
 	if keyword != "" {
-		if !(source == "" && year == "") {
+		if !(source == "" && yearStr == "") {
 			selectStr += "and "
 		}
 		selectStr += "Keyword like '" + keyword + "' "
 	}
-	if source == "" && year == "" && keyword == "" {
+	if source == "" && yearStr == "" && keyword == "" {
 		length := len(selectStr) - 6
 		selectStr = selectStr[0:length]
 	}
-	if pageStr != "" {
-		page, _ :=strconv.Atoi(pageStr)
-		if page >= 1 {
-			page --
-		} else {
-			page = 0
-		}
-		page *= 4
-		pageStr = strconv.Itoa(page)
-		selectStr += " limit " + pageStr + " , 4"
+	if page >= 1 {
+		page --
+	} else {
+		page = 0
 	}
+	page *= 4
+	pageStr := strconv.Itoa(page)
+	selectStr += " limit " + pageStr + " , 4"
 	selectStr += " ;"
+
+
+	//var Keys []string
 
 	rows, _ := database.DB.Raw(selectStr).Rows()
 	var ID int
@@ -73,10 +85,11 @@ func GetThesisList(c *gin.Context) {
 	var Author string
 	var Keyword string
 	var Abstract string
+	var Link string
 	var thesisArr []AnalyzedThesis
 	for rows.Next() {
 		temp := AnalyzedThesis{}
-		_ = rows.Scan(&ID, &Source, &Year, &Title, &Author, &Keyword, &Abstract)
+		_ = rows.Scan(&ID, &Source, &Year, &Title, &Author, &Keyword, &Abstract, &Link)
 		temp.ID = ID
 		temp.Source = Source
 		temp.Year = Year
@@ -84,9 +97,13 @@ func GetThesisList(c *gin.Context) {
 		temp.Author = Author
 		temp.Keyword = Keyword
 		temp.Abstract = Abstract
+		temp.Link = Link
 		thesisArr = append(thesisArr,temp)
+
+		//Keys = append(Keys, Keyword)
 	}
 
+	//c.JSON(http.StatusOK, Keys)
 	c.JSON(http.StatusOK, thesisArr)
 }
 

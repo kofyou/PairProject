@@ -13,24 +13,27 @@ func main() {
 	r := gin.Default()
 
 	// username=?&&password=?
-	r.GET("/user/login", user.UserLogin)
+	r.POST("/user/login/check", user.UserLogin)
 
 	// username=?&&password=?
-	r.GET("/user/register", user.UserRegister)
+	r.POST("/user/register/check", user.UserRegister)
 
 	// username=?&&thesis_id=?
-	r.GET("/user/add/like", user.UserAddLike)
-
-	// username=?&&thesis_id=?
-	r.GET("/user/delete/like", user.UserDeleteLike)
+	r.POST("/user/like/delete", user.UserLikeDelete)
 
 	// username=?
-	r.GET("/user/show/like", user.UserShowLike)
+	r.POST("/user/like", user.UserLikeShow)
+
+	// username=?&&thesis_id=?
+	r.POST("/list/like/add", user.UserLikeAdd)
 
 	// source=?&&keyword=?&&year=?&&page=?
-	r.GET("/search/list", thesisSearch.GetThesisList)
+	r.POST("/list/search", thesisSearch.GetThesisList)
 
-	r.GET("/")
+	//
+	r.POST("/list", thesisSearch.GetThesisList)
+
+	r.POST("/")
 	r.Run(":8080")
 }
 
