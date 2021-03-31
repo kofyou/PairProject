@@ -133,7 +133,7 @@ img{
     justify-content: center;
     align-items: center;
     transition: 0.4s;
-    background: url("png/search.png") no-repeat;
+    background: url("/png/search.png") no-repeat;
     background-size: 100% 100%;
     outline: none;
     border: 0;
