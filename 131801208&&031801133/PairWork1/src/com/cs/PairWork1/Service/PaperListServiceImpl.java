@@ -55,7 +55,7 @@ public class PaperListServiceImpl implements PaperListService {
 	}
 	//below used for test
 	
-	public static List<Paper> getECCV(File file){
+	public static  List<Paper> getECCV(File file){//test method do not mind
 		File[] fileCVPR=file.listFiles();
 		List<Paper> datalist = new ArrayList<Paper>();
 		int i=0;
@@ -82,7 +82,7 @@ public class PaperListServiceImpl implements PaperListService {
 		return datalist;
 		
     }
-	public static List<Paper> find(String s){
+	public  List<Paper> find(String s){
 		String sql = "select * from paper where paperid=?";
 		DBUtils dbUtils = new DBUtils();
 		dbUtils.init();
@@ -111,7 +111,7 @@ public class PaperListServiceImpl implements PaperListService {
 		}
 		return null;
     }
-	public static int delete(String title) {
+	public  int delete(String title) {
 		String sql="delete from paper where title=?";
 		DBUtils dbUtils = new DBUtils();
 		dbUtils.init();
@@ -130,7 +130,7 @@ public class PaperListServiceImpl implements PaperListService {
 		}
 		return -1;
 	}
-	public static List<Paper> getDirectory(File file){
+	public  List<Paper> getDirectory(File file){//test method do not mind
 		File[] fileCVPR=file.listFiles();
 		List<Paper> datalist = new ArrayList<Paper>();
 		int i=0;
@@ -157,7 +157,7 @@ public class PaperListServiceImpl implements PaperListService {
     }
 	
 	public static void main(String[] args) {
-		
+			//test method do not mind
 
 			//File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
 			File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
