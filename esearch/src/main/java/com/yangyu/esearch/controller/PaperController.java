@@ -54,4 +54,10 @@ public class PaperController {
         return paperService.selectKeyword(keyword, address);
     }
 
+    @GetMapping("number")
+    public int selectNumber(String title, String source, String years)
+    {
+        return paperService.selectNumber(title, source, years).size();
+    }
+
 }
