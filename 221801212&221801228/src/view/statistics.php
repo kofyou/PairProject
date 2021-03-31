@@ -40,84 +40,54 @@
         },
         tooltip : {
             trigger: 'axis'
-
         },
-
         legend: {
-            data:['AAA','BBB','CCC']
-
+            data:[
+                <?php 
+                 foreach ($result as $forum)
+                    echo "'".$forum['forum']."--".$forum['keyword']."'," ;
+                    ?>
+            ]
         },
-
         toolbox: {
             show : true,
-
             feature : {
                 mark : {show:true},
-
                 dataView : {show:true, readOnly: false},
-
                 magicType : {show:true, type: ['line']},
-
                 restore : {show:true},
-
                 saveAsImage :{show: true}
-
             }
-
         },
-
-
         xAxis : [
-
             {
                 type : 'category',
-
                 boundaryGap :false,
-
-                data : ['2017','2018','2019','2020','2021']
-
+                data : ['2016','2017','2018','2019','2020',]
             }
-
         ],
-
         yAxis : [
-
             {
                 type : 'value'
-
             }
-
         ],
-
         series : [
-
-            {
-                name:'AAA',
-
-                type:'line',
-
-                data:[120, 132,101, 134, 90]
-
-            },
-
-            {
-                name:'BBB',
-
-                type:'line',
-
-                data:[220, 182,191]
-
-            },
-
-            {
-                name:'CCC',
-
-                type:'line',
-
-                data:[150, 232,201, 154, 190]
-
-            }
-
+            <?php 
+                foreach ($result as $forum)
+                {
+                    echo "{";
+                    echo "name: '".$forum['forum']."--".$forum['keyword']."',";
+                    echo "type: 'line',";
+                    echo "data:[";
+                    for ($i = 2016; $i < 2020; $i++)
+                        if (array_key_exists(strval($i), $forum['statistics']))
+                            echo $forum['statistics'][strval($i)].",";
+                        else
+                            echo "0,";
+                    echo "]";
+                    echo "},";
+                }
+                ?>
         ]
     });
     // 异步加载数据
@@ -130,7 +100,5 @@
            }]
            });});*/
 </script>
-
 </body>
-
 </html>
