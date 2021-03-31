@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <el-header>
       <div class="title">
@@ -14,36 +13,57 @@
             left: -100px;
           "
         ></i>
-        <router-link to="/index" style="text-decoration:none;color:white"><span>计算机论文查询平台</span></router-link>
+        <router-link to="/index" style="text-decoration: none; color: white"
+          ><span>计算机论文查询平台</span></router-link
+        >
       </div>
-      <el-button class="loginbutton" @click="toLogin" v-show="!loginStatus">登录</el-button>
-      <el-button class="registerbutton" @click="toRegister" v-show="!loginStatus">注册</el-button>
-      <el-button class="registerbutton" @click="toLogout" v-show="loginStatus">登出</el-button>
-      <el-avatar :size="50" :src="circleUrl" style="position: absolute;top:15px;right: 250px"></el-avatar>
-      <div class="showusername" style="position:absolute;right:100px;font-weight:bold" v-show="loginStatus">欢迎你：{{userName}}</div>
+      <el-button class="loginbutton" @click="toLogin" v-show="!loginStatus"
+        >登录</el-button
+      >
+      <el-button
+        class="registerbutton"
+        @click="toRegister"
+        v-show="!loginStatus"
+        >注册</el-button
+      >
+      <el-button class="registerbutton" @click="toLogout" v-show="loginStatus"
+        >登出</el-button
+      >
+      <el-avatar
+        :size="50"
+        :src="circleUrl"
+        style="position: absolute; top: 15px; right: 250px"
+      ></el-avatar>
+      <div
+        class="showusername"
+        style="position: absolute; right: 100px; font-weight: bold"
+        v-show="loginStatus"
+      >
+        欢迎你：{{ userName }}
+      </div>
     </el-header>
   </div>
 </template>
 <script>
 export default {
-  props:{
-  'userName':String,
-  'loginStatus':String
+  props: {
+    userName: String,
+    loginStatus: String,
   },
-  name:'myheader',
-  data(){
-    return{
+  name: "myheader",
+  data() {
+    return {
       circleUrl:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
         "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-        username:this.userName,
-        loginstatus:""
-    }
+      username: this.userName,
+      loginstatus: "",
+    };
   },
-  mounted(){
-     this.username=localStorage.getItem['username'];
-     this.loginStatus=localStorage.getItem['loginstatus'];
+  mounted() {
+    this.username = localStorage.getItem["username"];
+    this.loginStatus = localStorage.getItem["loginstatus"];
   },
   // watch:{
   //    'userName':function(val)
@@ -55,36 +75,37 @@ export default {
   //     this.loginStatus=val;
   //    }
   // },
-  methods:{
-    toLogin:function (){
-      this.$router.push('/login');
+  methods: {
+    toLogin: function () {
+      this.$router.push("/login");
     },
-    toRegister:function () {
-      this.$router.push('/Register');
-
-    }
-    ,toLogout:function(){
-      this.$confirm('确定要退出登录吗?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+    toRegister: function () {
+      this.$router.push("/Register");
+    },
+    toLogout: function () {
+      this.$confirm("确定要退出登录吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
           sessionStorage.clear();
           this.$router.push("/login");
 
           this.$message({
-            type: 'success',
-            message: '登出成功!'
+            type: "success",
+            message: "登出成功!",
           });
-        }).catch(() => {
+        })
+        .catch(() => {
           this.$message({
-            type: 'info',
-            message: '已取消'
+            type: "info",
+            message: "已取消",
           });
         });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style scoped>
 .el-header,
@@ -120,12 +141,12 @@ export default {
   font-size: 32px;
   position: absolute;
   left: 400px;
-  top:10px;
+  top: 10px;
 }
-.title span{
+.title span {
   position: absolute;
   top: 5px;
   width: 300px;
-  left:-50px;
+  left: -50px;
 }
 </style>

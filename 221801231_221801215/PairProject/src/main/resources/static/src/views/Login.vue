@@ -1,6 +1,6 @@
 <template>
   <el-container>
-   <myheader></myheader>
+    <myheader></myheader>
     <mymain>
       <el-image class="pageimage" :src="this.loginImageUrl"></el-image>
       <div class="loginblock">
@@ -33,33 +33,21 @@
                 margin-top: 20px;
                 border: #333333;
               "
-            >登录</el-button
+              >登录</el-button
             >
           </el-form-item>
         </el-form>
-        <router-link
-          to="/Register"
-          style="
-            text-decoration: none;
-            color: #333333;
-            position: absolute;
-            top: 600px;
-            right: 650px;
-          "
-        >注册新账号-></router-link>
-
       </div>
     </mymain>
     <el-footer>Footer</el-footer>
   </el-container>
 </template>
 <script>
-
 import Myheader from "../components/myheader";
 import mymain from "../components/mymain";
 export default {
   name: "Login",
-  components: {Myheader,mymain},
+  components: { Myheader, mymain },
   data() {
     return {
       form: {
@@ -86,36 +74,45 @@ export default {
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
         "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-      loginImageUrl:"https://i.loli.net/2021/03/31/q6sy5CGrhvX91wE.jpg",
+      loginImageUrl: "https://i.loli.net/2021/03/31/q6sy5CGrhvX91wE.jpg",
     };
   },
   methods: {
-    loginForm(formName)
-    {
+    loginForm(formName) {
       console.log(this.$md5(this.form.loginPassword));
-      let _this=this;
-      this.$axios.post(_this.$api.globalUrl+"/user/login",{username:_this.form.loginName,account:_this.form.loginName,password:_this.$md5(_this.form.loginPassword)}).then(function (response) {
-        console.log(response.data.data);
-        _this.$message({
-          message:'登录成功',
-          type:'success'
-        });
-        _this.$router.push({
-          path:'/index',
-          query: {
-            username:response.data.data,
-            isLogin:true
-          }});
-          sessionStorage.setItem('username',response.data.data);
-          sessionStorage.setItem('loginstatus',true);
-      },function (error) {
-        console.log("error");
-        _this.$message({
-          message:'登录失败',
-          type:'warning'
-        });
-      })
-    }
+      let _this = this;
+      this.$axios
+        .post(_this.$api.globalUrl + "/user/login", {
+          username: _this.form.loginName,
+          account: _this.form.loginName,
+          password: _this.$md5(_this.form.loginPassword),
+        })
+        .then(
+          function (response) {
+            console.log(response.data.data);
+            _this.$message({
+              message: "登录成功",
+              type: "success",
+            });
+            _this.$router.push({
+              path: "/index",
+              query: {
+                username: response.data.data,
+                isLogin: true,
+              },
+            });
+            sessionStorage.setItem("username", response.data.data);
+            sessionStorage.setItem("loginstatus", true);
+          },
+          function (error) {
+            console.log("error");
+            _this.$message({
+              message: "登录失败",
+              type: "warning",
+            });
+          }
+        );
+    },
   },
 };
 </script>
@@ -137,7 +134,7 @@ export default {
 }
 
 .el-main {
-  width:100%;
+  width: 100%;
   background-color: #e9eef3;
   color: #333;
   text-align: center;
@@ -145,7 +142,7 @@ export default {
   height: 900px !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 .el-container:nth-child(5) .el-aside,
 .el-container:nth-child(6) .el-aside {
@@ -201,7 +198,7 @@ export default {
   float: left;
   position: relative;
   right: 0px;
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
 .logintitle {
   width: 200px;
@@ -225,7 +222,7 @@ export default {
 }
 
 .logininput {
-  background:rgba(0,0,0,0.2) !important;
-  border: 1px solid rgba(0,0,0, 0.2) ! important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
 }
 </style>

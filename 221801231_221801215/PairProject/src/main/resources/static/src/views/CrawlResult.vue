@@ -5,7 +5,11 @@
       :loginStatus="this.loginStatus"
     ></myheader>
     <el-main>
-      <sidebar @ResetPage="ResetPage" @GetPagePaperList="GetPagePaperList"></sidebar>
+      <sidebar
+        @ResetPage="ResetPage"
+        @GetPagePaperList="GetPagePaperList"
+        @ChangeToFullResult="ChangeToFullResult"
+      ></sidebar>
       <div class="returnbutton">
         <router-link to="/index"
           ><i
@@ -48,8 +52,8 @@
         style="position: relative"
         @tab-click="ShowPagenation"
       >
-        <el-tab-pane style="">
-          <span slot="label"><i class="el-icon-date"></i> 爬取结果显示</span>
+        <el-tab-pane >
+          <span slot="label"><i class="el-icon-tickets"></i> 爬取结果显示</span>
           <el-collapse-transition>
             <ul style="list-style: none" v-show="this.showpaperList">
               <li
@@ -82,7 +86,8 @@
               </li></ul
           ></el-collapse-transition>
         </el-tab-pane>
-        <el-tab-pane label="关键词图谱">
+        <el-tab-pane >
+          <span slot="label"><i class="el-icon-s-order"></i> 关键词图谱</span>
           <el-card shadow="hover" class="keymap">
             <div
               class="keyword"
@@ -217,7 +222,6 @@
               text-align: left;
               width: 400px;
               margin-left: 20px;
-
             "
           >
             请从以上选择你的热词:{{ this.currentKeyword }}
@@ -253,7 +257,8 @@
             </li>
           </ul>
         </el-tab-pane>
-        <el-tab-pane label="热度走势">
+        <el-tab-pane >
+          <span slot="label"><i class="el-icon-data-line"></i> 热度走势</span>
           <el-form :model="statics">
             <div class="meetingchoosebox">
               <el-radio-group
@@ -364,12 +369,182 @@ export default {
       statics: {
         meetingValue: "全部顶会",
         startYearOptions: {
-          options: [],
-          value: "",
+          options: [
+            {
+              value: "1",
+              label: "2000",
+            },
+            {
+              value: "2",
+              label: "2001",
+            },
+            {
+              value: "3",
+              label: "2002",
+            },
+            {
+              value: "4",
+              label: "2003",
+            },
+            {
+              value: "5",
+              label: "2004",
+            },
+            {
+              value: "6",
+              label: "2005",
+            },
+            {
+              value: "7",
+              label: "2006",
+            },
+            {
+              value: "8",
+              label: "2007",
+            },
+            {
+              value: "9",
+              label: "2008",
+            },
+            {
+              value: "10",
+              label: "2009",
+            },
+            {
+              value: "11",
+              label: "20010",
+            },
+            {
+              value: "12",
+              label: "2011",
+            },
+            {
+              value: "13",
+              label: "2012",
+            },
+            {
+              value: "14",
+              label: "2013",
+            },
+            {
+              value: "15",
+              label: "2014",
+            },
+            {
+              value: "16",
+              label: "2015",
+            },
+            {
+              value: "17",
+              label: "2016",
+            },
+            {
+              value: "18",
+              label: "2017",
+            },
+            {
+              value: "19",
+              label: "2018",
+            },
+            {
+              value: "20",
+              label: "2019",
+            },
+            {
+              value: "21",
+              label: "2020",
+            },
+          ],
+          value: "1",
         },
         endYearOptions: {
-          options: [],
-          value: "",
+          options: [
+            {
+              value: "1",
+              label: "2000",
+            },
+            {
+              value: "2",
+              label: "2001",
+            },
+            {
+              value: "3",
+              label: "2002",
+            },
+            {
+              value: "4",
+              label: "2003",
+            },
+            {
+              value: "5",
+              label: "2004",
+            },
+            {
+              value: "6",
+              label: "2005",
+            },
+            {
+              value: "7",
+              label: "2006",
+            },
+            {
+              value: "8",
+              label: "2007",
+            },
+            {
+              value: "9",
+              label: "2008",
+            },
+            {
+              value: "10",
+              label: "2009",
+            },
+            {
+              value: "11",
+              label: "20010",
+            },
+            {
+              value: "12",
+              label: "2011",
+            },
+            {
+              value: "13",
+              label: "2012",
+            },
+            {
+              value: "14",
+              label: "2013",
+            },
+            {
+              value: "15",
+              label: "2014",
+            },
+            {
+              value: "16",
+              label: "2015",
+            },
+            {
+              value: "17",
+              label: "2016",
+            },
+            {
+              value: "18",
+              label: "2017",
+            },
+            {
+              value: "19",
+              label: "2018",
+            },
+            {
+              value: "20",
+              label: "2019",
+            },
+            {
+              value: "21",
+              label: "2020",
+            },
+          ],
+          value: "21",
         },
       },
       frequencyDatas: [],
@@ -399,6 +574,12 @@ export default {
   methods: {
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
+      let seriesData = this.newfrequencyDatas.splice(
+        this.statics.startYearOptions.value - 1,
+        this.statics.endYearOptions.value -
+          this.statics.startYearOptions.value +
+          1
+      );
       let myChart = this.$echarts.init(document.getElementById("myChart"));
       myChart.resize();
       // 绘制图表
@@ -437,10 +618,15 @@ export default {
             "2018",
             "2019",
             "2020",
-          ],
+          ].splice(
+            this.statics.startYearOptions.value - 1,
+            this.statics.endYearOptions.value -
+              this.statics.startYearOptions.value +
+              1
+          ),
         },
         yAxis: {},
-        series: this.newfrequencyDatas,
+        series: seriesData,
       });
     },
     ShowPagenation: function (tab, event) {
@@ -451,7 +637,8 @@ export default {
         this.pagePagination2 = true;
         this.pagePagination1 = false;
         this.GetKeyword();
-        this.keywordPapersNum = this.keywordPaperList.length;
+        this.keywordPaperList.length = 0;
+        this.currentKeyword = "";
       } else {
         this.pagePagination2 = false;
         this.pagePagination1 = false;
@@ -481,51 +668,49 @@ export default {
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("删除失败");
         });
     },
     GetPagePaperList: function (topagenum, topagesize, value) {
       let _this = this;
-      let searchContent=sessionStorage.getItem('searchContent');
-      alert(searchContent);
-      if(searchContent=="")
-      {
+      let searchContent = sessionStorage.getItem("searchContent");
+      if (searchContent == "") {
         if (value == true) {
-        this.$axios
-          .get(_this.$api.globalUrl + "/userPaper/contentsPage", {
-            params: {
-              pageNum: topagenum,
-              pageSize: topagesize,
-            },
-          })
-          .then(function (response) {
-            console.log(response);
-            _this.paperDetailList = response.data.data;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      }
-      else {
-        this.$axios
-          .get(_this.$api.globalUrl + "/userPaper/keyword", {
-            params: {
-              keyword: _this.currentKeyword,
-              pageNum: topagenum,
-              pageSize: topagesize,
-            },
-          })
-          .then(function (response) {
-            console.log(response);
-            _this.keywordPaperList = response.data.data;
-            console.log(_this.keywordPaperList);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      }}
-      else{
-       this.GetSearchResultPaperList(searchContent);
-       sessionStorage.setItem('searchContent',"");
+          this.$axios
+            .get(_this.$api.globalUrl + "/userPaper/contentsPage", {
+              params: {
+                pageNum: topagenum,
+                pageSize: topagesize,
+              },
+            })
+            .then(function (response) {
+              _this.paperDetailList = response.data.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+              _this.$message.error("用户论文列表加载失败");
+            });
+        } else {
+          this.$axios
+            .get(_this.$api.globalUrl + "/userPaper/keyword", {
+              params: {
+                keyword: _this.currentKeyword,
+                pageNum: topagenum,
+                pageSize: topagesize,
+              },
+            })
+            .then(function (response) {
+              // console.log(response);
+              _this.keywordPaperList = response.data.data;
+              // console.log(_this.keywordPaperList);
+            })
+            .catch(function (error) {
+              console.log(error);
+              _this.$message.error("用户论文列表加载失败");
+            });
+        }
+      } else {
+        this.GetSearchResultPaperList(searchContent);
       }
     },
     handleCurrentChange: function (currentpage) {
@@ -535,7 +720,6 @@ export default {
     handlekeywordChange: function (keywordpage) {
       this.keywordPage = keywordpage;
       this.GetPagePaperList(this.keywordPage, this.keywordsize, false);
-      alert(1);
     },
     showDetails: function (value) {
       this.dialogVisible = true;
@@ -556,11 +740,12 @@ export default {
           },
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           _this.keywordPapersNum = response.data.data;
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("关键词论文列表加载失败");
         });
     },
     getpagenum: function () {
@@ -573,11 +758,12 @@ export default {
           params: {},
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           _this.keywordList = response.data.data;
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("获取关键词失败");
         });
     },
     refresh: function () //刷新界面
@@ -595,7 +781,7 @@ export default {
           params: {},
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           _this.frequencyDatas = response.data.data;
           let index = 0;
           _this.frequencyDatas.forEach((element) => {
@@ -603,7 +789,6 @@ export default {
             for (let i = 0; i < 21; i++) {
               singleArray[i] = "0";
             }
-            console.log(element);
             element.forEach((ele) => {
               let year = parseInt(ele.publishYear) - 2000;
               singleArray[year] = ele.frequency.toString();
@@ -621,28 +806,42 @@ export default {
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("热度走势加载失败");
         });
     },
-    GetSearchResultPaperList:function(value){
-      alert("3");
-    let _this=this;
-    let content=sessionStorage.getItem('searchContent');
-     this.$axios
+    GetSearchResultPaperList: function (value) {
+      let _this = this;
+      let content = sessionStorage.getItem("searchContent");
+      this.$axios
         .get(_this.$api.globalUrl + "/paper/searchPage", {
           params: {
-            content:content,
-            pageNum:_this.pageNum,
-            pageSize:_this.pagesize
+            content: content,
+            pageNum: _this.pageNum,
+            pageSize: _this.pagesize,
           },
         })
         .then(function (response) {
-          console.log(response);
-          _this.paperDetailList=response.data.data;
+          // console.log(response);
+          _this.paperDetailList = response.data.data;
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("结果论文列表加载失败");
         });
-      sessionStorage.setItem('searchContent',"");
+      sessionStorage.setItem("searchContent", "");
+    },
+    RefreshFrequency: function () {
+      if (
+        parseInt(this.statics.startYearOptions.value) >
+        parseInt(this.statics.endYearOptions.value)
+      ) {
+        this.$message({
+          message: "年份范围有误，请重新选择",
+          type: "warning",
+        });
+        this.statics.startYearOptions.value = "1";
+        this.statics.endYearOptions.value = "21";
+      } else this.drawLine();
     },
     ChangeMeetingFrequency: function (value) {
       this.frequencyKeywords.length = 0;
@@ -657,7 +856,7 @@ export default {
             },
           })
           .then(function (response) {
-            console.log(response);
+            // console.log(response);
             _this.frequencyDatas = response.data.data;
             let index = 0;
             _this.frequencyDatas.forEach((element) => {
@@ -665,7 +864,7 @@ export default {
               for (let i = 0; i < 21; i++) {
                 singleArray[i] = "0";
               }
-              console.log(element);
+              // console.log(element);
               element.forEach((ele) => {
                 let year = parseInt(ele.publishYear) - 2000;
                 singleArray[year] = ele.frequency.toString();
@@ -683,6 +882,7 @@ export default {
           })
           .catch(function (error) {
             console.log(error);
+            _this.$message.error("会议切换失败");
           });
       } else {
         this.ShowTotalFrequency();
@@ -690,6 +890,9 @@ export default {
     },
     ResetPage: function () {
       this.papersNum = parseInt(sessionStorage.getItem("papernum"));
+    },
+    ChangeToFullResult() {
+      this.GetPagePaperList(1, 3, true);
     },
   },
 };

@@ -30,25 +30,25 @@
           @click="AddTitle"
         />
       </div>
-        <div
-          class="crawlButton"
-          @mouseenter="showButtonText"
-          @mouseleave="showButtonText"
-          @click="ToCrawlResult"
-        >
-          <span v-show="buttonhover">爬取内容</span>
-          <i
-            class="fa fa-arrow-right"
-            aria-hidden="true"
-            style="
-              font-size: 30px;
-              position: absolute;
-              top: 50%;
-              right: 13px;
-              margin-top: -15px;
-            "
-          ></i>
-        </div>
+      <div
+        class="crawlButton"
+        @mouseenter="showButtonText"
+        @mouseleave="showButtonText"
+        @click="ToCrawlResult"
+      >
+        <span v-show="buttonhover">爬取内容</span>
+        <i
+          class="fa fa-arrow-right"
+          aria-hidden="true"
+          style="
+            font-size: 30px;
+            position: absolute;
+            top: 50%;
+            right: 13px;
+            margin-top: -15px;
+          "
+        ></i>
+      </div>
 
       <div class="paperList" v-show="tableData.length != 0">
         <ul v-for="(items, index) in tableData" :key="index">
@@ -98,17 +98,20 @@ export default {
       buttonhover: false,
       Username: "",
       loginStatus: false,
-      paperNum:0,
+      paperNum: 0,
     };
   },
   mounted() {
     // this.loginStatus = this.$route.query.isLogin;
     this.Username = sessionStorage.getItem("username");
-    this.loginStatus=sessionStorage.getItem("loginstatus");
+    this.loginStatus = sessionStorage.getItem("loginstatus");
     this.GetUserPaperList();
   },
   methods: {
     GetUserPaperList: function () {
+      this.$message({
+        message: "用户论文列表加载中",
+      });
       let newTitle = {};
       let _this = this;
       this.$axios
@@ -116,51 +119,57 @@ export default {
           params: {},
         })
         .then(function (response) {
-          console.log(response);
+          _this.$message({
+            message: "用户论文列表加载成功",
+            type: "success",
+          });
           response.data.data.forEach((element) => {
             let newTitle = {};
             newTitle.id = element.id;
             newTitle.title = element.title;
             _this.tableData.push(newTitle);
-            _this.paperNum=_this.tableData.length;
+            _this.paperNum = _this.tableData.length;
           });
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("用户论文列表加载失败");
         });
     },
     AddTitle: function () {
       let newTitle = {};
       let _this = this;
-      if(this.searchForm.singleSearchText=="")
-      {
-         this.$message({
-        message: "未输入你要查询的题目",
-        type: "warning",
-      });
-      }
-      else{
-        this.$axios
-        .get(_this.$api.globalUrl + "/userPaper/add", {
-          params: {
-            titleOrigin: _this.searchForm.singleSearchText,
-          },
-        })
-        .then(function (response) {
-          console.log(response);
-          response.data.data.forEach((element) => {
-            let newTitle = {};
-            newTitle.id = element.id;
-            newTitle.title = element.title;
-            _this.tableData.push(newTitle);
-          });
-        })
-        .catch(function (error) {
-          console.log(error);
+      if (this.searchForm.singleSearchText == "") {
+        this.$message({
+          message: "未输入你要查询的题目",
+          type: "warning",
         });
-      this.searchForm.singleSearchText = "";
+      } else {
+        this.$axios
+          .get(_this.$api.globalUrl + "/userPaper/add", {
+            params: {
+              titleOrigin: _this.searchForm.singleSearchText,
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+            _this.$message({
+              message: "用户论文列表添加成功",
+              type: "success",
+            });
+            response.data.data.forEach((element) => {
+              let newTitle = {};
+              newTitle.id = element.id;
+              newTitle.title = element.title;
+              _this.tableData.push(newTitle);
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+            _this.$message.error("用户论文列表添加失败");
+          });
+        this.searchForm.singleSearchText = "";
       }
-
     },
     deleteItem: function (value, index) {
       let _this = this;
@@ -171,22 +180,27 @@ export default {
           },
         })
         .then(function (response) {
+          _this.$message({
+            message: "删除成功",
+            type: "success",
+          });
           console.log(response);
           _this.tableData.splice(index, 1);
         })
         .catch(function (error) {
           console.log(error);
+          _this.$message.error("删除失败");
         });
     },
     showButtonText: function () {
       this.buttonhover = !this.buttonhover;
     },
-    ToCrawlResult:function () {
-     this.$router.push({
-       path:'/crawlresult'
-     })
-     sessionStorage.setItem('papernum',this.tableData.length);
-      }
+    ToCrawlResult: function () {
+      this.$router.push({
+        path: "/crawlresult",
+      });
+      sessionStorage.setItem("papernum", this.tableData.length);
+    },
   },
 };
 </script>
