@@ -184,6 +184,7 @@ class Home extends React.Component {
               <Menu.Item key="2" icon={<BarChartOutlined />} theme="light" onClick={this.changePageToDataStatistic.bind(this)}>
                 论文分析
             </Menu.Item>
+            
               <Menu.Item key="3" icon={<SearchOutlined />} theme="light" onClick={this.showSearchDrawer}>
                 高级搜索
             </Menu.Item>
