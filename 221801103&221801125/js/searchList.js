@@ -90,7 +90,6 @@ $(function(){
                     }
                 },
                 error:()=>{
-                    
                     alert("网络烂掉了，你什么也看不到了")
                     $("#reg_wait").css("display","none")
                     $("#empty").removeClass("xiaoshi")
