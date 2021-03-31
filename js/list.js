@@ -23,10 +23,12 @@
                 if(pair[0] == "value"){
                  console.log(pair[1])   
                  this.value=pair[1]
+                 this.value=decodeURI(this.value)
                 }
                 if(pair[0] == "type"){
                     console.log(pair[1])   
                     this.type=pair[1]
+                    this.type=decodeURI(this.type)
                    }
 
         }

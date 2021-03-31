@@ -18,7 +18,7 @@ var app= new Vue({
             to:function(){             
               console.log(this.value)   
               console.log(this.type)   
-              window.location.assign("论文列表.html?value="+this.value+"&type="+this.type)
+              window.location.assign("list.html?value="+this.value+"&type="+this.type)
                 }
             
         }

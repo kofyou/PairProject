@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>大象爬论文</title>
     <link rel="stylesheet" type="text/css" href="Untitled-1.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
@@ -31,7 +30,7 @@
 
  
     <div class="header">
-        <div class="picture"><a href="#"><img src="2.png" ></a></div>
+        <div class="picture"><a href="index.html"><img src="2.png" ></a></div>
 		<div class="hh">
             <select id="se" v-model="type">
 				<option value="author">author</option>
@@ -43,7 +42,7 @@
 			<input type="submit"  @click = "pageNum=1;search()" id="head-r" value="搜索" />
         </div>
         <div id="pi">
-
+            
         </div>
 	</div>
     <div id ="main-container">
@@ -53,7 +52,7 @@
 
         <ul class="list" v-for="novel in item">
             <u class="u">
-            <a id="a" v-bind:href="novel.link">{{novel.title}}</a>
+            <a id="a" v-bind:href="novel.link" target="view_window">{{novel.title}}</a>
         </u>
         <br>
         <b id="b">abstract:   
