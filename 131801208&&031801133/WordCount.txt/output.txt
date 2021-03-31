@@ -1,6 +1,4 @@
-characters: 7057664
-words: 621909
-lines: 13139
+
 type: 29944
 image: 26403
 indexing: 18902
