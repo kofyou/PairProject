@@ -90,6 +90,25 @@ export default {
       scrolltop > 30 ? (this.gotop = true) : (this.gotop = false);
     },
     search1() {
+      this.current = 1;
+      console.log(this.value);
+      if (this.value == "题目") {
+        this.selectwhat = 2;
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.title.includes(this.searchtext))
+          .slice(0, 5);
+      } else if (this.value == "摘要") {
+        this.selectwhat = 3;
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.abstracted.includes(this.searchtext))
+          .slice(0, 5);
+      } else if (this.value == "关键词") {
+        console.log(this.value);
+        this.selectwhat = 4;
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.keyword.indexOf(this.searchtext) > -1)
+          .slice(0, 5);
+      }
     },
     nextpage() {
       let top = document.documentElement.scrollTop || document.body.scrollTop;
@@ -121,7 +140,38 @@ export default {
       }
     },
     lastpage() {
-
+      if (this.current == 1) {
+        console.log("已经是第一页了");
+        alert("已经是第一页了");
+      } else {
+        let top = document.documentElement.scrollTop || document.body.scrollTop;
+        //实现滚动效果
+        const timeTop = setInterval(() => {
+          document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
+          if (top <= 0) {
+            clearInterval(timeTop);
+          }
+        }, 10);
+        this.current--;
+        if (this.selectwhat == 1) {
+          this.listArr1 = this.listArr2.slice(
+            this.current * 5 - 5,
+            this.current * 5
+          );
+        } else if (this.selectwhat == 2) {
+          this.listArr1 = this.listArr2
+            .filter((item, index) => item.title.includes(this.searchtext))
+            .slice(this.current * 5 - 5, this.current * 5);
+        } else if (this.selectwhat == 2) {
+          this.listArr1 = this.listArr2
+            .filter((item, index) => item.abstracted.includes(this.searchtext))
+            .slice(this.current * 5 - 5, this.current * 5);
+        } else {
+          this.listArr1 = this.listArr2
+            .filter((item, index) => item.keyword.indexOf(this.searchtext) > -1)
+            .slice(this.current * 5 - 5, this.current * 5);
+        }
+      }
     },
   },
 };
