@@ -1,0 +1,24 @@
+#shearchbox {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+#contentbyshearch{
+    background-color:#ffffff;
+    float: left;
+    width: 69%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    border-bottom: 1px solid black;
+}
+#tenhotshearch{
+    float: right;
+    width: 25%;
+}
+p.tenword{
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
