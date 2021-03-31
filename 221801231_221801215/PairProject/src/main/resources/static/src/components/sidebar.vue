@@ -244,6 +244,7 @@ export default {
           console.log(error);
           _this.$message.error("搜索失败");
         });
+        let length=0;
       if(this.resultList.length==0)
       {
           this.$confirm("没有搜索到相关题目，是否需要在数据库中继续搜索?", "提示", {
@@ -253,7 +254,7 @@ export default {
       })
         .then(() => {
           this.$axios
-        .get(_this.$api.globalUrl + "/Paper/search", {
+        .get(_this.$api.globalUrl + "/paper/search", {
           params: {
             content: sContent,
           },
@@ -262,11 +263,13 @@ export default {
           console.log(response);
           response.data.data.forEach((element) => {
             let newitem = {};
+            length++;
             newitem.id = element.id;
             newitem.title = element.title;
             _this.resultList.push(newitem);
           });
           _this.$emit("GetPagePaperList");
+          _this.$emit("FullDatabaseResearch",length);
         })
         .catch(function (error) {
           console.log(error);

@@ -9,6 +9,7 @@
         @ResetPage="ResetPage"
         @GetPagePaperList="GetPagePaperList"
         @ChangeToFullResult="ChangeToFullResult"
+        @FullDatabaseResearch="FullDatabaseResearch"
       ></sidebar>
       <div class="returnbutton">
         <router-link to="/index"
@@ -550,6 +551,7 @@ export default {
       frequencyDatas: [],
       newfrequencyDatas: [],
       frequencyKeywords: [],
+      fullDatabaseSearch:false
     };
   },
   mounted() {
@@ -674,6 +676,7 @@ export default {
     },
     GetPagePaperList: function (topagenum, topagesize, value) {//获取当页论文列表
       let _this = this;
+
       let searchContent = sessionStorage.getItem("searchContent");
       if (searchContent == "") {
         if (value == true) {
@@ -711,7 +714,31 @@ export default {
             });
         }
       } else {
+        if(this.fullDatabaseSearch==false)
+        {
         this.GetSearchResultPaperList(searchContent);
+        }
+        else
+        {
+          alert(5);
+          this.$axios
+            .get(_this.$api.globalUrl + "/paper/searchPage", {
+              params: {
+                content: searchContent,
+                pageNum: topagenum,
+                pageSize: topagesize,
+              },
+            })
+            .then(function (response) {
+              // console.log(response);
+              _this.paperDetailList = response.data.data;
+              // console.log(_this.keywordPaperList);
+            })
+            .catch(function (error) {
+              console.log(error);
+              _this.$message.error("数据库论文列表加载失败");
+            });
+        }
       }
     },
     handleCurrentChange: function (currentpage) {//分页项切换时执行刷新论文列表
@@ -815,10 +842,10 @@ export default {
       let _this = this;
       let content = sessionStorage.getItem("searchContent");
       this.$axios
-        .get(_this.$api.globalUrl + "/paper/searchPage", {
+        .get(_this.$api.globalUrl + "/userPaper/searchPage", {
           params: {
-            content: content,
-            pageNum: _this.pageNum,
+            originContent: content,
+            pageNum: _this.currentPage,
             pageSize: _this.pagesize,
           },
         })
@@ -895,9 +922,34 @@ export default {
       this.papersNum = parseInt(sessionStorage.getItem("papernum"));
     },
     ChangeToFullResult() {
+      this.fullDatabaseSearch=false;
       this.GetPagePaperList(1, 3, true);
     },
+    FullDatabaseResearch(value)
+    {
 
+      let _this=this;
+      let newContent=sessionStorage.getItem('searchContent');
+      this.fullDatabaseSearch=true;
+      this.$axios
+        .get(_this.$api.globalUrl + "/paper/searchPage", {
+          params: {
+            content: newContent,
+            pageNum: 1,
+            pageSize: 3,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+          _this.paperDetailList=[];
+          _this.paperDetailList = response.data.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+          _this.$message.error("数据库结果论文列表加载失败");
+        });
+        this.papersNum=value;
+    }
   },
 };
 </script>
