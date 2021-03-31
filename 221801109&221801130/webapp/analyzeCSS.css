@@ -1,0 +1,45 @@
+#KeyWordDiv{
+    position: absolute;
+    bottom: 0px;
+    width: 88%;
+    height: 88%;
+    text-align: center;
+    background-color: aliceblue;
+}
+#KeyWordDiv input{
+    margin-left: 20px;
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    outline: none;
+    font-family: Arial;
+    border: none;
+}
+#KeyWordDiv input:hover{
+    background-color: transparent;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    border:1px solid gray;
+    outline: none;
+    font-family: Arial;
+    border: none;
+    font-style: italic;
+    font-weight: bolder;
+}
+#KeyWordDiv input:active{
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    outline: none;
+    font-family: Arial;
+    border: none;
+    font-weight: normal;
+}
+#TOP10title{
+    font-size: 50px;
+    text-align: center;
+    color: #ff8700;
+    font-weight: bold;
+    font-family: "楷体-简";
+}

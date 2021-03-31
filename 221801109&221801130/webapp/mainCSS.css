@@ -1,0 +1,58 @@
+div#heading {
+    background-color: dodgerblue;
+    width: 100%;
+    height: 12%;
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    vertical-align: center;
+    font-family: cursive;
+}
+
+div#menu{
+    background-color: midnightblue;
+    width: 12%;
+    height: 88%;
+    float: left;
+}
+div#body{
+    background-color: aliceblue;
+    width: 88%;
+    height: 88%;
+    float: left;
+}
+#searchText,#analyse,#top{
+    background: rgba(0,0,0,0);
+    border-width: 0;
+    color: white;
+    text-align:center;
+    font-size: 30px;
+    position: absolute;
+    border-radius: 10px;
+    font-family: serif;
+}
+#searchText{
+    top: 20%;
+    left: 2%;
+}
+#analyse{
+    top: 40%;
+    left: 2%;
+}
+#top{
+    top: 60%;
+    left: 2%;
+}
+#contentBody{
+    width: 88%;
+    height: 88%;
+    float: left;
+    background-color: lightgray;
+}
+#searchText:hover,#analyse:hover,#top:hover{
+    background-color: lightgray;
+    color: midnightblue;
+    border-radius: 10px;
+}
