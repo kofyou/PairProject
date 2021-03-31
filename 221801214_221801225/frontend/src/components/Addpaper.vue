@@ -22,7 +22,7 @@
       <input class="addBox" type="text" v-model="itemObj.link" />
     </div>
     <div class="changediv">
-      <button class="changebu" @click="changecl">修改</button>
+      <button class="changebu" @click="changecl">返回</button>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@
 <script>
 import eventVue from "@/assets/eventVue.js";
 export default {
-  components: { },
+  components: {},
   data() {
     return {
       itemObj: {
@@ -41,20 +41,20 @@ export default {
       },
     };
   },
-  methods:{
-    changecl(){
-        this.$router.replace("/show");
+  methods: {
+    changecl() {
+      this.$router.replace("/show");
       this.$nextTick(() => {
         eventVue.$emit("ak", this.itemObj);
-      });      
-    }
+      });
+    },
   },
-  mounted(){ 
-    eventVue .$on("aa",(message)=>{   
-                 this.itemObj = message;
-                 console.log(this.itemObj);
-            })
-  }
+  mounted() {
+    eventVue.$on("aa", (message) => {
+      this.itemObj = message;
+      console.log(this.itemObj);
+    });
+  },
 };
 </script>
 
@@ -67,10 +67,12 @@ export default {
   .changediv {
     padding-top: 50px;
     padding-left: 500px;
+      
     .changebu {
       color: black;
-      height: 60px;
-      width: 80px;
+      background-color: white;
+      height: 50px;
+      width: 60px;
       font-size: 20px;
     }
   }
@@ -125,4 +127,4 @@ export default {
     }
   }
 }
-</style>>
+</style>

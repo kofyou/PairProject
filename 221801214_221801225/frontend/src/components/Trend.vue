@@ -1,7 +1,7 @@
 <template>
   <div class="main1">
     <div id="main" style="width: 1200px; height: 400px"></div>
-    <div class="changebu">
+    <div class="changebue">
       <button class="CV" @click="clickEC">ECCV</button>
       <button class="CV" @click="clickIC">ICCV</button>
       <button class="CV" @click="clickPR">CVPR</button>
@@ -147,7 +147,7 @@ export default {
   list-style: none;
   background-image: url(https://images.cnblogs.com/cnblogs_com/lzklzk/1952300/o_210325063128u=3078691788,1881157151&fm=26&gp=0.jpg);
 }
-.changebu {
+.changebue {
   padding-left: 300px;
   display: flex;
   // border: 1px solid #41b883;

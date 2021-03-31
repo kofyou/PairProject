@@ -1,7 +1,7 @@
 <template>
   <div class="itembox">
     <div class="paperid">
-      {{ itemObj.paper_id-2 }}
+      {{ itemObj.paper_id - 2 }}
     </div>
     <div class="top">
       <h2>{{ itemObj.title }}</h2>
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="change">
-      <button class="delete" @click="deleted">删除</button>
-      <button class="update" @click="change">修改</button>
+      <button class="delete" @click="deleted()">删除</button>
+      <button class="update" @click="change">查看</button>
     </div>
   </div>
 </template>
@@ -46,8 +46,8 @@ export default {
     },
   },
   methods: {
-    delete(){
-        location. reload()
+    deleted() {
+      location.reload();
     },
     See(e) {
       window.location.href = e;
@@ -58,13 +58,12 @@ export default {
         eventVue.$emit("aa", this.itemObj);
       });
     },
-          mounted(){ 
-    eventVue .$on("ak",(message)=>{   
-                 this.itemObj = message;
-                 console.log(this.itemObj);
-            })
-            
-  },
+    mounted() {
+      eventVue.$on("ak", (message) => {
+        this.itemObj = message;
+        console.log(this.itemObj);
+      });
+    },
   },
 };
 </script>
