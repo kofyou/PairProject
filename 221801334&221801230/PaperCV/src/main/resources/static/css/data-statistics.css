@@ -1,0 +1,15 @@
+body{
+    /*background-image: url(../img/b.jpg);*/
+    /*background-repeat:no-repeat;*/
+    list-style: none;
+    /*去掉ui和li的 点*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom;
+    color: #fff;
+    background-color: #c2eedf;
+    font-family: 'microsoft yahei', Arial, sans-serif;
+}

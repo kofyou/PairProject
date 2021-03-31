@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pairproject.papercv.dao.PaperMapper">
+    <resultMap id="BaseResultMap" type="com.pairproject.papercv.model.Paper">
+        <constructor>
+            <idArg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="paperAbstract" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="meeting" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="year" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="keyWord" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </constructor>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from paper
+    </select>
+
+    <select id="selectByTitle" parameterType="String" resultMap="BaseResultMap">
+        select * from paper
+        <where>
+            <if test="title != null">
+                and title like '%${title}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByMeeting" parameterType="String" resultMap="BaseResultMap">
+        select * from paper where meeting = #{meeting}
+    </select>
+
+    <select id="readCount" parameterType="String" resultType="java.lang.Integer">
+        select count(title) from paper where meeting = #{meeting}
+    </select>
+
+    <insert id="insert" parameterType="com.pairproject.papercv.model.Paper" keyProperty="title">
+    insert into paper (title, paperAbstract, url, meeting, keyWord, 'year')
+    values (#{title,jdbcType=VARCHAR}, #{paperAbstract,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+    #{meeting,jdbcType=VARCHAR}, #{keyWord,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

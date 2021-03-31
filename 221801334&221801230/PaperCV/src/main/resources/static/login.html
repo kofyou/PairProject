@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 兼容IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge">
+    <!-- 兼容移动设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- boostrap4样式 -->
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>登录注册</title>
+</head>
+<body>
+<!-- 顶部半透明容器 -->
+<div class="navbar navbar-fixed-top row">
+    <div class="col-xs-1 aTopAndBottom ">
+        <a href="https://edu.cnblogs.com/campus/fzu/FZUSESPR21/homework/11891"><span class="glyphicon glyphicon-home "></span></a>
+    </div>
+    <!--登录按钮-->
+    <div class="col-xs-1 col-xs-offset-9 aTopAndBottom">
+        <a href="" data-toggle="modal" data-target="#login">
+            <span class="glyphicon glyphicon-log-in"></span>
+            <span id="loginText">登录</span>
+        </a>
+    </div>
+    <!--注册按钮-->
+    <div class="col-xs-1 aTopAndBottom">
+        <a href="" data-toggle="modal" data-target="#register">
+            <span class="glyphicon glyphicon-user"></span>
+            <span id="registText">注册</span>
+        </a>
+    </div>
+</div>
+<!-- 中部容器 -->
+<div class="container">
+    <div class="main">
+        <h1 id="title">PaperCV</h1>
+<!--        <h5 id="title2">专注于计算机视觉领域论文搜索</h5>-->
+    </div>
+</div>
+
+<!-- 外部网易云音乐 插件-->
+<iframe class="netease_Player" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=300 src="//music.163.com/outchain/player?type=0&id=6686574605&auto=0&height=430">
+</iframe>
+<!-- 底部半透明容器：四选项 -->
+<div class="navbar navbar-fixed-bottom row">
+    <!-- 音乐分类 -->
+    <div class="col-xs-3 aTopAndBottom bottomSelect">
+        <a href="javascript:void(0);" onclick="openMyMusic()">
+            <span class="glyphicon glyphicon-music"></span>
+        </a>
+    </div>
+
+    <!-- 学习分类 -->
+    <div class="col-xs-3 aTopAndBottom bottomSelect">
+        <a href="http://cvpr2021.thecvf.com/">
+            <span class="glyphicon glyphicon-education"></span>
+        </a>
+    </div>
+
+    <!-- 更多分类  -->
+    <div class="col-xs-3 aTopAndBottom bottomSelect">
+        <div class="dropup">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                更多
+            </a>
+            <ul class="dropdown-menu dropdownSelect dropdown-menu-right">
+                <li>
+                    <a href="https://www.cnblogs.com/w-wwh/">联系作者1</a>
+                </li>
+                <li>
+                    <a href="https://www.cnblogs.com/xydf/">联系作者2</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 更多分类 end -->
+</div>
+
+<!-- 注册 -->
+<div id="register" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">注册</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" action="">
+                    <div class="form-group">
+                        <label for="registerName">用户名</label>
+                        <input id="registerName" class="form-control" type="text" placeholder="6-15位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <input id="registerPassword" class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="againPassword">再次输入密码</label>
+                        <input id="againPassword" class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input id="email" class="form-control" type="email" placeholder="例如:***@***.com">
+                    </div>
+                    <div class="text-right">
+                        <button id="btn-register" class="btn btn-primary" type="button"
+                                style="background-color: #3a8cd2b3;border: 0px
+                         solid
+                         transparent;">注册</button>
+                        <button class="btn btn-danger" data-dismiss="modal" style="background-color: #fb5e5999;border: 0px solid transparent;">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login" style="font-size: 13px;">
+                        已有账号？点我登录
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 注册 end-->
+<!-- 登录 -->
+<div id="login" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">登录</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" action="">
+                    <div class="form-group">
+                        <label for="loginName">用户名</label>
+                        <input id="loginName" class="form-control" type="text" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <input id="loginPassword" class="form-control" type="password" placeholder="请输入密码">
+                    </div>
+                    <div class="text-right">
+                        <button id="btn-login" class="btn btn-primary" type="button" style="background-color:
+                        #3a8cd2b3; border:
+                        0px
+                        solid transparent;">登录</button>
+                        <button class="btn btn-danger" data-dismiss="modal" style="background-color: #fb5e5999;border: 0px solid transparent;">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register" style="font-size: 13px">
+                        还没有账号？点我注册
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 登录 end -->
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>
