@@ -82,7 +82,35 @@ public class PaperListServiceImpl implements PaperListService {
 		return datalist;
 		
     }
-	
+	public static List<Paper> find(String s){
+		String sql = "select * from paper where paperid=?";
+		DBUtils dbUtils = new DBUtils();
+		dbUtils.init();
+		Connection conn =dbUtils.getConn();
+		PreparedStatement pstm = null;
+		ResultSet rs=null;
+		
+		try {
+			pstm=conn.prepareStatement(sql);
+			pstm.setString(1, s);
+			rs=pstm.executeQuery();
+			List<Paper> datalist = new ArrayList<Paper>();
+			while(rs.next()) {
+				Paper p= new Paper();
+				p.setAbout(rs.getString("about"));
+				p.setId(rs.getString("paperid"));
+				//p.setKeywords(g.getKeywords());
+				p.setTitle(rs.getString("title"));
+				p.setUrl(rs.getString("url"));									
+				datalist.add(p);
+			}
+			return datalist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
 	public static int delete(String title) {
 		String sql="delete from paper where title=?";
 		DBUtils dbUtils = new DBUtils();
@@ -132,12 +160,13 @@ public class PaperListServiceImpl implements PaperListService {
 		
 
 			//File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
-			//File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
-			File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
-			List<Paper> datalist = getDirectory(file);	        					
+			File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
+			//File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
+			List<Paper> datalist = getECCV(file2);	        					
 			/*for(int i = 0 ; i < datalist.size() ; i++) {
 				  System.out.println(datalist.get(i).getUrl());
 			}*/
+			
 			
 			String sql="insert into paper(paperid,title,url,about,keyword) value(?,?,?,?,?)";
 			DBUtils dbUtils = new DBUtils();

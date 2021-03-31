@@ -10,6 +10,10 @@
 		class="com.cs.PairWork1.Controller.PaperListController">
 		
 	</bean>
+	<bean id="findPaperController"
+		class="com.cs.PairWork1.Controller.FindPaperController">
+		
+	</bean>
 	<bean id="paperListController2"
 		class="com.cs.PairWork1.Controller.PaperListController2">
 		
@@ -33,6 +37,7 @@
 			<props>
 				<prop key="/deletePaperController.do">deletePaperController</prop>	
 				<prop key="/paperListController.do">paperListController</prop>
+				<prop key="/findPaperController.do">findPaperController</prop>
 				<prop key="/paperListController2.do">paperListController2</prop>
 				<prop key="/paperListController3.do">paperListController3</prop>
 				
