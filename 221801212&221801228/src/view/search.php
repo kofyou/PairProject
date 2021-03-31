@@ -12,6 +12,7 @@
     <script src="view/bootstrap/bootstrap.min.js"></script>
     <title>搜索</title>
     <link type="text/css" rel="stylesheet" href="view/css/search.css" />
+    <script src="js/delete.js"></script>
     <?php require_once(dirname(__FILE__) . "\\PaperListView.php"); ?>
     <?php require_once(dirname(__FILE__) . "\\PopularWordView.php"); ?>
 </head>

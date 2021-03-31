@@ -18,6 +18,7 @@ class PaperListView
         echo '<div class="panel-heading"';
         echo '<h3 class="panel-title">';
         echo '<a href="'.$paper->link.'" class = "panel-title">'.$paper->title.'</a>';
+        echo '<button class="but" onclick="ondelete(this)">删除</button>';
         echo '</h3>';
         echo '</div>';
         echo '<div class="panel-body">';
