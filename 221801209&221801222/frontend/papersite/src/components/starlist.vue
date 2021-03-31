@@ -265,7 +265,7 @@ export default {
           // console.log(url)
           window.open(url, '_blank');
         }
-      }, 500);
+      }, 5000);
 
     },
     getDetails(row){
