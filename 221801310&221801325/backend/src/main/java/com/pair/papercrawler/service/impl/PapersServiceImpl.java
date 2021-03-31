@@ -1,5 +1,7 @@
 package com.pair.papercrawler.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pair.papercrawler.dao.PapersMapper;
 import com.pair.papercrawler.models.Paper;
 import com.pair.papercrawler.service.PapersService;
@@ -15,22 +17,34 @@ public class PapersServiceImpl implements PapersService {
 
     @Override
     public void deletePaperByPaperId(Integer paperId) {
-
+        papersMapper.deletePaperByPaperId(paperId);
     }
 
     @Override
-    public List<Paper> selectPaperByTitle(String title) {
-        return papersMapper.selectPaperByTitle("%" + title + "%");
+    public PageInfo<Paper> selectPaperByTitle(String title,Integer pageNum, Integer pageSize) {
+//        return papersMapper.selectPaperByTitle("%" + title + "%");
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = papersMapper.selectPaperByTitle("%" + title + "%");
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
     }
 
     @Override
-    public List<Paper> selectPaperByAbstracts(String abstracts) {
-        return papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
+    public PageInfo<Paper> selectPaperByAbstracts(String abstracts,Integer pageNum, Integer pageSize) {
+//        return papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
     }
 
     @Override
-    public List<Paper> selectPaperByMagazine(String magazine) {
-        return papersMapper.selectPaperByMagazine(magazine);
+    public PageInfo<Paper> selectPaperByMagazine(String magazine,Integer pageNum, Integer pageSize) {
+//        return papersMapper.selectPaperByMagazine(magazine);
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = papersMapper.selectPaperByMagazine(magazine);
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
     }
 
 
@@ -40,9 +54,11 @@ public class PapersServiceImpl implements PapersService {
     }
 
     @Override
-    public List<Paper> selectAll() {
-        return papersMapper.selectAll();
+    public PageInfo<Paper> selectAll(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = papersMapper.selectAll();
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
     }
-
 
 }

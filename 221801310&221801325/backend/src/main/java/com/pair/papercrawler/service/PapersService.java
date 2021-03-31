@@ -1,5 +1,6 @@
 package com.pair.papercrawler.service;
 
+import com.github.pagehelper.PageInfo;
 import com.pair.papercrawler.models.Paper;
 
 import java.util.List;
@@ -7,13 +8,13 @@ import java.util.List;
 public interface PapersService {
     void deletePaperByPaperId(Integer paperId);
 
-    List<Paper> selectPaperByTitle(String title);
+    PageInfo<Paper> selectPaperByTitle(String title,Integer pageNum, Integer pageSize);
 
-    List<Paper> selectPaperByMagazine(String magazine);
+    PageInfo<Paper> selectPaperByMagazine(String magazine,Integer pageNum, Integer pageSize);
 
     Paper selectPaperByPaperId(Integer paperId);
 
-    List<Paper> selectAll();
+    PageInfo<Paper> selectAll(Integer pageNum, Integer pageSize);
 
-    List<Paper> selectPaperByAbstracts(String abstracts);
+    PageInfo<Paper> selectPaperByAbstracts(String abstracts,Integer pageNum, Integer pageSize);
 }

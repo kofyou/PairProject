@@ -16,4 +16,6 @@ import lombok.Setter;
 public class RequestMessage {
     private String searchType;
     private String content;
+    private Integer pageNum;
+    private Integer pageSize;
 }

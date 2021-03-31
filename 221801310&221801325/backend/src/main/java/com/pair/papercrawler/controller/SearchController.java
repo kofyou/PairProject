@@ -1,6 +1,7 @@
 package com.pair.papercrawler.controller;
 
 
+import com.github.pagehelper.PageInfo;
 import com.pair.papercrawler.models.Paper;
 import com.pair.papercrawler.models.RequestMessage;
 import com.pair.papercrawler.models.ResponseMessage;
@@ -35,19 +36,22 @@ public class SearchController {
     public ResponseMessage searchPaper(@RequestBody RequestMessage requestMessage) {
         String type = requestMessage.getSearchType();
         String content = requestMessage.getContent();
-        List<Paper> paperList = new ArrayList<Paper>();
+        Integer pageNum = requestMessage.getPageNum();
+        Integer pageSize = requestMessage.getPageSize();
+
+        PageInfo<Paper> pageInfo = new PageInfo<>();
         if (type.equals("author")) {
-            paperList = authorService.getPaperByAuthorName(content);
+            pageInfo = authorService.getPaperByAuthorName(content,pageNum,pageSize);
         } else if (type.equals("keyword")) {
-            paperList = keywordsService.getPaperByKeyword(content);
+            pageInfo = keywordsService.getPaperByKeyword(content,pageNum,pageSize);
         } else if (type.equals("title")) {
-            paperList = papersService.selectPaperByTitle(content);
+            pageInfo = papersService.selectPaperByTitle(content,pageNum,pageSize);
         } else if (type.equals("abstracts")) {
-            paperList = papersService.selectPaperByAbstracts(content);
+            pageInfo = papersService.selectPaperByAbstracts(content,pageNum,pageSize);
         } else {
             return ResponseMessage.failure("请传入正确的搜索类型");
         }
-        return ResponseMessage.success(paperList);
+        return ResponseMessage.success(pageInfo);
     }
 
 
@@ -59,8 +63,8 @@ public class SearchController {
      * @Date: 2021/3/30
      */
     @GetMapping("/getAllPaper")
-    public ResponseMessage getAllPaper() {
-        return ResponseMessage.success(papersService.selectAll());
+    public ResponseMessage getAllPaper(@RequestParam(name="pageNum") Integer pageNum,@RequestParam(name = "pageSize") Integer pageSize) {
+        return ResponseMessage.success(papersService.selectAll(pageNum,pageSize));
     }
 
     /***
@@ -70,9 +74,12 @@ public class SearchController {
      * @Author: top
      * @Date: 2021/3/30
      */
-    @GetMapping("/get_Magazine")
-    public ResponseMessage getMagazine(@RequestParam(name = "magazine") String magazine) {
-        return ResponseMessage.success(papersService.selectPaperByMagazine(magazine));
+    @PostMapping("/get_Magazine")
+    public ResponseMessage getMagazine(@RequestBody RequestMessage requestMessage) {
+        String content = requestMessage.getContent();
+        Integer pageNum = requestMessage.getPageNum();
+        Integer pageSize = requestMessage.getPageSize();
+        return ResponseMessage.success(papersService.selectPaperByMagazine(content,pageNum,pageSize));
     }
 
     @DeleteMapping("/deletePaper")

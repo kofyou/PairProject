@@ -1,5 +1,7 @@
 package com.pair.papercrawler.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pair.papercrawler.dao.AuthorsMapper;
 import com.pair.papercrawler.models.Author;
 import com.pair.papercrawler.models.Paper;
@@ -15,8 +17,13 @@ public class AuthorServiceImpl implements AuthorService {
     private AuthorsMapper authorsMapper;
 
     @Override
-    public List<Paper> getPaperByAuthorName(String author) {
-        return authorsMapper.selectPaperByAuthorName(author);
+    public PageInfo<Paper> getPaperByAuthorName(String author, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = authorsMapper.selectPaperByAuthorName(author);
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
+
+//        return authorsMapper.selectPaperByAuthorName(author);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.pair.papercrawler.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pair.papercrawler.dao.KeywordsMapper;
 import com.pair.papercrawler.models.Paper;
 import com.pair.papercrawler.service.KeywordsService;
@@ -23,8 +25,13 @@ public class KeywordsServiceImpl implements KeywordsService {
      * @Date: 2021/3/30
      */
     @Override
-    public List<Paper> getPaperByKeyword(String keyword) {
-        return keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
+    public PageInfo<Paper> getPaperByKeyword(String keyword, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Paper> papers = keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
+        PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
+        return pageInfo;
+
+//        return keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.pair.papercrawler.dao;
 
+import com.github.pagehelper.Page;
 import com.pair.papercrawler.models.Paper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface PapersMapper {
@@ -15,7 +17,7 @@ public interface PapersMapper {
     * @Author: top
     * @Date: 2021/3/30 
     */
-    void deletePaperByPaperId(String paperId);
+    void deletePaperByPaperId(Integer paperId);
 
     /*** 
     * @Description: 根据标题搜索论文 
@@ -56,5 +58,6 @@ public interface PapersMapper {
 
 
     List<Paper> selectPaperByAbstracts(String abstracts);
-    
+
+
 }
