@@ -26,14 +26,40 @@ export default defineComponent({
       }
       return null;
     },
-    querySearch (queryString, cb) {
-      // console.log(inputValue)
+  },
+  created() {
+    this.inputValue = this.getQueryString("title");
+    if (this.inputValue === null) {
+      this.inputValue = "";
+    }
+    console.log(this.inputValue);
+  },
+  setup(props, { emit }) {
+    const { ctx } = getCurrentInstance();
+    var inputValue = ref("");
+    //搜索框内容 子传父
+    const emitTitle = () => {
+      emit("title", inputValue.value);
+    };
+    //get方法获取文章title
+    const getTitles = () => {
+      ctx.$http
+        .get("/paper/title", {
+          title: inputValue.value,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    };
 
-      this.emitTitle();
-      this.ctx.$http
+    const paperTitles = ref([]);
+    const querySearch = (queryString, cb) => {
+      // console.log(inputValue)
+      emitTitle();
+      ctx.$http
         .get("/paper/title", {
           address: 5,
-          title: this.inputValue.value,
+          title: inputValue.value,
         })
         .then((data) => {
           for (let i = 0; i < data.length; i++) {
@@ -48,34 +74,7 @@ export default defineComponent({
       //   : paperTitles.value;
       // 调用 callback 返回建议列表的数据
       // cb(results);
-    },
-  },
-  created() {
-    this.inputValue = this.getQueryString("title");
-    if (this.inputValue === null) {
-      this.inputValue = "";
-    }
-    console.log(this.inputValue);
-  },
-  setup(props, { emit }) {
-    const {ctx} = getCurrentInstance();
-    var inputValue = ref("");
-    const emitTitle =  () => {
-      emit("title", inputValue.value);
     };
-    //搜索框内容 子传父
-    //get方法获取文章title
-    const getTitles = () => {
-      ctx.$http
-        .get("/paper/title", {
-          title: inputValue.value,
-        })
-        .then((res) => {
-          console.log(res);
-        });
-    };
-
-    const paperTitles = ref([]);
     const createFilter = (queryString) => {
       return (paperTitles) => {
         return (
@@ -95,13 +94,13 @@ export default defineComponent({
       paperTitles.value = loadAll();
     });
     return {
-      ctx,
       emitTitle,
       inputValue,
       getTitles,
       paperTitles,
       state1: ref(""),
       state2: ref(""),
+      querySearch,
       createFilter,
       loadAll,
       handleSelect,

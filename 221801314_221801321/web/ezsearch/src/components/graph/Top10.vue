@@ -15,22 +15,21 @@ export default defineComponent({
   components: {
     WordCloud,
   },
-  data() {
-    return {
-       myArray: new Array(),
-    }
-  },
-  methods:{ 
-    querySearch () {
-      let echarts = inject("ec"); //引入
-      const { ctx } = getCurrentInstance();
+  setup() {
+    const { ctx } = getCurrentInstance();
+    let echarts = inject("ec"); //引入
+    onMounted(() => {
+      querySearch();
+    });
+    let myArray = new Array();
+    const querySearch = () => {
       ctx.$http.get("/word/top", {}).then((data) => {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
           let array = new Array();
           array.push(data[i].keyword);
           array.push(data[i].num);
-          this.myArray.push(array);
+          myArray.push(array);
         }
         //需要获取到element,所以是onMounted的Hook
         let myChart = echarts.init(document.getElementById("top10"));
@@ -40,7 +39,7 @@ export default defineComponent({
             {
               // dimensions: ["name", "age", "profession", "score", "date"],
               dimensions: ["keyword", "num"],
-              source: this.myArray,
+              source: myArray,
             },
             {
               transform: {
@@ -78,12 +77,11 @@ export default defineComponent({
           myChart.resize();
         };
       });
-    },
-  },
-  created() {
-    this.querySearch();
-  },
-  setup() {
+    };
+    return {
+      querySearch,
+      myArray,
+    };
   },
 });
 </script>
