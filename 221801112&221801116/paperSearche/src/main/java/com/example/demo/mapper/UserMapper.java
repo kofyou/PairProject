@@ -10,8 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 @Mapper
-public interface UserMapper
-{
+public interface UserMapper {
     @Select("SELECT * FROM user where name=#{name}")
     public User selUserByName(User user);
 

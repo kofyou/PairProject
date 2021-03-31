@@ -3,11 +3,15 @@ package com.example.demo.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paper
-{
+/**
+ * @Description: 论文类
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
+public class Paper {
     String paperId;
-    List<PaperAuthors> authorsList=new ArrayList<>();
-    List<Keywords> keywordsList=new ArrayList<>();
+    List<PaperAuthors> authorsList = new ArrayList<>();
+    List<Keywords> keywordsList = new ArrayList<>();
     String authors;//字符串形式
     String keywords;//
     String abstrac;
@@ -17,8 +21,7 @@ public class Paper
     String conference;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Paper{" +
                 "paperId='" + paperId + '\'' +
                 ", authorsList=" + authorsList +
@@ -33,103 +36,83 @@ public class Paper
                 '}';
     }
 
-    public String getConference()
-    {
+    public String getConference() {
         return conference;
     }
 
-    public void setConference(String conference)
-    {
+    public void setConference(String conference) {
         this.conference = conference;
     }
 
-    public List<PaperAuthors> getAuthorsList()
-    {
+    public List<PaperAuthors> getAuthorsList() {
         return authorsList;
     }
 
-    public void setAuthorsList(List<PaperAuthors> authorsList)
-    {
+    public void setAuthorsList(List<PaperAuthors> authorsList) {
         this.authorsList = authorsList;
     }
 
-    public List<Keywords> getKeywordsList()
-    {
+    public List<Keywords> getKeywordsList() {
         return keywordsList;
     }
 
-    public void setKeywordsList(List<Keywords> keywordsList)
-    {
+    public void setKeywordsList(List<Keywords> keywordsList) {
         this.keywordsList = keywordsList;
     }
 
-    public String getAbstrac()
-    {
+    public String getAbstrac() {
         return abstrac;
     }
 
-    public void setAbstrac(String abstrac)
-    {
+    public void setAbstrac(String abstrac) {
         this.abstrac = abstrac;
     }
 
-    public String getPublicationTitle()
-    {
+    public String getPublicationTitle() {
         return publicationTitle;
     }
 
-    public void setPublicationTitle(String publicationTitle)
-    {
+    public void setPublicationTitle(String publicationTitle) {
         this.publicationTitle = publicationTitle;
     }
 
-    public String getPublicationYear()
-    {
+    public String getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(String publicationYear)
-    {
+    public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
     }
 
-    public String getPersistentLink()
-    {
+    public String getPersistentLink() {
         return persistentLink;
     }
 
-    public void setPersistentLink(String persistentLink)
-    {
+    public void setPersistentLink(String persistentLink) {
         this.persistentLink = persistentLink;
     }
 
-    public String getPaperId()
-    {
+    public String getPaperId() {
         return paperId;
     }
 
-    public void setPaperId(String paperId)
-    {
+    public void setPaperId(String paperId) {
         this.paperId = paperId;
     }
 
-    public String getAuthors()
-    {
+    public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String authors)
-    {
+    public void setAuthors(String authors) {
         this.authors = authors;
     }
 
-    public String getKeywords()
-    {
+    public String getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String keywords)
-    {
+    public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 }

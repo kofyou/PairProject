@@ -1,7 +1,11 @@
 package com.example.demo.bean;
 
-public class PaperAnslyse
-{
+/**
+ * @Description: 论文数据分析结果类
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
+public class PaperAnslyse {
     String paId;
     String dataStaticData;
     String paperAnslyseData;
@@ -9,63 +13,51 @@ public class PaperAnslyse
     String time;
     String conference;
 
-    public String getConference()
-    {
+    public String getConference() {
         return conference;
     }
 
-    public void setConference(String conference)
-    {
+    public void setConference(String conference) {
         this.conference = conference;
     }
 
-    public String getPaId()
-    {
+    public String getPaId() {
         return paId;
     }
 
-    public void setPaId(String paId)
-    {
+    public void setPaId(String paId) {
         this.paId = paId;
     }
 
-    public String getDataStaticData()
-    {
+    public String getDataStaticData() {
         return dataStaticData;
     }
 
-    public void setDataStaticData(String dataStaticData)
-    {
+    public void setDataStaticData(String dataStaticData) {
         this.dataStaticData = dataStaticData;
     }
 
-    public String getPaperAnslyseData()
-    {
+    public String getPaperAnslyseData() {
         return paperAnslyseData;
     }
 
-    public void setPaperAnslyseData(String paperAnslyseData)
-    {
+    public void setPaperAnslyseData(String paperAnslyseData) {
         this.paperAnslyseData = paperAnslyseData;
     }
 
-    public String getDataWordsCloud()
-    {
+    public String getDataWordsCloud() {
         return dataWordsCloud;
     }
 
-    public void setDataWordsCloud(String dataWordsCloud)
-    {
+    public void setDataWordsCloud(String dataWordsCloud) {
         this.dataWordsCloud = dataWordsCloud;
     }
 
-    public String getTime()
-    {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(String time)
-    {
+    public void setTime(String time) {
         this.time = time;
     }
 }

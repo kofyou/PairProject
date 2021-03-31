@@ -21,7 +21,7 @@ public interface LimitPaperMapper {
 
     @Select("SELECT * FROM paper WHERE persistentLink != 'null' and (keywords like concat('%', #{value}, '%')" +
             "or publicationTitle like concat('%', #{value}, '%')) limit #{startPosition} ,#{pageSize}")
-    public List<Paper> searchByKeyWords(@Param("value") String keyword,@Param("startPosition") int startPosition, @Param("pageSize") int pageSize);
+    public List<Paper> searchByKeyWords(@Param("value") String keyword, @Param("startPosition") int startPosition, @Param("pageSize") int pageSize);
 
     @Select("SELECT COUNT(*) FROM paper WHERE persistentLink != 'null' and (keywords like concat('%', #{value}, '%') or publicationTitle like concat('%', #{value}, '%'))")
     public Integer getCuntS(@Param("value") String keyword);
@@ -31,13 +31,13 @@ public interface LimitPaperMapper {
 
     @Update("UPDATE paper SET keywords = #{keywords},abstrac = #{abstrac},publicationTitle = #{publicationTitle}," +
             "publicationYear = #{publicationYear}, persistentLink = #{persistentLink} where paperId = #{paperId}")
-    public Integer updatePaper(@Param("paperId") int paperId,@Param("keywords") String keywords,
-                               @Param("abstrac") String abstrac,@Param("publicationTitle") String publicationTitle,
-                               @Param("publicationYear") String publicationYear,@Param("persistentLink") String persistentLink);
+    public Integer updatePaper(@Param("paperId") int paperId, @Param("keywords") String keywords,
+                               @Param("abstrac") String abstrac, @Param("publicationTitle") String publicationTitle,
+                               @Param("publicationYear") String publicationYear, @Param("persistentLink") String persistentLink);
 
 
     @Insert("INSERT INTO paper (keywords,publicationTitle,abstrac,publicationYear,persistentLink) values (#{keywords},#{publicationTitle},#{abstrac},#{publicationYear},#{persistentLink})")
-    public Integer insertPaper(@Param("keywords") String keywords,@Param("abstrac") String abstrac,
+    public Integer insertPaper(@Param("keywords") String keywords, @Param("abstrac") String abstrac,
                                @Param("publicationTitle") String publicationTitle,
                                @Param("publicationYear") String publicationYear,
                                @Param("persistentLink") String persistentLink);

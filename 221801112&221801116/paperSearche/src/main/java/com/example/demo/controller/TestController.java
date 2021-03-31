@@ -52,9 +52,9 @@ public class TestController {
         String paperId = request.getParameter("paperId");
         Integer result = limitPaperService.deletePaper(Integer.parseInt(paperId));
 
-        if(result == 1){
+        if (result == 1) {
             System.out.println("删除成功");
-        }else{
+        } else {
             System.out.println("删除失败");
         }
 

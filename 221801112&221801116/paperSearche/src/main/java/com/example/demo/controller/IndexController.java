@@ -20,68 +20,64 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @Description: 对主页发起的请求进行的一系列处理
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
 @Controller
-public class IndexController
-{
+public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     IndexServiceImpl indexSerice;
 
     @GetMapping("/t")
-    public String welcome()
-    {
+    public String welcome() {
         return "index";
     }
 
     @GetMapping("/t1")
-    public String test()
-    {
+    public String test() {
         return "test";
     }
 
     @RequestMapping(value = {"/", "/login"})
-    public String login(User user, HttpSession session, Model model)
-    {
+    public String login(User user, HttpSession session, Model model) {
         logger.debug("开始登录");
         User user1 = null;
         if (user.getName() != null)
             user1 = indexSerice.login(user);
-        if (user1 != null)
-        {
+        if (user1 != null) {
             user1.setPassword("");
             session.setAttribute("userName", user1.getName());
             model.addAttribute("userName", user1.getName());
-            System.out.println(user1.getName());
+//            System.out.println(user1.getName());
             return "index";
-        } else
-        {
+        } else {
             session.setAttribute("userName", "请登录");
             model.addAttribute("userName", "请登录");
-            System.out.println("请登录");
+//            System.out.println("请登录");
         }
         return "lastlogin";
     }
 
 
     @RequestMapping("/lastLogin")
-    public String lastLogin(User user, HttpSession session, Model model)
-    {
+    public String lastLogin(User user, HttpSession session, Model model) {
         return "lastlogin";
     }
 
     //本次commit
     @GetMapping("static")
-    public String sta(HttpSession session, Model model)
-    {
+    public String sta(HttpSession session, Model model) {
         logger.debug("获取统计结果");
         return "static";
     }
 
     @RequestMapping("/getPaper")
     @ResponseBody
-    public Paper getPaper(User user, HttpSession session, Model model)
-    {
+    public Paper getPaper(User user, HttpSession session, Model model) {
         logger.debug("开始获取论文");
         List<User> list = null;
         List<Paper> paperList = indexSerice.getPaper();
@@ -92,8 +88,7 @@ public class IndexController
 
     @RequestMapping("/getAllPaper")
     @ResponseBody
-    public PaperResponsBody getAllPaper()
-    {
+    public PaperResponsBody getAllPaper() {
         PaperResponsBody paperResponsBody = new PaperResponsBody();
         paperResponsBody.setCode("0");
         paperResponsBody.setMsg("成功");
@@ -105,53 +100,46 @@ public class IndexController
 
     @RequestMapping("/topKeyWordsData")
     @ResponseBody
-    public String getTopKeyWordsDataByConference(PaperAnslyse paperAnslyse)
-    {
+    public String getTopKeyWordsDataByConference(PaperAnslyse paperAnslyse) {
         return indexSerice.getPaperAnslyse(paperAnslyse).getPaperAnslyseData();
     }
 
     @RequestMapping("/topKeyWords")
     @ResponseBody
-    public String getTopKeyWordsByConference(PaperAnslyse paperAnslyse)
-    {
+    public String getTopKeyWordsByConference(PaperAnslyse paperAnslyse) {
         return EmojiParser.parseToUnicode(indexSerice.getPaperAnslyse(paperAnslyse).getDataStaticData());
     }
 
     @RequestMapping("/getKeyWordCloud")
-    public String testWord()
-    {
+    public String testWord() {
         return "testWordCloud";
     }
 
     @RequestMapping("/topKeyWordCloud")
     @ResponseBody
-    public String getTopKeyWordCloud()
-    {
+    public String getTopKeyWordCloud() {
         PaperAnslyse paperAnslyse = new PaperAnslyse();
         paperAnslyse.setConference("CVPR");
         return indexSerice.getPaperAnslyse(paperAnslyse).getDataWordsCloud();
     }
 
     @RequestMapping("/savePaper")
-    public boolean savePaper() throws JsonProcessingException
-    {
+    public boolean savePaper() throws JsonProcessingException {
         return indexSerice.saveAlalysePaperToGetTopKey();
     }
 
     @RequestMapping("/register")
-    public String register(User user)
-    {
-        int ans=indexSerice.register(user);
+    public String register(User user) {
+        int ans = indexSerice.register(user);
         return "lastlogin";
     }
 
     @RequestMapping("/searchOnline")
     @ResponseBody
-    public PaperResponsBody searchOnline(Paper paper)
-    {
-        System.out.println("获取的"+paper);
+    public PaperResponsBody searchOnline(Paper paper) {
+//        System.out.println("获取的"+paper);
 
-        PaperResponsBody paperResponsBody=new PaperResponsBody();
+        PaperResponsBody paperResponsBody = new PaperResponsBody();
         paperResponsBody.setMsg("成功");
         paperResponsBody.setCount(8);
         paperResponsBody.setData(indexSerice.searchOnline(paper));

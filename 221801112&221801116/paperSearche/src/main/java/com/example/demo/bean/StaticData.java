@@ -1,7 +1,11 @@
 package com.example.demo.bean;
 
-public class StaticData
-{
+/**
+ * @Description: 统计数据类（用于动态柱状图）
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
+public class StaticData {
     String code;
     String emoji;
     String unicode;
@@ -9,63 +13,51 @@ public class StaticData
     String title;
     String dialCode;
 
-    public String getCode()
-    {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(String code)
-    {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public String getEmoji()
-    {
+    public String getEmoji() {
         return emoji;
     }
 
-    public void setEmoji(String emoji)
-    {
+    public void setEmoji(String emoji) {
         this.emoji = emoji;
     }
 
-    public String getUnicode()
-    {
+    public String getUnicode() {
         return unicode;
     }
 
-    public void setUnicode(String unicode)
-    {
+    public void setUnicode(String unicode) {
         this.unicode = unicode;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDialCode()
-    {
+    public String getDialCode() {
         return dialCode;
     }
 
-    public void setDialCode(String dialCode)
-    {
+    public void setDialCode(String dialCode) {
         this.dialCode = dialCode;
     }
 }

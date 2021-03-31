@@ -29,3 +29,8 @@ mybatis-plus:
     map-underscore-to-camel-case: false
 
 
+server:
+  #端口号
+  port: 8888
+  #项目名，如果不设定，默认是 /
+  #context-path:

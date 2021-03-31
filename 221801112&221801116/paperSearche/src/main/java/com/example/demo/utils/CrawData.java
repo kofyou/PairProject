@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * @Description: ieee数据爬取工具类
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
 public class CrawData {
     static HostnameVerifier hv = new HostnameVerifier() {
         public boolean verify(String urlHostName, SSLSession session) {
@@ -20,20 +25,18 @@ public class CrawData {
             return true;
         }
     };
-    public static String getJson(String path,String params)
-    {
-        try
-        {
+
+    public static String getJson(String path, String params) {
+        try {
             trustAllHttpsCertificates();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         HttpsURLConnection.setDefaultHostnameVerifier(hv);
         HttpURLConnection httpURLConnection = null;
         String data = "";
         try {
-            httpURLConnection=show(path);
+            httpURLConnection = show(path);
 
             httpURLConnection.connect();
             String p = params;
@@ -54,7 +57,7 @@ public class CrawData {
                 //关闭
                 reader.close();
             }
-            System.out.println("@@@@@@@@"+data);
+            System.out.println("@@@@@@@@" + data);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -70,8 +73,7 @@ public class CrawData {
         return data;
     }
 
-    public  static HttpURLConnection  show(String path) throws IOException
-    {
+    public static HttpURLConnection show(String path) throws IOException {
         HttpURLConnection httpURLConnection = null;
         URL url = new URL(path);
         httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -91,20 +93,19 @@ public class CrawData {
         return httpURLConnection;
     }
 
-    public static String drawData(String words)
-    {
+    public static String drawData(String words) {
 //        words="123";
         String path = "https://ieeexplore.ieee.org/rest/search";
-        String params = "{\"newsearch\":true,\"queryText\":\""+words+"\",\"highlight\":true,\"returnFacets\":[\"ALL\"],\"returnType\":\"SEARCH\",\"matchPubs\":true}";
-        return  getJson(path,params);
+        String params = "{\"newsearch\":true,\"queryText\":\"" + words + "\",\"highlight\":true,\"returnFacets\":[\"ALL\"],\"returnType\":\"SEARCH\",\"matchPubs\":true}";
+        return getJson(path, params);
     }
 
     /**
-    * @Description: 设置信任所有证书，解决PKIX path building failed:SunCertPathBuilderException: v 参考：https://blog.csdn.net/flower1024/article/details/72729723?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control
-    * @Param: []
-    * @return: void
-    * @Date: 2021/3/31
-    */
+     * @Description: 设置信任所有证书，解决PKIX path building failed:SunCertPathBuilderException: v 参考：https://blog.csdn.net/flower1024/article/details/72729723?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control
+     * @Param: []
+     * @return: void
+     * @Date: 2021/3/31
+     */
     private static void trustAllHttpsCertificates() throws Exception {
         javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
         javax.net.ssl.TrustManager tm = new miTM();
@@ -144,10 +145,11 @@ public class CrawData {
             return;
         }
     }
+
     public static void main(String[] args) {
 
         String path = "https://ieeexplore.ieee.org/rest/search";
         String params = "{\"newsearch\":true,\"queryText\":\"123\",\"highlight\":true,\"returnFacets\":[\"ALL\"],\"returnType\":\"SEARCH\",\"matchPubs\":true}";
-        getJson(path,params);
+        getJson(path, params);
     }
 }

@@ -1,38 +1,36 @@
 package com.example.demo.bean;
 
-public class User
-{
+/**
+ * @Description: 用户类
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
+public class User {
     String id;
     String name;
     String password;
 
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

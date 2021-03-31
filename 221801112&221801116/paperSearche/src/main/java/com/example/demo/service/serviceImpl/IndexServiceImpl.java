@@ -18,21 +18,26 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * @Description: 对主页主页的请求进行逻辑处理
+ * @Author: 曹鑫
+ * @Date: 2021/3/31
+ */
 @Service
 public class IndexServiceImpl implements IndexSerice {
     final Integer INI_SIZE = 1024;
-    final Integer Top_TEN = 10;
+    final Integer TOP_TEN = 10;
     private static final Logger logger = LoggerFactory.getLogger(IndexServiceImpl.class);
     @Autowired
     UserMapper userMapper;
 
     @Override
     public User login(User user) {
-        System.out.println("进入service层:" + user.getName());
+        //System.out.println("进入service层:" + user.getName());
         User tmp = userMapper.selUserByName(user);
         if (user.getPassword() == null || !(user.getPassword().equals(tmp.getPassword())))
             return null;
-        System.out.println("获得的USER：" + tmp.getName());
+        //System.out.println("获得的USER：" + tmp.getName());
         return tmp;
     }
 
@@ -40,8 +45,7 @@ public class IndexServiceImpl implements IndexSerice {
         return userMapper.selAllPaper();
     }
 
-    public PaperAnslyse getPaperAnslyse(PaperAnslyse paperAnslyse)
-    {
+    public PaperAnslyse getPaperAnslyse(PaperAnslyse paperAnslyse) {
         return userMapper.selPaperAnslyseByPaId(paperAnslyse);
     }
 
@@ -60,8 +64,8 @@ public class IndexServiceImpl implements IndexSerice {
 
             for (File f : fileList) {
                 String tmp = null;
-                System.out.println("数据转储中");
-                System.out.println(path[i] + "\\" + f.getName());
+                //System.out.println("数据转储中");
+                //System.out.println(path[i] + "\\" + f.getName());
                 sb = new StringBuilder(INI_SIZE);
                 //读取json文件
                 try {
@@ -77,9 +81,9 @@ public class IndexServiceImpl implements IndexSerice {
                     e.printStackTrace();
                 }
 
-//                System.out.println("****** "+conference[i]);
+                //System.out.println("****** "+conference[i]);
                 Paper paper = onepaperJsonToPaper(sb.toString(), conference[i]);
-//            //保存至数据库
+                //保存至数据库
                 if (paper != null)
                     userMapper.insPaper(paper);
             }
@@ -116,7 +120,7 @@ public class IndexServiceImpl implements IndexSerice {
                 e.printStackTrace();
             }
             logger.debug(String.valueOf(node.get("abstract")));
-            System.out.println("取得的摘要：" + String.valueOf(node.get("abstract")));
+            //System.out.println("取得的摘要：" + String.valueOf(node.get("abstract")));
             Paper paper = new Paper();
             paper.setAbstrac(String.valueOf(node.get("abstract")));
             paper.setPersistentLink(String.valueOf(node.get("doiLink")));
@@ -126,7 +130,7 @@ public class IndexServiceImpl implements IndexSerice {
             List<Keywords> keywordsList = paper.getKeywordsList();
             //关键词对象。
             for (int j = 0; node.get("keywords") != null && j < node.get("keywords").size(); j++) {
-                System.out.println("获得的关键词:" + String.valueOf(node.get("keywords").get(j)));
+                //System.out.println("获得的关键词:" + String.valueOf(node.get("keywords").get(j)));
                 Keywords keywords = new Keywords();
                 keywords.setType(String.valueOf(node.get("keywords").get(j).get("type")));
                 List<String> stringList = new ArrayList<>();
@@ -142,9 +146,9 @@ public class IndexServiceImpl implements IndexSerice {
                 keywordsList.add(keywords);
             }
             paper.setKeywordsList(keywordsList);
-            System.out.println("获得的paper:" + paper.toString());
+            //System.out.println("获得的paper:" + paper.toString());
             paperList.add(paper);
-//            authorslist.add(new PaperAuthors(node.get("keywords")))
+            //authorslist.add(new PaperAuthors(node.get("keywords")))
         }
         return paperList;
     }
@@ -159,7 +163,7 @@ public class IndexServiceImpl implements IndexSerice {
             e.printStackTrace();
         }
         logger.debug(String.valueOf(node.get("abstract")));
-        System.out.println("取得的摘要：" + String.valueOf(node.get("abstract")));
+        //System.out.println("取得的摘要：" + String.valueOf(node.get("abstract")));
         Paper paper = new Paper();
         paper.setConference(conference);
         paper.setAbstrac(String.valueOf(node.get("abstract")));
@@ -170,7 +174,7 @@ public class IndexServiceImpl implements IndexSerice {
         List<Keywords> keywordsList = paper.getKeywordsList();
         //关键词对象。
         for (int j = 0; node.get("keywords") != null && j < node.get("keywords").size(); j++) {
-            System.out.println("获得的关键词:" + String.valueOf(node.get("keywords").get(j)));
+            //System.out.println("获得的关键词:" + String.valueOf(node.get("keywords").get(j)));
             Keywords keywords = new Keywords();
             keywords.setType(String.valueOf(node.get("keywords").get(j).get("type")));
             List<String> stringList = new ArrayList<>();
@@ -186,9 +190,9 @@ public class IndexServiceImpl implements IndexSerice {
             keywordsList.add(keywords);
         }
         paper.setKeywordsList(keywordsList);
-        System.out.println("******" + paper.getConference());
-        System.out.println("获得的paper:" + paper.toString());
-//            authorslist.add(new PaperAuthors(node.get("keywords")))
+        //System.out.println("******" + paper.getConference());
+        //System.out.println("获得的paper:" + paper.toString());
+        //authorslist.add(new PaperAuthors(node.get("keywords")))
         return paper;
     }
 
@@ -198,18 +202,15 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<java.util.Map.Entry < java.lang.String, java.lang.Integer>>
      * @Date: 2021/3/25
      */
-    public List<Map.Entry<String, Integer>> alalysePaperToGetTopKeyWords(Paper paper)
-    {
+    public List<Map.Entry<String, Integer>> alalysePaperToGetTopKeyWords(Paper paper) {
         List<Paper> paperList = userMapper.selPaperByConference(paper);
-        System.out.println("开始分析词频");
+        //System.out.println("开始分析词频");
         Map<String, Integer> keyMap = new HashMap<>();
-        System.out.println("获取的论文数量" + paperList.size());
-        for (int i = 0; paperList != null && i < paperList.size(); i++)
-        {
+        //System.out.println("获取的论文数量" + paperList.size());
+        for (int i = 0; paperList != null && i < paperList.size(); i++) {
             System.out.println("获取paper" + paperList.get(i).getPublicationYear() + "条数：" + i);
-            if (paperList.get(i).getKeywords() == null)
-            {
-                System.out.println("break的数量" + i);
+            if (paperList.get(i).getKeywords() == null) {
+                //System.out.println("break的数量" + i);
                 continue;
             }
 
@@ -219,12 +220,10 @@ public class IndexServiceImpl implements IndexSerice {
                 paperList.get(i).setPublicationYear("0");
             for (int j = 0; j < arr.length; j++)
                 arr[j] = arr[j] + "&&&&&" + paperList.get(i).getPublicationYear().replaceAll("\"", "");
-            System.out.println("获取的数组的长度" + arr.length);
-            for (int j = 0; arr != null && j < arr.length; j++)
-            {
-                System.out.println("关键词：" + arr[j]);
-                if (keyMap.get(arr[j]) == null)
-                {
+            // System.out.println("获取的数组的长度" + arr.length);
+            for (int j = 0; arr != null && j < arr.length; j++) {
+                // System.out.println("关键词：" + arr[j]);
+                if (keyMap.get(arr[j]) == null) {
                     keyMap.put(arr[j], 1);
                 } else
                     keyMap.put(arr[j], keyMap.get(arr[j]) + 1);
@@ -234,13 +233,11 @@ public class IndexServiceImpl implements IndexSerice {
         List<Map.Entry<String, Integer>> list = sortMapByValue(keyMap);
         List<Map.Entry<String, Integer>> answer = new ArrayList<>();
         Map<String, Integer> tmp_count = new HashMap<>();
-        for (int i = 0, j = 0, k; i < list.size(); i++)
-        {
+        for (int i = 0, j = 0, k; i < list.size(); i++) {
             String[] years = list.get(i).getKey().split("&&&&&");
             if (years != null && tmp_count.get(years[1]) == null)
                 tmp_count.put(years[1], 0);
-            else if (years != null && tmp_count.get(years[1]) < Top_TEN * 2)
-            {
+            else if (years != null && tmp_count.get(years[1]) < TOP_TEN * 2) {
                 tmp_count.put(years[1], tmp_count.get(years[1]) + 1);
                 answer.add(list.get(i));
             }
@@ -255,15 +252,13 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<StaticData> alalysePaperToGetTopKeyWordsHelper1(Paper paper)
-    {
+    public List<StaticData> alalysePaperToGetTopKeyWordsHelper1(Paper paper) {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<StaticData> listStr = new ArrayList<>();
         StaticData staticData;
 
 
-        for (int i = 0; i < lists.size(); i++)
-        {
+        for (int i = 0; i < lists.size(); i++) {
             staticData = new StaticData();
             String[] values = lists.get(i).getKey().split("&&&&&");
             staticData.setName(values[0]);
@@ -299,8 +294,7 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<List<String>> alalysePaperToGetTopKeyWordsHelper2(Paper paper)
-    {
+    public List<List<String>> alalysePaperToGetTopKeyWordsHelper2(Paper paper) {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<List<String>> listList = new ArrayList<>();
         List<String> listStr = new ArrayList<>();
@@ -311,9 +305,8 @@ public class IndexServiceImpl implements IndexSerice {
         listStr.add("Country");
         listStr.add("Year");
         listList.add(listStr);
-        System.out.println("获得的数据数量" + lists.size());
-        for (int i = 0; i < lists.size(); i++)
-        {
+        //System.out.println("获得的数据数量" + lists.size());
+        for (int i = 0; i < lists.size(); i++) {
             List<String> tmp = new ArrayList<>();
             tmp.add(0, String.valueOf(lists.get(i).getValue()));
             tmp.add(1, "");
@@ -333,14 +326,12 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public List<WordsCloud> alalysePaperToGetTopKeyWordsHelper3(Paper paper)
-    {
+    public List<WordsCloud> alalysePaperToGetTopKeyWordsHelper3(Paper paper) {
         List<Map.Entry<String, Integer>> lists = alalysePaperToGetTopKeyWords(paper);
         List<WordsCloud> listStr = new ArrayList<>();
         WordsCloud wordsCloud;
 
-        for (int i = lists.size() - 1; i > lists.size() - 20 && i >= 0; i--)
-        {
+        for (int i = lists.size() - 1; i > lists.size() - 20 && i >= 0; i--) {
             wordsCloud = new WordsCloud();
             String[] values = lists.get(i).getKey().split("&&&&&");
             wordsCloud.setName(values[0]);
@@ -356,8 +347,7 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<com.example.demo.bean.StaticData>
      * @Date: 2021/3/26
      */
-    public boolean saveAlalysePaperToGetTopKey() throws JsonProcessingException
-    {
+    public boolean saveAlalysePaperToGetTopKey() throws JsonProcessingException {
         List<Paper> paperList = new ArrayList<>();
         Paper paper = new Paper();
         paper.setConference("CVPR");
@@ -368,8 +358,7 @@ public class IndexServiceImpl implements IndexSerice {
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        for (int i = 0; i < paperList.size(); i++)
-        {
+        for (int i = 0; i < paperList.size(); i++) {
             PaperAnslyse paperAnslyse = new PaperAnslyse();
             ObjectMapper objectMapper = new ObjectMapper();
             paperAnslyse.setDataStaticData(objectMapper.writeValueAsString(alalysePaperToGetTopKeyWordsHelper1(paper)));
@@ -389,8 +378,7 @@ public class IndexServiceImpl implements IndexSerice {
      * @return: java.util.List<java.util.Map.Entry < java.lang.String, java.lang.Integer>>
      * @Date: 2021/3/25
      */
-    private List<Map.Entry<String, Integer>> sortMapByValue(Map<String, Integer> map)
-    {
+    private List<Map.Entry<String, Integer>> sortMapByValue(Map<String, Integer> map) {
         //将hashMap转化为list
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
         //进行排序
@@ -410,8 +398,7 @@ public class IndexServiceImpl implements IndexSerice {
         return list;
     }
 
-    private List<Map.Entry<String, Integer>> sortMapByKeyAndValue(List<Map.Entry<String, Integer>> list)
-    {
+    private List<Map.Entry<String, Integer>> sortMapByKeyAndValue(List<Map.Entry<String, Integer>> list) {
 
         //进行排序
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -431,68 +418,58 @@ public class IndexServiceImpl implements IndexSerice {
     }
 
     /**
-    * @Description:  注册
-    * @Param: [user]
-    * @return: java.lang.Integer
-    * @Date: 2021/3/29
-    */
-    public Integer register(User user)
-    {
-        if (user==null||user.getName()==null||user.getPassword()==null)
-        {
+     * @Description: 注册
+     * @Param: [user]
+     * @return: java.lang.Integer
+     * @Date: 2021/3/29
+     */
+    public Integer register(User user) {
+        if (user == null || user.getName() == null || user.getPassword() == null) {
             return 0;
-        }
-        else
-        {
+        } else {
             return userMapper.insUser(user);
         }
     }
 
-    public List<Paper> searchOnline(Paper paper)
-    {
-        if (paper.getKeywords()!=null)
-        {
+    public List<Paper> searchOnline(Paper paper) {
+        if (paper.getKeywords() != null) {
             return parseJsonToPaperBySearchOnline(CrawData.drawData(paper.getKeywords()));
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    public List<Paper> parseJsonToPaperBySearchOnline(String json)
-    {
+    public List<Paper> parseJsonToPaperBySearchOnline(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Paper> paperList=new ArrayList<>();
+        List<Paper> paperList = new ArrayList<>();
         JsonNode node = null;
         try {
             node = objectMapper.readTree(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i=0;node.get("records")!=null&&i<node.get("records").size();i++)
-        {
-            logger.debug(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"",""));
-            System.out.println("取得的摘要：" + String.valueOf(node.get("records").get(i).get("abstract")));
+        for (int i = 0; node.get("records") != null && i < node.get("records").size(); i++) {
+            logger.debug(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"", ""));
+            //System.out.println("取得的摘要：" + String.valueOf(node.get("records").get(i).get("abstract")));
             Paper paper = new Paper();
-            paper.setConference(String.valueOf(node.get("records").get(i).get("publisher")).replaceAll("\"",""));
-            paper.setAbstrac(String.valueOf(node.get("records").get(i).get("abstract")).replaceAll("\"",""));
-            paper.setPersistentLink(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"",""));
-            if(paper.getPersistentLink().contains("https:")){
+            paper.setConference(String.valueOf(node.get("records").get(i).get("publisher")).replaceAll("\"", ""));
+            paper.setAbstrac(String.valueOf(node.get("records").get(i).get("abstract")).replaceAll("\"", ""));
+            paper.setPersistentLink(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"", ""));
+            if (paper.getPersistentLink().contains("https:")) {
 
-            }else {
-                paper.setPersistentLink("https://ieeexplore.ieee.org"+paper.getPersistentLink());
+            } else {
+                paper.setPersistentLink("https://ieeexplore.ieee.org" + paper.getPersistentLink());
             }
-            paper.setPublicationTitle(String.valueOf(node.get("records").get(i).get("articleTitle")).replaceAll("\"",""));
-            paper.setPublicationYear(String.valueOf(node.get("records").get(i).get("publicationYear")).replaceAll("\"",""));
+            paper.setPublicationTitle(String.valueOf(node.get("records").get(i).get("articleTitle")).replaceAll("\"", ""));
+            paper.setPublicationYear(String.valueOf(node.get("records").get(i).get("publicationYear")).replaceAll("\"", ""));
             paper.setPaperId("1");
 
-            System.out.println("******" + paper.getConference());
-            System.out.println("获得的paper:" + paper.toString());
+            //System.out.println("******" + paper.getConference());
+            //System.out.println("获得的paper:" + paper.toString());
             paperList.add(paper);
         }
 
-//            authorslist.add(new PaperAuthors(node.get("keywords")))
+        //authorslist.add(new PaperAuthors(node.get("keywords")))
         return paperList;
     }
 }
