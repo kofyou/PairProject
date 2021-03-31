@@ -84,7 +84,8 @@ export default defineComponent({
       return [{ value: "三全鲜食（北新泾店）", address: "长宁区新渔路144号" }];
     };
     const handleSelect = (item) => {
-      console.log(item);
+      console.log(inputValue)
+      emitTitle();
     };
     onMounted(() => {
       paperTitles.value = loadAll();

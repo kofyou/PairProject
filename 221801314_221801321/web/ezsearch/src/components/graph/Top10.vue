@@ -9,17 +9,17 @@ import {
   defineComponent,
   getCurrentInstance,
 } from "vue";
-import WordCloud from "@/components/graph/WordCloud.vue"
+import WordCloud from "@/components/graph/WordCloud.vue";
 export default defineComponent({
   name: "Top10",
-  components: { 
-      WordCloud,
+  components: {
+    WordCloud,
   },
   setup() {
     const { ctx } = getCurrentInstance();
     let echarts = inject("ec"); //引入
     onMounted(() => {
-        querySearch();
+      querySearch();
     });
     let myArray = new Array();
     const querySearch = () => {
@@ -48,6 +48,9 @@ export default defineComponent({
               },
             },
           ],
+          tooltip: {
+            show: true,
+          },
           xAxis: {
             type: "category",
             axisLabel: { interval: 0, rotate: 30 },
@@ -58,6 +61,16 @@ export default defineComponent({
             encode: { x: "keyword", y: "num" },
             datasetIndex: 1,
           },
+        });
+        myChart.on("click", function (params) {
+          var keyword = params.data[0];
+          var href = window.location.origin;
+          href += "/home"
+          href += "?address=0"
+          href += "&title="
+          href += keyword;
+          window.location.href = href;
+          console.log(href);
         });
         window.onresize = function () {
           //自适应大小
