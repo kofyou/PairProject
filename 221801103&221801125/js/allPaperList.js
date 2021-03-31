@@ -1,10 +1,37 @@
 $(function(){
+
+    var thisPage
+    var maxPage
+    thisPage = window.location.toString().split("=").pop()
+    $(".changePage:eq(0)").val(thisPage)
+    if(thisPage=="1"){
+        $("#leftPage").css("cursor","not-allowed")
+    }
+
     function Page(){}
     $.extend(Page.prototype,{
         init:function(){
             this.bindEvents()
+
             $.ajax({
-                url:"../../PaperListServlet",
+                url : AJAX_URL.allPaperCount,
+                type : "post",
+                data : JSON.stringify({
+                    "type" : 0,
+                    "account" : USER_INFO.userID,
+                    "methods" : "getPages"
+                }),
+                contentType : "application/json",
+                success:data=>{
+                    maxPage = data
+                    if(maxPage==thisPage)
+                        $("#rightPage").css("cursor","not-allowed")
+                }
+            })
+
+
+            $.ajax({
+                url:AJAX_URL.allPaper,
                 type:"post",
                 data:JSON.stringify({
                     "account":USER_INFO.userID,
@@ -53,10 +80,18 @@ $(function(){
 
                         }
                     }
+                    if(ALL_PAGE_LIST.length==0)
+                    {
+                        $("#empty").removeClass("xiaoshi")
+                    }else{
+                        $(".footer").removeClass("xiaoshi")
+                    }
                 },
                 error:()=>{
+                    
                     alert("网络烂掉了，你什么也看不到了")
                     $("#reg_wait").css("display","none")
+                    $("#empty").removeClass("xiaoshi")
                 }
             }),
             $("#reg_wait").css("display","inline-block")
@@ -66,7 +101,7 @@ $(function(){
                     let addIndex = $(".kongxin").index(this);
                     let addInLike = $(".paper-title").eq(addIndex).text()
                     $.ajax({
-                        url:"../../UpdateMyCollectServlet",
+                        url:AJAX_URL.allPaperAdd,
                         data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : addInLike
@@ -94,7 +129,7 @@ $(function(){
                     let removeIndex = $(".shixin").index(this)
                     let removeInLike = $(".paper-title").eq(removeIndex).text()
                     $.ajax({
-                        url:"../../DeleteMyCollectSevlet",
+                        url:AJAX_URL.allPaperDelete,
                         data:JSON.stringify({
                             "account" : USER_INFO.userID,
                             "title" : removeInLike
@@ -136,13 +171,32 @@ $(function(){
             let search = $(".search:eq(0)").val()
             if(search!="")
             {
-              window.open("searchList.html?search="+search,"_self")
+              window.open("searchList.html?search="+search+"&page=1","_self")
             }
             else
             {
-              window.open("allPaperList.html","_self")
+              window.open("allPaperList.html?page=1","_self")
             }
-          }
+          },
+        toPage : function(){
+            var p = $(".changePage:eq(0)").val()
+            if(p>maxPage){
+                $(".changePage:eq(0)").val(thisPage)
+                alert("最多只有"+maxPage+"页哦")
+            }
+            else
+                window.open("allPaperList.html?page="+p,"_self")
+        },
+        lastPage:function(){
+            if(thisPage!="1"){
+                window.open("allPaperList.html?page="+(parseInt(thisPage)-1),"_self")
+            }
+        },
+        nextPage:function(){
+            if(thisPage<maxPage){
+                window.open("allPaperList.html?page="+(parseInt(thisPage)+1),"_self")
+            }
+        }
     })
 
     var p = new Page()
