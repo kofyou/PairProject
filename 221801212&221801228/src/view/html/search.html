@@ -10,6 +10,7 @@
     <script src="../bootstrap/bootstrap.min.js"></script>
     <title>搜索</title>
     <link type="text/css" rel="stylesheet" href="../css/search.css"/>
+    <script src="../js/delete.js"></script>
 </head>
 <body>
 <script>
@@ -153,13 +154,7 @@
                         <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div></a>
                         <button class="but" onclick="ondelete(this)">删除</button>
                     </h3>
-                    <script>
-                        function ondelete(ob){
-                            var child = ob.parentElement.parentElement.parentElement;
-                            var parent = child.parentElement;
-                            parent.removeChild(child);
-                        }
-                    </script>
+
                 </div>
                 <div class="panel-body" id="tabcontext1">
                     哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
@@ -174,7 +169,7 @@
                         <a href="#">
                             <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
                         </a>
-                        <button class="but" onclick="ondelete()">删除</button>
+                        <button class="but" onclick="ondelete(this)">删除</button>
                     </h3>
                 </div>
                 <div class="panel-body" id="tabcontext2">
@@ -190,7 +185,7 @@
                         <a href="#">
                             <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
                         </a>
-                        <button class="but" onclick="ondelete()">删除</button>
+                        <button class="but" onclick="ondelete(this)">删除</button>
                     </h3>
                 </div>
                 <div class="panel-body" id="tabcontext3">
