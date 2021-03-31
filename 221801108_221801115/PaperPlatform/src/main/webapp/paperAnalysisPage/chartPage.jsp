@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="../css/Analysis.css" />
     <script type="text/javascript" src="../dist/echarts.js"></script>
     <script type="text/javascript" src="../dist/echarts-wordcloud.js"></script>
+    <script>
+        function jump(word) {
+            window.location.href = "<%=path%>/PaperListServlet?operation=queryKeyPaper&query=" + word;
+        }
+    </script>
     <%
         KeywordDAO keywordDAO = new KeywordDAOImpl();
         ArrayList<Keyword> keywordList = keywordDAO.GetTop10Keywords();
@@ -49,6 +54,12 @@
                 var chart = echarts.init(document.getElementById('wcloud'));
 
                 var option = {
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
                     tooltip: {},
                     series: [ {
                         type: 'wordCloud',
@@ -103,16 +114,16 @@
     </div>
     <div id="kws_ul_div">
         <ul id="kws_ul">
-            <li id="li_0"><%=keywordList.get(0).getName()%></li>
-            <li id="li_1"><%=keywordList.get(1).getName()%></li>
-            <li id="li_2"><%=keywordList.get(2).getName()%></li>
-            <li id="li_3"><%=keywordList.get(3).getName()%></li>
-            <li id="li_4"><%=keywordList.get(4).getName()%></li>
-            <li id="li_5"><%=keywordList.get(5).getName()%></li>
-            <li id="li_6"><%=keywordList.get(6).getName()%></li>
-            <li id="li_7"><%=keywordList.get(7).getName()%></li>
-            <li id="li_8"><%=keywordList.get(8).getName()%></li>
-            <li id="li_9"><%=keywordList.get(9).getName()%></li>
+            <li id="li_0" onclick="jump('<%=keywordList.get(0).getName()%>')"><%=keywordList.get(0).getName()%></li>
+            <li id="li_1" onclick="jump('<%=keywordList.get(1).getName()%>')"><%=keywordList.get(1).getName()%></li>
+            <li id="li_2" onclick="jump('<%=keywordList.get(2).getName()%>')"><%=keywordList.get(2).getName()%></li>
+            <li id="li_3" onclick="jump('<%=keywordList.get(3).getName()%>')"><%=keywordList.get(3).getName()%></li>
+            <li id="li_4" onclick="jump('<%=keywordList.get(4).getName()%>')"><%=keywordList.get(4).getName()%></li>
+            <li id="li_5" onclick="jump('<%=keywordList.get(5).getName()%>')"><%=keywordList.get(5).getName()%></li>
+            <li id="li_6" onclick="jump('<%=keywordList.get(6).getName()%>')"><%=keywordList.get(6).getName()%></li>
+            <li id="li_7" onclick="jump('<%=keywordList.get(7).getName()%>')"><%=keywordList.get(7).getName()%></li>
+            <li id="li_8" onclick="jump('<%=keywordList.get(8).getName()%>')"><%=keywordList.get(8).getName()%></li>
+            <li id="li_9" onclick="jump('<%=keywordList.get(9).getName()%>')"><%=keywordList.get(9).getName()%></li>
         </ul>
     </div>
 </div>
@@ -175,7 +186,25 @@
                     {name: 'CVPR', type: 'bar'},
                     {name: 'ECCV', type: 'bar'},
                     {name: 'ICCV', type: 'bar'},
-                ]
+                ],
+                toolbox: {
+                    show: true,
+                    top: '6%',
+                    right:'10%' ,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {
+                            readOnly: false
+                        },
+                        magicType: {
+                            type: ['line']
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
             },
             options: [
                 <%
