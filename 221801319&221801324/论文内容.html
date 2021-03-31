@@ -17,16 +17,16 @@
            // backgroundColor:'#323a5e',
            grid:{
                 left:'4%',
-                right:'2%',
-                bottom:'14%',
-                top:'16%',
+                right:'4%',
+                bottom:'4%',
+                top:'4%',
                 containLabel:true
            },
            legend :{
                 data:['CVPR','ICCV','ECCV'],
                 right:100
            },
-            xAxis: {
+            yAxis: {
                 type: 'category',
                 name:'keywords',
                 data: ['vision', 'feature ', 'learning ', 'cameras', 'training', 'image', 'object','classification','shape','reconstruction'],//横轴
@@ -53,7 +53,7 @@
                 },
             },
 
-            yAxis: {
+            xAxis: {
                 type: 'value'
             },
             series: [{
@@ -91,8 +91,10 @@
         option && myChart.setOption(option);
     //绑定option
         myChart.on('click', function (params) {
-            alert(params.name);
+            window.location.assign('论文查询.html?keywords='+params.name);
+
         });
+        
      </script>
 </body>
 </html>
