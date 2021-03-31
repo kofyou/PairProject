@@ -36,7 +36,7 @@
     // 指定图表的配置项和数据
     myChart.setOption({
         title: {
-            text: '论文统计'
+            text: '热词走势'
         },
         tooltip : {
             trigger: 'axis'
@@ -56,7 +56,7 @@
 
                 dataView : {show:true, readOnly: false},
 
-                magicType : {show:true, type: ['line', 'bar', 'stack', 'tiled']},
+                magicType : {show:true, type: ['line']},
 
                 restore : {show:true},
 
@@ -66,7 +66,6 @@
 
         },
 
-        calculable : true,
 
         xAxis : [
 
@@ -97,9 +96,7 @@
 
                 type:'line',
 
-                stack: '数量',
-
-                data:[120, 132,101, 134, 90, 230, 210]
+                data:[120, 132,101, 134, 90]
 
             },
 
@@ -108,9 +105,7 @@
 
                 type:'line',
 
-                stack: '数量',
-
-                data:[220, 182,191, 234, 290, 330, 310]
+                data:[220, 182,191]
 
             },
 
@@ -119,9 +114,7 @@
 
                 type:'line',
 
-                stack: '数量',
-
-                data:[150, 232,201, 154, 190, 330, 410]
+                data:[150, 232,201, 154, 190]
 
             }
 

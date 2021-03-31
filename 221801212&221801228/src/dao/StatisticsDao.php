@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."\\..\\utils\\DbUtil.php");
 
 class StatisticsDao
 {
-    public function getTop10Keywords()
+    static public function getTop10Keywords()
     {
         $sql = "select * from keyword order by count desc limit 10";
         $con = DbUtil::getConnection();
@@ -19,7 +19,7 @@ class StatisticsDao
         return $popularWords;
     }
 
-    public function getTrendOfPopularWords()
+    static public function getTrendOfPopularWords()
     {
         
     }

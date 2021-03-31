@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "\\..\\dao\\PaperDao.php");
+require_once(dirname(__FILE__) . "\\..\\dao\\StatisticsDao.php");
 
 $title = "";
 $keyword = "";
@@ -29,4 +30,5 @@ $result['title'] = $title;
 $result['keyword'] = $keyword;
 $result['year'] = $year;
 $result['forum'] = $forum;
+$result['popularWords'] = StatisticsDao::getTop10Keywords();
 require_once(dirname(__FILE__) . "\\..\\view\\search.php");

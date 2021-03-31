@@ -8,10 +8,12 @@
     <meta charset="UTF-8">
     <script src="view/jquery/jquery.min.js"></script>
     <link href="view/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="view/css/cloud.css">
     <script src="view/bootstrap/bootstrap.min.js"></script>
     <title>搜索</title>
     <link type="text/css" rel="stylesheet" href="view/css/search.css" />
     <?php require_once(dirname(__FILE__) . "\\PaperListView.php"); ?>
+    <?php require_once(dirname(__FILE__) . "\\PopularWordView.php"); ?>
 </head>
 
 <body>
@@ -37,29 +39,7 @@
                 </h3>
                 <div><label>热门标签:</label></div>
                 <div>
-                    <h1><a class="label label-danger" href="#">New</a>
-                        <a class="label label-warning" href="#">New</a>
-                        <a class="label label-success" href="#">New</a>
-                    </h1>
-                    <h2><a class="label label-warning" href="#">New</a>
-                        <a class="label label-default" href="#">New</a>
-                        <a class="label label-success" href="#">New</a>
-                        <a class="label label-info" href="#">New</a>
-                    </h2>
-                    <h3><a class="label label-primary" href="#">New</a>
-                        <a class="label label-info" href="#">New</a>
-                        <a class="label label-danger" href="#">New</a>
-                        <a class="label label-success" href="#">New</a>
-                        <a class="label label-default" href="#">New</a>
-                    </h3>
-                    <h4><a class="label label-primary" href="#">New</a>
-                        <a class="label label-info" href="#">New</a>
-                        <a class="label label-danger" href="#">New</a>
-                        <a class="label label-success" href="#">New</a>
-                    </h4>
-                    <h6><a class="label label-primary" href="#">New</a>
-                        <a class="label label-info" href="#">New</a>
-                    </h6>
+                    <?php PopularWordView::renderWords($result['popularWords']) ?>
                 </div>
                 <br></br>
                 <div class="row">
