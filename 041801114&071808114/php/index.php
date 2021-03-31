@@ -133,10 +133,10 @@
 		$(document).ready(function() {
 			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
 			function search(){
-
-				document.getElementById('searchtext').value = sessionStorage['lastChoice'] ? sessionStorage['lastChoice'] : "";
-				sessionStorage['lastChoice'] = "";
-				
+				if (document.getElementById('searchtext').value == "") {
+					document.getElementById('searchtext').value = sessionStorage['lastChoice'] ? sessionStorage['lastChoice'] : "";
+					sessionStorage['lastChoice'] = "";
+				}
 				$.ajax({
 					
 					type:'post',
