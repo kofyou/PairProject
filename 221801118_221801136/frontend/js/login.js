@@ -6,7 +6,7 @@ $(function (){
         //不为空向后端发送ajax
         if(username!=""&&password!=""){
             $.ajax({
-                url:"/user/login/check",
+                url:"http://127.0.0.1:8080/user/login/check",
                 method:"post",
                 data:JSON.stringify({
                     "username":username,
@@ -14,7 +14,7 @@ $(function (){
                 }),
                 contentType:"application/json",
                 success:function (data){
-                    if(data==true){
+                    if(data.ifCorrect==true){
                         //登录成功
                         localStorage.setItem("username",username)
                         alert("登录成功");
@@ -44,7 +44,7 @@ $(function (){
         //不为空向后端发送ajax
         if(username!=""&&password!=""){
             $.ajax({
-                url:"/user/register/check",
+                url:"http://127.0.0.1:8080/user/register/check",
                 method:"post",
                 data:JSON.stringify({
                     "username":username,
@@ -52,7 +52,7 @@ $(function (){
                 }),
                 contentType:"application/json",
                 success:function (data){
-                    if(data==true){
+                    if(data.ifSucceed==true){
                         //注册成功
                         alert("注册成功");
                     }

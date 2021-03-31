@@ -120,7 +120,7 @@ a:active {
     height: 200px;
 }
 .collect{
-    margin-left: 40px;
+    margin-left: 460px;
     background: rgb(135,143,145);
 }
 .title{
@@ -149,4 +149,13 @@ a:active {
     margin-left: 10px;
     font-size: 16px;
     margin-right: 8px;
+}
+.summary,.keyword{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 40px;
+    /*width: 200px;*/
+}
+.keyword{
+    width: 90%;
 }

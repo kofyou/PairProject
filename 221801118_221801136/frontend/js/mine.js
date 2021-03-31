@@ -1,6 +1,6 @@
 $(function (){
     $.ajax({
-        url:"/user/like",
+        url:"http://127.0.0.1:8080/user/like",
         method:"post",
         success:function (data){
             $("#name").text=localStorage.getItem("username");
@@ -17,12 +17,13 @@ $(function (){
         var id = $(".id").val();
         var user = localStorage.getItem("username") == null ? "" : localStorage.getItem("username");
         $.ajax({
-            url: "/list/like/add",
+            url: "http://127.0.0.1:8080/list/like/add",
             method: post,
             data: JSON.stringify({
                 "id": id,
                 "user": user
             }),
+            contentType:"application/json",
             success: function (data) {
                 $(".like").eq(index).css("display","none");
             },
