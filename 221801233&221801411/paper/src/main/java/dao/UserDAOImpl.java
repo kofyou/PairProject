@@ -83,7 +83,31 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
     public User get(int id) {
-	    return null;
+	    User user=new User();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "select * from paper where id="+id;
+            ResultSet rs = s.executeQuery(sql);
+            while (rs.next()) {
+                    String title = rs.getString("title");
+                    String digest = rs.getString("digest");
+                    String key = rs.getString("key");
+                    String year = rs.getString("year");
+                    String time = rs.getString("time");
+                    String link = rs.getString("link");
+                    int nid = rs.getInt("id");
+                    user.setTitle(title);
+                    user.setYear(year);
+                    user.setTime(time);
+                    user.setKey(key);
+                    user.setDigest(digest);
+                    user.setLink(link);
+                    user.setId(nid);
+                }
+            }
+         catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 	@Override
@@ -122,8 +146,38 @@ public class UserDAOImpl implements UserDAO {
     }
 
 	@Override
-    public List<User> list(int start) {
-       return null;
+    public List<User> oblist(int cur,String search) {
+        List<User> l  = new ArrayList<User>();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "select * from paper where title LIKE '%"+search+"%' "+"OR digest LIKE '%"+search+"%' "+" OR paper.time LIKE '%"+search+"%' "+"OR paper.key LIKE '%"+search+"%' "+"OR paper.year LIKE '%"+search+"%' "+" OR link LIKE '%"+search+"%' ";
+            ResultSet rs = s.executeQuery(sql);
+            int i=0;
+            while (rs.next()&&i<5+cur) {
+                i++;
+                if(i>=cur) {
+                    String title = rs.getString("title");
+                    String digest = rs.getString("digest");
+                    String key = rs.getString("key");
+                    String year = rs.getString("year");
+                    String time = rs.getString("time");
+                    String link = rs.getString("link");
+                    int id = rs.getInt("id");
+                    User user = new User();
+                    user.setTitle(title);
+                    user.setYear(year);
+                    user.setTime(time);
+                    user.setKey(key);
+                    user.setDigest(digest);
+                    user.setLink(link);
+                    user.setId(id);
+                    l.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return l;
+
     }
 
 	@Override

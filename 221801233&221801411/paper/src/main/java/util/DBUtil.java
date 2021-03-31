@@ -8,7 +8,7 @@ public class DBUtil {
 	static String database = "paperwork";
 	static String encoding = "UTF-8";
 	static String loginName = "root";
-	static String password = "cpz93188716";
+	static String password = "123456";
 
 	static {
 		try {

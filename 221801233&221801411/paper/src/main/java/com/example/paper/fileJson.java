@@ -7,8 +7,13 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.io.FileUtils;
 import pojo.User;
+import util.DBUtil;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -147,12 +152,55 @@ public class fileJson {
             }
         }
     }
+    public void write(){
+        StringBuilder stringBuilder=new StringBuilder();
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
+            String sql = "select link from paper ";
+            ResultSet rs = s.executeQuery(sql);
+            int i=0;
+            while (rs.next()) {
+                stringBuilder.append(rs.getString("link") + "\n");
+            }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+                BufferedWriter writer = null;
+                File file = new File("out.txt");
+                if(!file.exists()){
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,false), "UTF-8"));
+                    writer.write(stringBuilder.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    try {
+                        if(writer != null){
+                            writer.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("文件写入成功！");
+
+
+
+            }
+
+
+
      public static void main(String [] args)
     {
         fileJson file=new fileJson();
         //file.jsontosql();
         //file.comjsontosql("CVPR");
-        file.comjsontosql("ICCV");
+        file.write();
         //System.out.println(file.getDatafromFile("myidea\\paperinfo\\ECCV\\2016_(ell ^{0})-Sparse Subspace Clustering"));
 
     }

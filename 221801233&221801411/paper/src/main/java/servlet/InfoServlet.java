@@ -27,32 +27,35 @@ public class InfoServlet extends HttpServlet {
         UserDAO userDAO=new UserDAOImpl();
         String search=req.getParameter("searchId");
         if(search!=null){
-            int cur=Integer.parseInt(search);
-            List<User> users = userDAO.list(cur,0);
+            List<User> users = userDAO.oblist(0,search);
             //System.out.println(users);
             int total = userDAO.getTotal();
             //page.setTotal(total);
+            req.setAttribute("total",total);
             req.setAttribute("users", users);
             //request.setAttribute("page", page);
             RequestDispatcher rd;
-            rd = req.getRequestDispatcher("/test.jsp?id=" + cur);
+            rd = req.getRequestDispatcher("/admin/paperlist.jsp?id=" +users.get(0).getId());
             rd.forward(req, resp);
         }
         else {
-            int span=10;
+            int span=5;
             int cur = 1;
+            int total = userDAO.getTotal();
+            //page.setTotal(total);
+            req.setAttribute("total",total);
             String back = req.getParameter("id");
             if (back != null) {
                 cur = Integer.parseInt(back);
             }
             List<User> users = userDAO.list(cur-cur%span+1,span);
+            int newone=cur-cur%span+1;
             //System.out.println(users);
-            int total = userDAO.getTotal();
             //page.setTotal(total);
             req.setAttribute("users", users);
             //request.setAttribute("page", page);
             RequestDispatcher rd;
-            rd = req.getRequestDispatcher("/test.jsp?id=" + cur);
+            rd = req.getRequestDispatcher("/admin/paperlist.jsp?id=" + newone);
             rd.forward(req, resp);
         }
     }
