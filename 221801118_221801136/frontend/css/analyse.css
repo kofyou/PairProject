@@ -1,0 +1,33 @@
+#mainPart{
+    background: #697878;
+    width: 98%;
+    height: 580px;
+    margin: 0px auto;
+    opacity: 0.8;
+}
+.part{
+    height: 40%;
+    width: 60%;
+    border: black 1px solid;
+    float: left;
+    margin-left: 20%;
+}
+.title{
+    width: 45%;
+    margin-left: 25px;
+    float: left;
+    color: #041539;
+    font-size: 22px;
+    font: bolder;
+}
+.titleLine{
+    float: left;
+    width: 80%;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 15%;
+}
+/*#top10{*/
+/*    width: 800px;*/
+/*    width: 800px;*/
+/*}*/
