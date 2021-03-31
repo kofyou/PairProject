@@ -2,6 +2,7 @@ package com.yangyu.esearch.controller;
 
 import com.yangyu.esearch.entity.Paper;
 import com.yangyu.esearch.service.PaperService;
+import com.yangyu.esearch.untils.ReadPaper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
