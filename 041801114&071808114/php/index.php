@@ -4,22 +4,6 @@
 <meta charset="utf-8">
 <title>加载中...</title>
 <link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
-<script>
-	function checkboxfunc(){ }
-	function jump(a){
-		sessionStorage['paper_id'] = a;
-		document.getElementById('paperlist').childNodes
-		window.location.href = "http://blog.tozzger.info/quickfind/paper";
-	}
-	function killpaper()
-	{
-		alert(sessionStorage['except']);
-	}
-	if (sessionStorage['curr_page'] == undefined)
-		sessionStorage['curr_page'] = "1";
-	if (sessionStorage['except'] == undefined)
-		sessionStorage['except'] = JSON.stringify(json);
-	</script>
 </head>
 
 <body>
@@ -64,6 +48,33 @@
 </div>
 
 <script src=<?= bloginfo('template_directory').'/quickfind/jquery.min.js'; ?>></script>
+	<script>
+	function checkboxfunc(){ }
+	function jump(a){
+		sessionStorage['paper_id'] = a;
+		window.location.href = "http://blog.tozzger.info/quickfind/paper";
+	}
+	function killpaper()
+	{
+		var divs = document.getElementById('paperlist').getElementsByTagName('input');
+		var i = 0;
+		var checked = new Array();
+		for(var i = 0; i < divs.length; i++)
+		{
+			if(!divs[i].checked)
+				continue;
+			checked.push(divs[i].value);
+		}
+		if (checked.length > 0) {
+			sessionStorage['except'] = sessionStorage['except'].split(',').concat(checked).join(',');
+			document.getElementById('searchbtn').click();
+		}
+	}
+	if (sessionStorage['curr_page'] == undefined)
+		sessionStorage['curr_page'] = "1";
+	if (sessionStorage['except'] == undefined)
+		sessionStorage['except'] = "-1";
+	</script>
 <script>
 		function addPageBtn(str, index)
 		{
@@ -87,6 +98,7 @@
 			for(var i=0;i<result["row"].length;i++){
 				var paper = document.getElementById('paper_template').cloneNode(true);
 				paper.style = '';
+				paper.getElementsByTagName('input')[0].value = result["row"][i].id;
 				paper.getElementsByTagName('p')[0].type = result["row"][i].id;
 				paper.getElementsByTagName('p')[0].innerHTML = result["row"][i].title;
 				document.getElementById('paperlist').appendChild(paper);
