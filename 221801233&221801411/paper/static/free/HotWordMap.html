@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart page</title>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="./css/my.css">
+<!--    <link rel="stylesheet" href="./css/chartPage.css">-->
+    <!-- 引入 echarts.js -->
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/echarts.js"></script>
+</head>
+<body >
+<!--    网站导航-->
+<!--使用inverted的黑化效果突出导航栏-->
+<div>
+    <nav class="ui inverted attached segment my-padded-tb-mini">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu" ><!--                在menu里面加一个条目-->
+                <h2 class="ui blue header item ">MyPaper</h2>
+                <a href="index.html" class="item" style="width: 7em " ><i class="home icon"></i>首页</a>
+                <a href="classify.html" class="item" style="width: 7em"><i class="idea icon"></i>分类</a>
+                <a href="HotWordMap.html" class="item" style="width: 10em"><i class="chart pie icon"></i>年度热词图谱</a>
+                <a href="TrendAnalysis.html" class="item" style="width: 8em"><i class="chart line icon"></i>趋势走向</a>
+                <div class="right item " >
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="Search...." >
+                        <i class="search link icon" ></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+
+<div style="margin: 20px auto; width: 500px;">
+    <!-- 图一所占空间 -->
+    <div id="chart1" style="width: 600px;height:400px; margin-bottom: 20px"></div>
+
+    <!-- 图二所占空间 -->
+    <div id="chart2" style="width: 600px;height:500px;"></div>
+    <div style="text-align:center" onclick="window.location.href= 'index.html';return false">
+        <button class="ui secondary button">首页</button>
+    </div>
+    <div style="text-align:center" onclick="window.location='http://baidu.com';">
+        <button class="ui secondary button">百度</button>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        echart01();
+        echart02();
+        function echart01() {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('chart1'),'light');
+
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '热词top10'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['个数']
+                },
+                xAxis: {
+                    data: ["热词1", "热词2", "热词3", "热词4", "热词5", "热词6","热词7", "热词8","热词9", "热词10",]
+                },
+                yAxis: {},
+                series: [{
+                    name: '热词搜索次数',
+                    type: 'bar',
+                    data: [5, 20, 36, 44, 66,70,80,90,100,110]
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function echart02() {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('chart2'),"light");
+            // var myChart = echarts.init(chartDom);
+            var option;
+            option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    top: '5%',
+                    left: 'center'
+                },
+                series: [
+                    {
+                        name: '搜索次数',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '40',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: [
+                            {value: 1078, name: '热词1'},
+                            {value: 1048, name: '热词2'},
+                            {value: 735, name: '热词3'},
+                            {value: 666, name: '热词4'},
+                            {value: 580, name: '热词5'},
+                            {value: 484, name: '热词6'},
+                            {value: 300, name: '热词7'},
+                            {value: 250, name: '热词8'},
+                            {value: 180, name: '热词9'},
+                            {value: 99, name: '热词10'},
+                        ]
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+    }
+</script>
+
+<div>
+    <!--footer-->
+    <footer class="ui inverted vertical segment ">
+        <!--      center aligned将容器内的所有块居中显示-->
+        <div class="ui center aligned container">
+            <!--            style="width: 100em "-->
+            <div class="ui inverted divided stackable grid">
+                <div  class="three wide column">
+                    <div class="ui inverted link list" >
+                        <div class="item">
+                            <img src="./images/MyIDcard.png" class="ui rounded png" alt="" style="width: 100px">
+                        </div>
+                    </div>
+                </div>
+                <div  class="three wide column">
+                    <h4 class="ui inverted header my-opacity-adjust">最新论文</h4>
+                    <div class="ui inverted link list" >
+                        <a href="#" class="item"style="width: 15em ">论文作者故事(Writer Story)</a>
+                        <a href="#" class="item"style="width: 15em ">团队合作很重要</a>
+                    </div>
+                </div>
+                <div  class="three wide column">
+                    <h4 class="ui inverted header my-opacity-adjust">联系我们</h4>
+                    <div class="ui inverted link list" >
+                        <a href="#" class="item"style="width: 15em ">Email:3360068374@qq.com</a>
+                        <a href="#" class="item"style="width: 15em ">QQ:3360068374</a>
+                    </div>
+                </div>
+                <div  class="three wide column">
+                    <h4 class="ui inverted header my-opacity-adjust" style="width:30em" >网站介绍</h4>
+                    <p class="my-text-thin my-text-spaced my-opacity-adjust"style="width:35em">我们致力于将来自计算机视觉领域世界三大顶级会议（即CVPR、ICCV和ECCV）的论文进行资源整合并进行数据分析。希望对来访者有所帮助...</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="my-text-thin my-text-spaced my-opacity-adjust">Copyright by 2021 MyPaperTeam LilCrab&CPZ</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+</div>
+
+</body>
+</html>
