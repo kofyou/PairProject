@@ -210,7 +210,6 @@ export default {
       /* 计算展示的数组左右值 */
       let leftIndex = (val - 1) * this.tableMes.eachPageItem;
       let rightIndex = val * this.tableMes.eachPageItem;
-
       /* 最后一页 */
       if( rightIndex > itemCnt)
         this.displayedTableData = this.tableData.slice(leftIndex);

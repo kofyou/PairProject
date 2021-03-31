@@ -19,7 +19,7 @@ Vue.prototype.$echarts = echarts
 // require('echarts-wordcloud');
 
 Vue.config.productionTip = false;
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 50000;
 // axios.defaults.headers.post['Content-Type'] = 'json;charset=UTF-8';
 axios.defaults.baseURL = 'http://ccreater.top:63000/';
 axios.defaults.withCredentials = true
