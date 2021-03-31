@@ -18,7 +18,7 @@ use yii\helpers\Html;
                 <li>导入结果</li>
 
                 </ol>
-                <br><br><hr>
+                <br><br>
                 <?php if($added){?>
                     <h4>导入成功！是否前去论文列表查看?</h4>
                 <?php  }else{?>
