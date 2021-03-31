@@ -1,0 +1,13 @@
+characters: 7057664
+words: 621909
+lines: 13139
+type: 29944
+image: 26403
+indexing: 18902
+controlled: 18749
+inspec: 18733
+keywords: 11159
+ieee: 9846
+learning: 7615
+object: 6905
+recognition: 6750
