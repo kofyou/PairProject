@@ -6,6 +6,8 @@ import './index.css';
 import { Button, Tooltip, Pagination, Statistic, List, Avatar, Layout } from 'antd';
 import { MinusOutlined } from '@ant-design/icons';
 import './MyPaperList.css';
+import { setRawCookie } from 'react-cookies';
+import cookie from 'react-cookies';
 
 const axios = require('axios');
 
@@ -15,7 +17,7 @@ const { Content } = Layout;
 
 const cancelSubscribePaper = (paperId) => {
   axios.defaults.withCredentials = true
-  let url = 'http://localhost:3000/api/v1/paper/unsubscribe'
+  let url = 'http://pingleme.top:3000/api/v1/paper/unsubscribe'
   axios.post(url, {
     paper_id: paperId,
   })
@@ -40,7 +42,7 @@ class CreateListPage extends React.Component {
     axios.defaults.withCredentials = true
     const _this = this
     let urlAdd = _this.state.pageNum == 0 ? '' : '&page=' + _this.state.pageNum
-    let url = 'http://localhost:3000/api/v1/user/list' + urlAdd
+    let url = 'http://pingleme.top:3000/api/v1/user/list' + urlAdd
     axios.get(url)
       .then(function (response) {
         if (response.data.code == 0) {
@@ -72,7 +74,7 @@ class CreateListPage extends React.Component {
         >
           <div>
             <Button id="search-paper-link" type="link" href="/" >点击获取更多论文</Button>
-            <p id="account-list">221801219 的论文列表 (7)</p>
+            <p id="account-list">{cookie.load("account")} 的论文列表 </p>
           </div>
           <hr />
           <div id="paparList">
