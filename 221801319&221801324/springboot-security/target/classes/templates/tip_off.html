@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>问题列表</title>
+    <!--		加入背景音乐-->
+    <embed th:src="@{/static/img/d.mp3}" hidden="true" autostart="true" loop="true"/>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/static/css/usermain.css}">
+</head>
+<body>
+
+<script th:src="@{/static/layui/layui.js}"></script>
+<ul class="layui-nav">
+    <li class="layui-nav-item">
+        <a th:href="@{/usermain}">控制台<span class="layui-badge">99+</span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">个人中心<span class="layui-badge-dot"></span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}"><img th:src="@{/static/img/vanyang.jpg}" class="layui-nav-img">
+            <!--        取session-->
+            [[${session.loginUser}]]</a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/updateInfo}">修改信息</a></dd>
+            <dd><a th:href="@{/Safe}">安全管理</a></dd>
+            <dd><a th:href="@{/}">退了</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">激活<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/activate_email}">激活邮箱</a></dd>
+            <dd><a th:href="@{/activate_box}">激活提van♂箱</a></dd>
+            <dd><a th:href="@{/close_box}">关闭提van♂箱</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">van题箱<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/ask_question}">提van题♂</a></dd>
+            <dd><a th:href="@{/question_list}">有人提van我?</a></dd>
+            <dd><a th:href="@{/my_question_list}">我的提van</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/user/socket}">查看消息<span class="layui-badge-dot"></span></a>
+    </li>
+
+    <form class="layui-form" th:action="@{/tip_off}">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">封禁理由</label>
+            <div class="layui-input-block">
+                <textarea name="reason" placeholder="请输你的理由" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"  >立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</ul>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script>
+    layui.use('element',function () {
+//实例化element
+        var element = layui.element();
+//初始化动态元素，一些动态生成的元素如果不设置初始化，将不会有默认的动态效果
+        element.init();
+//导航条点击监听
+        element.on('nav(bigData)',function (elem) {
+            console.log(elem);
+        });
+//tab切换监听
+        element.on('tab(test)',function (data) {
+            console.log(data);
+        });
+//手风琴折叠面板开启关闭监听
+        element.on('collapse(collapseFilter)',function (data) {
+            console.log(data.show);
+            console.log(data.title);
+            console.log(data.content)
+        });
+//触发的事件
+        var active = {
+            setPercent: function () {
+//设置50%进度
+                element.progress('demo', '50%')
+            }
+        }
+//点击事件的监听
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this);
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    })
+</script>
+</body>
+</html>

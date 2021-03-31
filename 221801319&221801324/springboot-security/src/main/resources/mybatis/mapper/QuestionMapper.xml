@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.QuestionMapper">
+
+    <select id="queryQuestionList" resultType="com.yrc.pojo.Question">
+        select * from question
+    </select>
+
+    <select id="queryQuestionByAskId" resultType="com.yrc.pojo.Question">
+        select * from question where id_ask=#{id_ask}
+    </select>
+
+    <select id="queryQuestionByAnswerId" resultType="com.yrc.pojo.Question">
+        select * from question where id_answer=#{id_answer}
+    </select>
+
+    <update id="deleteQuestion" parameterType="int">
+        update question set statue=2 where id=#{id}
+    </update>
+
+
+    <insert id="addQuestion">
+        insert into question(id,id_ask,id_answer,context,time,statue) values (#{id},#{id_ask},#{id_answer},#{context},#{time},#{statue})
+    </insert>
+
+    <update id="answerQuestion">
+            update question set answer=#{answer},statue=1 where id=#{id}
+        </update>
+</mapper>

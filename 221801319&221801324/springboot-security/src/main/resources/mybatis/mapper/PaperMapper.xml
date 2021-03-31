@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.PaperMapper">
+
+    <select id="querypaperList" resultType="com.yrc.pojo.paper">
+        select * from paper
+    </select>
+
+
+        <select id="search_by_gjc" resultType="com.yrc.pojo.paper" parameterType="String">
+        select * from paper where keywords  LIKE '%${gjc}%'
+    </select>
+
+
+    <delete id="delete_paper" parameterType="int">
+        delete from paper  where id=#{id}
+    </delete>
+
+</mapper>
