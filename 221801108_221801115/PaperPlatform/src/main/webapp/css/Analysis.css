@@ -8,11 +8,13 @@ html,body{
     width: 100%;
     height: 300px;
     background-color: #45ebc2;
+    z-index: 150;
 }
 .main{
     width: 100%;
     height: 580px;
     text-align: center;
+    z-index: 100;
 }
 .logo{
     width: 50%;
@@ -80,10 +82,10 @@ a:visited {
     height: 380px;
     position: relative;
     top: 60px;
+    z-index: 200;
 }
 .cloud_box{
     background-color: white;
-    opacity: 50%;
     border-radius: 15px;
     position: absolute;
     left: 50%;

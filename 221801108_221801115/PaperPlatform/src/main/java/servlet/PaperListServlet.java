@@ -116,7 +116,6 @@ public class PaperListServlet extends HttpServlet {
         req.setAttribute("totalNum", totalNum);
         req.setAttribute("paperList", paperList);
         req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
-        //req.getRequestDispatcher("/PaperListServlet?operation=que").forward(req,resp);
     }
 
     public void showPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

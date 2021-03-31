@@ -33,7 +33,7 @@ html,body{
     width: 75%;
     height: 100%;
     border-radius: 20px;
-    opacity: 75%;
+    opacity: 85%;
     box-shadow: darkgrey 4px 4px 4px 2px;
 }
 .gray {
@@ -47,9 +47,14 @@ html,body{
 
 .message_link{
     float: left;
-    padding-top: 15px;
+    padding-top: 20px;
     padding-left: 10px;
 }
+
+.message_link span {
+    font-weight: bold;
+}
+
 .message_year{
     float: right;
     padding-right:15px ;
@@ -60,10 +65,10 @@ html,body{
 }
 #title{
     text-align: center;
-    font-size: 25px;
+    font-size: 22px;
 }
 #keywords{
-    color: #02A7F0;
+    color: #83b0ff;
     font-size: 18px;
     margin-left: 10px;
 }
@@ -73,7 +78,8 @@ html,body{
     padding: 18px;
     margin: 15px;
     text-indent: 2em;
-    font-size: 18px;
+    font-size: 17px;
+    text-align:justify;
 }
 .circle{
     background-color: #45ebc2;

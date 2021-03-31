@@ -30,7 +30,7 @@
     <div class="message">
         <div class="circle"></div>
         <div class="message_title">
-            <p id="title"> ${requestScope.paperInfo.title}</p>
+            <h4 id="title"> ${requestScope.paperInfo.title}</h4>
         </div>
         <div class="message_keyword">
             <p></p>
@@ -44,16 +44,17 @@
             <p id="summary"> ${requestScope.paperInfo.summary} </p>
         </div>
         <div class="message_link">
-            <a id="link" href="${requestScope.paperInfo.link}"> ${requestScope.paperInfo.link} </a>
+            <span>原文链接：</span><a id="link" href="${requestScope.paperInfo.link}"> ${requestScope.paperInfo.link} </a>
         </div>
         <div class="message_year">
-            <p id="year"> 发表年份：${requestScope.paperInfo.year} </p>
+            <h4 id="year"> 发表年份：${requestScope.paperInfo.year} </h4>
         </div>
         <div class="message_type">
 
-            <p id="conference"> 会议：${requestScope.paperInfo.conference} </p>
+            <h4 id="conference"> 会议：${requestScope.paperInfo.conference} </h4>
         </div>
     </div>
 </div>
+<div id="zhanwei"></div>
 </body>
 </html>

@@ -44,7 +44,7 @@
     <div class="box">
         <div class="cloud_box">
             <div class="circle"><span>Top 10 热词词云</span></div>
-            <div id='wcloud' style="width: 600px;height:350px;"></div>
+            <div id='wcloud' style="width: 600px;height:370px;"></div>
             <script>
                 var chart = echarts.init(document.getElementById('wcloud'));
 
@@ -54,7 +54,7 @@
                         type: 'wordCloud',
                         gridSize: 2,
                         sizeRange: [12, 50],
-                        rotationRange: [-90, 90],
+                        rotationRange: [-30, 50],
                         shape: 'pentagon',
                         width: 600,
                         height: 400,
@@ -102,6 +102,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="main">
     <div id="wordbargraph" style="width: 1500px;height:400px;"></div>
     <script type="text/javascript">
