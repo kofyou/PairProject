@@ -23,7 +23,7 @@ public class PaperListServiceImpl implements PaperListService {
 	@Override
 	public List<Paper> listAll() {
 		
-		String sql = "select * from paperlist";
+		String sql = "select * from paper";
 		DBUtils dbUtils = new DBUtils();
 		dbUtils.init();
 		Connection conn =dbUtils.getConn();
@@ -55,7 +55,7 @@ public class PaperListServiceImpl implements PaperListService {
 	}
 	//below used for test
 	
-	public static List<Paper> getDirectory2(File file){
+	public static List<Paper> getECCV(File file){
 		File[] fileCVPR=file.listFiles();
 		List<Paper> datalist = new ArrayList<Paper>();
 		int i=0;
@@ -76,39 +76,13 @@ public class PaperListServiceImpl implements PaperListService {
 			datalist.add(p);
 						
 			if(file1.isDirectory()){
-	            getDirectory2(file1);
+	            getECCV(file1);
 	        }
 		}
 		return datalist;
 		
     }
-	public static List<Paper> getDirectorytest(File file){
-		File[] fileCVPR=file.listFiles();
-		List<Paper> datalist = new ArrayList<Paper>();
-		int i=0;
-		for(File file1 : fileCVPR) {
-			i++;
-			/*if(i>10) {
-				break;
-			}*/
-			String s=(file1.getAbsolutePath());
-			GetJson g= new GetJson();
-			g.readJsonFile(s,2);			
-			Paper p= new Paper();
-			p.setAbout(g.getAbout2());
-			p.setId(g.getId2());
-			p.setKeywords(g.getKeywords2());
-			p.setTitle(g.getTitle2());
-			p.setUrl(g.getUrl2());			
-			datalist.add(p);
-						
-			if(file1.isDirectory()){
-	            getDirectory2(file1);
-	        }
-		}
-		return datalist;
-		
-    }
+	
 	public static int delete(String title) {
 		String sql="delete from paper where title=?";
 		DBUtils dbUtils = new DBUtils();
@@ -134,16 +108,14 @@ public class PaperListServiceImpl implements PaperListService {
 		int i=0;
 		for(File file1 : fileCVPR) {
 			i++;
-			/*if(i>10) {
-				break;
-			}*/
+			
 			String s=(file1.getAbsolutePath());
 			GetJson g= new GetJson();
 			g.readJsonFile(s,1);			
 			Paper p= new Paper();
 			p.setAbout(g.getAbout());
 			p.setId(g.getId());
-			//p.setKeywords(g.getKeywords());
+			p.setKeywords(g.getKeywords());
 			p.setTitle(g.getTitle());
 			p.setUrl(g.getUrl());			
 			datalist.add(p);
@@ -155,13 +127,14 @@ public class PaperListServiceImpl implements PaperListService {
 		return datalist;
 		
     }
+	
 	public static void main(String[] args) {
 		
 
 			//File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
-			File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
-			//File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
-			List<Paper> datalist = getDirectorytest(file2);	        					
+			//File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
+			File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
+			List<Paper> datalist = getDirectory(file);	        					
 			/*for(int i = 0 ; i < datalist.size() ; i++) {
 				  System.out.println(datalist.get(i).getUrl());
 			}*/
@@ -180,7 +153,7 @@ public class PaperListServiceImpl implements PaperListService {
 					pstm.setString(3, datalist.get(i).getUrl());
 					pstm.setString(4, datalist.get(i).getAbout());
 					pstm.setString(5, datalist.get(i).getKeywords());
-					//pstm.executeUpdate();
+					pstm.executeUpdate();
 					System.out.println(" success "+i+datalist.get(i).getAbout());
 				}							
 				
@@ -191,7 +164,7 @@ public class PaperListServiceImpl implements PaperListService {
 				dbUtils.releseAll(conn, pstm, null);
 			}
 		
-
+			
 	}
 
 }

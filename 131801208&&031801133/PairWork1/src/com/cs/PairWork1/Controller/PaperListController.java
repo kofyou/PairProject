@@ -42,9 +42,9 @@ public class PaperListController implements Controller {
 		//}
 
 		
-		jsonArray.addAll(p.getDirectory(file));
-		jsonArray.addAll(p.getDirectory2(file2));
-		jsonArray.addAll(p.getDirectory(file3));
+		jsonArray.addAll(p.listAll());
+//		jsonArray.addAll(p.getDirectory2(file2));
+//		jsonArray.addAll(p.getDirectory(file3));
 	
 		
 		byte[] retArr = jsonArray.toJSONString().getBytes();

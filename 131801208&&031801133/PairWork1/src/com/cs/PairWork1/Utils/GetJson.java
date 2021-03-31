@@ -65,7 +65,7 @@ public class GetJson {
 				title2 = stringMap.get("论文名称");
 				
 				about = stringMap.get("doi");
-				about2 = stringMap.get("会议与年份");
+				about2 = stringMap.get("会议和年份");
 			
 				
 				keywords = stringMap.get("keywords");
