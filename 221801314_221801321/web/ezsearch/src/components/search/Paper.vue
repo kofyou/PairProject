@@ -1,16 +1,83 @@
 <template>
   <div class="box-card" align="left">
     <div class="paper title" style="padding-bottom: 25px">
-      <a :href="item.link" target="_blank" style="height: 65px; color:#000; font-weight: bold; font-size: 40px; overflow: hidden">
+      <a
+        :href="item.link"
+        target="_blank"
+        style="
+          height: 65px;
+          color: #000;
+          font-weight: bold;
+          font-size: 40px;
+          overflow: hidden;
+        "
+      >
         {{ item.title }}
       </a>
-      <div style="padding-top: 10px; padding-left: 5px;">
-        <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">作者: </span>
-        <span class="blue" style="width:60%; height: 20px; float:left; color:#222; overflow: hidden">{{item.authors}}</span>
-        <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">来源:</span>
-        <span class="blue" style="width:15%; height: 20px; float:left; color:#222; overflow: hidden">{{item.source}}</span>
-        <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">发表时间:</span>
-        <span class="blue" style="width:10%; height: 20px; float:left; color:#222; overflow: hidden">{{item.years}}</span>
+      <div style="padding-top: 10px; padding-left: 5px">
+        <span
+          style="
+            height: 20px;
+            overflow: hidden;
+            float: left;
+            color: #222;
+            padding-right: 5px;
+          "
+          >作者:
+        </span>
+        <span
+          class="blue"
+          style="
+            width: 60%;
+            height: 20px;
+            float: left;
+            color: #222;
+            overflow: hidden;
+          "
+          >{{ item.authors }}</span
+        >
+        <span
+          style="
+            height: 20px;
+            overflow: hidden;
+            float: left;
+            color: #222;
+            padding-right: 5px;
+          "
+          >来源:</span
+        >
+        <span
+          class="blue"
+          style="
+            width: 15%;
+            height: 20px;
+            float: left;
+            color: #222;
+            overflow: hidden;
+          "
+          >{{ item.source }}</span
+        >
+        <span
+          style="
+            height: 20px;
+            overflow: hidden;
+            float: left;
+            color: #222;
+            padding-right: 5px;
+          "
+          >发表时间:</span
+        >
+        <span
+          class="blue"
+          style="
+            width: 10%;
+            height: 20px;
+            float: left;
+            color: #222;
+            overflow: hidden;
+          "
+          >{{ item.years }}</span
+        >
       </div>
     </div>
     <el-divider></el-divider>

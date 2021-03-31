@@ -1,6 +1,6 @@
 <template>
   <div class="block">
-    <el-carousel interval="0" height="500px" direction="vertical">
+    <el-carousel interval="4000" height="500px" direction="vertical">
       <el-carousel-item v-for="item in images" :key="item">
         <!-- <img :src="item.url" alt="1" /> -->
         <el-image :src="item.url" :fit="cover"></el-image>
@@ -16,8 +16,8 @@ export default defineComponent({
   setup() {
     const path = require("@/assets/CVPR.jpg");
     const images = [
-      { url: require("@/assets/CVPR.jpg") },
       { url: require("@/assets/ECCV.png") },
+      { url: require("@/assets/CVPR.jpg") },
       { url: require("@/assets/ICCV.png") },
     ];
     return {

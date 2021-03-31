@@ -14,7 +14,7 @@ export default defineComponent({
   name: "Search",
   data() {
     return {
-      inputValue: '22',
+      inputValue: "22",
     };
   },
   methods: {
@@ -87,7 +87,7 @@ export default defineComponent({
       return [{ value: "三全鲜食（北新泾店）", address: "长宁区新渔路144号" }];
     };
     const handleSelect = (item) => {
-      console.log(inputValue)
+      console.log(inputValue);
       emitTitle();
     };
     onMounted(() => {

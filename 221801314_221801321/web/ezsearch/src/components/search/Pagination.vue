@@ -17,7 +17,7 @@ import { defineComponent, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   name: "Pagination",
-  props:['total'],
+  props: ["total"],
   data() {
     return {
       sum: this.total,

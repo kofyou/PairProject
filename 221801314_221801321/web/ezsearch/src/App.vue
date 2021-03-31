@@ -3,16 +3,15 @@
 </template>
 
 <script>
-import * as echarts from 'echarts'
-import { provide } from 'vue'
-import {defineComponent} from 'vue';
-export default defineComponent ({
-  name: 'App',
-  setup(){
-    provide('ec',echarts)//provide
+import * as echarts from "echarts";
+import { provide } from "vue";
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "App",
+  setup() {
+    provide("ec", echarts); //provide
   },
-  components: {
-  }
+  components: {},
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="block">
-    <el-carousel interval="0" height="500px">
+    <el-carousel interval="4000" height="500px">
       <el-carousel-item v-for="item in images" :key="item">
         <!-- <img :src="item.url" alt="1" /> -->
         <el-image :src="item.url" :fit="cover"></el-image>
