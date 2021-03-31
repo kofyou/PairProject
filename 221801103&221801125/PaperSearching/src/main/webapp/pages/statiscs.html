@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../font&pic/iconfont.css"/>
-    <link rel="stylesheet" href="../css/nav.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../font&pic/iconfont.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
     <title>最热统计</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="nav">
-        <div class="nav-left">
-            <a href="index.html"><span class="iconfont icon-zhuye"></span></a>
-            <input class="search" placeholder="输入您想搜索的内容" />
-            <span class="iconfont icon-fangdajing " id="search_btn"></span>
-            <a href="./paper/allPaperList.html?page=1"><span class="iconfont icon-chazhaobiaodanliebiao" id="list"></span></a>
+      <div class="nav-left">
+        <a href="index.html"><span class="iconfont icon-zhuye"></span></a>
+        <input class="search" placeholder="输入您想搜索的内容" />
+        <span class="iconfont icon-fangdajing" id="search_btn"></span>
+        <a href="./paper/allPaperList.html?page=1"
+          ><span class="iconfont icon-chazhaobiaodanliebiao" id="list"></span
+        ></a>
+      </div>
+      <div class="nav-right">
+        <a class="right-part" href="./statiscs.html">
+          <span>最热统计</span>
+          <span class="iconfont icon-remen ri"></span>
+        </a>
+        <a class="right-part" href="./paper/myPaperList.html?page=1">
+          <span>我的收藏</span>
+          <span class="iconfont icon-shoucang ri"></span>
+        </a>
+        <a class="right-part" href="./paper/allPaperList.html?page=1">
+          <span>论文列表</span>
+          <span class="iconfont icon-lunwenjianceshenqing ri"></span>
+        </a>
+        <div class="right-part">
+          <div class="user-name"></div>
+          <span class="iconfont"></span>
+          <ul class="slide-down">
+            <a href="./mySettings.html"><li>个人设置</li></a>
+            <li>退出登录</li>
+          </ul>
         </div>
-        <div class="nav-right">
-            <a class="right-part" href="./statiscs.html">
-                <span>最热统计</span>
-                <span class="iconfont icon-remen ri"></span>
-            </a>
-            <a class="right-part" href="./paper/myPaperList.html?page=1">
-                <span>我的收藏</span>
-                <span class="iconfont icon-shoucang ri"></span>
-            </a>
-            <a class="right-part" href="./paper/allPaperList.html?page=1">
-                <span>论文列表</span>
-                <span class="iconfont icon-lunwenjianceshenqing ri"></span>
-            </a>
-            <div class="right-part">
-                <div class="user-name"></div>
-                <span class="iconfont"></span>
-                <ul class="slide-down">
-                    <a href="./mySettings.html"><li>个人设置</li></a>
-                    <li>退出登录</li>
-                </ul>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="main">
-        <span class="iconfont icon-dengdai" id="reg_wait"></span>
-        <div id="empty" class="xiaoshi"><span class="iconfont icon-kong"></span><span>什么都没有哦orz</span></div>
+      <span class="iconfont icon-dengdai" id="reg_wait"></span>
+      <div id="empty" class="xiaoshi">
+        <span class="iconfont icon-kong"></span><span>什么都没有哦orz</span>
+      </div>
     </div>
-    <div class="container">
-    </div>
-    <div class="wrap" style="position: relative;">
-
-    </div>
+    <div class="container"></div>
+    <div class="wrap"></div>
     <script src="../jquery/jquery-3.6.0.min.js"></script>
     <script src="../js/baseURL.js"></script>
     <script src="../js/user.js"></script>
     <script src="../js/nav.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"
+    ></script>
     <script src="../js/statiscs.js"></script>
-    <script>
-        
-    </script>
-</body>
+    <script></script>
+  </body>
 </html>

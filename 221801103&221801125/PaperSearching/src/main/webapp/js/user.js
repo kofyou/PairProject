@@ -10,8 +10,7 @@
 var USER_INFO = 
     {
         "name" : localStorage.getItem("name")==null? "":localStorage.getItem("name"),
-        // "userID" : localStorage.getItem("userName")==null? "":localStorage.getItem("userName"),
-        "userID" : "123",
+        "userID" : localStorage.getItem("userName")==null? "":localStorage.getItem("userName"),
         "sign" : localStorage.getItem("sign")==null? "":localStorage.getItem("sign"),
         "company" : localStorage.getItem("company")==null? "":localStorage.getItem("company"),
         "address" : localStorage.getItem("address")==null? "":localStorage.getItem("address"),

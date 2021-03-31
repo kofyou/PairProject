@@ -116,7 +116,7 @@ public class PaperDaoimpl
             else
             {
                 PreparedStatement preparedStatement=connection.prepareStatement(
-                        "SELECT * FROM papers");
+                        "SELECT * FROM papers order by date desc limit 300");
                 ResultSet resultSet =preparedStatement.executeQuery();
                 while(resultSet.next())
                 {

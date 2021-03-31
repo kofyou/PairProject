@@ -16,6 +16,7 @@ $(function () {
         contentType:"application/json",
         type: "POST",
         dataType: "json",
+        xhrFields:{withCredentials: false},
         success: (data) => {
           $("#login_word").removeClass("to_none");
           $("#reg_wait").css("display", "none");
@@ -28,12 +29,12 @@ $(function () {
             USER_INFO.sign = data.info;
             USER_INFO.company = data.company;
             USER_INFO.address = data.address
-            window.open("../pages/index.html", "_self");
             localStorage.setItem("userName", USER_INFO.userID);
-            localStorage.setItem("name", USER_INFO.userID);
-            localStorage.setItem("sign", USER_INFO.userID);
-            localStorage.setItem("company", USER_INFO.userID);
-            localStorage.setItem("address", USER_INFO.userID);
+            localStorage.setItem("name", USER_INFO.name);
+            localStorage.setItem("sign", USER_INFO.sign);
+            localStorage.setItem("company", USER_INFO.company);
+            localStorage.setItem("address", USER_INFO.address);
+            window.open("../pages/index.html", "_self");
             //console.log(localStorage.getItem("lastname"))
           }
         },

@@ -117,7 +117,6 @@
 
 .deleteLike{
     overflow: hidden;
-    cursor: pointer;
     text-align: center;
     font-size: 15px;
     font-weight: 700;
@@ -129,6 +128,7 @@
     top:40px;
     border:1px solid;
     border-radius: 3px;
+    cursor:pointer;
     transition: all linear .2s;
 }
 .deleteLike:hover{

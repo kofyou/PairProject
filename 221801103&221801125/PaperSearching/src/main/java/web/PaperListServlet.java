@@ -46,6 +46,29 @@ public class PaperListServlet extends HttpServlet
 
         if(requestJson.getString("methods").equals("getPages"))
         {
+            if(requestJson.getInt("type")==1)
+            {
+                showPapers.clear();
+
+                int type=Integer.parseInt(requestJson.getString("type"));
+                String account=requestJson.getString("account");
+
+                List<Paper> papers=paperserviceimpl.GetPaperList("",type);
+
+                for (int i=0;i<papers.size();i++)
+                {
+                    JSONObject jsonObject=new JSONObject();
+                    jsonObject.put("title",papers.get(i).getTitle());
+                    String[] authorList=papers.get(i).getAuthors().split("//");
+                    jsonObject.put("author",authorList);
+                    String[] keywordList=papers.get(i).getKeywords().split("//");
+                    jsonObject.put("keyword",keywordList);
+                    jsonObject.put("info",papers.get(i).getTheabstract());
+                    jsonObject.put("link",papers.get(i).getPaperlink());
+                    jsonObject.put("iscollect",paperserviceimpl.IsCollected(account,papers.get(i).getTitle()));
+                    showPapers.add(jsonObject);
+                }
+            }
             String curSearchword=requestJson.getString("str");
             if (!searchedWord.equals(curSearchword))
             {
@@ -77,9 +100,14 @@ public class PaperListServlet extends HttpServlet
         else if(requestJson.getString("methods").equals("getSearchList"))
         {
             int index=requestJson.getInt("page");
-            int n=(index-1)*8;
-            int m=index*8-1;
-            response.getWriter().print(showPapers.subList((index-1)*8,index*8));
+            if(index*8<=showPapers.size())
+            {
+                response.getWriter().print(showPapers.subList((index - 1) * 8, index * 8));
+            }
+            else
+            {
+                response.getWriter().print(showPapers.subList((index - 1) * 8, (index - 1) * 8+showPapers.size()%8));
+            }
         }
     }
 

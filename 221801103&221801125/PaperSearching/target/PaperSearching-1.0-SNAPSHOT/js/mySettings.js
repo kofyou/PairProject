@@ -30,11 +30,12 @@ $(function(){
         USER_INFO.company = $(".setting-company").val().toString()
         USER_INFO.address = $(".setting-address").val().toString()
         USER_INFO.sign = $(".setting-info").val().toString()
-            localStorage.setItem("userName", USER_INFO.userID);
-            localStorage.setItem("name", USER_INFO.userID);
-            localStorage.setItem("sign", USER_INFO.userID);
-            localStorage.setItem("company", USER_INFO.userID);
-            localStorage.setItem("address", USER_INFO.userID);
+        localStorage.setItem("userName", USER_INFO.userID);
+        localStorage.setItem("name", USER_INFO.name);
+        localStorage.setItem("sign", USER_INFO.sign);
+        localStorage.setItem("company", USER_INFO.company);
+        localStorage.setItem("address", USER_INFO.address);
+
         /**
          * 
          * 发送数据
@@ -46,7 +47,7 @@ $(function(){
             type:"post",
             data : JSON.stringify({
                 "account" : USER_INFO.userID,
-                "userName" : USER_INFO.name,
+                "username" : USER_INFO.name,
                 "address" : USER_INFO.address,
                 "company" : USER_INFO.company,
                 "info" : USER_INFO.sign
@@ -56,7 +57,10 @@ $(function(){
                 $("#set_wait").css("display","none")
                 $("#saveWord").css("display","inline")
                 if(data=="true")
+                {
                     alert("保存成功")
+                    $(".right-part:eq(3) div:eq(0)").html(USER_INFO.name.trim()==""?USER_INFO.userID : USER_INFO.name)
+                }
                 else
                     alert("也不知道为什么就保存失败了qwq")
             },

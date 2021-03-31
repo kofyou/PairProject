@@ -15,8 +15,10 @@ import java.util.List;
 @WebServlet(name = "MyCollectServlet", value = "/MyCollectServlet")
 public class MyCollectServlet extends HttpServlet
 {
-
     Paperserviceimpl paperserviceimpl=new Paperserviceimpl();
+    static List<JSONObject> showPapers=new ArrayList<>();
+    JSONObject requestJson;
+
     static List<Paper> papers=new ArrayList<>();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,23 +38,46 @@ public class MyCollectServlet extends HttpServlet
         response.setHeader("Access-Control-Allow-Headers", "*");
         /* 是否携带cookie */
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        JSONObject requestJson=JSONObject.fromObject(
+        requestJson=JSONObject.fromObject(
                 RequestToJson.getRequestPostStr(request));
-        String account=requestJson.getString("account");
-        List<JSONObject> jsonObjects=new ArrayList<>();
-        List<Paper> papers=paperserviceimpl.GetMyCollect(account);
-        for(Paper paper:papers)
+
+        if(requestJson.getString("methods").equals("getPages"))
         {
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("title",paper.getTitle());
-            String[] authorList=paper.getAuthors().split("//");
-            jsonObject.put("author",authorList);
-            String[] keywordList=paper.getKeywords().split("//");
-            jsonObject.put("keyword",keywordList);
-            jsonObject.put("abstract",paper.getTheabstract());
-            jsonObject.put("link",paper.getPaperlink());
-            jsonObjects.add(jsonObject);
+
+            showPapers.clear();
+
+            String account=requestJson.getString("account");
+
+            List<Paper> papers=paperserviceimpl.GetMyCollect(account);
+
+            for (int i=0;i<papers.size();i++)
+            {
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("title",papers.get(i).getTitle());
+                String[] authorList=papers.get(i).getAuthors().split("//");
+                jsonObject.put("author",authorList);
+                String[] keywordList=papers.get(i).getKeywords().split("//");
+                jsonObject.put("keyword",keywordList);
+                jsonObject.put("abstract",papers.get(i).getTheabstract());
+                jsonObject.put("link",papers.get(i).getPaperlink());
+                jsonObject.put("iscollect",paperserviceimpl.IsCollected(account,papers.get(i).getTitle()));
+                showPapers.add(jsonObject);
+            }
+            System.out.println(showPapers.size());
+            response.getWriter().print(showPapers.size());
         }
-        response.getWriter().print(jsonObjects);
+
+        if(requestJson.getString("methods").equals("getCollectList"))
+        {
+            int index=requestJson.getInt("page");
+            if(index*8<=showPapers.size())
+            {
+                response.getWriter().print(showPapers.subList((index - 1) * 8, index * 8));
+            }
+            else
+            {
+                response.getWriter().print(showPapers.subList((index - 1) * 8, (index - 1) * 8+showPapers.size()%8));
+            }
+        }
     }
 }
