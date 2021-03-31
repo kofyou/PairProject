@@ -27,13 +27,13 @@ public class Export {//将文件夹的json全部写入数据库
         public static boolean hasExport = false;
 
         public void writeICCV() throws IOException, SQLException{
-//            Connection connection = DBUtil.getConnection();
-//            Statement statement = connection.createStatement();
-//            String sql = "delete from papers where number != 100000";
-//            statement.execute(sql);
-//            System.out.println("论文数据库已清空，现在开始重新读入并统计热词");
-//            statement.close();
-//            connection.close();
+            Connection connection = DBUtil.getConnection();
+            Statement statement = connection.createStatement();
+            String sql = "delete from papers where number != 100000";
+            statement.execute(sql);
+            System.out.println("论文数据库已清空，现在开始重新读入并统计热词");
+            statement.close();
+            connection.close();
 
 
             String path = "E:\\IDEA\\demo\\ICCV";
