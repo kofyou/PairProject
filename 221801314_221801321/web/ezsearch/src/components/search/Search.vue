@@ -12,13 +12,32 @@
 import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
 export default defineComponent({
   name: "Search",
-  setup(props,{emit}) {
+  data() {
+    return {
+      inputValue: '22',
+    };
+  },
+  methods: {
+    getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    },
+  },
+  created() {
+    this.inputValue = this.getQueryString("title");
+    console.log(this.inputValue);
+  },
+  setup(props, { emit }) {
     const { ctx } = getCurrentInstance();
     var inputValue = ref("");
     //搜索框内容 子传父
     const emitTitle = () => {
-      emit("title",inputValue.value);
-    }
+      emit("title", inputValue.value);
+    };
     //get方法获取文章title
     const getTitles = () => {
       ctx.$http
@@ -26,7 +45,7 @@ export default defineComponent({
           title: inputValue.value,
         })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         });
     };
 
@@ -46,7 +65,7 @@ export default defineComponent({
           }
           // console.log(data)
           cb(data);
-        })
+        });
       // var results = queryString
       //   ? paperTitles.value.filter(createFilter(queryString))
       //   : paperTitles.value;

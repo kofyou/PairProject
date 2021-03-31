@@ -32,10 +32,9 @@
     </div>
     <div class="divider"></div>
     <el-space direction="vertical" :size="40">
-      <Paper :paper="item" v-for="item in papers"/>
-
+      <Paper :paper="item" v-for="item in papers" />
     </el-space>
-    <Pagination @page="getPage" />
+    <Pagination @page="getPage" :total="total" />
     <Footer />
   </div>
 </template>
@@ -67,39 +66,52 @@ export default defineComponent({
     Pagination,
     Footer,
   },
-  data(){
-    return{ 
-      title:'',
-      year:'',
-      meeting: '',
+  data() {
+    return {
+      title: "",
+      year: "",
+      meeting: "",
       page: 1,
 
-      test:111,
+      total: 111,
       papers: [],
-    }
+    };
   },
-  methods: { 
+  methods: {
     //获取输入框组件title
-    getTitle(val){
+    getTitle(val) {
+      console.log(val);
       this.title = val;
-      console.log(this.title);
+      // window.location.href = newUrl;
+      // console.log(newUrl);
     },
     //获取高级搜索组件条件
-    getYear(val){
+    getYear(val) {
       console.log(val);
       this.year = val;
     },
-    getMeeting(val){
+    getMeeting(val) {
       console.log(val);
       this.meeting = val;
     },
     //获取分页组件当前页面
-    getPage(val){
+    getPage(val) {
+      if (val === undefined) {
+        val = 1;
+      }
+      // console.log("getPage");
+      // console.log(val);
+      var title = this.getQueryString("title");
+      var meeting = this.getQueryString("meeting");
+      var year = this.getQueryString("years");
+
+      var myUrl = this.setUrl(val, title, year, meeting);
       this.page = val;
+      window.location.href = myUrl;
     },
-   //搜索按钮事件
-    search () {
-      if (this.page === undefined) this.page = 1;
+    //搜索按钮事件
+    search() {
+      if (this.page === undefined || this.page === NaN) this.page = 1;
       // console.log(title);
       // console.log(year);
       // console.log(meeting);
@@ -111,28 +123,100 @@ export default defineComponent({
     },
 
     //get请求查询title
-    queryPaper (){
-      
-      this.ctx.$http
-        .get("/paper/title", {
-          address: this.page - 1,
-          source: this.meeting,
-          title: this.title,
-          years: this.year,
-        })
-        .then((data) => {
-          this.$router.push({query:{
-            address: this.page - 1,
-            source: this.meeting,
-            title: this.title,
-            years: this.year,
-          }})
-          this.papers = data;
-          console.log(this.papers);
-        });
+    queryPaper() {
+      var page = this.page - 1;
+      // console.log(page);
+      // var newUrl = "/paper/title"
+      // var myUrl = this.setUrl(page,this.title,this.year,this.meeting);
+      var newUrl = "";
+      newUrl += "?address=";
+      newUrl += page;
+      newUrl += "&source=";
+      newUrl += this.meeting;
+      newUrl += "&title=";
+      newUrl += this.title;
+      newUrl += "&years=";
+      newUrl += this.year;
+      window.location.href = newUrl;
+      var myUrl = "/paper/title";
+      myUrl += newUrl;
+      console.log(myUrl);
+      this.ctx.$http.get(myUrl).then((data) => {
+        this.papers = data;
+        console.log(this.papers);
+        // window.location.reload();
+      });
+    },
+
+    setUrl(page, title, year, meeting) {
+      var title = this.getQueryString("title");
+      var meeting = this.getQueryString("meeting");
+      var year = this.getQueryString("years");
+      console.log(this.getQueryString("years"));
+      if (meeting === null) {
+        meeting = "";
+      }
+      if (year === null) {
+        year = "";
+      }
+      console.log(page);
+      var page = page - 1;
+      var newUrl = "";
+      newUrl += "?address=";
+      newUrl += page;
+      newUrl += "&source=";
+      newUrl += meeting;
+      newUrl += "&title=";
+      newUrl += title;
+      newUrl += "&years=";
+      newUrl += year;
+      return newUrl;
+    },
+    getUrl() {
+      this.getQueryString("address");
+    },
+    getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
     },
   },
   created() {
+    // console.log("create")
+    var title = this.getQueryString("title");
+    var page = this.getQueryString("address");
+    var meeting = this.getQueryString("meeting");
+    var year = this.getQueryString("years");
+    if (meeting === null) {
+      meeting = "";
+    }
+    if (year === null) {
+      year = "";
+    }
+    
+    // console.log(page);
+    // var newUrl = "/paper/title"
+    var newUrl = "";
+    newUrl += "?address=";
+    newUrl += page;
+    newUrl += "&source=";
+    newUrl += meeting;
+    newUrl += "&title=";
+    newUrl += title;
+    newUrl += "&years=";
+    newUrl += year;
+    var myUrl = "/paper/title";
+    myUrl += newUrl;
+    // newUrl += window.location.search;
+    console.log(myUrl);
+    this.ctx.$http.get(myUrl).then((data) => {
+      this.papers = data;
+      console.log(this.papers);
+      // window.location.reload();
+    });
   },
   setup(props, context) {
     const { ctx } = getCurrentInstance();

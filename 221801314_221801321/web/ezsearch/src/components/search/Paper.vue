@@ -5,8 +5,8 @@
         {{ item.title }}
       </a>
       <div style="padding-top: 10px; padding-left: 5px;">
-        <span style="height: 20px; overflow: hidden; float:left; color:#222;">作者: </span>
-        <span class="blue" style="width:60%; height: 20px; float:left; color:#222; overflow: hidden">author</span>
+        <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">作者: </span>
+        <span class="blue" style="width:60%; height: 20px; float:left; color:#222; overflow: hidden">{{item.authors}}</span>
         <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">来源:</span>
         <span class="blue" style="width:15%; height: 20px; float:left; color:#222; overflow: hidden">{{item.source}}</span>
         <span style="height: 20px; overflow: hidden; float:left; color:#222; padding-right:5px;">发表时间:</span>
@@ -43,7 +43,7 @@ export default defineComponent({
     };
   },
   created() {
-    console.log(this.item);
+    // console.log(this.item);
   },
   setup() {},
 });
