@@ -41,64 +41,68 @@
             </ul>
         </div>
     </div>
+    <div class="box">
+        <div class="cloud_box">
+            <div class="circle"><span>Top 10 热词词云</span></div>
+            <div id='wcloud' style="width: 600px;height:350px;"></div>
+            <script>
+                var chart = echarts.init(document.getElementById('wcloud'));
+
+                var option = {
+                    tooltip: {},
+                    series: [ {
+                        type: 'wordCloud',
+                        gridSize: 2,
+                        sizeRange: [12, 50],
+                        rotationRange: [-90, 90],
+                        shape: 'pentagon',
+                        width: 600,
+                        height: 400,
+                        drawOutOfBound: true,
+                        textStyle: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            textStyle: {
+                                shadowBlur: 10,
+                                shadowColor: '#333'
+                            }
+                        },
+                        data: [
+                            <%
+                                for (Keyword kw:keywordList) {
+                                    out.print("{");
+                                    out.print("    name:'"+kw.getName()+"',");
+                                    out.print("    value:"+kw.getFrequency()+",");
+                                    out.print("    emphasis: {");
+                                    out.print("        textStyle: {");
+                                    out.print("            color: 'red'");
+                                    out.print("        }");
+                                    out.print("    }");
+                                    out.print("},");
+                                }
+                            %>
+                        ]
+                    } ]
+                };
+
+                chart.setOption(option);
+
+                window.onresize = chart.resize;
+                chart.on('click',function(params) {
+                    window.location.href = "<%=path%>/PaperListServlet?operation=queryKeyPaper&query=" + params.name;
+                });
+            </script>
+        </div>
+    </div>
 </div>
 <div class="main">
-    <div id='wcloud' style="width: 600px;height:350px;"></div>
-    <script>
-        var chart = echarts.init(document.getElementById('wcloud'));
-
-        var option = {
-            tooltip: {},
-            series: [ {
-                type: 'wordCloud',
-                gridSize: 2,
-                sizeRange: [12, 50],
-                rotationRange: [-90, 90],
-                shape: 'pentagon',
-                width: 600,
-                height: 400,
-                drawOutOfBound: true,
-                textStyle: {
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                        ].join(',') + ')';
-                    }
-                },
-                emphasis: {
-                    textStyle: {
-                        shadowBlur: 10,
-                        shadowColor: '#333'
-                    }
-                },
-                data: [
-                    <%
-                        for (Keyword kw:keywordList) {
-                            out.print("{");
-                            out.print("    name:'"+kw.getName()+"',");
-                            out.print("    value:"+kw.getFrequency()+",");
-                            out.print("    emphasis: {");
-                            out.print("        textStyle: {");
-                            out.print("            color: 'red'");
-                            out.print("        }");
-                            out.print("    }");
-                            out.print("},");
-                        }
-                    %>
-                ]
-            } ]
-        };
-
-        chart.setOption(option);
-
-        window.onresize = chart.resize;
-        chart.on('click',function(params) {
-            window.location.href = "<%=path%>/PaperListServlet?operation=queryKeyPaper&query=" + params.name;
-        });
-    </script>
-
     <div id="wordbargraph" style="width: 1500px;height:400px;"></div>
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('wordbargraph'));
