@@ -69,6 +69,7 @@
             font-size: 14pt;
             vertical-align: middle;
             background-color: rgba(255,255,255,0);
+            border-radius: 25px 25px 25px 25px;
             outline:none;
         }
 
@@ -129,7 +130,7 @@
                 <img class="head" src="image/head.png" alt="alt"/>
 
                 <div class="icons">
-                    <div class="this_">
+                    <div class="this_" onclick="change1()">
                         <img id="this_icon" src="image/mb-search.svg" alt="alt"/>
                         <p id="this_p">论文查询</p>
                     </div>
@@ -168,15 +169,19 @@
             </div>
 
             <div class="search">
-                <form id="inputtext" action="search_result.php">
-                    <input type="text" id="input" name="in" placeholder="请输入论文标题"></input>
-                    <?php
-                        @session_start();
-                        $_SESSION["input"] = isset($_GET["in"])?$_GET["in"]:"";
-                    ?>
-                    <a href="search_result.php" id="submit"></a>
+                <form id="inputtext" action="sinplesearch.php" method="get">
+                    <input type="text" id="input" name="in" placeholder="请输入论文标题" value=""></input>
+                    <input type="submit" id="submit" value=""></input>
                 </form>
-                
+                <?php
+                    @session_start();
+                    $get = isset($_GET["in"])?$_GET["in"]:"";
+                    $_SESSION["input"] = $get;
+                    if($get != "") {
+                        echo "<script>
+                        window.location.href = 'search_result.php';</script>";
+                    }
+                ?>
 
                 <img id="fire" src="image/antOutline-fire.svg" alt="alt"/>
                 <label id="hotsearch">热门搜索</label>
@@ -200,12 +205,8 @@
                 <label style="position:absolute; text-align: center; left: 69%; top: 85%; font-size: 13pt;">semantic segmentation</label>
                 <label style="position:absolute; text-align: center; left: 19%; top: 81%; font-size: 13pt;">domain adaptation</label>
                 <label style="position:absolute; text-align: center; left: 63%; top: 80%; font-size: 14pt;">object detection</label>
-
             </div>
-            
         </div>
-
-
     </body>
     <script>
         var input = {
@@ -233,12 +234,16 @@
         var Ctor = Vue.extend(title)
         new Ctor().$mount('#typesreach')
         
+        function change1() {
+        //防止表单跳转
+        event.returnValue = false;
+        window.location.href = "sinplesearch.php";
+        }
         function change2() {
             //防止表单跳转
             event.returnValue = false;
             window.location.href = "paper_list.php";
         }
-
         function change3() {
             //防止表单跳转
             event.returnValue = false;

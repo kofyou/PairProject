@@ -1,7 +1,11 @@
+html,body {
+    overflow-y: scroll;
+}
+
 .search{
     position: relative;
     top: 10%;
-    left: 12%;
+    left: 17%;
     width: 50%;
     height: 5%
 }
@@ -17,6 +21,7 @@
     font-size: 18px;
     color: #757575;
     padding-left: 3%;
+    outline: none;
 }
 #search_key:focus{
     border: none;
@@ -32,23 +37,23 @@
     background-image: url("image/search_certain.svg");
     background-size: 100% 100%;
     border: none;
+    outline: none;
 }
 .results{
     position: relative;
     width: 80%;
     height: 100%;
-    top: 13%;
-    left: 12%;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 100);
-    border-radius: 25px;
-    background-color: rgba(255,255,255,0.7);
+    top: 12%;
+    left: 15%;
+    background-color: rgba(255,255,255,0);
+    z-index: 1;
 }
 #nums{
-    position: absolute;
-    left: 2%;
+    position: relative;
+    left: 4%;
     font-size: 16px;
     color: #757575;
+    margin-bottom: 1%;
 }
 #bt_in{
     position: absolute;
@@ -74,20 +79,25 @@
 .result_{
     position: relative;
     width: 94%;
-    height: 20%;
+    height: 25%;
     background-color: rgba(195, 232, 255, 51);
     left: 3%;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
-    top: 5%;
+    margin-top: 2%;
     padding-left: 1%;
-    margin-top: 3%;
 }
 
 .paper_title{
     position: absolute;
+    top: 7%;
     padding-left: 1%;
     font-size: 20px;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    font-family: SourceHanSansSC-regular;
 }
 .source{
     position: absolute;
@@ -105,6 +115,8 @@
     color: #757575;
     background-color: rgba(0,0,0,0);
     border: none;
+    outline: none;
+    overflow: hidden;
 }
 #paper_link{
     position: absolute;
@@ -121,7 +133,10 @@
     padding-right: 5%;
     padding-left: 1%;
     color: #757575;
-    text-decoration: underline;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
 }
 .in_bt_one{
     position: absolute;
@@ -134,6 +149,7 @@
     border-radius: 25px 25px 25px 25px;
     color: #356FC8;
     text-align: center;
+    vertical-align: middle;
     text-decoration: none;
     padding-top: 0.5%;
 }

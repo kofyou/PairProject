@@ -47,8 +47,8 @@
                         <img src="image/md-dehaze.svg" alt="alt"/>
                         <p>列表</p>
                     </div>
-                    <div class="this_">
-                        <img id="this_icon" src="image/antOutline-line-chart2.svg" alt="alt"/>
+                    <div class="this_" onclick="change1()">
+                        <img id="this_icon" src="image/antOutline-line-chart2.svg" alt="alt" onclick="change3()"/>
                         <p  style="margin-bottom: 85%;" id="this_p">数据分析</p>
                     </div>
                     <div class="icon" id="icon4">
@@ -246,6 +246,11 @@
             //防止表单跳转
             event.returnValue = false;
             window.location.href = "paper_list.php";
+        }
+        function change3() {
+            //防止表单跳转
+            event.returnValue = false;
+            window.location.href = "data_analyse.html";
         }
     </script>
 </html>

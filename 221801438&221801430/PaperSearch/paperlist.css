@@ -21,11 +21,13 @@ select {
     font-size: 18px; 
     color: #757575; 
     font-weight: bold;
+    outline: none;
 }
 option {
     border:none;
     font-size: 16px; color: #000000; 
     font-weight: normal;
+    outline: none;
 }
 #confirm {
     position: relative;
@@ -40,39 +42,31 @@ option {
     vertical-align: middle;
     color: #356FC8;
     font-size: 12pt;
+    outline: none;
 }
 .menu{
     position: absolute;
     top: 12%;
     width: 85%;
     height: 7%;
-    left: 15%;
+    left: 18%;
     z-index: 2;
 }
 .font_menu{
     position: relative;
-    width: 88%;
+    width: 85%;
     height: 100%;
     border-radius: 50px;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 100);
     background-color: #ffffff;
 }
-.font_menu label{
-    position: relative;
-    font-size: 18px;
-    font-weight: bold;
-    color: #757575;
-    margin-left: 20%;
-    padding-left: 0px;
-    padding-right: 0px;
-}
 #chooseall{
     margin-left: 8%;
 }
 #icon_add{
     position: absolute;
-    right: 5%;
+    right: 8%;
     top: 0%;
 }
 
@@ -82,10 +76,7 @@ option {
     height: 100%;
     top: 22%;
     left: 15%;
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 100);
-    border-radius: 50px;
+    background-color: rgba(255,255,255,0);
     z-index: 1;
 }
 #search_key{
@@ -93,7 +84,7 @@ option {
     width: 100%;
     height: 5%;
     text-align: center;
-    top: 2%;
+    top: 0.6%;
 }
 .key{
     position: relative;
@@ -121,7 +112,7 @@ option {
     left: 3%;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
     border-radius: 25px 25px 25px 25px;
-    margin-top: 3%;
+    margin-top: 2%;
     padding-left: 1%;
 }
 .icon_close{
@@ -133,8 +124,14 @@ option {
 }
 .paper_title{
     position: absolute;
+    top: 7%;
     padding-left: 1%;
     font-size: 20px;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    font-family: SourceHanSansSC-regular;
 }
 .source{
     position: absolute;
@@ -153,6 +150,7 @@ option {
     overflow:hidden;
     background-color: rgba(255, 255, 255, 0);
     border: none;
+    outline: none;
 }
 #paper_link{
     position: absolute;
@@ -169,6 +167,10 @@ option {
     padding-right: 5%;
     padding-left: 1%;
     color: #757575;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
 }
 .in_bt_one{
     position: absolute;
