@@ -19,6 +19,8 @@
 	<div class="upper">
 		<form class="operate">
 			<input type="text" class="search" id="searchtext"  name="search">
+			<script>
+			</script>
 			<input type="button" class="button" id="searchbtn" value="搜索">
 	    </form>
     </div>
@@ -131,6 +133,9 @@
 		$(document).ready(function() {
 			var ajaxurl = '<?= admin_url('admin-ajax.php'); ?>';
 			function search(){
+
+				document.getElementById('searchtext').value = sessionStorage['lastChoice'] ? sessionStorage['lastChoice'] : "";
+				sessionStorage['lastChoice'] = "";
 				
 				$.ajax({
 					

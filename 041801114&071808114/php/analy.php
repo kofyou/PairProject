@@ -5,7 +5,9 @@
 	<title>加载中...</title>
 	<link href="<?= bloginfo('template_url'); ?>/quickfind/QuickFind.css" rel="stylesheet" type="text/css">
 </head>
-
+<script>
+		sessionStorage['lastChoice'] = "";
+</script>
 <body>
 	<div class="nav">
 		<ul class="template">
@@ -64,7 +66,6 @@
 <script src=<?= bloginfo( 'template_directory'). '/quickfind/jquery.min.js'; ?>>
 </script>
 <script>
-	var lastChoice = "";
 	$( document ).ready( function () {
 		var ajaxurl = '<?= admin_url('admin-ajax.php '); ?>';
 		$.ajax( {
@@ -118,11 +119,11 @@
 				wc_chart.resize();
 				document.title = '趋势分析';
 				wc_chart.on( 'click', ( param ) => {
-					if (lastChoice == param.name)
+					if (sessionStorage['lastChoice'] == param.name)
 					{
-							return;
+						window.location.href = "http://blog.tozzger.info/quickfind/index";
 					}
-					lastChoice = param.name;
+					sessionStorage['lastChoice'] = param.name;
 					$.ajax({
 					
 					type:'post',
@@ -188,8 +189,7 @@
 					}
 					
 					option.series= [ cvpr, iccv, eccv ];
-					
-					console.log(cvpr);console.log(iccv);console.log(eccv);
+
 					myChart.setOption( option );
 					},
                 	error:function(data){
