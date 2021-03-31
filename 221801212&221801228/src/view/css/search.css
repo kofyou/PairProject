@@ -2,17 +2,18 @@ body{
     background: #e8f4f8;
 }
 .title{
-    width:650px;
+    width:95%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 #tabcontext1,#tabfoot1,#tabcontext2,#tabfoot2,#tabcontext3,#tabfoot3{
-    width:747px;
+    width:100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.panel-footer{
 
+.but{
+    background-color: Transparent; border-style :none; position: relative;left: 94%
 }
