@@ -1,7 +1,7 @@
 // JavaScript Document
 $ (function($){
 	
-	var table =$("#papertab");
+	var table =$("#papertab3");
 	
 	table.bootstrapTable({
 		height:"600px",
@@ -51,6 +51,25 @@ $ (function($){
 			},
 		]
 	
+	});
+	$("#ICCV").on("click",function(e){
+		alert("hellw33333");
+		/*$.ajax({
+			type : "post",
+			url : "/PairWork1/paperListController3.do",
+			
+			dataType : "json",
+			success : function(json) {
+
+				$("#papertab").bootstrapTable('load', json);
+			}
+		});*/
+			 
+
+		// $("#papertab").load("/PairWork1/paperListController3.do");
+		
+		$("#papertab").bootstrapTable('refresh',"/PairWork1/paperListController.do");
+		
 	});
 
 });

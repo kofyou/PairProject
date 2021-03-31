@@ -24,7 +24,12 @@ public class GetJson {
 	private String url;
 	private String about;
 	private String keywords;
-	public  void readJsonFile(String filePath) {
+	private String id2="none";
+	private String title2;
+	private String url2;
+	private String about2;
+	private String keywords2;
+	public  void readJsonFile(String filePath,int i) {
 		BufferedReader reader = null;
 		String readJson = "";
 
@@ -38,8 +43,9 @@ public class GetJson {
 			while ((tempString = reader.readLine()) != null) {
 				readJson += tempString;	
 			}
-			
-				readJson=readJson.substring(0, readJson.length()-1);	
+				if(i!=2) {
+					readJson=readJson.substring(0, readJson.length()-1);
+				}
 				
 				JSONObject jsonObject = JSONObject.parseObject(readJson);
 				Map<String, String> stringMap = new HashMap<>();
@@ -51,21 +57,22 @@ public class GetJson {
 					stringMap.put(key, jsonObject.getString(key));
 				}
 				
-				//System.out.println(readJson);
+
 				id = stringMap.get("articleId");
-				//System.out.println("文章id："+id+"\n");
 				
+
 				title = stringMap.get("title");
-				//System.out.println("文章标题："+title+"\n");
+				title2 = stringMap.get("论文名称");
 				
 				about = stringMap.get("doi");
-				//System.out.println("文章论坛相关："+about+"\n");
-							
+				about2 = stringMap.get("会议与年份");
+			
 				
 				keywords = stringMap.get("keywords");
-				//System.out.println("文章关键词："+keywords+"\n");
+				keywords2 = stringMap.get("关键词");
 				
 				url = stringMap.get("doiLink");
+				url2 = stringMap.get("原文链接");
 				//System.out.println("文章链接："+url+"\n");	
 				
 				/*JSONArray picArray=JSONArray.parseArray(readJson.toString().trim());
@@ -119,6 +126,24 @@ public class GetJson {
 	}
 	public String getAbout() {
 		return this.about;
+	}
+	
+	
+	public String getId2() {
+		return this.id2;
+	}
+	
+	public String getUrl2() {
+		return this.url2;
+	}
+	public String getTitle2() {
+		return this.title2;
+	}
+	public String getKeywords2() {
+		return this.keywords2;
+	}
+	public String getAbout2() {
+		return this.about2;
 	}
 	
 	

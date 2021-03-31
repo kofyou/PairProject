@@ -21,7 +21,7 @@ public class Main {
 		for(File file1 : fileCVPR) {
 			String s=(file1.getAbsolutePath());
 			GetJson g= new GetJson();
-			g.readJsonFile(s);
+			g.readJsonFile(s,1);
 			if(file1.isDirectory()){
 	            showDirectory(file1);
 	        }

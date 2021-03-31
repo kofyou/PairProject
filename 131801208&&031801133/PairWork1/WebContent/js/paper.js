@@ -52,30 +52,24 @@ $ (function($){
 		]
 	
 	});
-	$("#CVPR").on("click",function(e){
-		alert("hellw1111");
+	/*$("#CVPR").on("click",function(e){
 		$.ajax({
-			type : "post",
-			url : "/PairWork1/paperListController3.do",
-			data : {
-				about : about,
-				url : url,
-				title : title,
-				keywords : keywords,
-				id : id,
-			},
-			dataType : "json",
-			success : function(json) {
-
-				$("#papertab").bootstrapTable('load', json);
-			}
+            url:"/PairWork1/paperListController.do",
+            type:"post",
+            dataType:"json",
+            data:{              
+                value:"CVPR",
+            },
+            
 		});
-			 
 
-		// $("#papertab").load("/PairWork1/paperListController3.do");
+		 //$("#papertab").load("/PairWork1/paperListController3.do");
+		 //$("#papertab").bootstrapTable('destroy');
+	
+		//$("#papertab").bootstrapTable('refreshOptions',"/PairWork1/paperListController3.do");
+	
+		$("#papertab").bootstrapTable('refresh');
 		
-		//$("#papertab").bootstrapTable('load',"/PairWork1/paperListController3.do");
-		
-	});
+	});*/
 
 });

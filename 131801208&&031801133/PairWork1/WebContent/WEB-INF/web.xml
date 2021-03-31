@@ -8,6 +8,7 @@
 		<welcome-file>ICCV1.html</welcome-file>
 		<welcome-file>ECCV2.html</welcome-file>
 		<welcome-file>CVPR3.html</welcome-file>
+		
 	</welcome-file-list>
 
 	<servlet>

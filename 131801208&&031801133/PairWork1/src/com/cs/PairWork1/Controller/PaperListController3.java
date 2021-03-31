@@ -28,14 +28,14 @@ public class PaperListController3 implements Controller {
 		//String s="F://2000_3-D model construction using range and image data.json";
 		
 		
-		JSONArray jsonArray= new JSONArray();
-		PaperListServiceImpl p =new PaperListServiceImpl();
+		JSONArray jsonArray3= new JSONArray();
+		PaperListServiceImpl p3 =new PaperListServiceImpl();
 		
 		File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
 		
-		jsonArray.addAll(p.getDirectory(file));
-		byte[] retArr = jsonArray.toJSONString().getBytes();
-		arg1.getOutputStream().write(retArr);
+		jsonArray3.addAll(p3.getDirectory(file));
+		byte[] retArr3 = jsonArray3.toJSONString().getBytes();
+		arg1.getOutputStream().write(retArr3);
 		return null;
 	}
 

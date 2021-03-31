@@ -16,7 +16,7 @@ public class PaperListServiceImpl implements PaperListService {
 		Paper p= new Paper();
 		String s="F://2000_3-D model construction using range and image data.json";
 		GetJson gj= new GetJson();
-		gj.readJsonFile(s);
+		gj.readJsonFile(s,1);
 		p.setAbout(gj.getAbout());
 		p.setId(gj.getId());
 		p.setKeywords(gj.getKeywords());
@@ -27,6 +27,34 @@ public class PaperListServiceImpl implements PaperListService {
 		return datalist;
 	}
 	//below used for test
+	
+	public static List<Paper> getDirectory2(File file){
+		File[] fileCVPR=file.listFiles();
+		List<Paper> datalist = new ArrayList<Paper>();
+		int i=0;
+		for(File file1 : fileCVPR) {
+			i++;
+			/*if(i>10) {
+				break;
+			}*/
+			String s=(file1.getAbsolutePath());
+			GetJson g= new GetJson();
+			g.readJsonFile(s,2);			
+			Paper p= new Paper();
+			p.setAbout(g.getAbout2());
+			p.setId(g.getId2());
+			//p.setKeywords(g.getKeywords());
+			p.setTitle(g.getTitle2());
+			p.setUrl(g.getUrl2());			
+			datalist.add(p);
+						
+			if(file1.isDirectory()){
+	            getDirectory2(file1);
+	        }
+		}
+		return datalist;
+		
+    }
 	public static List<Paper> getDirectory(File file){
 		File[] fileCVPR=file.listFiles();
 		List<Paper> datalist = new ArrayList<Paper>();
@@ -38,7 +66,7 @@ public class PaperListServiceImpl implements PaperListService {
 			}*/
 			String s=(file1.getAbsolutePath());
 			GetJson g= new GetJson();
-			g.readJsonFile(s);			
+			g.readJsonFile(s,1);			
 			Paper p= new Paper();
 			p.setAbout(g.getAbout());
 			p.setId(g.getId());
@@ -57,12 +85,12 @@ public class PaperListServiceImpl implements PaperListService {
 	public static void main(String[] args) {
 		
 
-			//File file = new File("F:\论文数据\CVPR（2000年至2020年，6916篇");
-			//File file = new File("F:\论文数据\ECCV（2016至2020，3033份）");
-			File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
-			List<Paper> datalist = getDirectory(file);	        					
+			//File	file = new File("F:\\论文数据\\CVPR（2000年至2020年，6916篇）");
+			File	 file2 = new File("F:\\论文数据\\ECCV（2016至2020，3033份）");
+			//File file = new File("F:\\论文数据\\ICCV（2001年至2019年，3196篇）");
+			List<Paper> datalist = getDirectory2(file2);	        					
 			for(int i = 0 ; i < datalist.size() ; i++) {
-				  System.out.println(datalist.get(i).getAbout());
+				  System.out.println(datalist.get(i).getUrl());
 			}
 		
 
