@@ -26,6 +26,11 @@ public class ChildServlet extends HttpServlet {
         KeynumDaoImpl keynumDao = new KeynumDaoImpl();
         List<Keynum> keynumList = new ArrayList<Keynum>();
         keynumList = keynumDao.selectkey();
+        /*for(Keynum keynum : keynumList)
+        {
+            System.out.println(keynum.getAppeartimes() +"-"+ keynum.getKeyword());
+        }*/
+
         if(req.getParameter("p")!=null)
         {
             //req.setAttribute("keyword",req.getParameter("p"));

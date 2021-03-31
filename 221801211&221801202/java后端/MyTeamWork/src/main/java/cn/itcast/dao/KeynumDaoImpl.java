@@ -71,7 +71,7 @@ public class KeynumDaoImpl implements KeynumDao{
         List<Keynum> list = new ArrayList<Keynum>();
         String sql = "select * from keywords";
         try {
-            connection = DBUtil1.getConnection();   //优化
+            connection = DBUtil1.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -79,7 +79,6 @@ public class KeynumDaoImpl implements KeynumDao{
                 keynum.setKeyword(resultSet.getString("keyword"));
                 keynum.setAppeartimes(resultSet.getInt("appeartimes"));
                 list.add(keynum);
-                System.out.println(keynum.getAppeartimes() + ":" + keynum.getKeyword());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +91,111 @@ public class KeynumDaoImpl implements KeynumDao{
                 return Integer.compare(o2.getAppeartimes(), o1.getAppeartimes());
             }
         });
+        List<Keynum> keynumList = new ArrayList<Keynum>();
+        int i=0;
+        for(Keynum keynum : list)
+        {
+            i++;
+            if(i<11)
+            {
+                keynumList.add(keynum);
+            }
+            else break;
+        }
+        return keynumList;
+    }
+
+    public List<Keynum> selectname(String meeting) {
+        List<String> list = new ArrayList<String>();
+        String sql = "select * from keywords where year = "+ "2020" + "and" + "meeting = "+ meeting;
+        try {
+            connection = DBUtil1.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                list.add(resultSet.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil1.close(resultSet, preparedStatement, connection);
+        }
+        return selectkey2020(select2020(list));
+    }
+
+    public List<String> select2020(List<String> name) {
+        List<String> list = new ArrayList<String>();
+        int i=0;
+        String sql="select * from name_keyword where name =";
+        for(String str : name)
+        {
+            if(i<name.size()-1)
+            {
+                sql += str+" or name =";
+            }
+            else sql += str;
+        }
+        try {
+            connection = DBUtil1.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String keyword = resultSet.getString("keyword");
+                list.add(keyword);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil1.close(resultSet, preparedStatement, connection);
+        }
         return list;
+    }
+
+    public List<Keynum> selectkey2020(List<String> keywords) {
+        List<Keynum> list = new ArrayList<Keynum>();
+        int i=0;
+        String sql="select * from keywords where keyword =";
+        for(String str : keywords)
+        {
+            if(i<keywords.size()-1)
+            {
+                sql += str+" or keyword =";
+            }
+            else sql += str;
+        }
+        try {
+            connection = DBUtil1.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Keynum keynum = new Keynum();
+                keynum.setKeyword(resultSet.getString("keyword"));
+                keynum.setAppeartimes(resultSet.getInt("appeartimes"));
+                list.add(keynum);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil1.close(resultSet, preparedStatement, connection);
+        }
+        Collections.sort(list, new Comparator<Keynum>() {
+            @Override
+            public int compare(Keynum o1, Keynum o2) {
+                return Integer.compare(o2.getAppeartimes(), o1.getAppeartimes());
+            }
+        });
+        List<Keynum> keynumList = new ArrayList<Keynum>();
+        int x=0;
+        for(Keynum keynum : list)
+        {
+            x++;
+            if(x<11)
+            {
+                keynumList.add(keynum);
+            }
+            else break;
+        }
+        return keynumList;
     }
 
 }

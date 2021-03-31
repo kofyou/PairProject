@@ -9,6 +9,7 @@ public interface PaperInfoDAO {
     List<PaperInfo> selectPaperInfos();
     void add(PaperInfo paperInfo);
     void delete(String title);
-    List<PaperInfo> getinfo(String title);
+    List<PaperInfo> getinfo(String titles);
     List<PaperInfo> getkey(String title);
+    PaperInfo selectPaperInfo(String str);
 }

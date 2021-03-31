@@ -11,7 +11,7 @@ public class DBUtil{
     static String driver = "com.mysql.jdbc.Driver";
     static String ip="rm-2zeo875ys8j8pq6epuo.mysql.rds.aliyuncs.com";    //IP名字
     static int port=3306;      //端口
-    static String database = "tmall";    //数据库名字
+    static String database = "sfjteam";    //数据库名字
     static String encoding = "UTF-8";
     static String loginName = "wzn";
     static String password = "Ww123456";
