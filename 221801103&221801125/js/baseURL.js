@@ -1,17 +1,21 @@
 //var LOGIN = "http://192.168.0.114:8080/PaperSearching_war_exploded/LoginServlet"
-var LOGIN = "../LoginServlet"
-var REGIST = "../RegisterServlet"
 
-var HOTTEST = "../GetHottestKeywordsServlet"
-var STATIC = "../GetTendencyServlet"
 
-var GLOBAL_BLUR_SEARCH_ALL_PAPER_AND_COUNT = "../../PaperListServlet"
-var GLOBAL_BUL_DELETE_MY_COLLECT = "../../DeleteMyCollectSevlet"
-var GLOBAL_BLUR_UPDATE = "../../UpdateMyCollectServlet"
+const BASE_URL = "http://192.168.0.114:8080/PaperSearching_war_exploded/"
 
-var MY_COLLECT_ALL_PAPER = "../../MyCollectServlet"
-var MY_COLLECT_COUNT = "../../MyCollectServlet"
-var MY_COLLECT_UPDATE = "../../DeleteMyCollectServlet"
+var LOGIN =  BASE_URL+"LoginServlet"
+var REGIST = BASE_URL+"RegisterServlet"
+
+var HOTTEST = BASE_URL+"GetHottestKeywordsServlet"
+var STATIC = BASE_URL+"GetTendencyServlet"
+
+var GLOBAL_BLUR_SEARCH_ALL_PAPER_AND_COUNT = BASE_URL+"PaperListServlet"
+var GLOBAL_BUL_DELETE_MY_COLLECT = BASE_URL+"DeleteMyCollectSevlet"
+var GLOBAL_BLUR_UPDATE = BASE_URL+"UpdateMyCollectServlet"
+
+var MY_COLLECT_ALL_PAPER = BASE_URL+"MyCollectServlet"
+var MY_COLLECT_COUNT = BASE_URL+"MyCollectServlet"
+var MY_COLLECT_UPDATE = BASE_URL+"DeleteMyCollectServlet"
 
 var SETTING = "../UpdateUserInfoServlet"
 

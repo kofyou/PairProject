@@ -86,6 +86,62 @@ $(function(){
                     }else{
                         $(".footer").removeClass("xiaoshi")
                     }
+                    $(".kongxin").click(function(){
+                        if(confirm("确定要收藏吗"))
+                        {
+                            let addIndex = $(".kongxin").index(this);
+                            let addInLike = $(".paper-title").eq(addIndex).text()
+                            $.ajax({
+                                url:AJAX_URL.allPaperAdd,
+                                data:JSON.stringify({
+                                    "account" : USER_INFO.userID,
+                                    "title" : addInLike
+                                }),
+                                contentType:"application/json",
+                                type:"POST",
+                                success:data=>{
+                                    if(data==true){
+                                        alert("收藏成功")
+                                        $(".kongxin").eq(addIndex).addClass("xiaoshi")
+                                        $(".shixin").eq(addIndex).removeClass("xiaoshi")
+                                    }
+                                    else
+                                        alert("不知道为啥没成功哦，可能去了火星")
+                                },
+                                error:()=>{
+                                    alert("啊哦，网络可能出问题了，请重新收藏")
+                                }
+                            })
+                        }
+                    })
+                    $(".shixin").click(function(){
+                        if(confirm("确定取消收藏吗"))
+                        {
+                            let removeIndex = $(".shixin").index(this)
+                            let removeInLike = $(".paper-title").eq(removeIndex).text()
+                            $.ajax({
+                                url:AJAX_URL.allPaperDelete,
+                                data:JSON.stringify({
+                                    "account" : USER_INFO.userID,
+                                    "title" : removeInLike
+                                }),
+                                contentType:"application/json",
+                                type:"POST",
+                                success:data=>{
+                                    if(data==true){
+                                        alert("取消收藏成功")
+                                        $(".shixin").eq(removeIndex).addClass("xiaoshi")
+                                        $(".kongxin").eq(removeIndex).removeClass("xiaoshi")
+                                    }
+                                    else
+                                        alert("不知道为啥没成功哦，可能去了火星")
+                                },
+                                error:()=>{
+                                    alert("啊哦，网络可能出问题了，请重新收藏")
+                                }
+                            })
+                        }
+                    })
                 },
                 error:()=>{
                     
@@ -95,62 +151,6 @@ $(function(){
                 }
             }),
             $("#reg_wait").css("display","inline-block")
-            $(".kongxin").click(function(){
-                if(confirm("确定要收藏吗"))
-                {
-                    let addIndex = $(".kongxin").index(this);
-                    let addInLike = $(".paper-title").eq(addIndex).text()
-                    $.ajax({
-                        url:AJAX_URL.allPaperAdd,
-                        data:JSON.stringify({
-                            "account" : USER_INFO.userID,
-                            "title" : addInLike
-                        }),
-                        contentType:"application/json",
-                        type:"POST",
-                        success:data=>{
-                            if(data==true){
-                                alert("收藏成功")
-                                $(".kongxin").eq(addIndex).addClass("xiaoshi")
-                                $(".shixin").eq(addIndex).removeClass("xiaoshi")
-                            }
-                            else
-                                alert("不知道为啥没成功哦，可能去了火星")
-                        },
-                        error:()=>{
-                            alert("啊哦，网络可能出问题了，请重新收藏")
-                        }
-                    })
-                }
-            })
-            $(".shixin").click(function(){
-                if(confirm("确定取消收藏吗"))
-                {
-                    let removeIndex = $(".shixin").index(this)
-                    let removeInLike = $(".paper-title").eq(removeIndex).text()
-                    $.ajax({
-                        url:AJAX_URL.allPaperDelete,
-                        data:JSON.stringify({
-                            "account" : USER_INFO.userID,
-                            "title" : removeInLike
-                        }),
-                        contentType:"application/json",
-                        type:"POST",
-                        success:data=>{
-                            if(data==true){
-                                alert("取消收藏成功")
-                                $(".shixin").eq(removeIndex).addClass("xiaoshi")
-                                $(".kongxin").eq(removeIndex).removeClass("xiaoshi")
-                            }
-                            else
-                                alert("不知道为啥没成功哦，可能去了火星")
-                        },
-                        error:()=>{
-                            alert("啊哦，网络可能出问题了，请重新收藏")
-                        }
-                    })
-                }
-            })
         },
         bindEvents : function(){
             // var btnAdd = $(".addItem")

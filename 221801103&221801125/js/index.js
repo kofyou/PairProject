@@ -35,7 +35,7 @@ $(function(){
                         $(cloud).css("color",color[i])
                         $(cloud).css("opacity","1")
                         $(cloud).click(function(){
-                            window.open("../pages/paper/searchList.html?search="+str.keyword,"_self")
+                            window.open("../pages/paper/searchList.html?search="+str.keyword+"&page=1","_self")
                         })
                         $(cloud).hover(function(){
                             $(cloud).css("text-shadow","2px 2px 5px "+color[i])

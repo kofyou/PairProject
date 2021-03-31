@@ -16,6 +16,7 @@ $(function () {
         contentType:"application/json",
         type: "POST",
         dataType: "json",
+        xhrFields:{withCredentials: false},
         success: (data) => {
           $("#login_word").removeClass("to_none");
           $("#reg_wait").css("display", "none");
