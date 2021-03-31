@@ -40,6 +40,9 @@ class PapersearchlistController extends Controller
             //$c=2941;
         	//$filepath="F:\jsonData\ECCV41";
             //get_json($filepath,$c);
+            //$filename="F:\\eccvjson\\eccv20\\21";
+            //$tname="eccvkey_20";
+            //get_ek($filename,$tname);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
