@@ -15,7 +15,7 @@ $(function (){
                 url:"/list/search",
                 method:"post",
                 data:JSON.stringify({
-                    "keyword":contain,
+                    "keyword":keyword,
                     "year":year,
                     "source":source,
                     "page":page
