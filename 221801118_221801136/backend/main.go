@@ -25,7 +25,7 @@ func main() {
 	r.POST("/user/like", user.UserLikeShow)
 
 	// username=?&&thesis_id=?
-	r.POST("/list/like", user.UserLikeAdd)
+	r.POST("/list/like/add", user.UserLikeAdd)
 
 	// source=?&&keyword=?&&year=?&&page=?
 	r.POST("/list/search", thesisSearch.GetThesisList)
