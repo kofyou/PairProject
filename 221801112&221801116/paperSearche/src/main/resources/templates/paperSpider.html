@@ -14,12 +14,7 @@
 
     <script src="layui/layui.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
-    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com.cn/highcharts/modules/wordcloud.js"></script>
-    <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
     <script type="text/javascript" src="js/left.js"></script>
-    <script src="https://code.highcharts.com.cn/highcharts/themes/grid-light.js"></script>
 </head>
 <body>
 
@@ -43,7 +38,7 @@
 <!--侧边导航栏-->
 <div class="content-csk">
     <div class="open-csk" id="open"><span class="left-span-csk">🎈打开导航</span></div>
-    <div class="content-left-csk" id="left" style="height: auto;overflow: hidden;min-height: 1000px;">
+    <div class="content-left-csk" id="left">
         <div class="myclose-csk" id="myclose"><span class="left-span-csk">❌收起导航</span></div>
         <div class="left-title-csk">
             <!--                <img src="image/098zhome01.png" class="left-title-icon-csk">-->
@@ -79,20 +74,34 @@
 
 <script>
     $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
+    var htmlLoading = '<div id="loadingDiv" style="z-index: 9999; position: fixed ! important; right: 700px; bottom: 300px;display: none"><img src="image/loading2.gif" style="width: 50px;height: 50px"/></div>';
+
+    document.write(htmlLoading);
+
+    function completeLoading() {
+        document.getElementById("loadingDiv").style.display="none";
+    }
+    //展示loading效果
+    function showLoading()
+    {
+        document.getElementById("loadingDiv").style.display="block";
+    }
 
     function spider(){
         var keyword = document.getElementById("input-32");
         var keys = keyword.value;
         keyword.value = "";
+        showLoading();
         if(keys==""){
             document.getElementById("myinput1").innerText = "输入关键词或标题爬取";
         }else{
             document.getElementById("myinput1").innerText = keys;
         }
         layui.config({
-            base: 'cardTable/' //配置 layui 第三方扩展组件存放的基础目录
+            base: 'cardTable3/' //配置 layui 第三方扩展组件存放的基础目录
         })
-        layui.use(['cardTable'], function () {
+        layui.use(['cardTable','layer'], function () {
+            completeLoading();
             let cardTable = layui.cardTable;
             cardTable.render({
                 elem: '#currentTableId33',

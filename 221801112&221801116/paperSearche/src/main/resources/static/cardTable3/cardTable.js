@@ -14,22 +14,23 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		elem: "#currentTableId",// 构建的模型
 		url: "cardTable/card.json",// 数据 url 连接
 		loading: true,//是否加载
-		limit: 2, //每页数量默认是每行数量的双倍
+		limit: 25, //每页数量默认是每行数量的双倍
 		linenum: 1, //每行数量 2,3,4,6
 		currentPage: 0,//当前页
 		limits:[],     //页码
 		page: true, //是否分页
 		layout: ['count', 'prev', 'page', 'next','skip'],//分页控件
 		request: {
-			pageName: 'start' //页码的参数名称，默认：page
-			, limitName: 'limit' //每页数据量的参数名，默认：limit
-			, paperId: 'paperId'       //主键名称，默认：id
+			pageName: 'start'
+			, limitName: 'limit'
+			, paperId: 'paperId'
 			//, authors: 'authors'
-			, keywords: 'keywords'
+			//, keywords: 'keywords'
 			, abstrac: 'abstrac'
-			, publicationTitle: 'publicationTitle' //标题名称，默认：title
-			, publicationYear: 'publicationYear' //图片地址，默认：image
-			, persistentLink: 'persistentLink' //备注名称，默认：remark
+			, publicationTitle: 'publicationTitle'
+			, publicationYear: 'publicationYear'
+			, persistentLink: 'persistentLink'
+			, conference: 'conference'//顶会名称
 		},
 		response: {
 			statusName: 'code' //规定数据状态的字段名称，默认：code
@@ -61,7 +62,7 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		var option = this.option;
 		var url = option.url;
 		var html = "";
-		html += option.loading == true ? '      <div class="ew-table-loading">' : '      <div class="ew-table-loading layui-hide">';
+		html += option.loading == true ? '      <div class="ew-table-loading">' : '      <div class="ew-table-loading">';
 		html += '         <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>';
 		html += '      </div>';
 		$(option.elem).html(html);
@@ -70,10 +71,10 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 		if (url != null) {
 			if (!!option.page) {
 				if(url.indexOf('?')!=-1){
-					url = url + '&' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*2;
+					url = url + '&' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*25;
 					url = url + '&' + option.request.limitName + '=' + option.limit;
 				}else{
-					url = url + '?' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*2;
+					url = url + '?' + option.request.pageName + '=' + (option.currentPage==0?option.currentPage:option.currentPage-1)*25;
 					url = url + '&' + option.request.limitName + '=' + option.limit;
 				}
 
@@ -97,26 +98,26 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 					html += "<div id='cardpage'></div>";
 				}
 				else {
-					html = "<p>没有数据</p>";
+					html = "<p>没有爬取到数据</p>";
 				}
 			}
 		}
 		$(option.elem).html(html);
-		if (option.page) {
-			// 初始化分页组件
-			laypage.render({
-				elem: 'cardpage'
-				, count: option.count, limit: option.limit, limits:option.limits, curr: option.currentPage
-				, layout: option.layout,theme: 'csk'
-				, jump: function (obj, first) {
-					option.limit = obj.limit;
-					option.currentPage = obj.curr;
-					if (!first) {
-						_instances[option.elem.substring(1)].reload(option);
-					}
-				}
-			});
-        }
+		// if (option.page) {
+		// 	// 初始化分页组件
+		// 	laypage.render({
+		// 		elem: 'cardpage'
+		// 		, count: option.count, limit: option.limit, limits:option.limits, curr: option.currentPage
+		// 		, layout: option.layout,theme: 'csk'
+		// 		, jump: function (obj, first) {
+		// 			option.limit = obj.limit;
+		// 			option.currentPage = obj.curr;
+		// 			if (!first) {
+		// 				_instances[option.elem.substring(1)].reload(option);
+		// 			}
+		// 		}
+		// 	});
+        // }
 	}
 	card.prototype.reload = function (opt) {
 		this.initOptions(this.option ? $.extend(true, this.option, opt) : opt);
@@ -148,8 +149,8 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 				'<div class="project-list-item">'+
 					'<div class="project-list-item-body">'+
 							'<h2 style="font-size: 22px" >' + item.publicationTitle + '</h2> '+
-							'<div class="project-list-item-text layui-text" style="color: #20c997;font-size: medium">'+
-								'<span >' +item.keywords + '</span>' +
+							'<div class="project-list-item-text layui-text" style="color: #84AF9B;font-size: medium">'+
+								'<span >' +item.conference + '</span>' +
 							'</div> '+
 							'<div class="project-list-item-desc" >' +
 								'<span >' +item.abstrac + '</span>' +
@@ -175,11 +176,11 @@ layui.define(['table', 'laypage','jquery', 'element'], function(exports) {
 			var item = {};
 			item.paperId = dataList[i][option.request.paperId];
 			item.abstrac = dataList[i][option.request.abstrac];
-			item.keywords = dataList[i][option.request.keywords];
+			item.conference =  dataList[i][option.request.conference];
 			item.publicationTitle = dataList[i][option.request.publicationTitle];
 			item.publicationYear = dataList[i][option.request.publicationYear];
 			item.persistentLink = dataList[i][option.request.persistentLink];
-			item.persistentLink = item.persistentLink.replaceAll('"',"");
+			//item.persistentLink = item.persistentLink.replaceAll('"',"");
 			data.data.push(item);
 		}
 		return data;
