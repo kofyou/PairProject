@@ -6,11 +6,19 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "antd": "^4.15.0",
+    "axios": "^0.21.1",
+    "echarts": "^5.0.2",
+    "echarts-for-react": "^3.0.1",
+    "js2wordcloud": "^1.1.12",
     "react": "^17.0.1",
+    "react-cookies": "^0.1.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1"
+    "react-wordcloud": "^1.2.7",
+    "web-vitals": "^1.1.1",
+    "wordcloud": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
