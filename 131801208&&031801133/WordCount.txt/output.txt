@@ -1,10 +1,12 @@
-type: 29944
-image: 26403
-indexing: 18902
-controlled: 18749
-inspec: 18733
-keywords: 11159
-Visualization: 9846
-learning: 7615
-object: 6905
-recognition: 6750
+Cameras:2176;
+Training:2023;
+Computer version:1817;
+Feature extraction:1752;
+Shape:1425;
+Image segmensional:1384;
+Robustness:1266;
+Visualization:1108;
+Three-dimensional displays:1055;
+Image reconstruction:978;
+		
+		
