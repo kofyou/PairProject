@@ -4,6 +4,7 @@ import (
 	_ "backend/database"
 	"backend/thesisSearch"
 	"backend/user"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,6 +12,7 @@ import (
 func main() {
 
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	// username=?&&password=?
 	r.POST("/user/login/check", user.UserLogin)
@@ -34,6 +36,7 @@ func main() {
 	r.POST("/list", thesisSearch.GetThesisList)
 
 	r.POST("/")
+
 	r.Run(":8080")
 }
 
