@@ -15,15 +15,13 @@
     <body>
         <a class="title_mainPage">Crwaler</a>
         <div class="searchBox_mainPage">
-            <form method="get" action="/partnerwork_war_exploded/SearchServlet">
+            <form method="GET" action="/paper/SearchServlet">
                 <input class="searchBox_text" type="text" name="search" placeholder="Type to search">
+                <input class="search_btn" type="submit" value="">
+                <a class="searchBox_btn" href="/paper/ListServlet">
+                    <img src="png/addfile.png" width="25px">
+                </a>
             </form>
-            <a class="searchBox_btn" href="/partnerwork_war_exploded/SearchServlet">
-                <img src="png/search.png" width="25px">
-            </a>
-            <a class="searchBox_btn" href="/partnerwork_war_exploded/ListServlet">
-                <img src="png/addfile.png" width="25px">
-            </a>
         </div>
     </body>
 </html>
