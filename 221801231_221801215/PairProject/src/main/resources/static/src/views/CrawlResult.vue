@@ -563,9 +563,9 @@ export default {
     this.ShowTotalFrequency();
   },
   watch: {
-    newfrequencyDatas: function (val, oldval) {
-      this.drawLine();
-    },
+    // newfrequencyDatas: function (val, oldval) {
+    //   this.drawLine();
+    // },
     keywordList: function (val, oldval) {
       this.drawLine();
     },
@@ -574,12 +574,7 @@ export default {
   methods: {
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
-      let seriesData = this.newfrequencyDatas.splice(
-        this.statics.startYearOptions.value - 1,
-        this.statics.endYearOptions.value -
-          this.statics.startYearOptions.value +
-          1
-      );
+      let seriesData = this.newfrequencyDatas;
       let myChart = this.$echarts.init(document.getElementById("myChart"));
       myChart.resize();
       // 绘制图表
@@ -626,7 +621,12 @@ export default {
           ),
         },
         yAxis: {},
-        series: seriesData,
+        series: seriesData.splice(
+        this.statics.startYearOptions.value - 1,
+        this.statics.endYearOptions.value -
+          this.statics.startYearOptions.value +
+          1
+      ),
       });
     },
     ShowPagenation: function (tab, event) {
@@ -643,6 +643,7 @@ export default {
         this.pagePagination2 = false;
         this.pagePagination1 = false;
         this.ShowTotalFrequency();
+        this.drawLine();
       }
     },
     deleteCard: function (value, id, index) {
@@ -803,6 +804,7 @@ export default {
               data: singleArray,
             });
           });
+          _this.drawLine();
         })
         .catch(function (error) {
           console.log(error);
@@ -879,6 +881,7 @@ export default {
                 data: singleArray,
               });
             });
+            _this.drawLine();
           })
           .catch(function (error) {
             console.log(error);

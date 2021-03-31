@@ -48,7 +48,7 @@
 export default {
   props: {
     userName: String,
-    loginStatus: String,
+    loginStatus: Boolean,
   },
   name: "myheader",
   data() {
@@ -65,16 +65,6 @@ export default {
     this.username = localStorage.getItem["username"];
     this.loginStatus = localStorage.getItem["loginstatus"];
   },
-  // watch:{
-  //    'userName':function(val)
-  //    {
-  //    this.userName=val;
-  //    alert(this.userName);
-  //    },
-  //    'loginStatus':function(val){
-  //     this.loginStatus=val;
-  //    }
-  // },
   methods: {
     toLogin: function () {
       this.$router.push("/login");

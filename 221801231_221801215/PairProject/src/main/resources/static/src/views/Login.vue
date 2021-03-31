@@ -79,8 +79,15 @@ export default {
   },
   methods: {
     loginForm(formName) {
-      console.log(this.$md5(this.form.loginPassword));
-      let _this = this;
+      if(this.form.loginName==""||this.form.loginPassword=="")
+      {
+        this.$message({
+              message: "用户名账号密码未输入",
+              type: "warning",
+            });
+      }
+      else
+      {let _this = this;
       this.$axios
         .post(_this.$api.globalUrl + "/user/login", {
           username: _this.form.loginName,
@@ -112,6 +119,7 @@ export default {
             });
           }
         );
+      }
     },
   },
 };

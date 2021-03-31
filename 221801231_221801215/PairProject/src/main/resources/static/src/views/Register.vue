@@ -167,10 +167,11 @@ export default {
         .then(
           function (response) {
             console.log(response);
-            this.$message({
+            _this.$message({
               message: "注册成功",
               type: "success",
             });
+            _this.$router.push("/login");
           },
           function (error) {
             console.log("error");

@@ -49,7 +49,7 @@
           "
         ></i>
       </div>
-      <div v-if="loadingFinished" class="paperList"><i class="el-icon-loading" style="font-size:30px"></i></div>
+      <div v-if="loadingFinished&&loginStatus" class="paperList"><i class="el-icon-loading" style="font-size:30px"></i></div>
       <div class="paperList" v-show="tableData.length != 0">
         <ul v-for="(items, index) in tableData" :key="index">
           <li class="paperItem">
@@ -111,7 +111,9 @@ export default {
   },
   methods: {
     GetUserPaperList: function () {
-      this.$message({
+      if(this.loginStatus=="true")
+      {
+        this.$message({
         message: "用户论文列表加载中",
       });
       let newTitle = {};
@@ -138,6 +140,12 @@ export default {
           console.log(error);
           _this.$message.error("用户论文列表加载失败");
         });
+      }
+      else{
+         this.$message({
+            message: "登录后即可获取属于你的用户列表！",
+          });
+      }
     },
     AddTitle: function () {
       let newTitle = {};
