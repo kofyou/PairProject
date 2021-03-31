@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <embed th:src="@{/static/img/d.mp3}" hidden="true" autostart="true" loop="true"/>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/static/css/usermain.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/list.css}">
+</head>
+
+<script th:src="@{/static/layui/layui.js}"></script>
+<body onload="getQueryVariable()">
+
+
+<ul class="layui-nav">
+    <li class="layui-nav-item">
+        <a th:href="@{/usermain}">控制台<span class="layui-badge">99+</span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">个人中心<span class="layui-badge-dot"></span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}"><img th:src="@{/static/img/vanyang.jpg}" class="layui-nav-img">
+            <!--        取session-->
+            [[${session.loginUser}]]</a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/updateInfo}">修改信息</a></dd>
+            <dd><a th:href="@{/Safe}">安全管理</a></dd>
+            <dd><a th:href="@{/}">退了</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">趣味论文<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/manageMember}">论文列表</a></dd>
+            <dd><a th:href="@{/sss}">关键词搜索</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">论文统计图表<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/CVPR}">CVPR</a></dd>
+            <dd><a th:href="@{/ECCV}">ECCV</a></dd>
+            <dd><a th:href="@{/ICCV}">ICCV</a></dd>
+        </dl>
+    </li>
+
+
+    <li class="layui-nav-item">
+        <a th:href="@{/user/socket}">查看消息<span class="layui-badge-dot"></span></a>
+    </li>
+
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>title||</th>
+            <th>typeandyear||</th>
+            <th>keywords||</th>
+            <th>releasetime</th>
+            <th>link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paper:${pageInfo1.list}" id="tableInfo">
+            <td th:text="${paper.getTitle()}"></td>
+            <!--新增--><td th:text="${paper.getTypeandyear()}"></td>
+            <td th:text="${paper.getKeywords()}"></td>
+            <td th:text="${paper.getReleasetime()}"></td>
+            <td      >
+                <a th:href="${paper.getLink()}">
+                    论文链接点此
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <ul class="pagination">
+        <a class="layui-btn layui-btn-normal"><span th:text="第+${pageInfo1.pageNum}+页"></span></a>
+        <a class="layui-btn layui-btn-warm" th:href="@{/manageMember}">首页</a>
+        <a class="layui-btn" th:href="@{/manageMember(pageNum=1)}">1</a>
+        <a class="layui-btn layui-btn-normal" th:href="@{/manageMember(pageNum=2)}">2</a>
+        <a class="layui-btn layui-btn-normal" >....</a>
+        <a class="layui-btn layui-btn-warm" th:href="@{/manageMember(pageNum=${pageInfo1.getNextPage()})}">Next</a>
+    </ul>
+
+
+</ul>
+<script>
+    //Demo
+
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == 'gjc'){
+                //document.getElementById("demoReload").value=pair[1];
+                return pair[1];}
+
+        }
+        return(false);
+    }
+
+
+
+
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script>
+    layui.use('element',function () {
+//实例化element
+        var element = layui.element();
+//初始化动态元素，一些动态生成的元素如果不设置初始化，将不会有默认的动态效果
+        element.init();
+//导航条点击监听
+        element.on('nav(bigData)',function (elem) {
+            console.log(elem);
+        });
+//tab切换监听
+        element.on('tab(test)',function (data) {
+            console.log(data);
+        });
+//手风琴折叠面板开启关闭监听
+        element.on('collapse(collapseFilter)',function (data) {
+            console.log(data.show);
+            console.log(data.title);
+            console.log(data.content)
+        });
+//触发的事件
+        var active = {
+            setPercent: function () {
+//设置50%进度
+                element.progress('demo', '50%')
+            }
+        }
+//点击事件的监听
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this);
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    })
+</script>
+<script>
+    function tz(){
+        window.location.href='论文查询.html';
+    }
+</script>
+</body>
+</html>

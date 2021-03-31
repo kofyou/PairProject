@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script th:src="@{https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/static/css/usermain.css}">
+    <script th:src="@{/static/layui/layui.js}"></script>
+</head>
+<script th:src="@{/static/layui/layui.js}"></script>
+<ul class="layui-nav">
+    <li class="layui-nav-item">
+        <a th:href="@{/usermain}">控制台<span class="layui-badge">99+</span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">个人中心<span class="layui-badge-dot"></span></a>
+    </li>
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}"><img th:src="@{/static/img/vanyang.jpg}" class="layui-nav-img">
+            <!--        取session-->
+            [[${session.loginUser}]]</a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/updateInfo}">修改信息</a></dd>
+            <dd><a th:href="@{/Safe}">安全管理</a></dd>
+            <dd><a th:href="@{/}">退了</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">趣味论文<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/manageMember}">论文列表</a></dd>
+            <dd><a th:href="@{/sss}">关键词搜索</a></dd>
+        </dl>
+    </li>
+
+    <li class="layui-nav-item">
+        <a th:href="@{/personalInfo}">论文统计图表<i class="layui-icon">&#xe618;</i></a>
+        <dl class="layui-nav-child">
+            <dd><a th:href="@{/CVPR}">CVPR</a></dd>
+            <dd><a th:href="@{/ECCV}">ECCV</a></dd>
+            <dd><a th:href="@{/ICCV}">ICCV</a></dd>
+        </dl>
+    </li>
+</ul>
+
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+    //定义echart对象
+        var myChart = echarts.init(document.getElementById('main'));
+        //设置option参数
+        option = {
+           // backgroundColor:'#323a5e',
+           grid:{
+                left:'4%',
+                right:'4%',
+                bottom:'4%',
+                top:'4%',
+                containLabel:true
+           },
+           tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    animation: true
+                },
+                triggerOn: "mousemove",
+                alwaysShowContent: true,
+                position: function(pt) {
+                return [pt[0], 130];
+                }
+                
+            },
+           legend :{
+                data:['ICCV'],
+                right:100
+           },
+            yAxis: {
+                type: 'category',
+                name:'keywords',
+                data: ['learning (artificial intelligence)', 'feature extraction ', 'training ', 'image reconstruction', 'neural nets', 'task analysis', 'computer vision','cameras','object detection','image segmentation'],//横轴
+                axisLine:{
+                    show:true,
+                    LineStyle:{
+                        color:'red'
+                    }
+                },
+                //nameGap:6,
+                triggerEvent:true,
+
+                axisLabel:{
+                    clickable:true,
+                    interval:0,
+                    rotate:45,
+                    formatter: function (value) {   
+                        var res = value
+                        if (res.length > 7) {
+                            res = res.substring(0, 6) + '..'
+                        }
+                        return res
+                    },
+                },
+            },
+
+            xAxis: {
+                type: 'value'
+            },
+            series: [{
+                name:'ICCV',
+                data: [758,446,299,212,201,216,260,199,254,99],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                }
+            },
+           ]
+        };
+
+        option && myChart.setOption(option);
+    //绑定option
+        myChart.on('click', function (params) {
+            window.location.assign('search/?gjc='+params.name);
+
+        });
+        
+     </script>
+
+    <script>
+        //Demo
+        layui.use('form', function(){
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
+    <script>
+        layui.use('element',function () {
+//实例化element
+            var element = layui.element();
+//初始化动态元素，一些动态生成的元素如果不设置初始化，将不会有默认的动态效果
+            element.init();
+//导航条点击监听
+            element.on('nav(bigData)',function (elem) {
+                console.log(elem);
+            });
+//tab切换监听
+            element.on('tab(test)',function (data) {
+                console.log(data);
+            });
+//手风琴折叠面板开启关闭监听
+            element.on('collapse(collapseFilter)',function (data) {
+                console.log(data.show);
+                console.log(data.title);
+                console.log(data.content)
+            });
+//触发的事件
+            var active = {
+                setPercent: function () {
+//设置50%进度
+                    element.progress('demo', '50%')
+                }
+            }
+//点击事件的监听
+            $('.site-demo-active').on('click', function(){
+                var othis = $(this);
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+        })
+    </script>
+    <script>
+        function tz(){
+            window.location.href='论文查询.html';
+        }
+    </script>
+
+</body>
+</html>
