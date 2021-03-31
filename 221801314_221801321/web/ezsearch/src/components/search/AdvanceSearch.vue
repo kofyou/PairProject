@@ -14,6 +14,7 @@
           :key="item.value"
           :label="item.label"
           :value="item.value"
+          hide-on-click="true"
         >
         </el-option>
       </el-select>

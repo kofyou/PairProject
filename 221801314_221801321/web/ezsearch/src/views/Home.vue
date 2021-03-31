@@ -32,11 +32,8 @@
     </div>
     <div class="divider"></div>
     <el-space direction="vertical" :size="40">
-      <Paper />
-      <Paper />
-      <Paper />
-      <Paper />
-      <Paper />
+      <Paper :paper="item" v-for="item in papers"/>
+
     </el-space>
     <Pagination @page="getPage" />
     <Footer />
@@ -70,77 +67,77 @@ export default defineComponent({
     Pagination,
     Footer,
   },
-  setup() {
-    const { ctx } = getCurrentInstance();
-    var title = ref("");
-    var year;
-    var meeting;
-    var page;
+  data(){
+    return{ 
+      title:'',
+      year:'',
+      meeting: '',
+      page: 1,
+
+      test:111,
+      papers: [],
+    }
+  },
+  methods: { 
     //获取输入框组件title
-    const getTitle = (val) => {
-      title = val;
-      console.log(title);
-    };
+    getTitle(val){
+      this.title = val;
+      console.log(this.title);
+    },
     //获取高级搜索组件条件
-    const getYear = (val) => {
+    getYear(val){
       console.log(val);
-      year = val;
-    };
-    const getMeeting = (val) => {
+      this.year = val;
+    },
+    getMeeting(val){
       console.log(val);
-      meeting = val;
-    };
+      this.meeting = val;
+    },
     //获取分页组件当前页面
-    const getPage = (val) => {
-      page = val;
-    };
-    //搜索按钮事件
-    const search = () => {
-      if (page === undefined) page = 1;
+    getPage(val){
+      this.page = val;
+    },
+   //搜索按钮事件
+    search () {
+      if (this.page === undefined) this.page = 1;
       // console.log(title);
       // console.log(year);
       // console.log(meeting);
-      meeting === undefined ? null : meeting;
-      title.value === "" ? null : title.value;
-      year === undefined ? null : year;
-      console.log(
-        JSON.stringify({
-          address: page - 1,
-          source: meeting,
-          title: title,
-          years: year,
-        })
-      );
+      this.meeting === undefined ? null : this.meeting;
+      this.title === "" ? null : this.title;
+      this.year === undefined ? null : this.year;
 
-      queryPaper();
-    };
+      this.queryPaper();
+    },
+
     //get请求查询title
-    const queryPaper = () => {
-      ctx.$http
+    queryPaper (){
+      
+      this.ctx.$http
         .get("/paper/title", {
-          address: page - 1, //页数
-          source: meeting,
-          title: title,
-          years: year,
+          address: this.page - 1,
+          source: this.meeting,
+          title: this.title,
+          years: this.year,
         })
         .then((data) => {
-          console.log(data);
-          for (let i = 0; i < data.length; i++) {
-            let name = "paper" + i;
-          }
+          this.$router.push({query:{
+            address: this.page - 1,
+            source: this.meeting,
+            title: this.title,
+            years: this.year,
+          }})
+          this.papers = data;
+          console.log(this.papers);
         });
-    };
+    },
+  },
+  created() {
+  },
+  setup(props, context) {
+    const { ctx } = getCurrentInstance();
     return {
-      title,
-      year,
-      meeting,
-      page,
-      getTitle,
-      getYear,
-      getMeeting,
-      getPage,
-      search,
-      queryPaper,
+      ctx,
     };
   },
 });
