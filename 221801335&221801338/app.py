@@ -2,25 +2,27 @@ from flask import Flask, request, render_template
 from fileoperate import *
 from Adapter import *
 app = Flask(__name__)
-operate=FileOperate("D:/论文数据")
+adapter=AdapterClass()
 @app.route('/', methods=['GET'])
 def homeget():
-    global operate
-    operate=FileOperate("D:/论文数据")
-    return render_template('home.html',Quene="Start Reverse")
+    keys=adapter.get_keys()
+    print(keys)
+    return render_template('home.html',keys=keys)
 
-@app.route('/', methods=['POST'])
+
+@app.route('/a', methods=['POST'])
 def homepost():
     print(request.form)
     if request.form.__contains__('sign'):
         dname=request.form['filename']+".json"
         gname=request.form['search']
-        results=operate.file_search(gname)
-        if operate.file_delete(dname):
-            return render_template('home.html',message="删除成功",results=results)
-        return render_template('home.html',message="删除失败",results=results)
+        results=adapter.get_json_messages(gname)
+        print(results)
+        if adapter.file_delete(dname):
+            return render_template('list.html',message="删除成功",results=results)
+        return render_template('list.html',message="删除失败",results=results)
     elif request.form.__contains__('sort'):
-        if operate.file_sort():
+        if adapter.file_sort():
             return render_template('home.html',IsSort="Reverse",Quene="Start Not Reverse")
         else:
             return render_template('home.html',IsSort="Unreverse",Quene="Start  Reverse")
@@ -33,12 +35,14 @@ def pictureget():
 @app.route('/picture', methods=['POST'])
 def picturepost():
     if request.form.__contains__('sign'):
-        adapter=AdapterClass()
         key=request.form.get('key')
-        lis=adapter.get_keys()
-        for d in lis:
-            print(d)
-        print(adapter.get_key_list("Videos"))
+        #得到所有关键词
+        # lis=adapter.get_keys()
+        # for d in lis:
+        #     print(d)
+        #打印一个关键词的文章列表
+        # print(adapter.get_key_list("Friction"))
+        print(adapter.get_dict_meet_year_num())
     else:
         print("无")
     return render_template('picture.html',results=["1","2"])

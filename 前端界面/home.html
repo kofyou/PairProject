@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
     <title>论析平台</title>
-   <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
-   <script src="{{url_for('static',filename='index.js')}}"></script>
-    <!-- <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script> -->
+<!--    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">-->
+<!--    <script src="{{url_for('static',filename='index.js')}}"></script>-->
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
@@ -24,17 +24,17 @@
         <br/>
         <div class="search_part">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <img class="smaller" src="" width=33%></img>
-            <form id="search_form" action="/a" method="post">
+            <img class="smaller" src="" width=33%>
+            <form id="search_form" action="list.html" method="post">
                 <div class="search_bar">
-                    <input type="submit" name="sign" id="search_submit" value="🔎" style="color: red;">
+                    <input type="submit" name="sign" id="search_submit" value="🔎"  style="color: red;">
                     <span>
                     <i id="clear" onclick="clear_seach()"></i>
                     <div class="si">
 
                         <input class="search" type="text" value="" nkeyup="get_suggest()" onfocus="get_suggest()"
                                onpaste="get_suggest()" autocomplete="off" id="search_input"
-                               name="search" placeholder="✎...  搜索-专注论文分析～">
+                                name="search" placeholder="✎...  搜索-专注论文分析～">
                     </div>
                 </span>
                 </div>
@@ -68,14 +68,23 @@
             <p>猜你想搜:</p>
             <br/>
         </div>
-
-
-        {% for key in keys %}
         <div class="box">
-            <p>{{key}}</p>
-            
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/论坛.png" ></p>-->
+            <p class="url1">软件工程</p>
         </div>
-        {% endfor %}
+
+        <div class="box">
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/导航.png" ></p>-->
+            <p class="url2">人工智能</p>
+        </div>
+
+        <div class="box">
+            <a href=""></a>
+            <!--<p><img class="icon" src="img/御淘呗.png" ></p>-->
+            <p class="url3">大数据</p>
+        </div>
 
         <!--
         如若要添加可复制一段
@@ -96,12 +105,7 @@
 
 
     </div>
-    {% if IsSort %}
-    <p style="color:red">{{ IsSort }}</p>
-    {% endif %}
-    {% for result in results %}
-    <p style="color:red">{{ result }}</p>
-    {% endfor %}
+
 </div>
 
 </body>
