@@ -73,7 +73,7 @@ export default defineComponent({
       meeting: "",
       page: 1,
 
-      total: 111,
+      total: 50,
       papers: [],
     };
   },
@@ -100,7 +100,7 @@ export default defineComponent({
         val = 1;
       }
       // console.log("getPage");
-      // console.log(val);
+      console.log(val);
       var title = this.getQueryString("title");
       var meeting = this.getQueryString("meeting");
       var year = this.getQueryString("years");
@@ -116,7 +116,6 @@ export default defineComponent({
       // console.log(year);
       // console.log(meeting);
       this.meeting === undefined ? null : this.meeting;
-      this.title === "" ? null : this.title;
       this.year === undefined ? null : this.year;
 
       this.queryPaper();

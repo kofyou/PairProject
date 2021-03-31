@@ -3,19 +3,44 @@
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      v-model:currentPage="currentPage1"
-      :page-size="100"
+      v-model:currentPage="currentPage"
+      :page-size="5"
       layout="total, prev, pager, next"
-      :total="1000"
+      :total="sum"
     >
     </el-pagination>
   </div>
 </template>
 <script>
+import { number } from "echarts";
 import { defineComponent, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   name: "Pagination",
+  props:['total'],
+  data() {
+    return {
+      sum: this.total,
+      currentPage: 1,
+    };
+  },
+  methods: {
+    getQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) {
+        return unescape(r[2]);
+      }
+      return null;
+    },
+  },
+  created() {
+    // console.log(this.getQueryString);
+    var page = this.getQueryString("address");
+    this.currentPage = Number(page) + Number(1);
+    console.log(page);
+    console.log(this.currentPage);
+  },
   setup(props, { emit }) {
     // const store = useStore();
     let page = 1;
@@ -29,24 +54,15 @@ export default defineComponent({
     }
     const getPage = () => {
       emit("page", page);
-    }
+    };
     onMounted(() => {
       // setPage(val);
-      handleCurrentChange();
+      // handleCurrentChange();
     });
-    return { 
+    return {
       page,
       handleCurrentChange,
       handleSizeChange,
-    }
-  },
-  methods: {},
-  data() {
-    return {
-      currentPage1: 1,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 4,
     };
   },
 });
