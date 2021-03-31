@@ -130,7 +130,7 @@
     function change1() {
             //防止表单跳转
             event.returnValue = false;
-            window.location.href = "sinplesearch.html";
+            window.location.href = "sinplesearch.php";
         }
     function change3() {
         //防止表单跳转

@@ -66,13 +66,22 @@
                     }
                     $conn->query("SET NAMES utf8");
 
-                    //查询数据
-                    $search_key = isset($_GET["search_key"]) ? $_GET["search_key"] : '';
-                    //session传值机制
-                    session_start();
-                    $_SESSION["input_text"] = $search_key;
+                    //查询数据 session传值
+                    @session_start();
+                    $in = isset($_SESSION["input"]) ? $_SESSION["input"] : '';
+                    if ($in == "") {
+                        $search_key = isset($_GET["search_key"]) ? $_GET["search_key"] : '';
+                    }
+                    else {
+                        $search_key = $_SESSION["input"];
+                        $_SESSION["input"] = "";
+                    }   
+                    
                     //查找
+<<<<<<< HEAD
                     //if($search_key != '') {
+=======
+>>>>>>> 32e143e5b5fa3d5bd28dc5e8cd77e7dd17f91fe5
                     $sql = "SELECT * FROM paper where post_title like '%".$search_key."%' or keywords like '%".$search_key."%'";
                     $result = $conn->query($sql);
                     echo "<script> document.getElementById('search_key').value = '".$search_key."';</script>";
@@ -92,7 +101,10 @@
                         '</div>';
                         }
                     }
+<<<<<<< HEAD
 //}
+=======
+>>>>>>> 32e143e5b5fa3d5bd28dc5e8cd77e7dd17f91fe5
                     $conn->close();
                 ?>
 
@@ -112,12 +124,17 @@
                     $title = isset($_GET['title'])?$_GET['title']:' ';
                     $sql = "select * from paper where post_title like '%".$title."%'";
                     $result = $conn->query($sql);
+<<<<<<< HEAD
                     $row = $result->fetch_assoc();
                     $sql1 = "select * from paper_user where post_title = '".$row['post_title']."'";
+=======
+                    $sql1 = "select * from paper_user where post_title = '".$title."'";
+>>>>>>> 32e143e5b5fa3d5bd28dc5e8cd77e7dd17f91fe5
                     $result1 = $conn->query($sql1);
                     if ($result1 -> num_rows == 0){
                         $sql2 = "insert into paper_user values ('".$row['post_title']."','".$row['post_content']."','".$row['release_date']."','".$row['keywords']."','".$row['release_date']."','".$row['link']."')";
                         $result2 = $conn->query($sql2);
+<<<<<<< HEAD
                         echo "<script>
                                    function insert_user(){
                                        alert('导入成功');
@@ -128,6 +145,9 @@
                                    function insert_user(){
                                        alert('文章已存在!');
                                    }</script>";
+=======
+                        echo "<script>alert('导入成功');</script>";
+>>>>>>> 32e143e5b5fa3d5bd28dc5e8cd77e7dd17f91fe5
                     }
 
                     $conn->close();
@@ -144,7 +164,7 @@
         function change2() {
             //防止表单跳转
             event.returnValue = false;
-            window.location.href = "paper_list.html";
+            window.location.href = "paper_list.php";
         }
         function change3() {
             //防止表单跳转
