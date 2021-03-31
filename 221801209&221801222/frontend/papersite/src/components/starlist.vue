@@ -133,7 +133,6 @@ export default {
     tableData:{
       handler (val, oldVal){
         this.handleSizeChange(this.tableMes.eachPageItem);
-        console.log(1);
       }
     }
   },
@@ -150,7 +149,6 @@ export default {
       let midTableData = this.tableData.slice(0);
       let cnt = midTableData.length;
       this.tableData.splice(0, cnt);  //清空列表
-      console.log(searchWord);
       for(let i = 0; i < cnt; i++)
       {
         if(midTableData[i]['aid'].toString() === searchWord || midTableData[i]['author'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['title'].toLowerCase().indexOf(searchWord) !== -1 || midTableData[i]['keywords'].toLowerCase().indexOf(searchWord) !== -1)
@@ -267,7 +265,7 @@ export default {
           // console.log(url)
           window.open(url, '_blank');
         }
-      }, 500);
+      }, 5000);
 
     },
     getDetails(row){
@@ -279,7 +277,6 @@ export default {
       this.tableMes.eachPageItem = val;
       this.tableMes.total_page = Math.ceil(this.tableMes.totalItem / this.tableMes.eachPageItem);
       this.tableMes.current_page = 1;
-      console.log(this.tableMes.eachPageItem + "  " + this.tableMes.totalItem + "  " + this.tableMes.totalPage );
       this.handleCurrentChange(this.tableMes.current_page);
     },
     handleCurrentChange(val) {

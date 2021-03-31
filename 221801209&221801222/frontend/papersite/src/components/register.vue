@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import Router from '../router/index'
+
 export default {
   name: "login",
   data(){
@@ -73,6 +75,10 @@ export default {
         that.alertMes("密码不能为空！");
       else if( psw1 !== psw2)
         that.alertMes("两次输入的密码不一致！");
+      else if(username.length < 8)
+        that.alertMes("账号长度需大于等于8位！");
+      else if(psw1 < 8)
+        that.alertMes("密码长度需大于等于8位！");
       else {
         this.axios.post('user/register', {
           username: that.user.username,
@@ -81,6 +87,7 @@ export default {
             myResponse = response;
             if(myResponse.data.code == '0') {
               that.alertMes("注册成功，请返回登陆！");
+              Router.push({path: 'login'});
             }
             else{
               that.alertMes('用户名已存在！');
