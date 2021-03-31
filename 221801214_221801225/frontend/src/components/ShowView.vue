@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import eventVue from "@/assets/eventVue.js";
 import PaperItem from "./PaperItem";
 import axios from "axios";
 export default {
@@ -71,7 +72,11 @@ export default {
   mounted() {
     //此处true 需要加上 不加滚动事件可能绑定不成功
     window.addEventListener("scroll", this.handleScroll, true);
+    // if (this.searchtext != null) {
+    //   this.searchtext = this.$route.params.id;
+    // }
   },
+
   components: {
     PaperItem,
   },
@@ -81,6 +86,14 @@ export default {
     }).then((res) => {
       this.listArr2 = res.data;
       this.listArr1 = this.listArr2.slice(0, 5);
+      if (this.$route.params.id != null) {
+        this.searchtext = this.$route.params.id;
+        this.value = "关键词";
+        this.selectwhat = 4;
+        this.search1();
+      } else {
+        this.selectwhat = 1;
+      }
     });
   },
   methods: {
@@ -97,17 +110,20 @@ export default {
         this.listArr1 = this.listArr2
           .filter((item, index) => item.title.includes(this.searchtext))
           .slice(0, 5);
+          alert("按题目搜索完毕");
       } else if (this.value == "摘要") {
         this.selectwhat = 3;
         this.listArr1 = this.listArr2
           .filter((item, index) => item.abstracted.includes(this.searchtext))
           .slice(0, 5);
+          alert("按摘要搜索完毕");
       } else if (this.value == "关键词") {
         console.log(this.value);
         this.selectwhat = 4;
         this.listArr1 = this.listArr2
           .filter((item, index) => item.keyword.indexOf(this.searchtext) > -1)
           .slice(0, 5);
+          alert("按关键词搜索完毕");
       }
     },
     nextpage() {

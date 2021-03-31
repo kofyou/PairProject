@@ -10,8 +10,7 @@
     <div class="nav">
       <router-link to="/show">论文列表</router-link>
       <router-link to="/echar">热词分析</router-link>
-      <!-- <a href="">论文导入</a> -->
-      <a href="">趋势图</a>
+      <router-link to="/trend">趋势图</router-link>
     </div>
   </div>
 </template>
@@ -41,21 +40,22 @@ export default {};
       padding-left: 10px;
     }
   }
-  .nav{
-      display: flex;
-      margin-right: 200px;
-      a{
-          display: block;
-          border-radius: 20px;
-          padding: 10px 20px;
-          color: white;
-          font-size: 25px;
-          margin-left: 10px;
-          &:hover,&.active{
-              color:white;
-              background:black;
-          }
+  .nav {
+    display: flex;
+    margin-right: 200px;
+    a {
+      display: block;
+      border-radius: 20px;
+      padding: 10px 20px;
+      color: white;
+      font-size: 25px;
+      margin-left: 10px;
+      &:hover,
+      &.active {
+        color: white;
+        background: black;
       }
+    }
   }
 }
 </style>

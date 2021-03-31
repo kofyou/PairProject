@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import eventVue from "@/assets/eventVue.js";
 import axios from "axios";
 import { color } from "echarts";
 const echarts = require("echarts");
@@ -19,25 +20,10 @@ export default {
     return {
       msg: "热词分析",
       data1: [],
-      data2: [1,2],
+      data2: [1, 2],
     };
   },
-  // created() {
-    // axios({
-    //   url: "http://localhost:8080/keyword",
-    // }).then((res) => {
-    //   // for(let i=0;i<10;i++){
-    //   //   console.log(res.data[i].count);
-    //   //   this.data2[i]=res.data[i].count;
-    //   // }
-    //   // this.data1=res.data
-    //   // console.log(this.data1);
-    //   this.data1=["vvv","kkk","www"];
-    //   this.data2=[5,6,7];
-    // });
-  // },
   methods: {
-
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
       const myChart = echarts.init(document.getElementById("myChart"));
@@ -73,34 +59,35 @@ export default {
             name: "关键词频数",
             type: "bar",
             data: this.data2,
+            itemStyle: { normal: { color: "#9a60b4" } },
           },
         ],
         this: myChart.on("click", (param) => {
-          // 可以使用下面的方式进行路由的切换
-          //   alert(param.name);
-          this.$router.push({
-            path: "/show",
-          });
+          console.log(param.name);
+          // this.$router.push({
+          //   path: "/show",
+          // });
+          this.$router.replace({name: 'showview', params: {id: param.name}})
         }),
       });
     },
   },
   mounted() {
-    const _this=this;
+    const _this = this;
     axios({
       url: "http://localhost:8080/keyword",
     }).then((res) => {
-      for(let i=0;i<10;i++){
+      for (let i = 0; i < 10; i++) {
         // console.log(res.data[i].count);
         // console.log(res)
-        _this.data2[i]=res.data[i].count;
-        _this.data1[i]=res.data[i].content;
+        _this.data2[i] = res.data[i].count;
+        _this.data1[i] = res.data[i].content;
       }
       console.log(_this.data1);
       console.log(_this.data2);
-      this.drawLine()
+      this.drawLine();
     });
-    this.$nextTick(this.drawLine());
+    // this.$nextTick(this.drawLine());
   },
 };
 </script>
@@ -115,9 +102,5 @@ export default {
     margin-left: 150px;
     padding-top: 80px;
   }
-  // .aaaa{
-  //   width: 50px;
-  //   height: 50px;
-  // }
 }
 </style>

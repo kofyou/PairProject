@@ -9,7 +9,6 @@
 
 <script>
 import HdView from "./components/HdView";
-//  import ShowView from "./components/ShowView";
 export default {
     components: {
       HdView

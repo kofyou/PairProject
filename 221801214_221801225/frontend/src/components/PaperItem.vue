@@ -46,9 +46,9 @@ export default {
     },
   },
   methods: {
-    deleted() {
-      location.reload();
-    },
+    // deleted() {
+    //   location.reload();
+    // },
     See(e) {
       window.location.href = e;
     },
@@ -58,12 +58,12 @@ export default {
         eventVue.$emit("aa", this.itemObj);
       });
     },
-    mounted() {
-      eventVue.$on("ak", (message) => {
-        this.itemObj = message;
-        console.log(this.itemObj);
-      });
-    },
+    // mounted() {
+    //   eventVue.$on("ak", (message) => {
+    //     this.itemObj = message;
+    //     console.log(this.itemObj);
+    //   });
+    // },
   },
 };
 </script>

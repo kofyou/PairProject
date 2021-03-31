@@ -6,6 +6,7 @@ import ShowView from "../components/ShowView"
 import Echartstest from "../components/Echartstest"
 import Laa from "../components/Laa"
 import PaperItem from "../components/PaperItem"
+import Trend from "../components/Trend"
 
 
 Vue.use(VueRouter)
@@ -32,6 +33,11 @@ const routes = [
   , {
     path: '/paper',
     component: PaperItem
+  }
+  ,
+  {
+    path: '/trend',
+    component: Trend
   }
 ]
 

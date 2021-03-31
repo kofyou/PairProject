@@ -1,4 +1,4 @@
-# together
+# homework
 
 ## Project setup
 ```
