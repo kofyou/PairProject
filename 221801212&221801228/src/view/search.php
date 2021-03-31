@@ -46,9 +46,9 @@
                     <div class="col-lg-12">
                         <div class="input-group">
                             <form action="?r=search" method="GET">
-                                <input type="text" class="form-control" placeholder="标题" name="title" value="<?=$result['title']?>">
-                                <input type="text" class="form-control" placeholder="关键词" name="keyword" value="<?=$result['keyword']?>">
-                                <input type=“text” class="form-control" placeholder="年份" name="year" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="<?=$result['year']?>">
+                                <input id="input1" type="text" class="form-control" placeholder="标题" name="title" value="<?=$result['title']?>">
+                                <input id="input2" type="text" class="form-control" placeholder="关键词" name="keyword" value="<?=$result['keyword']?>">
+                                <input id="input3" type=“text” class="form-control" placeholder="年份" name="year" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="<?=$result['year']?>">
                                 <select name="forum" id="forum" class="form-control">
                                     <option value="">论坛</option>
                                     <option value="ECCV">ECCV</option>
@@ -60,13 +60,24 @@
                         </div>
                         <label for="file" class=" btn btn-default">选择文件</label>
                         <input id="file" type="file" style="display:none">
-                        <button type="button" class="btn btn-info">
+                        <button type="button" class="btn btn-info" onclick="onclear()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
                                 <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
                             </svg>
                             清除
                         </button>
+                        <script>
+                            function onclear(){
+                                document.getElementById("input1").value="";
+                                document.getElementById("input2").value="";
+                                document.getElementById("input3").value="";
+                                var x=document.getElementById("forum");
+                                x.innerHTML="<option value=" + "\""+"\""+">论坛"+"<"+"/"+"option>"+
+                                    "<option value=" + "\""+"ECCV"+"\""+">ECCV"+"<"+"/"+"option>"+
+                                    "<option value=" + "\""+"CPVR"+"\""+">CPVR"+"<"+"/"+"option>"+
+                                    "<option value=" + "\""+"ICCV"+"\""+">ICCV"+"<"+"/"+"option>";}
+                        </script>
                     </div>
 
                 </div>
