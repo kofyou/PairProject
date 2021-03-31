@@ -101,6 +101,20 @@
             </script>
         </div>
     </div>
+    <div id="kws_ul_div">
+        <ul id="kws_ul">
+            <li id="li_0"><%=keywordList.get(0).getName()%></li>
+            <li id="li_1"><%=keywordList.get(1).getName()%></li>
+            <li id="li_2"><%=keywordList.get(2).getName()%></li>
+            <li id="li_3"><%=keywordList.get(3).getName()%></li>
+            <li id="li_4"><%=keywordList.get(4).getName()%></li>
+            <li id="li_5"><%=keywordList.get(5).getName()%></li>
+            <li id="li_6"><%=keywordList.get(6).getName()%></li>
+            <li id="li_7"><%=keywordList.get(7).getName()%></li>
+            <li id="li_8"><%=keywordList.get(8).getName()%></li>
+            <li id="li_9"><%=keywordList.get(9).getName()%></li>
+        </ul>
+    </div>
 </div>
 
 
