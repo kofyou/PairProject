@@ -19,22 +19,25 @@ public class PaperListServlet extends HttpServlet {
     PaperDAO paperDAO = new PaperDAOImpl();
     KeywordDAO keywordDAO = new KeywordDAOImpl();
 
+    /* 通过jsp传来的参数判断要执行的操作 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String oper = "";
         if(req.getParameter("operation") != null)
             oper = req.getParameter("operation");
-        if (oper.equals("deletePaper")) {
-            deletePaper(req, resp);
-        }
-        else if(oper.equals("showPaper")) {
-            showPaper(req, resp);
-        }
-        else if(oper.equals("queryKeyPaper")) {
-            queryKeyPaper(req, resp);
-        }
-        else{
-            queryPaper(req, resp);
+        switch (oper) {
+            case "deletePaper":
+                deletePaper(req, resp);
+                break;
+            case "showPaper":
+                showPaper(req, resp);
+                break;
+            case "queryKeyPaper":
+                queryKeyPaper(req, resp);
+                break;
+            default:
+                queryPaper(req, resp);
+                break;
         }
     }
 
@@ -43,6 +46,7 @@ public class PaperListServlet extends HttpServlet {
         doGet(req, resp);
     }
 
+    /* 模糊查询论文并分页 */
     public void queryPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String str = req.getParameter("query");
         String pageNum = req.getParameter("pageNum");
@@ -77,6 +81,7 @@ public class PaperListServlet extends HttpServlet {
         req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
     }
 
+    /* 删除论文 */
     public void deletePaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("paperTitle");
         if (title != null && !"".equals(title) ) {
@@ -118,6 +123,7 @@ public class PaperListServlet extends HttpServlet {
         req.getRequestDispatcher("/paperList.jsp").forward(req,resp);
     }
 
+    /* 查询单篇论文详细信息 */
     public void showPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("paperTitle");
         Paper paper = paperDAO.get(title);
@@ -125,6 +131,7 @@ public class PaperListServlet extends HttpServlet {
         req.getRequestDispatcher("/paper.jsp").forward(req,resp);
     }
 
+    /* 通过关键词字段查询论文 */
     public void queryKeyPaper(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String str = req.getParameter("query");
         String pageNum = req.getParameter("pageNum");

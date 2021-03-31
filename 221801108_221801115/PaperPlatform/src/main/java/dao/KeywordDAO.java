@@ -12,13 +12,9 @@ public interface KeywordDAO {
 
     ArrayList<Paper> keyList(String keyword,int pageNum, int lineNum);
 
-    ArrayList<Paper> keyList(String keyword, int year);
-
-    ArrayList<Paper> keyList(String keyword, int year, String conference);
-
     ArrayList<Keyword> GetTop10Keywords();
 
     ArrayList<YearFrequency> getKeywordFrequencyEachYear(String conference);
 
-    int keyList3(String keyword, int year, String conference);
+    int keyListNum(String keyword, int year, String conference);
 }

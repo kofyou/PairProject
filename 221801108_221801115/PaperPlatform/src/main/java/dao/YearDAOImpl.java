@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class YearDAOImpl implements YearDAO{
 
+    /* 返回数据库中论文所有的发表年份 */
     public ArrayList<Integer> getYears() {
         ArrayList<Integer> years = new ArrayList<>();
         Connection conn = null;
