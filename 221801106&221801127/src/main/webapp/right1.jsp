@@ -15,6 +15,25 @@
     <link rel="stylesheet" href="./css/right1Style.css">
 </head>
 <body>
+
+<%
+    String result1;
+    result1 =(String) request.getAttribute("collect_result");
+    if (result1 == null){}
+    else {
+        if (result1.equals("true")) {
+            out.println("<script>\n" +
+                    "    alert(\"收藏成功！\");\n" +
+                    "</script>");
+        }
+        else{
+            out.println("<script>\n" +
+                    "    alert(\"已经收藏过该论文！\");\n" +
+                    "</script>");
+        }
+    }
+%>
+
 <div id = "wrap">
     <div id = "sidebar">
         <a href="./login.jsp" id="websitelink" class="lefta">
@@ -88,10 +107,13 @@
                     out.println("<span>链接：</span>");
                     out.println("<a href=\"https://arxiv.org/pdf/2103.05494.pdf\" target=\"_blank\" style=\"display: inline;background-color: white;color: blue;\">"+list.get(i).原文链接+"</a>");
                     out.println("</p>");
-                    out.println("<form action=\"\" method=\"\">\n" +
-                            "                <input type=\"button\" value=\"收藏\" style=\"border:#00A6AC 1px solid ;margin-left: 80%;height: 35px;width: 80px;background-color: #00A6AC;border-radius: 5px;\">\n" +
-                            "            </form>");
-                    out.println("<hr>");
+        %>
+            <form action="../demo_war_exploded/MainServlet?type=collect" method="post">
+                <input name="<%=list.get(i).ID%>" type="submit" value="收藏" style="border:#00A6AC 1px solid ;margin-left: 80%;height: 35px;width: 80px;background-color: #00A6AC;border-radius: 5px;">
+                <input name="收藏" type="text" value="<%=list.get(i).ID%>" style="display: none">
+            </form>
+            <hr>
+        <%
                 }
                 out.println("</div>");
             }

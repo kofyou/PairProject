@@ -1,3 +1,6 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="baseclass.Paper" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1647
@@ -14,7 +17,7 @@
 </head>
 <body>
 <div id = "wrap">
-    <div id = "sidebar">
+    <div id = "sidebar" style="height: 298.5%">
         <a href="./login.jsp" id="websitelink" class="lefta">
             <img src="./img/icon.png" alt="官网图标" id = "websiteicon">
             <span id="websitename">论文爬取网</span>
@@ -47,36 +50,50 @@
         </div>
     </div>
     <div id="main">
+        <%
+            List<Map.Entry<String,Integer>> s1 = (List<Map.Entry<String,Integer>>) session.getValue("CVPR");
+            List<Map.Entry<String,Integer>> s2 = (List<Map.Entry<String,Integer>>) session.getValue("ECCV");
+            List<Map.Entry<String,Integer>> s3 = (List<Map.Entry<String,Integer>>) session.getValue("ICCV");
+        %>
         <div>
-            <form id="keywordselect" style="margin-top: 1%;">
-                <div style="width: 15%;position: absolute;left: 30%;top: 10%;">
-                    <label for="key1">论文列表</label>
-                    <input type="radio" name="tenkey" id="key1" checked="true"/>
-                </div>
-                <div style="width: 15%;position: absolute;left: 42%;top: 10%;">
-                    <label for="key2">CVPR</label>
-                    <input type="radio" name="tenkey" id="key2" />
-                </div>
-                <div style="width: 15%;position: absolute;left: 54%;top: 10%;">
-                    <label for="key3">ICCV</label>
-                    <input type="radio" name="tenkey" id="key3" />
-                </div>
-                <div style="width: 15%;position: absolute;left: 66%;top: 10%;">
-                    <label for="key4" >ECCV</label>
-                    <input type="radio" name="tenkey" id="key4" />
-                </div>
-            </form>
-            <div id="words" style="border:1px solid rgb(103, 100, 151);position: absolute;top: 20%;left: 25%; width: 60%; height: 70%;">
-                <p style="position: relative;left: 40%; background-color: salmon;width:fit-content;border-radius: 5px;">1111111111</p>
-                <p style="position: relative;left: 30%; background-color: rgb(124, 175, 133);width:fit-content;border-radius: 5px;">2222222222</p>
-                <p style="position: relative;left: 52%;top: -7%; background-color: rgb(201, 87, 116);width:fit-content;border-radius: 5px;">3333333333</p>
-                <p style="position: relative;left: 20%; background-color: rgb(114, 184, 250);width:fit-content;border-radius: 5px;">4444444444444</p>
-                <p style="position: relative;left: 60%;top: -10%; background-color: rgb(114, 250, 193);width:fit-content;border-radius: 5px;">55555555555555555</p>
-                <p style="position: relative;left: 25%; background-color: rgb(250, 114, 216);width:fit-content;border-radius: 5px;">66666666666666</p>
-                <p style="position: relative;left: 60%;top: -15%; background-color: rgb(211, 202, 127);width:fit-content;border-radius: 5px;">777777777777777</p>
-                <p style="position: relative;left: 55%;top: -9%; background-color: rgb(206, 55, 38);width:fit-content;border-radius: 5px;">88888888888888888</p>
-                <p style="position: relative;left: 25%;top: -14%; background-color: rgb(31, 138, 63);width:fit-content;border-radius: 5px;">99999999999</p>
-                <p style="position: relative;left: 35%;top: -7%; background-color: rgb(109, 71, 124);width:fit-content;border-radius: 5px;">00000000000000</p>
+            <div id="CVPR" style="font-size: 20px;border:1px Dashed rgb(103, 100, 151);float: left;width: 100%">
+                <h2>CVPR</h2>
+                <p style="position: relative;left: 40%; background-color: salmon;width:fit-content;border-radius: 5px;"><%=s1.get(0).getKey()%></p>
+                <p style="position: relative;left: 30%; background-color: rgb(124, 175, 133);width:fit-content;border-radius: 5px;"><%=s1.get(1).getKey()%></p>
+                <p style="position: relative;left: 52%;top: -7%; background-color: rgb(201, 87, 116);width:fit-content;border-radius: 5px;"><%=s1.get(2).getKey()%></p>
+                <p style="position: relative;left: 20%; background-color: rgb(114, 184, 250);width:fit-content;border-radius: 5px;"><%=s1.get(3).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -10%; background-color: rgb(114, 250, 193);width:fit-content;border-radius: 5px;"><%=s1.get(4).getKey()%></p>
+                <p style="position: relative;left: 25%; background-color: rgb(250, 114, 216);width:fit-content;border-radius: 5px;"><%=s1.get(5).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -15%; background-color: rgb(211, 202, 127);width:fit-content;border-radius: 5px;"><%=s1.get(6).getKey()%></p>
+                <p style="position: relative;left: 55%;top: -9%; background-color: rgb(206, 55, 38);width:fit-content;border-radius: 5px;"><%=s1.get(7).getKey()%></p>
+                <p style="position: relative;left: 25%;top: -14%; background-color: rgb(31, 138, 63);width:fit-content;border-radius: 5px;"><%=s1.get(8).getKey()%></p>
+                <p style="position: relative;left: 35%;top: -7%; background-color: rgb(109, 71, 124);width:fit-content;border-radius: 5px;"><%=s1.get(9).getKey()%></p>
+            </div>
+            <div id="ECCV" style="font-size: 20px;border:1px Dashed rgb(103, 100, 151);float: left;width: 100%">
+                <h2>ECCV</h2>
+                <p style="position: relative;left: 40%; background-color: salmon;width:fit-content;border-radius: 5px;"><%=s2.get(0).getKey()%></p>
+                <p style="position: relative;left: 30%; background-color: rgb(124, 175, 133);width:fit-content;border-radius: 5px;"><%=s2.get(1).getKey()%></p>
+                <p style="position: relative;left: 52%;top: -7%; background-color: rgb(201, 87, 116);width:fit-content;border-radius: 5px;"><%=s2.get(2).getKey()%></p>
+                <p style="position: relative;left: 20%; background-color: rgb(114, 184, 250);width:fit-content;border-radius: 5px;"><%=s2.get(3).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -10%; background-color: rgb(114, 250, 193);width:fit-content;border-radius: 5px;"><%=s2.get(4).getKey()%></p>
+                <p style="position: relative;left: 25%; background-color: rgb(250, 114, 216);width:fit-content;border-radius: 5px;"><%=s2.get(5).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -15%; background-color: rgb(211, 202, 127);width:fit-content;border-radius: 5px;"><%=s2.get(6).getKey()%></p>
+                <p style="position: relative;left: 55%;top: -9%; background-color: rgb(206, 55, 38);width:fit-content;border-radius: 5px;"><%=s2.get(7).getKey()%></p>
+                <p style="position: relative;left: 25%;top: -14%; background-color: rgb(31, 138, 63);width:fit-content;border-radius: 5px;"><%=s2.get(8).getKey()%></p>
+                <p style="position: relative;left: 35%;top: -7%; background-color: rgb(109, 71, 124);width:fit-content;border-radius: 5px;"><%=s2.get(9).getKey()%></p>
+            </div>
+            <div id="ICCV" style="font-size: 20px;border:1px Dashed rgb(103, 100, 151);float: left;width: 100%">
+                <h2>ICCV</h2>
+                <p style="position: relative;left: 40%; background-color: salmon;width:fit-content;border-radius: 5px;"><%=s3.get(0).getKey()%></p>
+                <p style="position: relative;left: 30%; background-color: rgb(124, 175, 133);width:fit-content;border-radius: 5px;"><%=s3.get(1).getKey()%></p>
+                <p style="position: relative;left: 52%;top: -7%; background-color: rgb(201, 87, 116);width:fit-content;border-radius: 5px;"><%=s3.get(2).getKey()%></p>
+                <p style="position: relative;left: 20%; background-color: rgb(114, 184, 250);width:fit-content;border-radius: 5px;"><%=s3.get(3).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -10%; background-color: rgb(114, 250, 193);width:fit-content;border-radius: 5px;"><%=s3.get(4).getKey()%></p>
+                <p style="position: relative;left: 25%; background-color: rgb(250, 114, 216);width:fit-content;border-radius: 5px;"><%=s3.get(5).getKey()%></p>
+                <p style="position: relative;left: 60%;top: -15%; background-color: rgb(211, 202, 127);width:fit-content;border-radius: 5px;"><%=s3.get(6).getKey()%></p>
+                <p style="position: relative;left: 55%;top: -9%; background-color: rgb(206, 55, 38);width:fit-content;border-radius: 5px;"><%=s3.get(7).getKey()%></p>
+                <p style="position: relative;left: 25%;top: -14%; background-color: rgb(31, 138, 63);width:fit-content;border-radius: 5px;"><%=s3.get(8).getKey()%></p>
+                <p style="position: relative;left: 35%;top: -7%; background-color: rgb(109, 71, 124);width:fit-content;border-radius: 5px;"><%=s3.get(9).getKey()%></p>
             </div>
         </div>
     </div>

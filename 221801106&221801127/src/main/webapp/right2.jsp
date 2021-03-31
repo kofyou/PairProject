@@ -16,6 +16,20 @@
     <link rel="stylesheet" href="./css/right2Style.css">
 </head>
 <body>
+
+<%
+    String result1;
+    result1 =(String) request.getAttribute("delete_result");
+    if (result1 == null){}
+    else {
+        if (result1.equals("true")) {
+            out.println("<script>\n" +
+                    "    alert(\"删除成功！\");\n" +
+                    "</script>");
+        }
+    }
+%>
+
 <div id = "wrap">
     <div id = "sidebar">
         <a href="./login.jsp" id="websitelink" class="lefta">
@@ -58,15 +72,14 @@
                     out.println("<form action=\"../demo_war_exploded/MainServlet?type=findmy_paper\" method=\"post\">");
                 }
             %>
-                <span style="font-size: 18px;">标题：</span>
-                <input type="text" name="search_my_paper" style="width:400px;height: 35px;border-radius:8px 0px 8px 0px;border:1px solid #000000;outline:none;">
-                <input type="submit" value="搜索" style="width: 90px;height: 40px;border-radius:8px 8px 8px 8px;border:1px solid #000000;outline:none;vertical-align:middle;background-color: #7f7f7f;">
-                <input type="file">
+                <span style="font-size: 18px;"></span>
+<%--                <input type="text" name="search_my_paper" style="width:400px;height: 35px;border-radius:8px 0px 8px 0px;border:1px solid #000000;outline:none;">--%>
+                <input type="submit" value="我的收藏" style="width: 90px;height: 40px;border-radius:8px 8px 8px 8px;border:1px solid #000000;outline:none;vertical-align:middle;background-color: #7f7f7f;">
             </form>
         </div>
         <%
             if (request.getAttribute("right2Search") == null) {
-                out.println("<h3 style=\"margin-left:20%;\">无搜索结果<h3>");
+                out.println("<h3 style=\"margin-left:20%;\"><h3>");
             }
 //            else{
 //                List<Paper> list = (List<Paper>) request.getAttribute("right1Search");
@@ -95,10 +108,13 @@
                     out.println("<span>链接：</span>");
                     out.println("<a href=\"https://arxiv.org/pdf/2103.05494.pdf\" target=\"_blank\" style=\"display: inline;background-color: white;color: blue;\">"+list.get(i).原文链接+"</a>");
                     out.println("</p>");
-                    out.println("<form action=\"\" method=\"\">\n" +
-                            "                        <input type=\"button\" value=\"删除\" style=\"border:#ED1941 1px solid ;margin-left: 80%;height: 35px;width: 80px;background-color: #ED1941;border-radius: 5px;\">\n" +
-                            "                    </form>");
-                    out.println("<hr>");
+        %>
+            <form action="../demo_war_exploded/MainServlet?type=delete" method="post">
+                <input name="list.get(i).ID" type="submit" value="删除" style="border:#ED1941 1px solid ;margin-left: 80%;height: 35px;width: 80px;background-color: #ED1941;border-radius: 5px;">
+                <input name="删除" type="text" value="<%=list.get(i).ID%>" style="display: none">
+            </form>
+        <hr>
+        <%
                 }
                 out.println("</div>");
             }
@@ -122,14 +138,14 @@
 <%--            </form>--%>
 <%--        </div>--%>
         <%
-            if ((List<Map.Entry<String, Integer>>) session.getValue("tensearchwords")==null) { }
+            if ((List<Map.Entry<String, Integer>>) session.getValue("usertenhotwords")==null) { }
             else{
                 String []color1 = {"#D71345","#F05B72","#FAA755","blue","blue","blue","blue","blue","blue","blue"};
-                List<Map.Entry<String,Integer>> list =(List<Map.Entry<String, Integer>>) session.getValue("tensearchwords");
+                List<String> list =(List<String>) session.getValue("usertenhotwords");
                 out.println("<div id = \"tenhotshearch\" style=\"background-color: white\">");
-                out.println("<p style=\"font-size: 16px;\">热门搜索</p>");
+                out.println("<p style=\"font-size: 16px;\">用户收藏论文热词</p>");
                 for (int i = 0 ; i < list.size(); i++){
-                    out.println("<p class=\"tenword\" style=\"color: "+color1[i]+";\">"+(i+1)+list.get(i).getKey()+"</p>");
+                     out.println("<p class=\"tenword\" style=\"color: "+color1[i]+";\">"+(i+1)+list.get(i)+"</p>");
                 }
                 out.println("</div>");
             }

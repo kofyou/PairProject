@@ -1,3 +1,6 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="baseclass.Paper" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1647
@@ -17,7 +20,7 @@
 </head>
 <body>
 <div id = "wrap">
-    <div id = "sidebar" style="height: 260%">
+    <div id = "sidebar" style="height: 275%">
         <a href="./login.jsp" id="websitelink" class="lefta">
             <img src="./img/icon.png" alt="官网图标" id = "websiteicon">
             <span id="websitename">论文爬取网</span>
@@ -50,9 +53,14 @@
         </div>
     </div>
     <div id="mymain">
-        <div id="main" style="width: 750px;height: 500px; float: left; margin-left: 100px;">CVPR</div>
-        <div id="main2" style="width: 750px;height: 500px; float: left; margin-left: 100px;">ECCV</div>
-        <div id="main3" style="width: 750px;height: 500px; float: left; margin-left: 100px;">ICCV</div>
+        <%
+            List<Map.Entry<String,Integer>> s1 = (List<Map.Entry<String,Integer>>) session.getValue("CVPR");
+            List<Map.Entry<String,Integer>> s2 = (List<Map.Entry<String,Integer>>) session.getValue("ECCV");
+            List<Map.Entry<String,Integer>> s3 = (List<Map.Entry<String,Integer>>) session.getValue("ICCV");
+        %>
+        <div id="main" style="width: 800px;height: 500px; float: left; margin-left: 100px;">CVPR</div>
+        <div id="main2" style="width: 800px;height: 500px; float: left; margin-left: 100px;margin-top: 50px">ECCV</div>
+        <div id="main3" style="width: 800px;height: 500px; float: left; margin-left: 100px;margin-top: 50px">ICCV</div>
 
 
         <script type="text/javascript">
@@ -70,13 +78,17 @@
                     data:['热词']
                 },
                 xAxis: {
-                    data: ["CVPR","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","郑龙嗨","张魈用","庄糠择","陈某人"]
+                    data: ["<%=s1.get(0).getKey()%>","<%=s1.get(1).getKey()%>","<%=s1.get(2).getKey()%>","<%=s1.get(3).getKey()%>","<%=s1.get(4).getKey()%>","<%=s1.get(5).getKey()%>","<%=s1.get(6).getKey()%>","<%=s1.get(7).getKey()%>","<%=s1.get(8).getKey()%>","<%=s1.get(9).getKey()%>"],
+                    axisLabel: {
+                        interval:0,
+                        rotate:20
+                    }
                 },
                 yAxis: {},
                 series: [{
                     name: '热词',
                     type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20,17,17,26,34]
+                    data: [<%=s1.get(0).getValue()%>, <%=s1.get(1).getValue()%>, <%=s1.get(2).getValue()%>, <%=s1.get(3).getValue()%>, <%=s1.get(4).getValue()%>, <%=s1.get(5).getValue()%>,<%=s1.get(6).getValue()%>,<%=s1.get(7).getValue()%>,<%=s1.get(8).getValue()%>,<%=s1.get(9).getValue()%>]
                 }]
             };
             myChart.setOption(option);
@@ -97,14 +109,18 @@
                     data:['热词']
                 },
                 xAxis: {
-                    data: ["ECCV","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","郑龙嗨","张魈用","庄糠择","陈某人"]
+                    data: ["<%=s2.get(0).getKey()%>","<%=s2.get(1).getKey()%>","<%=s2.get(2).getKey()%>","<%=s2.get(3).getKey()%>","<%=s2.get(4).getKey()%>","<%=s2.get(5).getKey()%>","<%=s2.get(6).getKey()%>","<%=s2.get(7).getKey()%>","<%=s2.get(8).getKey()%>","<%=s2.get(9).getKey()%>"],
+                    axisLabel: {
+                        interval:0,
+                        rotate:20
+                    }
                 },
                 yAxis: {},
                 series: [{
                     name: '热词',
                     type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20,17,17,26,34]
-                }]
+                    data: [<%=s2.get(0).getValue()%>, <%=s2.get(1).getValue()%>, <%=s2.get(2).getValue()%>, <%=s2.get(3).getValue()%>, <%=s2.get(4).getValue()%>, <%=s2.get(5).getValue()%>,<%=s2.get(6).getValue()%>,<%=s2.get(7).getValue()%>,<%=s2.get(8).getValue()%>,<%=s2.get(9).getValue()%>]
+                }],
             };
             myChart2.setOption(option2);
         </script>
@@ -124,14 +140,22 @@
                     data:['热词']
                 },
                 xAxis: {
-                    data: ["ICCV","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","郑龙嗨","张魈用","庄糠择","陈某人"]
+                    data: ["<%=s3.get(0).getKey()%>","<%=s3.get(1).getKey()%>","<%=s3.get(2).getKey()%>","<%=s3.get(3).getKey()%>","<%=s3.get(4).getKey()%>","<%=s3.get(5).getKey()%>","<%=s3.get(6).getKey()%>","<%=s3.get(7).getKey()%>","<%=s3.get(8).getKey()%>","<%=s3.get(9).getKey()%>"],
+                    axisLabel: {
+                        interval:0,
+                        rotate:20
+                    }
                 },
                 yAxis: {},
                 series: [{
                     name: '热词',
                     type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20,17,17,26,34]
-                }]
+                    data: [<%=s3.get(0).getValue()%>, <%=s3.get(1).getValue()%>, <%=s3.get(2).getValue()%>, <%=s3.get(3).getValue()%>, <%=s3.get(4).getValue()%>, <%=s3.get(5).getValue()%>,<%=s3.get(6).getValue()%>,<%=s3.get(7).getValue()%>,<%=s3.get(8).getValue()%>,<%=s3.get(9).getValue()%>]
+                }],
+
+                grid: {
+                    y2: 140
+                },
             };
             myChart3.setOption(option3);
         </script>
