@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http//www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	<bean id="dbUtils" class="com.cs.PairWork1.Utils.DBUtils"
+		factory-method="getInstance" init-method="init"></bean>
 
 	<bean id="paperListController"
 		class="com.cs.PairWork1.Controller.PaperListController">
@@ -13,14 +14,24 @@
 		class="com.cs.PairWork1.Controller.PaperListController">
 		
 	</bean>
+	<bean id="deletePaperController"
+		class="com.cs.PairWork1.Controller.DeletePaperController">
+		
+	</bean>
 	<bean id="paperListController3"
 		class="com.cs.PairWork1.Controller.PaperListController">
 		
 	</bean>
+<!-- 	<bean id="paperListServiceImpl" class="com.cs.PairWork1.Service.PaperListServiceImpl"> -->
+<!-- 		<property name="dBUtils"> -->
+<!-- 			<ref bean="dbUtils" /> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 	<bean
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
+				<prop key="/deletePaperController.do">deletePaperController</prop>	
 				<prop key="/paperListController.do">paperListController</prop>
 				<prop key="/paperListController2.do">paperListController2</prop>
 				<prop key="/paperListController3.do">paperListController3</prop>

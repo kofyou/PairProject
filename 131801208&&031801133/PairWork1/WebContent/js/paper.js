@@ -71,5 +71,35 @@ $ (function($){
 		$("#papertab").bootstrapTable('refresh');
 		
 	});*/
-
+	function delUser(){					
+		var selects =$("#usertab").bootstrapTable("getSelections");
+		if(selects.length==0){				
+			return;
+		}	
+		var Title="";
+		for(var i = 0;i < selects.length; i++){
+			//userIds=userIds+selects[i].id+",";
+			Title=Title+selects[i].title;
+		}
+		var param={
+				Title:Title
+				
+		};	
+		
+		$.ajax({
+			url:"/PairWork1/deletePaperController.do",
+			data:param,				
+			success:function(data){
+				alert("helloworldnew11");
+				if((typeof(data)!="undefined")&&(data==0)){
+					alert("删除成功，！");
+					$table.bootstrapTable('refresh');
+				}
+			},complete:function(){
+				//$('#remove').attr("disabled","disabled");
+			},
+			context:this
+		});
+	}
+	$("#remove").bind("click",delUser);
 });
