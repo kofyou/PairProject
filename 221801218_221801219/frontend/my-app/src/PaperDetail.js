@@ -20,7 +20,7 @@ class CreateSearchDetailPage extends React.Component {
     }
     componentDidMount() {
         const _this = this
-        let url = "http://localhost:3000/api/v1/paper/view/" + this.state.id
+        let url = "http://pingleme.top:3000/api/v1/paper/view/" + this.state.id
         axios.get(url)
             .then(function (response) {
                 if (response.data.code == 0) {
