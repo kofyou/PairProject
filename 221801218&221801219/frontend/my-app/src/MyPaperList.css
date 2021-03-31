@@ -1,0 +1,19 @@
+#paparList {
+    /* position:fixed; 
+    top: 160px; 
+    left: 230px; */
+    margin-left: 105px;
+}
+
+#account-list {
+    margin-left: 110px;
+    font-size: 18px;
+}
+
+#divide-page {
+    float:right;
+}
+
+#search-paper-link {
+    float: right;
+}
