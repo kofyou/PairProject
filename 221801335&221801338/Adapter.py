@@ -39,6 +39,9 @@ class AdapterClass:
             self.get_key_dic()
         return self.__dict.get(key)
 
+    """
+    得到所有文章需要的信息
+    """
     def get_json_messages(self,name):
         if self.__list:
             return self.__list
