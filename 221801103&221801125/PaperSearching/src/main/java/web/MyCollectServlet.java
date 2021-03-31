@@ -15,7 +15,9 @@ import java.util.List;
 @WebServlet(name = "MyCollectServlet", value = "/MyCollectServlet")
 public class MyCollectServlet extends HttpServlet
 {
+
     Paperserviceimpl paperserviceimpl=new Paperserviceimpl();
+    static List<Paper> papers=new ArrayList<>();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

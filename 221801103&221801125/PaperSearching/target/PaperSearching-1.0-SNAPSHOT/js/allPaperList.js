@@ -7,9 +7,9 @@ $(function(){
                 url:"../../PaperListServlet",
                 type:"post",
                 data:JSON.stringify({
-                    "userName":USER_INFO.userID,
+                    "account":USER_INFO.userID,
                     "type": 1,
-                    "str" : ""
+                    "str" : [""]
                 }),
                 contentType:"application/json",
                 dataType:"json",

@@ -16,7 +16,7 @@ public class Paperserviceimpl
         return paperDaoimpl.GetAPaper(title);
     }
 
-    public List<Paper> GetPaperList(List<String> searchwords,int type)
+    public List<Paper> GetPaperList(String searchwords,int type)
     {
         return paperDaoimpl.GetPaticularPapers(searchwords,type);
     }

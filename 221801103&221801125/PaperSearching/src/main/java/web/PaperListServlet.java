@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,9 @@ import java.util.List;
 public class PaperListServlet extends HttpServlet
 {
     Paperserviceimpl paperserviceimpl=new Paperserviceimpl();
+    static List<JSONObject> showPapers=new ArrayList<>();
+    JSONObject requestJson;
+    String searchedWord="";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,34 +30,47 @@ public class PaperListServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        JSONObject requestJson=JSONObject.fromObject(
+
+        requestJson=JSONObject.fromObject(
                 RequestToJson.getRequestPostStr(request));
-        Object[] searchingString = JSONArray.fromObject
-                (requestJson.getString("str")).toArray();
-        ArrayList<String> arrayList=new ArrayList<>();
-        for(Object o:searchingString)
-        {
-            arrayList.add(o.toString());
-        }
 
-        int type=Integer.parseInt(requestJson.getString("type"));
-        String account=requestJson.getString("account");
-
-        List<JSONObject> jsonObjects=new ArrayList<>();
-        List<Paper> papers=paperserviceimpl.GetPaperList(arrayList,type);
-        for(Paper paper:papers)
+        if(requestJson.getString("methods").equals("getPages"))
         {
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("title",paper.getTitle());
-            String[] authorList=paper.getAuthors().split("//");
-            jsonObject.put("author",authorList);
-            String[] keywordList=paper.getKeywords().split("//");
-            jsonObject.put("keyword",keywordList);
-            jsonObject.put("info",paper.getTheabstract());
-            jsonObject.put("link",paper.getPaperlink());
-            jsonObject.put("iscollect",paperserviceimpl.IsCollected(account,paper.getTitle()));
-            jsonObjects.add(jsonObject);
+            String curSearchword=requestJson.getString("str");
+            if (!searchedWord.equals(curSearchword))
+            {
+                searchedWord=curSearchword;
+                showPapers.clear();
+
+                int type=Integer.parseInt(requestJson.getString("type"));
+                String account=requestJson.getString("account");
+
+                List<Paper> papers=paperserviceimpl.GetPaperList(curSearchword,type);
+
+                for (int i=0;i<papers.size();i++)
+                {
+                    JSONObject jsonObject=new JSONObject();
+                    jsonObject.put("title",papers.get(i).getTitle());
+                    String[] authorList=papers.get(i).getAuthors().split("//");
+                    jsonObject.put("author",authorList);
+                    String[] keywordList=papers.get(i).getKeywords().split("//");
+                    jsonObject.put("keyword",keywordList);
+                    jsonObject.put("info",papers.get(i).getTheabstract());
+                    jsonObject.put("link",papers.get(i).getPaperlink());
+                    jsonObject.put("iscollect",paperserviceimpl.IsCollected(account,papers.get(i).getTitle()));
+                    showPapers.add(jsonObject);
+                }
+                System.out.println(showPapers.size());
+            }
+            response.getWriter().print(showPapers.size());
         }
-        response.getWriter().print(jsonObjects);
+        else if(requestJson.getString("methods").equals("getSearchList"))
+        {
+            int index=requestJson.getInt("page");
+            int n=(index-1)*8;
+            int m=index*8-1;
+            response.getWriter().print(showPapers.subList((index-1)*8,index*8));
+        }
     }
+
 }

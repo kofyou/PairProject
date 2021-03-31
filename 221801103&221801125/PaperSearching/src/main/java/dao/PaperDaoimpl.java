@@ -82,7 +82,7 @@ public class PaperDaoimpl
         return null;
     }
 
-    public List<Paper> GetPaticularPapers(List<String> searchWords,int type)
+    public List<Paper> GetPaticularPapers(String searchWords,int type)
     {
         List<Paper> papers=new ArrayList<>();
         try
@@ -92,29 +92,27 @@ public class PaperDaoimpl
             if (type==0)
             {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM papers WHERE title LIKE ? OR keywords LIKE ?");
+                        "SELECT  * FROM papers WHERE title LIKE ? OR keywords LIKE ? limit 160");
 
-                for(String str:searchWords)
+
+                preparedStatement.setString(1,"%"+searchWords+"%");
+                preparedStatement.setString(2,"%"+searchWords+"%");
+                ResultSet resultSet=preparedStatement.executeQuery();
+                while(resultSet.next())
                 {
-                    preparedStatement.setString(1,"%"+str+"%");
-                    preparedStatement.setString(2,"%"+str+"%");
-                    ResultSet resultSet=preparedStatement.executeQuery();
-                    while(resultSet.next())
-                    {
-                        Paper paper=new Paper();
-                        paper.setIsbn(resultSet.getString("isbn"));
-                        paper.setTitle(resultSet.getString("title"));
-                        paper.setAuthors(resultSet.getString("authors"));
-                        paper.setKeywords(resultSet.getString("keywords"));
-                        paper.setTheabstract(resultSet.getString("abstract"));
-                        paper.setPublishDate(resultSet.getString("publishdate"));
-                        paper.setConferrence(resultSet.getString("conference"));
-                        paper.setPaperlink(resultSet.getString("paperlink"));
-                        papers.add(paper);
-                    }
+                    Paper paper=new Paper();
+                    paper.setIsbn(resultSet.getString("isbn"));
+                    paper.setTitle(resultSet.getString("title"));
+                    paper.setAuthors(resultSet.getString("authors"));
+                    paper.setKeywords(resultSet.getString("keywords"));
+                    paper.setTheabstract(resultSet.getString("abstract"));
+                    paper.setPublishDate(resultSet.getString("publishdate"));
+                    paper.setConferrence(resultSet.getString("conference"));
+                    paper.setPaperlink(resultSet.getString("paperlink"));
+                    papers.add(paper);
                 }
-
             }
+
             else
             {
                 PreparedStatement preparedStatement=connection.prepareStatement(
@@ -197,7 +195,7 @@ public class PaperDaoimpl
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
                     "SELECT * from usercollect where account=?" +
-                            " AND isbn=(SELECT isbn from papers where title=?)");
+                            " AND title=?");
             preparedStatement.setString(1,account);
             preparedStatement.setString(2,title);
 
@@ -206,6 +204,8 @@ public class PaperDaoimpl
             {
                 n++;
             }
+
+            Jdbcutils.CloseConnection(resultSet,preparedStatement,connection);
         }
         catch (Exception e)
         {
@@ -225,8 +225,8 @@ public class PaperDaoimpl
         {
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM papers WHERE isbn IN " +
-                            "(SELECT isbn FROM usercollect WHERE account=?)");
+                    "SELECT * FROM papers WHERE title IN " +
+                            "(SELECT title FROM usercollect WHERE account=?)");
             preparedStatement.setString(1,username);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next())
@@ -260,8 +260,7 @@ public class PaperDaoimpl
         {
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
-                    "INSERT into usercollect VALUES(?, " +
-                            "(SELECT isbn FROM papers WHERE title=?));");
+                    "INSERT into usercollect VALUES(?,?)");
             preparedStatement.setString(1,account);
             preparedStatement.setString(2,title);
             preparedStatement.execute();
@@ -280,8 +279,7 @@ public class PaperDaoimpl
         {
             Connection connection=Jdbcutils.GetConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(
-                    "DELETE from usercollect where account=? " +
-                            "and isbn=(SELECT isbn from papers where title=?);");
+                    "DELETE from usercollect where account=? and title=?");
             preparedStatement.setString(1,account);
             preparedStatement.setString(2,title);
             preparedStatement.execute();
