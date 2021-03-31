@@ -8,6 +8,8 @@ public class Paper {
     public String 发布时间;
     public String 论文名称;
     public String 原文链接;
+	//论文类
+	
 
     public String toString(){
         StringBuffer stringBuffer = new StringBuffer();
