@@ -110,7 +110,7 @@ export default {
     this.GetUserPaperList();
   },
   methods: {
-    GetUserPaperList: function () {
+    GetUserPaperList: function () {//获取用户相关论文列表
       if(this.loginStatus=="true")
       {
         this.$message({
@@ -147,7 +147,7 @@ export default {
           });
       }
     },
-    AddTitle: function () {
+    AddTitle: function () {//添加与输入词相关的论文题目
       let newTitle = {};
       let _this = this;
       if (this.searchForm.singleSearchText == "") {
@@ -182,7 +182,7 @@ export default {
         this.searchForm.singleSearchText = "";
       }
     },
-    deleteItem: function (value, index) {
+    deleteItem: function (value, index) {//删除项
       let _this = this;
       this.$axios
         .get(_this.$api.globalUrl + "/userPaper/delete", {
@@ -217,108 +217,5 @@ export default {
 </script>
 
 <style>
-.el-footer {
-  background-color: #133382;
-  color: #d3dce6;
-  text-align: center;
-  line-height: 80px;
-  height: 80px !important;
-}
-.el-main {
-  background-color: #ffffff !important;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-  height: 900px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.searchInput {
-  display: inline-block;
-  position: absolute;
-  width: 500px;
-  height: 50px;
-  left: 50%;
-  margin-left: -250px;
-  border: #133382 2px solid;
-}
-.searchButton {
-  position: absolute;
-
-  right: 60px;
-  width: 136px;
-  height: 54px;
-  border: #133382 2px solid;
-  background-color: #133382;
-  border-top-right-radius: 5%;
-  border-bottom-right-radius: 5%;
-}
-.dropDownMenu {
-  display: inline-block;
-  height: 50px;
-  width: 100px;
-  background-color: #133382;
-  line-height: 50px;
-  color: #ffffff;
-  margin-right: 0px;
-  position: absolute;
-  left: 100px;
-  border: #133382 2px solid;
-  border-top-left-radius: 5%;
-  border-bottom-left-radius: 5%;
-  list-style: none;
-}
-.dropDownMenu > li:nth-child(2) {
-  display: none;
-  height: 50px;
-  width: 100px;
-  background-color: #133382;
-  position: absolute;
-  border: #133382 1px solid;
-  left: -2px;
-}
-.searchBox {
-  display: block;
-  position: relative;
-  height: 80px;
-  width: 900px;
-  top: -100px;
-  left: 50%;
-  margin-left: -450px;
-  line-height: 80px;
-}
-.paperList {
-  position: absolute;
-  width: 600px;
-  height: 400px;
-  left: 50%;
-  top: 500px;
-  margin-left: -300px;
-  border: #d3dce6 1px solid;
-  box-shadow: 2px 2px 5px #d3dce6;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border-radius: 10px;
-}
-.paperItem {
-  display: block;
-  width: 100%;
-  height: 60px;
-  border: #d3dce6 1px solid;
-  line-height: 60px;
-}
-.crawlButton {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  top: 430px;
-  right: 500px;
-  background-color: #133382;
-  line-height: 50px;
-  color: #ffffff;
-  border-radius: 10em;
-}
-.crawlButton:hover {
-  width: 200px;
-}
+@import "../css/Index.css";
 </style>

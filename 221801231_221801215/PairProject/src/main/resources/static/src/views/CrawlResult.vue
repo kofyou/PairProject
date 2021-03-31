@@ -629,7 +629,7 @@ export default {
       ),
       });
     },
-    ShowPagenation: function (tab, event) {
+    ShowPagenation: function (tab, event) {//标签页切换时执行的操作
       if (tab.index == 0) {
         this.pagePagination1 = true;
         this.pagePagination2 = false;
@@ -646,7 +646,7 @@ export default {
         this.drawLine();
       }
     },
-    deleteCard: function (value, id, index) {
+    deleteCard: function (value, id, index) {//根据点击的事件判断并删除卡片
       if (index == 0) {
         this.paperDetailList.splice(value, 1);
       } else index == 1;
@@ -672,7 +672,7 @@ export default {
           _this.$message.error("删除失败");
         });
     },
-    GetPagePaperList: function (topagenum, topagesize, value) {
+    GetPagePaperList: function (topagenum, topagesize, value) {//获取当页论文列表
       let _this = this;
       let searchContent = sessionStorage.getItem("searchContent");
       if (searchContent == "") {
@@ -714,23 +714,23 @@ export default {
         this.GetSearchResultPaperList(searchContent);
       }
     },
-    handleCurrentChange: function (currentpage) {
+    handleCurrentChange: function (currentpage) {//分页项切换时执行刷新论文列表
       this.currentPage = currentpage;
       this.GetPagePaperList(this.currentPage, this.pagesize, true);
     },
-    handlekeywordChange: function (keywordpage) {
+    handlekeywordChange: function (keywordpage) {//热词页切换分页时执行刷新论文列表
       this.keywordPage = keywordpage;
       this.GetPagePaperList(this.keywordPage, this.keywordsize, false);
     },
-    showDetails: function (value) {
+    showDetails: function (value) {//展示论文详情
       this.dialogVisible = true;
       this.dialogDetail = this.paperDetailList[value];
     },
-    showKeywordPaperDetails: function (value) {
+    showKeywordPaperDetails: function (value) {//展示关键词论文详情
       this.dialogVisible = true;
       this.dialogDetail = this.keywordPaperList[value];
     },
-    showKeywordPapers: function (value) {
+    showKeywordPapers: function (value) {//根据关键词刷新论文显示列表
       let _this = this;
       _this.currentKeyword = _this.keywordList[value];
       this.GetPagePaperList(1, this.keywordsize, false);
@@ -749,7 +749,7 @@ export default {
           _this.$message.error("关键词论文列表加载失败");
         });
     },
-    getpagenum: function () {
+    getpagenum: function () {//获取论文数量
       this.paperNum = sessionStorage.getItem("papernum");
     },
     GetKeyword: function () {
@@ -772,7 +772,7 @@ export default {
       this.ifReload = false;
       this.ifReload = true;
     },
-    ShowTotalFrequency: function () {
+    ShowTotalFrequency: function () {//获取热度走势并渲染页面
       this.frequencyKeywords.length = 0;
       this.frequencyDatas.length = 0;
       this.newfrequencyDatas.length = 0;
@@ -811,7 +811,7 @@ export default {
           _this.$message.error("热度走势加载失败");
         });
     },
-    GetSearchResultPaperList: function (value) {
+    GetSearchResultPaperList: function (value) {//通过侧边栏结果刷新论文页面
       let _this = this;
       let content = sessionStorage.getItem("searchContent");
       this.$axios
@@ -832,7 +832,7 @@ export default {
         });
       sessionStorage.setItem("searchContent", "");
     },
-    RefreshFrequency: function () {
+    RefreshFrequency: function () {//通过筛选年份刷新热度走势
       if (
         parseInt(this.statics.startYearOptions.value) >
         parseInt(this.statics.endYearOptions.value)
@@ -845,7 +845,7 @@ export default {
         this.statics.endYearOptions.value = "21";
       } else this.drawLine();
     },
-    ChangeMeetingFrequency: function (value) {
+    ChangeMeetingFrequency: function (value) {//根据议会变化刷新热度走势
       this.frequencyKeywords.length = 0;
       this.frequencyDatas.length = 0;
       this.newfrequencyDatas.length = 0;
@@ -891,7 +891,7 @@ export default {
         this.ShowTotalFrequency();
       }
     },
-    ResetPage: function () {
+    ResetPage: function () {//更新分页项
       this.papersNum = parseInt(sessionStorage.getItem("papernum"));
     },
     ChangeToFullResult() {

@@ -130,7 +130,7 @@ export default {
   line-height: 50px;
   font-size: 32px;
   position: absolute;
-  left: 400px;
+  left: 15%;
   top: 10px;
 }
 .title span {
