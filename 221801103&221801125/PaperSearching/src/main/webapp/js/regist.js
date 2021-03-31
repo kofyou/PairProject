@@ -41,7 +41,7 @@ document.getElementById("regist").onclick = () => {
         //向后端发送请求
         //检测账号是否已注册
         $.ajax({
-          url: "../RegisterServlet",
+          url: AJAX_URL.regist,
           data: JSON.stringify({
             "account": inputs[0].value,
             "password": inputs[1].value

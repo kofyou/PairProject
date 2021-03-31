@@ -27,7 +27,12 @@ public class LoginServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        /* 允许跨域的请求方法GET, POST, HEAD 等 */
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        /* 允许跨域的请求头 */
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        /* 是否携带cookie */
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
         JSONObject requestJson= JSONObject.fromObject(
                 RequestToJson.getRequestPostStr(request));

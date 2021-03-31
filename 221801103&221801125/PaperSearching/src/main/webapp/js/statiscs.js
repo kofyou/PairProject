@@ -9,11 +9,11 @@ $(function(){
             let search = $(".search:eq(0)").val()
             if(search!="")
             {
-              window.open("./paper/searchList.html?search="+search,"_self")
+              window.open("./paper/searchList.html?search="+search+"&page=1","_self")
             }
             else
             {
-              window.open("../pages/paper/allPaperList.html","_self")
+              window.open("../pages/paper/allPaperList.html?page=1","_self")
             }
           }
     
@@ -23,7 +23,7 @@ $(function(){
               }
         }
         $.ajax({
-            url:"../GetTendencyServlet",
+            url:AJAX_URL.static,
             dataType:"json",
             type:"post",
             success:data=>{
@@ -39,8 +39,7 @@ $(function(){
                     names.push(data.top10[i].keyword)
                     values.push(data.top10[i].count)
                 }
-
-
+                
                 var height = window.innerHeight - 61;
                 var dom = document.getElementsByClassName("container")[0];
                 var dom2 = document.getElementsByClassName("wrap")[0];
@@ -69,7 +68,7 @@ $(function(){
                 //         dataMonth.push(months[mon-5+l])
                 //     }
                 // }
-
+                
                 var app = {};
                 var app2 = {};
                 var option,option2;
@@ -126,7 +125,7 @@ $(function(){
                         }
                     ]
                 };
-
+        
                 option2 = {
                     title: {
                         text: '排名前10数据'
@@ -151,7 +150,7 @@ $(function(){
                     },
                     ],
                     legend:{
-
+                        
                     }
                 };
                 if (option && typeof option === 'object') {
@@ -160,11 +159,13 @@ $(function(){
                 if (option2 && typeof option === 'object') {
                     myChart2.setOption(option2);
                 }
+                
             },
             error:()=>{
                 $("#reg_wait").css("display","none")
                 alert("网络出错了，可能有问题")
+                $("#empty").removeClass("xiaoshi")
             }
         })
-    $("#reg_wait").css("display","inline-block")
+        $("#reg_wait").css("display","inline-block")
 })

@@ -7,11 +7,11 @@ $(function(){
         let search = $(".search:eq(0)").val()
         if(search!="")
         {
-          window.open("./paper/searchList.html?search="+search,"_self")
+          window.open("./paper/searchList.html?search="+search+"&page=1","_self")
         }
         else
         {
-          window.open("../pages/paper/allPaperList.html","_self")
+          window.open("../pages/paper/allPaperList.html?page=1","_self")
         }
       }
 
@@ -42,7 +42,7 @@ $(function(){
          * 
          */
         $.ajax({
-            url : "../UpdateUserInfoServlet",
+            url : AJAX_URL.mySetting,
             type:"post",
             data : JSON.stringify({
                 "account" : USER_INFO.userID,

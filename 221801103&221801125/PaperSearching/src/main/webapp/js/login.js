@@ -8,7 +8,7 @@ $(function () {
     if (inputs[0].value != "" && inputs[1].value != "") {
       //校验,登录
       $.ajax({
-        url: "../LoginServlet",
+        url: AJAX_URL.login,
         data: JSON.stringify({
           "account": inputs[0].value,
           "password": inputs[1].value,

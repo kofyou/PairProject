@@ -20,7 +20,7 @@ $(function(){
         init: function(){
             this.bindEvents()
             $.ajax({
-                url:"../GetHottestKeywordsServlet",
+                url:AJAX_URL.index,
                 type:"post",
                 dataType:"json",
                 success:data=>{
@@ -35,7 +35,7 @@ $(function(){
                         $(cloud).css("color",color[i])
                         $(cloud).css("opacity","1")
                         $(cloud).click(function(){
-                            window.open("../pages/paper/searchList.html?search="+str.keyword,"_self")
+                            window.open("../pages/paper/searchList.html?search="+str.keyword+"&page=1","_self")
                         })
                         $(cloud).hover(function(){
                             $(cloud).css("text-shadow","2px 2px 5px "+color[i])
@@ -48,6 +48,7 @@ $(function(){
                 error:()=>{
                     alert("网烂掉了哦")
                     $("#reg_wait").css("display","none")
+                    $("#empty").removeClass("xiaoshi")
                 }
             })
             $("#reg_wait").css("display","inline-block")
@@ -67,11 +68,11 @@ $(function(){
             let search = $(".search:eq(0)").val()
             if(search!="")
             {
-              window.open("../pages/paper/searchList.html?search="+search,"_self")
+              window.open("../pages/paper/searchList.html?search="+search+"&page=1","_self")
             }
             else
             {
-              window.open("../pages/paper/allPaperList.html","_self")
+              window.open("../pages/paper/allPaperList.html?page=1","_self")
             }
           }
     })
