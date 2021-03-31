@@ -4,4 +4,7 @@
     <select id="findAll" resultType="jiekou.demo.entity.Paper">
         SELECT * FROM paper
     </select>
+    <select id="searchPage" resultType="jiekou.demo.entity.Paper">
+        SELECT * FROM paper WHERE paper_id=#{id}
+    </select>
 </mapper>
