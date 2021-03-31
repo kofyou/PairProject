@@ -77,7 +77,6 @@ export default {
         ))
           .then(
             function (response) {
-              console.log(that.user.username.toString() + " " + that.user.password.toString());
               myResponse = response;
               if(myResponse.data.code == '0') {
                 // alert("登录成功！");
@@ -86,7 +85,6 @@ export default {
               else{
                 that.alertMes("账号与密码不匹配！！！");
                 }
-              console.log(myResponse);
             })
           .catch(
             function (error) {
