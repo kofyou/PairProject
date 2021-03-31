@@ -76,6 +76,7 @@
     <a href="ECCV.jsp" target="leftFrame">ECCV</a>
     <a href="ICCV.jsp" target="leftFrame"> ICCV</a>
     <a href="CVPR.jsp" target="leftFrame">CVPR</a>
+    <a href="DataAnalysis.jsp" target="leftFrame">返回</a>
 </div>
 
 <body>

@@ -79,8 +79,9 @@
 
 <div class="topnav2">
     <a href="ECCV.jsp" target="leftFrame">ECCV</a>
-    <a href="ICCV.jsp" target="leftFrame"> ICCV</a>
+    <a href="ICCV.jsp" target="leftFrame">ICCV</a>
     <a href="CVPR.jsp" target="leftFrame">CVPR</a>
+    <a href="DataAnalysis.jsp" target="leftFrame">返回</a>
 </div>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="width: 1280px;height:600px;"></div>
@@ -90,7 +91,7 @@
 
     // 指定图表的配置项和数据
     var year = ['2000','2003','2004','2006','2008','2010','2012','2014','2016','2018','2020'];
-    var word = ['image','computer','analysis','motion','vision','layout','cameras'];
+    var word = ['Image','Computer','Analysis','Motion','Vision','Layout','Cameras'];
     var option = {
         timeline:{
             axisType: 'category',
@@ -105,7 +106,7 @@
         baseOption:{
             dataset:{
                 source:[
-                    ['year','image','computer','analysis','motion','vision','layout','cameras'],
+                    ['year','Image','Computer','Analysis','Motion','Vision','Layout','Cameras'],
                     ['2000',216,110,89,65,65,63,58],
                     ['2003',35,39,21,10,45,5,26],
                     ['2004',157,150,63,41,98,37,44],

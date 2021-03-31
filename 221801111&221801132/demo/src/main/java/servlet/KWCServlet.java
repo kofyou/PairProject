@@ -18,11 +18,13 @@ import java.util.List;
 public class KWCServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("button");
+        String word = request.getParameter("word");
         PaperDAO paperDAO = new PaperDAOImpl();
         List<Paper> list = new ArrayList<>();
         list = paperDAO.listGetByKeyword(keyword);
 
         request.setAttribute("list", list);
+        request.setAttribute("word", word);
         request.getRequestDispatcher("KWCList.jsp").forward(request, response);
     }
 }

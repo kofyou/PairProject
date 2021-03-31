@@ -6,6 +6,48 @@
 <% String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
+
+<script type="text/javascript"
+        src="dist/jquery-1.8.3.min.js">
+
+</script>
+
+<script type="text/javascript"
+    src="dist/bootstrap-table.js">
+</script>
+
+<link rel="stylesheet" href="dist/bootstrap-table.css" />
+
+<script>
+    $(document) .ready ( function() {
+        $("#table_page").bootstrapTable({
+            columns: [{
+                field: 'title',
+                title: '论文标题'
+            }, {
+                field: 'summary',
+                title: '摘要'
+            }, {
+                field: 'link',
+                title: '原文链接'
+            }, {
+                field: 'keyword',
+                title: '关键词'
+            }, {
+                field: 'year',
+                title: '年份'
+            }, {
+                field: 'type',
+                title: '类别'
+            },
+
+
+            ]
+        });
+    });
+
+</script>
+
 <style type="text/css">
     .topnav {
         overflow: hidden;
@@ -99,9 +141,21 @@
     }
 
     /*表格样式*/
+
+    .table thead tr th, .table tbody tr td {
+        vertical-align: middle;
+        text-align: center;
+        white-space: nowrap;/*规定段落的文本不进行换行*/
+        overflow: hidden;/*超出隐藏*/
+        text-overflow: ellipsis;/*隐藏的字符用省略号表示  IE*/
+        -moz-text-overflow: ellipsis;/*隐藏的字符用省略号表示  火狐*/
+    }
+
+
     table {
         table-layout: fixed;
         word-wrap:break-word;
+        word-break: break-all;
         width: 90%;
         background: #ccc;
         margin: 10px auto;
@@ -115,12 +169,7 @@
         border: 1px solid #ccc;
     }
 
-    td {
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow: ellipsis;
 
-    }
     th {
         background: #eee;
         font-weight: normal;
@@ -139,6 +188,8 @@
         color: #06f;
         text-decoration: underline;
     }
+
+
 
 </style>
 <script type = "text/javascript">
@@ -173,12 +224,15 @@
     if(list != null) {
 %>
 
-    <table border="1" width="400">
+    <table border="1" width="400" data-pagination="true"
+           data-side-pagination="client"
+           data-page-size="3">
+
         <tr>
-            <th>论文标题</th>
-            <th>摘要</th>
+            <th width="200px">论文标题</th>
+            <th width="600px">摘要</th>
             <th>原文链接</th>
-            <th>关键词</th>
+            <th width="200px">关键词</th>
             <th>年份</th>
             <th>类别</th>
             <th>操作</th>
@@ -190,10 +244,10 @@
 
         <tr>
 
-                <td><%=paper.getTitle() %></td>
-                <td><%=paper.getSummary() %></td>
+                <td width="200px"><%=paper.getTitle() %></td>
+                <td width="600px"><%=paper.getSummary() %></td>
                 <td><a href=<%=paper.getLink() %>> <%=paper.getLink() %></a></td>
-                <td><%=paper.getKeyword() %></td>
+                <td width="200px"><%=paper.getKeyword() %></td>
                 <td><%=paper.getYear() %></td>
                 <td><%=paper.getType() %></td>
                 <td>
@@ -215,5 +269,19 @@
 
 </body>
 </html>
+<script>
+    //描述鼠标悬停显示全部内容
+    $(function () {
+        $("td").on("mouseenter",function() {
+            if (this.offsetWidth < this.scrollWidth) {
+                var that = this;
+                var text = $(this).text();
+                layer.tips(text, that,{
+                    tips: 1,
+                    time: 2000         //设置显示时间
+                });
+            }
+        });
+    })
 
-
+</script>

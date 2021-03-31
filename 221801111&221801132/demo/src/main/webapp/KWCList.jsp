@@ -70,14 +70,27 @@
 
 <style>
     /*表格样式*/
+
+    .table thead tr th, .table tbody tr td {
+        vertical-align: middle;
+        text-align: center;
+        white-space: nowrap;/*规定段落的文本不进行换行*/
+        overflow: hidden;/*超出隐藏*/
+        text-overflow: ellipsis;/*隐藏的字符用省略号表示  IE*/
+        -moz-text-overflow: ellipsis;/*隐藏的字符用省略号表示  火狐*/
+    }
+
+
     table {
         table-layout: fixed;
         word-wrap:break-word;
+        word-break: break-all;
         width: 90%;
         background: #ccc;
         margin: 10px auto;
         border-collapse: collapse;/*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
     }
+
     th,td {
         height: 100px;
         line-height: 25px;
@@ -85,12 +98,7 @@
         border: 1px solid #ccc;
     }
 
-    td {
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow: ellipsis;
 
-    }
     th {
         background: #eee;
         font-weight: normal;
@@ -109,6 +117,11 @@
         color: #06f;
         text-decoration: underline;
     }
+
+    div p {
+        align-content: center;
+        font-size: 20px;
+    }
 </style>
 
 <div class="topnav">
@@ -122,7 +135,13 @@
 
 </div>
 
+<%
+    String word = (String) request.getAttribute("word");
+%>
+
 <body>
+
+<div><p>包含<%=word%>的相关论文</p></div>
 
 <%
     List<Paper> list = new ArrayList<>();
@@ -132,10 +151,10 @@
 
 <table border="1" width="400">
     <tr>
-        <th>论文标题</th>
-        <th>摘要</th>
+        <th width="200px">论文标题</th>
+        <th width="600px">摘要</th>
         <th>原文链接</th>
-        <th>关键词</th>
+        <th width="200px">关键词</th>
         <th>年份</th>
         <th>类别</th>
     </tr>
@@ -145,10 +164,10 @@
     %>
 
     <tr>
-        <td><%=paper.getTitle() %></td>
-        <td><%=paper.getSummary() %></td>
+        <td width="200px"><%=paper.getTitle() %></td>
+        <td width="600px"><%=paper.getSummary() %></td>
         <td><a href=<%=paper.getLink() %>> <%=paper.getLink() %></a></td>
-        <td><%=paper.getKeyword() %></td>
+        <td width="200px"><%=paper.getKeyword() %></td>
         <td><%=paper.getYear() %></td>
         <td><%=paper.getType() %></td>
     </tr>
