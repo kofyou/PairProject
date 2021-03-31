@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>重置密码</title>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link th:href="@{/static/css/safe.css}" rel="stylesheet">
+    <script type="text/javascript">
+        function refresh() {
+            document.getElementById('captcha_img').src="/kaptcha?"+Math.random();
+        }
+    </script>
+</head>
+<body>
+<script th:src="@{/static/layui/layui.js}"></script>
+<script>
+    layui.use('element',function () {
+//实例化element
+        var element = layui.element();
+//初始化动态元素，一些动态生成的元素如果不设置初始化，将不会有默认的动态效果
+        element.init();
+//导航条点击监听
+        element.on('nav(bigData)',function (elem) {
+            console.log(elem);
+        });
+//tab切换监听
+        element.on('tab(test)',function (data) {
+            console.log(data);
+        });
+//手风琴折叠面板开启关闭监听
+        element.on('collapse(collapseFilter)',function (data) {
+            console.log(data.show);
+            console.log(data.title);
+            console.log(data.content)
+        });
+//触发的事件
+        var active = {
+            setPercent: function () {
+//设置50%进度
+                element.progress('demo', '50%')
+            }
+        }
+//点击事件的监听
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this);
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    })
+</script>
+
+<div class="container">
+    <script th:src="@{/static/layui/layui.js}"></script>
+    <form class="contact" th:action="@{/reset_pwd}">
+        <h3>重置密码</h3>
+        <p style="color: red"  th:text="${msg17}" th:if="${not #strings.isEmpty(msg17) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">新的密码</label>
+            <div class="layui-input-block">
+                <input type="text" name="new_password" required  lay-verify="required" placeholder="请输入新的密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">新的密码</label>
+            <div class="layui-input-block">
+                <input type="text" name="new_password1" required  lay-verify="required" placeholder="请再次输入新的密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        验证码:  <input type="text" placeholder="请输入验证码(区分大小写)" name="verifyCodeActual">
+        <div class="item-input">
+            <img id="captcha_img" alt="点击更换" title="点击更换"
+                 onclick="refresh()" src="/kaptcha" />
+        </div>
+
+        <button name="submit" type="submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-warm" id="submit1" >更换</button>
+    </form>
+</div>
+</body>
+</html>

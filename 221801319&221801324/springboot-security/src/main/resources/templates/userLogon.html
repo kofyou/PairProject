@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <!--		加入背景音乐-->
+    <embed th:src="@{img/b.mp3}" hidden="true" autostart="true" loop="true"/>
+    <script type="text/javascript">
+        function refresh() {
+            document.getElementById('captcha_img').src="/kaptcha?"+Math.random();
+        }
+    </script>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
+    <link th:href="@{css/userLogon.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <script src="https://www.layuicdn.com/layui-v2.5.6/layui.js"></script>
+    <form class="contact" th:action="@{/user/logon}">
+        <h3>注册账号</h3>
+        <img th:src="@{/static/img/vanyang.jpg}" width="72" height="72">
+        <!--成功注册后-->
+        <p style="color: red"  th:text="${msg1}" th:if="${not #strings.isEmpty(msg1) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="new_username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <p style="color: red"  th:text="${msg4}" th:if="${not #strings.isEmpty(msg4) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码框</label>
+            <div class="layui-input-inline">
+                <input type="password" name="new_password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">不可为纯数字</div>
+        </div>
+        <p style="color: red"  th:text="${msg2}" th:if="${not #strings.isEmpty(msg2) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码框</label>
+            <div class="layui-input-inline">
+                <input type="password" name="new_password1" required lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+            <p style="color: red"  th:text="${msg5}" th:if="${not #strings.isEmpty(msg5) }"></p>
+            <p style="color: red"  th:text="${msg3}" th:if="${not #strings.isEmpty(msg3) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱框</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" required lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+                  <p style="color: red"  th:text="${msg6}" th:if="${not #strings.isEmpty(msg6) }"></p>
+
+                验证码:  <input type="text" placeholder="请输入验证码(区分大小写)" name="verifyCodeActual">
+                <div class="item-input">
+                    <img id="captcha_img" alt="点击更换" title="点击更换"
+                         onclick="refresh()" src="/kaptcha" />
+                </div>
+
+            <button name="submit" type="submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-warm" id="submit1" >注册</button>
+    </form>
+</div>
+
+
+</body>
+</html>

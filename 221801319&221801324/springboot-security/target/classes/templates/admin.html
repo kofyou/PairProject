@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <!--		加入背景音乐-->
+    <embed th:src="@{/static/img/b.mp3}" hidden="true" autostart="true" loop="true"/>
+    <script type="text/javascript">
+        function refresh() {
+            document.getElementById('captcha_img').src="/kaptcha?"+Math.random();
+        }
+    </script>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link th:href="@{/static/css/userLogon.css}" rel="stylesheet">
+</head>
+
+
+
+<body>
+
+<div class="container">
+    <script th:src="@{/static/layui/layui.js}"></script>
+    <form class="contact" th:action="@{/admin/login}">
+        <p style="color: red"  th:text="${msg}" th:if="${not #strings.isEmpty(msg) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">管理员名</label>
+            <div class="layui-input-block">
+                <input type="text" name="admin" required  lay-verify="required" placeholder="请输入管理员用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码框</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" required lay-verify="required" placeholder="请输入管理员密码" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        验证码:  <input type="text" placeholder="请输入验证码(区分大小写)" name="verifyCodeActual">
+        <div class="item-input">
+            <img id="captcha_img" alt="点击更换" title="点击更换"
+                 onclick="refresh()" src="/kaptcha" />
+        </div>
+
+        <button name="submit" type="submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-warm" id="submit1" >来van♂</button>
+    </form>
+</div>
+
+
+
+
+</body>
+</html>

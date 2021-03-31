@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link th:href="@{/static/css/updateInfo.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/static/build/layui.css}" media="all">
+</head>
+<body>
+<script th:src="@{/static/layui/layui.js}"></script>
+
+<script>
+    layui.use('element',function () {
+//实例化element
+        var element = layui.element();
+//初始化动态元素，一些动态生成的元素如果不设置初始化，将不会有默认的动态效果
+        element.init();
+//导航条点击监听
+        element.on('nav(bigData)',function (elem) {
+            console.log(elem);
+        });
+//tab切换监听
+        element.on('tab(test)',function (data) {
+            console.log(data);
+        });
+//手风琴折叠面板开启关闭监听
+        element.on('collapse(collapseFilter)',function (data) {
+            console.log(data.show);
+            console.log(data.title);
+            console.log(data.content)
+        });
+//触发的事件
+        var active = {
+            setPercent: function () {
+//设置50%进度
+                element.progress('demo', '50%')
+            }
+        }
+//点击事件的监听
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this);
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    })
+</script>
+
+<div class="layui-upload">
+<button type="button" class="layui-btn" id="test1">选择图片</button>
+<br>
+<button type="button" class="layui-btn" id="btn">上传图片</button>
+<div class="layui-upload-list">
+    <img style="width: 650px;height: 600px" id="demo1">
+</div>
+</div>
+
+
+<script th:src="@{/static/build/layui.js}"></script>
+<script>
+    layui.use(['upload','jquery'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/update_head'
+            ,auto: false
+            ,bindAction: "#btn"
+            ,size: 2040 //限制文件大小，单位 KB
+            ,accept:"file"
+            ,exts: 'jpg|png|jpeg' //限制上传文件类型
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    layer.msg('上传失败');
+                }
+                //上传成功
+                layer.msg('上传成功');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

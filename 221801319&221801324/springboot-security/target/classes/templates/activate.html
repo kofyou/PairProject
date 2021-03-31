@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮箱激活</title>
+    <script type="text/javascript">
+        function refresh() {
+            document.getElementById('captcha_img').src="/kaptcha?"+Math.random();
+        }
+    </script>
+    <link th:href="@{/static/css/activate.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+</head>
+<body>
+<h1>邮箱激活</h1>
+
+<div class="container">
+    <form class="contact" th:action="@{/email_active}">
+        <p style="color: red"  th:text="${msg8}" th:if="${not #strings.isEmpty(msg8) }"></p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">验证码</label>
+            <div class="layui-input-block">
+                <input type="text" name="verifyCodeActual" required  lay-verify="required" placeholder="请输验证码(区分大小写)" autocomplete="off" class="layui-input">
+            </div>
+        <div class="item-input">
+            <img id="captcha_img" alt="点击更换" title="点击更换"
+                 onclick="refresh()" src="/kaptcha" />
+        </div>
+            <button name="submit" type="submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" id="submit1" >激活</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

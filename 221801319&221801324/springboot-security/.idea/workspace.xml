@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="432bcc1b-ea1c-4792-a7d9-b8bdb8992e53" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mybatis1@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mybatis1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mybatis1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="mybatis1: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mybatis1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="mybatis1: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="paper: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="springboot-security" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="E:\ideamaven\mavenRepository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="E:\ideamaven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1b3gP2OXLQVQTpBHxh1p40FWSLQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/img" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\static\img" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\templates\lunwen" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\templates" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\mybatis\mapper" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\static\js" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yrc.controller" />
+      <recent name="com.yrc.mapper" />
+      <recent name="com.yrc.pojo" />
+      <recent name="com.yrc.config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\templates\lunwen" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\static\css" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\static\img" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\mybatis\mapper" />
+      <recent name="E:\ideamaven\springboot-security\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SpringbootSecurityApplication">
+    <configuration name="MailServiceTest.sendAttachmentsMail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-security" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yrc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yrc" />
+      <option name="MAIN_CLASS_NAME" value="com.yrc.MailServiceTest" />
+      <option name="METHOD_NAME" value="sendAttachmentsMail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MailServiceTest.sendSimpleMail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-security" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yrc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yrc" />
+      <option name="MAIN_CLASS_NAME" value="com.yrc.MailServiceTest" />
+      <option name="METHOD_NAME" value="sendSimpleMail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MailServiceTest.testTemplateMailTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-security" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yrc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yrc" />
+      <option name="MAIN_CLASS_NAME" value="com.yrc.MailServiceTest" />
+      <option name="METHOD_NAME" value="testTemplateMailTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringbootSecurityApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-security" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yrc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yrc" />
+      <option name="MAIN_CLASS_NAME" value="com.yrc.SpringbootSecurityApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="springboot-security-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/springboot-security-0.0.1-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SpringbootSecurityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="springboot-security" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yrc.SpringbootSecurityApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.springboot-security-0.0.1-SNAPSHOT.jar" />
+        <item itemvalue="JUnit.MailServiceTest.testTemplateMailTest" />
+        <item itemvalue="JUnit.MailServiceTest.sendSimpleMail" />
+        <item itemvalue="JUnit.MailServiceTest.sendAttachmentsMail" />
+        <item itemvalue="JUnit.SpringbootSecurityApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="432bcc1b-ea1c-4792-a7d9-b8bdb8992e53" name="Default Changelist" comment="" />
+      <created>1587866163771</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587866163771</updated>
+      <workItem from="1587866167317" duration="49035000" />
+      <workItem from="1588064605417" duration="442000" />
+      <workItem from="1588066338964" duration="4228000" />
+      <workItem from="1588080019871" duration="3319000" />
+      <workItem from="1588083364522" duration="28063000" />
+      <workItem from="1588210314744" duration="22588000" />
+      <workItem from="1588299588056" duration="8104000" />
+      <workItem from="1588409362980" duration="11138000" />
+      <workItem from="1588473104208" duration="43375000" />
+      <workItem from="1588649775155" duration="17810000" />
+      <workItem from="1588682740977" duration="5695000" />
+      <workItem from="1588735642018" duration="34969000" />
+      <workItem from="1588856881752" duration="18245000" />
+      <workItem from="1588930406992" duration="3687000" />
+      <workItem from="1588954716245" duration="2044000" />
+      <workItem from="1588986511952" duration="19957000" />
+      <workItem from="1590073635513" duration="643000" />
+      <workItem from="1591535627261" duration="4129000" />
+      <workItem from="1597122857998" duration="126000" />
+      <workItem from="1609940728130" duration="1792000" />
+      <workItem from="1609944056916" duration="616000" />
+      <workItem from="1617097563738" duration="51515000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617098327936">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1617098327936" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1617159031367">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1617159031367" />
+    <state width="1493" height="250" key="GridCell.Tab.0.bottom" timestamp="1617200788918">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617200788918" />
+    <state width="1493" height="250" key="GridCell.Tab.0.center" timestamp="1617200788918">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1617200788918" />
+    <state width="1493" height="250" key="GridCell.Tab.0.left" timestamp="1617200788918">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1617200788918" />
+    <state width="1493" height="250" key="GridCell.Tab.0.right" timestamp="1617200788918">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1617200788918" />
+    <state width="1493" height="250" key="GridCell.Tab.1.bottom" timestamp="1617200788915">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617200788915" />
+    <state width="1493" height="250" key="GridCell.Tab.1.center" timestamp="1617200788915">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1617200788915" />
+    <state width="1493" height="250" key="GridCell.Tab.1.left" timestamp="1617200788915">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1617200788915" />
+    <state width="1493" height="250" key="GridCell.Tab.1.right" timestamp="1617200788915">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="250" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1617200788915" />
+    <state width="1493" height="244" key="GridCell.Tab.2.bottom" timestamp="1617189483614">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="244" key="GridCell.Tab.2.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617189483614" />
+    <state width="1493" height="244" key="GridCell.Tab.2.center" timestamp="1617189483614">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="244" key="GridCell.Tab.2.center/0.0.1536.864@0.0.1536.864" timestamp="1617189483614" />
+    <state width="1493" height="244" key="GridCell.Tab.2.left" timestamp="1617189483614">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="244" key="GridCell.Tab.2.left/0.0.1536.864@0.0.1536.864" timestamp="1617189483614" />
+    <state width="1493" height="244" key="GridCell.Tab.2.right" timestamp="1617189483614">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="244" key="GridCell.Tab.2.right/0.0.1536.864@0.0.1536.864" timestamp="1617189483614" />
+    <state x="0" y="14" key="SettingsEditor" timestamp="1617197696036">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="0" y="14" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1617197696036" />
+    <state x="382" y="268" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1617099051297">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="382" y="268" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1536.864@0.0.1536.864" timestamp="1617099051297" />
+    <state x="495" y="286" key="com.intellij.ide.util.TipDialog" timestamp="1609940754974">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="495" y="286" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1609940754973" />
+    <state x="354" y="188" width="1180" height="565" key="new project wizard" timestamp="1617098646987">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="354" y="188" width="1180" height="565" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1617098646987" />
+    <state x="470" y="59" key="refactoring.ChangeSignatureDialog" timestamp="1617187289016">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="470" y="59" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1617187289016" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/springboot_security$springboot_security_0_0_1_SNAPSHOT_jar.ic" NAME="springboot-security-0.0.1-SNAPSHOT.jar Coverage Results" MODIFIED="1588930539099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
