@@ -22,7 +22,6 @@ public class PapersServiceImpl implements PapersService {
 
     @Override
     public PageInfo<Paper> selectPaperByTitle(String title,Integer pageNum, Integer pageSize) {
-//        return papersMapper.selectPaperByTitle("%" + title + "%");
         PageHelper.startPage(pageNum,pageSize);
         List<Paper> papers = papersMapper.selectPaperByTitle("%" + title + "%");
         PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
@@ -31,7 +30,6 @@ public class PapersServiceImpl implements PapersService {
 
     @Override
     public PageInfo<Paper> selectPaperByAbstracts(String abstracts,Integer pageNum, Integer pageSize) {
-//        return papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
         PageHelper.startPage(pageNum,pageSize);
         List<Paper> papers = papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
         PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
@@ -40,7 +38,6 @@ public class PapersServiceImpl implements PapersService {
 
     @Override
     public PageInfo<Paper> selectPaperByMagazine(String magazine,Integer pageNum, Integer pageSize) {
-//        return papersMapper.selectPaperByMagazine(magazine);
         PageHelper.startPage(pageNum,pageSize);
         List<Paper> papers = papersMapper.selectPaperByMagazine(magazine);
         PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);

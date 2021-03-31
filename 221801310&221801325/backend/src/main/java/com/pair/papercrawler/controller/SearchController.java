@@ -84,7 +84,10 @@ public class SearchController {
 
     @DeleteMapping("/deletePaper")
     public ResponseMessage deletePaper(@RequestParam(name = "paperId") Integer paperId){
-        papersService.deletePaperByPaperId(paperId);
-        return ResponseMessage.success("successfully delete");
+        if (papersService.selectPaperByPaperId(paperId)!=null){
+            papersService.deletePaperByPaperId(paperId);
+            return ResponseMessage.success("successfully delete");
+        }
+        return ResponseMessage.failure("faliure deletw");
     }
 }

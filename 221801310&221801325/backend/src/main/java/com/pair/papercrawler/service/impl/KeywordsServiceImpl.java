@@ -30,8 +30,6 @@ public class KeywordsServiceImpl implements KeywordsService {
         List<Paper> papers = keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
         PageInfo<Paper> pageInfo = new PageInfo<Paper>(papers);
         return pageInfo;
-
-//        return keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
     }
 
     @Override

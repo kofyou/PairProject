@@ -21,6 +21,7 @@
 <!--    需要多表联合查询-->
     <select id="selectPaperByKeyword" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT
+        DISTINCT
             papers.paperId,
             papers.title,
             papers.link,
