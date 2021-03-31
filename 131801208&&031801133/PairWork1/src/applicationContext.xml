@@ -11,7 +11,7 @@
 		
 	</bean>
 	<bean id="paperListController2"
-		class="com.cs.PairWork1.Controller.PaperListController">
+		class="com.cs.PairWork1.Controller.PaperListController2">
 		
 	</bean>
 	<bean id="deletePaperController"
@@ -19,7 +19,7 @@
 		
 	</bean>
 	<bean id="paperListController3"
-		class="com.cs.PairWork1.Controller.PaperListController">
+		class="com.cs.PairWork1.Controller.PaperListController3">
 		
 	</bean>
 <!-- 	<bean id="paperListServiceImpl" class="com.cs.PairWork1.Service.PaperListServiceImpl"> -->

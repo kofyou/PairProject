@@ -49,9 +49,21 @@ $ (function($){
 			align:"center",
 			valign:"middle",
 			},
-		]
-	
-	});
+		],
+		onCheck : function(row) {
+			$("#remove_paper").removeAttr("disabled");
+		},
+		onUncheck:function(){
+			$("#remove_paper").attr("disabled","disabled");
+		},
+		onCheckAll:function(){
+			$("#remove_paper").removeAttr("disabled");
+		},
+		onUncheckAll:function(){
+			$("#remove_paper").attr("disabled","disabled");
+		},
+		
+		});
 	/*$("#CVPR").on("click",function(e){
 		$.ajax({
             url:"/PairWork1/paperListController.do",
@@ -71,11 +83,13 @@ $ (function($){
 		$("#papertab").bootstrapTable('refresh');
 		
 	});*/
-	function delUser(){					
-		var selects =$("#usertab").bootstrapTable("getSelections");
+	$("#remove").bind("click",delPaper);
+	function delPaper(){	
+
+		var selects =$("#papertab").bootstrapTable("getSelections");
 		if(selects.length==0){				
 			return;
-		}	
+		}
 		var Title="";
 		for(var i = 0;i < selects.length; i++){
 			//userIds=userIds+selects[i].id+",";
@@ -85,12 +99,11 @@ $ (function($){
 				Title:Title
 				
 		};	
-		
+
 		$.ajax({
 			url:"/PairWork1/deletePaperController.do",
 			data:param,				
 			success:function(data){
-				alert("helloworldnew11");
 				if((typeof(data)!="undefined")&&(data==0)){
 					alert("删除成功，！");
 					$table.bootstrapTable('refresh');
@@ -101,5 +114,9 @@ $ (function($){
 			context:this
 		});
 	}
-	$("#remove").bind("click",delUser);
+	$("#remove_paper").bind("click",delPaper);
+	
+	$("#looking").on("click",function(e){
+		alert("hellwo")
+	});
 });

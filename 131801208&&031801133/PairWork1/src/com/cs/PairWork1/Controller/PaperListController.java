@@ -26,7 +26,7 @@ public class PaperListController implements Controller {
 		arg1.setHeader("Content-type", "text/json;charset=UTF-8");
 		//String s="JsonFileLib//2000_3-D model construction using range and image data.json";
 		//String s="F://2000_3-D model construction using range and image data.json";
-		String value=arg0.getParameter("value");
+		//String value=arg0.getParameter("value");
 		
 		JSONArray jsonArray= new JSONArray();
 		PaperListServiceImpl p =new PaperListServiceImpl();

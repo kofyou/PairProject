@@ -3,6 +3,7 @@ package com.cs.PairWork1.Service;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import com.cs.PairWork1.Dao.Paper;
 import com.cs.PairWork1.Utils.DBUtils;
 import com.cs.PairWork1.Utils.GetJson;
+
 
 public class PaperListServiceImpl implements PaperListService {
 
@@ -21,19 +23,35 @@ public class PaperListServiceImpl implements PaperListService {
 	@Override
 	public List<Paper> listAll() {
 		
-		List<Paper> datalist = new ArrayList<Paper>();
-		Paper p= new Paper();
-		String s="F://2000_3-D model construction using range and image data.json";
-		GetJson gj= new GetJson();
-		gj.readJsonFile(s,1);
-		p.setAbout(gj.getAbout());
-		p.setId(gj.getId());
-		p.setKeywords(gj.getKeywords());
-		p.setTitle(gj.getTitle());
-		p.setUrl(gj.getUrl());
+		String sql = "select * from paperlist";
+		DBUtils dbUtils = new DBUtils();
+		dbUtils.init();
+		Connection conn =dbUtils.getConn();
+		PreparedStatement pstm = null;
+		ResultSet rs=null;
 		
-		datalist.add(p);
-		return datalist;
+		try {
+			pstm=conn.prepareStatement(sql);
+			rs=pstm.executeQuery();
+			List<Paper> datalist = new ArrayList<Paper>();
+			while(rs.next()) {
+				Paper p= new Paper();
+				p.setAbout(rs.getString("about"));
+				p.setId(rs.getString("paperid"));
+				//p.setKeywords(g.getKeywords());
+				p.setTitle(rs.getString("title"));
+				p.setUrl(rs.getString("url"));	
+								
+				datalist.add(p);
+			}
+			return datalist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 	//below used for test
 	
@@ -148,7 +166,7 @@ public class PaperListServiceImpl implements PaperListService {
 				  System.out.println(datalist.get(i).getUrl());
 			}*/
 			
-			String sql="insert into paper(paperid,title,url,keyword) value(?,?,?,?)";
+			String sql="insert into paper(paperid,title,url,about,keyword) value(?,?,?,?,?)";
 			DBUtils dbUtils = new DBUtils();
 			dbUtils.init();
 			Connection conn =dbUtils.getConn();
@@ -160,9 +178,10 @@ public class PaperListServiceImpl implements PaperListService {
 					pstm.setString(1, datalist.get(i).getId());
 					pstm.setString(2, datalist.get(i).getTitle());
 					pstm.setString(3, datalist.get(i).getUrl());
-					pstm.setString(4, datalist.get(i).getKeywords());
-					pstm.executeUpdate();
-					System.out.println(" success "+i+datalist.get(i).getKeywords());
+					pstm.setString(4, datalist.get(i).getAbout());
+					pstm.setString(5, datalist.get(i).getKeywords());
+					//pstm.executeUpdate();
+					System.out.println(" success "+i+datalist.get(i).getAbout());
 				}							
 				
 			} catch (SQLException e) {
