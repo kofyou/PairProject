@@ -18,6 +18,7 @@ public class Paper {
     private String years;
     private String keyword;
     private String source;
+    private String authors;
 
     public Integer getId() {
         return id;
@@ -73,5 +74,13 @@ public class Paper {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(String authors) {
+        this.authors = authors;
     }
 }

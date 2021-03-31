@@ -12,12 +12,13 @@
         <result column="years" property="years"></result>
         <result column="keyword" property="keyword"></result>
         <result column="source" property="source"></result>
+        <result column="authors" property="authors"></result>
     </resultMap>
 
     <insert id="createPaper" keyProperty="id" useGeneratedKeys="true" parameterType="com.yangyu.esearch.entity.Paper">
-        insert into papers(title,link,abstracts,years,keyword,source)
+        insert into papers(title,link,abstracts,years,keyword,source,authors)
         values (#{title,jdbcType=VARCHAR},#{link,jdbcType=VARCHAR},#{abstracts,jdbcType=VARCHAR},
-        #{years,jdbcType=VARCHAR},#{keyword,jdbcType=VARCHAR},#{source,jdbcType=VARCHAR})
+        #{years,jdbcType=VARCHAR},#{keyword,jdbcType=VARCHAR},#{source,jdbcType=VARCHAR},#{authors,jdbcType=VARCHAR})
     </insert>
     <select id="queryAll" resultMap="Paper">
         select * from papers
