@@ -111,24 +111,23 @@
                 });
             </script>
         </div>
+        <div id="kws_ul_div">
+            <ul id="kws_ul">
+                <li id="li_0" onclick="jump('<%=keywordList.get(0).getName()%>')"><%=keywordList.get(0).getName()%></li>
+                <li id="li_1" onclick="jump('<%=keywordList.get(1).getName()%>')"><%=keywordList.get(1).getName()%></li>
+                <li id="li_2" onclick="jump('<%=keywordList.get(2).getName()%>')"><%=keywordList.get(2).getName()%></li>
+                <li id="li_3" onclick="jump('<%=keywordList.get(3).getName()%>')"><%=keywordList.get(3).getName()%></li>
+                <li id="li_4" onclick="jump('<%=keywordList.get(4).getName()%>')"><%=keywordList.get(4).getName()%></li>
+                <li id="li_5" onclick="jump('<%=keywordList.get(5).getName()%>')"><%=keywordList.get(5).getName()%></li>
+                <li id="li_6" onclick="jump('<%=keywordList.get(6).getName()%>')"><%=keywordList.get(6).getName()%></li>
+                <li id="li_7" onclick="jump('<%=keywordList.get(7).getName()%>')"><%=keywordList.get(7).getName()%></li>
+                <li id="li_8" onclick="jump('<%=keywordList.get(8).getName()%>')"><%=keywordList.get(8).getName()%></li>
+                <li id="li_9" onclick="jump('<%=keywordList.get(9).getName()%>')"><%=keywordList.get(9).getName()%></li>
+            </ul>
+        </div>
     </div>
-    <div id="kws_ul_div">
-        <ul id="kws_ul">
-            <li id="li_0" onclick="jump('<%=keywordList.get(0).getName()%>')"><%=keywordList.get(0).getName()%></li>
-            <li id="li_1" onclick="jump('<%=keywordList.get(1).getName()%>')"><%=keywordList.get(1).getName()%></li>
-            <li id="li_2" onclick="jump('<%=keywordList.get(2).getName()%>')"><%=keywordList.get(2).getName()%></li>
-            <li id="li_3" onclick="jump('<%=keywordList.get(3).getName()%>')"><%=keywordList.get(3).getName()%></li>
-            <li id="li_4" onclick="jump('<%=keywordList.get(4).getName()%>')"><%=keywordList.get(4).getName()%></li>
-            <li id="li_5" onclick="jump('<%=keywordList.get(5).getName()%>')"><%=keywordList.get(5).getName()%></li>
-            <li id="li_6" onclick="jump('<%=keywordList.get(6).getName()%>')"><%=keywordList.get(6).getName()%></li>
-            <li id="li_7" onclick="jump('<%=keywordList.get(7).getName()%>')"><%=keywordList.get(7).getName()%></li>
-            <li id="li_8" onclick="jump('<%=keywordList.get(8).getName()%>')"><%=keywordList.get(8).getName()%></li>
-            <li id="li_9" onclick="jump('<%=keywordList.get(9).getName()%>')"><%=keywordList.get(9).getName()%></li>
-        </ul>
-    </div>
+
 </div>
-
-
 <div class="main">
     <div id="wordbargraph" style="width: 1500px;height:400px;"></div>
     <script type="text/javascript">
