@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="getQueryVariable()">
     <div class="demoTable">
         关键词搜索：
         <div class="layui-inline">
@@ -95,8 +95,20 @@ var $ = layui.$, active = {
   });
 });
 
+function getQueryVariable(variable)
+{   
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == 'keywords'){  
+                   document.getElementById("demoReload").value=pair[1];
+                return pair[1];}
+              
+       }
+       return(false);
+}
+
 </script>
-
 </body>
-
 </html>
