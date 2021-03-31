@@ -40,7 +40,7 @@ $(function (){
     });
     //收藏点击添加
     $(".collect").eq(0).click(function (){
-        var id = $("#lb1").val();
+        var id = $("#lb1").text();
         var user = localStorage.getItem("username")==null ? "":localStorage.getItem("username");
         // var div = $("<div style='width: 100%;height: 20px;float: left;'></div>")
         //     .text("<a href='"+link+"'>"+title+"</a>");
@@ -64,7 +64,7 @@ $(function (){
 
     });
     $(".collect").eq(1).click(function (){
-        var id = $("#lb2").val();
+        var id = $("#lb2").text();
         var user = localStorage.getItem("username")==null ? "":localStorage.getItem("username");
         // var div = $("<div style='width: 100%;height: 20px;float: left;'></div>")
         //     .text("<a href='"+link+"'>"+title+"</a>");
@@ -88,7 +88,7 @@ $(function (){
 
     });
     $(".collect").eq(2).click(function (){
-        var id = $("#lb3").val();
+        var id = $("#lb3").text();
         var user = localStorage.getItem("username")==null ? "":localStorage.getItem("username");
         // var div = $("<div style='width: 100%;height: 20px;float: left;'></div>")
         //     .text("<a href='"+link+"'>"+title+"</a>");
@@ -112,7 +112,7 @@ $(function (){
 
     });
     $(".collect").eq(3).click(function (){
-        var id = $("#lb4").val();
+        var id = $("#lb4").text();
         var user = localStorage.getItem("username")==null ? "":localStorage.getItem("username");
         // var div = $("<div style='width: 100%;height: 20px;float: left;'></div>")
         //     .text("<a href='"+link+"'>"+title+"</a>");
@@ -140,7 +140,7 @@ $(function (){
         var keyword=$("#searchInput").val();
         var year=$("#searchInput2").val();
         var source=$("#searchInput3").val();
-        var page=$("#page").val();
+        var page=$("#page").text();
         $.ajax({
             url:'http://127.0.0.1:8080/list/search',
             method:'post',
@@ -174,7 +174,7 @@ $(function (){
         var keyword=$("#searchInput").val();
         var year=$("#searchInput2").val();
         var source=$("#searchInput3").val();
-        var page=$("#page").val();
+        var page=$("#page").text();
         $.ajax({
             url:'http://127.0.0.1:8080/list/search',
             method:'post',
