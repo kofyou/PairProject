@@ -7,7 +7,12 @@
       item:[
 
       ],
-      
+      link:" ",
+      word:
+      { 
+        searchType:"title",
+        content:"regularized approach"
+      }
     },
     created: function (variable) {
         // `this` 指向 vm 实例      
@@ -30,10 +35,12 @@
     methods:{
       search:function(){   
         var that=this;
-        axios
-        .get('./js/datas.json')
+        axios.post('http://81.68.149.69:18902/search/searchPaper',{
+            searchType:this.type,
+            content:this.value
+        })
         .then(function(response)
-        {
+        {   console.log(response)
             that.item=response.data.data;
             console.log(that.item)
         }
