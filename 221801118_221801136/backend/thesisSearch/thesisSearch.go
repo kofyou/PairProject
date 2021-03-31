@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
-	"strings"
 )
 
 type AnalyzedThesis struct {
@@ -20,9 +19,7 @@ type AnalyzedThesis struct {
 }
 
 type thesisSearchParam struct {
-	Source string	`json:"source" binding:"required"`
-	Keyword string	`json:"password" binding:"required"`
-	Year int		`json:"year" binding:"required"`
+	Keyword string	`json:"keyword" binding:"required"`
 	Page int		`json:"page" binding:"required"`
 }
 
@@ -32,37 +29,15 @@ func GetThesisList(c *gin.Context) {
 	param := thesisSearchParam{}
 	_ = c.ShouldBindJSON(&param)
 
-	source := param.Source
-	year := param.Year
 	keyword := param.Keyword
 	page := param.Page
-	yearStr := strconv.Itoa(year)
 
-	keyword = strings.ReplaceAll(keyword, "\n", "%")
-	keyword = strings.ReplaceAll(keyword, "\r", "%")
-	keyword = strings.ReplaceAll(keyword, "\t", "%")
-	keyword = strings.ReplaceAll(keyword, " ",  "%")
-	keyword = "%" + keyword + "%"
 
-	var selectStr string = "select * from analyzed_thesis where "
-	if source != "" {
-		selectStr += "Source = '" + source + "' "
-	}
-	if yearStr != "" {
-		if source != "" {
-			selectStr += "and "
-		}
-		selectStr += "Year = '" + yearStr + "' "
-	}
+	var selectStr string = "select * from analyzed_thesis "
+
 	if keyword != "" {
-		if !(source == "" && yearStr == "") {
-			selectStr += "and "
-		}
-		selectStr += "Keyword like '" + keyword + "' "
-	}
-	if source == "" && yearStr == "" && keyword == "" {
-		length := len(selectStr) - 6
-		selectStr = selectStr[0:length]
+		keyword = "%" + keyword + "%"
+		selectStr += " where Keyword like '" + keyword + "' "
 	}
 	if page >= 1 {
 		page --
