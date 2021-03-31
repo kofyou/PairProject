@@ -31,7 +31,7 @@ public class SearchController {
      * @Author: top
      * @Date: 2021/3/30
      */
-    @GetMapping("/searchPaper")
+    @PostMapping("/searchPaper")
     public ResponseMessage searchPaper(@RequestBody RequestMessage requestMessage) {
         String type = requestMessage.getSearchType();
         String content = requestMessage.getContent();
@@ -73,5 +73,11 @@ public class SearchController {
     @GetMapping("/get_Magazine")
     public ResponseMessage getMagazine(@RequestParam(name = "magazine") String magazine) {
         return ResponseMessage.success(papersService.selectPaperByMagazine(magazine));
+    }
+
+    @DeleteMapping("/deletePaper")
+    public ResponseMessage deletePaper(@RequestParam(name = "paperId") Integer paperId){
+        papersService.deletePaperByPaperId(paperId);
+        return ResponseMessage.success("successfully delete");
     }
 }

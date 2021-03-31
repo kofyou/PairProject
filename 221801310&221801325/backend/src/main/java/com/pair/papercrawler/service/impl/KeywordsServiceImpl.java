@@ -14,21 +14,21 @@ public class KeywordsServiceImpl implements KeywordsService {
     @Autowired
     private KeywordsMapper keywordsMapper;
 
-    
+
     /*** 
-    * @Description: 通过keyword模糊查询
-    * @Param:  
-    * @return:  
-    * @Author: top
-    * @Date: 2021/3/30 
-    */
+     * @Description: 通过keyword模糊查询
+     * @Param:
+     * @return:
+     * @Author: top
+     * @Date: 2021/3/30
+     */
     @Override
-    public List<Paper> getPaperByKeyword(String keyword){
-        return keywordsMapper.selectPaperByKeyword("%"+keyword+"%");
+    public List<Paper> getPaperByKeyword(String keyword) {
+        return keywordsMapper.selectPaperByKeyword("%" + keyword + "%");
     }
 
     @Override
-    public List<String> getKeywordByPaperId(Integer paperId){
+    public List<String> getKeywordByPaperId(Integer paperId) {
         return keywordsMapper.selectKeywordByPaperId(paperId);
     }
 

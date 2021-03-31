@@ -14,36 +14,35 @@ public class PapersServiceImpl implements PapersService {
     private PapersMapper papersMapper;
 
     @Override
-    public void deletePaperByPaperId(String paperId){
+    public void deletePaperByPaperId(Integer paperId) {
 
     }
 
     @Override
-    public List<Paper> selectPaperByTitle(String title){
-        return papersMapper.selectPaperByTitle("%"+title+"%");
+    public List<Paper> selectPaperByTitle(String title) {
+        return papersMapper.selectPaperByTitle("%" + title + "%");
     }
 
     @Override
-    public List<Paper> selectPaperByAbstracts(String abstracts){
-        return papersMapper.selectPaperByAbstracts("%"+abstracts+"%");
+    public List<Paper> selectPaperByAbstracts(String abstracts) {
+        return papersMapper.selectPaperByAbstracts("%" + abstracts + "%");
     }
 
     @Override
-    public List<Paper> selectPaperByMagazine(String magazine){
+    public List<Paper> selectPaperByMagazine(String magazine) {
         return papersMapper.selectPaperByMagazine(magazine);
     }
 
 
     @Override
-    public Paper selectPaperByPaperId(Integer paperId){
+    public Paper selectPaperByPaperId(Integer paperId) {
         return papersMapper.selectPaperByPaperId(paperId);
     }
 
     @Override
-    public List<Paper> selectAll(){
+    public List<Paper> selectAll() {
         return papersMapper.selectAll();
     }
-
 
 
 }

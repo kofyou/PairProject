@@ -15,12 +15,12 @@ public class AuthorServiceImpl implements AuthorService {
     private AuthorsMapper authorsMapper;
 
     @Override
-    public List<Paper> getPaperByAuthorName(String author){
+    public List<Paper> getPaperByAuthorName(String author) {
         return authorsMapper.selectPaperByAuthorName(author);
     }
 
     @Override
-    public String[] getAuthorByPaperId(Integer paperId){
+    public String[] getAuthorByPaperId(Integer paperId) {
         return authorsMapper.selectAuthorByPaperId(paperId);
     }
 
