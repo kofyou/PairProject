@@ -1,5 +1,6 @@
 package com.pairproject.papercv.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.pairproject.papercv.model.Paper;
 import com.pairproject.papercv.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,49 +28,89 @@ public class PaperController {
 
     private static List<Paper> allPaper = null;
     private static Map<String, List<Paper>> keyWordList = new HashMap<>(64);
+    private static Map<String, List<Paper>> titleList = new HashMap<>(2048);
 
     /**
-     * 获取所有的论文
+     * 获取所有论文
      *
-     * @return 论文列表
+     * @param page
+     * @return
      */
-    @GetMapping("/all")
-    public List<Paper> getPaperList() {
+    @GetMapping("/all/{page}")
+    public JSONObject getPaperList(@PathVariable("page") int page) {
+        int start = (page -1) * 10;
+        JSONObject jsonObject = new JSONObject();
         if (allPaper != null) {
-            return allPaper;
+            int end = Math.min(start + 10, allPaper.size());
+            jsonObject.put("count", allPaper.size());
+            jsonObject.put("data", allPaper.subList(start, end));
+            return jsonObject;
         }
-        allPaper = paperService.getAll().subList(0,1000);
-        return allPaper;
+        allPaper = paperService.getAll();
+        int end = Math.min(start + 10, allPaper.size());
+        jsonObject.put("count", allPaper.size());
+        jsonObject.put("data", allPaper.subList(start, end));
+        return jsonObject;
     }
 
     /**
      * 根据论文标题查询论文（模糊查询）
      *
-     * @param title 论文标题
-     * @param isSort 是否排序
-     * @return 论文列表
+     * @param title
+     * @param page
+     * @param isSort
+     * @return
      */
-    @GetMapping("/{title}")
-    public List<Paper> getPaper(@PathVariable("title") String title,Integer isSort) {
-        List<Paper> paperList = paperService.getPaper(title);
+    @GetMapping("/{title}/{page}")
+    public JSONObject getPaper(@PathVariable("title") String title, @PathVariable("page") int page, Integer isSort) {
+        int start = (page -1) * 10;
+        JSONObject jsonObject = new JSONObject();
+        List<Paper> paperList;
+        if (titleList.containsKey(title) && (titleList.get(title) != null)) {
+            paperList = titleList.get(title);
+            if (isSort != 0) {
+                paperList.sort(Comparator.comparing(Paper::getTitle));
+            }
+            int end = Math.min(start + 10, paperList.size());
+            jsonObject.put("count", paperList.size());
+            jsonObject.put("data", paperList.subList(start, end));
+            return jsonObject;
+        }
+        paperList = paperService.getPaper(title);
+        titleList.put(title, paperList);
         if (isSort != 0) {
             paperList.sort(Comparator.comparing(Paper::getTitle));
         }
-        return paperList;
+        int end = Math.min(start + 10, paperList.size());
+        jsonObject.put("count", paperList.size());
+        jsonObject.put("data", paperList.subList(start, end));
+        return jsonObject;
     }
 
     /**
-     * 通过关键词获取论文
+     * 通过关键词查询论文
      *
      * @param key
+     * @param page
      * @return
      */
-    @GetMapping("/keyWord/{key}")
-    public List<Paper> getPaperByKey(@PathVariable("key") String key) {
+    @GetMapping("/keyWord/{key}/{page}")
+    public JSONObject getPaperByKey(@PathVariable("key") String key, @PathVariable("page") int page) {
+        int start = (page -1) * 10;
+        JSONObject jsonObject = new JSONObject();
+        List<Paper> paperList;
         if (keyWordList.containsKey(key)) {
-            return keyWordList.get(key);
+            paperList = keyWordList.get(key);
+            int end = Math.min(start + 10, paperList.size());
+            jsonObject.put("count", paperList.size());
+            jsonObject.put("data", paperList.subList(start, end));
+            return jsonObject;
         }
-        keyWordList.put(key, paperService.getPaperByKey(key));
-        return keyWordList.get(key);
+        paperList = paperService.getPaperByKey(key);
+        keyWordList.put(key, paperList);
+        int end = Math.min(start + 10, paperList.size());
+        jsonObject.put("count", paperList.size());
+        jsonObject.put("data", paperList.subList(start, end));
+        return jsonObject;
     }
 }
