@@ -13,11 +13,6 @@ for (let i = 1; i < 10; i++) {
     children.push(<Option key={i}>{i}</Option>);
 }
 
-// function handleChange(value) {
-//     console.log(value);
-//     cookie.save("registerValue", value, { path: "/" });
-
-// }
 const layout = {
     labelCol: {
         span: 8,
@@ -40,6 +35,7 @@ const onFinish = (values) => {
 
 const onRegisterFinish = (values) => {
     const axios = require('axios');
+    axios.defaults.withCredentials = true
     let tagData = cookie.load("registerValue")
     const elements = [];
     tagData.forEach((item) => {
@@ -47,18 +43,14 @@ const onRegisterFinish = (values) => {
             { id: parseInt(item) }
         )
     });
-    // let result = {username :values.username
-    // , password: values.password
-    // , discussion: elements}
     let result = {
         user_id: values.username
         , password: values.password
         , password_confirm: values.password
     }
     console.log(result)
-
-    axios.post("http://localhost:3000/api/v1/signup", result)
-        // axios.post("http://47.101.54.43:3000/api/v1/signup", result)
+    axios.defaults.withCredentials = true
+    axios.post("http://pingleme.top:3000/api/v1/signup", result)
         .then(function (response) {
         })
         .catch(function (error) {
@@ -110,23 +102,6 @@ class CreateRegisterForm extends React.Component {
                 >
                     <Input.Password />
                 </Form.Item>
-                {/* <Form.Item
-                    label="参加会议"
-                    name="id"
-                >
-
-                    <Select
-                        mode="multiple"
-                        allowClear
-                        style={{ width: '100%' }}
-                        placeholder="Please select"
-                        defaultValue={['1', '2']}
-                        onChange={handleChange}
-                    >
-                        {children}
-                    </Select>
-
-                </Form.Item> */}
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
                         Submit
@@ -140,7 +115,6 @@ class CreateRegisterForm extends React.Component {
 
 const CreateLoginForm = () => {
 
-    // const [contant, setContant] = useState("");
     const [visible, setVisible] = useState(false);
 
     const onCreate = (values) => {
@@ -156,12 +130,10 @@ const CreateLoginForm = () => {
             onFinish={(values) => {
                 const axios = require('axios');
                 axios.defaults.withCredentials = true
-                // axios.post("http://47.101.54.43:3000/api/v1/login", {
-                axios.post("http://localhost:3000/api/v1/login", {
+                axios.post("http://pingleme.top:3000/api/v1/login", {
                     user_id: values.user_id,
                     password: values.password
                 }).then(response => {
-                    // cookie.save("record", "false", { path: "/" })
                     if (response.data.code == 0) {
                         cookie.save("loginState", "true", { path: "/" })
                         cookie.save("account", values.user_id, { path: "/" });
@@ -177,7 +149,6 @@ const CreateLoginForm = () => {
             }}
         >
             <Form.Item
-                // name="username"
                 name="user_id"
                 rules={[{ required: true, message: 'Please input your Username!' }]}
             >
@@ -201,8 +172,6 @@ const CreateLoginForm = () => {
                 <Button type="link"
                     onClick={() => {
                         setVisible(true);
-                        // setContant(value);
-                        // console.log(contant);
                     }}>
                     现在注册！
                 </Button>
@@ -223,7 +192,7 @@ const CollectionCreateLoginForm = ({ visible, onCreate, onCancel }) => {
     return (
         <Modal
             visible={visible}
-            title="Create a new collection"
+            title="登录界面"
             okText="Create"
             cancelText="Cancel"
             onCancel={onCancel}
@@ -233,7 +202,6 @@ const CollectionCreateLoginForm = ({ visible, onCreate, onCancel }) => {
                     .then((values) => {
                         form.resetFields();
                         onCreate(values);
-                        // GetResponse(values);
                     })
                     .catch((info) => {
                         console.log('Validate Failed:', info);
@@ -306,8 +274,8 @@ const LoginButton = () => {
 
 const QuitAccount = () => {
     cookie.save("loginState", "false", { path: "/" })
-    let url = 'http://localhost:3000/api/v1/logout'
-
+    let url = 'http://pingleme.top:3000/api/v1/logout'
+    axios.defaults.withCredentials = true
     axios.delete(url, { withCredentials: true, })
         .then(function (response) {
 
