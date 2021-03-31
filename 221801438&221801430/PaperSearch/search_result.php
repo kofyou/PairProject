@@ -72,7 +72,7 @@
                     session_start();
                     $_SESSION["input_text"] = $search_key;
                     //查找
-                    if($search_key != '') {
+                    //if($search_key != '') {
                     $sql = "SELECT * FROM paper where post_title like '%".$search_key."%' or keywords like '%".$search_key."%'";
                     $result = $conn->query($sql);
                     echo "<script> document.getElementById('search_key').value = '".$search_key."';</script>";
@@ -88,11 +88,11 @@
                             '<textarea rows="3" cols="100" class="summary" id="summary_one" readonly="readonly">'.$row["post_content"].'</textarea>'.
                             '<a href='.$row["link"].' id="paper_link" target="_blank">阅读全文</a>'.
                             '<p class="keywords" id="keyword_one">'.$row["keywords"].'</p>'.
-                            '<a href="search_result.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="search_result.php">导入</a>'.
+                            '<a href="search_result.php?title='.$row["post_title"].'" class="in_bt_one" id="bt_in_one" action="search_result.php"  onclick="insert_user()">导入</a>'.
                         '</div>';
                         }
                     }
-}
+//}
                     $conn->close();
                 ?>
 
@@ -112,16 +112,22 @@
                     $title = isset($_GET['title'])?$_GET['title']:' ';
                     $sql = "select * from paper where post_title like '%".$title."%'";
                     $result = $conn->query($sql);
-                    $sql1 = "select * from paper_user where post_title like '%".$title."%'";
+                    $row = $result->fetch_assoc();
+                    $sql1 = "select * from paper_user where post_title = '".$row['post_title']."'";
                     $result1 = $conn->query($sql1);
                     if ($result1 -> num_rows == 0){
-                        $row = $result->fetch_assoc();
                         $sql2 = "insert into paper_user values ('".$row['post_title']."','".$row['post_content']."','".$row['release_date']."','".$row['keywords']."','".$row['release_date']."','".$row['link']."')";
                         $result2 = $conn->query($sql2);
-                        echo "<script>alert('导入成功');</script>";
-                        //查询数据
-
-
+                        echo "<script>
+                                   function insert_user(){
+                                       alert('导入成功');
+                                   }</script>";
+                    }
+                    else{
+                        echo "<script>
+                                   function insert_user(){
+                                       alert('文章已存在!');
+                                   }</script>";
                     }
 
                     $conn->close();
