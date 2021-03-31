@@ -42,7 +42,7 @@ public class PostServlet extends HttpServlet {
             string = req.getParameter("string1");
         } else if (req.getParameter("string") != null) { //返回事件后跳转原来搜索内容
             string = req.getParameter("string");
-        } else { //删除文章后跳转回原来搜索内容
+        } else if (this.getServletContext().getAttribute("key") != null){ //删除文章后跳转回原来搜索内容
             string = (String) this.getServletContext().getAttribute("key");
         }
         List<Post> postList = new ArrayList<>();
