@@ -28,17 +28,19 @@
 </div>
 <div class="message_box">
     <div class="message">
+        <div class="circle"></div>
         <div class="message_title">
-            <h3 id="title"> ${requestScope.paperInfo.title}</h3>
+            <p id="title"> ${requestScope.paperInfo.title}</p>
         </div>
         <div class="message_keyword">
-
-            <h4>关键词：</h4>
+            <p></p>
+            <p></p>
+            <h3>关键词：</h3>
             <p id="keywords"> ${requestScope.paperInfo.keywords} </p>
-
+            <p></p>
         </div>
         <div class="message_summary">
-            <h4>摘要：</h4>
+            <h3>摘要：</h3>
             <p id="summary"> ${requestScope.paperInfo.summary} </p>
         </div>
         <div class="message_link">
