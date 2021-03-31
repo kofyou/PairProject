@@ -6,15 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script type="text/javascript" src="./js/echarts.js"></script>
     <script src="echarts-wordcloud.min.js"></script> -->
-
+    <link rel="stylesheet" type="text/css" href="Untitled-1.css">
     <script type="text/javascript" src="./js/echarts.min.js"></script>
     <script type="text/javascript" src="./js/echarts-wordcloud.min.js"></script>
 
     <!-- <script src="test.js"></script> -->
 
-    <title>Document</title>
 </head>
 <body>
+    <div class="header">
+        <div class="picture"><a href="index.html"><img src="2.png" ></a></div>
+		<div class="hh">
+            <select id="se" v-model="type">
+				<option value="author">author</option>
+				<option value="title">title</option>
+				<option value="keyword">keyword</option>
+				<option value="abstracts">abstracts</option>
+			  </select>
+			<input type="text" name="" id="head-l" v-model="value" @keydown.enter="pageNum=1;search()" placeholder="请输入检索信息" />
+			<input type="submit"  @click = "pageNum=1;search()" id="head-r" value="搜索" />
+        </div>
+        <div id="pi">
+            
+        </div>
+	</div>
 <div id="app">
 
 
@@ -101,6 +116,9 @@
         
 
     </script>
+    <h1 id="h1">
+    词云图
+    </h1>
     </div>
 
 </body>
