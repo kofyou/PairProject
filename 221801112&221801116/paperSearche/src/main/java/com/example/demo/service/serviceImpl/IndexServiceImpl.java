@@ -3,6 +3,7 @@ package com.example.demo.service.serviceImpl;
 import com.example.demo.bean.*;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.IndexSerice;
+import com.example.demo.utils.CrawData;
 import com.example.demo.utils.FileUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -445,5 +446,53 @@ public class IndexServiceImpl implements IndexSerice {
         {
             return userMapper.insUser(user);
         }
+    }
+
+    public List<Paper> searchOnline(Paper paper)
+    {
+        if (paper.getKeywords()!=null)
+        {
+            return parseJsonToPaperBySearchOnline(CrawData.drawData(paper.getKeywords()));
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public List<Paper> parseJsonToPaperBySearchOnline(String json)
+    {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Paper> paperList=new ArrayList<>();
+        JsonNode node = null;
+        try {
+            node = objectMapper.readTree(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int i=0;node.get("records")!=null&&i<node.get("records").size();i++)
+        {
+            logger.debug(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"",""));
+            System.out.println("取得的摘要：" + String.valueOf(node.get("records").get(i).get("abstract")));
+            Paper paper = new Paper();
+            paper.setConference(String.valueOf(node.get("records").get(i).get("publisher")).replaceAll("\"",""));
+            paper.setAbstrac(String.valueOf(node.get("records").get(i).get("abstract")).replaceAll("\"",""));
+            paper.setPersistentLink(String.valueOf(node.get("records").get(i).get("documentLink")).replaceAll("\"",""));
+            if(paper.getPersistentLink().contains("https:")){
+
+            }else {
+                paper.setPersistentLink("https://ieeexplore.ieee.org"+paper.getPersistentLink());
+            }
+            paper.setPublicationTitle(String.valueOf(node.get("records").get(i).get("articleTitle")).replaceAll("\"",""));
+            paper.setPublicationYear(String.valueOf(node.get("records").get(i).get("publicationYear")).replaceAll("\"",""));
+            paper.setPaperId("1");
+
+            System.out.println("******" + paper.getConference());
+            System.out.println("获得的paper:" + paper.toString());
+            paperList.add(paper);
+        }
+
+//            authorslist.add(new PaperAuthors(node.get("keywords")))
+        return paperList;
     }
 }

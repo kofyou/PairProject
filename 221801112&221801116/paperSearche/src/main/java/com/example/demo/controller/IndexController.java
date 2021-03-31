@@ -145,4 +145,17 @@ public class IndexController
         return "lastlogin";
     }
 
+    @RequestMapping("/searchOnline")
+    @ResponseBody
+    public PaperResponsBody searchOnline(Paper paper)
+    {
+        System.out.println("获取的"+paper);
+
+        PaperResponsBody paperResponsBody=new PaperResponsBody();
+        paperResponsBody.setMsg("成功");
+        paperResponsBody.setCount(8);
+        paperResponsBody.setData(indexSerice.searchOnline(paper));
+        paperResponsBody.setCode("0");
+        return paperResponsBody;
+    }
 }
