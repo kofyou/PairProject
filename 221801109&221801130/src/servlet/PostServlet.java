@@ -30,19 +30,21 @@ public class PostServlet extends HttpServlet {
         List<Post> list = new ArrayList<>() ;
         int count = 0;
         String string = " ";
-        if (req.getParameter("count") != null) {
+        System.out.println(req.getParameter("key"));
+        if (req.getParameter("count") != null) { //首页
             count = Integer.parseInt(req.getParameter("count"));
             string = req.getParameter("string");
-        } else if (req.getParameter("nex") != null) {
+        } else if (req.getParameter("nex") != null) { //往后翻页
             count = (Integer.parseInt(req.getParameter("nex")) + 1) * 10;
             string = req.getParameter("string2");
-        } else if (req.getParameter("pre") != null) {
+        } else if (req.getParameter("pre") != null) { //往前翻页
             count = (Integer.parseInt(req.getParameter("pre")) - 1) *10;
             string = req.getParameter("string1");
-        } else if (req.getParameter("string") != null){
+        } else if (req.getParameter("string") != null) { //返回事件后跳转原来搜索内容
             string = req.getParameter("string");
+        } else { //删除文章后跳转回原来搜索内容
+            string = (String) this.getServletContext().getAttribute("key");
         }
-        String sql = "select * from post";
         List<Post> postList = new ArrayList<>();
         postList = postDAO.list(string);
         int size = postList.size();

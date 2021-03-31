@@ -48,11 +48,12 @@
                 <table>
                     <tr>
                         <form method="post" id="form2" action="<%=path%>/delete">
-                            <input type="hidden" id="string1" name="string1" value="${string}" >
-                            <input id="delete" type="button" value="删除论文" style="margin-left: 35%" onclick="del(${string})">
+                            <input type="hidden" id="string1" name="string1" value="${title}" >
+                            <input type="hidden" id="string2" name="string2" value="${key}">
+                            <input id="delete" type="button" value="删除论文" style="margin-left: 35%" onclick="del()">
                         </form>
                         <form method="post" id="form3" action="<%=path%>/hello">
-                            <input type="hidden" id="string" name="string" value="${string}" >
+                            <input type="hidden" id="string" name="string" value="${key}" >
                             <input id="return" type="submit" value="返回" style="margin-left: 5%">
                         </form>
                     </tr>
@@ -66,16 +67,13 @@
 </html>
 <script>
 
-    function del(url){
-
-        if(confirm("确定要删除该论文？")){
-
-            window.location.href = "delete?string="+url;
-
+    function del(){
+        flag = window.confirm("确定要删除该信息？");
+        if (flag == false) {
+            return false;
+        } else{
+            document.getElementById("form2").submit();
         }
-
-        document.form1.action("delete?string="+url);
-
     }
 
 </script>

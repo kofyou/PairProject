@@ -24,7 +24,7 @@ public class ContentServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         List<Post> userList = userDAO.list();
         String title = req.getParameter("title");
-        String string = req.getParameter("key");
+        String key = req.getParameter("key");
         for(Post post : userList){
             if (post.getTitle().equals(title)){
                 req.setAttribute("title",title);
@@ -33,7 +33,8 @@ public class ContentServlet extends HttpServlet {
                 req.setAttribute("keyWord",post.getKeyWord());
                 req.setAttribute("time",post.getTime());
                 req.setAttribute("platform",post.getPlatform());
-                req.setAttribute("string",string);
+                req.setAttribute("title",title);
+                req.setAttribute("key",key);
                 req.getRequestDispatcher("/articleDetails.jsp").forward(req,resp);
                 break;
             }

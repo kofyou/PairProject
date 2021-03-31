@@ -20,8 +20,9 @@ public class DeleteServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         req.setCharacterEncoding("utf-8");
         String title = req.getParameter("string1");
+        String string = req.getParameter("string2");
         userDAO.delete(title);
-        req.setAttribute("string",title);
+        this.getServletContext().setAttribute("key",string);
         req.getRequestDispatcher("/hello").forward(req,resp);
     }
 

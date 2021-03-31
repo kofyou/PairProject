@@ -44,15 +44,13 @@
                 <c:forEach items="${postList}" var="post">
                     <tr>
                         <td width="15%">${post.title} </td>
-                        <td width="15%">${post.content} <input type="hidden" id="title" name="title" value="${post.title}"></td>
+                        <td width="15%">${post.content} "></td>
                         <td width="26%">${post.keyWord} <input type="hidden" id="key" name="key" value="${key}"></td>
                         <td width="20%">${post.link}</td>
                         <td width="8%">${post.time}</td>
                         <td width="8%">${post.platform}</td>
                         <td width="5%">
-                            <button type="submit" id="see" name="see" >查看</button>
-                            <!--button id="edit">编辑</button-->
-                            <!--button id="delete">删除</button-->
+                            <input type="button" id="see" name="see" value="查看" onclick="window.location='content?title=${post.title}&key=${key}'">
                         </td>
                     </tr>
                 </c:forEach>
@@ -91,8 +89,5 @@
 </html>
 
 <script>
-    function check() {
-        // 调用后端servlet，并将数据进行传递
-        document.getElementById("form2").submit();
-    }
+
 </script>
