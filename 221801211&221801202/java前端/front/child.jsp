@@ -33,12 +33,11 @@
     <script src="<%= basePath+"javascript/exporting.js" %>"></script>
     <script src="<%= basePath+"javascript/Jcloud.js" %>"></script>
     <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
-
     <link rel="stylesheet" href="<%= basePath+"css/cloud.css" %>" type="text/css">
     <link rel="stylesheet" href="<%= basePath+"css/style1.css" %>" type="text/css">
 </head>
 
-<body style="background: url(<%= basePath+"Photos/back.jpg" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed;">
+<body style="background: url(<%= basePath+"Photos/bg1.png" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed; background-repeat: repeat;">
 
 <div class="container">
     <div class="row clearfix">
@@ -62,11 +61,16 @@
         </div>
     </div>
 
-    <div>
-        <div class="row clearfix" style="width: 50%">
-            <div class="col-md-6 column">
+
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-5 column">
                 <div class="row" id="hh">
-                    <div class="container">
+                    <div id="example" style="width: 550px; height: 350px;"></div>
+                </div>
+            </div>
+            <div class="col-md-5 column">
                         <canvas id="canvas" width="600" height="500"></canvas>
                         <script src="<%= basePath+"javascript/chart.js" %>" style="width: 50%"></script>
                         <script style="width: 50%">
@@ -85,8 +89,6 @@
                                 contentColor: '#bbbbbb'     // 内容横线颜色
                             });
                         </script>
-                    </div>
-                </div>
             </div>
         </div>
         <script type="text/javascript" style="width: 50%">
@@ -103,8 +105,6 @@
                 $("#example").jQCloud(word_array);
             });
         </script>
-        <div id="example" style="width: 50%; height: 650px;"></div>
-    </div>
 </div>
 </body>
 </html>

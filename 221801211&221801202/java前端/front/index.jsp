@@ -1,6 +1,9 @@
 <%@ page import="cn.itcast.domain.PaperInfo" %>
 <%@ page import="java.util.List" %>
-<%@ page import="cn.itcast.domain.PaperInfo" %><%--
+<%@ page import="cn.itcast.domain.PaperInfo" %>
+<%@ page import="cn.itcast.domain.Keynum" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%--
   Created by IntelliJ IDEA.
   User: 99647
   Date: 2021/3/28
@@ -31,28 +34,105 @@
     <script src="<%= basePath+"javascript/exporting.js" %>"></script>
     <script src="<%= basePath+"javascript/Jcloud.js" %>"></script>
     <script src="<%= basePath+"javascript/bootstrap.js" %>"></script>
+    <script src="<%= basePath+"javascript/bootstrap-table.js" %>"></script>
 
     <link rel="stylesheet" href="<%= basePath+"css/cloud.css" %>" type="text/css">
     <link rel="stylesheet" href="<%= basePath+"css/style1.css" %>" type="text/css">
-</head>
+    <link rel="stylesheet" href="<%= basePath+"css/bootstrap-table.css" %>" type="text/css">
 
-<body style="background: url(<%= basePath+"Photos/back.jpg" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed;">
-    <style type="text/css">
-        .abstract{
-            width:300px;
-            flaot:left;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+    <style>
+        .table-normal {
+            width: 80%;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
         }
-        .absrtr{
-            width:200px;
-            flaot:left;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+
+        .table-normal th,
+        .table-normal td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .outBox .checkbox {
+            width: 2px;
+            height: 2px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btnShow {
+            size: 12px;
+            width: 20%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid black;
+            border-radius: 10%;
+            color: rgb(255, 255, 255);
         }
     </style>
+
+    <script>
+        $(document).ready(function(){
+            $("#table_page").bootstrapTable({
+                columns:[
+                    {
+                        field:'name',
+                        title:'标题'
+                    },
+                    {
+                        field:'year',
+                        title:'年份'
+                    },
+                    {
+                        field:'meeting',
+                        title:'会议'
+                    },
+                    {
+                        field:'abstract',
+                        title:'摘要'
+                    },
+                    {
+                        field:'url',
+                        title:'链接'
+                    },
+                    {
+                        field:'keyword',
+                        title:'关键词'
+                    },
+                    {
+                        field:'view',
+                        title:'查看'
+                    },
+                    {
+                        field:'delete',
+                        title:'删除'
+                    },
+                ]
+            })
+        })
+    </script>
+</head>
+
+<body style="background: url(<%= basePath+"Photos/bg1.png" %>);background-origin: content-box; background-position: 50% 50%; opacity: 0.8; background-attachment: fixed; background-repeat: repeat;">
+<style type="text/css">
+    .abstract{
+        width:300px;
+        flaot:left;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .absrtr{
+        width:200px;
+        flaot:left;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -93,7 +173,7 @@
                             text: '三大顶会热词走势'
                         },
                         xAxis: {
-                            categories: ['Machine Learning', 'Algebraic Geometry', 'Numerical Analysis', 'Image and Video Processing', 'Optimization and Control', 'Robotics', 'Graphic', 'Databases', 'MVC', 'Distributed,Parallel,and Cluster Computing']
+                             categories: ['Machine Learning', 'Algebraic Geometry', 'Numerical Analysis', 'Image and Video Processing', 'Optimization and Control', 'Robotics', 'Graphic', 'Databases', 'MVC', 'Distributed,Parallel,and Cluster Computing']
                         },
                         yAxis: {
                             title: {
@@ -122,79 +202,47 @@
                 });
             </script>
 
-            <div class="row clearfix" >
-                <div class="col-md-6 column">
-                    <table class="table table-condensed table-hover table-striped">
-
-                        <thead>
-                        <tr>
-                            <th>
-                                论文标题
-                            </th>
-                            <th>
-                                会议名称
-                            </th>
-                            <th>
-                                会议年份
-                            </th>
-                            <th style="width: 50px">
-                                摘要
-                            </th>
-                            <th>
-                                链接
-                            </th>
-                            <th>
-                                关键词
-                            </th>
-                            <th>
-                                查看
-                            </th>
-                            <th>
-                                删除
-                            </th>
-                        </tr>
-                        </thead>
-                        <!--表格内容-->
-                        <tbody>
-                        <% List<PaperInfo> list= (List<PaperInfo>) request.getAttribute("paperInfos"); %>
-                        <% int i=0;%>
-                        <% for(PaperInfo user : list){ %>
-                        <tr>
-                            <td><div class="absrtr"><%=user.getTitle()%></div></td>
-                            <td><%=user.getMeeting()%></td>
-                            <td><%=user.getYear()%></td>
-                            <td><div class="abstract"><%=user.getAbstr()%></div></td>
-                            <td><%=user.getUrl()%></td>
-                            <td><%=user.getKeyword()%></td>
-                            <td>
-                                <form action="homepage" method="get">
-                                    <input type="hidden" name="view" value=
-                                        <%=user.getTitle()%>
-                                    >
-                                    <input type="submit" value="查看" />
-                                </form>
-                            </td>
-                            <td>
-                                <form action="homepage" method="get">
-                                    <input type="hidden" name="delete" value=
-                                        <%=user.getTitle()%>
-                                    >
-                                    <input type="submit" value="删除" />
-                                </form>
-                            </td>
-                        </tr>
-                        <% } %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table class="table table-bordered" id="table_page"
+                   data-pagination="true"
+                   data-side-pagination="client"
+                   data-page-size="5">
+                <% List<PaperInfo> list= (List<PaperInfo>) request.getAttribute("paperInfos"); %>
+                <% int i=0;%>
+                <% for(PaperInfo user : list){ %>
+                <tr>
+                    <td><div class="absrtr"><%=user.getTitle()%></div></td>
+                    <td><%=user.getYear()%></td>
+                    <td><%=user.getMeeting()%></td>
+                    <td><div class="abstract"><%=user.getAbstr()%></div></td>
+                    <td><%=user.getUrl()%></td>
+                    <td><%=user.getKeyword()%></td>
+                    <td>
+                        <form action="homepage" method="get">
+                            <input type="hidden" name="view" value=
+                                    "<%=user.getTitle()%>"
+                            >
+                            <input type="submit" value="查看" />
+                        </form>
+                    </td>
+                    <td>
+                        <form action="homepage" method="get">
+                            <input type="hidden" name="delete" value=
+                                "<%=user.getTitle()%>"
+                            >
+                            <input type="submit" value="删除" />
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
 
         </div>
     </div>
 </div>
 
-        </div>
-    </div>
+</div>
+</div>
 </div>
 </body>
+
 </html>
