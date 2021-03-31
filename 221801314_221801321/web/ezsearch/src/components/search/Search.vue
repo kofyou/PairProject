@@ -29,6 +29,9 @@ export default defineComponent({
   },
   created() {
     this.inputValue = this.getQueryString("title");
+    if (this.inputValue === null) {
+      this.inputValue = "";
+    }
     console.log(this.inputValue);
   },
   setup(props, { emit }) {
