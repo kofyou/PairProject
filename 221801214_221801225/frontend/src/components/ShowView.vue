@@ -10,7 +10,7 @@
         >
         </el-option>
       </el-select>
-      
+
       <input class="searchBox" type="text" v-model="searchtext" />
       <button class="click" @click="search1">搜索</button>
     </div>
@@ -68,6 +68,10 @@ export default {
       ],
     };
   },
+  mounted() {
+    //此处true 需要加上 不加滚动事件可能绑定不成功
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
   components: {
     PaperItem,
   },
@@ -76,11 +80,49 @@ export default {
       url: "http://localhost:8080/changepage",
     }).then((res) => {
       this.listArr2 = res.data;
-      this.listArr1=this.listArr2.slice(0,5);
+      this.listArr1 = this.listArr2.slice(0, 5);
     });
   },
   methods: {
-  
+    handleScroll() {
+      let scrolltop =
+        document.documentElement.scrolltop || document.body.scrollTop;
+      scrolltop > 30 ? (this.gotop = true) : (this.gotop = false);
+    },
+    search1() {
+    },
+    nextpage() {
+      let top = document.documentElement.scrollTop || document.body.scrollTop;
+      //实现滚动效果
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
+        if (top <= 0) {
+          clearInterval(timeTop);
+        }
+      }, 10);
+      this.current++;
+      if (this.selectwhat == 1) {
+        this.listArr1 = this.listArr2.slice(
+          this.current * 5 - 5,
+          this.current * 5
+        );
+      } else if (this.selectwhat == 2) {
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.title.includes(this.searchtext))
+          .slice(this.current * 5 - 5, this.current * 5);
+      } else if (this.selectwhat == 3) {
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.abstracted.includes(this.searchtext))
+          .slice(this.current * 5 - 5, this.current * 5);
+      } else {
+        this.listArr1 = this.listArr2
+          .filter((item, index) => item.keyword.indexOf(this.searchtext) > -1)
+          .slice(this.current * 5 - 5, this.current * 5);
+      }
+    },
+    lastpage() {
+
+    },
   },
 };
 </script>
