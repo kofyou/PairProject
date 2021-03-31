@@ -41,11 +41,11 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
     List<Paper> fuzzyFindPaperByKeywordOrTitleOrAbstract(String fuzzyContent);
 
     /**
-     * Fuzzy find paper by keyword or title or abstract and page list.
+     * 通过论文标题，摘要，关键字模糊查询论文列表并分页
      *
-     * @param fuzzyContent the fuzzy content
-     * @param offset       the offset
-     * @param pageSize     the page size
+     * @param fuzzyContent the fuzzy content 查询内容
+     * @param offset       the offset 起始查询位置
+     * @param pageSize     the page size 单页论文数量
      * @return the list
      */
     @Query(value = "(select distinct papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
@@ -119,4 +119,53 @@ public interface PaperDao extends JpaRepository<Paper,Integer> {
             "where user_paper.userId = ?1 " +
             "limit ?2,?3 ",nativeQuery = true)
     List<Paper> findAllUserPapersByPage(Integer userId,Integer offset,Integer pageSize);
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的简要信息
+     *
+     * @param userId       the user id 用户id
+     * @param fuzzyContent the fuzzy content 模糊查询字符串
+     * @return the list 包含标题、论文id的论文列表
+     */
+    @Query(value = "select papers.id,papers.title,\"\" as source,\"\" as url,\"\" as publishYear,\"\" as abstract " +
+            "from user_paper,papers " +
+            "where (user_paper.userId = ?1 " +
+            "and user_paper.paperId = papers.id)" +
+            "and ( papers.title LIKE ?2 " +
+            "or papers.abstract LIKE ?2) " +
+            "union " +
+            "select papers.id,papers.title,\"\" as source,\"\" as url,\"\" as publishYear,\"\" as abstract " +
+            "from user_paper,papers,keywords " +
+            "where (user_paper.userId = ?1 " +
+            "and user_paper.paperId = papers.id) " +
+            "and papers.id = keywords.paperId " +
+            "and keywords.keyword = ?2 ",nativeQuery = true)
+    List<Paper> fuzzyFindSimplifiedUserPaperByKeywordOrTitleOrAbstract(Integer userId, String fuzzyContent);
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的所有信息(不包括关键词)，并分页
+     *
+     * @param userId       the user id 用户id
+     * @param fuzzyContent the fuzzy content 模糊查询内容
+     * @param offset       the offset 起始查询位置
+     * @param pageSize     the page size 单页论文数
+     * @return the list 分页后的相关论文信息列表，不包括相关关键词
+     */
+    @Query(value = "(select papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from user_paper,papers " +
+            "where (user_paper.userId = ?1 " +
+            "and user_paper.paperId = papers.id)" +
+            "and ( papers.title LIKE ?2 " +
+            "or papers.abstract LIKE ?2) " +
+            "union " +
+            "select papers.id,papers.title,papers.source,papers.url,papers.publishYear,papers.abstract " +
+            "from user_paper,papers,keywords " +
+            "where (user_paper.userId = ?1 " +
+            "and user_paper.paperId = papers.id) " +
+            "and papers.id = keywords.paperId " +
+            "and keywords.keyword = ?2) " +
+            "limit ?3,?4",nativeQuery = true)
+    List<Paper> fuzzyFindFullUserPaperByKeywordOrTitleOrAbstractAndPage(Integer userId,String fuzzyContent
+            ,Integer offset,Integer pageSize);
+
 }

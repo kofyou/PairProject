@@ -113,4 +113,33 @@ public class UserPaperController {
             ,@RequestParam(defaultValue = "5") Integer pageSize) {
         return Result.success(userPaperService.findAllUserFullPaperByPage(pageNum,pageSize,id));
     }
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的简要信息
+     *
+     * @param id            the id 用户id
+     * @param originContent the origin content 查询的内容
+     * @return the result 包含标题、论文id的论文列表
+     */
+    @GetMapping("/search")
+    public Result fuzzyGetUserPaperByKeywordOrTitleOrAbstract(@SessionAttribute Integer id
+            ,@RequestParam String originContent) {
+        return Result.success(userPaperService.fuzzyGetUserPaperByKeywordOrTitleOrAbstract(id,originContent));
+    }
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的所有信息，并分页
+     *
+     * @param id            the id 用户id
+     * @param originContent the origin content 查询内容
+     * @param pageNum       the page num 查看页数
+     * @param pageSize      the page size 单页论文数量
+     * @return the result 分页后的相关论文完整信息列表
+     */
+    @GetMapping("/searchPage")
+    public Result fuzzyGetFullUserPaperByKeywordOrTitleOrAbstractAndPage(@SessionAttribute Integer id
+            ,@RequestParam String originContent,@RequestParam(defaultValue = "1") Integer pageNum
+            ,@RequestParam(defaultValue = "5") Integer pageSize) {
+        return Result.success(userPaperService.fuzzySearchFullUserPaperAndPage(id,originContent,pageNum,pageSize));
+    }
 }

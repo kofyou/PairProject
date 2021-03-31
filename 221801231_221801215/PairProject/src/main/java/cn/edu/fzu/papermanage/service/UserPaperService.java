@@ -116,4 +116,33 @@ public class UserPaperService {
     public Integer countUserPapersByKeyword(Integer id,String keyword) {
         return paperDao.countUserPapersByKeyword(id,keyword);
     }
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的简要信息
+     *
+     * @param userId        the user id 用户id
+     * @param originContent the origin content 查询内容
+     * @return the list 包含标题、论文id的论文列表
+     */
+    public List<Paper> fuzzyGetUserPaperByKeywordOrTitleOrAbstract(Integer userId,String originContent) {
+        String fuzzyContent = SqlSentenceUtil.splitAndAddFuzzy(originContent);
+        return paperDao.fuzzyFindSimplifiedUserPaperByKeywordOrTitleOrAbstract(userId,fuzzyContent);
+    }
+
+    /**
+     * 根据关键词，标题，摘要模糊查询用户关注论文的所有信息，并分页
+     *
+     * @param userId        the user id 用户id
+     * @param originContent the origin content 查询内容
+     * @param pageNum       the page num 查看页数
+     * @param pageSize      the page size 单页论文数量
+     * @return the list 分页后的相关论文完整信息列表
+     */
+    public List<PaperWithKeywords> fuzzySearchFullUserPaperAndPage(Integer userId,String originContent,Integer pageNum
+            ,Integer pageSize) {
+        String fuzzyContent = SqlSentenceUtil.splitAndAddFuzzy(originContent);
+        List<Paper> papers = paperDao.fuzzyFindFullUserPaperByKeywordOrTitleOrAbstractAndPage(userId,fuzzyContent
+                ,(pageNum - 1) * pageSize,pageSize);
+        return getPaperWithKeywords(papers);
+    }
 }
