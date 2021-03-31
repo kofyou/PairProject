@@ -1,22 +1,26 @@
 //var LOGIN = "http://192.168.0.114:8080/PaperSearching_war_exploded/LoginServlet"
-var LOGIN = "../LoginServlet"
-var REGIST = "../RegisterServlet"
-
-var HOTTEST = "../GetHottestKeywordsServlet"
-var STATIC = "../GetTendencyServlet"
-
-var GLOBAL_BLUR_SEARCH_ALL_PAPER_AND_COUNT = "../../PaperListServlet"
-var GLOBAL_BUL_DELETE_MY_COLLECT = "../../DeleteMyCollectSevlet"
-var GLOBAL_BLUR_UPDATE = "../../UpdateMyCollectServlet"
-
-var MY_COLLECT_ALL_PAPER = "../../MyCollectServlet"
-var MY_COLLECT_COUNT = "../../MyCollectServlet"
-var MY_COLLECT_UPDATE = "../../DeleteMyCollectServlet"
-
-var SETTING = "../UpdateUserInfoServlet"
 
 
-var AJAX_URL = {    
+const BASE_URL = "../"
+
+const LOGIN =  BASE_URL+"LoginServlet"
+const REGIST = BASE_URL+"RegisterServlet"
+
+const HOTTEST = BASE_URL+"GetHottestKeywordsServlet"
+const STATIC = BASE_URL+"GetTendencyServlet"
+
+const GLOBAL_BLUR_SEARCH_ALL_PAPER_AND_COUNT = BASE_URL+"PaperListServlet"
+const GLOBAL_BUL_DELETE_MY_COLLECT = BASE_URL+"DeleteMyCollectSevlet"
+const GLOBAL_BLUR_UPDATE = BASE_URL+"UpdateMyCollectServlet"
+
+const MY_COLLECT_ALL_PAPER = BASE_URL+"MyCollectServlet"
+const MY_COLLECT_COUNT = BASE_URL+"MyCollectServlet"
+const MY_COLLECT_UPDATE = BASE_URL+"DeleteMyCollectServlet"
+
+const SETTING = "../UpdateUserInfoServlet"
+
+
+const AJAX_URL = {    
     "login" : LOGIN,    //登录
     "regist" : REGIST,    //注册
 
