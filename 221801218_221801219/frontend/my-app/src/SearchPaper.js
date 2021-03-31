@@ -13,7 +13,7 @@ const { Content } = Layout;
 
 const subscribePaper = (paperId) => {
   axios.defaults.withCredentials = true
-  let url = 'http://localhost:3000/api/v1/paper/subscribe'
+  let url = 'http://pingleme.top:3000/api/v1/paper/subscribe'
   axios.post(url, {
     withCredentials: true,
     paper_id: paperId,
@@ -43,7 +43,7 @@ class CreateSearchPageList extends React.Component {
     let urlAdd = _this.state.pageNum == 0 ? '' : '&page=' + _this.state.pageNum
     let urlAdd2 = !_this.props.location.state.paperMeetingSearch ? '' : '&meeting=' + _this.props.location.state.paperMeetingSearch
     let urlAdd3 = !_this.props.location.state.paperWordsSearch ? '' : '&keyword=' + _this.props.location.state.paperWordsSearch
-    let url = 'http://localhost:3000/api/v1/search?title=' + _this.props.location.state.paperNameSearch + urlAdd + urlAdd2 + urlAdd3
+    let url = 'http://pingleme.top:3000/api/v1/search?title=' + _this.props.location.state.paperNameSearch + urlAdd + urlAdd2 + urlAdd3
 
     axios.get(url)
       .then(function (response) {
@@ -75,7 +75,7 @@ class CreateSearchPageList extends React.Component {
         urlAdd = this.state.pageNum == 0 ? '' : '&page=' + this.state.pageNum
       }
 
-      let url = 'http://localhost:3000/api/v1/search?title=' + this.props.location.state.paperNameSearch + urlAdd
+      let url = 'http://pingleme.top:3000/api/v1/search?title=' + this.props.location.state.paperNameSearch + urlAdd
 
       axios.get(url)
         .then(function (response) {
