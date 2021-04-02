@@ -1,0 +1,215 @@
+body{
+    margin: 0;
+    padding: 0;
+    background:#131f30;
+
+}
+a{
+    text-decoration: none;
+}
+button{
+    background: none;
+}
+img{
+    width: auto;
+    height: 100%;
+}
+.title_otherPage{
+    font-family:'Times New Roman', Times, serif;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 68px;
+    color: black;
+}
+.main{
+    min-height: 60vh;
+    width: 70%;
+    list-style: none;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 4%;
+    padding-top: 8%;
+    padding-left: 0;
+    padding-bottom: 60px;
+    margin-bottom: 15px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: #ffffff80;
+}
+.single_paper{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 1.5%;
+    width: 80%;
+    height: 5%;
+    border-radius: 48px;
+    padding: 0 14px;
+    background-color: #E8E8E8;
+    display: flex;
+    align-items: center;
+}
+.paper_number{
+    width: 90px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+.paper_title{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: 0;
+    margin: 0;
+    width: 70%;
+    font-size: 18px;
+    line-height: 36px;
+    font-weight: bold;
+    color: black;
+    background:none;
+}
+.tag1{
+    color: #dfdfdf;
+    display: inline-block;
+    margin-right: 15px;
+    height: 24px;
+    vertical-align: middle;
+    width: 60px;
+    text-align: center;
+    background-color: #7C3789;
+    border-radius: 36px;
+}
+.tag2{
+    color: #dfdfdf;
+    display: inline-block;
+    margin-right: 15px;
+    height: 24px;
+    vertical-align: middle;
+    width: 60px;
+    text-align: center;
+    background-color: #4B3789;
+    border-radius: 36px;
+}
+.tag3{
+    color: #dfdfdf;
+    display: inline-block;
+    margin-right: 15px;
+    height: 24px;
+    vertical-align: middle;
+    width: 60px;
+    text-align: center;
+    background-color: #376089;
+    border-radius: 36px;
+}
+.collect_btn{
+    height: 28px;
+    width: 36px;
+    margin-right: 5px;
+    border: none;
+    outline: none;
+}
+.delete_btn{
+    height: 28px;
+    width: 36px;
+    border: none;
+    outline: none;
+}
+.searchBox_listPage{
+    position: absolute;
+    top: 15%;
+    right: 17.5%;
+    background: #E8E8E8;
+    height: 36px;
+    border-radius: 36px;
+    padding: 5px;
+}
+.searchBox_btn{
+
+    float: right;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    background: url("/png/search.png") no-repeat;
+    background-size: 100% 100%;
+    outline: none;
+    border: 0;
+}
+.searchBox_listPage:hover > .searchBox_text{
+    width: 28vh;
+    padding-left:20px;
+    line-height: 36px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.searchBox_listPage:hover > .searchBox_btn{
+    margin-right: 5px;
+    box-shadow: none;
+    background-color: white;
+}
+.searchBox_listPage:hover > .searchBox_btn:hover{
+    box-shadow: 0 0 3px 1px;
+}
+.searchBox_text{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+.leftpage_btn{
+    position: absolute;
+    left: 15.5%;
+    top: 50%;
+    height: 10%;
+    width: 5%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+}
+.rightpage_btn{
+    position: absolute;
+    right: 15.5%;
+    top: 50%;
+    height: 10%;
+    width: 5%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+}
+.nextpage_btn{
+    display: flex;
+    justify-content: center;
+    height: 36px;
+    width: 100%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    border-left: 3px rgba(0, 0, 0, 0.6) solid;
+}
+.lastpage_btn{
+    display: flex;
+    justify-content: center;
+    height: 36px;
+    width: 100%;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    border-right: 3px rgba(0, 0, 0, 0.6) solid;
+}
+.pagenumber{
+    display: flex;
+    justify-content: center;
+    padding: 0 50px;
+}
+.currentpage{
+    text-align: center;
+    width: 36px;
+}
