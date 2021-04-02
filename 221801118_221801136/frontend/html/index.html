@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<!--导航栏-->
+    <div id="topBar">
+        <div id="logo"  style="font-family: Arial;font-weight: bold;font-size: 45px;"><span class="iconfont icon-sousuo" id="book"></span>&nbsp;Thesis
+        </div>
+        <div class="topBarItem"><span class="iconfont icon-biaoqiankuozhan_wode-230"></span>
+            <a href="mine.html" class="tab">我的</a></div>
+        <div class="topBarItem"><span class="iconfont icon-fenxi"></span>
+            <a href="analyse2.html" class="tab">论文分析</a></div>
+        <div class="topBarItem"><span class="iconfont icon-chazhaobiaodanliebiao"></span>
+            <a href="list.html" class="tab">论文列表</a></div>
+<!--        <div class="topBarItem"><span class="iconfont icon-sousuo"></span>-->
+<!--            <a href="search.html" class="tab">论文搜索</a></div>-->
+        <div class="topBarItem">
+            <span class="iconfont icon-shalou"></span>
+            <a href="index.html" class="tab">首页</a></div>
+    </div>
+<!--页面主体-->
+    <div id="mainPart" >
+        <div id="mainSelect">
+            <div id="login"><b>登录</b></div>
+            <div id="regist"><b>注册</b></div>
+
+
+                <div style="height: 80px;width: 100%;"></div>
+                <div class="form-group">
+                    <label for="user" style="margin-left: 20px;font-size: 20px;">账号：</label>
+                    <input type="text" name="username" class="form-control" id="user" placeholder="请输入用户名"/>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 30px;font-size: 20px;">
+                    <label for="password" style="margin-left: 20px">密码：</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码"/>
+                </div>
+                <hr/>
+                <div class="form-group" id="loginBtn" style="text-align: center;display:block;">
+                    <input class="btn btn-primary" type="submit" value="登录">
+                </div>
+                <div class="form-group" id="registBtn" style="text-align: center;display:none;">
+                    <input class="btn btn-primary" type="submit" value="注册">
+                </div>
+
+        </div>
+    </div>
+<script src="../js/jquery.js"></script>
+<script src="../js/login.js"></script>
+
+</body>
+</html>

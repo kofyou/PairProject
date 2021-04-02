@@ -1,0 +1,47 @@
+#mainPart{
+    background: #697878;
+    width: 98%;
+    height: 580px;
+    margin: 0px auto;
+    opacity: 0.8;
+}
+.part{
+    height: 80%;
+    width: 60%;
+    /*border: black 1px solid;*/
+    float: left;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+#book{
+    font-size: 30px;
+
+}
+a{
+    text-decoration: none;
+    color: #fcf9f9;
+}
+.title{
+    width: 80%;
+    /*margin-left: 20px;*/
+    /*margin-top: 50px;*/
+    margin-bottom: 20px;
+    float: left;
+    color: #f3f4f6;
+    font-size: 20px;
+    font: bolder;
+    background: #060626;
+    text-align: center;
+    border-radius: 20px;
+}
+.titleLine{
+    float: left;
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 0;
+}
+/*#top10{*/
+/*    width: 800px;*/
+/*    width: 800px;*/
+/*}*/

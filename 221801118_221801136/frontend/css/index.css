@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#topBar{
+    width: 100%;
+    background: rgb(12,38,62x);
+    border-bottom: 2px #15181a solid;
+    height: 55px;
+    line-height: 45px;
+    margin: auto;
+}
+.topBarItem{
+    /*display: inline;*/
+    background: rgb(229,231,234);
+    height: 30px;
+    width: 90px;
+    border-radius: 10px;
+    float: right;
+    margin-top: 13px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 30px;
+}
+#logo{
+    color: snow;
+    font-size: 40px;
+    float: left;
+    width: 100px;
+    margin: auto 10px;
+}
+#mainPart{
+
+}
+body{
+    background : url("../img/bg.jpg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+#mainSelect{
+    width: 500px;
+    height: 350px;
+    margin: 80px auto;
+    background: rgb(174,171,172);
+    border-radius: 30px;
+    opacity: 80%;
+}
+#login{
+    width: 246px;
+    height: 50px;
+    float: left;
+    border-top-left-radius:30px ;
+    background: rgb(163, 159, 161);
+    box-shadow: 10px 10px 5px #888888;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+}
+#regist{
+    width: 246px;
+    height: 50px;
+    float: right;
+    border-top-right-radius: 30px;
+    background: rgb(163, 159, 161);
+    box-shadow: -10px 10px 5px #888888;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+}
+.topBarItem:hover{
+    color: #2c65a5;
+}
+.tab{
+    text-decoration: none;
+    color:black;
+}
