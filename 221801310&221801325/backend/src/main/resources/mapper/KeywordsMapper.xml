@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pair.papercrawler.dao.KeywordsMapper">
+    <resultMap id="BaseResultMap" type="com.pair.papercrawler.models.Paper">
+        <constructor>
+            <idArg column="paperId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="link" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="abstracts" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="magazine" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="AuthorResultMap" type="com.pair.papercrawler.models.Keyword">
+        <constructor>
+            <idArg column="keyword" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="paperId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        </constructor>
+    </resultMap>
+
+<!--    需要多表联合查询-->
+    <select id="selectPaperByKeyword" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        FROM
+            papers
+                INNER JOIN keywords ON keywords.paperId = papers.paperId
+        WHERE keywords.keyword like  #{keyword, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectKeywordByPaperId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select
+            keyword
+        from
+            authors
+        where paperId = #{paperId, jdbcType=INTEGER}
+    </select>
+
+</mapper>

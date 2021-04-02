@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大象爬论文</title>
+    <link rel="stylesheet" type="text/css" href="Untitled-1.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<script>
+
+</script>
+</head>
+
+<body id="body"   >
+    <div id="app">
+
+ 
+    <div class="header">
+        <div class="picture"><a href="index.html"><img src="2.png" ></a></div>
+		<div class="hh">
+            <select id="se" v-model="type">
+				<option value="author">author</option>
+				<option value="title">title</option>
+				<option value="keyword">keyword</option>
+				<option value="abstracts">abstracts</option>
+			  </select>
+			<input type="text" name="" id="head-l" v-model="value" @keydown.enter="pageNum=1;search()" placeholder="请输入检索信息" />
+			<input type="submit"  @click = "pageNum=1;search()" id="head-r" value="搜索" />
+        </div>
+        <div id="pi">
+            
+        </div>
+	</div>
+    <div id ="main-container">
+
+   
+    <div id ="content">
+
+        <ul class="list" v-for="novel in item">
+            <u class="u">
+            <a id="a" v-bind:href="novel.link" target="view_window">{{novel.title}}</a>
+        </u>
+        <input type="button" id="del" value="删除" @click="del(novel.paperId);search()">
+        <br>
+        <b id="b">abstract:   
+        </b>
+
+            {{novel.abstracts}}
+        
+
+        </ul>
+        <div id="next">
+			<button class="prev" @click="search(pageNum=pageNum-1)" >上一页</button>
+            <b>{{pageNum}}/{{page.pages}}</b>
+			<button class="next" @click="pageNum+=1;search(pageNum)" >下一页</button>
+		</div>
+
+
+    </div>
+
+</div>
+
+</div>
+<script src="./js/list.js"></script>
+
+</body>
+</html>

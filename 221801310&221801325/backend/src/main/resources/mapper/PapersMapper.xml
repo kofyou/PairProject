@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pair.papercrawler.dao.PapersMapper">
+    <resultMap id="BaseResultMap" type="com.pair.papercrawler.models.Paper">
+        <constructor>
+            <idArg column="paperId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="link" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="abstracts" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="magazine" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+
+    <select id="selectPaperByTitle" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        FROM
+             papers
+        WHERE title like #{title, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectPaperByMagazine" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        from
+            papers
+        where magazine = #{magazine, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectPaperByPaperId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        from
+            papers
+        where paperId = #{paperId, jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        from
+            papers
+    </select>
+
+    <delete id="deletePaperByPaperId" parameterType="java.lang.Integer">
+        delete from
+            papers
+        where paperId=#{paperId, jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectPaperByAbstracts" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+            papers.paperId,
+            papers.title,
+            papers.link,
+            papers.abstracts,
+            papers.magazine
+        from
+            papers
+        where abstracts like #{abstracts, jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>
