@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>热词分析</title>
+		<link rel="stylesheet" type="text/css" href="../css/hot_word.css">
+		<script src="../echart/echarts.min.js"></script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+			<h1 >热词分析</h1></div>
+			 
+			<div id = "content">
+				<select name="dgLink2" id = "selection" style="WIDTH: 150px" onchange="MM_jumpMenu('parent',this,0)">
+					<option value="#">请选择顶会名称：</option>
+					<option value="cvpr.html">CVPR</option>
+					<option value="eccv.html">ECCV</option>
+					<option value="iccv.html">ICCV</option>
+				</select>
+			</div>
+			
+			<div id="btn">
+				<button class = "btn1" onclick="window.open('../index.html','_self')">返回首页<button>
+			</div>
+		</div>
+		<script type="text/JavaScript">		    
+		    function MM_jumpMenu(targ,selObj,restore){ //v3.0
+		     eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+		     if (restore) selObj.selectedIndex=0;
+		    }
+		</script>
+		
+	</body>
+<html>

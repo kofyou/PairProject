@@ -1,0 +1,55 @@
+@charset "UTF-8";
+#body {
+	/*background-color: #1B6D85;*/
+}
+
+#container {
+	/*background-color:#F8F8F8;
+	width:1920px;
+	height:960px;*/
+}
+
+#header {
+    /*background-color:red;*/
+    text-align:center;
+    /*padding:15px;*/
+}
+#content {
+	/*margin:150px 350px;
+	background-color:#008AFF;*/
+	text-align:center;
+	width:100%;
+	height:100%;
+}
+
+#biaoti {
+	font-size: 26px;
+}
+
+table {
+	table-layout:fixed;
+	
+}
+
+.zhengwen{
+	background-color: #f3f3f3;
+	word-wrap:break-word;
+}
+
+button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.btn1 {
+	float: right;
+	background-color: #5BC0DE;
+	font-size: 1.8em;
+	height:100px;
+	width:180px;
+}
