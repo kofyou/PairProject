@@ -1,0 +1,156 @@
+html,body {
+    overflow-y: scroll;
+}
+
+.search{
+    position: relative;
+    top: 10%;
+    left: 17%;
+    width: 50%;
+    height: 5%
+}
+
+#search_key{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 50px;
+    background-color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    color: #757575;
+    padding-left: 3%;
+    outline: none;
+}
+#search_key:focus{
+    border: none;
+}
+#submit_icon{
+    position: absolute;
+    z-index: 99999;
+    left: 78%;
+    top: 14%;
+    width: 3%;
+    height: 90%;
+    background-color: rgba(0,0,0,0);
+    background-image: url("image/search_certain.svg");
+    background-size: 100% 100%;
+    border: none;
+    outline: none;
+}
+.results{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    top: 12%;
+    left: 15%;
+    background-color: rgba(255,255,255,0);
+    z-index: 1;
+}
+#nums{
+    position: relative;
+    left: 4%;
+    font-size: 16px;
+    color: #757575;
+    margin-bottom: 1%;
+}
+#bt_in{
+    position: absolute;
+    width: 8%;
+    height: 3%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 100);
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.7);
+    right: 2%;
+    top: 3%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+#icon_in{
+    position: absolute;
+    z-index: 99999;
+    right: 3%;
+    top: 3%;
+}
+
+.result_{
+    position: relative;
+    width: 94%;
+    height: 25%;
+    background-color: rgba(195, 232, 255, 51);
+    left: 3%;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 25px 25px 25px 25px;
+    margin-top: 2%;
+    padding-left: 1%;
+}
+
+.paper_title{
+    position: absolute;
+    top: 7%;
+    padding-left: 1%;
+    font-size: 20px;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    font-family: SourceHanSansSC-regular;
+}
+.source{
+    position: absolute;
+    top: 20%;
+    padding-left: 1%;
+    color: #3671CC;
+    font-size: 16px;
+}
+.summary{
+    position: absolute;
+    padding-left: 1%;
+    padding-right: 4%;
+    top: 37%;
+    font-size: 16px;
+    color: #757575;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
+#paper_link{
+    position: absolute;
+    top: 70%;
+    color: #356FC8;
+    padding-left: 1%;
+
+}
+.keywords{
+    position: relative;
+    display: inline;
+    font-size: 16px;
+    top: 85%;
+    padding-right: 5%;
+    padding-left: 1%;
+    color: #757575;
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+}
+.in_bt_one{
+    position: absolute;
+    width: 6%;
+    height: 16%;
+    right: 5%;
+    top: 45%;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 25px 25px 25px 25px;
+    color: #356FC8;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    padding-top: 0.5%;
+}
+

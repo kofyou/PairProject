@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperSearch-Login</title>
+    
+    <style>
+        html {
+            font-size: 85%;
+        }
+        @media screen and (min-width: 360px) {
+            html {
+                font-size: 90%;
+            }
+        }
+
+        @media screen and (min-width: 720px) {
+            html {
+                 font-size: 95%;
+            }
+        }
+        @media screen and (min-width: 1080px) {
+            html {
+                font-size: 100%;
+            }
+        }
+        body,html {
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+        }
+        body {
+          background-image: url("image/login-bg.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-attachment: fixed;
+          background-position: left top;
+        }
+        #bg {
+            position: relative;
+            left: 9.7%;
+            top: 12%;
+            width: 80.4%;
+            height: 74.9%;
+            opacity: 0.9;
+            border-radius: 10px 10px 10px 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 100);
+        }
+        #logo {
+            position: absolute;
+            left: 8%;
+            top: 14%;
+            width: 35%;
+            height: auto;
+        }
+        #image {
+            position: absolute;
+            left: 60%;
+            top: 25%;
+            width: 30%;
+            height: auto;
+        }
+        #changebutton {
+            position: absolute;
+            left: 8%;
+            top: 32.8%;
+            width: 35%;
+            height: 6%;
+            line-height: 20px;
+            border-radius: 50px 50px 50px 50px;
+            color: rgba(255, 255, 255, 100);
+            text-align: center;
+            border: 1px solid rgba(167, 167, 168, 100);
+        }
+        #loginbutton {
+            position: absolute;
+            left: 8%;
+            top: 32.9%;
+            width: 17.8%;
+            height: 6.2%;
+            border-radius: 50px 50px 50px 50px;
+            background-color: rgba(68, 183, 248, 100);
+            color: rgba(255, 255, 255, 100);
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 2.4rem;
+            vertical-align: middle;
+            font-family: SourceHanSansSC-regular;
+        }
+        #enroll {
+            position: absolute;
+            left: 28.1%;
+            top: 32.9%;
+            width: 10%;
+            height: 7%;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 2.4rem;
+            vertical-align: middle;
+            color: rgba(144, 144, 144, 100);
+            font-family: SourceHanSansSC-regular;
+        }
+        #name {
+            position: absolute;
+            left: 8%;
+            top: 45%;
+            color: rgba(144, 144, 144, 100);
+        }
+        #nametext {
+            position: absolute;
+            left: 8%;
+            top: 50%;
+            font-size: 1.2rem; 
+            width: 35%;
+            height: 6%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;  
+            border-radius: 20px;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            font-family: Microsoft Yahei;
+            border: none;
+            outline: none;
+        }
+        #password {
+            position: absolute;
+            left: 8%;
+            top: 60%;
+            color: rgba(144, 144, 144, 100);
+        }
+        #passwordtext {
+            position: absolute;
+            left: 8%;
+            top: 65%;
+            font-size: 1.2rem; 
+            width: 35%;
+            height: 6%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box; 
+            border-radius: 20px;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            font-family: Microsoft Yahei;
+            border: none;
+            outline: none;
+        }
+        input[type=submit] {
+            position: absolute;
+            text-align: center;
+            left: 13.8%;
+            top: 80%;
+            width: 23%;
+            height: 6.5%;
+            border-radius: 45px;
+            background-color: rgba(68, 183, 248, 100);
+            color: rgba(255, 255, 255, 100);
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+            font-family: Microsoft Yahei;
+            border: 1px solid rgba(255, 255, 255, 100);
+            outline: none;
+        }
+   
+    </style>
+</head>
+<body>
+    <div id="bg">
+        <img  id="logo" src="image/logo.png" alt="alt">
+        <div id="changebutton"></div>
+        <label id="loginbutton">登录</label>
+        <label id="enroll">注册</label>
+        <img id="image" src="image/login-图片@1x.png" alt="alt"/> 
+        <form  action="">
+            <label id="name">用户名/邮箱</label>
+            <input id="nametext" type="text" value=""></input>
+            <label id="password">密码</label>
+            <input id="passwordtext" type="password" value=""></input>
+            <input id="submit" type="submit" value="登录" onclick="login()"></input>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    function login() {
+        //防止表单跳转
+        event.returnValue = false;
+        var username = document.getElementById("nametext").value;
+        var password = document.getElementById("passwordtext").value;
+        if (username == "test" && password == 123456)
+        {
+            window.location.href = "sinplesearch.php";
+
+        }
+        else{
+            alert("用户名错误或密码错误");
+            form1.uname.focus();
+            return false;
+        }
+    }
+</script>
+
+</html>
