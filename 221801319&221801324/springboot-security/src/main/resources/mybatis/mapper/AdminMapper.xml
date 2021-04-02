@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.AdminMapper">
+    <select id="queryAdminList" resultType="com.yrc.pojo.Admin">
+        select * from admin
+    </select>
+
+    <select id="queryAdminByIName" resultType="com.yrc.pojo.Admin" parameterType="string">
+        select * from admin  where name=#{name}
+    </select>
+
+    <insert id="addAdmin" parameterType="com.yrc.pojo.Admin">
+        insert into admin (id,name,password) value (#{id},#{name},#{password})
+    </insert>
+
+    <update id="updateAdmin" parameterType="com.yrc.pojo.Admin">
+        update user set name=#{name},password=#{password} where id=#{id}
+    </update>
+
+    <delete id="deleteAdmin" parameterType="int">
+        delete * from user where id=#{id}
+    </delete>
+
+
+
+</mapper>

@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#header
+{   position: relative;
+    top: 0;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(182, 176, 176);
+    text-align:center
+}
+.picture
+{
+float: left;
+height: 90px;
+position:relative;
+left: 0px;
+
+}
+.hh{
+    margin-top: 20px;
+    margin-left: 0px;
+    position: absolute;
+    left: 30%;
+    
+}
+#head-l
+{   
+    height: 50px;
+    width: 700px;
+    font-size: 20px;
+}
+#head-r
+{     
+    height: 55px;
+    width: 100px;
+    border-radius: 0 10px 10px 0;
+    background-color: #4e71f2;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#content
+{
+    width: 80%;
+    position: relative;
+    left: 10%;
+    background-color: rgb(238, 238, 238);
+}
+.title
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 120px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+    
+
+}
+.abstract
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.typeandyear
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.keywords
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.releasetime
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}
+.link
+{   
+
+    width: 80%;
+    background: #ffffff;
+    padding: 5px;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: aqua;
+
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.BlackMapper">
+
+    <insert id="addBlack" parameterType="int">
+        insert into black (black,blacked) values (#{id1},#{id2})
+    </insert>
+
+    <delete id="deleteBlack" parameterType="int">
+        delete * from black where black=#{id1} and blacked=#{id2}
+    </delete>
+
+    <select id="queryBlack" resultType="com.yrc.pojo.Black">
+        select * from black
+    </select>
+</mapper>

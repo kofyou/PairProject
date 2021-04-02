@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.UserMapper">
+    <select id="queryUserList" resultType="User">
+        select * from user
+    </select>
+
+    <select id="queryUserByName" resultType="User" parameterType="string">
+        select * from user  where name=#{name}
+    </select>
+
+    <select id="queryUserByName1" resultType="User" parameterType="string">
+        select * from user  where name=#{name}
+    </select>
+
+    <select id="queryUserById" resultType="User" parameterType="int">
+        select * from user  where id=#{id}
+    </select>
+
+    <select id="queryUserByEmail" resultType="User" parameterType="string">
+        select * from user  where email=#{email}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into user(id,name,password,email,statue,filePath) values (#{id},#{name},#{password},#{email},#{statue},#{filePath})
+    </insert>
+    
+    <update id="updateUser" parameterType="User">
+        update user set name=#{name},password=#{password},email=#{email},statue=#{statue},filePath=#{filePath} where id=#{id}
+    </update>
+
+    <update id="tip_off" parameterType="User">
+            update user set tip_off_statue=1 where id=#{id}
+        </update>
+
+    <update id="remove_tip_off" parameterType="User">
+            update user set tip_off_statue=0 where id=#{id}
+        </update>
+
+
+    <delete id="deleteUser" parameterType="int">
+        delete * from user where id=#{id}
+    </delete>
+
+    <update id="updateEmail_statue" parameterType="string">
+        update user set email_statue=1  where name=#{name};
+    </update>
+
+    <update id="updateBox_statue" parameterType="string">
+        update user set statue=1  where name=#{name};
+    </update>
+
+    <update id="close_box"  parameterType="string">
+        update user set statue=0  where name=#{name};
+    </update>
+
+    <update id="updateName" >
+        update user set name=#{name} where id=#{id};
+    </update>
+
+    <update id="updatePassword" >
+        update user set password=#{password} where id=#{id};
+    </update>
+
+    <update id="updateEmail" >
+        update user set email=#{email},statue=0,email_statue=0  where id=#{id};
+    </update>
+
+    <update id="add_ask" >
+        update user set asks=asks+1 where id=#{id};
+    </update>
+
+    <update id="delete_ask" >
+        update user set asks=asks-1 where id=#{id};
+    </update>
+
+    <update id="add_answer" >
+        update user set answers=answers+1 where id=#{id};
+    </update>
+
+    <update id="update_head" >
+        update user set filePath=#{filePath} where id=#{id};
+    </update>
+
+</mapper>

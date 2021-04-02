@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrc.mapper.Tip_offMapper">
+    <insert id="addTip_off">
+            insert into tip_off (id,reason) value (#{id},#{reason})
+     </insert>
+
+    <select id="queryTipList" resultType="com.yrc.pojo.Tip_off">
+            select * from tip_off
+        </select>
+
+
+</mapper>
