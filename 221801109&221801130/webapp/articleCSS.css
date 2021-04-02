@@ -1,0 +1,28 @@
+#return{
+    border-radius: 20px;
+    background-color: transparent;
+    width: 80px;
+    height: 35px;
+    border:1px solid #808080;
+    outline: none;
+}
+#return:hover{
+    background-color: lightgray;
+}
+#return:active{
+    background-color: gray;
+}
+#delete{
+    border-radius: 20px;
+    background-color: transparent;
+    width: 80px;
+    height: 35px;
+    border:1px solid #808080;
+    outline: none;
+}
+#delete:hover{
+    background-color: lightgray;
+}
+#delete:active{
+    background-color: gray;
+}
