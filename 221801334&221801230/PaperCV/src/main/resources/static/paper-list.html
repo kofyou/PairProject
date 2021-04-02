@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 兼容IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge">
+    <!-- 兼容移动设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- boostrap4样式 -->
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="js/pagination.js"></script>
+
+    <style>body {  min-height: 175rem;padding-top: 3.5rem;}</style>
+    <link rel="stylesheet" href="css/paper-list.css">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .ui-pagination-container{
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+        /**分页样式*/
+        .ui-pagination-page-item.active{
+            background-color: rgb(175,215,237);
+            border:1px solid rgb(60,79,57);
+            color: rgb(92,167,186);
+        }
+        .ui-pagination-page-item{
+            margin: 0 8px;
+            padding: 4px 14px;
+            border:1px solid rgb(179,214,110);
+            /*color: #9c0e0e;*/
+            color: rgb(95,92,51);
+            background-color: rgb(243,244,246);
+            font-size: 14px;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .ui-pagination-page-item:hover{
+            color: #636363;
+        }
+        .ui-pagination-page-item.active:hover{
+            color: #fff;
+        }
+        ul{
+            margin-left: 160px;
+            list-style: none;
+        }
+        ul li{
+            margin-bottom: 15px;
+        }
+        ul li span{
+            display: inline-block;
+        }
+        ul li span:first-child{
+            width: 150px;
+        }
+    </style>
+
+    <title>论文列表</title>
+</head>
+<body>
+
+<!-- 头部导航栏start -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
+    <a class="navbar-brand" href="home.html">PaperCV</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="home.html">主页</a></li>
+            <li class="nav-item active"> <a class="nav-link" href="paper-list.html">论文列表</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="data-statistics.html">数据统计</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="paper-statistics.html">总论文统计</a></li>
+            <li class="nav-item"> <a class="nav-link" href="login.html">登出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- 头部导航栏end -->
+
+<div style="margin-top:20px">
+    <form class="form-inline" style="display: flex;justify-content: center">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="paperSearch" class="sr-only">论文名或关键词</label>
+            <input type="text" class="form-control" id="paperSearch" placeholder="请输入论文名或关键词" style="width: 300px; border: solid 1px">
+        </div>
+        <div style="margin-right: 20px">
+            <input type="checkbox" id="checkAllYear" style="margin-left: 20px"/>
+            <label style="font-size: xx-small;color: black">排序(标题)</label>
+        </div>
+        <button id="read-list" type="button" class="btn btn-primary mb-2">查询</button>
+    </form>
+</div>
+
+<div id="item-list">
+</div>
+
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/checkAll.js"></script>
+<script type="text/javascript" src="js/paper-list.js"></script>
+
+</body>
+</html>
