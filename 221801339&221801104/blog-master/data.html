@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>data</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<div id="second" style="width: 600px;height: 400px;"></div>
+<div id="third" style="width: 600px;height: 400px;"></div>
+<div id="four" style="width: 600px;height: 400px;"></div>
+<div id="five" style="width: 600px;height: 400px;"></div>
+<div id="six" style="width: 600px;height: 400px;"></div>
+<script type="text/javascript">
+//第一个图表
+    var app = {};
+
+    var firstDom = document.getElementById('main');
+    var myChart_1 = echarts.init(firstDom);
+    var option;
+
+    var posList = [
+        'left', 'right', 'top', 'bottom',
+        'inside',
+        'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+        'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+    ];
+
+    app.configParameters = {
+        rotate: {
+            min: -90,
+            max: 90
+        },
+        align: {
+            options: {
+                left: 'left',
+                center: 'center',
+                right: 'right'
+            }
+        },
+        verticalAlign: {
+            options: {
+                top: 'top',
+                middle: 'middle',
+                bottom: 'bottom'
+            }
+        },
+        position: {
+            options: posList.reduce(function (map, pos) {
+                map[pos] = pos;
+                return map;
+            }, {})
+        },
+        distance: {
+            min: 0,
+            max: 100
+        }
+    };
+
+    app.config = {
+        rotate: 90,
+        align: 'left',
+        verticalAlign: 'middle',
+        position: 'insideBottom',
+        distance: 15,
+        onChange: function () {
+            var labelOption = {
+                normal: {
+                    rotate: app.config.rotate,
+                    align: app.config.align,
+                    verticalAlign: app.config.verticalAlign,
+                    position: app.config.position,
+                    distance: app.config.distance
+                }
+            };
+            myChart.setOption({
+                series: [{
+                    label: labelOption
+                }, {
+                    label: labelOption
+                }, {
+                    label: labelOption
+                }, {
+                    label: labelOption
+                }]
+            });
+        }
+    };
+
+
+    var labelOption = {
+        show: true,
+        position: app.config.position,
+        distance: app.config.distance,
+        align: app.config.align,
+        verticalAlign: app.config.verticalAlign,
+        rotate: app.config.rotate,
+        formatter: '{c}  {name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {
+            }
+        }
+    };
+
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        grid: [
+            {x: '7%', y: '7%'},//折线图位置控制
+        ],
+        title:{
+            show:true,
+            text:'2020年三大会议论文投稿及录取量'
+        },
+        legend: {
+            data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {show: false},
+                data: ['CVPR', 'ICCV', 'ECCV']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '投稿数',
+                type: 'bar',
+                barGap: 0,
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [6656, 5834, 6221]
+            },
+
+
+            {
+                name: '录取数',
+                type: 'bar',
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [1470, 1230, 1334]
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart_1.setOption(option);
+    //第二个图表
+    var secondDom=document.getElementById('second');
+    var myChart_2 = echarts.init(secondDom);
+
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        title: {
+          show:true,
+          text:'CVPR热词'
+        },
+        grid: [
+            {x: '7%', y: '10%'},//折线图位置控制
+        ],
+        legend: {
+            data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {show: false},
+                data: ['2016', '2017', '2018','2019','2020']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: 'neural_networks',
+                type: 'bar',
+                barGap: 0,
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [2.4, 3.1, 5.4,3.7,4.3]
+            },
+
+
+            {
+                name: 'automl',
+                type: 'bar',
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [4.3, 2.4, 2.1,1.0,3.9]
+            },
+            {
+                name: 'ccpa',
+                type: 'bar',
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [5.0, 7.6, 3.5,2.8,5.3]
+            }
+        ]
+    };
+    myChart_2.setOption(option);
+    //第三个图表
+    var thirdDom=document.getElementById('third');
+    var myChart_3 = echarts.init(thirdDom);
+
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        title:{
+          show:true,
+          text:'ECCV热词'
+        },
+
+        grid: [
+            {x: '7%', y: '13%'},//折线图位置控制
+        ],
+        legend: {
+            data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {show: false},
+                data: ['2016', '2017', '2018','2019','2020']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: 'deep_learning',
+                type: 'bar',
+                barGap: 0,
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [2.6, 3.3, 2.7,1.7,2.6]
+            },
+
+
+            {
+                name: 'large_scale',
+                type: 'bar',
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [4.6, 4.5, 2.9,1.8,4.7]
+            },
+            {
+                name: 'deep_learning',
+                type: 'bar',
+                label: labelOption,
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [6.2, 7.6, 4.5,3.8,6.6]
+            }
+        ]
+    };
+    myChart_3.setOption(option);
+    //第四个图表
+    var fourDom=document.getElementById('four');
+    var myChart_4=echarts.init(fourDom);
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    title: {
+        show:true,
+        text:'ICCV热词'
+    },
+    grid: [
+        {x: '7%', y: '16%'},//折线图位置控制
+    ],
+    legend: {
+        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['2016', '2017', '2018','2019','2020']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'wireless_networks',
+            type: 'bar',
+            barGap: 0,
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3.4, 3.3, 2.4,4.7,2.6]
+        },
+
+
+        {
+            name: 'large_scale',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5.6, 4.4, 2.9,1.9,3.7]
+        },
+        {
+            name: 'energy_efficiency',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [6.0, 7.6, 3.5,2.8,6.3]
+        }
+    ]
+};
+myChart_4.setOption(option);
+//第五个图表
+var fiveDom=document.getElementById('five');
+var myChart_5=echarts.init(fiveDom);
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    title: {
+        show:true,
+        text:'研究方向Top10'
+    },
+    grid: [
+        {x: '7%', y: '16%'},//折线图位置控制
+    ],
+    legend: {
+        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            mark: {show: true},
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['Top10']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'GAN',
+            type: 'bar',
+            barGap: 0,
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [16]
+        },
+
+
+        {
+            name: 'image segmanication',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [13]
+        },
+        {
+            name: 'Target tracking',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [11]
+        },
+        {
+            name: 'image filtering',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [11]
+        },
+        {
+            name: 'image enhancement',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8]
+        },
+        {
+            name: 'stylization of image',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7]
+        },
+        {
+            name: '3D restruction',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5]
+        },
+        {
+            name: 'image retrieval',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5]
+        },
+        {
+            name: 'image classfication',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4]
+        },
+        {
+            name: 'Target detection',
+            type: 'bar',
+            label: labelOption,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14]
+        },
+    ]
+};
+myChart_4.setOption(option);
+</script>
+</body>
+</html>
