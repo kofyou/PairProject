@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="../jquery/jquery.min.js"></script>
+    <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrap.min.js"></script>
+    <title>搜索</title>
+    <link type="text/css" rel="stylesheet" href="../css/search.css"/>
+    <script src="../js/delete.js"></script>
+</head>
+<body>
+<script>
+    var array=[];
+    var obj1={
+        title:"JAVA入门",
+        author:"小红",
+        publish:"工业出版社"
+    };
+    var obj2={
+        title:"C入门",
+        author:"小明",
+        publish:"工业出版社"
+    };
+    var obj3={
+        title:"湖北菜大全",
+        author:"大强",
+        publish:"人民出版社"
+    };
+    var obj4={
+        title:"健身舞蹈",
+        author:"张小姐",
+        publish:"人民出版社"
+    };
+    var obj5={
+        title:"英语口语",
+        author:"可乐",
+        publish:"湖北出版社"
+    };
+    var obj6={
+        title:"英语口语",
+        author:"可乐",
+        publish:"湖北出版社"
+    };
+    var obj7={
+        title:"JAVA入门",
+        author:"小红",
+        publish:"工业出版社"
+    };
+    var obj8={
+        title:"C入门",
+        author:"小明",
+        publish:"工业出版社"
+    };
+    var obj9={
+        title:"湖北菜大全",
+        author:"大强",
+        publish:"人民出版社"
+    };
+    var obj10={
+        title:"健身舞蹈",
+        author:"张小姐",
+        publish:"人民出版社"
+    };
+    var obj11={
+        title:"英语口语",
+        author:"可乐",
+        publish:"湖北出版社"
+    };
+    var obj12={
+        title:"英语口语",
+        author:"可乐",
+        publish:"湖北出版社"
+    };
+    array.push(obj1,obj2,obj3,obj4,obj5,obj6,obj7,obj8,obj9,obj10,obj11);
+</script>
+
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a href="http://localhost:63342/view/static/html/search.html?_ijt=8a5qg8musc5e7dv0su4mq86mtk">搜索</a>
+                </li>
+                <li>
+                    <a href="http://localhost:63342/view/static/html/statistics.html?_ijt=8a5qg8musc5e7dv0su4mq86mtk">统计</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <h3 class="text-info text-center">
+                爬取论文
+            </h3>
+            <div><label>热门标签:</label></div>
+            <div>
+                <h1><a class="label label-danger" href="#">New</a>
+                    <a class="label label-warning" href="#">New</a>
+                    <a class="label label-success" href="#">New</a></h1>
+                <h2><a class="label label-warning" href="#">New</a>
+                    <a class="label label-default" href="#">New</a>
+                    <a class="label label-success" href="#">New</a>
+                    <a class="label label-info" href="#">New</a></h2>
+                <h3><a class="label label-primary" href="#">New</a>
+                    <a class="label label-info" href="#">New</a>
+                    <a class="label label-danger" href="#">New</a>
+                    <a class="label label-success" href="#">New</a>
+                    <a class="label label-default" href="#">New</a>
+                </h3>
+                <h4><a class="label label-primary" href="#">New</a>
+                    <a class="label label-info" href="#">New</a>
+                    <a class="label label-danger" href="#">New</a>
+                    <a class="label label-success" href="#">New</a>
+                </h4>
+                <h6><a class="label label-primary" href="#">New</a>
+                    <a class="label label-info" href="#">New</a>
+                </h6>
+            </div>
+            <br></br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入要爬取的内容">
+                        <span class="btn-group">
+                        <button type="button" class="btn btn-default" onclick="showData()">搜索</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <label for="file" class=" btn btn-default">选择文件</label>
+                <input id="file" type="file" style="display:none">
+                <ul class="dropdown-menu">
+                    <li><a href="#">标题</a></li>
+                    <li><a href="#">作者</a></li>
+                    <li><a href="#">类型</a></li>
+                </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 column">
+            <h3 class="text-info text-center">
+                显示论文
+            </h3>
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="tabhead1">
+                    <h3 class="panel-title">
+                        <a href="#">
+                        <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div></a>
+                        <button class="but" onclick="ondelete(this)">删除</button>
+                    </h3>
+
+                </div>
+                <div class="panel-body" id="tabcontext1">
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                </div>
+                <div class="panel-footer" id="tabfoot1">
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="tabhead2">
+                        <a href="#">
+                            <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+                        </a>
+                        <button class="but" onclick="ondelete(this)">删除</button>
+                    </h3>
+                </div>
+                <div class="panel-body" id="tabcontext2">
+                    Panel content
+                </div>
+                <div class="panel-footer" id="tabfoot2">
+                    Panel footer
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="tabhead3">
+                        <a href="#">
+                            <div class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+                        </a>
+                        <button class="but" onclick="ondelete(this)">删除</button>
+                    </h3>
+                </div>
+                <div class="panel-body" id="tabcontext3">
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                </div>
+                <div class="panel-footer" id="tabfoot3">
+                    Panel footer
+                </div>
+            </div>
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span><button onclick="showPre()" Style="background-color: Transparent; border-style :none; ">OLD</button></a></li>
+                    <li class="next"><a href="#"><button onclick="showNext()" Style="background-color: Transparent; border-style :none;">NEW</button><span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+    <script>
+
+        var totalPage=0;//totalPage是总分页数
+        var e=3;//e 是每页显示多少行数据
+        var totalCount=0;//totalCount是总共有多少行数据
+        var currentPage=1;//currentPage是当前页面，初始为1
+
+        var firstDate=0;//每个页面的第1个数据的数组下标
+        var lastDate=e-1;//每个页面的最后1个数据的数组下标
+
+        totalCount=array.length;
+        totalPage=(totalCount%e==0?totalCount/e:parseInt(totalCount/e+1));//求出总分页数
+
+
+        function showData(){
+        //每次显示前先清空数据,防止重复显示
+
+        show(firstDate,lastDate);//显示数据函数
+    }
+
+
+        function showPre(){
+        //判断是否是边界
+        if(currentPage<=1){
+        alert("没有更多记录！");
+    }else{
+        firstDate-=e;
+        lastDate-=e;
+        currentPage--;
+        //document.getElementById("current").setAttribute("value","第"+currentPage+"页");
+        show(firstDate,lastDate);
+    }
+
+    }
+
+        function showNext(){
+        //判断是否是边界
+        if(currentPage>=totalPage){
+        alert("没有更多记录！");
+    }else{
+            document.getElementById("tabhead1").innerHTML="";
+            document.getElementById("tabcontext1").innerHTML="";
+            document.getElementById("tabfoot1").innerHTML="";
+            document.getElementById("tabhead2").innerHTML="";
+            document.getElementById("tabcontext2").innerHTML="";
+            document.getElementById("tabfoot2").innerHTML="";
+            document.getElementById("tabhead3").innerHTML="";
+            document.getElementById("tabcontext3").innerHTML="";
+            document.getElementById("tabfoot3").innerHTML="";
+        firstDate+=e;
+        lastDate+=e;
+        currentPage++;
+        //document.getElementById("current").setAttribute("value","第"+currentPage+"页");
+        show(firstDate,lastDate);
+    }
+
+    }
+        function show(first,last){
+        if(last>array.length-1){
+        last=array.length-1;
+    }
+        var i =0;
+        for(;first<=last;){
+        if(i<=array.length){
+            var head1=document.getElementById("tabhead1").innerHTML="<a style='color:white' href="+"\""+"#"+"\""+">"+array[first].title+"<"+"/a>";
+            i++;
+        }
+        if(i<=array.length){
+            var context1=document.getElementById("tabcontext1").innerHTML=array[first].author;
+        i++;}
+        if(i<=array.length){
+            var foot1 = document.getElementById("tabfoot1").innerHTML=array[first].publish;
+            i++;
+        }
+        if(i<=array.length){
+            var head2=document.getElementById("tabhead2").innerHTML="<a style='color:white' href="+"\""+"#"+"\""+">"+array[first+1].title+"<"+"/a>";
+            i++;
+        }
+        if(i<=array.length){
+            var context2=document.getElementById("tabcontext2").innerHTML=array[first+1].author;
+            i++;
+        }
+        if(i<=array.length) {
+            var foot2 = document.getElementById("tabfoot2").innerHTML=array[first+1].publish;
+            i++
+        }
+        if(i<=array.length)  {
+            var head3=document.getElementById("tabhead3").innerHTML="<a style='color:white' href="+"\""+"#"+"\""+">"+array[first+2].title+"<"+"/a>";
+            i++
+        }
+        if(i<=array.length)    {
+            var context3=document.getElementById("tabcontext3").innerHTML=array[first+2].author;
+            i++;
+        }
+        if(i<=array.length)    {
+            var foot3 = document.getElementById("tabfoot3").innerHTML=array[first+2].publish;
+            i++;
+        }
+            first = first+3;
+            if(first>array.length-1){
+                first=array.length-1;
+            }
+
+
+        }
+    }
+</script>
+
+
+</body>
+</html>
