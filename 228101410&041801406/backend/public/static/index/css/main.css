@@ -1,0 +1,156 @@
+@import url("https://unpkg.com/element-ui@2.15.1/lib/theme-chalk/index.css");
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+}
+
+.el-carousel__item:nth-child(7n) {
+    background-image: url(../images/bg1.jpg);
+}
+
+.el-carousel__item:nth-child(7n+1) {
+    background-image: url(../images/bg2.jpg);
+}
+
+.el-carousel__item:nth-child(7n+2) {
+    background-image: url(../images/bg3.jpg);
+}
+
+.el-carousel__item:nth-child(7n+3) {
+    background-image: url(../images/bg4.jpg);
+}
+
+.el-carousel__item:nth-child(7n+4) {
+    background-image: url(../images/bg5.jpg);
+}
+
+.el-carousel__item:nth-child(7n+5) {
+    background-image: url(../images/bg6.jpg);
+}
+
+.el-carousel__item:nth-child(7n+6) {
+    background-image: url(../images/bg7.jpg);
+}
+
+.el-carousel__arrow--right {
+    cursor: pointer;
+    position: fixed;
+    z-index: 99;
+    right: 100px;
+    bottom: 30px;
+}
+
+.el-carousel__arrow--left {
+    cursor: pointer;
+    position: fixed;
+    z-index: 99;
+    right: 160px;
+    bottom: 30px;
+    left: auto;
+}
+
+.el-carousel__arrow {
+    border-style: solid;
+    border-color: white;
+    height: 50px;
+    width: 50px;
+    top: auto;
+}
+
+.el-carousel__indicators {
+    display: none;
+}
+
+.el-icon-arrow-left {
+    transform: scale(200%);
+    zoom:200%;
+}
+
+.el-icon-arrow-right {
+    transform: scale(200%);
+    zoom:200%;
+}
+
+.el-input {
+    width: 310px;
+    position: fixed;
+    z-index: 98;
+    top: 225px;
+    left: 230px;
+    zoom: 125%;
+    transform: scale(125%);
+}
+
+.el-row {
+    z-index: 99;
+}
+
+.el-autocomplete-suggestion.el-popper {
+    position: fixed;
+    top: 225px;
+    left: 350px;
+    zoom: 125%;
+    transform: scale(125%);
+}
+
+.el-autocomplete-suggestion li {
+    font-size: 10px;
+}
+
+.el-row {
+    position: fixed;
+    top: 236px;
+    left: 520px;
+    zoom: 120%;
+    transform: scale(120%);
+}
+
+.el-button {
+    border-color: white;
+}
+
+.el-breadcrumb__inner a,
+.el-breadcrumb__inner.is-link {
+    color: white;
+    font-family: 'YaHei';
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 10;
+    -webkit-text-stroke: 0.05px #000000;
+}
+
+.el-breadcrumb {
+    position: fixed;
+    left: 150px;
+    top: 10px;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a {
+    color: white;
+    font-weight: 10;
+}
+
+.el-breadcrumb__inner a:hover,
+.el-breadcrumb__inner.is-link:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover,
+.el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+    cursor: pointer;
+    font-weight: 10;
+    color: white;
+}
