@@ -1,0 +1,19 @@
+{
+  "code": "0",
+  "msg": "成功",
+  "count": 1,
+  "data": [
+    {
+      "paperId": "9493",
+      "authorsList": [],
+      "keywordsList": [],
+      "authors": null,
+      "keywords": "\"Target tracking\",\"Support vector machines\",\"Adaptation models\",\"Robustness\",\"Feature extraction\",\"Object tracking\",\"autonomous aerial vehicles\",\"image classification\",\"image motion analysis\",\"object detection\",\"object tracking\",\"regression analysis\",\"support vector machines\",\"target tracking\",\"robust UAV\",\"hybrid classifiers\",\"unmanned aerial vehicles\",\"UAVs\",\"robust object tracking algorithm\",\"appearance model\",\"locally adaptive regression kernel\",\"tracking task\",\"binary classifiers\",\"support vector machines\",\"robustness\",\"forward tracking\",\"backward tracking validation\",\"UAV123 benchmark dataset\",\"visual object tracking algorithm\",\"LARK\"",
+      "abstrac": "\"Robust object tracking plays an important role for unmanned aerial vehicles (UAVs). In this paper, we present a robust and efficient visual object tracking algorithm with an appearance model based on the locally adaptive regression kernel (LARK). The proposed appearance model preserves the geometric structure of the object. The tracking task is formulated as two binary classifiers via two support vector machines (SVMs) with online update. The backward tracking which tracks the object in reverse of time is employed to measure the accuracy and robustness of the two trackers. The final positions are adaptively fused based on the results of the forward tracking and backward tracking validation. Several state-of-the-art trackers are evaluated on the UAV123 benchmark dataset which includes challenging situations such as illumination variation, motion blur, pose variation and heavy occlusion.\"",
+      "publicationTitle": "\"Robust UAV-Based Tracking Using Hybrid Classifiers\"",
+      "publicationYear": "\"2017\"",
+      "persistentLink": "\"https://doi.org/10.1109/ICCVW.2017.249\"",
+      "conference": "ICCV"
+    }
+  ]
+}

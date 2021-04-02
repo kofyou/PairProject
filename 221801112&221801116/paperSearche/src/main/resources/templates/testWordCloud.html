@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="https://static.jianshukeji.com/hcode/images/favicon.ico">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="css/left.css">
+    <link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/set.css" />
+    <link rel="icon" href="favicon.ico" >
+    <style>
+        .highcharts-credits{
+            font-size: 1px;
+        }
+    </style>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/wordcloud.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
+    <script type="text/javascript" src="js/left.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/themes/grid-light.js"></script>
+
+
+</head>
+<body>
+
+
+<!--    回到顶部-->
+<div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
+    <img src="image/fanhuidingbucopy.png" />
+</div>
+
+
+<!--    顶部导航栏-->
+<div class="nav">
+    <ul class="fl">
+        <li><a href=""><img src="image/logo2.jpg" alt="" class="logo"></a></li>
+    </ul>
+    <ul class="fr">
+        <li><div class="eg"><img src="/image/cat.jfif" alt="" class="touxiang"></div></li>
+        <li class="userName"><a href="" th:text="${session.userName}" style="font-size: 16px;text-decoration: none;color: white"></a></li>
+    </ul>
+</div>
+
+<!--侧边导航栏-->
+<div class="content-csk">
+    <div class="open-csk" id="open"><span class="left-span-csk">🎈打开导航</span></div>
+    <div class="content-left-csk" id="left" >
+        <div class="myclose-csk" id="myclose"><span class="left-span-csk">❌收起导航</span></div>
+        <div class="left-title-csk">
+            <!--                <img src="image/098zhome01.png" class="left-title-icon-csk">-->
+            <a href="/t">🌄回到主页</a>
+        </div>
+        <div class="nav-title-csk">
+            <a href="/getKeyWordCloud">🖋️词云分析</a>
+        </div>
+        <div class="nav-title2-csk">
+            <!--                <img src="image/041preview.png" class="nav-title2-icon-csk">-->
+            <a href="/left">📖论文列表</a>
+        </div>
+        <div class="nav-title3-csk">
+            <!--                <img src="image/041preview.png" class="nav-title2-icon-csk">-->
+            <a href="/spider">🔖论文爬取</a>
+        </div>
+    </div>
+</div>
+
+
+<!--搜索结果展示-->
+<table id="currentTableId24" style="width: 60%;float: left;border-color: #117a8b;border-radius: 1.5%"></table>
+
+
+<!--词云-->
+<div id="wordContainer" style="width: 25%;height: 500px;float: right;margin-top: 25px;border-color: #117a8b;border-radius: 1.5%;box-shadow:  darkgrey 10px 10px 10px 5px"></div>
+
+
+
+
+<script src="/js/getWord.js">
+    // JS 代码
+</script>
+
+
+
+<script src="layui/layui.js"></script>
+
+
+
+<script>
+
+    $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
+
+
+    layui.config({
+        base: 'cardTable2/' //配置 layui 第三方扩展组件存放的基础目录
+    })
+    layui.use(['cardTable'], function () {
+        let cardTable = layui.cardTable;
+
+        cardTable.render({
+            elem: '#currentTableId24',
+            url: '/searchByKeyWord?keywords='+'task analysis',
+        })
+    })
+
+    function toKeyWord(keyword){
+        layui.config({
+            base: 'cardTable2/' //配置 layui 第三方扩展组件存放的基础目录
+        })
+        layui.use(['cardTable'], function () {
+            let cardTable = layui.cardTable;
+
+            cardTable.render({
+                elem: '#currentTableId24',
+                url: '/searchByKeyWord?keywords='+keyword,
+            })
+        })
+    }
+</script>
+
+
+</body>
+</html>

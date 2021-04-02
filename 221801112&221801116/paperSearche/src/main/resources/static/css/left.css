@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.nav{
+     width: 100%;
+     height: 72px;
+     line-height: 72px;
+    background-image: linear-gradient(to right, #2C3E50 0%, #84AF9B 100%);
+}
+
+.content-left-csk{
+    width: 100%;
+    height: 90%;
+    opacity:0.8;
+    height: auto;
+    overflow: hidden;
+    min-height: 1000px;
+    background-image: linear-gradient(to right, #84AF9B 0%, #E2DCDB 100%);
+    position: relative;
+}
+
+.myclose-csk{
+    border-bottom: dotted;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size:12px;
+    line-height: 50px;
+    text-align: center;
+}
+.left-span-csk{
+    color: black;
+}
+.nav-title2-csk,.nav-title-csk,.nav-title3-csk{
+    border-bottom: dotted;
+}
+.left-title-csk{
+    border-bottom: dotted;
+    height: 50px;
+    width: 100%;
+}
+
+.nav-menu-csk{
+    margin-top: 6px;
+}
+.left-title-icon-csk,.nav-title2-icon-csk{
+    margin-top: 12px;
+    height: 22px;
+    width: 25px;
+    float: left;
+}
+.nav-title-csk>a,.nav-title2-csk>a,.left-title-csk>a,.nav-title3-csk>a{
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: black;
+    font-size:12px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+.nav-title2-csk>a:hover,.nav-title-csk>a:hover,.left-title-csk>a:hover,.nav-title3-csk>a:hover{
+    display: block;
+    height: 50px;
+    width: 100%;
+    color: #5a6268;
+    font-size:12px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+}
+.nav-title-csk:hover,.left-title-csk:hover,.nav-title2-csk:hover,.myclose-csk:hover,.nav-title3-csk:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to right, #2C3E50 25%, #333399 75%);
+    opacity:0.5;
+}
+.open-csk{
+    width: 100px;
+    height: 50px;
+    font-size:12px;
+    background-image: linear-gradient(to right, #84AF9B 0%, #E2DCDB 100%);
+    position: absolute;
+    cursor: pointer;
+    left: -100px;
+    line-height: 50px;
+    text-align: center;
+}
+li{
+      list-style: none;
+  }
+img{
+    border: 0;
+}
+a{
+    text-decoration: none;
+}
+
+.nav li{
+    float: left;
+}
+.fl{
+    height: 72px;
+    float: left;
+}
+.fr{
+    height: 72px;
+    float: right;
+}
+.logo{
+    margin-left: 40px;
+    height: 65px;
+}
+.touxiang{
+    margin-right: 10px;
+    height: 65px;
+}
+.userName{
+    height: 46px;
+    margin-right: 70px;
+    color: #cccccc;
+}
+.eg img{
+    border-radius: 50%;
+}
+.content-csk{
+    padding: 0;
+    float: left;
+    width: 14%;
+}
+.mytable{
+    float: left;
+    width: 80%;
+}
+.layui-input-block{
+    margin-top: 15px;
+    width: 25%;
+}
+.layui-btn-radius{
+    display: inline;
+}
+#mybutton{
+    margin-top: 19px;
+}
+#mybuttonadd{
+    margin-top: 19px;
+}
+#currentTableId{
+    margin-top: 5px;
+}
+#myblock1{
+    margin-left: 21px;
+    margin-left: 21px;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="css/left.css">
+    <link rel="icon" href="favicon.ico" >
+    <link rel="stylesheet" type="text/css" href="public/css/set.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/demo.css" />
+
+    <script src="layui/layui.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/left.js"></script>
+</head>
+<body>
+
+<!--    回到顶部-->
+<div id="backUp" style="z-index: 9999; position: fixed ! important; right: 5px; bottom: 70px;cursor: pointer">
+    <img src="image/fanhuidingbucopy.png" />
+</div>
+
+
+<!--    顶部导航栏-->
+<div class="nav">
+    <ul class="fl">
+        <li><a href=""><img src="image/logo2.jpg" alt="" class="logo"></a></li>
+    </ul>
+    <ul class="fr">
+        <li><div class="eg"><img src="/image/cat.jfif" alt="" class="touxiang"></div></li>
+        <li class="userName"><a href="/login" th:text="${session.userName}" style="font-size: 16px;text-decoration: none;color: white"></a> </li>
+    </ul>
+</div>
+
+<!--侧边导航栏-->
+<div class="content-csk">
+    <div class="open-csk" id="open"><span class="left-span-csk">🎈打开导航</span></div>
+    <div class="content-left-csk" id="left">
+        <div class="myclose-csk" id="myclose"><span class="left-span-csk">❌收起导航</span></div>
+        <div class="left-title-csk">
+            <!--                <img src="image/098zhome01.png" class="left-title-icon-csk">-->
+            <a href="/t">🌄回到主页</a>
+        </div>
+        <div class="nav-title-csk">
+            <a href="/getKeyWordCloud">🖋️词云分析</a>
+        </div>
+        <div class="nav-title2-csk">
+            <!--                <img src="image/041preview.png" class="nav-title2-icon-csk">-->
+            <a href="/left">📖论文列表</a>
+        </div>
+        <div class="nav-title3-csk">
+            <!--                <img src="image/041preview.png" class="nav-title2-icon-csk">-->
+            <a href="/spider">🔖论文爬取</a>
+        </div>
+    </div>
+</div>
+
+<!--论文卡片表格-->
+<div class="mytable">
+    <div id="myblock1" style="text-align: center">
+            <span class="input input--manami" style="margin-top: 20px">
+			<input class="input__field input__field--manami" type="text" id="input-32" autocomplete="off"/>
+			<label class="input__label input__label--manami" for="input-32">
+				<span id="myinput1" class="input__label-content input__label-content--manami">输入关键词或标题爬取</span>
+			</label>
+		    </span>
+            <button id="mysbutton" class="layui-btn layui-btn-radius layui-btn-primary" onclick="spider()" th:text="开始爬取" style="margin-top: 26px"></button>
+    </div>
+    <table id="currentTableId33"></table>
+</div>
+
+<script>
+    $('#backUp').click(function () { $('html,body').animate({ scrollTop: '0px' }, 850); return false; });
+    var htmlLoading = '<div id="loadingDiv" style="z-index: 9999; position: fixed ! important; right: 700px; bottom: 300px;display: none"><img src="image/loading2.gif" style="width: 50px;height: 50px"/></div>';
+
+    document.write(htmlLoading);
+
+    function completeLoading() {
+        document.getElementById("loadingDiv").style.display="none";
+    }
+    //展示loading效果
+    function showLoading()
+    {
+        document.getElementById("loadingDiv").style.display="block";
+    }
+
+    function spider(){
+        var keyword = document.getElementById("input-32");
+        var keys = keyword.value;
+        keyword.value = "";
+        showLoading();
+        if(keys==""){
+            document.getElementById("myinput1").innerText = "输入关键词或标题爬取";
+        }else{
+            document.getElementById("myinput1").innerText = keys;
+        }
+        layui.config({
+            base: 'cardTable3/' //配置 layui 第三方扩展组件存放的基础目录
+        })
+        layui.use(['cardTable','layer'], function () {
+            completeLoading();
+            let cardTable = layui.cardTable;
+            cardTable.render({
+                elem: '#currentTableId33',
+                url: '/searchOnline?keywords='+keys,
+            })
+        })
+    }
+</script>
+</body>
+</html>
