@@ -1,0 +1,50 @@
+body
+{
+    background-image:url(pp.jpg) ;
+    color:black;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
+
+#title
+{
+    text-align: center;
+} 
+
+.new_post
+{
+    text-align: center;
+    background: rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    border: 1px rgba(0, 0, 0, .3) solid;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .3);
+    padding:10px;
+    margin-top: 100px;
+    margin-left:330px;
+    width: 50%;  
+}
+
+#tips
+{
+    border-radius: 10px;
+    width:200px;
+    height: 30px;
+}
+
+#passage
+{
+    border-radius: 10px;
+}
+
+#submit
+{
+    border-radius: 10px;
+    width:200px;
+    height:30px;
+}
+
+#limit
+{
+    text-align: center;
+}
