@@ -1,0 +1,104 @@
+ #imgcenter{
+   margin-left: 400px;;
+ }
+ 
+ .trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.collection-create-form_last-form-item {
+  margin-bottom: 0;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+}
+
+.logo :hover {
+    cursor:pointer;
+}
+#logo-img {
+  position:fixed; 
+  top: 20px; 
+  left: 50px;
+  height: 19px;
+  width: 170px;
+}
+
+#logo-img2 {
+  height: 19px;
+  width: 77px;
+}
+
+#homePage-img {
+  height: 170px;
+  width: 350px;
+  margin-left: 480px;
+  margin-top: 60px;
+}
+
+#submit-button {
+  margin-left: 70px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+#login-button {
+  float: right;
+  margin: 0px;
+}
+
+#account-button {
+  float: right;
+  margin-right: 30px;
+ 
+}
+
+#homePage-search-button {
+  margin-left: 445px;
+  margin-top: 20px;
+}
+
+#search-button {
+
+  position:fixed; 
+  top: 16px; 
+  left: 230px;
+}
+
+#homePage-upload {
+  margin-left: 580px;
+  margin-top: 20px;
+}
+
+#login-button-text {
+  font-weight:bold;
+  font-size:18px;
+}
+
+.anticon-menu-unfold > * {
+  height: 1.5em;
+  width: 1.5em;
+  position:fixed; 
+  top: 16px; 
+  left: 15px;
+
+}
+.anticon-menu-fold > *{
+  height: 1.5em;
+  width: 1.5em;
+  position:fixed; 
+  top: 16px; 
+  left: 15px;
+}
