@@ -1,0 +1,265 @@
+html,body{
+    width: 100%;
+    /*height: 100%;*/
+    margin: 0;
+    padding: 0;
+    background: url("../img/1.png") repeat;
+}
+.header{
+    width: 100%;
+    height: 300px;
+    background-color: #45ebc2;
+}
+.main{
+    width: 100%;
+    /*height: 80%;*/
+    margin: 0 auto;
+}
+.logo{
+    width: 50%;
+    padding-left: 20px;
+    padding-top: 15px;
+}
+.logo_box{
+    float: left;
+}
+.navigation_box{
+    float: right;
+    width: 400px;
+    height: 100px;
+
+}
+.nav ul{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.nav li{
+    list-style: none;
+
+    text-align: center;
+    line-height: 30px;
+    padding: 10px;
+    height: 30px;
+    width: 100px;
+    margin: 0 10px;
+}
+.nav{
+    float:left;
+}
+.nav_post{
+    border-bottom: 5px solid #0000ff;
+
+}
+
+.a2:link,.a2:active{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.a2:visited {
+    color: #FFFFFF;
+}
+#papertable a:link,a:active{
+    text-decoration: none;
+    font-size: 16px;
+    color: cornflowerblue;
+}
+#papertable a:visited {
+    color: cornflowerblue;
+}
+.a1:link,.a1:active{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0000ff;
+}
+.a1:visited {
+    color: #0000ff;
+}
+
+/********************************************************************************/
+
+#papertable {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    table-layout:fixed;
+    border-radius: 15px;
+}
+
+#papertable td, #papertable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#papertable th {
+    font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    color: #4f6b72;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px;
+    background: #CAE8EA;
+
+}
+#papertable td {
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+
+    padding: 6px 6px 6px 12px;
+    color: #4f6b72;
+}
+
+#papertable tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#papertable tr:nth-child(even) {
+    background-color: #F5FAFA;
+}
+
+
+
+.num {
+    width: 4%;
+    text-align: center;
+}
+
+.title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 19%;
+}
+
+.conference {
+    width: 5%;
+    text-align: center;
+}
+
+.summary {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 35%;
+}
+
+.link {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 15%;
+}
+
+.keywords {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width: 20%;
+}
+
+.delete {
+    width: 4%;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+}
+#delete_button{
+    width: 20px;
+    height: 22.5px;
+    background-image: url("../img/dlt.jpg");
+    border-style: none;
+    background-size: 100%;
+    opacity: 70%;
+}
+
+
+/********************************************************************************/
+
+#div_paperQueryForm{
+    height:50px;
+    top: 180px;
+    position: relative;
+}
+#queryForm{
+    margin:auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 80%;
+    width: 720px;
+    position: absolute;
+}
+#query_text{
+    position: relative;
+    border: #808080 1px solid;
+    font-size: 20px;
+    border-radius: 10px 0px 0px 10px;
+    color: #000000;
+    display: inline;
+    height: 100%;
+    width: 600px;
+    float: left;
+    padding-left: 10px;
+    box-shadow: darkgrey 2px 2px 2px 1px;
+}
+#query_btn{
+    background-color: #02A7F0;
+    float: left;
+    opacity: 88%;
+    border: #797979 1px;
+    height: 100%;
+    width: 100px;
+    position: relative;
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: darkgrey 2px 2px 2px 1px;
+}
+#queryForm input:focus{
+    outline: none;
+}
+#queryForm button{
+    outline: none;
+}
+#div_paperList{
+    text-align: center;
+    padding-bottom: 100px;
+}
+#div_paging{
+    /*position:absolute;*/
+    position: relative;
+    float: right;
+    height: 40px;
+    top: 20px;
+    right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    /*clear: both;*/
+}
+#btn_lastPage{
+    width: 75px;
+    height: 33px;
+    background-color: white;
+    border: #c4c3c3 1px solid;
+    border-radius: 4px;
+    color: #169BD5;
+}
+#btn_nextPage{
+    width: 75px;
+    height: 33px;
+    background-color: white;
+    border: #c4c3c3 1px solid;
+    border-radius: 4px;
+    color: #169BD5;
+}
+.page_num{
+    color: red;
+}
