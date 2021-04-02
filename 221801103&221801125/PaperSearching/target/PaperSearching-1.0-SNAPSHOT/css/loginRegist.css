@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding: 0;
+    outline: none;
+}
+
+body{
+    text-align: center;
+    
+}
+a{
+    text-decoration: none;
+}
+
+a:link {color:#3CB371;}/* 未被访问的链接 */
+
+a:visited {color:#3CB371;}/* 已被访问的链接 */
+
+a:hover {color:#0F996B;}/* 鼠标指针移动到链接上 */
+
+a:active {color:#3CB371;}/* 正在被点击的链接 */
+
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:1000px;
+    height:500px;
+}
+
+
+#inform{
+    width:400px;
+    height:100px;
+    margin-top: 30px;
+    background-color: khaki;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: height 1s;
+}
+
+.logRegPanel{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+
+    width:500px;
+    height:500px;
+    background-color: rgb(255 250 250);
+}
+
+.panel_head{
+    position: relative;
+    height:80px;
+    margin-top: 30px;
+}
+.panel_head span{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 25px;
+    font-weight: 800;
+    color: rgb(46,71,97);
+}
+
+.panel_item{
+    position: relative;
+    width:100%;
+    height:80px;
+    margin:10px 0 0px 0;
+}
+.panel_item input{
+    position: absolute;
+	top: 50%;
+	transform: translate(-40%,-50%);
+    border:0;
+    background-color: rgb(255 250 250);
+    width:60%;
+    height:30px;
+    padding:5px;
+    padding-left: 20px;
+    border-bottom: 3px solid rgb(228,228,228);
+}
+.panel_item input:hover{
+    cursor: pointer;
+    border-bottom: 3px solid #0F996B;
+    
+}
+.panel_item input:focus{
+    border-bottom: 3px solid #0F996B;
+    
+}
+.panel_item span{position: absolute;
+    left: 15%;
+    line-height: 80px;
+    font-size: 30px;
+    color: rgb(228,228,228);
+    color: rgb(46,71,97);
+}
+
+.btn{
+    margin-top: 30px;
+    border: 0;
+    background-color: transparent;
+    color: rgb(46,71,97);
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.btn:hover{
+    color: #0F996B;
+}
+
+
+.panel_foot{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.hint{
+    font-size: 10px;
+    font-weight: 700;
+    color: 	#B22222;
+}
+.hint span{
+    display: none;
+    position: absolute;
+    left:25%;
+}
+
+@keyframes roll{
+    from {transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+#reg_wait{
+    display: none;
+    animation: roll 2s infinite linear;
+}
+.to_block{
+    display: inline-block;
+}
+.to_none{
+    display: none;
+}

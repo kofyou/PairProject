@@ -1,0 +1,28 @@
+.clouds{
+    position: absolute;
+    display: inline-block;
+    width: 180px;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    opacity: 0;
+    padding: 10px;
+    transition: all ease .5s;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    text-align: center;
+}
+#cloudHome{
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height:400px;
+    font-weight: 900;
+}
