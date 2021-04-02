@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>论文列表</title>
+    <!--    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">-->
+    <!--    <script src="{{url_for('static',filename='index.js')}}"></script>-->
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+<body>
+<div>
+    <table border="1" class="center">
+        <tr>
+            <th>
+                文件名
+            </th>
+            <th>
+                关键词
+            </th>
+            <th>
+                地址
+            </th>
+            <th>
+                摘要
+            </th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>
+                {{ result[0]  }}
+            </td>
+            <td>
+                {{ result[1]  }}
+            </td>
+            <td>
+                {{ result[2]  }}
+            </td>
+            <td>
+                {{ result[3]  }}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
