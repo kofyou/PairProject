@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>template</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body>
+	<div class="nav">
+		<ul class="template">
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html" id="navIcon"></a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html" >论文列表</a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90.html?">趋势分析</a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC.html">关于我们</a></li>
+		</ul>
+	</div>
+	<!-- TemplateBeginEditable name="edit1" -->edit1<!-- TemplateEndEditable -->
+	
+	
+</body>
+</html>

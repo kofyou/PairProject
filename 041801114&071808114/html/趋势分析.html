@@ -1,0 +1,191 @@
+<!doctype html>
+<html><!-- InstanceBegin template="DWstation/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>template</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<link href="QuickFind.css" rel="stylesheet" type="text/css">
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div class="nav">
+		<ul class="template">
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html" id="navIcon"></a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html" >论文列表</a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90.html?">趋势分析</a></li>
+			<li><a href="file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC.html">关于我们</a></li>
+		</ul>
+	</div>
+	<!-- InstanceBeginEditable name="edit1" -->
+<div class="main">
+	<div id="hotWordContainer"></div>
+	<script src="echarts.min.js"></script>
+	<script src="echarts-wordcloud.min.js"></script>
+	<script type="text/javascript">
+	var chart = echarts.init(document.getElementById('hotWordContainer'));
+    var option = {
+      title: {
+         text: '热门领域'
+      },
+      tooltip: {},
+      series: [{
+        type: 'wordCloud',
+        gridSize: 2,
+        sizeRange: [12, 50],
+        // rotationRange: [-90, 90],
+        rotationRange: [-50, 50],
+        shape: 'triangle',
+        textStyle: {
+          normal: {
+            color: function () {
+              return 'rgb(' + [
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160)
+              ].join(',') + ')';
+            }
+          },
+          emphasis: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+          }
+        },
+        data: [
+          {
+            name: 'Authentication',
+            value: 10000,
+            textStyle: {
+              normal: {
+                color: 'black'
+              },
+              emphasis: {
+                color: 'red'
+              }
+            }
+          },
+          {
+            name: 'Streaming of segmented content',
+            value: 6181
+          },
+          {
+            name: 'Amy Schumer',
+            value: 4386
+          },
+          {
+            name: 'Jurassic World',
+            value: 4055
+          },
+          {
+            name: 'Charter Communications',
+            value: 2467
+          },
+          {
+            name: 'Chick Fil A',
+            value: 2244
+          },
+          {
+            name: 'Planet Fitness',
+            value: 1898
+          },
+          {
+            name: 'Pitch Perfect',
+            value: 1484
+          },
+          {
+            name: 'Express',
+            value: 1112
+          },
+          {
+            name: 'Home',
+            value: 965
+          }
+          
+        ]
+      }]
+	};
+		chart.setOption(option);
+		chart.resize();
+		chart.on('click',function(params){
+//	        console.log('myChart----click---:',params,'------',params.data) 
+			window.location.href='file:///C:/Users/apple/Documents/GitHub/PairProject/041801114&071808114/html/%E8%AE%BA%E6%96%87%E5%88%97%E8%A1%A8.html? value='+params.data;
+		});
+	</script>
+	
+	<div  Id = "container"  ></div>
+	<script src="echarts.min.js"></script>
+        
+        <script type="text/javascript">
+			var myChart=echarts.init(document.getElementById('container'));
+				var option = {
+    title: {
+        text: '顶会热词热度走势图'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['CVPR', 'ICCV', 'ECCV']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'CVPR',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name: 'ICCV',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name: 'ECCV',
+            type: 'line',
+            stack: '总量',
+            data: [150, 232, 201, 154, 190, 330, 410]
+        },
+    ]
+};
+			myChart.setOption(option);
+			
+	</script>
+	<div class="down">
+	 <div class="analyse">
+		<form>
+ 			<input type="button" class="analysebtn"  value="分析" />
+    	</form>
+	 </div>
+	</div>
+</div>
+	
+
+	
+
+	<!-- InstanceEndEditable -->
+	
+	
+</body>
+<!-- InstanceEnd --></html>
