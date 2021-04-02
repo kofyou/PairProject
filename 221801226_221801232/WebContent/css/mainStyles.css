@@ -1,0 +1,128 @@
+@charset "UTF-8";
+hr{
+  border-color:FF7F00; 
+}
+
+body {
+    background-image: url(images/back.JPG);
+    margin: 0;
+}
+
+h1 {
+    color: #eeeeee;
+}
+
+#header {
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.divimg img {
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+}
+
+#nav {
+    margin-top: 40px;
+    text-align: center;
+    line-height: 30px;
+    width: 300px;
+    float: left;
+    padding: 5px;
+    font-size: 25px;
+    border-style: dotted solid;
+    color: white;
+    border-width: 0 1px 0 0;
+}
+
+#menu {
+    margin-left: 0;
+    margin-right: 0;
+    border-style: groove;
+    border-color: #8b8b8b;
+}
+
+#papersearch {
+    color: #eeeeee;
+    border: 0;
+    background-color: transparent;
+    width: 300px;
+    height: 100px;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#section {
+    width: 1000px;
+    float: left;
+    padding: 10px;
+}
+
+input[type=text],
+select {
+    width: 890px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: #e0e0e0;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+input[type=submit] {
+    float: right;
+    width: 75px;
+    background-color: #64a567;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: 40px;
+    border: none;
+    border-radius: 8px;
+}
+
+#table {
+    width: 980px;
+    height: 60px;
+    border-style: dotted dashed solid double;
+    border-radius: 12px;
+    background-color: #ffffff;
+    margin-left: 20px;
+    margin-top: 30px;
+    background: rgba( 255, 255, 255, 0.5);
+}
+
+div dl {
+    color: rgb(16, 46, 16);
+    margin: px;
+    border-style: dotted dashed solid double;
+    border-radius: 12px;
+    background: rgba( 255, 255, 255, 1);
+}
+
+div dd {
+    background-color: #ffffff;
+    color: rgb(16, 46, 16);
+    margin-left: 20px;
+    width: fit-content;
+    border-radius: 12px;
+    font-size:10pt;
+    margin:0px;
+}
+
+div dt.dt_title {
+    color: rgb(2, 6, 231);
+    font-size: 15px;
+}
+
+div dd.dd_abstract {
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}

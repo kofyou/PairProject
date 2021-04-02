@@ -1,0 +1,146 @@
+@charset "UTF-8";
+body {
+    background-image: url(back.JPG);
+    margin: 0;
+}
+
+h1 {
+    color: #eeeeee;
+}
+
+.divimg img {
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+}
+
+#nav {
+    margin-top: 40px;
+    text-align: center;
+    line-height: 30px;
+    width: 300px;
+    float: left;
+    padding: 5px;
+    font-size: 25px;
+    border-style: dotted solid;
+    color: white;
+    border-width: 0 1px 0 0;
+}
+
+#menu {
+    margin-left: 0;
+    margin-right: 0;
+    border-style: groove;
+    border-color: #8b8b8b;
+}
+
+#papersearch {
+    color: #eeeeee;
+    border: 0;
+    background-color: transparent;
+    width: 300px;
+    height: 100px;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#section {
+    width: 1000px;
+    float: left;
+    padding: 10px;
+}
+
+input[type=text],
+select {
+    width: 800px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: #e0e0e0;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+input[type=submit] {
+    float: right;
+    width: 75px;
+    background-color: #64a567;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+#paperlist {
+    color: black;
+    background: rgba( 255, 255, 255, 0.5);
+}
+
+#table {
+    width: max-content;
+    height: 60px;
+    border-style: dotted dashed solid double;
+    border-radius: 12px;
+    background-color: #ffffff;
+    margin-left: 20px;
+    margin-top: 30px;
+    background: rgba( 255, 255, 255, 0.5);
+}
+
+#paperlist {
+    text-align: center;
+    margin: 0 auto;
+    width: 80%
+}
+
+#section h1 {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#paperlist table {
+    width: 100%;
+    line-height: 24px;
+    border-top: 2px solid #333333;
+    border-bottom: 2px solid #2c2c2c;
+}
+
+#paperlist table th {
+    background: #aaaaaa;
+    color: black;
+}
+
+#paperlist table td {
+    padding: 10px 0;
+    border-top: 1px solid #464646;
+}
+
+#paperlist table td.title {
+    border: 1px solid #dfdfe0;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+#paperlist table td.conference {
+    text-align: center;
+    width: 100px;
+    border-left: 1px solid #e1e1e1;
+}
+
+#paperlist table td.keyword {
+    color: black;
+    font-weight: bold;
+}
+
+#paperlist table td.time {
+    width: 100px;
+    text-align: center;
+    border-left: 1px solid #e1e1e1;
+}
