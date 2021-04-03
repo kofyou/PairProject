@@ -1,4 +1,11 @@
 # README
+**[作业链接：结对第二次作业](https://edu.cnblogs.com/campus/fzu/FZUSESPR21/homework/11891)**
+
+**结对学号：221801111&221801132**
+
+**项目介绍：**
+
+# 结对第二次作业——顶会热词统计的实现
 
 | 作业链接 | https://github.com/kofyou/PairProject |
 | -------- | ------------------------------------- |
