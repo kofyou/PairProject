@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yangyu.esearch.mapper.PaperMapper">
+    <resultMap id="Paper" type="com.yangyu.esearch.entity.Paper">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="link" property="link"></result>
+        <result column="abstracts" property="abstracts"></result>
+        <result column="years" property="years"></result>
+        <result column="keyword" property="keyword"></result>
+        <result column="source" property="source"></result>
+        <result column="authors" property="authors"></result>
+    </resultMap>
+
+    <insert id="createPaper" keyProperty="id" useGeneratedKeys="true" parameterType="com.yangyu.esearch.entity.Paper">
+        insert into papers(title,link,abstracts,years,keyword,source,authors)
+        values (#{title,jdbcType=VARCHAR},#{link,jdbcType=VARCHAR},#{abstracts,jdbcType=VARCHAR},
+        #{years,jdbcType=VARCHAR},#{keyword,jdbcType=VARCHAR},#{source,jdbcType=VARCHAR},#{authors,jdbcType=VARCHAR})
+    </insert>
+    <select id="queryAll" resultMap="Paper">
+        select * from papers
+    </select>
+    <select id="selectTitle" resultMap="Paper" >
+        select * from papers where 1=1
+        <if test="title != null and title != ''">
+            and title like CONCAT('%', #{title}, '%')
+        </if>
+        <if test="source != null and source != ''">
+            and source = #{source}
+        </if>
+        <if test="years != null and years != ''">
+            and years = #{years}
+        </if>
+        limit #{address}, 5
+    </select>
+    <select id="selectNumber" resultMap="Paper" >
+        select * from papers where 1=1
+        <if test="title != null and title != ''">
+            and title like CONCAT('%', #{title}, '%')
+        </if>
+        <if test="source != null and source != ''">
+            and source = #{source}
+        </if>
+        <if test="years != null and years != ''">
+            and years = #{years}
+        </if>
+    </select>
+    <select id="selectSource" resultMap="Paper" parameterType="java.lang.String">
+        select * from papers where source = #{source}
+    </select>
+    <select id="selectYears" resultMap="Paper" parameterType="java.lang.String">
+        select * from papers where years = #{years}
+    </select>
+    <select id="selectKeyword" resultMap="Paper">
+        select * from papers where keyword like CONCAT('%', #{keyword}, '%') limit #{address}, 5
+    </select>
+    <select id="selectKeywordYear" resultMap="Paper" >
+        select * from papers where years = #{years} and keyword like CONCAT('%', #{keyword}, '%')
+    </select>
+
+</mapper>
