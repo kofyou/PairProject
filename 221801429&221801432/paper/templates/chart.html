@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计图表</title>
+    <link rel="stylesheet" type="text/css" href="../static/info/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
+    <script type="text/javascript" src="../static/info/js/jquery-1.12.4.min.js"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="header_con">
+        <div class="header">
+            <a href="/" class="logo fl"><img src="../static/info/images/main_logo.png" alt="logo" width="40" height="40"></a>
+            <ul class="menu fl">
+            <li data-cid="1"><a href="/">论文列表</a></li>
+            <li class="active" data-cid="2"><a href="javascript:;">统计图表</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="center_con">
+        <div class="detail_con fl" style="height:auto">
+            <h3>图表</h3>
+            <div class="detail_about clearfix">
+                <span class="time_souce fl">不限
+                    <span style="margin-left: 10px;">来源: <strong>近几年三大顶会</strong></span>
+                </span>
+            </div>
+
+            <h4>饼图</h4>
+            <div id="container_pie" style="height: 400px;"></div>
+            <h4>折线图</h4>
+
+            <HR class="hr_class"><br>
+            <div id="container_cvpr" style="height: 400px"></div><br><HR class="hr_class"><br>
+            <div id="container_eccv" style="height: 400px"></div><br><HR class="hr_class"><br>
+            <div id="container_iccv" style="height: 400px"></div>
+            <script>
+                var dom_cvpr = document.getElementById("container_cvpr");
+                var myChart_cvpr = echarts.init(dom_cvpr);
+                var option_cvpr;
+
+                var dom_eccv = document.getElementById("container_eccv");
+                var myChart_eccv = echarts.init(dom_eccv);
+                var option_eccv;
+
+                var dom_iccv = document.getElementById("container_iccv");
+                var myChart_iccv = echarts.init(dom_iccv);
+                var option_iccv;
+
+                var dom = document.getElementById("container_pie");
+                var myChart = echarts.init(dom);
+                var option;
+
+                option = {
+                    title: {
+                        text: '三大顶会论文占比一览',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                    },
+                    series: [
+                        {
+                            name: '',
+                            type: 'pie',
+                            radius: '50%',
+                            data: [
+                                {value: {{ data.paper_count[0] }}, name: 'CVPR'},
+                                {value: {{ data.paper_count[1] }}, name: 'ECCV'},
+                                {value: {{ data.paper_count[2] }}, name: 'ICCV'}
+                            ],
+                            emphasis: {
+                                    itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+
+                option_cvpr = {
+                    title: {
+                        text: 'CVPR'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['2020', '2019', '2018']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                       type: 'category',
+                        boundaryGap: false,
+                        data: [
+                            {% for i in range(10) %}
+                            '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '2020',
+                            type: 'line',
+                            stack: '',
+                            data: [
+                                {% for i in range(10) %}
+                                '{{ data.analysis_list[0][i].frequency }}',
+                                {% endfor %}
+                            ]
+                        },
+                        {
+                            name: '2019',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[1][i].frequency }}',
+                                   {% endfor %}]
+                        },
+                        {
+                            name: '2018',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[2][i].frequency }}',
+                                   {% endfor %}]
+                        }
+                    ]
+                };
+
+                option_eccv = {
+                    title: {
+                        text: 'ECCV'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['2020', '2018', '2016']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                       type: 'category',
+                        boundaryGap: false,
+                        data: [
+                            {% for i in range(10) %}
+                            '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '2020',
+                            type: 'line',
+                            stack: '',
+                            data: [
+                                {% for i in range(10) %}
+                                '{{ data.analysis_list[3][i].frequency }}',
+                                {% endfor %}
+                            ]
+                        },
+                        {
+                            name: '2018',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[4][i].frequency }}',
+                                   {% endfor %}]
+                        },
+                        {
+                            name: '2016',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                   '{{ data.analysis_list[5][i].frequency }}',
+                                   {% endfor %}]
+                        }
+                    ]
+                };
+
+                option_iccv = {
+                    title: {
+                        text: 'CVPR'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['2019', '2017', '2015']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: [
+                            {% for i in range(10) %}
+                                '{{ data.list_word[i] }}',
+                            {% endfor %}
+                        ]
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: '2019',
+                            type: 'line',
+                            stack: '',
+                            data: [
+                                {% for i in range(10) %}
+                                    '{{ data.analysis_list[6][i].frequency }}',
+                                {% endfor %}
+                            ]
+                        },
+                        {
+                            name: '2017',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                '{{ data.analysis_list[7][i].frequency }}',
+                            {% endfor %}]
+                        },
+                        {
+                            name: '2015',
+                            type: 'line',
+                            stack: '',
+                            data: [{% for i in range(10) %}
+                                '{{ data.analysis_list[8][i].frequency }}',
+                            {% endfor %}]
+                        }
+                    ]
+                };
+
+                if (option_cvpr && typeof option_cvpr === 'object') {
+                    myChart_cvpr.setOption(option_cvpr);
+                    myChart_eccv.setOption(option_eccv);
+                    myChart_iccv.setOption(option_iccv);
+                    myChart.setOption(option);
+                }
+
+                </script>
+
+        </div>
+        <div class="rank_con fr">
+            <div class="rank_title">
+                <h3>顶会热词</h3>
+            </div>
+            <ul class="rank_list">
+                {% for item in data.top %}
+                    {% if loop.index==1 %}
+                        <li><span class="first">{{ loop.index }}</span><a href="/?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==2 %}
+                        <li><span class="second">{{ loop.index }}</span><a href="/?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==3 %}
+                        <li><span class="third">{{ loop.index }}</span><a href="/?keywords={{ item }}">{{ item }}</a></li>
+                    {% else %}
+                        <li><span class="">{{ loop.index }}</span><a href="/?keywords={{ item }}">{{ item }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_links">
+            <a href="https://www.cnblogs.com/koopi/p/14520373.html">关于我们</a>
+            <span>|</span>
+            <a href="https://edu.cnblogs.com/campus/fzu/FZUSESPR21">课程链接</a>
+        </div>
+        <p class="copyright">
+            CopyRight © 2018级 福州大学软件工程
+    </div>
+
+</body>
+</html>

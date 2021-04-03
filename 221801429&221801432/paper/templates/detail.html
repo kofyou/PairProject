@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>论文详情</title>
+    <link rel="stylesheet" type="text/css" href="../static/info/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
+    <script type="text/javascript" src="../static/info/js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="header_con">
+        <div class="header">
+            <a href="/" class="logo fl"><img src="../static/info/images/main_logo.png" alt="logo" width="40" height="40"></a>
+            <ul class="menu fl">
+            <li data-cid="1"><a href="/">论文列表</a></li>
+            <li data-cid="2"><a href="../chart">统计图表</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="center_con">
+        <div class="detail_con fl">
+            <h3>{{ data.title }}</h3>
+            <div class="detail_about clearfix">
+                <span class="time_souce fl">{{ data.releasetime }}
+                    <span style="margin-left: 10px;">来源:{{ data.typeandyear }}</span>
+                    <a style="margin-left: 10px;" class="link_source" href="{{ data.link }}">原文链接</a>
+                </span>
+            </div>
+
+            <p class="summary">
+                关键字：<br>
+                {{ data.keywords }}
+            </p>
+
+            <h4>摘要</h4>
+
+            <p>    {{ data.abstract }}</p>
+
+        </div>
+        <div class="rank_con fr">
+            <div class="rank_title">
+                <h3>顶会热词</h3>
+            </div>
+            <ul class="rank_list">
+                {% for item in data.top %}
+                    {% if loop.index==1 %}
+                        <li><span class="first">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==2 %}
+                        <li><span class="second">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==3 %}
+                        <li><span class="third">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
+                    {% else %}
+                        <li><span class="">{{ loop.index }}</span><a href="../?keywords={{ item }}">{{ item }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="footer">        
+        <div class="footer_links">
+            <a href="https://www.cnblogs.com/koopi/p/14520373.html">关于我们</a>
+            <span>|</span>
+            <a href="https://edu.cnblogs.com/campus/fzu/FZUSESPR21">课程链接</a>
+        </div>
+        <p class="copyright">
+            CopyRight © 2018级 福州大学软件工程
+    </div>
+
+</body>
+</html>

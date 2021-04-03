@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>顶会论文查询</title>
+    <link rel="stylesheet" type="text/css" href="../static/info/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/info/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/info/css/jquery.pagination.css">
+    <script type="text/javascript" src="../static/info/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../static/info/js/index.js"></script>
+    <script type="text/javascript" src="../static/info/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+    <div class="header_con">
+        <div class="header">
+            <a href="/" class="logo fl"><img src="../static/info/images/main_logo.png" alt="logo"  width="40" height="40"></a>
+            <ul class="menu fl">
+                <li class="active" data-cid="1"><a href="javascript:;">论文列表</a></li>
+                <li data-cid="2"><a href="/chart">统计图表</a></li>
+            </ul>
+            <form class="paper_filter_form">
+                <input type="text" placeholder="请输入要搜索论文的相关内容" class="input_txt" name="keywords">
+                <input type="submit" value="搜 索" class="input_sub">
+            </form>
+        </div>
+    </div>
+    <div class="center_con">
+        <ul class="list_con fl">
+              {% if data.isSearch %}
+                <p>根据{{ data.searchWord }}搜索到相关结果如下，共计{{ data.searchCount }}条结果：</p>
+              {% endif %}
+            {% for paper in data.paper %}
+             <li>
+                <a href="/detail/{{ paper.id }}" class="paper_title fl">{{ paper.title }}</a>
+                <span class="paper_detail fl">摘要：{{ paper.abstract }}</span>
+                <div class="type_info fl">
+                    <div class="type fl">
+                        <span>&emsp;所属顶会: {{ paper.typeandyear }}</span>
+                    </div>
+                    <div class="time fl">{{ paper.releasetime }}</div>
+                    <div><a href="/delete/{{ paper.id }}" title="从列表中删除"><img src="../static/info/images/delete.png" alt="delete" width="20" height="20"></a></div>
+                </div>
+            </li>
+            {% endfor %}
+        <div id="pagination" class="page"></div>
+        <script>
+            $(function() {
+                $("#pagination").pagination({
+                    currentPage: {{ data.currentPage }},
+                    totalPage: {{ data.totalPage }},
+                    callback: function(current) {
+                        window.location.href = "/?p="+current;
+                    }
+                });
+            });
+        </script>
+        </ul>
+        <div class="rank_con fr">
+            <div class="rank_title">
+                <h3>顶会热词</h3>
+            </div>
+            <ul class="rank_list">
+                {% for item in data.top %}
+                    {% if loop.index==1 %}
+                        <li><span class="first">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==2 %}
+                        <li><span class="second">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                    {% elif loop.index==3 %}
+                        <li><span class="third">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                    {% else %}
+                        <li><span class="">{{ loop.index }}</span><a href="?keywords={{ item }}">{{ item }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="footer">        
+        <div class="footer_links">
+            <a href="https://www.cnblogs.com/koopi/p/14520373.html">关于我们</a>
+            <span>|</span>
+            <a href="https://edu.cnblogs.com/campus/fzu/FZUSESPR21">课程链接</a>
+        </div>
+        <p class="copyright">
+            CopyRight © 2018级 福州大学软件工程
+        </p>
+    </div>
+
+</body>
+</html>
