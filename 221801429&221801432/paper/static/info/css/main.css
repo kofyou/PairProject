@@ -1,0 +1,369 @@
+body{
+    background:#f1f2f6;
+    font-family:'Microsoft YaHei';
+}
+.header_con{
+    height:59px;
+    background:#fff;
+    border-bottom:1px solid #ccc;
+}
+.header{
+    width:1200px;
+    height:59px;
+    margin:0px auto;
+}
+
+.logo{
+    width:140px;
+    height:33px;
+    margin-top:13px;
+}
+
+.menu{
+    width:600px;
+    height:59px;
+    margin-left:100px;
+}
+
+.menu li{
+    height:59px;
+    float:left;
+}
+
+.menu .active{
+    border-bottom:2px solid #009afc;
+}
+
+.menu .active a{
+    color:#39f;
+}
+
+.menu li a{
+    display:block;
+    line-height:59px;
+    padding:0px 25px;
+    font-size:14px;
+    color:#666;
+}
+
+.menu li a:hover{
+    color:#39f;
+}
+
+.center_con{
+    width:1200px;
+    overflow:hidden;
+    margin:20px auto 0;
+}
+
+.list_con{
+    width:820px;    
+}
+
+.list_con li{
+    background:#fff;
+    height:168px;
+    border:1px solid #ececee;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+
+.list_con .paper_title{
+    width:750px;
+    height:18px;
+    margin:16px 0 0 16px;
+    font-size:18px;
+    line-height:18px;
+    color:#000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list_con .paper_title:hover{
+    color:#39f;
+}
+
+.list_con .paper_detail{
+    width:760px;
+    height:88px;
+    margin:10px 0 0 16px;
+    font-size:14px;
+    line-height:23px;
+    color:#666;
+}
+
+.type_info{
+    width:616px;
+    height:20px;
+    margin-left:16px;
+}
+
+.type span{
+    float:left;
+    font-size:12px;
+    color:#333;
+    line-height:20px;
+    margin-left:5px;
+}
+.type span:hover{
+    color:#39f;
+}
+
+
+.time{
+    float:left;
+    margin-left:15px;
+    line-height:20px;
+    font-size:12px;
+    text-indent:20px;
+    color:#999;
+    background:url(../images/clock.png) left center no-repeat;
+}
+
+.rank_con{
+    width:358px;
+    border:1px solid #ececee;
+}
+
+.rank_title{
+    height:53px;
+    background:#fff;
+    border-bottom:1px solid #ececee;
+}
+
+.rank_title h3{
+    line-height:53px;
+    font-size:14px;
+    color:#000;
+    text-indent:52px;
+    background:url(../images/hit_icon.png) 20px center no-repeat;
+}
+
+.rank_list{
+    background:#fff;
+}
+
+.rank_list li{
+    width:316px;
+    margin:0px auto;
+    border-bottom:1px solid #ececee;
+    padding:18px 0px;
+    overflow:hidden;
+}
+
+.rank_list li span{
+    float:left;
+    width:19px;
+    height:19px;
+    line-height:19px;
+    text-align:center;
+    border-radius:2px;
+    margin-right:11px;
+    color:#1482f0;
+}
+
+.rank_list li a{
+    float:left;
+    width:286px;
+    font-size:14px;
+    color:#333;
+}
+
+.rank_list li a:hover{
+    color:#39f;
+}
+
+.rank_list li .first{
+    background: #f33;
+    color:#fff;
+}
+
+.rank_list li .second{
+    background:#ff722b;
+    color:#fff;
+}
+
+.rank_list li .third{
+    background:#fa3;
+    color:#fff;
+}
+
+.footer{
+    margin-top:20px;
+    background:#262F38;
+    overflow:hidden;
+}
+
+.footer_links{
+    text-align:center;
+    margin-top:20px;
+}
+
+.footer_links a,.footer_links span{
+    color:#fff;
+    font-size:12px;
+
+}
+
+.footer_links span{
+    margin:0 5px;
+}
+
+.copyright{
+    text-align:center;
+    font-size:12px;
+    color:#fff;
+    line-height:26px;
+    margin-top:9px;
+    margin-bottom:20px;
+}
+
+
+.detail_con{
+    width:778px;
+    padding:20px;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid #ececee;
+}
+
+.detail_con h3{
+    font-size:30px;
+    line-height:45px;
+}
+
+.detail_about{
+    margin:10px 0;
+    border-bottom:1px solid #ebebeb;
+    padding:10px 0;
+}
+
+.time_souce{
+    color:#999;
+    font-size: 12px;
+    text-indent:20px;
+    background:url(../images/clock.png) left center no-repeat;
+}
+
+.link_source{
+    color: #1478F0;
+    font-size: 12px;
+    text-indent:20px;
+}
+
+.summary{
+    letter-spacing: .5px;
+    text-align: justify;
+    background:#f0f2f5;
+    font-size:16px;
+    line-height:28px;
+    padding:15px 25px;
+    margin-top:30px;
+    position:relative;
+}
+
+.detail_con .summary:before{
+    position:absolute;
+    left:5px;
+    top:5px;
+    content:"『";
+}
+
+.detail_con .summary:after{
+    position:absolute;
+    right:5px;
+    bottom:5px;
+    content:"』";
+}
+
+.detail_con h4{
+    font-size: 18px;
+    font-weight: 700;
+    color: #1478f0;
+    border-left: 5px solid #1478f0;
+    padding-left: 10px;
+    margin:30px 0
+}
+
+.detail_con p{
+    font-size: 16px;
+    line-height: 28px;
+    margin-bottom: 30px;
+    text-align: justify
+}
+
+
+.type_info{
+    width:700px;
+    margin:0px auto;
+}
+
+
+.type_info h3{
+    font-size: 18px;
+    padding: 10px 20px;
+    color: #9698a5;
+    border-bottom:1px solid #ededed;
+}
+
+.ui-pagination-container{
+    text-align:center;
+    margin-top:20px;
+}
+
+.ui-pagination-container .ui-pagination-page-item:hover{
+    color:#39f;
+    border-color:#39f;
+}
+
+.ui-pagination-container .ui-pagination-page-item{
+    background:none;
+    font-size:12px;
+}
+
+.ui-pagination-container .ui-pagination-page-item.active{
+    background:#39f;
+    border-color:#39f;
+}
+
+.ui-pagination-container .ui-pagination-page-item:hover{
+    color:#333;
+}
+
+.paper_filter_form{
+	float:right;
+	height:36px;
+	margin:4px 10px 0 0;
+}
+
+.paper_filter_form .input_txt{
+	float:left;
+	margin:0px;
+	width:298px;
+	height:26px;
+	border:1px solid #d0d0d0;
+	border-radius:4px;
+	outline:none;
+	text-indent:10px;
+  }
+
+  .paper_filter_form .input_sub{
+	float:left;
+	margin:0px;
+	margin-left:10px;
+	width:100px;
+	height:28px;
+	border:0px;
+	border-radius:4px;
+	background: #009afc;
+	color:#fff;
+	cursor:pointer;
+  }
+
+  .hr_class{
+      alpha(opacity=100,finishopacity=0,style=2);
+      width:100%;
+      color:#70A9FA;
+      size:20px;
+  }
